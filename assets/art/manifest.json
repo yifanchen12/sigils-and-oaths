@@ -1,0 +1,957 @@
+{
+  "project": "纹章与誓约 / Sigils & Oaths",
+  "generated_on": "2026-10-25",
+  "tool": "native image_gen",
+  "model": "not exposed by the runtime",
+  "provenance_note": "Original AI-generated art produced for this project. Raw PNGs were copied intact; no third-party game art was used. Generation records are kept separately from any future distribution or store disclosure review.",
+  "assets": [
+    {
+      "id": "menu",
+      "path": "assets/art/menu.png",
+      "source_filename": "exec-27b23450-703d-4ca6-9b7f-e53249d9d44c.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "role": "Atmospheric war-council background; layout and text are native Godot controls.",
+      "processing": "No pixel modification. Native cover crop and dark overlay at render time.",
+      "status": "historical painterly menu; superseded by menu_cel"
+    },
+    {
+      "id": "units",
+      "path": "assets/art/units.png",
+      "source_filename": "exec-762bd0a9-0c4e-4d94-b42e-88f835789f78.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "atlas_grid": [
+        3,
+        2
+      ],
+      "order": [
+        "sword",
+        "spear",
+        "cavalry",
+        "archer",
+        "mage",
+        "healer"
+      ],
+      "role": "Shared card illustrations and circular troop portraits.",
+      "processing": "No pixel modification. Native AtlasTexture regions, cover crops and circular UV presentation.",
+      "status": "retained original; replaced by mature portraits in production"
+    },
+    {
+      "id": "heroes",
+      "path": "assets/art/heroes.png",
+      "source_filename": "exec-74866d3c-de52-45b3-b0e0-c7810aa23768.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "warden",
+        "pyromancer",
+        "grove"
+      ],
+      "role": "Commander selection, status portraits and commander board tokens.",
+      "processing": "No pixel modification. Three exact 724x724 native atlas regions.",
+      "status": "retained original; replaced by mature portraits in production"
+    },
+    {
+      "id": "terrain_1",
+      "path": "assets/art/terrain_1.png",
+      "source_filename": "exec-cb851292-5223-45e7-8a89-a33221db5842.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "plain",
+        "forest",
+        "mountain"
+      ],
+      "role": "Terrain squares",
+      "processing": "Raw PNG preserved; native AtlasTexture regions and cover crop only.",
+      "status": "integrated; native-scale UI screenshots reviewed"
+    },
+    {
+      "id": "terrain_2",
+      "path": "assets/art/terrain_2.png",
+      "source_filename": "exec-59290b5f-a6b6-41b3-84b7-e50c80a0a2b8.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "road",
+        "water",
+        "bridge"
+      ],
+      "role": "Terrain squares",
+      "processing": "Raw PNG preserved; native AtlasTexture regions and cover crop only.",
+      "status": "integrated; native-scale UI screenshots reviewed"
+    },
+    {
+      "id": "terrain_3",
+      "path": "assets/art/terrain_3.png",
+      "source_filename": "exec-b5ad639f-89b4-4958-bd70-6b7b6663fb92.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "hill",
+        "ruins",
+        "fort"
+      ],
+      "role": "Terrain squares",
+      "processing": "Raw PNG preserved; native AtlasTexture regions and cover crop only.",
+      "status": "integrated; native-scale UI screenshots reviewed"
+    },
+    {
+      "id": "spells_1",
+      "path": "assets/art/spells_1.png",
+      "source_filename": "exec-a86e2098-4836-4840-8115-f5ee8ff6f081.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "bolt",
+        "nova",
+        "heal"
+      ],
+      "role": "Spell and environment card illustration",
+      "processing": "Raw PNG preserved; native AtlasTexture regions and cover crop only.",
+      "status": "historical painterly spell asset; superseded by cel series"
+    },
+    {
+      "id": "spells_2",
+      "path": "assets/art/spells_2.png",
+      "source_filename": "exec-e262281e-f1b9-4481-936d-368c65fa8e89.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "ward",
+        "march",
+        "insight"
+      ],
+      "role": "Spell and environment card illustration",
+      "processing": "Raw PNG preserved; native AtlasTexture regions and cover crop only.",
+      "status": "historical painterly spell asset; superseded by cel series"
+    },
+    {
+      "id": "weather_1",
+      "path": "assets/art/weather_1.png",
+      "source_filename": "exec-7c19677e-0cc4-4837-8aaf-78cb69e3cb57.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "rain",
+        "fog",
+        "sun"
+      ],
+      "role": "Spell and environment card illustration",
+      "processing": "Raw PNG preserved; native AtlasTexture regions and cover crop only.",
+      "status": "historical painterly spell asset; superseded by cel series"
+    },
+    {
+      "id": "weather_2",
+      "path": "assets/art/weather_2.png",
+      "source_filename": "exec-38e1b6d7-b348-40f9-ae38-68e2a45954e6.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "snow",
+        "clear_skies",
+        "initiative"
+      ],
+      "role": "Spell and environment card illustration",
+      "processing": "Raw PNG preserved; native AtlasTexture regions and cover crop only.",
+      "status": "historical painterly spell asset; superseded by cel series"
+    },
+    {
+      "id": "tactics_1",
+      "path": "assets/art/tactics_1.png",
+      "source_filename": "exec-58c0a961-7361-49df-a4eb-9522345ece3d.png",
+      "size": [
+        2170,
+        725
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "repulse",
+        "frostbind",
+        "dispel"
+      ],
+      "role": "Spell and environment card illustration",
+      "processing": "Raw PNG preserved; native AtlasTexture regions and cover crop only.",
+      "status": "historical painterly spell asset; superseded by cel series"
+    },
+    {
+      "id": "tactics_2",
+      "path": "assets/art/tactics_2.png",
+      "source_filename": "exec-aa561ac3-de19-4d69-b662-354753511c4a.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "exchange",
+        "onslaught",
+        "rampart"
+      ],
+      "role": "Spell and environment card illustration",
+      "processing": "Raw PNG preserved; native AtlasTexture regions and cover crop only.",
+      "status": "historical painterly spell asset; superseded by cel series"
+    },
+    {
+      "id": "map_props",
+      "path": "assets/art/map_props.png",
+      "source_filename": "exec-1e7d7e6d-20b2-48f8-bbf9-a8f98686880e.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "forest",
+        "mountain",
+        "fort"
+      ],
+      "role": "Transparent terrain props",
+      "processing": "Raw PNG retained intact. Native Godot AtlasTexture regions only.",
+      "status": "integrated; Windows UI verification passed",
+      "alpha_zero_fraction": 0.4748,
+      "prompt_file": "assets/art/prompt-map-props.txt"
+    },
+    {
+      "id": "map_ground",
+      "path": "assets/art/map_ground.png",
+      "source_filename": "exec-2d81a078-860f-44ed-b852-db3157eb8bbc.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "grass",
+        "sand",
+        "water"
+      ],
+      "role": "Low-contrast ground samples",
+      "processing": "Raw PNG retained intact. Native Godot AtlasTexture regions only.",
+      "status": "integrated; Windows UI verification passed",
+      "prompt_file": "assets/art/prompts-jrpg.json"
+    },
+    {
+      "id": "map_props_extra",
+      "path": "assets/art/map_props_extra.png",
+      "source_filename": "exec-bd6d1189-8932-461a-bcf3-1a31283416a8.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "hill",
+        "ruins",
+        "harbor_fort"
+      ],
+      "role": "Transparent terrain props",
+      "processing": "Raw PNG retained intact. Native Godot AtlasTexture regions only.",
+      "status": "integrated; Windows UI verification passed",
+      "alpha_zero_fraction": 0.4467,
+      "prompt_file": "assets/art/prompt-map-props-extra.txt"
+    },
+    {
+      "id": "unit_sprites",
+      "path": "assets/art/unit_sprites.png",
+      "source_filename": "exec-9e81bd8b-8bdb-48f9-9d65-afe8ac3e6c79.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "atlas_grid": [
+        3,
+        2
+      ],
+      "order": [
+        "sword",
+        "spear",
+        "cavalry",
+        "archer",
+        "mage",
+        "healer"
+      ],
+      "role": "Superseded chibi experiment",
+      "processing": "Raw PNG retained intact. Native Godot AtlasTexture regions only.",
+      "status": "superseded; not used in production",
+      "alpha_zero_fraction": 0.5327,
+      "prompt_file": "assets/art/prompts-jrpg.json"
+    },
+    {
+      "id": "hero_sprites",
+      "path": "assets/art/hero_sprites.png",
+      "source_filename": "exec-65108fc7-da64-4b6f-8b9c-787060e89dbb.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "warden",
+        "pyromancer",
+        "grove"
+      ],
+      "role": "Superseded chibi experiment",
+      "processing": "Raw PNG retained intact. Native Godot AtlasTexture regions only.",
+      "status": "superseded; not used in production",
+      "alpha_zero_fraction": 0.5624,
+      "prompt_file": "assets/art/prompt-hero-sprites.txt"
+    },
+    {
+      "id": "heroes_mature",
+      "path": "assets/art/heroes_mature.png",
+      "source_filename": "exec-d3956fd7-72c3-4e44-ab30-b414b0530bfb.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "warden",
+        "pyromancer",
+        "grove"
+      ],
+      "role": "Adult commander portraits",
+      "processing": "Raw PNG retained intact. Native Godot AtlasTexture regions only.",
+      "status": "historical painterly adult assets; superseded by cel series",
+      "prompt_note": "Original tool-call prompt in chat; generation-record.md retains summary, not a verbatim backup."
+    },
+    {
+      "id": "unit_portraits_1",
+      "path": "assets/art/unit_portraits_1.png",
+      "source_filename": "exec-3365a9b9-0c77-44b8-abdf-213600cbdfb1.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "sword",
+        "spear",
+        "cavalry"
+      ],
+      "role": "Adult troop portraits",
+      "processing": "Raw PNG retained intact. Native Godot AtlasTexture regions only.",
+      "status": "historical painterly adult assets; superseded by cel series",
+      "prompt_file": "assets/art/prompt-mature-unit-group1-v2.txt"
+    },
+    {
+      "id": "unit_portraits_2",
+      "path": "assets/art/unit_portraits_2.png",
+      "source_filename": "exec-47b3d500-8487-46d3-9107-a4abe92b3a34.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "archer",
+        "mage",
+        "healer"
+      ],
+      "role": "Adult troop portraits",
+      "processing": "Raw PNG retained intact. Native Godot AtlasTexture regions only.",
+      "status": "historical painterly adult assets; superseded by cel series",
+      "prompt_file": "assets/art/prompt-mature-unit-group2-v2.txt"
+    },
+    {
+      "id": "unit_sprites_mature_1",
+      "path": "assets/art/unit_sprites_mature_1.png",
+      "source_filename": "exec-9f387703-a936-46e1-987f-e1c0c005be7f.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "sword",
+        "spear",
+        "cavalry"
+      ],
+      "role": "Adult full-body battlefield figures",
+      "processing": "Raw PNG retained intact. Native Godot AtlasTexture regions only.",
+      "status": "historical painterly adult assets; superseded by cel series",
+      "alpha_zero_fraction": 0.4554,
+      "prompt_file": "assets/art/prompt-mature-sprites-group1.txt"
+    },
+    {
+      "id": "unit_sprites_mature_2",
+      "path": "assets/art/unit_sprites_mature_2.png",
+      "source_filename": "exec-222d67e9-fda3-450d-8ae8-1434a04d47e3.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "archer",
+        "mage",
+        "healer"
+      ],
+      "role": "Adult full-body battlefield figures",
+      "processing": "Raw PNG retained intact. Native Godot AtlasTexture regions only.",
+      "status": "historical painterly adult assets; superseded by cel series",
+      "alpha_zero_fraction": 0.4182,
+      "prompt_file": "assets/art/prompt-mature-sprites-group2.txt"
+    },
+    {
+      "id": "hero_sprites_mature",
+      "path": "assets/art/hero_sprites_mature.png",
+      "source_filename": "exec-5ffa7ceb-3b23-46bf-9fda-4c36c51dc41d.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "warden",
+        "pyromancer",
+        "grove"
+      ],
+      "role": "Adult full-body commander figures",
+      "processing": "Raw PNG retained intact. Native Godot AtlasTexture regions only.",
+      "status": "historical painterly adult assets; superseded by cel series",
+      "alpha_zero_fraction": 0.4301,
+      "prompt_file": "assets/art/prompt-mature-hero-sprites-v2.txt"
+    },
+    {
+      "id": "heroes_cel",
+      "path": "assets/art/heroes_cel.png",
+      "source_filename": "exec-b3738eae-1ded-4533-b498-5593f905a528.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "warden",
+        "pyromancer",
+        "grove"
+      ],
+      "role": "Original adult Japanese anime cel character art",
+      "processing": "Raw PNG retained intact. Native Godot atlas and crop only.",
+      "status": "integrated; Windows UI 213 checks passed and actual screenshots reviewed",
+      "prompt_file": "assets/art/prompt-heroes-cel.txt"
+    },
+    {
+      "id": "unit_portraits_cel_1",
+      "path": "assets/art/unit_portraits_cel_1.png",
+      "source_filename": "exec-38c43836-2f32-4998-aa4e-a80eab4c5833.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "sword",
+        "spear",
+        "cavalry"
+      ],
+      "role": "Original adult Japanese anime cel character art",
+      "processing": "Raw PNG retained intact. Native Godot atlas and crop only.",
+      "status": "integrated; Windows UI 213 checks passed and actual screenshots reviewed",
+      "prompt_file": "assets/art/prompt-unit-portraits-cel-1.txt"
+    },
+    {
+      "id": "hero_sprites_cel",
+      "path": "assets/art/hero_sprites_cel.png",
+      "source_filename": "exec-5eb57679-ab53-4c24-b640-2c9eb00d1409.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "warden",
+        "pyromancer",
+        "grove"
+      ],
+      "role": "Original adult Japanese anime cel character art",
+      "processing": "Raw PNG retained intact. Native Godot atlas and crop only.",
+      "status": "integrated; Windows UI 213 checks passed and actual screenshots reviewed",
+      "prompt_file": "assets/art/prompt-hero-sprites-cel.txt",
+      "alpha_zero_fraction": 0.4159
+    },
+    {
+      "id": "unit_portraits_cel_2",
+      "path": "assets/art/unit_portraits_cel_2.png",
+      "source_filename": "exec-cf49b677-29cc-4a5d-9bca-23f7288e32c2.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "archer",
+        "mage",
+        "healer"
+      ],
+      "role": "Original adult Japanese anime cel character art",
+      "processing": "Raw PNG retained intact. Native Godot atlas and crop only.",
+      "status": "integrated; Windows UI 213 checks passed and actual screenshots reviewed",
+      "prompt_file": "assets/art/prompt-cel-mage-distinction.txt",
+      "editing_reference": "assets/art/unit_portraits_cel_2_draft.png",
+      "editing_reference_source": "exec-1dafdd21-6447-4d5b-8a95-80d4de38216e.png",
+      "editing_reference_prompt": "assets/art/prompt-unit-portraits-cel-2-retry.txt"
+    },
+    {
+      "id": "unit_sprites_cel_1",
+      "path": "assets/art/unit_sprites_cel_1.png",
+      "source_filename": "exec-d852ca97-c776-4c1f-b9c4-05bd7e19883d.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "sword",
+        "spear",
+        "cavalry"
+      ],
+      "role": "Original adult Japanese anime cel character art",
+      "processing": "Raw PNG retained intact. Native Godot atlas and crop only.",
+      "status": "integrated; Windows UI 213 checks passed and actual screenshots reviewed",
+      "prompt_file": "assets/art/prompt-unit-sprites-cel-1-retry.txt",
+      "alpha_zero_fraction": 0.4177
+    },
+    {
+      "id": "unit_sprites_cel_2",
+      "path": "assets/art/unit_sprites_cel_2.png",
+      "source_filename": "exec-8c79e462-0812-4467-899f-8432ac9c1b83.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "archer",
+        "mage",
+        "healer"
+      ],
+      "role": "Original adult Japanese anime cel character art",
+      "processing": "Raw PNG retained intact. Native Godot atlas and crop only. Three-pixel native region inset prevents separator-edge bleed.",
+      "status": "integrated; Windows UI 213 checks passed and actual screenshots reviewed",
+      "prompt_file": "assets/art/prompt-unit-sprites-cel-2.txt",
+      "alpha_zero_fraction": 0.4009
+    },
+    {
+      "id": "map_biome_props",
+      "path": "assets/art/map_biome_props.png",
+      "source_filename": "exec-85089a3b-11dd-4b34-a819-02d75415da81.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "pines",
+        "acacia",
+        "gate"
+      ],
+      "role": "Biome-specific terrain props; existing movement/defense rules unchanged",
+      "processing": "Raw transparent PNG retained intact; native atlas only",
+      "alpha_zero_fraction": 0.4577,
+      "prompt_file": "assets/art/prompt-map-biome-props.txt",
+      "status": "integrated; Windows UI 215 checks passed and map screenshots reviewed"
+    },
+    {
+      "id": "map_landforms",
+      "path": "assets/art/map_landforms.png",
+      "source_filename": "exec-8d783826-703a-4526-95ef-3a8a7e2f82e3.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "rock_mountain",
+        "sand_mountain",
+        "plateau"
+      ],
+      "role": "Distinct blocking mountains and occupiable raised hill; no rules changed",
+      "processing": "Raw transparent PNG retained intact; native atlas only",
+      "alpha_zero_fraction": 0.4957,
+      "prompt_file": "assets/art/prompt-map-landforms.txt",
+      "status": "integrated; Windows UI 215 checks passed and map screenshots reviewed"
+    },
+    {
+      "id": "spells_1_cel",
+      "path": "assets/art/spells_1_cel.png",
+      "source_filename": "exec-ef21737a-fd4a-4b86-8c2d-b47deb7156e2.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "bolt",
+        "nova",
+        "heal"
+      ],
+      "role": "Original Japanese anime cel spell/weather/tactics illustrations",
+      "processing": "Raw PNG preserved intact; native Godot atlas and cover crop only",
+      "prompt_file": "assets/art/prompts-cel-spells.json",
+      "status": "integrated; original generation and actual Godot UI screenshots reviewed"
+    },
+    {
+      "id": "spells_2_cel",
+      "path": "assets/art/spells_2_cel.png",
+      "source_filename": "exec-75974665-469a-49a3-9b20-5dcc3fe5bd15.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "ward",
+        "march",
+        "insight"
+      ],
+      "role": "Original Japanese anime cel spell/weather/tactics illustrations",
+      "processing": "Raw PNG preserved intact; native Godot atlas and cover crop only",
+      "prompt_file": "assets/art/prompts-cel-spells.json",
+      "status": "integrated; original generation and actual Godot UI screenshots reviewed"
+    },
+    {
+      "id": "weather_1_cel",
+      "path": "assets/art/weather_1_cel.png",
+      "source_filename": "exec-38ede922-073f-42c1-b4a2-30a13ee3db04.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "rain",
+        "fog",
+        "sun"
+      ],
+      "role": "Original Japanese anime cel spell/weather/tactics illustrations",
+      "processing": "Raw PNG preserved intact; native Godot atlas and cover crop only",
+      "prompt_file": "assets/art/prompts-cel-spells.json",
+      "status": "integrated; original generation and actual Godot UI screenshots reviewed"
+    },
+    {
+      "id": "weather_2_cel",
+      "path": "assets/art/weather_2_cel.png",
+      "source_filename": "exec-45226daa-97d5-4b73-ad48-7040ad61c201.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "snow",
+        "clear_skies",
+        "initiative"
+      ],
+      "role": "Original Japanese anime cel spell/weather/tactics illustrations",
+      "processing": "Raw PNG preserved intact; native Godot atlas and cover crop only",
+      "prompt_file": "assets/art/prompts-cel-spells.json",
+      "status": "integrated; original generation and actual Godot UI screenshots reviewed"
+    },
+    {
+      "id": "tactics_1_cel",
+      "path": "assets/art/tactics_1_cel.png",
+      "source_filename": "exec-363d9291-eb83-4d19-8603-4440e46848b0.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "repulse",
+        "frostbind",
+        "dispel"
+      ],
+      "role": "Original Japanese anime cel spell/weather/tactics illustrations",
+      "processing": "Raw PNG preserved intact; native Godot atlas and cover crop only",
+      "prompt_file": "assets/art/prompts-cel-spells.json",
+      "status": "integrated; original generation and actual Godot UI screenshots reviewed"
+    },
+    {
+      "id": "tactics_2_cel",
+      "path": "assets/art/tactics_2_cel.png",
+      "source_filename": "exec-191ed4bc-8956-41b0-a155-90840f6e4bcb.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_grid": [
+        3,
+        1
+      ],
+      "order": [
+        "exchange",
+        "onslaught",
+        "rampart"
+      ],
+      "role": "Original Japanese anime cel spell/weather/tactics illustrations",
+      "processing": "Raw PNG preserved intact; native Godot atlas and cover crop only",
+      "prompt_file": "assets/art/prompt-tactics-cel-2-retry.txt",
+      "status": "integrated; original generation and actual Godot UI screenshots reviewed"
+    },
+    {
+      "id": "menu_cel",
+      "path": "assets/art/menu_cel.png",
+      "source_filename": "exec-c075572d-6bd4-40b8-8ccc-50380993e081.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "role": "Original anime cel menu landscape",
+      "processing": "Raw PNG preserved intact; native Godot cover crop only",
+      "prompt_file": "assets/art/prompt-menu-cel.txt",
+      "status": "integrated; source and actual UI reviewed"
+    },
+    {
+      "id": "trail_cel",
+      "path": "assets/art/trail_cel.png",
+      "source_filename": "exec-72724fa2-92d3-465c-8f1c-34f66736e57d.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "role": "Original anime cel road-building card illustration",
+      "processing": "Raw PNG preserved intact; native Godot cover crop only",
+      "prompt_file": "assets/art/prompt-trail-cel.txt",
+      "status": "integrated; source and actual UI reviewed"
+    },
+    {
+      "id": "battlefield_greenwood",
+      "path": "assets/art/battlefields/greenwood-v2.png",
+      "source_filename": "exec-8b2e3dd5-0dc4-4836-a12f-98048b0f7277.png",
+      "size": [
+        1374,
+        1145
+      ],
+      "role": "Complete original Japanese tactical RPG terrain painting for 12x10 map",
+      "guide": "assets/art/map-guides/greenwood.png",
+      "prompt_files": [
+        "assets/art/prompt-battlefield-greenwood-v2.txt",
+        "assets/art/prompt-battlefield-greenwood-edge-fix.txt"
+      ],
+      "tool": "native image_gen",
+      "processing": "Raw source preserved; native Godot texture placement, mipmapped import and dynamic terrain overlays",
+      "status": "integrated; rule-grid visual audit reviewed",
+      "parent_source_filename": "exec-15d78d0d-71e0-4a26-9b5f-11946c2b833d.png"
+    },
+    {
+      "id": "battlefield_rivergate",
+      "path": "assets/art/battlefields/rivergate-v2.png",
+      "source_filename": "exec-7b0edf0d-460f-4e1e-af4e-70a39c34bbe7.png",
+      "size": [
+        1374,
+        1145
+      ],
+      "role": "Complete original Japanese tactical RPG terrain painting for 12x10 map",
+      "guide": "assets/art/map-guides/rivergate.png",
+      "prompt_files": [
+        "assets/art/prompt-battlefield-rivergate-v2.txt",
+        "assets/art/prompt-battlefield-rivergate-bank-fix.txt"
+      ],
+      "tool": "native image_gen",
+      "processing": "Raw source preserved; native Godot texture placement, mipmapped import and dynamic terrain overlays",
+      "status": "integrated; rule-grid visual audit reviewed",
+      "parent_source_filename": "exec-80648672-b22f-40aa-8cde-97c9720d5b5d.png"
+    },
+    {
+      "id": "battlefield_harbor",
+      "path": "assets/art/battlefields/harbor-v2.png",
+      "source_filename": "exec-e511d056-64ae-4dfb-aa88-d297626dab85.png",
+      "size": [
+        1374,
+        1145
+      ],
+      "role": "Complete original Japanese tactical RPG terrain painting for 12x10 map",
+      "guide": "assets/art/map-guides/harbor.png",
+      "prompt_files": [
+        "assets/art/prompt-battlefield-harbor-single-guide.txt"
+      ],
+      "tool": "native image_gen",
+      "processing": "Raw source preserved; native Godot texture placement, mipmapped import and dynamic terrain overlays",
+      "status": "integrated; rule-grid visual audit reviewed"
+    },
+    {
+      "id": "battlefield_citadel",
+      "path": "assets/art/battlefields/citadel-v2.png",
+      "source_filename": "exec-f9a66c27-01a6-4ce8-afc3-04afe02c0a22.png",
+      "size": [
+        1374,
+        1145
+      ],
+      "role": "Complete original Japanese tactical RPG terrain painting for 12x10 map",
+      "guide": "assets/art/map-guides/citadel.png",
+      "prompt_files": [
+        "assets/art/prompt-battlefield-citadel-single-guide.txt"
+      ],
+      "tool": "native image_gen",
+      "processing": "Raw source preserved; native Godot texture placement, mipmapped import and dynamic terrain overlays",
+      "status": "integrated; rule-grid visual audit reviewed"
+    },
+    {
+      "id": "battlefield_sunspire",
+      "path": "assets/art/battlefields/sunspire-v2.png",
+      "source_filename": "exec-3d354ff2-61c5-4026-a4ca-33857d44731f.png",
+      "size": [
+        1375,
+        1144
+      ],
+      "role": "Complete original Japanese tactical RPG terrain painting for 12x10 map",
+      "guide": "assets/art/map-guides/schematic/sunspire.png",
+      "prompt_files": [
+        "assets/art/prompt-battlefield-sunspire-schematic.txt"
+      ],
+      "tool": "native image_gen",
+      "processing": "Raw source preserved; native Godot texture placement, mipmapped import and dynamic terrain overlays",
+      "status": "integrated; rule-grid visual audit reviewed"
+    },
+    {
+      "id": "battlefield_ridgepass",
+      "path": "assets/art/battlefields/ridgepass-v2.png",
+      "source_filename": "exec-b4fb8a1a-6e1f-438d-8a78-00b8eeb266b6.png",
+      "size": [
+        1374,
+        1145
+      ],
+      "role": "Complete original Japanese tactical RPG terrain painting for 12x10 map",
+      "guide": "assets/art/map-guides/schematic/ridgepass.png",
+      "prompt_files": [
+        "assets/art/prompt-battlefield-ridgepass-schematic.txt",
+        "assets/art/prompt-battlefield-ridgepass-top-road-fix.txt"
+      ],
+      "tool": "native image_gen",
+      "processing": "Raw source preserved; native Godot texture placement, mipmapped import and dynamic terrain overlays",
+      "status": "integrated; rule-grid visual audit reviewed",
+      "parent_source_filename": "exec-776ccbc5-fd32-4463-9116-fcc75713e09e.png"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="HeroData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/hero_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+heroes = Array[Dictionary]([{
+"id": "warden", "name": "艾琳 · 破晓", "title": "誓约守护者", "short": "誓", "hp": 20, "atk": 3, "defense": 1, "range": 1,
+"passive": "誓约光环", "passive_text": "与指挥官四向相邻的其他友军防御 +1。",
+"skill": "圣盾赐福", "skill_text": "为指挥官 3 格内一名友军恢复 2 生命，并获得 3 护盾（护盾上限 5）。", "cost": 2, "cooldown": 3, "skill_range": 3, "effect": "blessing", "amount": 3,
+"portrait": "warden", "accent": "70d3ba"
+}, {
+"id": "pyromancer", "name": "维洛 · 赤烬", "title": "余火执政官", "short": "烬", "hp": 20, "atk": 2, "defense": 0, "range": 2,
+"passive": "不灭余焰", "passive_text": "每个己方回合，第一张火焰伤害法术的伤害 +1。",
+"skill": "烈焰裁决", "skill_text": "对指挥官 4 格内一名敌军造成 4 点火焰伤害。受天气影响，不触发余焰加成。", "cost": 3, "cooldown": 3, "skill_range": 4, "effect": "firestrike", "amount": 4,
+"portrait": "pyromancer", "accent": "f08b76"
+}, {
+"id": "grove", "name": "赛菈 · 月祷", "title": "暮林代行者", "short": "月", "hp": 20, "atk": 2, "defense": 0, "range": 2,
+"passive": "林地共鸣", "passive_text": "己方回合开始，位于森林的友军恢复 1 生命。",
+"skill": "月华回响", "skill_text": "为指挥官 4 格内友军恢复 2 生命，并抽 1 张牌。", "cost": 3, "cooldown": 3, "skill_range": 4, "effect": "renewal", "amount": 2,
+"portrait": "grove", "accent": "b7c995"
+}])

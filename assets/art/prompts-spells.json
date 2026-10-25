@@ -1,0 +1,34 @@
+{
+  "tool": "native image_gen",
+  "reference": "assets/art/units.png",
+  "transparent_background": false,
+  "specs": [
+    {
+      "id": "spells_1",
+      "order": [
+        "bolt",
+        "nova",
+        "heal"
+      ],
+      "prompt": "Create one horizontal triptych for the original fantasy card-tactics game Sigils & Oaths. Exactly three equal square panels in one 3:1 image, no gaps or borders, no text, letters, numerals, symbols resembling text, watermarks or UI. Every panel is a separate evocative spell illustration, center its primary action in the middle third vertically so it remains clear when cropped to a wide card strip. Painterly gouache and oil, refined hand-painted fantasy illustration, antique gold, jade teal, deep indigo shadows, warm directional light, bold readable silhouettes, controlled detail, not photorealistic, no existing franchise characters. Match the reference art's brushwork and palette but do not copy its composition. Left panel: a brilliant amber fire lance streaming diagonally across a dark battlement, concentrated single hot core and trailing sparks. Middle panel: a ring of red-gold fire expanding across stone paving, viewed obliquely from above, bright circular impact and dark center. Right panel: two gloved hands releasing soft emerald and ivory healing radiance around a wounded armored arm, hopeful gentle motes."
+    },
+    {
+      "id": "spells_2",
+      "order": [
+        "ward",
+        "march",
+        "insight"
+      ],
+      "prompt": "Create one horizontal triptych for the original fantasy card-tactics game Sigils & Oaths. Exactly three equal square panels in one 3:1 image, no gaps or borders, no text, letters, numerals, symbols resembling text, watermarks or UI. Every panel is a separate evocative spell illustration, center its primary action in the middle third vertically so it remains clear when cropped to a wide card strip. Painterly gouache and oil, refined hand-painted fantasy illustration, antique gold, jade teal, deep indigo shadows, warm directional light, bold readable silhouettes, controlled detail, not photorealistic, no existing franchise characters. Match the reference art's brushwork and palette but do not copy its composition. Left panel: a large antique gold kite shield encased in a translucent teal protective barrier, dramatic dark battlefield background. Middle panel: armored boots and a flowing emerald banner surging forward through dust along a stone road, strong sense of accelerating motion. Right panel: an open ancient strategy book on a map table, luminous blue-gold magical diagrams hovering above its pages, mysterious scholarly light, diagrams contain no writing."
+    },
+    {
+      "id": "weather_1",
+      "order": [
+        "rain",
+        "fog",
+        "sun"
+      ],
+      "prompt": "Create one horizontal triptych for the original fantasy card-tactics game Sigils & Oaths. Exactly three equal square panels in one 3:1 image, no gaps or borders, no text, letters, numerals, symbols resembling text, watermarks or UI. Every panel is a separate evocative spell illustration, center its primary action in the middle third vertically so it remains clear when cropped to a wide card strip. Painterly gouache and oil, refined hand-painted fantasy illustration, antique gold, jade teal, deep indigo shadows, warm directional light, bold readable silhouettes, controlled detail, not photorealistic, no existing franchise characters. Match the reference art's brushwork and palette but do not copy its composition. Left panel: a heavy rainstorm sweeping across pine-covered hills and an old stone bridge, diagonal silver rain, slate clouds, jade river. Middle panel: thick cool lavender-white fog filling a valley with silhouettes of pines and a distant watchtower, atmospheric soft layered depths. Right panel: a blazing golden sun over dry ochre hills and a warm sandstone fortress, shimmering heat, sweeping sunbeams. Keep each landscape distinct and strongly legible, no characters."
+    }
+  ]
+}

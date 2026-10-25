@@ -1,0 +1,52 @@
+{
+  "greenwood": {
+    "source": "8b2e3dd5-0dc4-4836-a12f-98048b0f7277",
+    "parent": "15d78d0d-71e0-4a26-9b5f-11946c2b833d",
+    "prompts": [
+      "prompt-battlefield-greenwood-v2.txt",
+      "prompt-battlefield-greenwood-edge-fix.txt"
+    ],
+    "reviewed": true
+  },
+  "rivergate": {
+    "source": "7b0edf0d-460f-4e1e-af4e-70a39c34bbe7",
+    "parent": "80648672-b22f-40aa-8cde-97c9720d5b5d",
+    "prompts": [
+      "prompt-battlefield-rivergate-v2.txt",
+      "prompt-battlefield-rivergate-bank-fix.txt"
+    ],
+    "reviewed": true
+  },
+  "harbor": {
+    "source": "e511d056-64ae-4dfb-aa88-d297626dab85",
+    "prompts": [
+      "prompt-battlefield-harbor-single-guide.txt"
+    ],
+    "reviewed": true
+  },
+  "citadel": {
+    "source": "f9a66c27-01a6-4ce8-afc3-04afe02c0a22",
+    "prompts": [
+      "prompt-battlefield-citadel-single-guide.txt"
+    ],
+    "reviewed": true
+  },
+  "sunspire": {
+    "source": "3d354ff2-61c5-4026-a4ca-33857d44731f",
+    "prompts": [
+      "prompt-battlefield-sunspire-schematic.txt"
+    ],
+    "guide": "assets/art/map-guides/schematic/sunspire.png",
+    "reviewed": true
+  },
+  "ridgepass": {
+    "source": "b4fb8a1a-6e1f-438d-8a78-00b8eeb266b6",
+    "parent": "776ccbc5-fd32-4463-9116-fcc75713e09e",
+    "prompts": [
+      "prompt-battlefield-ridgepass-schematic.txt",
+      "prompt-battlefield-ridgepass-top-road-fix.txt"
+    ],
+    "guide": "assets/art/map-guides/schematic/ridgepass.png",
+    "reviewed": true
+  }
+}

@@ -1,0 +1,140 @@
+<p align="center"><strong>北邮 AI 学生个人实践项目</strong> · 欢迎 Follow 关注项目更新与共建进展</p>
+<p align="center"><a href="README.md">简体中文</a> · <a href="README_EN.md">English</a></p>
+
+<h1 align="center">纹章与誓约 · Sigils &amp; Oaths</h1>
+
+<p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
+<p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.11.0" src="https://img.shields.io/badge/version-0.11.0-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+
+如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
+
+卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
+
+玩法研究参考《炉石传说》的卡牌资源节奏与《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡面、美术与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前是可玩的 **0.11.0 开发版**，面向 Windows 桌面单机对战 AI。
+
+## 实机画面
+
+下面均为游戏窗口截图，包含真实棋子、手牌与界面。
+
+![暮林边境实机：双方部队、指挥官、手牌与战况](docs/screenshots/expanded-battle.png)
+
+![碧潮港湾实机：水道、双桥与港口工事](docs/screenshots/painted-harbor.png)
+
+<details>
+<summary>查看战前部署与更多地图</summary>
+
+![战前部署：指挥官、地图与套牌选择](docs/screenshots/war-council.png)
+![日陨遗城](docs/screenshots/painted-sunspire.png)
+![断脊隘口](docs/screenshots/painted-ridgepass.png)
+![古堡棋庭](docs/screenshots/painted-citadel.png)
+
+</details>
+
+## 你可以怎么玩
+
+| 战场上的选择 | 当前实现 |
+| --- | --- |
+| 用卡牌向前增援 | 24种可组牌、三套30张预组牌、本地自定义套牌；友军身旁部署，新兵也能延伸阵线 |
+| 让兵种互相掩护 | 步兵克枪兵、枪兵克骑兵、骑兵克步兵；弓手、法师、医师各有射程与功能 |
+| 抢到有价值的位置 | 六张12×10完整绘制地图；森林、高地、工事提供防御，军道与桥梁影响机动，遗迹恢复生命 |
+| 选一个指挥官带队 | 艾琳保护阵线，维洛强化火焰，赛菈治疗与林地恢复；各有主动技能和被动能力 |
+| 改变下一轮战局 | 暴雨、浓雾、烈日、寒潮影响双方；可替换或驱散天气，也可造路、筑垒、击退、定身与换位 |
+| 在有限时间内决策 | 每个行动回合90秒；定向法术限定在友军3格内、法师4格内，天气影响全场 |
+
+## 快速开始
+
+需要 **Godot 4.7.2 标准版**（无需 .NET）。仓库不包含引擎二进制、导出成品或本机缓存。
+
+```bash
+git clone https://github.com/yifanchen12/sigils-and-oaths.git
+cd sigils-and-oaths
+```
+
+1. 从 [Godot 官方下载页](https://godotengine.org/download/windows/)获取引擎；当前工程验证版本及官方归档地址见 [`docs/engine-download.json`](docs/engine-download.json)。
+2. 在 Godot 项目管理器中导入根目录的 `project.godot`，等待资源导入完成。
+3. 按 **F5（运行项目）**，在战前页选择地图、指挥官与套牌，然后出征。
+
+也可以用命令行启动，下面的 `godot` 表示你的 Godot 可执行文件：
+
+```bash
+godot --editor --path . --import
+godot --path .
+```
+
+Windows 用户也可把官方压缩包内的图形版与控制台版引擎放入 `.tools/godot/`，保留 `Godot_v4.7.2-stable_win64.exe` 和 `Godot_v4.7.2-stable_win64_console.exe` 文件名，再双击 `play.cmd`；`edit.cmd` 打开编辑器。只下载仓库、没有安装引擎时，启动脚本不会自动下载。
+
+## 第一局
+
+1. 点击部队牌，再点击友军上下左右相邻的青框空格部署。每方最多6支普通部队，指挥官另外计算。
+2. 新兵下个己方回合才能行动。选中部队，蓝点表示可移动位置，赤框表示可攻击目标；一般可先移动再攻击，攻击后不能移动。
+3. 悬停可攻击敌军可看预计伤害、反击与双方剩余生命。存活且射程足够的目标会反击一次。
+4. 每回合增加并回满法力，最多10点。用法术和英雄技能支援前线，在90秒内完成行动。
+5. 击败敌方20生命的指挥官获胜。指挥官不能主动移动，但可被换位；牌库抽空后会受到递增疲劳伤害。
+
+游戏内“玩法说明”包含完整规则。编辑军势可保存一个自定义套牌：30张、同名最多4张、至少1张部队；自定义己方对阵均衡AI。
+
+| 操作 | 按键 / 鼠标 |
+| --- | --- |
+| 出牌、选择部队与目标 | 左键；1–8选择手牌 |
+| 取消选择 | 右键 / Esc |
+| 结束回合 | 空格 / 界面按钮 |
+| 缩放地图 | 滚轮 / + / − |
+| 拖动地图 | 中键 / Alt + 左键 |
+| 适配全图 | Home |
+| 查看精确地形网格 | G |
+| 切换战场布局 | Tab |
+| 键盘操作棋盘 | 方向键 / Enter |
+
+图鉴、规则或战前菜单打开时，本地回合计时与AI暂停；战斗中更换地图、指挥官或套牌会开始新对局。
+
+## 六张战场
+
+| 地图 | 主要地貌 |
+| --- | --- |
+| 暮林边境 | 林地、迂回道路、岩山、高地与恢复遗迹 |
+| 双桥河谷 | 横贯战场的河流与两条桥梁通路 |
+| 日陨遗城 | 沙地、台地、稀疏树林与遗城工事 |
+| 断脊隘口 | 岩山阻挡、狭窄缺口与松林 |
+| 古堡棋庭 | 石铺装、堡垒、庭院高地与遗迹 |
+| 碧潮港湾 | 中央水道、双桥、港口堡垒与岸线 |
+
+地图绘制图与规则网格独立；精确通行、射程和选取以游戏规则与高亮为准。造路和筑垒会实时替换对应格子的地形外观。位置导图、源图提示词与人工核对记录见 [`docs/map-art-audit.md`](docs/map-art-audit.md)。
+
+## 开发与校验
+
+规则统一经过 `scripts/battle.gd`：界面和AI提交相同格式的合法动作。卡牌、英雄、套牌和地图使用Godot Resource配置；地图、卡面、棋子与HUD表现不负责修改规则。AI使用公开棋盘与自己的手牌，不读取敌方手牌内容或牌序。
+
+```text
+data/          卡牌、地图、指挥官与套牌配置
+scripts/       规则、AI、界面与表现
+scenes/        Godot主场景
+assets/art/    角色、卡面、地图原图与来源清单
+tests/         规则、完整AI对局及真实窗口交互检查
+tools/         地图导图、核对图及诊断工具
+docs/          实机截图、验收与开发记录
+```
+
+本机 **Godot 4.7.2 / Windows / Compatibility** 验证：地图专项59项、界面257项、战斗预估113项通过。历史规则、地形、战术、计时与套牌检查及完整AI对局记录分版本保存在 [`docs/validation.md`](docs/validation.md)，不把历史结果当作本轮重跑。
+
+```bash
+godot --headless --path . --editor --quit
+godot --headless --path . --script res://tests/test_battle.gd
+godot --path . --script res://tests/test_ui.gd --resolution 1440x1000 --audio-driver Dummy
+godot --path . --script res://tests/test_forecast.gd --resolution 1440x1000 --audio-driver Dummy
+godot --path . --script res://tests/test_map_art.gd --resolution 1440x1000 --audio-driver Dummy -- --complete
+```
+
+后面三项需要真实图形窗口。详细检查命令与规则说明见 [`docs/development.md`](docs/development.md)。
+
+## 当前边界与美术来源
+
+- 当前是单机开发版，尚未提供联机、触屏适配或打包发行版；macOS/Linux未完成验证。
+- 远程攻击和法术目前不检查视线。AI对局诊断不能代替真人竞技平衡测试。
+- 自定义套牌只有一个本地槽，保存于Godot的 `user://custom_deck.json`，不随仓库上传。
+- 本项目使用AI辅助编程与原创图像生成。角色采用日式赛璐璐方向，全部设定为成年人；地图与卡面原图、完整提示词及生成来源见 [`assets/art/manifest.json`](assets/art/manifest.json)。美术源PNG保留原样，UI文字、数值、网格和高亮由Godot绘制。
+- 欢迎通过Issue反馈复现步骤、窗口尺寸、地图、指挥官和遇到的问题；报告中无需附任何账号、密码或本机个人文件。
+
+## 许可
+
+MIT License，详见 [`LICENSE`](LICENSE)。Godot引擎遵循其[自身许可](https://godotengine.org/license/)，仓库不随附引擎二进制。

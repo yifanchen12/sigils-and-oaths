@@ -1,0 +1,17 @@
+.godot/
+.tools/
+.checkpoints/
+build/
+*.log
+
+# Local editor, credentials and generated player data
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.env
+.env.*
+*.pem
+*.key
+export_credentials.cfg
+custom_deck*.json

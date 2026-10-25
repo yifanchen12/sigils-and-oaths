@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/card_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+cards = Array[Dictionary]([{
+"id": "sword", "name": "誓约步兵", "short": "步", "type": "unit", "kind": "sword", "cost": 1,
+"atk": 3, "hp": 5, "defense": 1, "move": 2, "range": 1,
+"text": "森林移动费用仅 1。\n克制枪兵，伤害 +2。", "tag": "步兵 · 前线"
+}, {
+"id": "spear", "name": "铁壁枪卫", "short": "枪", "type": "unit", "kind": "spear", "cost": 2,
+"atk": 3, "hp": 7, "defense": 2, "move": 2, "range": 1,
+"text": "本回合未移动时防御 +1。\n森林费用 1，克骑兵伤害 +2。", "tag": "枪兵 · 防御"
+}, {
+"id": "cavalry", "name": "逐风骑士", "short": "骑", "type": "unit", "kind": "cavalry", "cost": 3,
+"atk": 5, "hp": 5, "defense": 0, "move": 4, "range": 1,
+"text": "本回合移动至少 3 格，攻击 +1。\n军道出发移动 +1，克步兵。", "tag": "骑兵 · 机动"
+}, {
+"id": "archer", "name": "暮林游侠", "short": "弓", "type": "unit", "kind": "archer", "cost": 2,
+"atk": 3, "hp": 4, "defense": 0, "move": 2, "range": 3,
+"text": "射程 3 格，高地再 +1。\n攻击相邻敌军时伤害 -1。", "tag": "弓手 · 远程"
+}, {
+"id": "mage", "name": "星火术士", "short": "法", "type": "unit", "kind": "mage", "cost": 4,
+"atk": 5, "hp": 4, "defense": 0, "move": 2, "range": 2,
+"text": "射程 2 格，攻击无视 1 防御。\n生命较低，需要友军保护。", "tag": "法师 · 爆发"
+}, {
+"id": "healer", "name": "晨光医师", "short": "医", "type": "unit", "kind": "healer", "cost": 3,
+"atk": 2, "hp": 5, "defense": 0, "move": 2, "range": 2,
+"text": "己方回合开始时，治疗\n自身及相邻友军 1 点生命。", "tag": "治疗兵 · 支援"
+}, {
+"id": "bolt", "name": "星火箭", "short": "焰", "type": "spell", "effect": "damage", "cost": 2, "amount": 4,
+"text": "对一名敌军造成 4 点伤害。\n无视防御，护盾可以抵挡。", "tag": "法术 · 单体"
+}, {
+"id": "nova", "name": "陨火之环", "short": "环", "type": "spell", "effect": "area", "cost": 4, "amount": 3,
+"text": "对目标敌军及其上下左右\n相邻敌军造成 3 点伤害。", "tag": "法术 · 范围"
+}, {
+"id": "heal", "name": "晨曦祷言", "short": "愈", "type": "spell", "effect": "heal", "cost": 2, "amount": 5,
+"text": "为一名受伤友军恢复\n5 点生命，不超过生命上限。", "tag": "法术 · 治疗"
+}, {
+"id": "ward", "name": "磐石护盾", "short": "盾", "type": "spell", "effect": "shield", "cost": 1, "amount": 3,
+"text": "使一名友军获得 3 点护盾。\n不叠加，持续到被伤害耗尽。", "tag": "法术 · 防护"
+}, {
+"id": "march", "name": "疾行军令", "short": "行", "type": "spell", "effect": "march", "cost": 1, "amount": 1,
+"text": "使已移动、未攻击的部队\n再次移动。不能用于新兵。", "tag": "法术 · 机动"
+}, {
+"id": "insight", "name": "战地谋略", "short": "策", "type": "spell", "effect": "draw", "cost": 2, "amount": 2,
+"text": "抽 2 张牌。\n手牌最多 8 张，超出则弃置。", "tag": "法术 · 补给"
+}, {
+"id": "rain", "name": "骤雨将至", "short": "雨", "type": "environment", "effect": "weather", "weather": "rain", "cost": 2, "duration": 4,
+"text": "暴雨持续 4 个行动回合。\n骑兵在军道外移动费用 +1，\n所有火焰法术伤害 -1。", "tag": "环境 · 暴雨"
+}, {
+"id": "fog", "name": "迷雾帷幕", "short": "雾", "type": "environment", "effect": "weather", "weather": "fog", "cost": 2, "duration": 4,
+"text": "浓雾持续 4 个行动回合。\n双方远程单位的最终射程\n最多为 2 格。", "tag": "环境 · 浓雾"
+}, {
+"id": "sun", "name": "烈日天穹", "short": "日", "type": "environment", "effect": "weather", "weather": "sun", "cost": 2, "duration": 4,
+"text": "烈日持续 4 个行动回合。\n双方火焰法术伤害 +1，\n治疗兵的回合治疗 +1。", "tag": "环境 · 烈日"
+}, {
+"id": "snow", "name": "凛冬寒潮", "short": "雪", "type": "environment", "effect": "weather", "weather": "snow", "cost": 3, "duration": 4,
+"text": "寒潮持续 4 个行动回合。\n双方部队移动力 -1（最低 1），\n森林额外提供 1 防御。", "tag": "环境 · 寒潮"
+}, {
+"id": "rampart", "name": "战地工事", "short": "垒", "type": "spell", "effect": "terrain", "terrain": "fort", "cost": 2,
+"text": "将一名友军脚下的地形\n改为永久工事，提供 2 防御。\n不能覆盖桥梁。", "tag": "地理 · 工事"
+}, {
+"id": "trail", "name": "开辟军道", "short": "道", "type": "spell", "effect": "terrain", "terrain": "road", "cost": 1,
+"text": "将一处非山地、非河流、\n非桥梁地形改为军道。\n军道骑兵移动力 +1。", "tag": "地理 · 军道"
+}, {
+"id": "initiative", "name": "战术先机", "short": "势", "type": "tactic", "effect": "mana", "cost": 0, "amount": 1, "generated_only": true,
+"text": "获得 1 点本回合临时法力。\n后手专属，仅获得一次。\n法力最多为 10。", "tag": "谋略 · 后手补偿"
+}, {
+"id": "repulse", "name": "破阵冲击", "short": "退", "type": "spell", "effect": "repulse", "cost": 2, "amount": 2,
+"text": "对非指挥官敌军造成 2 伤害，\n并向远离己方指挥官方向击退 1 格。\n后方受阻时改为 3 伤害。", "tag": "战术 · 击退"
+}, {
+"id": "frostbind", "name": "坚冰锁链", "short": "锁", "type": "spell", "effect": "root", "cost": 2,
+"text": "使一名非指挥官敌军在其\n下个己方回合无法移动。\n仍可攻击，强制位移不受影响。", "tag": "战术 · 定身"
+}, {
+"id": "dispel", "name": "破咒之印", "short": "散", "type": "spell", "effect": "dispel", "cost": 1,
+"text": "移除一名敌军的全部护盾。\n可用于敌方指挥官。", "tag": "战术 · 驱散"
+}, {
+"id": "exchange", "name": "移形军令", "short": "换", "type": "spell", "effect": "exchange", "cost": 2,
+"text": "一名友军与己方指挥官\n交换位置，行动状态保持不变。\n可用于被定身的部队。", "tag": "战术 · 换位"
+}, {
+"id": "onslaught", "name": "乘势追击", "short": "追", "type": "spell", "effect": "onslaught", "cost": 3,
+"text": "令一名本回合已攻击的部队\n再次获得攻击机会。\n不恢复移动，不能用于新兵或指挥官。", "tag": "战术 · 追击"
+}, {
+"id": "clear_skies", "name": "晴空号令", "short": "晴", "type": "environment", "effect": "clear_weather", "cost": 1,
+"text": "立即驱散当前天气，\n使战场恢复晴朗。\n晴朗时不能使用。", "tag": "环境 · 驱散"
+}])

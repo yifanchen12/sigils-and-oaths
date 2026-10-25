@@ -1,0 +1,578 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/board_view.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/war_council.gd" id="3"]
+
+[ext_resource type="Script" path="res://scripts/battle_ribbon.gd" id="4"]
+
+[node name="CardTactics" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 26
+theme_override_constants/margin_bottom = 14
+
+[node name="Layout" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="Margin/Layout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Brand" type="VBoxContainer" parent="Margin/Layout/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Name" type="Label" parent="Margin/Layout/Header/Brand"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84, 0.75, 0.54, 1)
+theme_override_font_sizes/font_size = 30
+text = "纹章与誓约"
+
+[node name="Subtitle" type="Label" parent="Margin/Layout/Header/Brand"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.61, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "SIGILS & OATHS     /     卡牌 × 战棋"
+
+[node name="Seed" type="Label" parent="Margin/Layout/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.61, 0.62, 1)
+theme_override_font_sizes/font_size = 13
+text = "训练战场 · 基础版"
+
+[node name="MapChoice" type="OptionButton" parent="Margin/Layout/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 40)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "选择地图将开始一场新战斗。"
+
+[node name="HeroChoice" type="OptionButton" parent="Margin/Layout/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(172, 40)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "选择指挥官将开始一场新战斗。"
+
+[node name="Help" type="Button" parent="Margin/Layout/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(104, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "玩法说明"
+
+[node name="DeckChoice" type="OptionButton" parent="Margin/Layout/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(152, 40)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "更换套牌将开始新的战局。"
+
+[node name="CardLibrary" type="Button" parent="Margin/Layout/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(88, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "牌库图鉴"
+
+[node name="Restart" type="Button" parent="Margin/Layout/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(104, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "重新开始"
+
+[node name="Status" type="HBoxContainer" parent="Margin/Layout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="BluePanel" type="PanelContainer" parent="Margin/Layout/Status"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Row" type="HBoxContainer" parent="Margin/Layout/Status/BluePanel"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="BluePortrait" type="TextureRect" parent="Margin/Layout/Status/BluePanel/Row"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 56)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+clip_contents = true
+
+[node name="BlueStatus" type="RichTextLabel" parent="Margin/Layout/Status/BluePanel/Row"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+mouse_filter = 2
+
+[node name="TurnBox" type="VBoxContainer" parent="Margin/Layout/Status"]
+custom_minimum_size = Vector2(216, 0)
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 4
+
+[node name="TurnStatus" type="Label" parent="Margin/Layout/Status/TurnBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(216, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "你的回合"
+horizontal_alignment = 1
+
+[node name="WeatherStatus" type="Label" parent="Margin/Layout/Status/TurnBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.68, 0.55, 1)
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 1
+text = "晴朗"
+
+[node name="RedPanel" type="PanelContainer" parent="Margin/Layout/Status"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Row" type="HBoxContainer" parent="Margin/Layout/Status/RedPanel"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="RedPortrait" type="TextureRect" parent="Margin/Layout/Status/RedPanel/Row"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 56)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+clip_contents = true
+
+[node name="RedStatus" type="RichTextLabel" parent="Margin/Layout/Status/RedPanel/Row"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+mouse_filter = 2
+
+[node name="BattleArea" type="HBoxContainer" parent="Margin/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="InfoPanel" type="PanelContainer" parent="Margin/Layout/BattleArea"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(238, 0)
+layout_mode = 2
+
+[node name="Info" type="VBoxContainer" parent="Margin/Layout/BattleArea/InfoPanel"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Eyebrow" type="Label" parent="Margin/Layout/BattleArea/InfoPanel/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.64, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "TACTICAL BRIEF / 战术情报"
+
+[node name="InfoTitle" type="Label" parent="Margin/Layout/BattleArea/InfoPanel/Info"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "前线即部署线"
+
+[node name="InfoBody" type="RichTextLabel" parent="Margin/Layout/BattleArea/InfoPanel/Info"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(202, 0)
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+scroll_active = true
+mouse_filter = 1
+
+[node name="HeroSkill" type="Button" parent="Margin/Layout/BattleArea/InfoPanel/Info"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "指挥官技能"
+
+[node name="Cancel" type="Button" parent="Margin/Layout/BattleArea/InfoPanel/Info"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+text = "取消选择    Esc"
+
+[node name="Center" type="VBoxContainer" parent="Margin/Layout/BattleArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="MapHeader" type="HBoxContainer" parent="Margin/Layout/BattleArea/Center"]
+layout_mode = 2
+script = ExtResource("4")
+
+[node name="MapName" type="Label" parent="Margin/Layout/BattleArea/Center/MapHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.7, 0.73, 0.64, 1)
+theme_override_font_sizes/font_size = 13
+text = "01 / 暮林边境"
+
+[node name="MapType" type="Label" parent="Margin/Layout/BattleArea/Center/MapHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.61, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "12 × 10"
+
+[node name="BattleSummary" type="Label" parent="Margin/Layout/BattleArea/Center/MapHeader"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81, 0.75, 0.56, 1)
+theme_override_font_sizes/font_size = 14
+text = "军团状态"
+
+[node name="ViewTools" type="HBoxContainer" parent="Margin/Layout/BattleArea/Center"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ZoomOut" type="Button" parent="Margin/Layout/BattleArea/Center/ViewTools"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "−"
+tooltip_text = "缩小；棋盘滚轮同样可缩放。"
+
+[node name="ZoomValue" type="Label" parent="Margin/Layout/BattleArea/Center/ViewTools"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(58, 0)
+layout_mode = 2
+text = "100%"
+horizontal_alignment = 1
+
+[node name="ZoomIn" type="Button" parent="Margin/Layout/BattleArea/Center/ViewTools"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+"
+
+[node name="FitMap" type="Button" parent="Margin/Layout/BattleArea/Center/ViewTools"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "适配全图"
+tooltip_text = "复位缩放和平移（Home）。中键或 Alt+左键拖动地图。"
+
+[node name="ExpandBoard" type="Button" parent="Margin/Layout/BattleArea/Center/ViewTools"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "展开战场 Tab"
+
+[node name="Space" type="Control" parent="Margin/Layout/BattleArea/Center/ViewTools"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TurnClock" type="Label" parent="Margin/Layout/BattleArea/Center/ViewTools"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "回合 01:30"
+tooltip_text = "每个行动回合90秒，超时自动结束；本地菜单、规则与图鉴打开时暂停。"
+
+[node name="ViewSkill" type="Button" parent="Margin/Layout/BattleArea/Center/ViewTools"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "指挥官技能"
+
+[node name="ViewEnd" type="Button" parent="Margin/Layout/BattleArea/Center/ViewTools"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "结束回合"
+
+[node name="Board" type="Control" parent="Margin/Layout/BattleArea/Center"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(640, 380)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2")
+
+[node name="Legend" type="Label" parent="Margin/Layout/BattleArea/Center"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.66, 0.63, 1)
+theme_override_font_sizes/font_size = 12
+text = "青框 部署 · 蓝点 移动 · 赤框 目标 / 滚轮缩放 · 中键/Alt拖动 · Home适配"
+horizontal_alignment = 1
+
+[node name="RightPanel" type="PanelContainer" parent="Margin/Layout/BattleArea"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(238, 0)
+layout_mode = 2
+
+[node name="Right" type="VBoxContainer" parent="Margin/Layout/BattleArea/RightPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ObjectiveLabel" type="Label" parent="Margin/Layout/BattleArea/RightPanel/Right"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.64, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "OBJECTIVE / 战场目标"
+
+[node name="Objective" type="Label" parent="Margin/Layout/BattleArea/RightPanel/Right"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "击败赤曜指挥官"
+
+[node name="EnemyHand" type="Label" parent="Margin/Layout/BattleArea/RightPanel/Right"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.65, 0.63, 1)
+theme_override_font_sizes/font_size = 13
+
+[node name="Divider" type="HSeparator" parent="Margin/Layout/BattleArea/RightPanel/Right"]
+layout_mode = 2
+
+[node name="LogLabel" type="Label" parent="Margin/Layout/BattleArea/RightPanel/Right"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.64, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "BATTLE LOG / 战报"
+
+[node name="BattleLog" type="RichTextLabel" parent="Margin/Layout/BattleArea/RightPanel/Right"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(202, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 14
+theme_override_colors/default_color = Color(0.65, 0.71, 0.69, 1)
+bbcode_enabled = true
+scroll_following = true
+
+[node name="EndTurn" type="Button" parent="Margin/Layout/BattleArea/RightPanel/Right"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "结束回合  →"
+
+[node name="CompactHandPanel" type="PanelContainer" parent="Margin/Layout"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+
+[node name="CompactHand" type="HBoxContainer" parent="Margin/Layout/CompactHandPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="HandPanel" type="PanelContainer" parent="Margin/Layout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+
+[node name="HandLayout" type="VBoxContainer" parent="Margin/Layout/HandPanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HandHeader" type="HBoxContainer" parent="Margin/Layout/HandPanel/HandLayout"]
+layout_mode = 2
+
+[node name="HandTitle" type="Label" parent="Margin/Layout/HandPanel/HandLayout/HandHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.82, 0.75, 0.58, 1)
+theme_override_font_sizes/font_size = 15
+text = "你的手牌"
+
+[node name="DeckInfo" type="Label" parent="Margin/Layout/HandPanel/HandLayout/HandHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.61, 0.62, 1)
+theme_override_font_sizes/font_size = 13
+
+[node name="Hand" type="HBoxContainer" parent="Margin/Layout/HandPanel/HandLayout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 168)
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="Hint" type="Label" parent="Margin/Layout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.63, 0.75, 0.7, 1)
+theme_override_font_sizes/font_size = 14
+text = "选择手牌，再点击青色高亮格部署。"
+
+[node name="Shortcuts" type="Label" parent="Margin/Layout"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.39, 0.5, 0.51, 1)
+theme_override_font_sizes/font_size = 12
+text = "1–8 选牌    /    点击部队 → 蓝点移动、赤框攻击    /    右键或 Esc 取消    /    空格 结束回合    /    棋盘支持方向键 + Enter"
+horizontal_alignment = 1
+
+[node name="ResultOverlay" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.035, 0.05, 0.86)
+
+[node name="Center" type="CenterContainer" parent="ResultOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="ResultOverlay/Center"]
+custom_minimum_size = Vector2(480, 260)
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="ResultOverlay/Center/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="ResultTitle" type="Label" parent="ResultOverlay/Center/Panel/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83, 0.75, 0.54, 1)
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+
+[node name="ResultDetail" type="Label" parent="ResultOverlay/Center/Panel/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="PlayAgain" type="Button" parent="ResultOverlay/Center/Panel/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "再战一局"
+
+[node name="WarCouncil" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3")
+
+[node name="RulesDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "纹章与誓约 · 玩法说明"
+size = Vector2i(720, 600)
+ok_button_text = "返回战场"
+exclusive = true
+
+[node name="RulesText" type="RichTextLabel" parent="RulesDialog"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 18.0
+offset_right = -20.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+
+[node name="CardsDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "纹章与誓约 · 军团牌库"
+size = Vector2i(1100, 820)
+ok_button_text = "返回"
+exclusive = true
+
+[node name="Content" type="VBoxContainer" parent="CardsDialog"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="LibraryIntro" type="Label" parent="CardsDialog/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "24 种可组牌 · 1 张后手专属牌 / 悬停或点击查看规则"
+
+[node name="Scroll" type="ScrollContainer" parent="CardsDialog/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="CardGrid" type="GridContainer" parent="CardsDialog/Content/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 6
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+
+[node name="Details" type="HBoxContainer" parent="CardsDialog/Content"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="LibraryPortrait" type="TextureRect" parent="CardsDialog/Content/Details"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 110)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 6
+clip_contents = true
+mouse_filter = 2
+
+[node name="LibraryDetails" type="RichTextLabel" parent="CardsDialog/Content/Details"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+scroll_active = true

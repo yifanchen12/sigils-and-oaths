@@ -1,0 +1,675 @@
+{
+	"first_player_wins": 30,
+	"games": [
+		{
+			"actions": 64,
+			"blue": "warden",
+			"final_action": "play",
+			"map": "greenwood",
+			"red": "pyromancer",
+			"seed": 307,
+			"skills": [
+				1,
+				2
+			],
+			"turn": 15,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 60,
+			"blue": "pyromancer",
+			"final_action": "attack",
+			"map": "greenwood",
+			"red": "warden",
+			"seed": 307,
+			"skills": [
+				1,
+				1
+			],
+			"turn": 14,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 37,
+			"blue": "warden",
+			"final_action": "attack",
+			"map": "greenwood",
+			"red": "pyromancer",
+			"seed": 619,
+			"skills": [
+				0,
+				0
+			],
+			"turn": 10,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 39,
+			"blue": "pyromancer",
+			"final_action": "attack",
+			"map": "greenwood",
+			"red": "warden",
+			"seed": 619,
+			"skills": [
+				0,
+				0
+			],
+			"turn": 11,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 54,
+			"blue": "pyromancer",
+			"final_action": "play",
+			"map": "greenwood",
+			"red": "grove",
+			"seed": 307,
+			"skills": [
+				1,
+				0
+			],
+			"turn": 13,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 65,
+			"blue": "grove",
+			"final_action": "play",
+			"map": "greenwood",
+			"red": "pyromancer",
+			"seed": 307,
+			"skills": [
+				0,
+				2
+			],
+			"turn": 15,
+			"weather": [
+				0,
+				1
+			],
+			"winner": 0
+		},
+		{
+			"actions": 41,
+			"blue": "pyromancer",
+			"final_action": "attack",
+			"map": "greenwood",
+			"red": "grove",
+			"seed": 619,
+			"skills": [
+				0,
+				0
+			],
+			"turn": 11,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 37,
+			"blue": "grove",
+			"final_action": "attack",
+			"map": "greenwood",
+			"red": "pyromancer",
+			"seed": 619,
+			"skills": [
+				0,
+				0
+			],
+			"turn": 10,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 75,
+			"blue": "grove",
+			"final_action": "attack",
+			"map": "greenwood",
+			"red": "warden",
+			"seed": 307,
+			"skills": [
+				1,
+				2
+			],
+			"turn": 16,
+			"weather": [
+				0,
+				1
+			],
+			"winner": 0
+		},
+		{
+			"actions": 65,
+			"blue": "warden",
+			"final_action": "attack",
+			"map": "greenwood",
+			"red": "grove",
+			"seed": 307,
+			"skills": [
+				1,
+				0
+			],
+			"turn": 15,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 39,
+			"blue": "grove",
+			"final_action": "attack",
+			"map": "greenwood",
+			"red": "warden",
+			"seed": 619,
+			"skills": [
+				0,
+				0
+			],
+			"turn": 11,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 41,
+			"blue": "warden",
+			"final_action": "attack",
+			"map": "greenwood",
+			"red": "grove",
+			"seed": 619,
+			"skills": [
+				0,
+				0
+			],
+			"turn": 11,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 124,
+			"blue": "warden",
+			"final_action": "play",
+			"map": "rivergate",
+			"red": "pyromancer",
+			"seed": 307,
+			"skills": [
+				3,
+				3
+			],
+			"turn": 25,
+			"weather": [
+				0,
+				3
+			],
+			"winner": 0
+		},
+		{
+			"actions": 125,
+			"blue": "pyromancer",
+			"final_action": "play",
+			"map": "rivergate",
+			"red": "warden",
+			"seed": 307,
+			"skills": [
+				3,
+				4
+			],
+			"turn": 25,
+			"weather": [
+				0,
+				2
+			],
+			"winner": 0
+		},
+		{
+			"actions": 124,
+			"blue": "warden",
+			"final_action": "attack",
+			"map": "rivergate",
+			"red": "pyromancer",
+			"seed": 619,
+			"skills": [
+				4,
+				4
+			],
+			"turn": 26,
+			"weather": [
+				2,
+				0
+			],
+			"winner": 1
+		},
+		{
+			"actions": 159,
+			"blue": "pyromancer",
+			"final_action": "attack",
+			"map": "rivergate",
+			"red": "warden",
+			"seed": 619,
+			"skills": [
+				4,
+				5
+			],
+			"turn": 32,
+			"weather": [
+				4,
+				0
+			],
+			"winner": 1
+		},
+		{
+			"actions": 196,
+			"blue": "pyromancer",
+			"final_action": "attack",
+			"map": "rivergate",
+			"red": "grove",
+			"seed": 307,
+			"skills": [
+				5,
+				5
+			],
+			"turn": 36,
+			"weather": [
+				3,
+				2
+			],
+			"winner": 1
+		},
+		{
+			"actions": 147,
+			"blue": "grove",
+			"final_action": "attack",
+			"map": "rivergate",
+			"red": "pyromancer",
+			"seed": 307,
+			"skills": [
+				3,
+				4
+			],
+			"turn": 29,
+			"weather": [
+				1,
+				3
+			],
+			"winner": 0
+		},
+		{
+			"actions": 124,
+			"blue": "pyromancer",
+			"final_action": "attack",
+			"map": "rivergate",
+			"red": "grove",
+			"seed": 619,
+			"skills": [
+				3,
+				2
+			],
+			"turn": 26,
+			"weather": [
+				3,
+				0
+			],
+			"winner": 1
+		},
+		{
+			"actions": 135,
+			"blue": "grove",
+			"final_action": "attack",
+			"map": "rivergate",
+			"red": "pyromancer",
+			"seed": 619,
+			"skills": [
+				3,
+				4
+			],
+			"turn": 26,
+			"weather": [
+				2,
+				1
+			],
+			"winner": 1
+		},
+		{
+			"actions": 156,
+			"blue": "grove",
+			"final_action": "attack",
+			"map": "rivergate",
+			"red": "warden",
+			"seed": 307,
+			"skills": [
+				2,
+				5
+			],
+			"turn": 29,
+			"weather": [
+				1,
+				3
+			],
+			"winner": 0
+		},
+		{
+			"actions": 135,
+			"blue": "warden",
+			"final_action": "play",
+			"map": "rivergate",
+			"red": "grove",
+			"seed": 307,
+			"skills": [
+				3,
+				3
+			],
+			"turn": 25,
+			"weather": [
+				2,
+				2
+			],
+			"winner": 0
+		},
+		{
+			"actions": 129,
+			"blue": "grove",
+			"final_action": "play",
+			"map": "rivergate",
+			"red": "warden",
+			"seed": 619,
+			"skills": [
+				3,
+				3
+			],
+			"turn": 26,
+			"weather": [
+				2,
+				1
+			],
+			"winner": 1
+		},
+		{
+			"actions": 243,
+			"blue": "warden",
+			"final_action": "end_turn",
+			"map": "rivergate",
+			"red": "grove",
+			"seed": 619,
+			"skills": [
+				9,
+				6
+			],
+			"turn": 48,
+			"weather": [
+				4,
+				3
+			],
+			"winner": 0
+		},
+		{
+			"actions": 57,
+			"blue": "warden",
+			"final_action": "attack",
+			"map": "sunspire",
+			"red": "pyromancer",
+			"seed": 307,
+			"skills": [
+				1,
+				1
+			],
+			"turn": 13,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 63,
+			"blue": "pyromancer",
+			"final_action": "attack",
+			"map": "sunspire",
+			"red": "warden",
+			"seed": 307,
+			"skills": [
+				1,
+				1
+			],
+			"turn": 14,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 39,
+			"blue": "warden",
+			"final_action": "attack",
+			"map": "sunspire",
+			"red": "pyromancer",
+			"seed": 619,
+			"skills": [
+				0,
+				0
+			],
+			"turn": 11,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 39,
+			"blue": "pyromancer",
+			"final_action": "hero",
+			"map": "sunspire",
+			"red": "warden",
+			"seed": 619,
+			"skills": [
+				1,
+				0
+			],
+			"turn": 11,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 54,
+			"blue": "pyromancer",
+			"final_action": "play",
+			"map": "sunspire",
+			"red": "grove",
+			"seed": 307,
+			"skills": [
+				1,
+				1
+			],
+			"turn": 13,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 52,
+			"blue": "grove",
+			"final_action": "play",
+			"map": "sunspire",
+			"red": "pyromancer",
+			"seed": 307,
+			"skills": [
+				1,
+				1
+			],
+			"turn": 13,
+			"weather": [
+				0,
+				1
+			],
+			"winner": 0
+		},
+		{
+			"actions": 34,
+			"blue": "pyromancer",
+			"final_action": "hero",
+			"map": "sunspire",
+			"red": "grove",
+			"seed": 619,
+			"skills": [
+				1,
+				0
+			],
+			"turn": 9,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 39,
+			"blue": "grove",
+			"final_action": "attack",
+			"map": "sunspire",
+			"red": "pyromancer",
+			"seed": 619,
+			"skills": [
+				0,
+				0
+			],
+			"turn": 11,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 66,
+			"blue": "grove",
+			"final_action": "play",
+			"map": "sunspire",
+			"red": "warden",
+			"seed": 307,
+			"skills": [
+				1,
+				2
+			],
+			"turn": 15,
+			"weather": [
+				0,
+				1
+			],
+			"winner": 0
+		},
+		{
+			"actions": 65,
+			"blue": "warden",
+			"final_action": "attack",
+			"map": "sunspire",
+			"red": "grove",
+			"seed": 307,
+			"skills": [
+				1,
+				1
+			],
+			"turn": 15,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 39,
+			"blue": "grove",
+			"final_action": "attack",
+			"map": "sunspire",
+			"red": "warden",
+			"seed": 619,
+			"skills": [
+				0,
+				0
+			],
+			"turn": 11,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		},
+		{
+			"actions": 40,
+			"blue": "warden",
+			"final_action": "attack",
+			"map": "sunspire",
+			"red": "grove",
+			"seed": 619,
+			"skills": [
+				0,
+				0
+			],
+			"turn": 11,
+			"weather": [
+				0,
+				0
+			],
+			"winner": 0
+		}
+	],
+	"heroes": {
+		"grove": {
+			"games": 24,
+			"hero_skills": 32,
+			"weather_cards": 13,
+			"wins": 12
+		},
+		"pyromancer": {
+			"games": 24,
+			"hero_skills": 42,
+			"weather_cards": 19,
+			"wins": 11
+		},
+		"warden": {
+			"games": 24,
+			"hero_skills": 46,
+			"weather_cards": 16,
+			"wins": 13
+		}
+	},
+	"matches": 36,
+	"note": "Heuristic AI diagnostic; 3 maps, all hero pairings, two fixed seeds and mirrored sides."
+}

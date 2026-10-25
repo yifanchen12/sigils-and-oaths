@@ -1,0 +1,326 @@
+[
+	{
+		"actions": 95,
+		"blue_hero": "warden",
+		"map": "greenwood",
+		"red_hero": "pyromancer",
+		"skills": 3,
+		"turn": 21,
+		"winner": 0
+	},
+	{
+		"actions": 78,
+		"blue_hero": "pyromancer",
+		"map": "greenwood",
+		"red_hero": "grove",
+		"skills": 2,
+		"turn": 16,
+		"winner": 1
+	},
+	{
+		"actions": 84,
+		"blue_hero": "grove",
+		"map": "greenwood",
+		"red_hero": "warden",
+		"skills": 3,
+		"turn": 17,
+		"winner": 0
+	},
+	{
+		"actions": 277,
+		"blue_hero": "warden",
+		"map": "rivergate",
+		"red_hero": "pyromancer",
+		"skills": 8,
+		"turn": 57,
+		"winner": 1
+	},
+	{
+		"actions": 236,
+		"blue_hero": "pyromancer",
+		"map": "rivergate",
+		"red_hero": "grove",
+		"skills": 7,
+		"turn": 50,
+		"winner": 0
+	},
+	{
+		"actions": 213,
+		"blue_hero": "grove",
+		"map": "rivergate",
+		"red_hero": "warden",
+		"skills": 8,
+		"turn": 36,
+		"winner": 1
+	},
+	{
+		"actions": 213,
+		"blue_hero": "warden",
+		"map": "sunspire",
+		"red_hero": "pyromancer",
+		"skills": 8,
+		"turn": 41,
+		"winner": 0
+	},
+	{
+		"actions": 152,
+		"blue_hero": "pyromancer",
+		"map": "sunspire",
+		"red_hero": "grove",
+		"skills": 5,
+		"turn": 32,
+		"winner": 1
+	},
+	{
+		"actions": 70,
+		"blue_hero": "grove",
+		"map": "sunspire",
+		"red_hero": "warden",
+		"skills": 3,
+		"turn": 15,
+		"winner": 0
+	},
+	{
+		"actions": 184,
+		"blue_hero": "warden",
+		"map": "ridgepass",
+		"red_hero": "pyromancer",
+		"skills": 4,
+		"turn": 32,
+		"winner": 1
+	},
+	{
+		"actions": 227,
+		"blue_hero": "pyromancer",
+		"map": "ridgepass",
+		"red_hero": "grove",
+		"skills": 8,
+		"turn": 49,
+		"winner": 1
+	},
+	{
+		"actions": 161,
+		"blue_hero": "grove",
+		"map": "ridgepass",
+		"red_hero": "warden",
+		"skills": 7,
+		"turn": 29,
+		"winner": 0
+	},
+	{
+		"actions": 114,
+		"blue_hero": "warden",
+		"map": "citadel",
+		"red_hero": "pyromancer",
+		"skills": 3,
+		"turn": 21,
+		"winner": 0
+	},
+	{
+		"actions": 244,
+		"blue_hero": "pyromancer",
+		"map": "citadel",
+		"red_hero": "grove",
+		"skills": 9,
+		"turn": 49,
+		"winner": 1
+	},
+	{
+		"actions": 75,
+		"blue_hero": "grove",
+		"map": "citadel",
+		"red_hero": "warden",
+		"skills": 3,
+		"turn": 15,
+		"winner": 0
+	},
+	{
+		"actions": 133,
+		"blue_hero": "warden",
+		"map": "harbor",
+		"red_hero": "pyromancer",
+		"skills": 2,
+		"turn": 21,
+		"winner": 0
+	},
+	{
+		"actions": 165,
+		"blue_hero": "pyromancer",
+		"map": "harbor",
+		"red_hero": "grove",
+		"skills": 5,
+		"turn": 30,
+		"winner": 1
+	},
+	{
+		"actions": 93,
+		"blue_hero": "grove",
+		"map": "harbor",
+		"red_hero": "warden",
+		"skills": 3,
+		"turn": 18,
+		"winner": 1
+	},
+	{
+		"actions": 84,
+		"blue_hero": "warden",
+		"map": "classic_greenwood",
+		"red_hero": "pyromancer",
+		"skills": 2,
+		"turn": 17,
+		"winner": 0
+	},
+	{
+		"actions": 68,
+		"blue_hero": "pyromancer",
+		"map": "classic_greenwood",
+		"red_hero": "grove",
+		"skills": 3,
+		"turn": 15,
+		"winner": 1
+	},
+	{
+		"actions": 39,
+		"blue_hero": "grove",
+		"map": "classic_greenwood",
+		"red_hero": "warden",
+		"skills": 1,
+		"turn": 10,
+		"winner": 1
+	},
+	{
+		"actions": 117,
+		"blue_hero": "warden",
+		"map": "classic_rivergate",
+		"red_hero": "pyromancer",
+		"skills": 4,
+		"turn": 23,
+		"winner": 0
+	},
+	{
+		"actions": 118,
+		"blue_hero": "pyromancer",
+		"map": "classic_rivergate",
+		"red_hero": "grove",
+		"skills": 6,
+		"turn": 27,
+		"winner": 0
+	},
+	{
+		"actions": 207,
+		"blue_hero": "grove",
+		"map": "classic_rivergate",
+		"red_hero": "warden",
+		"skills": 11,
+		"turn": 42,
+		"winner": 1
+	},
+	{
+		"actions": 111,
+		"blue_hero": "warden",
+		"map": "classic_sunspire",
+		"red_hero": "pyromancer",
+		"skills": 4,
+		"turn": 23,
+		"winner": 0
+	},
+	{
+		"actions": 37,
+		"blue_hero": "pyromancer",
+		"map": "classic_sunspire",
+		"red_hero": "grove",
+		"skills": 2,
+		"turn": 11,
+		"winner": 1
+	},
+	{
+		"actions": 44,
+		"blue_hero": "grove",
+		"map": "classic_sunspire",
+		"red_hero": "warden",
+		"skills": 1,
+		"turn": 11,
+		"winner": 0
+	},
+	{
+		"actions": 158,
+		"blue_hero": "warden",
+		"map": "classic_ridgepass",
+		"red_hero": "pyromancer",
+		"skills": 7,
+		"turn": 34,
+		"winner": 1
+	},
+	{
+		"actions": 87,
+		"blue_hero": "pyromancer",
+		"map": "classic_ridgepass",
+		"red_hero": "grove",
+		"skills": 3,
+		"turn": 20,
+		"winner": 1
+	},
+	{
+		"actions": 70,
+		"blue_hero": "grove",
+		"map": "classic_ridgepass",
+		"red_hero": "warden",
+		"skills": 3,
+		"turn": 15,
+		"winner": 0
+	},
+	{
+		"actions": 102,
+		"blue_hero": "warden",
+		"map": "classic_citadel",
+		"red_hero": "pyromancer",
+		"skills": 2,
+		"turn": 19,
+		"winner": 0
+	},
+	{
+		"actions": 41,
+		"blue_hero": "pyromancer",
+		"map": "classic_citadel",
+		"red_hero": "grove",
+		"skills": 1,
+		"turn": 12,
+		"winner": 1
+	},
+	{
+		"actions": 46,
+		"blue_hero": "grove",
+		"map": "classic_citadel",
+		"red_hero": "warden",
+		"skills": 1,
+		"turn": 11,
+		"winner": 0
+	},
+	{
+		"actions": 175,
+		"blue_hero": "warden",
+		"map": "classic_harbor",
+		"red_hero": "pyromancer",
+		"skills": 7,
+		"turn": 35,
+		"winner": 0
+	},
+	{
+		"actions": 101,
+		"blue_hero": "pyromancer",
+		"map": "classic_harbor",
+		"red_hero": "grove",
+		"skills": 5,
+		"turn": 24,
+		"winner": 1
+	},
+	{
+		"actions": 66,
+		"blue_hero": "grove",
+		"map": "classic_harbor",
+		"red_hero": "warden",
+		"skills": 3,
+		"turn": 15,
+		"winner": 0
+	}
+]

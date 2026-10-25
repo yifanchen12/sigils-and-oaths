@@ -1,0 +1,34 @@
+{
+  "tool": "native image_gen",
+  "reference": "assets/art/units.png",
+  "transparent_background": false,
+  "specs": [
+    {
+      "id": "weather_2",
+      "order": [
+        "snow",
+        "clear_skies",
+        "initiative"
+      ],
+      "prompt": "Create one horizontal triptych for the original fantasy card-tactics game Sigils & Oaths. Exactly three equal square panels in one 3:1 image, no gaps or borders, no text, letters, numerals, UI or watermarks. Each panel is an independent evocative illustration; primary action centered in the middle third vertically, for a wide card-strip crop. Refined painterly gouache and oil fantasy illustration, antique gold, jade teal, deep indigo shadows, warm light, bold readable silhouettes and controlled details. Match the reference brushwork and world; no existing franchise characters. Left: a blizzard sweeping a pine valley and frozen stone watchtower, icy turquoise and white snow, dramatic frosty gusts. Middle: gold sunlight breaking through receding violet storm clouds over a green valley, a clear opening of serene blue sky, hopeful calm. Right: one single luminous blue crystal held in a bronze-gauntleted hand above a strategy map, swirls of teal magical energy, dark background."
+    },
+    {
+      "id": "tactics_1",
+      "order": [
+        "repulse",
+        "frostbind",
+        "dispel"
+      ],
+      "prompt": "Create one horizontal triptych for the original fantasy card-tactics game Sigils & Oaths. Exactly three equal square panels in one 3:1 image, no gaps or borders, no text, letters, numerals, UI or watermarks. Each panel is an independent evocative illustration; primary action centered in the middle third vertically, for a wide card-strip crop. Refined painterly gouache and oil fantasy illustration, antique gold, jade teal, deep indigo shadows, warm light, bold readable silhouettes and controlled details. Match the reference brushwork and world; no existing franchise characters. Left: a silver-armored warrior being driven backward by a broad teal magical shockwave, boots sliding over cracked stones, dynamic sideways motion, no injury. Middle: blue crystalline ice vines wrapping an armored soldier's boots firmly to the ground, frost spreading across stones, dramatic cold light. Right: a translucent golden magical barrier around a dark kite shield shattering into harmless tiny light fragments under a sharp violet magical beam, strong central silhouette."
+    },
+    {
+      "id": "tactics_2",
+      "order": [
+        "exchange",
+        "onslaught",
+        "rampart"
+      ],
+      "prompt": "Create one horizontal triptych for the original fantasy card-tactics game Sigils & Oaths. Exactly three equal square panels in one 3:1 image, no gaps or borders, no text, letters, numerals, UI or watermarks. Each panel is an independent evocative illustration; primary action centered in the middle third vertically, for a wide card-strip crop. Refined painterly gouache and oil fantasy illustration, antique gold, jade teal, deep indigo shadows, warm light, bold readable silhouettes and controlled details. Match the reference brushwork and world; no existing franchise characters. Left: two distinct adult allied warriors, one an emerald-cloaked gold-armored commander and one silver-armored swordsman, caught in two swirling blue teleportation circles with crossing trails of light, dramatic mid-exchange. Middle: an adult armored swordsman launching a powerful second sweeping strike, blade with two luminous gold arcs, crimson cape, dynamic action, no visible wounds. Right: a sturdy stone field fortification with wooden stakes and teal war banners on a misty hill, warm morning light, practical defensible stonework, no visible characters."
+    }
+  ]
+}

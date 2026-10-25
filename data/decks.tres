@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DeckData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/deck_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+decks = Array[Dictionary]([{
+"id": "balanced", "name": "均衡军势", "description": "各类部队与环境均衡配置，适合熟悉地形和天气。",
+"cards": {"sword": 3, "spear": 3, "cavalry": 3, "archer": 3, "mage": 3, "healer": 3,
+"bolt": 1, "nova": 1, "heal": 1, "ward": 1, "march": 1, "insight": 1,
+"rain": 1, "fog": 1, "sun": 1, "snow": 1, "rampart": 1, "trail": 1}
+}, {
+"id": "assault", "name": "锋线突袭", "description": "步骑快速推进，以追击、击退和换位夺取节奏。",
+"cards": {"sword": 4, "spear": 2, "cavalry": 4, "archer": 3, "mage": 3, "healer": 2,
+"bolt": 2, "nova": 1, "march": 2, "insight": 1, "trail": 1,
+"onslaught": 1, "repulse": 1, "exchange": 1, "sun": 1, "clear_skies": 1}
+}, {
+"id": "bastion", "name": "壁垒守望", "description": "枪阵、弓手与医师守住阵线，用定身和驱散反击。",
+"cards": {"sword": 3, "spear": 4, "cavalry": 1, "archer": 4, "mage": 2, "healer": 4,
+"bolt": 1, "heal": 2, "ward": 2, "rampart": 2,
+"rain": 1, "fog": 1, "frostbind": 1, "dispel": 1, "exchange": 1}
+}])

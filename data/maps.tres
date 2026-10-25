@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="MapData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/map_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+maps = Array[Dictionary]([{
+"id": "greenwood", "name": "暮林边境", "subtitle": "林间推进 · 抢占高地", "theme": "forest",
+"description": "森林与军道构成两翼通路，中央高地控制交叉射界；步枪兵可借林地推进，骑兵从侧翼绕行。",
+"rows": ["...f..r.....", "..ff..rrr...", ".rrr.h..rf..", ".rfm..f.rr..", "..r..h..r...", "...r..h..r..", "..rr.f..mfr.", "..fr..h.rrr.", "...rrr..ff..", ".....r..f..."],
+"spawns": [Vector2i(5, 9), Vector2i(6, 0)], "ruins": [Vector2i(1, 4), Vector2i(10, 5)]
+}, {
+"id": "rivergate", "name": "双桥河谷", "subtitle": "桥头争夺 · 阵线拉扯", "theme": "river",
+"description": "中央宽河由两座长桥连接；桥头控制决定增援方向，两岸拥有纵深和侧翼迂回空间。",
+"rows": ["....h.r.....", "..f.rrrrrf..", "..rrrr..rr..", ".ffr..h.r...", "wwwbwwwwbwww", "wwwbwwwwbwww", "...r.h..rff.", "..rr..rrrr..", "..frrrrr.f..", ".....r.h...."],
+"spawns": [Vector2i(5, 9), Vector2i(6, 0)], "ruins": [Vector2i(0, 3), Vector2i(11, 6)]
+}, {
+"id": "sunspire", "name": "日陨遗城", "subtitle": "遗迹鏖战 · 高台压制", "theme": "desert",
+"description": "军道穿过高台与废城工事，遗迹支持持久战。开放的侧路允许绕过高地火力。",
+"rows": ["m..rr.r....m", ".h.rr.r.ff..", "..rr.hrr....", ".frt..r.rh..", "..rrh..rr...", "...rr..hrr..", "..hr.r..trf.", "....rrh.rr..", "..ff.r.rr.h.", "m....r.rr..m"],
+"spawns": [Vector2i(5, 9), Vector2i(6, 0)], "ruins": [Vector2i(2, 4), Vector2i(9, 5)]
+}, {
+"id": "ridgepass", "name": "断脊隘口", "subtitle": "隘口卡位 · 分兵绕后", "theme": "forest",
+"description": "两道断脊山带分割推进路线；中场开阔地连接隘口，分兵、击退和前线增援可以改变通路归属。",
+"rows": ["...f..r.....", ".rrr.hrr.f..", ".rmm..fm.r..", "mm..m..m...m", "..r.rh..rr..", "..rr..hr.r..", "m...m..m..mm", "..r.mf..mmr.", "..f.rrh.rrr.", ".....r..f..."],
+"spawns": [Vector2i(5, 9), Vector2i(6, 0)], "ruins": [Vector2i(3, 4), Vector2i(8, 5)]
+}, {
+"id": "citadel", "name": "古堡棋庭", "subtitle": "堡垒推进 · 侧翼突破", "theme": "desert",
+"description": "层层工事保护中路推进，外围道路与高地形成侧翼突破路线；正面防守与机动牵制需要取舍。",
+"rows": ["..f...r.h...", ".rrr.trrr...", ".r.h.rr..tf.", "..rr.tt.rr..", "....r..r....", "....r..r....", "..rr.tt.rr..", ".ft..rr.h.r.", "...rrrt.rrr.", "...h.r...f.."],
+"spawns": [Vector2i(5, 9), Vector2i(6, 0)], "ruins": [Vector2i(1, 4), Vector2i(10, 5)]
+}, {
+"id": "harbor", "name": "碧潮港湾", "subtitle": "横桥争夺 · 港垒交锋", "theme": "harbor",
+"description": "宽阔运河分隔港区，两组横桥连接两岸；石砌广场、岸边堡垒与遗迹组成多层阵线。",
+"rows": ["...rwwwwr...", ".trrwwwwrrt.", ".rrrbbbbrrr.", ".r.twwwwt.r.", ".hrrwwwwrr..", "..rrwwwwrrh.", ".r.twwwwt.r.", ".rrrbbbbrrr.", ".trrwwwwrrt.", "...rwwwwr..."],
+"spawns": [Vector2i(3, 9), Vector2i(8, 0)], "ruins": [Vector2i(0, 3), Vector2i(11, 6)]
+}, {
+"id": "classic_greenwood", "selectable": false, "name": "暮林边境", "subtitle": "林间推进 · 抢占高地", "theme": "forest",
+"description": "山地切断中央直线。森林掩护步枪兵，高地强化远程火力，两侧军道适合骑兵迂回。",
+"rows": ["..f.r...", ".rf.h.r.", ".fm.f.r.", ".r.f.mf.", ".r.h.fr.", "...r.f.."],
+"spawns": [Vector2i(3, 5), Vector2i(4, 0)], "ruins": [Vector2i(0, 2), Vector2i(7, 3)]
+}, {
+"id": "classic_rivergate", "selectable": false, "name": "双桥河谷", "subtitle": "桥头争夺 · 阵线拉扯", "theme": "river",
+"description": "中央河流无法通行，双桥是关键通路。占领桥头能延伸部署，侧翼遗迹可恢复生命。",
+"rows": ["h.f.r...", ".frrrr..", "wwbwwbww", "wwbwwbww", "..rrrrf.", "...r.f.h"],
+"spawns": [Vector2i(3, 5), Vector2i(4, 0)], "ruins": [Vector2i(0, 1), Vector2i(7, 4)]
+}, {
+"id": "classic_sunspire", "selectable": false, "name": "日陨遗城", "subtitle": "遗迹鏖战 · 高台压制", "theme": "desert",
+"description": "两处高台构成交叉射界。军道贯穿废墟，遗迹是持久作战的恢复支点。",
+"rows": ["m..rr..m", ".h..r.f.", ".rrh.rr.", ".rr.hrr.", ".f.r..h.", "m..rr..m"],
+"spawns": [Vector2i(3, 5), Vector2i(4, 0)], "ruins": [Vector2i(2, 2), Vector2i(5, 3)]
+}, {
+"id": "classic_ridgepass", "selectable": false, "name": "断脊隘口", "subtitle": "隘口卡位 · 分兵绕后", "theme": "forest",
+"description": "横贯战场的断脊山带只留下两组通路。遗迹位于隘口，前线部署与击退可以改变通路归属。",
+"rows": [".f..r..m", ".rm.rhf.", "mm..m..m", "m..m..mm", ".fhr.mr.", "m..r..f."],
+"spawns": [Vector2i(3, 5), Vector2i(4, 0)], "ruins": [Vector2i(2, 2), Vector2i(5, 3)]
+}, {
+"id": "classic_citadel", "selectable": false, "name": "古堡棋庭", "subtitle": "堡垒推进 · 侧翼突破", "theme": "desert",
+"description": "中央工事为推进部队提供掩护，外侧开阔通路允许骑兵绕过正面。高台与遗迹分布在两翼。",
+"rows": [".f.rr.h.", "..rt.r..", ".hr..tf.", ".ft..rh.", "..r.tr..", ".h.rr.f."],
+"spawns": [Vector2i(3, 5), Vector2i(4, 0)], "ruins": [Vector2i(0, 2), Vector2i(7, 3)]
+}, {
+"id": "classic_harbor", "selectable": false, "name": "碧潮港湾", "subtitle": "横桥争夺 · 港垒交锋", "theme": "harbor",
+"description": "纵向运河分隔港区，两组横桥连接两岸。近岸工事保护增援，外侧遗迹支持持久攻防。",
+"rows": ["..rwwr..", ".trwwrt.", ".rrbbrr.", ".rrbbrr.", ".trwwrt.", "..rwwr.."],
+"spawns": [Vector2i(2, 5), Vector2i(5, 0)], "ruins": [Vector2i(0, 2), Vector2i(7, 3)]
+}])
