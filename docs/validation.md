@@ -2,6 +2,18 @@
 
 2026-10-25，Godot 4.7.2 stable official Windows x64，Compatibility/OpenGL 3.3，RTX 4060 Laptop GPU。
 
+## 0.12 六兵种技能与战斗动画（2026-10-26）
+
+- 用户已批准六技能：步兵护盾、枪兵主动援护、骑兵再机动、弓手精准射击、法师星火、医师急救。均1法力、每单位每回合一次、新兵禁用；除骑兵外结束移动与攻击。实现范围与接口见plans/unit-skills-and-combat-animation.md。
+- 部队技能54项通过（unit-skills-final.log）：六种效果、精确费用、行动消耗、非法输入原子性、法力/新兵限制、骑兵加权路程与冲锋、雾天射程、天气火焰与护盾、治疗上限、自疗、援护期限/四邻格/定身/多个守卫/指挥官/阵亡、法术绕过、无溢出与实际反击预估。
+- 新增Windows技能窗口51项通过（unit-skills-ui-complete-final.log）：真实鼠标和Q键覆盖六技能、选目标/取消、守卫承伤与生命条预估、技能加伤、近战克制与反击、骑兵移动表现、动画结束不修改单位/玩家/地形/RNG/战报、重开清理、两种布局和1008×700/1440×1000尺寸。窗口坐标以Godot逻辑画布核对，未把缩放后的物理窗口尺寸误当作控件坐标。
+- 原有Windows UI257项通过（ui-unit-skills-fixed.log），预估113项通过（forecast-unit-skills.log）。增加技能栏后曾导致右侧战况卡高度不足，现按棋盘高度调整肖像区；场景释放时悬停回调增加退出保护。首轮失败日志ui-unit-skills.log仅作诊断。新增测试的条件数组曾失去Array[Vector2i]类型，改用Array后完整51项通过，旧unit-skills-ui-complete.log不计通过。
+- 本轮规则76项/12场AI对局、地形英雄127项/36场、战术65项/9场、施法计时28项、自定义套牌39项和AI场景10项全部通过：battle-unit-skills.log、evolution-unit-skills.log、tactics-unit-skills.log、casting-unit-skills.log、deck-unit-skills.log、opponent-unit-skills.log。不是沿用旧版数字。
+- 战斗规则仍即时且只结算一次；普通攻击与精准射击使用同一实际守卫选择和反击计算，UI/AI读取相同forecast。棋子按动作前快照展示出手、命中和反击，阵亡者短暂淡出；动画不更改真实位置。援护由守卫原位判断反击射程，可能无法反击，预估已明确。
+- 动画为现有静态角色图的棋盘内突进/接应与原生特效：箭矢、法术光弹、斩击、盾形格挡、克制文字和飘字。尚不是逐帧角色动作或独立战斗过场；未生成新的动作美术。
+- Godot原生Movie Maker录制997帧/60FPS，约16.6秒，47项录制模式检查通过（combat-movie.log；录制模式跳过改变窗口大小的4项）。FFmpeg转为H.264/yuv420p MP4约1.64MB，未剪改源美术。演示docs/screenshots/unit-skills-combat.mp4；已查看录制帧与援护预估、近战突进实机截图。
+- 最终工程引用检查169文件，0错误、0警告；新增截图导入前为159文件。最终import-unit-skills-complete.log及以上通过日志检查无ERROR或SCRIPT ERROR。较早import-unit-skills.log有沙箱用户目录错误及AI脚本函数插入位置错误，修正后import-unit-skills-ui.log正常；旧日志不计通过。
+
 ## 0.11 完整绘制战场（2026-10-26）
 
 - 六张12×10地图均接入完整原创绘制图，战前缩略图同步；默认隐藏网格，G/按钮查看精确地形，水面保留原生动态涟漪。地图PNG保留原样，导入启用mipmaps，缩放/拖动仍使用既有坐标转换。

@@ -5,13 +5,13 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.11.0" src="https://img.shields.io/badge/version-0.11.0-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.12.0" src="https://img.shields.io/badge/version-0.12.0-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts; it includes no assets from either game. **Version 0.11.0 is a playable development build**, tested on Windows desktop against a local AI. The game interface is currently Chinese; this English README does not imply an English localization.
+The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts; it includes no assets from either game. **Version 0.12.0 is a playable development build**, tested on Windows desktop against a local AI. The game interface is currently Chinese; this English README does not imply an English localization.
 
 ## In-game screenshots
 
@@ -36,10 +36,32 @@ These are actual game-window captures, including units, cards and the HUD.
 | --- | --- |
 | Reinforce from cards | 24 collectible card types, three 30-card presets and one saved custom deck; adjacent deployment can extend from newly summoned units |
 | Cover different unit roles | Infantry beats spears, spears beat cavalry, cavalry beats infantry; archers, mages and healers have distinct ranges and roles |
+| Use active unit skills | Six one-mana abilities: shielding, interception, extra movement, a precise shot, fire damage and healing; once per unit per turn |
 | Contest useful ground | Six fully illustrated 12×10 maps; defensive forests, hills and forts, roads and bridges for mobility, and healing ruins |
 | Lead with a commander | Ailin protects the front, Velo strengthens fire, and Sera supports healing and woodland recovery; each has active and passive abilities |
 | Change the next exchange | Rain, fog, sun and snow affect both sides; replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
+
+## Unit skills and combat animation
+
+Select a friendly troop and press **Q**, or click its skill button above the board. Targeted skills highlight legal cells; right-click/Esc cancels. Every skill costs one mana and is limited to once per unit per turn. New summons cannot use skills.
+
+| Unit | Active skill |
+| --- | --- |
+| Infantry | Raise its shield to at least 3, without stacking |
+| Spear guard | Intercept initiating normal attacks on orthogonally adjacent allies, including commanders, until its next turn |
+| Cavalry | After moving but before attacking, move again for at most two terrain-cost points; keep the attack |
+| Archer | A normal attack with +1 damage, obeying range, fog, interception and retaliation |
+| Mage | Deal 3 fire damage within two cells; weather applies, armor is ignored, shields still absorb damage |
+| Healer | Restore 3 health to a wounded friendly within two cells, capped at maximum health |
+
+All skills except cavalry's extra movement end movement and attack for that unit. Root prevents extra movement and guard interception. Interception does not stop spells or retaliation and cannot chain; the earliest deployed eligible guard is chosen. Defense uses the guard's own terrain, retaliation uses its original position and range, and lethal damage does not spill into the protected ally.
+
+Forecasts identify the actual defender. Combat includes melee lunges and slashes, arrows and magic projectiles, interception, impact, advantage labels and retaliation. Rules resolve once; animation does not move rule positions or deal damage again. This version animates the existing character artwork within the board; it does not provide frame-by-frame character animation or a separate full-screen battle scene.
+
+![Actual forecast showing a spear guard intercepting a precise shot](docs/screenshots/spear-guard-forecast.png)
+
+[Watch the in-game skills and combat demo](docs/screenshots/unit-skills-combat.mp4)
 
 ## Quick start
 
@@ -82,6 +104,7 @@ Full rules are available in the game's rules panel. The deck editor saves one lo
 | Pan | Middle mouse / Alt + left mouse |
 | Fit map | Home |
 | Exact terrain grid | G |
+| Selected troop's active skill | Q / skill button |
 | Toggle battlefield layout | Tab |
 | Keyboard board navigation | Arrow keys / Enter |
 
@@ -114,17 +137,19 @@ tools/         Map-guide, audit-image and diagnostic utilities
 docs/          Screenshots, validation and development records
 ```
 
-Verified locally with **Godot 4.7.2 / Windows / Compatibility**: 59 map-art checks, 257 UI checks and 113 combat-forecast checks passed. Earlier rules, terrain, tactics, clock, deck and full-AI-match results are recorded by version in [`docs/validation.md`](docs/validation.md); they are not presented as fresh runs.
+Verified locally with **Godot 4.7.2 / Windows / Compatibility**: 54 unit-skill checks, 51 skill-window checks, 257 existing UI checks and 113 combat-forecast checks passed. This version's rule/AI-match results are recorded in [`docs/validation.md`](docs/validation.md). The 59 map-art checks belong to version 0.11; historical results are kept by version rather than presented as fresh runs.
 
 ```bash
 godot --headless --path . --editor --quit
 godot --headless --path . --script res://tests/test_battle.gd
+godot --headless --path . --script res://tests/test_unit_skills.gd
 godot --path . --script res://tests/test_ui.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_forecast.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_map_art.gd --resolution 1440x1000 --audio-driver Dummy -- --complete
+godot --path . --script res://tests/test_unit_skills_ui.gd --resolution 1440x1000 --audio-driver Dummy
 ```
 
-The last three checks require a graphical window. Further commands and detailed rules are in [`docs/development.md`](docs/development.md) (Chinese).
+UI, forecast, map-art and skill-window checks require a graphical window. Earlier commands and rules are in [`docs/development.md`](docs/development.md) (Chinese); use this page and the in-game help for the new skills.
 
 ## Current limits and artwork
 

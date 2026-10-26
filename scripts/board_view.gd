@@ -42,6 +42,8 @@ var motion_unit: int = -1
 var motion_path: Array[Vector2i] = []
 var motion_tween: Tween
 var flash_tween: Tween
+var combat: Dictionary = {}
+var action_duration: float = 0.0
 var motion_progress: float = 1.0:
 	set(value):
 		motion_progress = value
@@ -64,6 +66,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	visual_time += delta
 	redraw_clock += delta
+	if not combat.is_empty():
+		combat.age += delta
+		if combat.age >= combat.duration: combat.clear()
+		queue_redraw()
 	if not effects.is_empty():
 		for index: int in range(effects.size() - 1, -1, -1):
 			effects[index].age += delta
@@ -133,6 +139,8 @@ func reset_effects() -> void:
 	if motion_tween != null and motion_tween.is_valid(): motion_tween.kill()
 	if flash_tween != null and flash_tween.is_valid(): flash_tween.kill()
 	effects.clear()
+	combat.clear()
+	action_duration = 0.0
 	predicted_losses.clear()
 	motion_unit = -1
 	motion_progress = 1.0
@@ -140,12 +148,24 @@ func reset_effects() -> void:
 	last_cell = Vector2i(-1, -1)
 
 func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) -> void:
+	combat.clear()
+	action_duration = 0.0
+	var forecast: Dictionary = action.get("combat", {})
+	if not forecast.is_empty():
+		var actors: Dictionary = {}
+		for old: Dictionary in before: actors[old.id] = old
+		if actors.has(action.unit_id) and actors.has(forecast.defender_id):
+			action_duration = 1.0 if forecast.counter_damage > 0 else 0.66
+			combat = {"attacker": actors[action.unit_id], "defender": actors[forecast.defender_id],
+				"protected": actors[forecast.protected_id], "forecast": forecast, "age": 0.0, "duration": action_duration}
 	var previous_ids: Dictionary = {}
 	for old: Dictionary in before:
+		var delay: float = 0.0
+		if not combat.is_empty(): delay = 0.72 if old.id == combat.attacker.id else (0.35 if old.id == combat.defender.id else 0.0)
 		previous_ids[old.id] = true
 		var current: Dictionary = battle.get_unit(old.id)
 		if current.is_empty():
-			_effect("burst", old.pos, "击破", RED, 0.8)
+			_effect("burst", old.pos, "击破", RED, 0.8, delay)
 			continue
 		var hp_delta: int = int(current.hp) - int(old.hp)
 		var shield_delta: int = int(current.shield) - int(old.shield)
@@ -155,30 +175,39 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 			_effect("spawn", current.pos, "追击", GOLD, 0.8)
 		if current.pos != old.pos and action.type != "move":
 			_effect("spawn", current.pos, "换位" if action.get("spell_effect", "") == "exchange" else "击退", BLUE, 0.7)
-		if hp_delta < 0: _effect("hit", current.pos, str(hp_delta), RED, 0.75)
+		if hp_delta < 0: _effect("hit", current.pos, str(hp_delta), RED, 0.75, delay)
 		elif hp_delta > 0: _effect("heal", current.pos, "+%d" % hp_delta, BLUE, 0.8)
 		if shield_delta != 0:
-			_effect("shield", current.pos, ("+%d盾" if shield_delta > 0 else "%d盾") % shield_delta, GOLD, 0.9)
+			_effect("shield", current.pos, ("+%d盾" if shield_delta > 0 else "%d盾") % shield_delta, GOLD, 0.9, delay)
 	for current: Dictionary in battle.units:
 		if not previous_ids.has(current.id): _effect("spawn", current.pos, "增援", BLUE if current.side == 0 else RED, 0.7)
-	if action.type == "move" and path.size() >= 2:
+	if (action.type == "move" or action.get("unit_kind", "") == "cavalry") and path.size() >= 2:
 		if motion_tween != null and motion_tween.is_valid(): motion_tween.kill()
 		motion_unit = int(action.unit_id)
 		motion_path = path
 		motion_progress = 0.0
 		motion_tween = create_tween()
 		motion_tween.tween_property(self, "motion_progress", 1.0, minf(0.42, 0.14 + path.size() * 0.04)).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	if action.type in ["attack", "hero"] and action.has("target") and battle.inside(action.target):
+		action_duration = minf(0.42, 0.14 + path.size() * 0.04)
+	if not combat.is_empty():
+		var attacker: Dictionary = combat.attacker
+		var defender: Dictionary = combat.defender
+		if battle.ADVANTAGE.get(attacker.kind, "") == defender.kind: _effect("hit", defender.pos, "克制 +2", GOLD, 0.7, 0.40)
+		if forecast.intercepted: _effect("shield", defender.pos, "援护", BLUE, 0.7, 0.12)
+		if forecast.counter_damage > 0: _effect("shield", defender.pos, "反击", GOLD, 0.6, 0.55)
+	if (action.type == "hero" or (action.type == "unit_skill" and action.get("unit_kind", "") in ["mage", "healer"])) and action.has("target") and battle.inside(action.target):
 		var from_cell: Vector2i = action.target
 		for old: Dictionary in before:
-			if (action.type == "attack" and old.id == action.unit_id) or (action.type == "hero" and old.kind == "commander" and old.side == battle.active_side):
+			if (action.type == "unit_skill" and old.id == action.unit_id) or (action.type == "hero" and old.kind == "commander" and old.side == battle.active_side):
 				from_cell = old.pos
 				break
-		effects.append({"kind": "trace", "cell": action.target, "from": from_cell, "text": "", "color": GOLD, "age": 0.0, "duration": 0.28})
+		effects.append({"kind": "cast", "cell": action.target, "from": from_cell, "text": "", "color": BLUE if action.get("unit_kind", "") == "healer" else Color("f5a867"), "age": 0.0, "duration": 0.48})
+		action_duration = maxf(action_duration, 0.48)
+	if action.type == "unit_skill" and action.get("unit_kind", "") == "spear": _effect("shield", action.target, "援护展开", BLUE, 0.85)
 	queue_redraw()
 
-func _effect(kind: String, cell: Vector2i, value: String, color: Color, duration: float) -> void:
-	effects.append({"kind": kind, "cell": cell, "text": value, "color": color, "age": 0.0, "duration": duration})
+func _effect(kind: String, cell: Vector2i, value: String, color: Color, duration: float, delay: float = 0.0) -> void:
+	effects.append({"kind": kind, "cell": cell, "text": value, "color": color, "age": -delay, "duration": duration})
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -284,12 +313,15 @@ func _draw() -> void:
 			for step: Vector2i in path: points.append(cell_center(step))
 			if points.size() >= 2: draw_polyline(points, Color("abcce5"), 2.5, true)
 	for unit: Dictionary in battle.units:
+		if not combat.is_empty() and unit.id in [combat.attacker.id, combat.defender.id]: continue
 		var at: Vector2 = cell_center(unit.pos)
 		if unit.id == motion_unit and motion_progress < 1.0 and motion_path.size() > 1:
 			var progress: float = motion_progress * (motion_path.size() - 1)
 			var segment: int = mini(motion_path.size() - 2, int(progress))
 			at = cell_center(motion_path[segment]).lerp(cell_center(motion_path[segment + 1]), progress - segment)
 		_draw_unit(unit, at, tile)
+	if not combat.is_empty(): _draw_combat(tile)
+	_draw_guard_links()
 	_draw_weather(grid)
 	_draw_effects(tile)
 	if battle.inside(hover_cell):
@@ -334,15 +366,14 @@ func _draw_weather(grid: Rect2) -> void:
 
 func _draw_effects(tile: float) -> void:
 	for effect: Dictionary in effects:
+		if effect.age < 0: continue
 		var progress: float = float(effect.age) / float(effect.duration)
 		var at: Vector2 = cell_center(effect.cell)
 		var color: Color = effect.color
 		color.a = 1.0 - progress
-		if effect.kind == "trace":
+		if effect.kind in ["trace", "cast"]:
 			var start: Vector2 = cell_center(effect.from)
-			var end: Vector2 = start.lerp(at, minf(1, progress * 3))
-			draw_line(start, end, Color(color, color.a * 0.75), 2.5, true)
-			draw_circle(end, 3 + progress * 3, color)
+			_draw_projectile(start, at, progress, "mage", color, tile)
 			continue
 		if effect.kind in ["hit", "burst", "spawn", "heal"]:
 			draw_arc(at, tile * (0.14 + progress * 0.37), 0, TAU, 32, Color(color, color.a * 0.7), 2, true)
@@ -355,7 +386,88 @@ func _draw_effects(tile: float) -> void:
 		_text(str(effect.text), text_at + Vector2(1, 1), 17, Color(0.01, 0.03, 0.04, color.a))
 		_text(str(effect.text), text_at, 17, color)
 
-func _draw_unit(unit: Dictionary, at: Vector2, tile: float) -> void:
+func _draw_guard_links() -> void:
+	for guard: Dictionary in battle.units:
+		if not guard.get("guarding", false) or int(guard.get("rooted_turns", 0)) > 0: continue
+		for ally: Dictionary in battle.units:
+			if ally.id == guard.id or ally.side != guard.side or battle.distance(guard.pos, ally.pos) != 1: continue
+			if selected_unit not in [guard.id, ally.id] and hover_cell not in [guard.pos, ally.pos]: continue
+			draw_dashed_line(cell_center(guard.pos), cell_center(ally.pos), Color(BLUE if guard.side == 0 else RED, 0.65), 2.0, 5.0, true)
+
+func _draw_combat(tile: float) -> void:
+	var time: float = combat.age
+	var attacker: Dictionary = combat.attacker
+	var defender: Dictionary = combat.defender
+	var a: Vector2 = cell_center(attacker.pos)
+	var d: Vector2 = cell_center(defender.pos)
+	var guard_offset: Vector2 = Vector2.ZERO
+	if combat.forecast.intercepted:
+		var arrive: float = clampf(time / 0.15, 0, 1)
+		var return_home: float = clampf((time - 0.76) / 0.20, 0, 1)
+		guard_offset = (cell_center(combat.protected.pos) - d) * 0.55 * arrive * (1 - return_home)
+	var direction: Vector2 = (d + guard_offset - a).normalized()
+	var melee: bool = attacker.kind in ["sword", "spear", "cavalry", "commander"] and battle.distance(attacker.pos, defender.pos) <= 2
+	var lunge: float = sin(PI * clampf((time - 0.05) / 0.42, 0, 1)) * tile * 0.34 if melee else 0.0
+	var return_lunge: float = sin(PI * clampf((time - 0.52) / 0.35, 0, 1)) * tile * 0.28 if combat.forecast.counter_damage > 0 else 0.0
+	var shake: float = sin(time * 95.0) * tile * 0.035 * clampf(1 - (time - 0.35) / 0.22, 0, 1) if time >= 0.35 else 0.0
+	var defender_at: Vector2 = d + guard_offset - direction * return_lunge + Vector2(shake, 0)
+	_draw_combat_actor(attacker, a + direction * lunge, tile, 0.72)
+	_draw_combat_actor(defender, defender_at, tile, 0.35)
+	if time >= 0.12 and time <= 0.35:
+		var progress: float = (time - 0.12) / 0.23
+		if melee: _draw_slash(defender_at, direction, progress, GOLD, tile)
+		else: _draw_projectile(a, defender_at, progress, attacker.kind, GOLD if attacker.kind == "archer" else Color("c6a5ff"), tile)
+	if time >= 0.35 and time <= 0.48:
+		var progress: float = (time - 0.35) / 0.13
+		draw_circle(defender_at, tile * (0.12 + progress * 0.30), Color(1, 0.94, 0.72, 0.42 * (1 - progress)))
+		if combat.forecast.intercepted:
+			_draw_guard_shield(defender_at - direction * tile * 0.25, tile * 0.25, Color(BLUE, 1 - progress * 0.5))
+	if combat.forecast.counter_damage > 0 and time >= 0.55 and time <= 0.72:
+		var progress: float = (time - 0.55) / 0.17
+		if defender.kind in ["archer", "mage", "healer"]: _draw_projectile(defender_at, a, progress, defender.kind, RED, tile)
+		else: _draw_slash(a, -direction, progress, RED, tile)
+
+func _draw_combat_actor(old: Dictionary, at: Vector2, tile: float, impact: float) -> void:
+	var current: Dictionary = battle.get_unit(old.id)
+	var visible_unit: Dictionary = old if combat.age < impact else current
+	var alpha: float = 1.0
+	if visible_unit.is_empty():
+		visible_unit = old.duplicate()
+		visible_unit.hp = 0
+		alpha = clampf(1 - (float(combat.age) - impact) / 0.24, 0, 1)
+	if alpha > 0: _draw_unit(visible_unit, at, tile, alpha)
+
+func _draw_slash(at: Vector2, direction: Vector2, progress: float, color: Color, tile: float) -> void:
+	var angle: float = direction.angle() + PI
+	var radius: float = tile * (0.24 + progress * 0.18)
+	var fade: Color = Color(color, sin(PI * progress))
+	draw_arc(at, radius, angle - 1.25 + progress * 0.4, angle + 0.5 + progress * 0.4, 18, fade, 4.5, true)
+	draw_arc(at, radius * 0.8, angle - 1.1 + progress * 0.4, angle + 0.3 + progress * 0.4, 16, Color(1, 0.98, 0.86, fade.a), 2.0, true)
+
+func _draw_projectile(start: Vector2, end: Vector2, progress: float, kind: String, color: Color, tile: float) -> void:
+	var direction: Vector2 = (end - start).normalized()
+	var at: Vector2 = start.lerp(end, progress) - Vector2(0, sin(PI * progress) * tile * 0.14)
+	var tail: Vector2 = at - direction * tile * 0.28
+	draw_line(tail, at, Color(color, 0.45), 5, true)
+	if kind == "archer":
+		draw_line(tail, at, Color("f3ead0"), 2.0, true)
+		var normal: Vector2 = direction.orthogonal() * tile * 0.07
+		draw_colored_polygon(PackedVector2Array([at + direction * tile * 0.09, at - direction * tile * 0.06 + normal, at - direction * tile * 0.06 - normal]), Color("fff0c7"))
+	else:
+		draw_circle(at, tile * 0.12, Color(color, 0.24))
+		draw_circle(at, tile * 0.065, color)
+		draw_circle(at, tile * 0.029, Color("fff7da"))
+		for spark: int in range(3):
+			var point: Vector2 = at - direction * (spark + 1) * tile * 0.1 + Vector2(0, sin(progress * 15 + spark) * tile * 0.04)
+			draw_circle(point, tile * 0.018, Color(color, 0.6 - spark * 0.15))
+
+func _draw_guard_shield(at: Vector2, radius: float, color: Color) -> void:
+	var points := PackedVector2Array([at + Vector2(-radius, -radius), at + Vector2(radius, -radius), at + Vector2(radius * 0.8, radius * 0.3), at + Vector2(0, radius), at + Vector2(-radius * 0.8, radius * 0.3), at + Vector2(-radius, -radius)])
+	draw_colored_polygon(points, Color(color, color.a * 0.25))
+	draw_polyline(points, color, 2.0, true)
+	draw_line(at - Vector2(0, radius * 0.55), at + Vector2(0, radius * 0.45), color, 2.0, true)
+
+func _draw_unit(unit: Dictionary, at: Vector2, tile: float, opacity: float = 1.0) -> void:
 	var color: Color = BLUE if unit.side == 0 else RED
 	var radius: float = minf(tile * 0.31, 25)
 	var exhausted: bool = unit.summoning or (unit.attacked and unit.side == battle.active_side)
@@ -378,7 +490,7 @@ func _draw_unit(unit: Dictionary, at: Vector2, tile: float) -> void:
 		draw_arc(Vector2.ZERO, tile * 0.3, 0, TAU, 32, GOLD if unit.kind == "commander" else color, 2.3 if selected else 1.4, true)
 		draw_set_transform(Vector2.ZERO)
 		var extent: Vector2 = Vector2.ONE * tile * 0.97
-		draw_texture_rect(sprite, Rect2(at + height_offset - Vector2(extent.x / 2, extent.y * 0.60), extent), false, Color(0.72, 0.76, 0.78, 1) if exhausted else Color.WHITE)
+		draw_texture_rect(sprite, Rect2(at + height_offset - Vector2(extent.x / 2, extent.y * 0.60), extent), false, Color(0.72, 0.76, 0.78, opacity) if exhausted else Color(1, 1, 1, opacity))
 		draw_circle(center + Vector2(-radius + 2, -radius + 2), 7.5, Color("0b1720"))
 		_text(str(unit.short), center + Vector2(-radius + 2, -radius + 6), 10, GOLD)
 	else:
@@ -401,6 +513,10 @@ func _draw_unit(unit: Dictionary, at: Vector2, tile: float) -> void:
 	if int(unit.get("rooted_turns", 0)) > 0:
 		draw_circle(center - Vector2(0, radius), 8, Color("173140"))
 		_text("锁", center - Vector2(0, radius - 4), 10, Color("b7d8ee"))
+	if unit.get("guarding", false):
+		var badge_at: Vector2 = at + Vector2(tile * 0.34, -tile * 0.28)
+		_draw_guard_shield(badge_at, 8.5, BLUE if unit.side == 0 else RED)
+		_text("援", badge_at + Vector2(0, 3), 9, Color("eefbf7"))
 	var bar_width: float = tile * 0.67
 	var bar := Rect2(at + Vector2(-bar_width / 2, tile * 0.31), Vector2(bar_width, 4))
 	draw_rect(bar, Color("0b1720"))

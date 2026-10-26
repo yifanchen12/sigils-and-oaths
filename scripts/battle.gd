@@ -259,6 +259,86 @@ func attack_targets(unit: Dictionary) -> Array[Vector2i]:
 			result.append(target.pos)
 	return result
 
+func unit_skill(unit: Dictionary) -> Dictionary:
+	if unit.is_empty() or unit.kind == "commander": return {}
+	return definition(unit.kind).get("skill", {})
+
+func skill_targets(unit: Dictionary) -> Array[Vector2i]:
+	var result: Array[Vector2i] = []
+	var skill: Dictionary = unit_skill(unit)
+	if winner != -1 or skill.is_empty() or unit.side != active_side or unit.hp <= 0: return result
+	if unit.summoning or unit.attacked or unit.get("skill_used", false) or players[active_side].mana < skill.cost: return result
+	match String(unit.kind):
+		"sword":
+			if unit.shield < 3: result.append(unit.pos)
+		"spear":
+			if int(unit.get("rooted_turns", 0)) == 0 and not unit.get("guarding", false): result.append(unit.pos)
+		"cavalry":
+			if not unit.moved or int(unit.get("rooted_turns", 0)) > 0: return result
+			var costs: Dictionary = walk_distances(unit.pos, unit)
+			for cell: Vector2i in costs:
+				if cell != unit.pos and int(costs[cell]) <= 2: result.append(cell)
+		"archer": return attack_targets(unit)
+		"mage", "healer":
+			for target: Dictionary in units:
+				if distance(unit.pos, target.pos) > 2: continue
+				if unit.kind == "mage" and target.side != unit.side: result.append(target.pos)
+				elif unit.kind == "healer" and target.side == unit.side and target.hp < target.max_hp: result.append(target.pos)
+	return result
+
+func attack_defender(attacker: Dictionary, target: Dictionary) -> Dictionary:
+	# Only an initiating normal attack is intercepted; never recurse through guards.
+	if target.is_empty() or attacker.is_empty() or attacker.side == target.side: return target
+	var defender: Dictionary = target
+	for guard: Dictionary in units:
+		if guard.id == target.id or guard.side != target.side or guard.kind != "spear" or guard.hp <= 0: continue
+		if not guard.get("guarding", false) or int(guard.get("rooted_turns", 0)) > 0: continue
+		if distance(guard.pos, target.pos) != 1: continue
+		if defender.id == target.id or guard.id < defender.id: defender = guard
+	return defender
+
+func attack_forecast(attacker: Dictionary, target: Dictionary, bonus: int = 0) -> Dictionary:
+	var defender: Dictionary = attack_defender(attacker, target)
+	if defender.is_empty() or attacker.is_empty(): return {}
+	var damage: int = damage_preview(attacker, defender) + bonus
+	var loss: int = mini(int(defender.hp), maxi(0, damage - int(defender.shield)))
+	var counter: int = 0
+	if defender.hp > loss and distance(attacker.pos, defender.pos) <= attack_range(defender): counter = damage_preview(defender, attacker)
+	return {"defender_id": defender.id, "protected_id": target.id, "intercepted": defender.id != target.id,
+		"damage": damage, "counter_damage": counter, "target_loss": loss,
+		"attacker_loss": mini(int(attacker.hp), maxi(0, counter - int(attacker.shield)))}
+
+func _resolve_attack(unit: Dictionary, selected_target: Dictionary, bonus: int = 0) -> void:
+	var target: Dictionary = attack_defender(unit, selected_target)
+	unit.attacked = true
+	unit.moved = true
+	if target.id != selected_target.id: _record("%s援护%s，代为承受攻击。" % [target.name, selected_target.name])
+	var damage: int = damage_preview(unit, target) + bonus
+	_hurt(target, damage)
+	var advantage_text: String = "（兵种克制 +2）" if ADVANTAGE.get(unit.kind, "") == target.kind else ""
+	_record("%s攻击%s，造成 %d 点伤害%s。" % [unit.name, target.name, damage, advantage_text])
+	if target.hp > 0 and distance(unit.pos, target.pos) <= attack_range(target):
+		var counter: int = damage_preview(target, unit)
+		_hurt(unit, counter)
+		_record("%s反击，造成 %d 点伤害。" % [target.name, counter])
+
+func _resolve_unit_skill(unit: Dictionary, cell: Vector2i) -> void:
+	unit["skill_used"] = true
+	match String(unit.kind):
+		"sword": unit.shield = maxi(3, int(unit.shield))
+		"spear": unit["guarding"] = true
+		"cavalry":
+			unit.last_move_distance = int(unit.get("last_move_distance", 0)) + movement_path(unit, cell).size() - 1
+			unit.pos = cell
+		"archer": _resolve_attack(unit, unit_at(cell), 1)
+		"mage": _hurt(unit_at(cell), fire_damage(3))
+		"healer":
+			var target: Dictionary = unit_at(cell)
+			target.hp = mini(int(target.max_hp), int(target.hp) + 3)
+	unit.moved = true
+	if unit.kind != "cavalry": unit.attacked = true
+	_record("%s发动「%s」。" % [unit.name, unit_skill(unit).name])
+
 func unit_cast_range(unit: Dictionary) -> int:
 	return 4 if unit.kind == "mage" else 3
 
@@ -381,6 +461,8 @@ func get_legal_actions(side: int) -> Array[Dictionary]:
 			result.append({"type": "move", "unit_id": unit.id, "target": cell})
 		for cell: Vector2i in attack_targets(unit):
 			result.append({"type": "attack", "unit_id": unit.id, "target": cell})
+		for cell: Vector2i in skill_targets(unit):
+			result.append({"type": "unit_skill", "unit_id": unit.id, "target": cell})
 	if players[side].skill_cooldown == 0 and players[side].mana >= hero(side).cost:
 		for cell: Vector2i in hero_targets(side): result.append({"type": "hero", "target": cell})
 	result.append({"type": "end_turn"})
@@ -396,6 +478,11 @@ func apply_action(action: Dictionary) -> Dictionary:
 		return _error("请先选择一个有效目标。")
 	var cell: Vector2i = action.target
 	match action_type:
+		"unit_skill":
+			var caster: Dictionary = get_unit(int(action.get("unit_id", -1)))
+			if caster.is_empty() or not skill_targets(caster).has(cell): return _error("技能不可用：检查己方单位、新兵/行动状态、1点法力、次数与目标范围。")
+			players[active_side].mana -= int(unit_skill(caster).cost)
+			_resolve_unit_skill(caster, cell)
 		"hero":
 			var leader_hero: Dictionary = hero(active_side)
 			if players[active_side].skill_cooldown > 0: return _error("指挥官技能仍在冷却。")
@@ -434,16 +521,7 @@ func apply_action(action: Dictionary) -> Dictionary:
 				_record("%s推进至 %s。" % [unit.name, cell_name(cell)])
 			else:
 				if not attack_targets(unit).has(cell): return _error("无法攻击此目标：检查射程或本回合行动状态。")
-				var target: Dictionary = unit_at(cell)
-				unit.attacked = true
-				unit.moved = true
-				var damage: int = damage_preview(unit, target)
-				_hurt(target, damage)
-				_record("%s攻击%s，造成 %d 点伤害。" % [unit.name, target.name, damage])
-				if target.hp > 0 and distance(unit.pos, target.pos) <= attack_range(target):
-					var counter: int = damage_preview(target, unit)
-					_hurt(unit, counter)
-					_record("%s反击，造成 %d 点伤害。" % [target.name, counter])
+				_resolve_attack(unit, unit_at(cell))
 		_:
 			return _error("未知的操作。")
 	_cleanup()
@@ -482,6 +560,8 @@ func _start_turn() -> void:
 	player.mana = player.max_mana
 	for unit: Dictionary in units:
 		if unit.side == active_side:
+			unit["skill_used"] = false
+			unit["guarding"] = false
 			unit.moved = false
 			unit.attacked = false
 			unit.summoning = false
@@ -520,7 +600,7 @@ func _spawn(card: Dictionary, cell: Vector2i, side: int) -> int:
 	units.append({"id": unit_id, "side": side, "name": card.name, "kind": card.kind,
 		"short": card.short, "hp": card.hp, "max_hp": card.hp, "atk": card.atk,
 		"defense": card.defense, "move": card.move, "range": card.range,
-		"shield": 0, "pos": cell, "moved": true, "attacked": true, "summoning": true, "last_move_distance": 0, "rooted_turns": 0})
+		"shield": 0, "pos": cell, "moved": true, "attacked": true, "summoning": true, "last_move_distance": 0, "rooted_turns": 0, "skill_used": false, "guarding": false})
 	return unit_id
 
 func _resolve_spell(card: Dictionary, cell: Vector2i) -> void:
