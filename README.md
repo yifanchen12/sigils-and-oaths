@@ -5,13 +5,13 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.11.0" src="https://img.shields.io/badge/version-0.11.0-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.12.2" src="https://img.shields.io/badge/version-0.12.2-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法研究参考《炉石传说》的卡牌资源节奏与《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡面、美术与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前是可玩的 **0.11.0 开发版**，面向 Windows 桌面单机对战 AI。
+玩法研究参考《炉石传说》的卡牌资源节奏与《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡面、美术与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前是可玩的 **0.12.2 开发版**，面向 Windows 桌面单机对战 AI。
 
 ## 实机画面
 
@@ -37,10 +37,50 @@
 | --- | --- |
 | 用卡牌向前增援 | 24种可组牌、三套30张预组牌、本地自定义套牌；友军身旁部署，新兵也能延伸阵线 |
 | 让兵种互相掩护 | 步兵克枪兵、枪兵克骑兵、骑兵克步兵；弓手、法师、医师各有射程与功能 |
+| 发动部队主动技能 | 六兵种各有1费主动：护盾、援护、再机动、精准射击、星火、急救；每单位每回合一次 |
 | 抢到有价值的位置 | 六张12×10完整绘制地图；森林、高地、工事提供防御，军道与桥梁影响机动，遗迹恢复生命 |
 | 选一个指挥官带队 | 艾琳保护阵线，维洛强化火焰，赛菈治疗与林地恢复；各有主动技能和被动能力 |
 | 改变下一轮战局 | 暴雨、浓雾、烈日、寒潮影响双方；可替换或驱散天气，也可造路、筑垒、击退、定身与换位 |
 | 在有限时间内决策 | 每个行动回合90秒；定向法术限定在友军3格内、法师4格内，天气影响全场 |
+
+## 部队技能与战斗动画
+
+选中己方普通部队，点击地图上方技能按钮或按 **Q**；需要选目标的技能会显示高亮，右键/Esc可取消。六技能均消耗1法力，每单位每回合一次，新兵不能使用。
+
+| 部队 | 主动技能 |
+| --- | --- |
+| 誓约步兵 | 誓约坚守：自身护盾至少变为3，不叠加 |
+| 铁壁枪卫 | 铁壁援护：至下次己方回合，替上下左右相邻友军承受普通攻击，包含指挥官 |
+| 逐风骑士 | 疾风再动：已移动、未攻击时再走最多2点地形费用，保留攻击机会 |
+| 暮林游侠 | 精准射击：普通攻击伤害+1，遵守射程、浓雾、援护与反击 |
+| 星火术士 | 星火迸发：自身2格内单体3点火焰伤害，受天气影响，无视防御但不穿护盾 |
+| 晨光医师 | 战地急救：治疗自身2格内一名受伤友军3生命，不能超过上限 |
+
+除骑兵再机动外，技能会结束该单位的移动与攻击。定身阻止再机动和枪兵接应。援护不拦截法术或反击；多个守卫由较早部署者接应，不连锁。守卫使用自己脚下的防御地形，反击按原位射程判断，阵亡时不向被保护者溢出伤害。
+
+攻击预估会指出实际承伤的守卫。战斗表现包含近战突进与斩击、箭矢和法术飞行、援护拦截、命中、克制提示及反击；规则只结算一次，动画不改棋子真实位置或重复扣血。步兵、枪兵、骑兵各有蓄力、出手、收招三张原创动作姿态，援护先举盾，反击也会切换姿态，并按对手方向翻转。其余角色暂用站姿配合特效；当前尚无完整行走循环或独立全屏战斗过场。
+
+![三兵种九帧动作与棋盘尺寸对照](docs/screenshots/melee-pose-gallery.png)
+
+[查看近战姿态、左右出手与援护实机演示](docs/screenshots/melee-poses.mp4)
+
+![枪兵援护与精准射击的实际伤害预估](docs/screenshots/spear-guard-forecast.png)
+
+[查看实机技能与战斗动画演示](docs/screenshots/unit-skills-combat.mp4)
+
+选择法师、医师或目标型数值法术时，悬停高亮目标可查看结算后的生命与护盾。治疗量按上限计算，并在生命条上显示绿色预估段；范围法术按坐标列出实际受影响的敌军。天气、指挥官火焰牌加成和护盾吸收都计入数值；法术不会触发枪兵援护或普通反击。
+
+治疗采用绿色光迹与十字，防护采用盾形效果，火环显示实际五格十字范围。最后一击先完成命中和击破表现，再显示胜负面板；重开会清理旧效果。
+
+[查看约20秒法术预估与终结一击演示](docs/screenshots/spell-feedback.mp4)
+
+<details>
+<summary>查看治疗与群体法术预估</summary>
+
+![治疗上限与绿色生命条预估](docs/screenshots/healing-target-preview.png)
+![按坐标列出的群体伤害预估](docs/screenshots/area-spell-preview.png)
+
+</details>
 
 ## 快速开始
 
@@ -83,6 +123,7 @@ Windows 用户也可把官方压缩包内的图形版与控制台版引擎放入
 | 拖动地图 | 中键 / Alt + 左键 |
 | 适配全图 | Home |
 | 查看精确地形网格 | G |
+| 所选部队主动技能 | Q / 技能按钮 |
 | 切换战场布局 | Tab |
 | 键盘操作棋盘 | 方向键 / Enter |
 
@@ -115,17 +156,22 @@ tools/         地图导图、核对图及诊断工具
 docs/          实机截图、验收与开发记录
 ```
 
-本机 **Godot 4.7.2 / Windows / Compatibility** 验证：地图专项59项、界面257项、战斗预估113项通过。历史规则、地形、战术、计时与套牌检查及完整AI对局记录分版本保存在 [`docs/validation.md`](docs/validation.md)，不把历史结果当作本轮重跑。
+本机 **Godot 4.7.2 / Windows / Compatibility** 验证：0.12.2动作姿态160项、界面257项、法术反馈56项通过。0.12.1已验证效果预估134项、普攻预估113项和六技能窗口51项；六技能规则、完整AI对局和地图专项保留各自实际验证版本，详见 [`docs/validation.md`](docs/validation.md)。
 
 ```bash
 godot --headless --path . --editor --quit
 godot --headless --path . --script res://tests/test_battle.gd
+godot --headless --path . --script res://tests/test_unit_skills.gd
+godot --headless --path . --script res://tests/test_effect_forecast.gd
 godot --path . --script res://tests/test_ui.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_forecast.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_map_art.gd --resolution 1440x1000 --audio-driver Dummy -- --complete
+godot --path . --script res://tests/test_unit_skills_ui.gd --resolution 1440x1000 --audio-driver Dummy
+godot --path . --script res://tests/test_feedback_polish.gd --resolution 1440x1000 --audio-driver Dummy
+godot --path . --script res://tests/test_action_poses.gd --resolution 1440x1000 --audio-driver Dummy
 ```
 
-后面三项需要真实图形窗口。详细检查命令与规则说明见 [`docs/development.md`](docs/development.md)。
+界面、预估、地图和技能窗口检查需要真实图形窗口。初版规则与开发命令见 [`docs/development.md`](docs/development.md)；新增技能以本页及游戏内说明为准。
 
 ## 当前边界与美术来源
 

@@ -19,6 +19,35 @@ static func evaluate(battle: Battle, action: Dictionary, fields: Dictionary = {}
 	var side: int = battle.active_side
 	var enemy_leader: Dictionary = battle.commander(1 - side)
 	match String(action.type):
+		"unit_skill":
+			var caster: Dictionary = battle.get_unit(action.unit_id)
+			var victim: Dictionary = battle.unit_at(action.target)
+			match String(caster.kind):
+				"sword":
+					var threats: int = 0
+					for enemy: Dictionary in battle.units:
+						if enemy.side != side and battle.distance(enemy.pos, caster.pos) <= battle.attack_range(enemy) + 1: threats += 1
+					return 18.0 + threats * 12.0 if threats > 0 else -1.0
+				"spear":
+					var value: float = -1.0
+					for ally: Dictionary in battle.units:
+						if ally.side != side or ally.id == caster.id or battle.distance(caster.pos, ally.pos) != 1: continue
+						for enemy: Dictionary in battle.units:
+							if enemy.side != side and battle.distance(enemy.pos, ally.pos) <= battle.attack_range(enemy) + battle.movement_allowance(enemy):
+								value += 20.0 + (30.0 if ally.kind == "commander" else 0.0) + maxi(0, int(ally.max_hp) - int(ally.hp))
+					return value
+				"cavalry":
+					var before_distance: int = battle.distance(caster.pos, enemy_leader.pos)
+					var after_distance: int = battle.distance(action.target, enemy_leader.pos)
+					return 12.0 + (before_distance - after_distance) * 5.0 if after_distance < before_distance else -1.0
+				"archer":
+					var forecast: Dictionary = battle.attack_forecast(caster, victim, 1)
+					var defender: Dictionary = battle.get_unit(forecast.defender_id)
+					return _attack_value(battle, caster, defender, forecast) - 2.0
+				"mage":
+					var loss: int = maxi(0, battle.fire_damage(3) - int(victim.shield))
+					return 42.0 + mini(loss, int(victim.hp)) * 6.0 + (3000.0 if victim.kind == "commander" and loss >= int(victim.hp) else (40.0 if loss >= int(victim.hp) else 0.0))
+				"healer": return 28.0 + mini(3, int(victim.max_hp) - int(victim.hp)) * 8.0
 		"hero":
 			var leader: Dictionary = battle.hero(side)
 			var target: Dictionary = battle.unit_at(action.target)
@@ -42,16 +71,8 @@ static func evaluate(battle: Battle, action: Dictionary, fields: Dictionary = {}
 		"attack":
 			var unit: Dictionary = battle.get_unit(action.unit_id)
 			var target: Dictionary = battle.unit_at(action.target)
-			var damage: int = battle.damage_preview(unit, target)
-			var score: float = 60.0 + mini(damage, int(target.hp) + int(target.shield)) * 4.0
-			if damage >= int(target.hp) + int(target.shield): score += 50.0
-			if target.kind == "commander": score += 60.0
-			if damage >= int(target.hp) + int(target.shield) and target.kind == "commander": score += 2000.0
-			if target.hp > damage - int(target.shield) and battle.distance(unit.pos, target.pos) <= battle.attack_range(target):
-				var retaliation: int = maxi(0, battle.damage_preview(target, unit) - int(unit.shield))
-				score -= retaliation * 6.0
-				if retaliation >= int(unit.hp): score -= 35.0
-			return score
+			var forecast: Dictionary = battle.attack_forecast(unit, target)
+			return _attack_value(battle, unit, battle.get_unit(forecast.defender_id), forecast)
 		"play":
 			var instance: Dictionary = battle.hand_card(side, action.card_uid)
 			var card: Dictionary = battle.definition(instance.card_id)
@@ -81,6 +102,7 @@ static func evaluate(battle: Battle, action: Dictionary, fields: Dictionary = {}
 						if option.cost == battle.players[side].mana + 1 and not battle.card_targets(other.uid, side).is_empty(): return 45.0
 					if battle.players[side].skill_cooldown == 0 and battle.hero(side).cost == battle.players[side].mana + 1: return 20.0
 					return -1.0
+
 				"march": return 5.0 if battle.distance(target.pos, enemy_leader.pos) > int(target.range) else -1.0
 				"terrain":
 					if card.terrain == "fort":
@@ -143,6 +165,15 @@ static func evaluate(battle: Battle, action: Dictionary, fields: Dictionary = {}
 			score += (battle.distance(unit.pos, enemy_leader.pos) - battle.distance(action.target, enemy_leader.pos)) * 0.6
 			return score
 	return 0.0
+
+static func _attack_value(_battle: Battle, unit: Dictionary, target: Dictionary, forecast: Dictionary) -> float:
+	var score: float = 60.0 + mini(int(forecast.damage), int(target.hp) + int(target.shield)) * 4.0
+	if forecast.target_loss >= int(target.hp): score += 50.0
+	if target.kind == "commander": score += 60.0
+	if forecast.target_loss >= int(target.hp) and target.kind == "commander": score += 2000.0
+	score -= int(forecast.attacker_loss) * 6.0
+	if forecast.attacker_loss >= int(unit.hp): score -= 35.0
+	return score
 
 static func _draw_fatigue(battle: Battle, side: int, amount: int) -> int:
 	var missing: int = maxi(0, amount - battle.players[side].deck.size())

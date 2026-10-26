@@ -54,6 +54,7 @@ func configure(definition: Dictionary, uid: int, mana: int, selected: bool, lock
 	tooltip_text = "%s · %d 费\n%s\n%s" % [card.name, card.cost, card.tag, card.text]
 	if card.type == "unit":
 		tooltip_text += "\n攻击 %d · 生命 %d · 防御 %d · 移动 %d · 射程 %d" % [card.atk, card.hp, card.defense, card.move, card.range]
+		if card.has("skill"): tooltip_text += "\n主动 · %s（1费，每回合一次）：%s" % [card.skill.name, card.skill.text]
 	elif card.effect not in ["draw", "mana", "weather", "clear_weather"]:
 		tooltip_text += "\n施法范围：友军3格、法师4格；换位另限指挥官3格。"
 	queue_redraw()

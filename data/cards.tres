@@ -7,26 +7,32 @@ script = ExtResource("1")
 cards = Array[Dictionary]([{
 "id": "sword", "name": "誓约步兵", "short": "步", "type": "unit", "kind": "sword", "cost": 1,
 "atk": 3, "hp": 5, "defense": 1, "move": 2, "range": 1,
+"skill": {"name": "誓约坚守", "cost": 1, "text": "自身护盾至少变为3，不叠加。结束移动与攻击。"},
 "text": "森林移动费用仅 1。\n克制枪兵，伤害 +2。", "tag": "步兵 · 前线"
 }, {
 "id": "spear", "name": "铁壁枪卫", "short": "枪", "type": "unit", "kind": "spear", "cost": 2,
 "atk": 3, "hp": 7, "defense": 2, "move": 2, "range": 1,
+"skill": {"name": "铁壁援护", "cost": 1, "text": "至下次己方回合，替上下左右相邻友军承受普通攻击。定身时不能接应；不拦法术。结束行动。"},
 "text": "本回合未移动时防御 +1。\n森林费用 1，克骑兵伤害 +2。", "tag": "枪兵 · 防御"
 }, {
 "id": "cavalry", "name": "逐风骑士", "short": "骑", "type": "unit", "kind": "cavalry", "cost": 3,
 "atk": 5, "hp": 5, "defense": 0, "move": 4, "range": 1,
+"skill": {"name": "疾风再动", "cost": 1, "text": "已移动、未攻击时，再移动最多2点地形费用。保留攻击机会；定身不可用。"},
 "text": "本回合移动至少 3 格，攻击 +1。\n军道出发移动 +1，克步兵。", "tag": "骑兵 · 机动"
 }, {
 "id": "archer", "name": "暮林游侠", "short": "弓", "type": "unit", "kind": "archer", "cost": 2,
 "atk": 3, "hp": 4, "defense": 0, "move": 2, "range": 3,
+"skill": {"name": "精准射击", "cost": 1, "text": "按普通攻击射程攻击，伤害+1，仍受援护与反击。结束行动。"},
 "text": "射程 3 格，高地再 +1。\n攻击相邻敌军时伤害 -1。", "tag": "弓手 · 远程"
 }, {
 "id": "mage", "name": "星火术士", "short": "法", "type": "unit", "kind": "mage", "cost": 4,
 "atk": 5, "hp": 4, "defense": 0, "move": 2, "range": 2,
+"skill": {"name": "星火迸发", "cost": 1, "text": "自身2格内一名敌军受到3火焰伤害，受天气影响，无视防御。结束行动。"},
 "text": "射程 2 格，攻击无视 1 防御。\n生命较低，需要友军保护。", "tag": "法师 · 爆发"
 }, {
 "id": "healer", "name": "晨光医师", "short": "医", "type": "unit", "kind": "healer", "cost": 3,
 "atk": 2, "hp": 5, "defense": 0, "move": 2, "range": 2,
+"skill": {"name": "战地急救", "cost": 1, "text": "治疗自身2格内一名受伤友军3生命。结束移动与攻击。"},
 "text": "己方回合开始时，治疗\n自身及相邻友军 1 点生命。", "tag": "治疗兵 · 支援"
 }, {
 "id": "bolt", "name": "星火箭", "short": "焰", "type": "spell", "effect": "damage", "cost": 2, "amount": 4,

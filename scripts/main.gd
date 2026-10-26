@@ -7,6 +7,7 @@ const Art = preload("res://scripts/art_library.gd")
 const PeekControl = preload("res://scripts/battle_peek.gd")
 const Store = preload("res://scripts/deck_store.gd")
 const DeckEditorControl = preload("res://scripts/deck_editor.gd")
+const Effects = preload("res://scripts/effect_forecast.gd")
 const TEAL := Color("70d3ba")
 const GOLD := Color("d0b579")
 const RED := Color("f08b76")
@@ -42,12 +43,17 @@ var deck_editor: DeckEditor
 var custom_deck: Dictionary = {}
 var custom_load_notice: String = ""
 var grid_button: Button
+var unit_skill_button: Button
+var unit_action_label: Label
+var using_unit_skill: bool = false
 
 func _process(delta: float) -> void:
 	if battle == null: return
 	_position_battle_peek()
 	var paused: bool = not has_started or council.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible
 	if paused or battle.winner != -1:
+		if paused and board.is_presenting(): board.reset_effects()
+		if battle.winner != -1 and not paused and not board.is_presenting() and not %ResultOverlay.visible: _refresh()
 		_update_clock_ui(paused)
 		return
 	var before: Array = []
@@ -59,6 +65,7 @@ func _process(delta: float) -> void:
 		selected_card = -1
 		selected_unit = -1
 		using_hero = false
+		using_unit_skill = false
 	if battle.advance_clock(delta):
 		board.present_action(before, {"type": "end_turn"}, [])
 		ai_running = battle.active_side == 1 and battle.winner == -1
@@ -99,6 +106,21 @@ func _ready() -> void:
 	grid_button.toggled.connect(func(value: bool) -> void: board.grid_visible = value; board.queue_redraw())
 	%ViewEnd.get_parent().add_child(grid_button)
 	%ViewEnd.get_parent().move_child(grid_button, 7)
+	var unit_actions := HBoxContainer.new()
+	unit_actions.add_theme_constant_override("separation", 12)
+	board.get_parent().add_child(unit_actions)
+	board.get_parent().move_child(unit_actions, board.get_index())
+	unit_action_label = Label.new()
+	unit_action_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	unit_action_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	unit_action_label.add_theme_font_size_override("font_size", 13)
+	unit_action_label.add_theme_color_override("font_color", GOLD)
+	unit_actions.add_child(unit_action_label)
+	unit_skill_button = Button.new()
+	unit_skill_button.add_theme_font_size_override("font_size", 14)
+	unit_skill_button.custom_minimum_size = Vector2(178, 34)
+	unit_skill_button.pressed.connect(_select_unit_skill)
+	unit_actions.add_child(unit_skill_button)
 	%CompactHandPanel.add_theme_stylebox_override("panel", _box(Color("182a40"), Color("a28a5a"), 3, 8))
 	%ViewEnd.add_theme_stylebox_override("normal", _box(Color("446377"), GOLD, 3, 12))
 	%Header.hide()
@@ -246,6 +268,7 @@ func _library_details(card: Dictionary, copies: int) -> void:
 	%LibraryDetails.text = "[font_size=21][color=#d0b579]%s[/color][/font_size]  ·  %d 费  ·  %s  ·  当前 %d 张\n%s" % [card.name, card.cost, card.tag, copies, card.text]
 	if card.type == "unit":
 		%LibraryDetails.text += "\n攻击 %d / 生命 %d / 防御 %d / 移动 %d / 射程 %d" % [card.atk, card.hp, card.defense, card.move, card.range]
+		if card.has("skill"): %LibraryDetails.text += "\n主动 · %s（1费，每回合一次）：%s" % [card.skill.name, card.skill.text]
 	elif card.effect not in ["draw", "mana", "weather", "clear_weather"]:
 		%LibraryDetails.text += "\n施法范围：友军3格、法师4格；换位目标另须在指挥官3格内。"
 
@@ -297,6 +320,7 @@ func _restart() -> void:
 	board.grab_focus()
 
 func _new_match(seed_value: int) -> void:
+	using_unit_skill = false
 	generation += 1
 	ai_running = false
 	using_hero = false
@@ -363,7 +387,10 @@ func _refresh() -> void:
 		log_text += "[color=#d0b579]›[/color] " + battle.log_lines[index] + "\n\n"
 	%BattleLog.text = log_text
 	if selected_card != -1 and battle.hand_card(0, selected_card).is_empty(): selected_card = -1
-	if selected_unit != -1 and battle.get_unit(selected_unit).is_empty(): selected_unit = -1
+	if selected_unit != -1 and battle.get_unit(selected_unit).is_empty():
+		selected_unit = -1
+		using_unit_skill = false
+	_update_unit_skill_ui()
 	for child: Node in hand.get_children():
 		hand.remove_child(child)
 		child.queue_free()
@@ -383,8 +410,12 @@ func _refresh() -> void:
 	_update_board()
 	_update_info()
 	var context_hint: Dictionary = _attack_context()
-	_show_hint(_attack_hint(context_hint) if not context_hint.is_empty() else message, error_message if context_hint.is_empty() else false)
+	var effect_hint: Dictionary = _effect_context()
+	_show_hint(Effects.hint(effect_hint) if not effect_hint.is_empty() else (_attack_hint(context_hint) if not context_hint.is_empty() else message), error_message if context_hint.is_empty() and effect_hint.is_empty() else false)
 	if battle.winner != -1:
+		if board.is_presenting():
+			%ResultOverlay.hide()
+			return
 		var already_visible: bool = %ResultOverlay.visible
 		%ResultOverlay.show()
 		%ResultTitle.text = "苍蓝旗帜，仍在飘扬" if battle.winner == 0 else ("战场归于寂静" if battle.winner == 2 else "此役失利，再整旗鼓")
@@ -446,6 +477,10 @@ func _update_board() -> void:
 		if using_hero:
 			board.spell_targets = battle.hero_targets(0)
 			board.cast_reach = battle.casting_cells(0, true)
+		elif using_unit_skill:
+			var caster: Dictionary = battle.get_unit(selected_unit)
+			board.spell_targets = battle.skill_targets(caster)
+			if not caster.is_empty() and caster.kind == "archer": board.attacks = board.spell_targets.duplicate()
 		elif selected_card != -1:
 			var instance: Dictionary = battle.hand_card(0, selected_card)
 			if not instance.is_empty():
@@ -464,6 +499,7 @@ func _update_board() -> void:
 
 func _select_card(uid: int) -> void:
 	if not _player_can_act(): return
+	using_unit_skill = false
 	var instance: Dictionary = battle.hand_card(0, uid)
 	if instance.is_empty(): return
 	if selected_card == uid:
@@ -488,6 +524,7 @@ func _select_card(uid: int) -> void:
 
 func _select_hero_skill() -> void:
 	if not _player_can_act() or %HeroSkill.disabled: return
+	using_unit_skill = false
 	if using_hero:
 		_cancel()
 		return
@@ -502,11 +539,42 @@ func _select_hero_skill() -> void:
 	_refresh()
 	board.grab_focus()
 
+func _update_unit_skill_ui() -> void:
+	var unit: Dictionary = battle.get_unit(selected_unit)
+	var skill: Dictionary = battle.unit_skill(unit)
+	unit_skill_button.text = "部队技能 Q" if skill.is_empty() else "%s Q · 1费" % skill.name
+	unit_skill_button.disabled = not _player_can_act() or battle.skill_targets(unit).is_empty()
+	unit_skill_button.tooltip_text = "选择己方普通部队；新兵不能使用技能。" if skill.is_empty() else "%s\n%s\n1法力，每回合一次；新兵不能使用。" % [skill.name, skill.text]
+	unit_action_label.text = "兵种克制：步兵 → 枪兵 → 骑兵 → 步兵 · 伤害 +2" if skill.is_empty() else "%s · %s%s" % [unit.name, "本回合技能已用 · " if unit.get("skill_used", false) else "", skill.text]
+	unit_action_label.tooltip_text = unit_skill_button.tooltip_text
+
+func _select_unit_skill() -> void:
+	if not _player_can_act() or unit_skill_button.disabled: return
+	if using_unit_skill:
+		using_unit_skill = false
+		_refresh()
+		return
+	var unit: Dictionary = battle.get_unit(selected_unit)
+	selected_card = -1
+	inspected_card = -1
+	using_hero = false
+	using_unit_skill = true
+	if unit.kind in ["sword", "spear"]:
+		_commit({"type": "unit_skill", "unit_id": unit.id, "target": unit.pos})
+		return
+	message = "%s：选择高亮目标。%s" % [battle.unit_skill(unit).name, battle.unit_skill(unit).text]
+	error_message = false
+	_refresh()
+	board.grab_focus()
+
 func _on_cell_clicked(cell: Vector2i, button: int) -> void:
 	if button == MOUSE_BUTTON_RIGHT:
 		_cancel()
 		return
 	if button != MOUSE_BUTTON_LEFT or not _player_can_act(): return
+	if using_unit_skill:
+		_commit({"type": "unit_skill", "unit_id": selected_unit, "target": cell})
+		return
 	if using_hero:
 		_commit({"type": "hero", "target": cell})
 		return
@@ -533,6 +601,7 @@ func _commit(action: Dictionary) -> void:
 	if result.ok:
 		if action.type == "play": selected_card = -1
 		if action.type == "hero": using_hero = false
+		if action.type == "unit_skill": using_unit_skill = false
 		if action.has("target") and battle.inside(action.target):
 			board.last_cell = action.target
 			board.flash(action.target)
@@ -541,18 +610,42 @@ func _commit(action: Dictionary) -> void:
 func _apply_with_feedback(action: Dictionary) -> Dictionary:
 	var before: Array = battle.units.duplicate(true)
 	var visual_action: Dictionary = action.duplicate()
+	var side: int = battle.active_side
+	if action.type == "hero":
+		visual_action["effect_kind"] = battle.hero(side).effect
+		visual_action["visual_origin"] = battle.commander(side).pos
+	if action.type in ["attack", "unit_skill"]:
+		var caster: Dictionary = battle.get_unit(int(action.get("unit_id", -1)))
+		if not caster.is_empty():
+			visual_action["unit_kind"] = caster.kind
+			visual_action["visual_origin"] = caster.pos
+			if action.type == "unit_skill": visual_action["effect_kind"] = {"mage": "damage", "healer": "heal", "sword": "shield"}.get(caster.kind, "")
+			if action.type == "attack" or caster.kind == "archer":
+				var target: Dictionary = battle.unit_at(action.target)
+				if not target.is_empty(): visual_action["combat"] = battle.attack_forecast(caster, target, 1 if action.type == "unit_skill" else 0)
 	if action.type == "play":
 		var instance: Dictionary = battle.hand_card(battle.active_side, int(action.get("card_uid", -1)))
-		if not instance.is_empty(): visual_action["spell_effect"] = battle.definition(instance.card_id).get("effect", "")
+		if not instance.is_empty():
+			visual_action["spell_effect"] = battle.definition(instance.card_id).get("effect", "")
+			visual_action["effect_kind"] = visual_action.spell_effect
+			var origin: Dictionary = {}
+			for caster: Dictionary in battle.units:
+				if caster.side != side or battle.distance(caster.pos, action.target) > battle.unit_cast_range(caster): continue
+				if origin.is_empty() or battle.distance(caster.pos, action.target) < battle.distance(origin.pos, action.target): origin = caster
+			if origin.is_empty(): origin = battle.commander(side)
+			visual_action["visual_origin"] = origin.pos
 	var path: Array[Vector2i] = []
-	if action.type == "move":
+	if action.type == "move" or (action.type == "unit_skill" and visual_action.get("unit_kind", "") == "cavalry"):
 		var unit: Dictionary = battle.get_unit(int(action.get("unit_id", -1)))
 		if not unit.is_empty(): path = battle.movement_path(unit, action.target)
 	var result: Dictionary = battle.apply_action(action)
-	if result.ok: board.present_action(before, visual_action, path)
+	if result.ok:
+		board.present_action(before, visual_action, path)
+		if battle.winner != -1: _refresh()
 	return result
 
 func _cancel() -> void:
+	using_unit_skill = false
 	selected_card = -1
 	selected_unit = -1
 	inspected_card = -1
@@ -567,21 +660,34 @@ func _inspect_card(uid: int) -> void:
 	_update_info()
 
 func attack_prediction(attacker: Dictionary, target: Dictionary) -> Dictionary:
-	var dealt: int = maxi(0, battle.damage_preview(attacker, target) - int(target.shield))
-	var returned: int = 0
-	if target.hp > dealt and battle.distance(attacker.pos, target.pos) <= battle.attack_range(target):
-		returned = maxi(0, battle.damage_preview(target, attacker) - int(attacker.shield))
-	return {"target_loss": mini(int(target.hp), dealt), "attacker_loss": mini(int(attacker.hp), returned)}
+	return battle.attack_forecast(attacker, target, 1 if using_unit_skill and attacker.kind == "archer" else 0)
+
+func _effect_context() -> Dictionary:
+	if not _player_can_act() or not battle.inside(hovered_cell): return {}
+	var action: Dictionary = {"target": hovered_cell}
+	if using_unit_skill:
+		action.merge({"type": "unit_skill", "unit_id": selected_unit})
+	elif using_hero: action["type"] = "hero"
+	elif selected_card != -1: action.merge({"type": "play", "card_uid": selected_card})
+	else: return {}
+	return Effects.predict(battle, action)
 
 func _attack_context() -> Dictionary:
 	if selected_card != -1 or using_hero or not _player_can_act() or not board.attacks.has(hovered_cell): return {}
 	var attacker: Dictionary = battle.get_unit(selected_unit)
 	var target: Dictionary = battle.unit_at(hovered_cell)
 	if attacker.is_empty() or target.is_empty(): return {}
-	return {"attacker": attacker, "target": target, "prediction": attack_prediction(attacker, target)}
+	var prediction: Dictionary = attack_prediction(attacker, target)
+	return {"attacker": attacker, "target": battle.get_unit(prediction.defender_id), "selected_target": target, "prediction": prediction}
 
 func _update_attack_overlay() -> void:
 	board.predicted_losses.clear()
+	board.predicted_gains.clear()
+	var effect: Dictionary = _effect_context()
+	if not effect.is_empty():
+		for change: Dictionary in effect.changes:
+			if change.hp_loss > 0: board.predicted_losses[change.unit_id] = change.hp_loss
+			if change.healing > 0 or change.shield_delta != 0: board.predicted_gains[change.unit_id] = {"heal": change.healing, "shield": change.shield_delta}
 	var context: Dictionary = _attack_context()
 	if not context.is_empty():
 		board.predicted_losses = {context.attacker.id: context.prediction.attacker_loss, context.target.id: context.prediction.target_loss}
@@ -601,6 +707,9 @@ func _attack_forecast_text(context: Dictionary) -> String:
 	for index: int in range(modifiers.size()):
 		lines += modifiers[index] + (" · " if index % 2 == 0 and index < modifiers.size() - 1 else "\n")
 	if lines.is_empty(): lines = "无额外克制或地形修正。\n"
+	if using_unit_skill and attacker.kind == "archer": lines += "精准射击 +1\n"
+	if prediction.counter_damage > 0 and battle.ADVANTAGE.get(target.kind, "") == attacker.kind: lines += "反击克制 +2\n"
+	if prediction.intercepted: lines = "%s援护%s，原目标不受伤。\n\n" % [target.name, context.selected_target.name] + lines
 	var outcome: String = "目标存活并反击。"
 	if prediction.target_loss >= target.hp: outcome = "目标被击破，不会反击。"
 	elif battle.distance(attacker.pos, target.pos) > battle.attack_range(target): outcome = "目标射程不足，不会反击。"
@@ -608,16 +717,20 @@ func _attack_forecast_text(context: Dictionary) -> String:
 	return "生命损失 %d  /  反击 %d\n\n目标生命  %d → %d\n我方生命  %d → %d\n\n%s\n已计入护盾：我方%d / 敌方%d\n%s\n点击目标确认攻击。" % [prediction.target_loss, prediction.attacker_loss, target.hp, target.hp - prediction.target_loss, attacker.hp, attacker.hp - prediction.attacker_loss, lines, attacker.shield, target.shield, outcome]
 
 func _attack_hint(context: Dictionary) -> String:
-	return "攻击预览：敌方生命 %d → %d  /  我方生命 %d → %d  ·  浅金段为预计损失，点击目标确认。" % [context.target.hp, context.target.hp - context.prediction.target_loss, context.attacker.hp, context.attacker.hp - context.prediction.attacker_loss]
+	return ("援护拦截 · %s承伤。" % context.target.name if context.prediction.intercepted else "") + "攻击预览：敌方生命 %d → %d  /  我方生命 %d → %d  ·  浅金段为预计损失，点击目标确认。" % [context.target.hp, context.target.hp - context.prediction.target_loss, context.attacker.hp, context.attacker.hp - context.prediction.attacker_loss]
 
 func _on_cell_hovered(cell: Vector2i) -> void:
+	if is_queued_for_deletion() or not is_inside_tree(): return
 	hovered_cell = cell
 	_update_attack_overlay()
 	_update_info()
 	var unit: Dictionary = battle.get_unit(selected_unit)
 	var target: Dictionary = battle.unit_at(cell)
 	var context: Dictionary = _attack_context()
-	if not context.is_empty():
+	var effect: Dictionary = _effect_context()
+	if not effect.is_empty():
+		_show_hint(Effects.hint(effect), false)
+	elif not context.is_empty():
 		_show_hint(_attack_hint(context), false)
 	elif battle.inside(cell) and target.is_empty():
 		var terrain_name: String = battle.TERRAIN[battle.ground(cell)].name
@@ -630,6 +743,11 @@ func _on_cell_hovered(cell: Vector2i) -> void:
 
 func _update_info() -> void:
 	_update_battle_peek()
+	var effect: Dictionary = _effect_context()
+	if not effect.is_empty():
+		info_title.text = "效果预估 · " + str(effect.title)
+		info_body.text = Effects.describe(effect, battle)
+		return
 	if using_hero:
 		var chosen: Dictionary = battle.hero(0)
 		info_title.text = chosen.skill
@@ -643,6 +761,7 @@ func _update_info() -> void:
 		info_body.text = "[color=#d0b579]%s  /  %d 法力[/color]\n\n%s\n\n" % [card.tag, card.cost, card.text]
 		if card.type == "unit":
 			info_body.text += "攻击 [b]%d[/b]     生命 [b]%d[/b]\n防御 %d       移动 %d\n射程 %d\n\n[color=#70d3ba]部署在友军上下左右的空地。新兵本回合无法行动。[/color]" % [card.atk, card.hp, card.defense, card.move, card.range]
+			if card.has("skill"): info_body.text += "\n\n主动 · %s（1费）\n%s" % [card.skill.name, card.skill.text]
 		else:
 			info_body.text += "[color=#8eaaa4]%s\n右键或 Esc 可取消。[/color]" % ("全局牌：不需要选择棋盘目标。" if card.effect in ["draw", "mana", "weather", "clear_weather"] else "施法目标须在友军3格内，法师可延伸至4格。淡蓝为覆盖，赤框为合法目标。")
 		return
@@ -657,6 +776,7 @@ func _update_info() -> void:
 		info_title.text = unit.name
 		var faction: String = "#70d3ba" if unit.side == 0 else "#f08b76"
 		info_body.text = "[color=%s]%s / %s[/color]\n\n生命 [b]%d / %d[/b]   护盾 %d\n攻击 %d   基础防御 %d\n移动 %d   最终射程 %d\n\n%s\n\n[color=#d0b579]%s：地形防御 +%d[/color]\n光环防御 +%d\n[color=#8eaaa4]%s[/color]" % [faction, battle.side_name(unit.side), battle.cell_name(unit.pos), unit.hp, unit.max_hp, unit.shield, unit.atk, unit.defense, battle.movement_allowance(unit), battle.attack_range(unit), _unit_status(unit), battle.TERRAIN[battle.ground(unit.pos)].name, battle.terrain_defense(unit), battle.aura_defense(unit), battle.TERRAIN[battle.ground(unit.pos)].description]
+		if not battle.unit_skill(unit).is_empty(): info_body.text += "\n\n主动 · %s（1费）\n%s" % [battle.unit_skill(unit).name, battle.unit_skill(unit).text]
 		return
 	var own_hero: Dictionary = battle.hero(0)
 	info_title.text = own_hero.name
@@ -671,6 +791,7 @@ func _position_battle_peek() -> void:
 		var available: float = grid.position.x - 42.0 if left else board.size.x - grid.end.x - 28.0
 		panel.visible = allowed and available >= 200.0
 		if not panel.visible: continue
+		panel.portrait.custom_minimum_size.y = clampf(board.size.y * 0.22, 105, 175)
 		panel.fit_width(minf(232.0, available))
 		if panel.layout_settled() and panel.size.y > board.size.y - 32.0:
 			panel.hide()
@@ -684,8 +805,9 @@ func _update_battle_peek() -> void:
 	if not instance.is_empty():
 		var card: Dictionary = battle.definition(instance.card_id)
 		var body: String = card.text
+		if card.has("skill"): body += "\n\n主动 · %s（1费）\n%s" % [card.skill.name, card.skill.text]
 		if card.type == "unit": body = "攻击%d  生命%d  防御%d\n移动%d  射程%d\n\n%s" % [card.atk, card.hp, card.defense, card.move, card.range, body]
-		battle_peek.present(Art.get_texture(str(card.get("kind", card.id))), card.name, "%d 法力 · %s" % [card.cost, card.tag], body, TEAL if card.type == "unit" else GOLD)
+		battle_peek.present(Art.get_texture(str(card.get("kind", card.id))), card.name, "%d 法力 · %s" % [card.cost, card.tag], body, TEAL if card.type == "unit" else GOLD, Art.card_focus(card))
 	elif using_hero:
 		var leader: Dictionary = battle.hero(0)
 		battle_peek.present(Art.get_texture(leader.portrait), leader.skill, "%d 法力 · 冷却%d" % [leader.cost, leader.cooldown], leader.skill_text, GOLD)
@@ -697,6 +819,7 @@ func _update_battle_peek() -> void:
 			var asset_id: String = battle.hero(unit.side).portrait if unit.kind == "commander" else str(unit.kind)
 			var body: String = "生命%d/%d  护盾%d\n攻击%d  防御%d+地形%d\n移动%d  射程%d  施法%d\n\n%s" % [unit.hp, unit.max_hp, unit.shield, unit.atk, unit.defense, battle.terrain_defense(unit), battle.movement_allowance(unit), battle.attack_range(unit), battle.unit_cast_range(unit), _unit_status(unit)]
 			if unit.kind == "commander": body += "\n\n" + str(battle.hero(unit.side).passive_text)
+			elif not battle.unit_skill(unit).is_empty(): body += "\n\n主动 · %s（1费）\n%s" % [battle.unit_skill(unit).name, battle.unit_skill(unit).text]
 			battle_peek.present(Art.get_texture(asset_id), unit.name, "%s · %s" % [battle.side_name(unit.side), battle.cell_name(unit.pos)], body, TEAL if unit.side == 0 else RED)
 	var context: Dictionary = _attack_context()
 	if not context.is_empty():
@@ -704,6 +827,11 @@ func _update_battle_peek() -> void:
 		var prediction: Dictionary = context.prediction
 		var asset: String = battle.hero(defender.side).portrait if defender.kind == "commander" else str(defender.kind)
 		battle_peek.present(Art.get_texture(asset), defender.name, "攻击预估 · " + ("可击杀" if prediction.target_loss >= defender.hp else "目标将存活"), _attack_forecast_text(context), RED)
+	var effect: Dictionary = _effect_context()
+	if not effect.is_empty():
+		var target: Dictionary = battle.get_unit(effect.target_id)
+		var asset: String = battle.hero(target.side).portrait if target.kind == "commander" else str(target.kind)
+		battle_peek.present(Art.get_texture(asset), effect.title, "效果预估 · " + str(target.name), Effects.describe(effect, battle, true), TEAL if target.side == 0 else RED)
 	var enemy: Dictionary = battle.commander(1)
 	if not enemy.is_empty():
 		var enemy_hero: Dictionary = battle.hero(1)
@@ -714,6 +842,7 @@ func _update_battle_peek() -> void:
 	_position_battle_peek()
 
 func _unit_status(unit: Dictionary) -> String:
+	if unit.get("guarding", false): return "援护中：保护上下左右相邻友军的普通攻击；定身时无法接应。" if int(unit.get("rooted_turns", 0)) == 0 else "援护受阻：定身中，无法接应。"
 	if unit.summoning: return "新兵待命：下个己方回合恢复行动。"
 	if int(unit.get("rooted_turns", 0)) > 0: return "已被定身：无法主动移动，仍可攻击或被换位。"
 	if unit.side != battle.active_side: return "等待所属阵营的回合。"
@@ -727,6 +856,7 @@ func _show_hint(value: String, is_error: bool) -> void:
 	hint.add_theme_color_override("font_color", RED if is_error else Color("a1c4b6"))
 
 func _end_turn() -> void:
+	using_unit_skill = false
 	if not _player_can_act(): return
 	selected_card = -1
 	selected_unit = -1
@@ -757,7 +887,7 @@ func _run_ai(token: int) -> void:
 			board.flash(action.target)
 		actions += 1
 		if battle.winner != -1 or battle.active_side != 1: break
-		await get_tree().create_timer(0.45 if action.type == "move" else 0.32).timeout
+		await get_tree().create_timer(maxf(board.action_duration, 0.45 if action.type == "move" else 0.32)).timeout
 	if token != generation: return
 	if battle.winner == -1 and battle.active_side == 1: battle.end_turn()
 	ai_running = false
@@ -772,6 +902,9 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 	elif event.keycode == KEY_G:
 		grid_button.button_pressed = not grid_button.button_pressed
+		get_viewport().set_input_as_handled()
+	elif event.keycode == KEY_Q:
+		_select_unit_skill()
 		get_viewport().set_input_as_handled()
 	elif event.keycode == KEY_HOME:
 		board.fit_map()
