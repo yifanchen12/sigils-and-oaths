@@ -16,6 +16,7 @@ const GOLD := Color("c6ab72")
 var battle: Battle
 var selected_unit: int = -1
 var predicted_losses: Dictionary = {}
+var predicted_gains: Dictionary = {}
 var deploy: Array[Vector2i] = []
 var moves: Array[Vector2i] = []
 var attacks: Array[Vector2i] = []
@@ -44,6 +45,7 @@ var motion_tween: Tween
 var flash_tween: Tween
 var combat: Dictionary = {}
 var action_duration: float = 0.0
+var presentation_remaining: float = 0.0
 var motion_progress: float = 1.0:
 	set(value):
 		motion_progress = value
@@ -66,6 +68,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	visual_time += delta
 	redraw_clock += delta
+	presentation_remaining = maxf(0, presentation_remaining - delta)
 	if not combat.is_empty():
 		combat.age += delta
 		if combat.age >= combat.duration: combat.clear()
@@ -141,15 +144,22 @@ func reset_effects() -> void:
 	effects.clear()
 	combat.clear()
 	action_duration = 0.0
+	presentation_remaining = 0.0
 	predicted_losses.clear()
+	predicted_gains.clear()
 	motion_unit = -1
 	motion_progress = 1.0
 	flash_alpha = 0.0
 	last_cell = Vector2i(-1, -1)
 
+func is_presenting() -> bool:
+	return presentation_remaining > 0
+
 func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) -> void:
 	combat.clear()
 	action_duration = 0.0
+	var effect_kind: String = action.get("effect_kind", "")
+	var casts: bool = effect_kind in ["damage", "area", "heal", "shield", "blessing", "firestrike"] and action.has("target") and battle.inside(action.target)
 	var forecast: Dictionary = action.get("combat", {})
 	if not forecast.is_empty():
 		var actors: Dictionary = {}
@@ -160,7 +170,7 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 				"protected": actors[forecast.protected_id], "forecast": forecast, "age": 0.0, "duration": action_duration}
 	var previous_ids: Dictionary = {}
 	for old: Dictionary in before:
-		var delay: float = 0.0
+		var delay: float = 0.32 if casts else 0.0
 		if not combat.is_empty(): delay = 0.72 if old.id == combat.attacker.id else (0.35 if old.id == combat.defender.id else 0.0)
 		previous_ids[old.id] = true
 		var current: Dictionary = battle.get_unit(old.id)
@@ -176,7 +186,7 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 		if current.pos != old.pos and action.type != "move":
 			_effect("spawn", current.pos, "换位" if action.get("spell_effect", "") == "exchange" else "击退", BLUE, 0.7)
 		if hp_delta < 0: _effect("hit", current.pos, str(hp_delta), RED, 0.75, delay)
-		elif hp_delta > 0: _effect("heal", current.pos, "+%d" % hp_delta, BLUE, 0.8)
+		elif hp_delta > 0: _effect("heal", current.pos, "+%d" % hp_delta, BLUE, 0.8, delay)
 		if shield_delta != 0:
 			_effect("shield", current.pos, ("+%d盾" if shield_delta > 0 else "%d盾") % shield_delta, GOLD, 0.9, delay)
 	for current: Dictionary in battle.units:
@@ -194,16 +204,21 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 		var defender: Dictionary = combat.defender
 		if battle.ADVANTAGE.get(attacker.kind, "") == defender.kind: _effect("hit", defender.pos, "克制 +2", GOLD, 0.7, 0.40)
 		if forecast.intercepted: _effect("shield", defender.pos, "援护", BLUE, 0.7, 0.12)
-		if forecast.counter_damage > 0: _effect("shield", defender.pos, "反击", GOLD, 0.6, 0.55)
-	if (action.type == "hero" or (action.type == "unit_skill" and action.get("unit_kind", "") in ["mage", "healer"])) and action.has("target") and battle.inside(action.target):
-		var from_cell: Vector2i = action.target
-		for old: Dictionary in before:
-			if (action.type == "unit_skill" and old.id == action.unit_id) or (action.type == "hero" and old.kind == "commander" and old.side == battle.active_side):
-				from_cell = old.pos
-				break
-		effects.append({"kind": "cast", "cell": action.target, "from": from_cell, "text": "", "color": BLUE if action.get("unit_kind", "") == "healer" else Color("f5a867"), "age": 0.0, "duration": 0.48})
-		action_duration = maxf(action_duration, 0.48)
+		if forecast.counter_damage > 0:
+			_effect("shield", defender.pos, "反击", GOLD, 0.6, 0.55)
+			if battle.ADVANTAGE.get(defender.kind, "") == attacker.kind: _effect("hit", attacker.pos, "反击克制 +2", RED, 0.65, 0.76)
+	if casts:
+		var style: String = "heal_cast" if effect_kind == "heal" else ("ward_cast" if effect_kind in ["shield", "blessing"] else ("fire_area" if effect_kind == "area" else "fire_cast"))
+		var color: Color = Color("8ef2c8") if style == "heal_cast" else (GOLD if style == "ward_cast" else Color("ffb47b"))
+		var cells: Array[Vector2i] = [action.target]
+		if effect_kind == "area":
+			for direction: Vector2i in battle.DIRECTIONS:
+				if battle.inside(action.target + direction): cells.append(action.target + direction)
+		effects.append({"kind": style, "cell": action.target, "from": action.get("visual_origin", action.target), "cells": cells, "text": "", "color": color, "age": 0.0, "duration": 0.80})
+		action_duration = maxf(action_duration, 0.80)
 	if action.type == "unit_skill" and action.get("unit_kind", "") == "spear": _effect("shield", action.target, "援护展开", BLUE, 0.85)
+	presentation_remaining = action_duration
+	for effect: Dictionary in effects: presentation_remaining = maxf(presentation_remaining, float(effect.duration) - float(effect.age))
 	queue_redraw()
 
 func _effect(kind: String, cell: Vector2i, value: String, color: Color, duration: float, delay: float = 0.0) -> void:
@@ -371,6 +386,9 @@ func _draw_effects(tile: float) -> void:
 		var at: Vector2 = cell_center(effect.cell)
 		var color: Color = effect.color
 		color.a = 1.0 - progress
+		if effect.kind in ["fire_cast", "heal_cast", "ward_cast", "fire_area"]:
+			_draw_cast_effect(effect, tile)
+			continue
 		if effect.kind in ["trace", "cast"]:
 			var start: Vector2 = cell_center(effect.from)
 			_draw_projectile(start, at, progress, "mage", color, tile)
@@ -385,6 +403,31 @@ func _draw_effects(tile: float) -> void:
 		var text_at: Vector2 = at - Vector2(0, 23 + offset + progress * 32)
 		_text(str(effect.text), text_at + Vector2(1, 1), 17, Color(0.01, 0.03, 0.04, color.a))
 		_text(str(effect.text), text_at, 17, color)
+
+func _draw_cast_effect(effect: Dictionary, tile: float) -> void:
+	var at: Vector2 = cell_center(effect.cell)
+	var color: Color = effect.color
+	if effect.age < 0.32:
+		_draw_projectile(cell_center(effect.from), at, float(effect.age) / 0.32, "mage", color, tile)
+		return
+	var progress: float = clampf((float(effect.age) - 0.32) / 0.48, 0, 1)
+	var fade: float = 1 - progress
+	if effect.kind == "fire_area":
+		for cell: Vector2i in effect.cells:
+			var rect := Rect2(cell_center(cell) - Vector2.ONE * tile * 0.47, Vector2.ONE * tile * 0.94)
+			draw_rect(rect, Color(color, fade * 0.14))
+			draw_rect(rect, Color(color, fade * 0.70), false, 2)
+	if effect.kind == "heal_cast":
+		var radius: float = tile * (0.12 + progress * 0.16)
+		draw_line(at - Vector2(radius, 0), at + Vector2(radius, 0), Color(color, fade), 4.5, true)
+		draw_line(at - Vector2(0, radius), at + Vector2(0, radius), Color(color, fade), 4.5, true)
+	elif effect.kind == "ward_cast":
+		_draw_guard_shield(at - Vector2(0, tile * 0.10), tile * (0.20 + progress * 0.10), Color(color, fade))
+	else:
+		for spark: int in range(8):
+			var direction: Vector2 = Vector2.from_angle(TAU * spark / 8 + progress * 0.5)
+			draw_line(at + direction * tile * progress * 0.20, at + direction * tile * (0.20 + progress * 0.42), Color(color, fade), 2.5, true)
+	draw_arc(at, tile * (0.20 + progress * 0.38), 0, TAU, 32, Color(color, fade * 0.7), 2, true)
 
 func _draw_guard_links() -> void:
 	for guard: Dictionary in battle.units:
@@ -526,6 +569,15 @@ func _draw_unit(unit: Dictionary, at: Vector2, tile: float, opacity: float = 1.0
 		var after: float = maxf(0, float(unit.hp - loss) / unit.max_hp)
 		var width: float = bar_width * mini(loss, int(unit.hp)) / unit.max_hp
 		draw_rect(Rect2(bar.position + Vector2(bar_width * after, 0), Vector2(width, 4)), Color("ffe0a0"))
+	var gain: Dictionary = predicted_gains.get(unit.id, {})
+	if not gain.is_empty():
+		var healing: int = int(gain.get("heal", 0))
+		if healing > 0:
+			var start: float = float(unit.hp) / unit.max_hp
+			var extent: float = bar_width * mini(healing, int(unit.max_hp) - int(unit.hp)) / unit.max_hp
+			draw_rect(Rect2(bar.position + Vector2(bar_width * start, 0), Vector2(extent, 4)), Color("a1f2c8"))
+		var shield_delta: int = int(gain.get("shield", 0))
+		if shield_delta != 0: _text(("+%d盾" if shield_delta > 0 else "%d盾") % shield_delta, center - Vector2(0, radius + 18), 11, BLUE if shield_delta > 0 else RED)
 	draw_circle(center + Vector2(-radius + 1, radius - 3), 7.5, Color("0b1720"))
 	draw_circle(center + Vector2(radius - 1, radius - 3), 7.5, Color("0b1720"))
 	_text(str(unit.atk), center + Vector2(-radius + 1, radius + 1), 12, Color("ebd5a6"))

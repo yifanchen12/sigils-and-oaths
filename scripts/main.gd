@@ -7,6 +7,7 @@ const Art = preload("res://scripts/art_library.gd")
 const PeekControl = preload("res://scripts/battle_peek.gd")
 const Store = preload("res://scripts/deck_store.gd")
 const DeckEditorControl = preload("res://scripts/deck_editor.gd")
+const Effects = preload("res://scripts/effect_forecast.gd")
 const TEAL := Color("70d3ba")
 const GOLD := Color("d0b579")
 const RED := Color("f08b76")
@@ -51,7 +52,8 @@ func _process(delta: float) -> void:
 	_position_battle_peek()
 	var paused: bool = not has_started or council.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible
 	if paused or battle.winner != -1:
-		if paused and (not board.combat.is_empty() or not board.effects.is_empty() or board.motion_progress < 1.0): board.reset_effects()
+		if paused and board.is_presenting(): board.reset_effects()
+		if battle.winner != -1 and not paused and not board.is_presenting() and not %ResultOverlay.visible: _refresh()
 		_update_clock_ui(paused)
 		return
 	var before: Array = []
@@ -408,8 +410,12 @@ func _refresh() -> void:
 	_update_board()
 	_update_info()
 	var context_hint: Dictionary = _attack_context()
-	_show_hint(_attack_hint(context_hint) if not context_hint.is_empty() else message, error_message if context_hint.is_empty() else false)
+	var effect_hint: Dictionary = _effect_context()
+	_show_hint(Effects.hint(effect_hint) if not effect_hint.is_empty() else (_attack_hint(context_hint) if not context_hint.is_empty() else message), error_message if context_hint.is_empty() and effect_hint.is_empty() else false)
 	if battle.winner != -1:
+		if board.is_presenting():
+			%ResultOverlay.hide()
+			return
 		var already_visible: bool = %ResultOverlay.visible
 		%ResultOverlay.show()
 		%ResultTitle.text = "苍蓝旗帜，仍在飘扬" if battle.winner == 0 else ("战场归于寂静" if battle.winner == 2 else "此役失利，再整旗鼓")
@@ -604,22 +610,38 @@ func _commit(action: Dictionary) -> void:
 func _apply_with_feedback(action: Dictionary) -> Dictionary:
 	var before: Array = battle.units.duplicate(true)
 	var visual_action: Dictionary = action.duplicate()
+	var side: int = battle.active_side
+	if action.type == "hero":
+		visual_action["effect_kind"] = battle.hero(side).effect
+		visual_action["visual_origin"] = battle.commander(side).pos
 	if action.type in ["attack", "unit_skill"]:
 		var caster: Dictionary = battle.get_unit(int(action.get("unit_id", -1)))
 		if not caster.is_empty():
 			visual_action["unit_kind"] = caster.kind
+			visual_action["visual_origin"] = caster.pos
+			if action.type == "unit_skill": visual_action["effect_kind"] = {"mage": "damage", "healer": "heal", "sword": "shield"}.get(caster.kind, "")
 			if action.type == "attack" or caster.kind == "archer":
 				var target: Dictionary = battle.unit_at(action.target)
 				if not target.is_empty(): visual_action["combat"] = battle.attack_forecast(caster, target, 1 if action.type == "unit_skill" else 0)
 	if action.type == "play":
 		var instance: Dictionary = battle.hand_card(battle.active_side, int(action.get("card_uid", -1)))
-		if not instance.is_empty(): visual_action["spell_effect"] = battle.definition(instance.card_id).get("effect", "")
+		if not instance.is_empty():
+			visual_action["spell_effect"] = battle.definition(instance.card_id).get("effect", "")
+			visual_action["effect_kind"] = visual_action.spell_effect
+			var origin: Dictionary = {}
+			for caster: Dictionary in battle.units:
+				if caster.side != side or battle.distance(caster.pos, action.target) > battle.unit_cast_range(caster): continue
+				if origin.is_empty() or battle.distance(caster.pos, action.target) < battle.distance(origin.pos, action.target): origin = caster
+			if origin.is_empty(): origin = battle.commander(side)
+			visual_action["visual_origin"] = origin.pos
 	var path: Array[Vector2i] = []
 	if action.type == "move" or (action.type == "unit_skill" and visual_action.get("unit_kind", "") == "cavalry"):
 		var unit: Dictionary = battle.get_unit(int(action.get("unit_id", -1)))
 		if not unit.is_empty(): path = battle.movement_path(unit, action.target)
 	var result: Dictionary = battle.apply_action(action)
-	if result.ok: board.present_action(before, visual_action, path)
+	if result.ok:
+		board.present_action(before, visual_action, path)
+		if battle.winner != -1: _refresh()
 	return result
 
 func _cancel() -> void:
@@ -640,6 +662,16 @@ func _inspect_card(uid: int) -> void:
 func attack_prediction(attacker: Dictionary, target: Dictionary) -> Dictionary:
 	return battle.attack_forecast(attacker, target, 1 if using_unit_skill and attacker.kind == "archer" else 0)
 
+func _effect_context() -> Dictionary:
+	if not _player_can_act() or not battle.inside(hovered_cell): return {}
+	var action: Dictionary = {"target": hovered_cell}
+	if using_unit_skill:
+		action.merge({"type": "unit_skill", "unit_id": selected_unit})
+	elif using_hero: action["type"] = "hero"
+	elif selected_card != -1: action.merge({"type": "play", "card_uid": selected_card})
+	else: return {}
+	return Effects.predict(battle, action)
+
 func _attack_context() -> Dictionary:
 	if selected_card != -1 or using_hero or not _player_can_act() or not board.attacks.has(hovered_cell): return {}
 	var attacker: Dictionary = battle.get_unit(selected_unit)
@@ -650,6 +682,12 @@ func _attack_context() -> Dictionary:
 
 func _update_attack_overlay() -> void:
 	board.predicted_losses.clear()
+	board.predicted_gains.clear()
+	var effect: Dictionary = _effect_context()
+	if not effect.is_empty():
+		for change: Dictionary in effect.changes:
+			if change.hp_loss > 0: board.predicted_losses[change.unit_id] = change.hp_loss
+			if change.healing > 0 or change.shield_delta != 0: board.predicted_gains[change.unit_id] = {"heal": change.healing, "shield": change.shield_delta}
 	var context: Dictionary = _attack_context()
 	if not context.is_empty():
 		board.predicted_losses = {context.attacker.id: context.prediction.attacker_loss, context.target.id: context.prediction.target_loss}
@@ -670,6 +708,7 @@ func _attack_forecast_text(context: Dictionary) -> String:
 		lines += modifiers[index] + (" · " if index % 2 == 0 and index < modifiers.size() - 1 else "\n")
 	if lines.is_empty(): lines = "无额外克制或地形修正。\n"
 	if using_unit_skill and attacker.kind == "archer": lines += "精准射击 +1\n"
+	if prediction.counter_damage > 0 and battle.ADVANTAGE.get(target.kind, "") == attacker.kind: lines += "反击克制 +2\n"
 	if prediction.intercepted: lines = "%s援护%s，原目标不受伤。\n\n" % [target.name, context.selected_target.name] + lines
 	var outcome: String = "目标存活并反击。"
 	if prediction.target_loss >= target.hp: outcome = "目标被击破，不会反击。"
@@ -688,7 +727,10 @@ func _on_cell_hovered(cell: Vector2i) -> void:
 	var unit: Dictionary = battle.get_unit(selected_unit)
 	var target: Dictionary = battle.unit_at(cell)
 	var context: Dictionary = _attack_context()
-	if not context.is_empty():
+	var effect: Dictionary = _effect_context()
+	if not effect.is_empty():
+		_show_hint(Effects.hint(effect), false)
+	elif not context.is_empty():
 		_show_hint(_attack_hint(context), false)
 	elif battle.inside(cell) and target.is_empty():
 		var terrain_name: String = battle.TERRAIN[battle.ground(cell)].name
@@ -701,6 +743,11 @@ func _on_cell_hovered(cell: Vector2i) -> void:
 
 func _update_info() -> void:
 	_update_battle_peek()
+	var effect: Dictionary = _effect_context()
+	if not effect.is_empty():
+		info_title.text = "效果预估 · " + str(effect.title)
+		info_body.text = Effects.describe(effect, battle)
+		return
 	if using_hero:
 		var chosen: Dictionary = battle.hero(0)
 		info_title.text = chosen.skill
@@ -760,7 +807,7 @@ func _update_battle_peek() -> void:
 		var body: String = card.text
 		if card.has("skill"): body += "\n\n主动 · %s（1费）\n%s" % [card.skill.name, card.skill.text]
 		if card.type == "unit": body = "攻击%d  生命%d  防御%d\n移动%d  射程%d\n\n%s" % [card.atk, card.hp, card.defense, card.move, card.range, body]
-		battle_peek.present(Art.get_texture(str(card.get("kind", card.id))), card.name, "%d 法力 · %s" % [card.cost, card.tag], body, TEAL if card.type == "unit" else GOLD)
+		battle_peek.present(Art.get_texture(str(card.get("kind", card.id))), card.name, "%d 法力 · %s" % [card.cost, card.tag], body, TEAL if card.type == "unit" else GOLD, Art.card_focus(card))
 	elif using_hero:
 		var leader: Dictionary = battle.hero(0)
 		battle_peek.present(Art.get_texture(leader.portrait), leader.skill, "%d 法力 · 冷却%d" % [leader.cost, leader.cooldown], leader.skill_text, GOLD)
@@ -780,6 +827,11 @@ func _update_battle_peek() -> void:
 		var prediction: Dictionary = context.prediction
 		var asset: String = battle.hero(defender.side).portrait if defender.kind == "commander" else str(defender.kind)
 		battle_peek.present(Art.get_texture(asset), defender.name, "攻击预估 · " + ("可击杀" if prediction.target_loss >= defender.hp else "目标将存活"), _attack_forecast_text(context), RED)
+	var effect: Dictionary = _effect_context()
+	if not effect.is_empty():
+		var target: Dictionary = battle.get_unit(effect.target_id)
+		var asset: String = battle.hero(target.side).portrait if target.kind == "commander" else str(target.kind)
+		battle_peek.present(Art.get_texture(asset), effect.title, "效果预估 · " + str(target.name), Effects.describe(effect, battle, true), TEAL if target.side == 0 else RED)
 	var enemy: Dictionary = battle.commander(1)
 	if not enemy.is_empty():
 		var enemy_hero: Dictionary = battle.hero(1)

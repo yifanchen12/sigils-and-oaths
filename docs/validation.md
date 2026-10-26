@@ -2,6 +2,17 @@
 
 2026-10-25，Godot 4.7.2 stable official Windows x64，Compatibility/OpenGL 3.3，RTX 4060 Laptop GPU。
 
+## 0.12.1 数值预估与终结一击（2026-10-26）
+
+- 未改battle.gd或data/规则配置。新增EffectForecast只读展示数值型卡牌、英雄及部队技能：火焰伤害、范围溅射、治疗上限、护盾替换/叠加、驱散与击退。距离、法力、行动状态和合法目标仍取自Battle；范围名单带棋盘坐标，治疗生命条显示绿色预估段，护盾单独标注增减。
+- 只读预估134项通过（effect-forecast-final.log）：逐项应用真实action核对生命/护盾/位移，包含三种天气、指挥官火焰牌被动已用/未用、法师技能不消费该被动、工事不减法术伤害、治疗/护盾上限、五格溅射排除友军与范围外目标、受阻击退、驱散与非法目标。预估与格式化不修改单位、玩家、地形、RNG或战报。
+- Windows反馈专项56项通过（feedback-polish-final.log）：真实鼠标/Q键预估与出牌一致；取消清空增益条且不扣费；菜单清理表现；范围名单可读；治疗、防护、单体火焰和范围火焰采用不同原生效果，施法起点取合法覆盖友军。
+- 胜负仍在规则动作中立即结算。BoardView的有限presentation_remaining只决定何时展示面板，不使用会影响新对局的延迟回调。覆盖普通攻击和法术最后一击、等待期间不重复扣血/推进计时、重开取消旧战果。
+- 原有UI257项（ui-feedback-polish.log）、普通攻击预估113项（forecast-feedback-polish.log）、六技能窗口51项（unit-skills-ui-polish.log）均通过。本轮相关检查共611项；没有把0.12的57场规则AI对局当作本轮重跑。
+- 两侧人物卡改用原生聚焦裁切，面板降低高度时仍保留脸部；源美术未改像素。已查看治疗、群体预估、范围命中、最终击破前/胜利后截图。
+- Godot原生Movie Maker录制1180帧/60FPS，约19.7秒，51项录制模式检查通过（feedback-polish-movie-final.log，跳过取消重选/菜单的5项）；FFmpeg转为H.264/yuv420p MP4，约1.94MB，路径screenshots/spell-feedback.mp4。录制展示预估、治疗/护盾/火环与最后一击完整流程。
+- 最终资源导入（import-feedback-polish-final.log）及七份通过日志均无ERROR或SCRIPT ERROR。引用检查185文件，0错误、0警告；新增截图导入前为173文件。启动、原规则和原图源文件保持原有接口。
+
 ## 0.12 六兵种技能与战斗动画（2026-10-26）
 
 - 用户已批准六技能：步兵护盾、枪兵主动援护、骑兵再机动、弓手精准射击、法师星火、医师急救。均1法力、每单位每回合一次、新兵禁用；除骑兵外结束移动与攻击。实现范围与接口见plans/unit-skills-and-combat-animation.md。

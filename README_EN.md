@@ -5,13 +5,13 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.12.0" src="https://img.shields.io/badge/version-0.12.0-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.12.1" src="https://img.shields.io/badge/version-0.12.1-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts; it includes no assets from either game. **Version 0.12.0 is a playable development build**, tested on Windows desktop against a local AI. The game interface is currently Chinese; this English README does not imply an English localization.
+The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts; it includes no assets from either game. **Version 0.12.1 is a playable development build**, tested on Windows desktop against a local AI. The game interface is currently Chinese; this English README does not imply an English localization.
 
 ## In-game screenshots
 
@@ -62,6 +62,20 @@ Forecasts identify the actual defender. Combat includes melee lunges and slashes
 ![Actual forecast showing a spear guard intercepting a precise shot](docs/screenshots/spear-guard-forecast.png)
 
 [Watch the in-game skills and combat demo](docs/screenshots/unit-skills-combat.mp4)
+
+Hover a legal target for a mage, healer or supported numeric spell to preview remaining health and shields. Healing respects maximum health and adds a green preview segment to the health bar; area spells list actual enemies by board coordinate. Weather, the commander's fire-card passive and shield absorption are included. Spells bypass guard interception and do not provoke normal retaliation.
+
+Healing uses green trails and a cross, protection uses a shield shape, and area fire marks its actual five-cell cross. The final hit and defeat effect finish before the result panel appears; restarting clears the previous presentation.
+
+[Watch the approximately 20-second spell preview and final-hit demo](docs/screenshots/spell-feedback.mp4)
+
+<details>
+<summary>Healing and area-spell previews</summary>
+
+![Capped healing and a green health-bar preview](docs/screenshots/healing-target-preview.png)
+![Area damage listed by board coordinate](docs/screenshots/area-spell-preview.png)
+
+</details>
 
 ## Quick start
 
@@ -137,16 +151,18 @@ tools/         Map-guide, audit-image and diagnostic utilities
 docs/          Screenshots, validation and development records
 ```
 
-Verified locally with **Godot 4.7.2 / Windows / Compatibility**: 54 unit-skill checks, 51 skill-window checks, 257 existing UI checks and 113 combat-forecast checks passed. This version's rule/AI-match results are recorded in [`docs/validation.md`](docs/validation.md). The 59 map-art checks belong to version 0.11; historical results are kept by version rather than presented as fresh runs.
+Verified locally with **Godot 4.7.2 / Windows / Compatibility** for version 0.12.1: 134 effect-forecast checks, 56 feedback-window checks, 257 existing UI checks, 113 normal-attack forecast checks and 51 unit-skill window checks passed. Unit-skill rules, full AI matches and version 0.11 map-art results are kept by version in [`docs/validation.md`](docs/validation.md).
 
 ```bash
 godot --headless --path . --editor --quit
 godot --headless --path . --script res://tests/test_battle.gd
 godot --headless --path . --script res://tests/test_unit_skills.gd
+godot --headless --path . --script res://tests/test_effect_forecast.gd
 godot --path . --script res://tests/test_ui.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_forecast.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_map_art.gd --resolution 1440x1000 --audio-driver Dummy -- --complete
 godot --path . --script res://tests/test_unit_skills_ui.gd --resolution 1440x1000 --audio-driver Dummy
+godot --path . --script res://tests/test_feedback_polish.gd --resolution 1440x1000 --audio-driver Dummy
 ```
 
 UI, forecast, map-art and skill-window checks require a graphical window. Earlier commands and rules are in [`docs/development.md`](docs/development.md) (Chinese); use this page and the in-game help for the new skills.
