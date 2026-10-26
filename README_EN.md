@@ -5,13 +5,13 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.12.1" src="https://img.shields.io/badge/version-0.12.1-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.12.2" src="https://img.shields.io/badge/version-0.12.2-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts; it includes no assets from either game. **Version 0.12.1 is a playable development build**, tested on Windows desktop against a local AI. The game interface is currently Chinese; this English README does not imply an English localization.
+The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts; it includes no assets from either game. **Version 0.12.2 is a playable development build**, tested on Windows desktop against a local AI. The game interface is currently Chinese; this English README does not imply an English localization.
 
 ## In-game screenshots
 
@@ -57,7 +57,11 @@ Select a friendly troop and press **Q**, or click its skill button above the boa
 
 All skills except cavalry's extra movement end movement and attack for that unit. Root prevents extra movement and guard interception. Interception does not stop spells or retaliation and cannot chain; the earliest deployed eligible guard is chosen. Defense uses the guard's own terrain, retaliation uses its original position and range, and lethal damage does not spill into the protected ally.
 
-Forecasts identify the actual defender. Combat includes melee lunges and slashes, arrows and magic projectiles, interception, impact, advantage labels and retaliation. Rules resolve once; animation does not move rule positions or deal damage again. This version animates the existing character artwork within the board; it does not provide frame-by-frame character animation or a separate full-screen battle scene.
+Forecasts identify the actual defender. Combat includes melee lunges and slashes, arrows and magic projectiles, interception, impact, advantage labels and retaliation. Rules resolve once; animation does not move rule positions or deal damage again. Sword, spear and cavalry units each have three original anticipation, strike and recovery poses. Guards brace before impact, retaliation has its own pose timing, and action artwork faces the opponent. Other characters still use standing artwork with effects. Full walking cycles and a separate full-screen battle scene are not implemented.
+
+![Nine melee poses at enlarged and board scale](docs/screenshots/melee-pose-gallery.png)
+
+[Watch melee poses, attacks in both directions and interception](docs/screenshots/melee-poses.mp4)
 
 ![Actual forecast showing a spear guard intercepting a precise shot](docs/screenshots/spear-guard-forecast.png)
 
@@ -151,7 +155,7 @@ tools/         Map-guide, audit-image and diagnostic utilities
 docs/          Screenshots, validation and development records
 ```
 
-Verified locally with **Godot 4.7.2 / Windows / Compatibility** for version 0.12.1: 134 effect-forecast checks, 56 feedback-window checks, 257 existing UI checks, 113 normal-attack forecast checks and 51 unit-skill window checks passed. Unit-skill rules, full AI matches and version 0.11 map-art results are kept by version in [`docs/validation.md`](docs/validation.md).
+Verified locally with **Godot 4.7.2 / Windows / Compatibility** for version 0.12.2: 160 action-pose checks, 257 UI checks and 56 spell-feedback checks passed. Version 0.12.1 passed 134 effect-forecast checks, 113 normal-attack forecast checks and 51 unit-skill window checks. Unit rules, full AI matches and map-art results retain their actual validation versions in [`docs/validation.md`](docs/validation.md).
 
 ```bash
 godot --headless --path . --editor --quit
@@ -163,6 +167,7 @@ godot --path . --script res://tests/test_forecast.gd --resolution 1440x1000 --au
 godot --path . --script res://tests/test_map_art.gd --resolution 1440x1000 --audio-driver Dummy -- --complete
 godot --path . --script res://tests/test_unit_skills_ui.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_feedback_polish.gd --resolution 1440x1000 --audio-driver Dummy
+godot --path . --script res://tests/test_action_poses.gd --resolution 1440x1000 --audio-driver Dummy
 ```
 
 UI, forecast, map-art and skill-window checks require a graphical window. Earlier commands and rules are in [`docs/development.md`](docs/development.md) (Chinese); use this page and the in-game help for the new skills.

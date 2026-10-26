@@ -2,6 +2,15 @@
 
 2026-10-25，Godot 4.7.2 stable official Windows x64，Compatibility/OpenGL 3.3，RTX 4060 Laptop GPU。
 
+## 0.12.2 近战人物动作姿态（2026-10-26）
+
+- 步兵、枪兵、骑兵各三帧原创姿态，普攻与反击按独立时间线播放，援护使用枪兵举盾帧。图像按对手方向翻转，血条/状态文字保持正向。规则与数据没有改动。
+- 三张2172×724原始PNG与生成输出SHA-256一致，alpha范围0–255。生成图并非精确等宽网格，Godot按透明间隙切片，使用等比例与测量脚底锚点；无像素修改。来源、父图与逐字提示词见assets/art/actions/sources.json。
+- `test_action_poses.gd`：最终Windows常速160项通过（action-poses-final-complete.log），首次成功原生录制也通过160项。检查九帧独立/非空/透明、边缘无裁切或串图、锚点、主攻/反击关键时间点、正常目标/援护、左右出手、规则状态与RNG不变、完成后归位、重开清理、致死无反击与有限淡出。先期常速三兵种136项通过（action-poses-final.log），后续增加左右与死亡用例后为160项。
+- 整体Windows界面257项通过（ui-action-poses.log），法术/胜负反馈56项通过（feedback-action-poses.log）；本轮最终实机检查共473项。另有接入初期无窗口普攻预估109项通过（action-poses-forecast.log），不将其当作113项图形预估测试或完整AI对局重跑。
+- 原生导入/加载成功（import-action-poses-final.log）；项目引用检查198文件，0错误、0警告。一次mipmap试验录制超时，保留原无mipmap导入设置并完成常速160项复测；成功MP4来自试验前相同的无mipmap设置。失败尝试已排除，不计为通过记录。
+- Godot原生图集对照图melee-pose-gallery.png及实机姿态截图已查看。原生Movie Maker录制1114帧/60FPS、18.57秒，导出H.264/yuv420p MP4约2.3MB（screenshots/melee-poses.mp4）。这是一组关键姿态动画，尚不是完整行走循环或独立全屏战斗过场；远程/指挥官尚未制作新动作图。
+
 ## 0.12.1 数值预估与终结一击（2026-10-26）
 
 - 未改battle.gd或data/规则配置。新增EffectForecast只读展示数值型卡牌、英雄及部队技能：火焰伤害、范围溅射、治疗上限、护盾替换/叠加、驱散与击退。距离、法力、行动状态和合法目标仍取自Battle；范围名单带棋盘坐标，治疗生命条显示绿色预估段，护盾单独标注增减。

@@ -454,8 +454,8 @@ func _draw_combat(tile: float) -> void:
 	var return_lunge: float = sin(PI * clampf((time - 0.52) / 0.35, 0, 1)) * tile * 0.28 if combat.forecast.counter_damage > 0 else 0.0
 	var shake: float = sin(time * 95.0) * tile * 0.035 * clampf(1 - (time - 0.35) / 0.22, 0, 1) if time >= 0.35 else 0.0
 	var defender_at: Vector2 = d + guard_offset - direction * return_lunge + Vector2(shake, 0)
-	_draw_combat_actor(attacker, a + direction * lunge, tile, 0.72)
-	_draw_combat_actor(defender, defender_at, tile, 0.35)
+	_draw_combat_actor(attacker, a + direction * lunge, tile, 0.72, direction.x)
+	_draw_combat_actor(defender, defender_at, tile, 0.35, -direction.x)
 	if time >= 0.12 and time <= 0.35:
 		var progress: float = (time - 0.12) / 0.23
 		if melee: _draw_slash(defender_at, direction, progress, GOLD, tile)
@@ -470,7 +470,21 @@ func _draw_combat(tile: float) -> void:
 		if defender.kind in ["archer", "mage", "healer"]: _draw_projectile(defender_at, a, progress, defender.kind, RED, tile)
 		else: _draw_slash(a, -direction, progress, RED, tile)
 
-func _draw_combat_actor(old: Dictionary, at: Vector2, tile: float, impact: float) -> void:
+func combat_pose(unit_id: int) -> int:
+	if combat.is_empty(): return -1
+	var time: float = combat.age
+	if unit_id == combat.attacker.id: return _strike_pose(time, 0.0, 0.12, 0.35, 0.49)
+	if unit_id != combat.defender.id: return -1
+	if combat.forecast.counter_damage > 0 and time >= 0.50: return _strike_pose(time, 0.50, 0.55, 0.72, 0.90)
+	if combat.forecast.intercepted and time < 0.50: return 0
+	return -1
+
+func _strike_pose(time: float, start: float, strike: float, recover: float, finish: float) -> int:
+	if time < start or time >= finish: return -1
+	if time < strike: return 0
+	return 1 if time < recover else 2
+
+func _draw_combat_actor(old: Dictionary, at: Vector2, tile: float, impact: float, facing: float) -> void:
 	var current: Dictionary = battle.get_unit(old.id)
 	var visible_unit: Dictionary = old if combat.age < impact else current
 	var alpha: float = 1.0
@@ -478,7 +492,7 @@ func _draw_combat_actor(old: Dictionary, at: Vector2, tile: float, impact: float
 		visible_unit = old.duplicate()
 		visible_unit.hp = 0
 		alpha = clampf(1 - (float(combat.age) - impact) / 0.24, 0, 1)
-	if alpha > 0: _draw_unit(visible_unit, at, tile, alpha)
+	if alpha > 0: _draw_unit(visible_unit, at, tile, alpha, combat_pose(old.id), facing)
 
 func _draw_slash(at: Vector2, direction: Vector2, progress: float, color: Color, tile: float) -> void:
 	var angle: float = direction.angle() + PI
@@ -510,7 +524,7 @@ func _draw_guard_shield(at: Vector2, radius: float, color: Color) -> void:
 	draw_polyline(points, color, 2.0, true)
 	draw_line(at - Vector2(0, radius * 0.55), at + Vector2(0, radius * 0.45), color, 2.0, true)
 
-func _draw_unit(unit: Dictionary, at: Vector2, tile: float, opacity: float = 1.0) -> void:
+func _draw_unit(unit: Dictionary, at: Vector2, tile: float, opacity: float = 1.0, pose: int = -1, facing: float = 1.0) -> void:
 	var color: Color = BLUE if unit.side == 0 else RED
 	var radius: float = minf(tile * 0.31, 25)
 	var exhausted: bool = unit.summoning or (unit.attacked and unit.side == battle.active_side)
@@ -524,6 +538,8 @@ func _draw_unit(unit: Dictionary, at: Vector2, tile: float, opacity: float = 1.0
 		draw_line(corner, corner - Vector2(0, 8), color, 2, true)
 	var sprite_id: String = battle.hero(unit.side).portrait if unit.kind == "commander" else str(unit.kind)
 	var sprite: Texture2D = Art.get_texture("sprite_" + sprite_id)
+	var action_sprite: Texture2D = Art.get_action_texture(sprite_id, pose)
+	if action_sprite != null: sprite = action_sprite
 	if sprite != null:
 		var height_offset := Vector2(0, -tile * 0.1) if battle.ground(unit.pos) == "hill" else Vector2.ZERO
 		var feet: Vector2 = at + height_offset + Vector2(0, tile * 0.24)
@@ -533,7 +549,16 @@ func _draw_unit(unit: Dictionary, at: Vector2, tile: float, opacity: float = 1.0
 		draw_arc(Vector2.ZERO, tile * 0.3, 0, TAU, 32, GOLD if unit.kind == "commander" else color, 2.3 if selected else 1.4, true)
 		draw_set_transform(Vector2.ZERO)
 		var extent: Vector2 = Vector2.ONE * tile * 0.97
-		draw_texture_rect(sprite, Rect2(at + height_offset - Vector2(extent.x / 2, extent.y * 0.60), extent), false, Color(0.72, 0.76, 0.78, opacity) if exhausted else Color(1, 1, 1, opacity))
+		var origin: Vector2 = -Vector2(extent.x / 2, extent.y * 0.60)
+		if action_sprite != null:
+			# Measured source regions preserve long weapons; a shared scale and foot pivots avoid stretching or sliding.
+			var pixels_to_world: float = tile * Art.action_scale(sprite_id) / sprite.get_height()
+			extent = sprite.get_size() * pixels_to_world
+			origin = Vector2(0, tile * 0.24) - Art.action_feet(sprite_id, pose) * pixels_to_world
+		# Mirror only the action artwork; faction, health and status labels stay readable.
+		draw_set_transform(at + height_offset, 0, Vector2(-1 if action_sprite != null and facing < -0.05 else 1, 1))
+		draw_texture_rect(sprite, Rect2(origin, extent), false, Color(0.72, 0.76, 0.78, opacity) if exhausted and action_sprite == null else Color(1, 1, 1, opacity))
+		draw_set_transform(Vector2.ZERO)
 		draw_circle(center + Vector2(-radius + 2, -radius + 2), 7.5, Color("0b1720"))
 		_text(str(unit.short), center + Vector2(-radius + 2, -radius + 6), 10, GOLD)
 	else:

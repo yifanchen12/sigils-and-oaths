@@ -5,6 +5,17 @@ extends RefCounted
 static var textures: Dictionary = {}
 const UNIT_ORDER: Array[String] = ["sword", "spear", "cavalry", "archer", "mage", "healer"]
 const HERO_ORDER: Array[String] = ["warden", "pyromancer", "grove"]
+const ACTION_SHEETS: Dictionary = {
+	"sword": {"path": "res://assets/art/actions/sword-v2.png", "scale": 1.50,
+		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
+		"feet": [Vector2(324, 615), Vector2(352, 616), Vector2(334, 616)]},
+	"spear": {"path": "res://assets/art/actions/spear-v2.png", "scale": 1.25,
+		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
+		"feet": [Vector2(403, 677), Vector2(358, 683), Vector2(385, 684)]},
+	"cavalry": {"path": "res://assets/art/actions/cavalry-v2.png", "scale": 1.45,
+		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
+		"feet": [Vector2(470, 640), Vector2(472, 641), Vector2(388, 645)]}
+}
 const TERRAIN_ORDER: Array[String] = ["plain", "forest", "mountain", "road", "water", "bridge", "hill", "ruins", "fort"]
 const MAP_PROPS: Array[String] = ["map_forest", "map_mountain", "map_fort"]
 const MAP_PROPS_EXTRA: Array[String] = ["map_hill", "map_ruins", "map_harbor_fort"]
@@ -71,6 +82,25 @@ static func get_texture(asset_id: String) -> Texture2D:
 	elif asset_id == "trail": texture = get_texture("terrain_road")
 	if texture != null: textures[asset_id] = texture
 	return texture
+
+static func get_action_texture(kind: String, frame: int) -> Texture2D:
+	if frame < 0 or frame > 2 or not ACTION_SHEETS.has(kind): return null
+	var key: String = "action_%s_%d" % [kind, frame]
+	if textures.has(key): return textures[key]
+	var sheet: Dictionary = ACTION_SHEETS[kind]
+	if not ResourceLoader.exists(sheet.path): return null
+	var texture := AtlasTexture.new()
+	texture.atlas = load(sheet.path)
+	texture.region = sheet.regions[frame]
+	texture.filter_clip = true
+	textures[key] = texture
+	return texture
+
+static func action_feet(kind: String, frame: int) -> Vector2:
+	return ACTION_SHEETS[kind].feet[frame]
+
+static func action_scale(kind: String) -> float:
+	return ACTION_SHEETS[kind].scale
 
 static func _atlas(path: String, index: int, columns: int, rows: int) -> Texture2D:
 	if not ResourceLoader.exists(path): return null

@@ -1,0 +1,199 @@
+{
+  "tool": "native image_gen",
+  "model": "not exposed by runtime",
+  "source_policy": "Original project characters only. Parent PNGs remain in the generated-image archive; selected final PNGs are preserved intact in the project.",
+  "assets": [
+    {
+      "id": "action_sword",
+      "path": "assets/art/actions/sword-v2.png",
+      "source_filename": "exec-5c6e81a8-7ff9-4d6a-ad09-0f2be36efcf6.png",
+      "parent_source_filename": "exec-2657dc45-d70c-4824-8b27-68f578f50a09.png",
+      "initial_reference": "assets/art/unit_sprites_cel_1.png",
+      "generated_on": "2026-10-26",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "c658d0741e367e9cc80cd7f6b4aa9944f65949542319da75fc10f324b27cdf26",
+      "frame_order": [
+        "anticipation",
+        "strike",
+        "recovery"
+      ],
+      "regions": [
+        [
+          0,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          836,
+          724
+        ],
+        [
+          1560,
+          0,
+          612,
+          724
+        ]
+      ],
+      "feet": [
+        [
+          324,
+          615
+        ],
+        [
+          352,
+          616
+        ],
+        [
+          334,
+          616
+        ]
+      ],
+      "runtime_scale": 1.5,
+      "prompt_files": [
+        "assets/art/prompt-action-sword-v1.txt",
+        "assets/art/prompt-action-sword-v2.txt"
+      ],
+      "role": "Normal attack, guard and retaliation key poses.",
+      "processing": "Raw PNG copied byte-for-byte. Native AtlasTexture regions follow inspected transparent gaps; shared per-character scale and measured foot pivots preserve aspect and baseline. No source pixel edits.",
+      "status": "Integrated; nine alpha/edge/pivot checks and native-scale gallery reviewed; 160 Windows action checks, 257 UI checks and 56 feedback checks passed."
+    },
+    {
+      "id": "action_spear",
+      "path": "assets/art/actions/spear-v2.png",
+      "source_filename": "exec-f936243d-5ff0-4aad-8314-0dcc4d84e86a.png",
+      "parent_source_filename": "exec-3df6c9af-cc5e-41fd-af9a-7cb3d3712762.png",
+      "initial_reference": "assets/art/unit_sprites_cel_1.png",
+      "generated_on": "2026-10-26",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "e8c66b0041ca30ef2c90702fa2536dcc621c391b1ac0e9bb8b67b9e1dfd76d3d",
+      "frame_order": [
+        "anticipation",
+        "strike",
+        "recovery"
+      ],
+      "regions": [
+        [
+          0,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          836,
+          724
+        ],
+        [
+          1560,
+          0,
+          612,
+          724
+        ]
+      ],
+      "feet": [
+        [
+          403,
+          677
+        ],
+        [
+          358,
+          683
+        ],
+        [
+          385,
+          684
+        ]
+      ],
+      "runtime_scale": 1.25,
+      "prompt_files": [
+        "assets/art/prompt-action-spear-v1.txt",
+        "assets/art/prompt-action-spear-v2.txt"
+      ],
+      "role": "Normal attack, guard and retaliation key poses.",
+      "processing": "Raw PNG copied byte-for-byte. Native AtlasTexture regions follow inspected transparent gaps; shared per-character scale and measured foot pivots preserve aspect and baseline. No source pixel edits.",
+      "status": "Integrated; nine alpha/edge/pivot checks and native-scale gallery reviewed; 160 Windows action checks, 257 UI checks and 56 feedback checks passed."
+    },
+    {
+      "id": "action_cavalry",
+      "path": "assets/art/actions/cavalry-v2.png",
+      "source_filename": "exec-05143c57-aa69-4bfc-9988-37034b31d94f.png",
+      "parent_source_filename": "exec-5facdbdc-e597-4c22-a444-2f6d77c4dfff.png",
+      "initial_reference": "assets/art/unit_sprites_cel_1.png",
+      "generated_on": "2026-10-26",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "0b233e5e6005cf2906d6c6bc23d8527a3e07ea467a670906a4e5e6eb0e97034f",
+      "frame_order": [
+        "anticipation",
+        "strike",
+        "recovery"
+      ],
+      "regions": [
+        [
+          0,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          836,
+          724
+        ],
+        [
+          1560,
+          0,
+          612,
+          724
+        ]
+      ],
+      "feet": [
+        [
+          470,
+          640
+        ],
+        [
+          472,
+          641
+        ],
+        [
+          388,
+          645
+        ]
+      ],
+      "runtime_scale": 1.45,
+      "prompt_files": [
+        "assets/art/prompt-action-cavalry-v1.txt",
+        "assets/art/prompt-action-cavalry-v2.txt"
+      ],
+      "role": "Normal attack, guard and retaliation key poses.",
+      "processing": "Raw PNG copied byte-for-byte. Native AtlasTexture regions follow inspected transparent gaps; shared per-character scale and measured foot pivots preserve aspect and baseline. No source pixel edits.",
+      "status": "Integrated; nine alpha/edge/pivot checks and native-scale gallery reviewed; 160 Windows action checks, 257 UI checks and 56 feedback checks passed."
+    }
+  ]
+}

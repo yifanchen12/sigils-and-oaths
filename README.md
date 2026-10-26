@@ -5,13 +5,13 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.12.1" src="https://img.shields.io/badge/version-0.12.1-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.12.2" src="https://img.shields.io/badge/version-0.12.2-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法研究参考《炉石传说》的卡牌资源节奏与《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡面、美术与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前是可玩的 **0.12.1 开发版**，面向 Windows 桌面单机对战 AI。
+玩法研究参考《炉石传说》的卡牌资源节奏与《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡面、美术与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前是可玩的 **0.12.2 开发版**，面向 Windows 桌面单机对战 AI。
 
 ## 实机画面
 
@@ -58,7 +58,11 @@
 
 除骑兵再机动外，技能会结束该单位的移动与攻击。定身阻止再机动和枪兵接应。援护不拦截法术或反击；多个守卫由较早部署者接应，不连锁。守卫使用自己脚下的防御地形，反击按原位射程判断，阵亡时不向被保护者溢出伤害。
 
-攻击预估会指出实际承伤的守卫。战斗表现包含近战突进与斩击、箭矢和法术飞行、援护拦截、命中、克制提示及反击；规则只结算一次，动画不改棋子真实位置或重复扣血。当前使用原有角色立绘做棋盘内动作与特效，尚非逐帧角色动画或独立全屏战斗过场。
+攻击预估会指出实际承伤的守卫。战斗表现包含近战突进与斩击、箭矢和法术飞行、援护拦截、命中、克制提示及反击；规则只结算一次，动画不改棋子真实位置或重复扣血。步兵、枪兵、骑兵各有蓄力、出手、收招三张原创动作姿态，援护先举盾，反击也会切换姿态，并按对手方向翻转。其余角色暂用站姿配合特效；当前尚无完整行走循环或独立全屏战斗过场。
+
+![三兵种九帧动作与棋盘尺寸对照](docs/screenshots/melee-pose-gallery.png)
+
+[查看近战姿态、左右出手与援护实机演示](docs/screenshots/melee-poses.mp4)
 
 ![枪兵援护与精准射击的实际伤害预估](docs/screenshots/spear-guard-forecast.png)
 
@@ -152,7 +156,7 @@ tools/         地图导图、核对图及诊断工具
 docs/          实机截图、验收与开发记录
 ```
 
-本机 **Godot 4.7.2 / Windows / Compatibility** 验证：0.12.1效果预估134项、反馈窗口56项、原有界面257项、普攻预估113项、六技能窗口51项通过。六技能规则与完整AI对局、0.11地图专项等记录按版本保存在 [`docs/validation.md`](docs/validation.md)。
+本机 **Godot 4.7.2 / Windows / Compatibility** 验证：0.12.2动作姿态160项、界面257项、法术反馈56项通过。0.12.1已验证效果预估134项、普攻预估113项和六技能窗口51项；六技能规则、完整AI对局和地图专项保留各自实际验证版本，详见 [`docs/validation.md`](docs/validation.md)。
 
 ```bash
 godot --headless --path . --editor --quit
@@ -164,6 +168,7 @@ godot --path . --script res://tests/test_forecast.gd --resolution 1440x1000 --au
 godot --path . --script res://tests/test_map_art.gd --resolution 1440x1000 --audio-driver Dummy -- --complete
 godot --path . --script res://tests/test_unit_skills_ui.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_feedback_polish.gd --resolution 1440x1000 --audio-driver Dummy
+godot --path . --script res://tests/test_action_poses.gd --resolution 1440x1000 --audio-driver Dummy
 ```
 
 界面、预估、地图和技能窗口检查需要真实图形窗口。初版规则与开发命令见 [`docs/development.md`](docs/development.md)；新增技能以本页及游戏内说明为准。
