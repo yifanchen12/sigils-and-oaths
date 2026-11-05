@@ -41,5 +41,22 @@ func run() -> void:
 	check(not Story.validate(edited).is_empty(), "unknown inherited facts rejected")
 	check(original.advance(original.current().revision).ok and original.current().type == "end", "restored line advances to end once")
 	check(original.snapshot().line_id == "", "non-dialogue cursor has empty identity")
+	# Scene changes are presentation metadata, including when restoring old saves.
+	var staged: Dictionary = fixture()
+	staged.nodes.a["background"] = "scene_foundry"
+	staged.nodes.a.lines[2]["background"] = "scene_pump_closed"
+	var scenic: RefCounted = Story.new(staged)
+	check(scenic.current().background == "scene_foundry", "line without override uses its node scene")
+	check(scenic.restore(saved).ok and scenic.current().background == "scene_pump_closed", "old stable cursor restores the authored scene transition")
+	check(scenic.snapshot() == saved, "scene metadata does not rewrite progress or history")
+	check(scenic.restore(legacy).ok and scenic.current().background == "scene_pump_closed", "legacy offset save also restores the scene")
+	scenic.advance(scenic.current().revision)
+	check(scenic.current().background == "", "line override does not leak into the next node")
+	for invalid: Variant in [false, 3, [], {}, ""]:
+		var broken_scene: Dictionary = staged.duplicate(true)
+		broken_scene.nodes.a.lines[2].background = invalid
+		check(not Story.validate(broken_scene).is_empty(), "invalid line scene rejected")
+	staged.nodes.a.background = 7
+	check(not Story.validate(staged).is_empty(), "invalid node scene rejected")
 	print("STORY CURSOR CHECKS: %d | FAILURES: %d | DISPLAY: %s" % [checks, failures, DisplayServer.get_name()])
 	quit(0 if failures == 0 else 1)

@@ -54,6 +54,7 @@ static func validate(source: Variant) -> String:
 	for id: Variant in nodes:
 		if not id is String or not nodes[id] is Dictionary: return "剧情节点无效。"
 		var node: Dictionary = nodes[id]
+		if node.has("background") and not node.background is String: return "背景编号必须是字符串：" + id
 		var links: Array = []
 		match node.get("type", ""):
 			"dialogue":
@@ -65,6 +66,7 @@ static func validate(source: Variant) -> String:
 					if line_ids.has(line.id): return "同一节点的对白编号重复：" + id
 					line_ids[line.id] = true
 					if not source.speakers.has(line.get("speaker")): return "说话人不存在：" + id
+					if line.has("background") and (not line.background is String or line.background.is_empty()): return "段落背景编号无效：" + id
 					if not _flag_map(line.get("when", {}), defaults): return "对白条件无效：" + id
 					if line.get("when", {}).is_empty(): unconditional = true
 					references[line.id] = true
@@ -155,6 +157,7 @@ func current() -> Dictionary:
 			result["speaker_id"] = line.speaker
 			result["speaker"] = graph.speakers[line.speaker]
 			result["text"] = graph.strings[line.id]
+			result["background"] = line.get("background", result.background)
 		"choice":
 			result["text"] = graph.strings[node.prompt]
 			result["options"] = []

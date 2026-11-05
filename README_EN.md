@@ -5,17 +5,21 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.19.0-dev" src="https://img.shields.io/badge/version-0.19.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.20.0-dev" src="https://img.shields.io/badge/version-0.20.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts, with no assets from either game. Current source is **0.19.0-dev**, with four chapters, branching encounters and cross-chapter saves. The new harbor chapter brings Lorne and Mirei home and makes Velo face his debts. All four chapters have native page checks; the chapter-1 bridge now has a native victory from original resources, exit/relaunch continuation and postbattle-story verification. The complete campaign, overall balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
+The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts, with no assets from either game. Current source is **0.20.0-dev**, with four chapters, branching encounters and cross-chapter saves. The harbor chapter brings Lorne and Mirei home and makes Velo face his debts; seven dedicated scenes and a redesigned dialogue view are now integrated. All four chapters have native page checks; the chapter-1 bridge now has a native victory from original resources, exit/relaunch continuation and postbattle-story verification. The complete campaign, overall balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
 
 ## In-game screenshots
 
-These are actual game-window captures from 0.13.0 and earlier milestones, including units, cards and the HUD. They do not validate the new story view.
+The chapter-4 dialogue capture is from 0.20.0-dev; the battlefield captures below it are from 0.13.0 and earlier milestones.
+
+![Chapter-4 clinic: scene, portrait and dialogue](docs/screenshots/v020-clinic-dialogue.png)
+
+[Scene states, small-window choices, backlog and verification](docs/narrative-art-v020.md).
 
 ![Forest battlefield during a match](docs/screenshots/expanded-battle.png)
 ![Harbor battlefield with a central canal and two bridges](docs/screenshots/painted-harbor.png)
@@ -122,9 +126,9 @@ Version 0.16.0-dev passes 1,520 relevant model checks and 2,264 native UI checks
 
 Chapter 4 adds **6,024 Chinese body-text characters**, two harbor encounters and separate choices about crew accommodation and unpaid wages. The crew leaves the locked ship, the old foundry pattern gets a concrete origin, and Velo must surrender assets or income while installment debts remain explicit. A chapter-4 route contains 5,147–5,258 characters. Four chapters have 512 cumulative choice paths with seven encounters per path; total authored prose including the archive is **28,082 characters**. Native rendering covers 360 chapter paragraphs / 22,524 characters. Continuous ordinary-difficulty accessibility remains unverified, so the conservative accepted count stays at 5,558.
 
-![Chapter 4: Lorne returns to the warehouse](docs/screenshots/chapter4-home.png)
+![Chapter 4: after the crew leaves the ship](docs/screenshots/v020-harbor-open.png)
 
-The chapter and related model suite passed 6,325 checks; native pages and controls passed 3,085. Harbor deployment is checked, but ordinary-resource harbor victories are still pending. New NPC portraits and dedicated narrative backgrounds are also pending. [Chapter-4 editorial and verification notes](docs/narrative/chapter-04-review.md).
+The chapter and related model suite passed 6,325 checks; native pages and controls passed 3,085. Harbor deployment is checked, but ordinary-resource harbor victories are still pending. Version 0.20.0-dev adds seven dedicated scenes, with 3,455 native page checks and 5,667 related model checks passing. NPC portraits, noncombat companion poses and dedicated backgrounds for chapters 1–3 remain pending. [Chapter-4 editorial and verification notes](docs/narrative/chapter-04-review.md).
 
 ## Quick start
 

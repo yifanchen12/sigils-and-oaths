@@ -17,6 +17,8 @@ var text_body: RichTextLabel
 var actions: VBoxContainer
 var status: Label
 var illustration: TextureRect
+var stage: Control
+var dialogue_panel: PanelContainer
 var backlog_button: Button
 var background_id: String = "menu"
 var page: Dictionary = {}
@@ -28,6 +30,7 @@ var showing_history: bool = false
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_STOP
+	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	hide()
 	_build()
 	resized.connect(queue_redraw)
@@ -36,7 +39,9 @@ func _draw() -> void:
 	if size.x < 32 or size.y < 32: return
 	var background: Texture2D = Art.get_texture(background_id)
 	if background != null: Art.draw_cover(self, background, Rect2(Vector2.ZERO, size))
-	draw_rect(Rect2(Vector2.ZERO, size), Color(0.025, 0.06, 0.10, 0.83))
+	draw_rect(Rect2(Vector2.ZERO, size), Color(0.025, 0.06, 0.10, 0.18))
+	draw_rect(Rect2(0, 0, size.x, 112), Color(0.025, 0.06, 0.10, 0.76))
+	draw_rect(Rect2(0, size.y - 92, size.x, 92), Color(0.025, 0.06, 0.10, 0.76))
 	draw_line(Vector2(36, 112), Vector2(size.x - 36, 112), Color(GOLD, 0.65), 1)
 
 func _label(text: String, font_size: int, color: Color) -> Label:
@@ -64,7 +69,7 @@ func _build() -> void:
 	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for side: String in ["left", "right", "top", "bottom"]: margin.add_theme_constant_override("margin_" + side, 36)
 	var layout := VBoxContainer.new()
-	layout.add_theme_constant_override("separation", 26)
+	layout.add_theme_constant_override("separation", 18)
 	margin.add_child(layout)
 	var header := HBoxContainer.new()
 	header.add_theme_constant_override("separation", 14)
@@ -75,29 +80,40 @@ func _build() -> void:
 	backlog_button = _button("已读回看", _toggle_history, false)
 	header.add_child(backlog_button)
 	header.add_child(_button("返回战前页  Esc", func() -> void: menu_requested.emit(), false))
-	var columns := HBoxContainer.new()
-	columns.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	columns.add_theme_constant_override("separation", 32)
-	layout.add_child(columns)
+	stage = Control.new()
+	stage.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	stage.custom_minimum_size.y = 120
+	stage.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	layout.add_child(stage)
 	illustration = TextureRect.new()
-	illustration.custom_minimum_size.x = 260
-	illustration.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	illustration.size_flags_stretch_ratio = 0.7
 	illustration.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	illustration.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	# Let the lower body continue behind the dialogue panel, instead of leaving
+	# a miniature full-body sprite floating above it. Source art stays intact.
+	illustration.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
 	illustration.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	columns.add_child(illustration)
-	var panel := PanelContainer.new()
-	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	panel.size_flags_stretch_ratio = 1.8
-	columns.add_child(panel)
+	stage.add_child(illustration)
+	illustration.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	illustration.anchor_right = 0.48
+	illustration.anchor_bottom = 1.6
+	dialogue_panel = PanelContainer.new()
+	dialogue_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var panel_style := StyleBoxFlat.new()
+	panel_style.bg_color = Color(0.035, 0.075, 0.12, 0.95)
+	panel_style.border_color = Color(GOLD, 0.8)
+	panel_style.set_border_width_all(1)
+	panel_style.set_corner_radius_all(5)
+	panel_style.content_margin_left = 24; panel_style.content_margin_right = 24
+	panel_style.content_margin_top = 16; panel_style.content_margin_bottom = 16
+	dialogue_panel.add_theme_stylebox_override("panel", panel_style)
+	layout.add_child(dialogue_panel)
 	var copy := VBoxContainer.new()
-	copy.add_theme_constant_override("separation", 20)
-	panel.add_child(copy)
+	copy.add_theme_constant_override("separation", 10)
+	dialogue_panel.add_child(copy)
 	speaker = _label("", 25, GOLD)
 	copy.add_child(speaker)
 	copy.add_child(HSeparator.new())
 	text_body = RichTextLabel.new()
+	text_body.custom_minimum_size.y = 160
 	text_body.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	text_body.bbcode_enabled = false
 	text_body.selection_enabled = true
@@ -144,7 +160,10 @@ func _render_page() -> void:
 	_clear_actions()
 	backlog_button.text = "返回当前对白" if showing_history else "已读回看"
 	backlog_button.disabled = history.is_empty()
+	stage.visible = not showing_history
+	dialogue_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL if showing_history else Control.SIZE_FILL
 	if showing_history:
+		illustration.hide()
 		speaker.text = "已经走过的路"
 		var paragraphs: PackedStringArray = []
 		for entry: Dictionary in history: paragraphs.append(entry.text)
@@ -153,7 +172,9 @@ func _render_page() -> void:
 		backlog_button.grab_focus()
 		return
 	var speaker_id: String = page.get("speaker_id", "")
-	illustration.texture = Art.get_texture("sprite_" + speaker_id) if Art.HERO_ORDER.has(speaker_id) or Art.UNIT_ORDER.has(speaker_id) else Art.get_texture(background_id)
+	var has_portrait: bool = Art.HERO_ORDER.has(speaker_id) or Art.UNIT_ORDER.has(speaker_id)
+	illustration.texture = Art.get_narrative_portrait(speaker_id) if has_portrait else null
+	illustration.visible = has_portrait
 	speaker.text = page.get("speaker", "军议")
 	text_body.text = page.get("text", "")
 	text_body.scroll_to_line(0)

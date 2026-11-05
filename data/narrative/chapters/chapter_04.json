@@ -165,7 +165,7 @@
   "nodes": {
     "home": {
       "type": "dialogue",
-      "background": "battlefield_harbor",
+      "background": "scene_clinic_day",
       "lines": [
         {
           "id": "c04.home.01",
@@ -226,7 +226,7 @@
     },
     "eastbank": {
       "type": "dialogue",
-      "background": "battlefield_harbor",
+      "background": "scene_harbor_locked",
       "lines": [
         {
           "id": "c04.eastbank.01",
@@ -265,7 +265,7 @@
     },
     "credit": {
       "type": "dialogue",
-      "background": "battlefield_harbor",
+      "background": "scene_harbor_locked",
       "lines": [
         {
           "id": "c04.credit.01",
@@ -320,11 +320,12 @@
       "win": "ashore",
       "win_set": {
         "crew_safe": true
-      }
+      },
+      "background": "scene_harbor_locked"
     },
     "ashore": {
       "type": "dialogue",
-      "background": "battlefield_harbor",
+      "background": "scene_harbor_open",
       "lines": [
         {
           "id": "c04.ashore.01",
@@ -363,7 +364,7 @@
     },
     "shelter": {
       "type": "choice",
-      "background": "battlefield_harbor",
+      "background": "scene_harbor_open",
       "prompt": "c04.shelter.prompt",
       "options": [
         {
@@ -386,7 +387,7 @@
     },
     "warehouse": {
       "type": "dialogue",
-      "background": "battlefield_harbor",
+      "background": "scene_clinic_day",
       "lines": [
         {
           "id": "c04.warehouse.01",
@@ -409,7 +410,7 @@
     },
     "households": {
       "type": "dialogue",
-      "background": "battlefield_harbor",
+      "background": "scene_clinic_day",
       "lines": [
         {
           "id": "c04.households.01",
@@ -432,7 +433,7 @@
     },
     "foundry": {
       "type": "dialogue",
-      "background": "battlefield_harbor",
+      "background": "scene_foundry",
       "lines": [
         {
           "id": "c04.foundry.01",
@@ -479,7 +480,7 @@
     },
     "terms": {
       "type": "choice",
-      "background": "battlefield_harbor",
+      "background": "scene_foundry",
       "prompt": "c04.terms.prompt",
       "options": [
         {
@@ -502,7 +503,7 @@
     },
     "sale": {
       "type": "dialogue",
-      "background": "battlefield_harbor",
+      "background": "scene_foundry",
       "lines": [
         {
           "id": "c04.sale.01",
@@ -521,7 +522,7 @@
     },
     "lease": {
       "type": "dialogue",
-      "background": "battlefield_harbor",
+      "background": "scene_foundry",
       "lines": [
         {
           "id": "c04.lease.01",
@@ -544,7 +545,7 @@
     },
     "pump": {
       "type": "dialogue",
-      "background": "battlefield_harbor",
+      "background": "scene_foundry",
       "lines": [
         {
           "id": "c04.pump.01",
@@ -564,31 +565,38 @@
         },
         {
           "id": "c04.pump.05",
-          "speaker": "narrator"
+          "speaker": "narrator",
+          "background": "scene_pump_closed"
         },
         {
           "id": "c04.pump.06",
-          "speaker": "creditor"
+          "speaker": "creditor",
+          "background": "scene_pump_closed"
         },
         {
           "id": "c04.pump.07",
-          "speaker": "narrator"
+          "speaker": "narrator",
+          "background": "scene_pump_closed"
         },
         {
           "id": "c04.pump.08",
-          "speaker": "narrator"
+          "speaker": "narrator",
+          "background": "scene_pump_closed"
         },
         {
           "id": "c04.pump.09",
-          "speaker": "grove"
+          "speaker": "grove",
+          "background": "scene_pump_closed"
         },
         {
           "id": "c04.pump.10",
-          "speaker": "warden"
+          "speaker": "warden",
+          "background": "scene_pump_closed"
         },
         {
           "id": "c04.pump.11",
-          "speaker": "sword"
+          "speaker": "sword",
+          "background": "scene_pump_closed"
         }
       ],
       "next": "pump_battle"
@@ -600,11 +608,12 @@
       "win_set": {
         "harbor_pump": true,
         "pump_route_known": true
-      }
+      },
+      "background": "scene_pump_closed"
     },
     "after_pump": {
       "type": "dialogue",
-      "background": "battlefield_harbor",
+      "background": "scene_pump_open",
       "lines": [
         {
           "id": "c04.after_pump.01",
@@ -639,7 +648,7 @@
     },
     "night": {
       "type": "dialogue",
-      "background": "battlefield_harbor",
+      "background": "scene_clinic_night",
       "lines": [
         {
           "id": "c04.night.01",
@@ -723,7 +732,7 @@
     "end": {
       "type": "end",
       "ending": "harbor_awake",
-      "background": "battlefield_harbor",
+      "background": "scene_clinic_night",
       "text": "c04.end"
     }
   }

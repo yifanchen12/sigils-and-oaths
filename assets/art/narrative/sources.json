@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "milestone": "0.20.0-dev",
+  "generated_on": "2026-11-06",
+  "tool": "native image_gen",
+  "model": "not exposed by runtime",
+  "rights_note": "Original AI-generated project assets; no third-party game art or living-artist imitation used. Keep prompt and parent provenance for final distribution and Steam AI-content disclosure review.",
+  "seed": {
+    "source_filename": "exec-fa9dbb56-644b-472b-9a0b-f736106e0224.png",
+    "prompt_key": "harbor_seed",
+    "status": "gangplank incorrectly connected; corrected output is the production source"
+  },
+  "assets": [
+    {
+      "id": "scene_harbor_locked",
+      "path": "assets/art/narrative/harbor-locked-v1.png",
+      "source_filename": "exec-399c6d58-c331-4383-8166-9a7b479a9d63.png",
+      "reference_source_filename": "exec-fa9dbb56-644b-472b-9a0b-f736106e0224.png",
+      "prompt_key": "harbor_locked_correction",
+      "prompt_file": "assets/art/narrative/prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "4fc2d7df4b5fa6672a8710a858b955eda049d649e6d84fb7489d3538b2f6a60b",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative background; no gameplay or collision data.",
+      "processing": "Original PNG copied intact. Cover cropping, mild tint and text are rendered by Godot; no pixel edits.",
+      "status": "production; source and native screenshots visually reviewed in 0.20.0-dev",
+      "validation": "docs/narrative-art-v020.md"
+    },
+    {
+      "id": "scene_harbor_open",
+      "path": "assets/art/narrative/harbor-open-v1.png",
+      "source_filename": "exec-72cb3b3c-9238-40ab-9913-8448893b5279.png",
+      "reference_source_filename": "exec-399c6d58-c331-4383-8166-9a7b479a9d63.png",
+      "prompt_key": "harbor_open",
+      "prompt_file": "assets/art/narrative/prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "4e36cb355f15955ce03bec6f54d62d82bf76641e2f631a5242eed3108c11b1a5",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative background; no gameplay or collision data.",
+      "processing": "Original PNG copied intact. Cover cropping, mild tint and text are rendered by Godot; no pixel edits.",
+      "status": "production; source and native screenshots visually reviewed in 0.20.0-dev",
+      "validation": "docs/narrative-art-v020.md"
+    },
+    {
+      "id": "scene_clinic_day",
+      "path": "assets/art/narrative/clinic-day-v1.png",
+      "source_filename": "exec-64fbd36b-41c6-4b22-9d1c-d95f4aa972a4.png",
+      "reference_source_filename": "exec-399c6d58-c331-4383-8166-9a7b479a9d63.png",
+      "prompt_key": "clinic",
+      "prompt_file": "assets/art/narrative/prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "acd2419d62c3a2cdb1941893fd4d4156d51aad031d077793839742ed8c8abbc8",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative background; no gameplay or collision data.",
+      "processing": "Original PNG copied intact. Cover cropping, mild tint and text are rendered by Godot; no pixel edits.",
+      "status": "production; source and native screenshots visually reviewed in 0.20.0-dev",
+      "validation": "docs/narrative-art-v020.md"
+    },
+    {
+      "id": "scene_clinic_night",
+      "path": "assets/art/narrative/clinic-night-v1.png",
+      "source_filename": "exec-bc5f779c-265a-4623-a9f7-35d0a794961e.png",
+      "reference_source_filename": "exec-64fbd36b-41c6-4b22-9d1c-d95f4aa972a4.png",
+      "prompt_key": "clinic_night",
+      "prompt_file": "assets/art/narrative/prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "222586e6be0459551b0447cbdd7f1958dbecfb086b06eb4f30191c9e2b0f22c6",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative background; no gameplay or collision data.",
+      "processing": "Original PNG copied intact. Cover cropping, mild tint and text are rendered by Godot; no pixel edits.",
+      "status": "production; source and native screenshots visually reviewed in 0.20.0-dev",
+      "validation": "docs/narrative-art-v020.md"
+    },
+    {
+      "id": "scene_foundry",
+      "path": "assets/art/narrative/foundry-night-v1.png",
+      "source_filename": "exec-12d0ce78-a4ed-4142-965e-1532b5ae0ce7.png",
+      "reference_source_filename": "exec-399c6d58-c331-4383-8166-9a7b479a9d63.png",
+      "prompt_key": "foundry",
+      "prompt_file": "assets/art/narrative/prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "a4c0ea53d665f65a23c0e2f4406a771dde13f47303e8a46ab73c05e03328c222",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative background; no gameplay or collision data.",
+      "processing": "Original PNG copied intact. Cover cropping, mild tint and text are rendered by Godot; no pixel edits.",
+      "status": "production; source and native screenshots visually reviewed in 0.20.0-dev",
+      "validation": "docs/narrative-art-v020.md"
+    },
+    {
+      "id": "scene_pump_closed",
+      "path": "assets/art/narrative/pump-closed-v1.png",
+      "source_filename": "exec-9bfd3ece-c003-4fcf-985c-0155499d1bb8.png",
+      "reference_source_filename": "exec-3a4e9b0b-60c1-475a-9cf0-2202965c4429.png",
+      "prompt_key": "pump_closed",
+      "prompt_file": "assets/art/narrative/prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "ea1a5eb71e9a9c3ca9ac850be1c47cc1fd247c49b9d903943f967af5fafcee97",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative background; no gameplay or collision data.",
+      "processing": "Original PNG copied intact. Cover cropping, mild tint and text are rendered by Godot; no pixel edits.",
+      "status": "production; source and native screenshots visually reviewed in 0.20.0-dev",
+      "validation": "docs/narrative-art-v020.md"
+    },
+    {
+      "id": "scene_pump_open",
+      "path": "assets/art/narrative/pump-open-v1.png",
+      "source_filename": "exec-3a4e9b0b-60c1-475a-9cf0-2202965c4429.png",
+      "reference_source_filename": "exec-399c6d58-c331-4383-8166-9a7b479a9d63.png",
+      "prompt_key": "pump",
+      "prompt_file": "assets/art/narrative/prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "e093a7c466155388548cbc229644d06acc020c25169f6d4845b7279bcc4e7242",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative background; no gameplay or collision data.",
+      "processing": "Original PNG copied intact. Cover cropping, mild tint and text are rendered by Godot; no pixel edits.",
+      "status": "production; source and native screenshots visually reviewed in 0.20.0-dev",
+      "validation": "docs/narrative-art-v020.md"
+    }
+  ]
+}

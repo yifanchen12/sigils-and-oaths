@@ -5,17 +5,21 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.19.0-dev" src="https://img.shields.io/badge/version-0.19.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.20.0-dev" src="https://img.shields.io/badge/version-0.20.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法研究参考《炉石传说》的卡牌资源节奏与《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡面、美术与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前源码为 **0.19.0-dev**，面向 Windows 桌面单机对战 AI；四章剧情、分支关卡与跨章存档已接入。新章「港口不眠」让洛恩与米芮回到故乡，维洛面对自己留下的债务。四章页面已完成原生检查；首章桥关新增正常资源下的原生胜利、退出续战和战后衔接证据。完整战役、整体平衡与十万字目标仍在开发。
+玩法研究参考《炉石传说》的卡牌资源节奏与《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡面、美术与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前源码为 **0.20.0-dev**，面向 Windows 桌面单机对战 AI；四章剧情、分支关卡与跨章存档已接入。「港口不眠」让洛恩与米芮回到故乡，维洛面对自己留下的债务；七张专用剧情场景与新版对白页已接入。四章页面已完成原生检查；首章桥关新增正常资源下的原生胜利、退出续战和战后衔接证据。完整战役、整体平衡与十万字目标仍在开发。
 
 ## 实机画面
 
-下面均为0.13.0及此前里程碑的游戏窗口截图，包含真实棋子、手牌与界面；不代表新剧情页已经完成视觉验收。
+第四章对白页为0.20.0-dev实机：诊室、港口、炉坊和泵房按剧情变化。其后的战斗截图来自0.13.0及此前里程碑。
+
+![第四章诊室：场景、立绘与对白](docs/screenshots/v020-clinic-dialogue.png)
+
+[锁舱与救援后的港口、夜间诊室、小窗口选择及回看](docs/narrative-art-v020.md)。
 
 ![暮林边境实机：双方部队、指挥官、手牌与战况](docs/screenshots/expanded-battle.png)
 
@@ -123,9 +127,9 @@ AI会抢点、留守，并用击退、法术和援护争夺驻守进度；现在
 
 第四章「港口不眠」新增 **6,024个正文汉字**、两场港口战斗、船工安置与欠饷处置两次选择。返潮船上的人真正下船，旧炉坊图样的来源得到解释；选择决定后续住处、巡诊安排及维洛剩余权益，不用一场胜利抹掉坏粮与未结款。第四章单路线5,147–5,258字，四章累计512条选择路径，每条七战。连档案当前已写 **28,082字**；原生已渲染四章360段正文22,524字，但正常难度连续可达仍待验，保守已交付统计保持5,558字。
 
-![第四章：洛恩回到货棚](docs/screenshots/chapter4-home.png)
+![第四章：船工获救后](docs/screenshots/v020-harbor-open.png)
 
-第四章及关联模型检查6,325项、四章原生页面/按钮检查3,085项通过；港口关卡验证了真实入场，尚未完成正常资源通关。新增配角目前复用地图展示，专用剧情背景与肖像仍待制作。[第四章编辑与验证记录](docs/narrative/chapter-04-review.md)。
+第四章及关联模型检查6,325项、四章原生页面/按钮检查3,085项通过；港口关卡验证了真实入场，尚未完成正常资源通关。0.20.0-dev新增七张专用背景，并完成3,455项新版原生页面检查与5,667项相关模型检查。配角肖像、同伴生活姿态与前三章专用背景仍待制作。[第四章编辑与验证记录](docs/narrative/chapter-04-review.md)。
 
 ## 快速开始
 

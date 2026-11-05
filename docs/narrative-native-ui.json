@@ -1,18 +1,25 @@
 {
   "version": 1,
-  "milestone": "0.19.0-dev",
+  "milestone": "0.20.0-dev",
   "date": "2026-11-06",
   "passed": true,
   "test": "tests/test_campaign_ui.gd",
-  "checks": 3085,
+  "checks": 3455,
   "dialogue_paragraphs": 356,
   "ending_paragraphs": 4,
   "chapter_sha256": {
     "chapter_01": "5aea819e93dc327a18c02448f86b9344ded8e91118e82fac168f3bb6906e2fae",
     "chapter_02": "f588d6350dca6f0448d4965d74659624fb716fa14f4d1703a3108ca62a763204",
     "chapter_03": "0e9ea23d41dfa15f0a665af1a49bf55d23706276d82c45892409f36e9f786f4b",
-    "chapter_04": "412ac2352700b0667daa3c69b67a635db1a330346574482b71bfd1b78ae148c0"
+    "chapter_04": "f332fbfc0ac4af810a9af7c625de7c41e81e550c739b4399cdd14de84b53269c"
   },
-  "scope": "Native Windows renderer: all four chapters, toolbar, selected real choices, chapter transitions, harbor entry, wind-vent objective and menu resume. Victory and troop-placement fixtures are used. Not an ordinary-difficulty campaign playthrough. Refresh only after a passing native run against unchanged chapter sources.",
-  "hashing": "SHA256 of UTF-8 chapter source after newline normalization to LF"
+  "scope": "Native Windows renderer: all four chapters, seven chapter-4 scenes, line-specific scene changes, companion portraits, expanded backlog, toolbar, real choices/chapter transitions, harbor entry, wind-vent objective and menu resume. Victory and troop-placement fixtures are used; not an ordinary-difficulty campaign playthrough.",
+  "hashing": "SHA256 of UTF-8 chapter source after newline normalization to LF",
+  "presentation_sha256": {
+    "scripts/story_view.gd": "f063502658f444c5642f1c22fcde29c7d4228c0832e91601998eea4ffd502720",
+    "scripts/story_runner.gd": "7079bed330174cafb46ee5eeba91753e24f2d089cacaa4d0233cd9719b5548c7",
+    "scripts/art_library.gd": "e542f679b573729581a670ba318ab8a5309aad79d94d2b57990101717da832d6",
+    "tests/test_campaign_ui.gd": "2c3453a3243c67bfe867ec0faa69e6e704bdfe2b31206eab5c166b484bd70bd7"
+  },
+  "art_evidence": "docs/narrative-art-v020.md"
 }

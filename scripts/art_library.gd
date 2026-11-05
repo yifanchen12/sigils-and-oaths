@@ -5,6 +5,11 @@ extends RefCounted
 static var textures: Dictionary = {}
 const UNIT_ORDER: Array[String] = ["sword", "spear", "cavalry", "archer", "mage", "healer"]
 const HERO_ORDER: Array[String] = ["warden", "pyromancer", "grove"]
+const NARRATIVE_SCENES: Dictionary = {
+	"scene_harbor_locked": "harbor-locked-v1", "scene_harbor_open": "harbor-open-v1",
+	"scene_clinic_day": "clinic-day-v1", "scene_clinic_night": "clinic-night-v1",
+	"scene_foundry": "foundry-night-v1", "scene_pump_closed": "pump-closed-v1", "scene_pump_open": "pump-open-v1"
+}
 const ACTION_SHEETS: Dictionary = {
 	"sword": {"path": "res://assets/art/actions/sword-v2.png", "scale": 1.50,
 		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
@@ -48,6 +53,7 @@ const SPELL_ATLASES: Dictionary = {
 static func get_texture(asset_id: String) -> Texture2D:
 	if textures.has(asset_id): return textures[asset_id]
 	var path: String = "res://assets/art/%s.png" % asset_id
+	if NARRATIVE_SCENES.has(asset_id): path = "res://assets/art/narrative/%s.png" % NARRATIVE_SCENES[asset_id]
 	if asset_id == "menu" and ResourceLoader.exists("res://assets/art/menu_cel.png"): path = "res://assets/art/menu_cel.png"
 	if asset_id == "trail" and ResourceLoader.exists("res://assets/art/trail_cel.png"): path = "res://assets/art/trail_cel.png"
 	if asset_id.begins_with("battlefield_"): path = "res://assets/art/battlefields/%s-v2.png" % asset_id.trim_prefix("battlefield_")
@@ -100,6 +106,21 @@ static func get_texture(asset_id: String) -> Texture2D:
 	elif asset_id == "trail": texture = get_texture("terrain_road")
 	if texture != null: textures[asset_id] = texture
 	return texture
+
+static func get_narrative_portrait(kind: String) -> Texture2D:
+	if not HERO_ORDER.has(kind) and not UNIT_ORDER.has(kind): return null
+	if kind not in ["spear", "pyromancer"]: return get_texture("sprite_" + kind)
+	var key: String = "narrative_" + kind
+	if not textures.has(key):
+		# Neighbouring banners/cloaks cross the nominal middle cells in these
+		# sheets. Dialogue crops exclude them; lower cloak edges stay behind
+		# the reading panel. The battle atlas and source PNG remain unchanged.
+		var portrait := AtlasTexture.new()
+		portrait.atlas = load("res://assets/art/unit_sprites_cel_1.png" if kind == "spear" else "res://assets/art/hero_sprites_cel.png")
+		portrait.region = Rect2(760, 0, 640 if kind == "spear" else 660, 724)
+		portrait.filter_clip = true
+		textures[key] = portrait
+	return textures[key]
 
 static func get_action_texture(kind: String, frame: int) -> Texture2D:
 	if frame < 0 or frame > 2 or not ACTION_SHEETS.has(kind): return null
