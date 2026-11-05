@@ -15,3 +15,4 @@ Thumbs.db
 *.key
 export_credentials.cfg
 custom_deck*.json
+campaign_autosave.json*

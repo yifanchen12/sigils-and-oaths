@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "chapters": [{"id": "chapter_01", "title": "第一章 · 河门来信", "path": "res://data/narrative/chapters/chapter_01.json"}],
+  "scenarios": {
+    "c01_road": {
+      "title": "军道扣车", "brief": "沿军道抵达封锁哨，迫使扣车队停止向粮车推进。", "objective": "击败敌方指挥官，打开军道检查站。",
+      "map": "greenwood", "hero": "warden", "enemy_class": "pyromancer", "deck": "balanced", "enemy_deck": "assault", "seed": 1317,
+      "enemy_name": "军道扣车队长", "enemy_portrait": "terrain_fort"
+    },
+    "c01_river": {
+      "title": "芦滩接应", "brief": "从河岸接回应召作证的税吏，夺下渡口的指挥位置。", "objective": "击败敌方指挥官，解除渡口封锁。",
+      "map": "rivergate", "hero": "warden", "enemy_class": "warden", "deck": "bastion", "enemy_deck": "balanced", "seed": 1318,
+      "enemy_name": "渡口督卫", "enemy_portrait": "terrain_fort"
+    },
+    "c01_bridge": {
+      "title": "桥头的两道印", "brief": "两支奉不同命令行事的队伍在桥头相遇。压制守备指挥，争取重新交涉的机会。", "objective": "击败敌方指挥官，控制桥头。",
+      "map": "rivergate", "hero": "warden", "enemy_class": "warden", "deck": "balanced", "enemy_deck": "bastion", "seed": 1319,
+      "enemy_name": "河门守备官", "enemy_portrait": "terrain_fort"
+    }
+  }
+}

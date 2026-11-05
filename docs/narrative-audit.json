@@ -1,5 +1,5 @@
 {
-  "scope": "All codex entries are exposed by LoreBook's directory. No chapter text is shipped yet.",
+  "scope": "Codex accessibility verified in 0.13.0. Chapter 1 is wired in source, with pure-logic reachability; awaiting native UI verification.",
   "counting_method": "Distinct body paragraphs; Chinese Han characters only; excludes punctuation, summaries, headings, UI, plans and prompts.",
   "entries": 18,
   "paragraphs": 52,
@@ -11,7 +11,22 @@
   },
   "release_target": 100000,
   "remaining_to_target": 94442,
-  "campaign_route_characters": 0,
-  "limitations": "Exact-repeat audit only; thematic repetition and prose quality require editorial review. Codex is not a playable campaign.",
+  "chapter_candidates": [
+    {
+      "id": "chapter_01",
+      "body_paragraphs": 97,
+      "all_string_entries": 107,
+      "authored_unique_characters": 6964,
+      "graph_reachable_unique_characters": 6964,
+      "route_count": 8,
+      "shortest_route_characters": 4828,
+      "longest_route_characters": 5071,
+      "nodes": 20,
+      "status": "Menu and story view wired; model/session paths checked; native UI/playthrough not yet validated."
+    }
+  ],
+  "authored_total_characters": 12522,
+  "pending_ui_verification_characters": 6964,
+  "limitations": "Exact-repeat audit only. Chapter paths assume battle victories and are not normal-difficulty playthroughs. Headings, choice prompts and option labels are excluded. Candidate chapter prose is not added to the verified delivery total until native UI checks pass; editorial quality and balance need separate review.",
   "errors": []
 }

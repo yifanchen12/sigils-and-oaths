@@ -1,4 +1,4 @@
-"""Count only distinct player-accessible Chinese prose; never design docs or UI copy."""
+"""Separate verified archive prose from wired, graph-reachable chapter candidates."""
 from pathlib import Path
 import argparse
 import json
@@ -7,6 +7,77 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 HAN = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\U00020000-\U0002ebef]")
+
+
+def chapter_audit(ids, text_seen, errors):
+    index = json.loads((ROOT / "data/campaign.json").read_text(encoding="utf-8"))
+    reports = []
+    for entry in index["chapters"]:
+        path = (ROOT / entry["path"].removeprefix("res://")).resolve()
+        if not path.is_relative_to(ROOT):
+            raise ValueError("Chapter path is outside project")
+        graph = json.loads(path.read_text(encoding="utf-8"))
+        nodes, strings = graph["nodes"], graph["strings"]
+        body = {line["id"] for node in nodes.values() if node["type"] == "dialogue" for line in node["lines"]}
+        body.update(node["text"] for node in nodes.values() if node["type"] == "end")
+        weights = {}
+        for line_id in sorted(body):
+            if line_id in ids:
+                errors.append(f"Duplicate line ID: {line_id}")
+            ids.add(line_id)
+            normalized = "".join(HAN.findall(strings[line_id]))
+            if not normalized:
+                errors.append(f"Empty chapter prose: {line_id}")
+            if normalized in text_seen:
+                errors.append(f"Repeated prose: {line_id} / {text_seen[normalized]}")
+                weights[line_id] = 0
+            else:
+                text_seen[normalized] = line_id
+                weights[line_id] = len(normalized)
+        routes, reached, read_lines = [], set(), set()
+
+        def matches(when, flags):
+            return all(flags[key] == value for key, value in when.items())
+
+        def walk(node_id, flags, lines, chain):
+            if node_id in chain:
+                raise ValueError(f"Chapter cycle: {node_id}")
+            reached.add(node_id)
+            node = nodes[node_id]
+            chain = chain | {node_id}
+            kind = node["type"]
+            if kind == "dialogue":
+                visible = {line["id"] for line in node["lines"] if matches(line.get("when", {}), flags)}
+                read_lines.update(visible)
+                walk(node["next"], flags, lines | visible, chain)
+            elif kind == "choice":
+                available = [o for o in node["options"] if matches(o.get("when", {}), flags)]
+                if not available:
+                    raise ValueError(f"No available choice: {node_id}")
+                for option in available:
+                    walk(option["next"], flags | option.get("set", {}), lines, chain)
+            elif kind == "battle":
+                walk(node["win"], flags | node.get("win_set", {}), lines, chain)
+            elif kind == "end":
+                read_lines.add(node["text"])
+                routes.append(sum(weights[line] for line in lines | {node["text"]}))
+            else:
+                raise ValueError(f"Unknown chapter node: {node_id}")
+
+        walk(graph["start"], graph["defaults"], set(), set())
+        if read_lines != body:
+            errors.append(f"Unreachable chapter body: {sorted(body - read_lines)}")
+        if reached != nodes.keys():
+            errors.append(f"Unreachable chapter nodes: {sorted(nodes.keys() - reached)}")
+        reports.append({
+            "id": entry["id"], "body_paragraphs": len(body), "all_string_entries": len(strings),
+            "authored_unique_characters": sum(weights.values()),
+            "graph_reachable_unique_characters": sum(weights[line] for line in read_lines),
+            "route_count": len(routes), "shortest_route_characters": min(routes),
+            "longest_route_characters": max(routes), "nodes": len(nodes),
+            "status": "Menu and story view wired; model/session paths checked; native UI/playthrough not yet validated.",
+        })
+    return reports
 
 
 def audit():
@@ -47,14 +118,18 @@ def audit():
     required_people = {"warden", "pyromancer", "grove", "sword", "spear", "cavalry", "archer", "mage", "healer"}
     if not required_people.issubset({e["id"] for e in entries if e["category"] == "人物"}):
         errors.append("Missing established character profile")
+    chapters = chapter_audit(ids, text_seen, errors)
+    candidate = sum(chapter["graph_reachable_unique_characters"] for chapter in chapters)
     return {
-        "scope": "All codex entries are exposed by LoreBook's directory. No chapter text is shipped yet.",
+        "scope": "Codex accessibility verified in 0.13.0. Chapter 1 is wired in source, with pure-logic reachability; awaiting native UI verification.",
         "counting_method": "Distinct body paragraphs; Chinese Han characters only; excludes punctuation, summaries, headings, UI, plans and prompts.",
         "entries": len(entries), "paragraphs": paragraphs,
         "unique_chinese_characters": count, "by_category": by_category,
         "release_target": 100000, "remaining_to_target": max(0, 100000 - count),
-        "campaign_route_characters": 0,
-        "limitations": "Exact-repeat audit only; thematic repetition and prose quality require editorial review. Codex is not a playable campaign.",
+        "chapter_candidates": chapters,
+        "authored_total_characters": count + candidate,
+        "pending_ui_verification_characters": candidate,
+        "limitations": "Exact-repeat audit only. Chapter paths assume battle victories and are not normal-difficulty playthroughs. Headings, choice prompts and option labels are excluded. Candidate chapter prose is not added to the verified delivery total until native UI checks pass; editorial quality and balance need separate review.",
         "errors": errors,
     }
 

@@ -5,17 +5,17 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.13.0" src="https://img.shields.io/badge/version-0.13.0-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.14.0-dev" src="https://img.shields.io/badge/version-0.14.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法研究参考《炉石传说》的卡牌资源节奏与《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡面、美术与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前是可玩的 **0.13.0 开发版**，面向 Windows 桌面单机对战 AI。
+玩法研究参考《炉石传说》的卡牌资源节奏与《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡面、美术与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前源码为 **0.14.0-dev**，面向 Windows 桌面单机对战 AI；首章剧情正在接入，最新完成图形验收的里程碑为0.13.0。
 
 ## 实机画面
 
-下面均为游戏窗口截图，包含真实棋子、手牌与界面。
+下面均为0.13.0及此前里程碑的游戏窗口截图，包含真实棋子、手牌与界面；不代表新剧情页已经完成视觉验收。
 
 ![暮林边境实机：双方部队、指挥官、手牌与战况](docs/screenshots/expanded-battle.png)
 
@@ -88,7 +88,11 @@
 
 ![艾琳人物档案实机](docs/screenshots/lore-warden.png)
 
-当前已接入18篇、52段，去重后为 **5,558个中文正文汉字**。标题、摘要、按钮、设计稿与提示词不计入。完整目标是群像战争史诗、人物羁绊与适量感情线，至少十万字可达正文；**主线章节、剧情选择和战役存档尚未接入**，目前仍以遭遇战为可玩主体。
+档案已接入18篇、52段，去重后为 **5,558个中文正文汉字**。标题、摘要、按钮、设计稿与提示词不计入。完整目标是群像战争史诗、人物羁绊与适量感情线，至少十万字可达正文。
+
+首章「河门来信」新增 **6,964个正文汉字**、三次选择和八条路线组合。军道与河岸路线带回不同证据，每条路线连接两场战斗；胜利后才写入对应事实，失败保留重试点。单条路线正文为4,828–5,071字。菜单已接入「新战役」「继续战役」，剧情页提供已读回看和保存；**这些入口目前通过语法与纯逻辑衔接检查，尚未做原生窗口、正常难度通关和视觉验收**，新正文单独列为待验，不计入已验收交付量。
+
+战役自动存档保存对白位置、选择与战前检查点，含有效备份和较新版本保护；**尚不保存战斗中途的棋盘**，退出战斗后再读档会从战前重开。敌方守备使用独立名称和临时工事图标，沿用既有职业规则；专属敌军美术尚待制作。
 
 [正文统计](docs/narrative-audit.json) · [叙事方向](docs/narrative-direction.md) · [完整战役验收计划](docs/plans/steam-campaign.md) · [Steam发行准备状态](docs/release/steam-readiness.md)
 
@@ -171,11 +175,18 @@ docs/          实机截图、验收与开发记录
 
 本机 **Godot 4.7.2 / Windows / Compatibility** 验证：0.13.0近战姿态274项、远程/施法姿态363项、档案界面122项、原有界面257项、法术反馈56项、效果预估134项、施法与计时28项均通过，共1,234项。六技能规则、完整AI对局和地图专项保留各自实际验证版本，详见 [`docs/validation.md`](docs/validation.md)。这些检查不等同完整战役通关或Steam审核。
 
+0.14.0-dev另做首章图、存储、跨进程恢复和会话到真实战斗规则的无窗口检查，回归六技能、效果预估与回合计时。测试中的短战斗使用可控局面验证结算，不能当作正常难度通关或平衡结论。新界面仍待原生验证。
+
 ```bash
 godot --headless --path . --editor --quit
 godot --headless --path . --script res://tests/test_battle.gd
 godot --headless --path . --script res://tests/test_unit_skills.gd
 godot --headless --path . --script res://tests/test_effect_forecast.gd
+godot --headless --path . --script res://tests/test_story_runner.gd
+godot --headless --path . --script res://tests/test_campaign_store.gd
+godot --headless --path . --script res://tests/test_campaign_store.gd -- --write
+godot --headless --path . --script res://tests/test_campaign_store.gd -- --read
+godot --headless --path . --script res://tests/test_campaign_session.gd
 godot --path . --script res://tests/test_ui.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_forecast.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_map_art.gd --resolution 1440x1000 --audio-driver Dummy -- --complete
@@ -194,6 +205,7 @@ python tools/audit_narrative.py
 - 当前是单机开发版，尚未提供联机、触屏适配或打包发行版；macOS/Linux未完成验证。
 - 远程攻击和法术目前不检查视线。AI对局诊断不能代替真人竞技平衡测试。
 - 自定义套牌只有一个本地槽，保存于Godot的 `user://custom_deck.json`，不随仓库上传。
+- 战役只有一个本地自动槽及上次有效备份，位于 `user://campaign_autosave.json`；新战役会先要求确认替换进度，存档不随仓库上传。
 - 本项目使用AI辅助编程、原创图像生成与叙事创作。叙事为开发时固定的文本，游戏运行不调用实时生成服务。角色采用日式赛璐璐方向，全部设定为成年人；地图与卡面原图、完整提示词及生成来源见 [`assets/art/manifest.json`](assets/art/manifest.json)。美术源PNG保留原样，UI文字、数值、网格和高亮由Godot绘制。
 - 欢迎通过Issue反馈复现步骤、窗口尺寸、地图、指挥官和遇到的问题；报告中无需附任何账号、密码或本机个人文件。
 

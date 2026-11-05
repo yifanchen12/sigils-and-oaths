@@ -9,6 +9,8 @@ const Store = preload("res://scripts/deck_store.gd")
 const DeckEditorControl = preload("res://scripts/deck_editor.gd")
 const Effects = preload("res://scripts/effect_forecast.gd")
 const LoreBook = preload("res://scripts/lore_book.gd")
+const CampaignSession = preload("res://scripts/campaign_session.gd")
+const StoryView = preload("res://scripts/story_view.gd")
 const TEAL := Color("70d3ba")
 const GOLD := Color("d0b579")
 const RED := Color("f08b76")
@@ -48,11 +50,15 @@ var unit_skill_button: Button
 var unit_action_label: Label
 var using_unit_skill: bool = false
 var lore_book: Control
+var campaign_session: RefCounted = CampaignSession.new()
+var campaign_active: bool = false
+var story_view: Control
+var campaign_confirmation: ConfirmationDialog
 
 func _process(delta: float) -> void:
 	if battle == null: return
 	_position_battle_peek()
-	var paused: bool = not has_started or council.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible or lore_book.visible
+	var paused: bool = not has_started or _modal_open()
 	if paused or battle.winner != -1:
 		if paused and board.is_presenting(): board.reset_effects()
 		if battle.winner != -1 and not paused and not board.is_presenting() and not %ResultOverlay.visible: _refresh()
@@ -71,7 +77,7 @@ func _process(delta: float) -> void:
 	if battle.advance_clock(delta):
 		board.present_action(before, {"type": "end_turn"}, [])
 		ai_running = battle.active_side == 1 and battle.winner == -1
-		message = "你的回合时间已用尽，赤曜军团开始行动。" if old_side == 0 else "敌方回合超时，轮到你行动。"
+		message = "你的回合时间已用尽，%s开始行动。" % battle.side_name(1) if old_side == 0 else "敌方回合超时，轮到你行动。"
 		error_message = false
 		_refresh()
 		if ai_running: _run_ai(generation)
@@ -141,6 +147,21 @@ func _ready() -> void:
 	lore_book = LoreBook.new()
 	lore_book.theme = theme
 	add_child(lore_book)
+	story_view = StoryView.new()
+	story_view.theme = theme
+	add_child(story_view)
+	story_view.advance_requested.connect(_advance_story)
+	story_view.choice_requested.connect(_choose_story)
+	story_view.battle_requested.connect(_begin_campaign_battle)
+	story_view.menu_requested.connect(_open_council)
+	story_view.save_requested.connect(_save_campaign)
+	campaign_confirmation = ConfirmationDialog.new()
+	campaign_confirmation.title = "重新开始战役"
+	campaign_confirmation.dialog_text = "将从第一章开头重新开始，并替换当前战役进度。"
+	campaign_confirmation.ok_button_text = "重新开始"
+	campaign_confirmation.cancel_button_text = "保留进度"
+	campaign_confirmation.confirmed.connect(_new_campaign)
+	add_child(campaign_confirmation)
 	var loaded: Dictionary = deck_store.load_deck()
 	if loaded.ok: custom_deck = loaded.definition
 	custom_load_notice = loaded.get("message", "")
@@ -193,10 +214,13 @@ func _ready() -> void:
 	council.library_requested.connect(_open_library)
 	council.deck_editor_requested.connect(_open_deck_editor)
 	council.lore_requested.connect(func() -> void: lore_book.open(council.selected_hero))
+	council.new_campaign_requested.connect(_request_new_campaign)
+	council.continue_campaign_requested.connect(_continue_campaign)
 	_new_match(1)
 	council.open(current_map, current_hero, false, current_deck)
 
 func _open_council() -> void:
+	story_view.hide()
 	council.open(current_map, current_hero, has_started and battle.winner == -1, current_deck)
 	_refresh()
 
@@ -210,6 +234,9 @@ func _start_from_council(map_id: String, hero_id: String, deck_id: String) -> vo
 		_open_deck_editor()
 		deck_editor.status.text = "请先保存30张合法的自定义套牌。"
 		return
+	campaign_active = false
+	campaign_session.leave_battle()
+	story_view.hide()
 	current_map = map_id
 	current_hero = hero_id
 	current_deck = deck_id
@@ -223,6 +250,75 @@ func _start_from_council(map_id: String, hero_id: String, deck_id: String) -> vo
 	_new_match(1 if not has_started else session_rng.randi_range(1, 999999))
 	has_started = true
 	if not expanded_battlefield: _toggle_battlefield()
+	board.grab_focus()
+
+func _modal_open() -> bool:
+	return council.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible or lore_book.visible or story_view.visible
+
+func _request_new_campaign() -> void:
+	if campaign_session.campaign.story != null or FileAccess.file_exists(campaign_session.store.path) or FileAccess.file_exists(campaign_session.store.path + ".bak"):
+		campaign_confirmation.popup_centered()
+	else: _new_campaign()
+
+func _new_campaign() -> void:
+	var result: Dictionary = campaign_session.new_campaign()
+	if not result.ok:
+		council.campaign_notice.text = result.message
+		return
+	campaign_active = true
+	_show_story()
+
+func _continue_campaign() -> void:
+	if campaign_active and campaign_session.encounter == battle and battle.winner == -1:
+		_resume_battle()
+		return
+	if campaign_session.campaign.story == null:
+		var result: Dictionary = campaign_session.load_campaign()
+		if not result.ok:
+			council.campaign_notice.text = result.message
+			return
+	campaign_active = true
+	_show_story()
+
+func _show_story() -> void:
+	generation += 1
+	ai_running = false
+	has_started = false
+	board.reset_effects()
+	%ResultOverlay.hide()
+	council.hide()
+	story_view.open(campaign_session.current(), campaign_session.token(), campaign_session.campaign.scenario(), campaign_session.backlog(), campaign_session.notice, campaign_session.unsaved)
+	_refresh()
+
+func _advance_story(expected: Dictionary) -> void:
+	var result: Dictionary = campaign_session.advance(expected)
+	if result.ok: _show_story()
+	else: story_view.set_status(result.message, true)
+
+func _choose_story(option_id: String, expected: Dictionary) -> void:
+	var result: Dictionary = campaign_session.choose(option_id, expected)
+	if result.ok: _show_story()
+	else: story_view.set_status(result.message, true)
+
+func _save_campaign() -> void:
+	campaign_session.save()
+	story_view.set_status(campaign_session.notice, campaign_session.unsaved)
+
+func _begin_campaign_battle(expected: Dictionary) -> void:
+	var result: Dictionary = campaign_session.begin_battle(expected)
+	if not result.ok:
+		story_view.set_status(result.message, true)
+		return
+	current_map = result.scenario.map
+	current_hero = result.scenario.hero
+	current_deck = result.scenario.deck
+	story_view.hide()
+	council.hide()
+	has_started = true
+	_new_match(int(result.scenario.seed), result.battle)
+	message = result.scenario.title + " · " + result.scenario.objective
+	if not expanded_battlefield: _toggle_battlefield()
+	_refresh()
 	board.grab_focus()
 
 func _open_library() -> void:
@@ -322,10 +418,14 @@ func _box(fill: Color, border: Color, radius: int, padding: int) -> StyleBoxFlat
 	return box
 
 func _restart() -> void:
+	if campaign_active:
+		if battle.winner != -1: _show_story()
+		else: _open_council()
+		return
 	_new_match(session_rng.randi_range(1, 999999))
 	board.grab_focus()
 
-func _new_match(seed_value: int) -> void:
+func _new_match(seed_value: int, prepared: Battle = null) -> void:
 	using_unit_skill = false
 	generation += 1
 	ai_running = false
@@ -340,7 +440,7 @@ func _new_match(seed_value: int) -> void:
 		if BattleModel.HEROES.heroes[index].id == current_hero: hero_index = index
 	var enemy_id: String = BattleModel.HEROES.heroes[(hero_index + 1) % BattleModel.HEROES.heroes.size()].id
 	var enemy_deck: String = "balanced" if current_deck == "custom" else current_deck
-	battle = BattleModel.new(seed_value, current_map, current_hero, enemy_id, current_deck, enemy_deck, 90, custom_deck)
+	battle = prepared if prepared != null else BattleModel.new(seed_value, current_map, current_hero, enemy_id, current_deck, enemy_deck, 90, custom_deck)
 	battle.changed.connect(_refresh)
 	board.battle = battle
 	board.fit_map()
@@ -354,6 +454,9 @@ func _new_match(seed_value: int) -> void:
 
 func _refresh() -> void:
 	if battle == null: return
+	if campaign_active and battle.winner != -1 and campaign_session.encounter == battle:
+		var resolved: Dictionary = campaign_session.finish_battle(battle)
+		if not resolved.ok: campaign_session.notice = resolved.message
 	var player: Dictionary = battle.players[0]
 	var enemy: Dictionary = battle.players[1]
 	%MapName.get_parent().battle = battle
@@ -418,14 +521,16 @@ func _refresh() -> void:
 	var context_hint: Dictionary = _attack_context()
 	var effect_hint: Dictionary = _effect_context()
 	_show_hint(Effects.hint(effect_hint) if not effect_hint.is_empty() else (_attack_hint(context_hint) if not context_hint.is_empty() else message), error_message if context_hint.is_empty() and effect_hint.is_empty() else false)
-	if battle.winner != -1:
+	if battle.winner != -1 and not story_view.visible:
 		if board.is_presenting():
 			%ResultOverlay.hide()
 			return
 		var already_visible: bool = %ResultOverlay.visible
 		%ResultOverlay.show()
 		%ResultTitle.text = "苍蓝旗帜，仍在飘扬" if battle.winner == 0 else ("战场归于寂静" if battle.winner == 2 else "此役失利，再整旗鼓")
-		%ResultDetail.text = "%s\n共 %d 轮 · 种子 %d" % ["你取得了胜利！" if battle.winner == 0 else ("双方指挥官同时倒下，平局。" if battle.winner == 2 else "赤曜军团赢得本次战斗。"), ceili(float(battle.turn) / 2), battle.match_seed]
+		%ResultDetail.text = "%s\n共 %d 轮 · 种子 %d" % ["你取得了胜利！" if battle.winner == 0 else ("双方指挥官同时倒下，平局。" if battle.winner == 2 else "%s赢得本次战斗。" % battle.side_name(1)), ceili(float(battle.turn) / 2), battle.match_seed]
+		%PlayAgain.text = ("继续剧情" if battle.winner == 0 else "返回战前 · 重新部署") if campaign_active else "再来一局"
+		if campaign_active: %ResultDetail.text += "\n" + campaign_session.notice
 		if not already_visible: %PlayAgain.grab_focus()
 
 func _mana_dots(player: Dictionary) -> String:
@@ -469,7 +574,7 @@ func _refresh_compact_hand() -> void:
 		%CompactHand.add_child(button)
 
 func _player_can_act() -> bool:
-	return battle != null and battle.active_side == 0 and battle.winner == -1 and not ai_running and not council.visible and not %CardsDialog.visible and not %RulesDialog.visible and not deck_editor.visible and not lore_book.visible
+	return battle != null and battle.active_side == 0 and battle.winner == -1 and not ai_running and not _modal_open()
 
 func _update_board() -> void:
 	board.predicted_losses.clear()
@@ -797,7 +902,7 @@ func _update_info() -> void:
 func _position_battle_peek() -> void:
 	if battle_peek == null: return
 	var grid: Rect2 = board.grid_rect()
-	var allowed: bool = expanded_battlefield and has_started and battle.winner == -1 and not council.visible and not %CardsDialog.visible and not %RulesDialog.visible and not deck_editor.visible and board.size.y >= 460.0
+	var allowed: bool = expanded_battlefield and has_started and battle.winner == -1 and not _modal_open() and board.size.y >= 460.0
 	for panel: BattlePeek in [battle_peek, battle_brief]:
 		var left: bool = panel == battle_peek
 		var available: float = grid.position.x - 42.0 if left else board.size.x - grid.end.x - 28.0
@@ -885,7 +990,7 @@ func _run_ai(token: int) -> void:
 	await get_tree().create_timer(0.35).timeout
 	var actions: int = 0
 	while token == generation and battle.winner == -1 and battle.active_side == 1 and actions < 64:
-		if council.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible or lore_book.visible:
+		if _modal_open():
 			await get_tree().create_timer(0.1).timeout
 			continue
 		var action: Dictionary = EnemyAI.choose(battle)
@@ -908,7 +1013,7 @@ func _run_ai(token: int) -> void:
 
 func _input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo: return
-	if council == null or council.visible or %RulesDialog.visible or %CardsDialog.visible or deck_editor.visible or lore_book.visible: return
+	if council == null or _modal_open(): return
 	if event.keycode == KEY_TAB:
 		_toggle_battlefield()
 		get_viewport().set_input_as_handled()
@@ -927,8 +1032,7 @@ func _input(event: InputEvent) -> void:
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo: return
-	if council.visible: return
-	if %RulesDialog.visible or %CardsDialog.visible or deck_editor.visible or lore_book.visible: return
+	if _modal_open(): return
 	if event.keycode == KEY_ESCAPE:
 		if battle.winner == -1: _cancel()
 		get_viewport().set_input_as_handled()

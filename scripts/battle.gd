@@ -109,7 +109,20 @@ func ground(cell: Vector2i) -> String:
 	return terrain.get(cell, "plain")
 
 func hero(side: int) -> Dictionary:
+	if players[side].has("hero_display"): return players[side].hero_display
 	return HEROES.find(players[side].hero_id)
+
+func set_commander_identity(side: int, display_name: String, portrait_id: String) -> void:
+	# Campaign NPCs share a rules class, never the companion's personal identity.
+	var display: Dictionary = HEROES.find(players[side].hero_id).duplicate(true)
+	display.name = display_name
+	display.portrait = portrait_id
+	display.short = "守"
+	players[side]["hero_display"] = display
+	var leader: Dictionary = commander(side)
+	if not leader.is_empty():
+		leader.name = display_name
+		leader.short = display.short
 
 func deck(side: int) -> Dictionary:
 	return players[side].deck_definition
@@ -683,6 +696,7 @@ func _error(message: String) -> Dictionary:
 	return {"ok": false, "message": message}
 
 func side_name(side: int) -> String:
+	if players[side].has("hero_display"): return str(players[side].hero_display.name) + "所部"
 	return "苍蓝军团" if side == 0 else "赤曜军团"
 
 func cell_name(cell: Vector2i) -> String:

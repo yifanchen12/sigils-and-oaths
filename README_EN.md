@@ -5,17 +5,17 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.13.0" src="https://img.shields.io/badge/version-0.13.0-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.14.0-dev" src="https://img.shields.io/badge/version-0.14.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts; it includes no assets from either game. **Version 0.13.0 is a playable development build**, tested on Windows desktop against a local AI. The game interface is currently Chinese; this English README does not imply an English localization.
+The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts; it includes no assets from either game. Current source is **0.14.0-dev**, with the first chapter being integrated; 0.13.0 is the latest milestone with native graphical validation on Windows. The interface is Chinese; this English README does not imply an English localization.
 
 ## In-game screenshots
 
-These are actual game-window captures, including units, cards and the HUD.
+These are actual game-window captures from 0.13.0 and earlier milestones, including units, cards and the HUD. They do not validate the new story view.
 
 ![Forest battlefield during a match](docs/screenshots/expanded-battle.png)
 ![Harbor battlefield with a central canal and two bridges](docs/screenshots/painted-harbor.png)
@@ -87,7 +87,11 @@ Open the archive from the war council to read profiles for three commanders and 
 
 ![Ailin's in-game character archive](docs/screenshots/lore-warden.png)
 
-The archive contains 18 entries and 52 paragraphs: **5,558 distinct Chinese body-text characters**, excluding headings, summaries, UI, design documents and prompts. The planned game is an ensemble war story with relationships and optional romance, targeting at least 100,000 accessible Chinese characters. **Campaign chapters, story choices and campaign saves are not connected yet**; skirmishes remain the playable core.
+The archive contains 18 entries and 52 paragraphs: **5,558 distinct Chinese body-text characters**, excluding headings, summaries, UI, design documents and prompts. The planned game is an ensemble war story with relationships and optional romance, targeting at least 100,000 accessible Chinese characters.
+
+Chapter 1 adds **6,964 body-text characters**, three decisions and eight route combinations. The road and riverside routes recover different evidence, with two encounters per route. Only victory grants its story facts; defeats retain a retry point. One route contains 4,828–5,071 characters. New/continue campaign, dialogue, choices, backlog and saving are wired into the UI. **Only parsing and pure-logic integration have been checked so far; native UI layout, interaction and normal-difficulty playthroughs remain pending.** Chapter text is reported separately from verified delivery totals.
+
+Campaign autosaves store dialogue position, decisions and pre-battle checkpoints, with a last-good backup and protection for newer save versions. **Mid-battle board state is not saved:** reloading during a battle restarts from its briefing. Enemy guards use separate names and temporary fort icons with existing rules classes; dedicated NPC artwork remains pending.
 
 [Text audit](docs/narrative-audit.json) · [Narrative direction](docs/narrative-direction.md) · [Campaign acceptance plan](docs/plans/steam-campaign.md) · [Steam readiness](docs/release/steam-readiness.md)
 
@@ -170,11 +174,18 @@ docs/          Screenshots, validation and development records
 
 Verified locally with **Godot 4.7.2 / Windows / Compatibility** for version 0.13.0: 274 melee-pose, 363 ranged/casting-pose, 122 archive-UI, 257 existing-UI, 56 feedback, 134 effect-forecast and 28 casting/clock checks passed (1,234 total). Unit rules, full AI matches and map-art results retain their actual validation versions in [`docs/validation.md`](docs/validation.md). These checks do not constitute a complete campaign playthrough or Steam approval.
 
+0.14.0-dev adds headless checks for the chapter graph, storage, cross-process recovery and coordination with the real battle resolver, plus unit-skill, effect-forecast and clock regressions. Short fixture battles validate transitions, not normal-difficulty completion or balance. New UI verification is pending.
+
 ```bash
 godot --headless --path . --editor --quit
 godot --headless --path . --script res://tests/test_battle.gd
 godot --headless --path . --script res://tests/test_unit_skills.gd
 godot --headless --path . --script res://tests/test_effect_forecast.gd
+godot --headless --path . --script res://tests/test_story_runner.gd
+godot --headless --path . --script res://tests/test_campaign_store.gd
+godot --headless --path . --script res://tests/test_campaign_store.gd -- --write
+godot --headless --path . --script res://tests/test_campaign_store.gd -- --read
+godot --headless --path . --script res://tests/test_campaign_session.gd
 godot --path . --script res://tests/test_ui.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_forecast.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_map_art.gd --resolution 1440x1000 --audio-driver Dummy -- --complete
@@ -193,6 +204,7 @@ UI, forecast, map-art and skill-window checks require a graphical window. Earlie
 - Single-player development build; no multiplayer, touch adaptation or packaged release. macOS and Linux have not been validated.
 - Ranged attacks and spells currently do not check line of sight. AI diagnostics are not a substitute for competitive human playtesting.
 - One custom deck is saved locally at Godot's `user://custom_deck.json`; player data is not included in this repository.
+- One campaign autosave and a last-good backup use `user://campaign_autosave.json`. Starting over asks for in-game confirmation before replacing progress; these files are not published.
 - Development uses AI-assisted coding, original image generation and narrative writing. Narrative content is fixed during development; the game does not call a live generation service. The cel-shaded characters are all adults. Artwork sources, full prompts and generation provenance are recorded in [`assets/art/manifest.json`](assets/art/manifest.json). Source PNGs remain intact; Godot draws text, values, grids and highlights.
 - Issues with reproduction steps, window size, map and commander are welcome. Do not attach credentials or unrelated personal files.
 
