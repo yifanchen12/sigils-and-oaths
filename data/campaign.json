@@ -1,21 +1,123 @@
 {
   "version": 1,
-  "chapters": [{"id": "chapter_01", "title": "第一章 · 河门来信", "path": "res://data/narrative/chapters/chapter_01.json"}],
+  "chapters": [
+    {
+      "id": "chapter_01",
+      "title": "第一章 · 河门来信",
+      "path": "res://data/narrative/chapters/chapter_01.json"
+    },
+    {
+      "id": "chapter_02",
+      "title": "第二章 · 两岸的粮单",
+      "path": "res://data/narrative/chapters/chapter_02.json"
+    }
+  ],
   "scenarios": {
     "c01_road": {
-      "title": "军道扣车", "brief": "沿军道抵达封锁哨，迫使扣车队停止向粮车推进。", "objective": "击败敌方指挥官，打开军道检查站。",
-      "map": "greenwood", "hero": "warden", "enemy_class": "pyromancer", "deck": "balanced", "enemy_deck": "assault", "seed": 1317,
-      "enemy_name": "军道扣车队长", "enemy_portrait": "terrain_fort"
+      "title": "军道扣车",
+      "brief": "沿军道抵达封锁哨，迫使扣车队停止向粮车推进。",
+      "objective": "击败敌方指挥官，打开军道检查站。",
+      "map": "greenwood",
+      "hero": "warden",
+      "enemy_class": "pyromancer",
+      "deck": "balanced",
+      "enemy_deck": "assault",
+      "seed": 1317,
+      "enemy_name": "军道扣车队长",
+      "enemy_portrait": "terrain_fort"
     },
     "c01_river": {
-      "title": "芦滩接应", "brief": "从河岸接回应召作证的税吏，夺下渡口的指挥位置。", "objective": "击败敌方指挥官，解除渡口封锁。",
-      "map": "rivergate", "hero": "warden", "enemy_class": "warden", "deck": "bastion", "enemy_deck": "balanced", "seed": 1318,
-      "enemy_name": "渡口督卫", "enemy_portrait": "terrain_fort"
+      "title": "芦滩接应",
+      "brief": "从河岸接回应召作证的税吏，夺下渡口的指挥位置。",
+      "objective": "击败敌方指挥官，解除渡口封锁。",
+      "map": "rivergate",
+      "hero": "warden",
+      "enemy_class": "warden",
+      "deck": "bastion",
+      "enemy_deck": "balanced",
+      "seed": 1318,
+      "enemy_name": "渡口督卫",
+      "enemy_portrait": "terrain_fort"
     },
     "c01_bridge": {
-      "title": "桥头的两道印", "brief": "两支奉不同命令行事的队伍在桥头相遇。压制守备指挥，争取重新交涉的机会。", "objective": "击败敌方指挥官，控制桥头。",
-      "map": "rivergate", "hero": "warden", "enemy_class": "warden", "deck": "balanced", "enemy_deck": "bastion", "seed": 1319,
-      "enemy_name": "河门守备官", "enemy_portrait": "terrain_fort"
+      "title": "桥头的两道印",
+      "brief": "两支奉不同命令行事的队伍在桥头相遇。压制守备指挥，争取重新交涉的机会。",
+      "objective": "击败敌方指挥官，控制桥头。",
+      "map": "rivergate",
+      "hero": "warden",
+      "enemy_class": "warden",
+      "deck": "balanced",
+      "enemy_deck": "bastion",
+      "seed": 1319,
+      "enemy_name": "河门守备官",
+      "enemy_portrait": "terrain_fort"
+    },
+    "c02_relief_bridge": {
+      "title": "先送一碗热汤",
+      "brief": "河门第二批货需分批过桥。控制两座桥南端，给车队留下完整的通行间隙。",
+      "objective": "己方新回合开始时，D5、I5两格都有友军，连续两次即胜；开局不计。12个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击败敌指挥官也胜，己方指挥官倒下则败。",
+      "map": "rivergate",
+      "hero": "grove",
+      "enemy_class": "warden",
+      "deck": "bastion",
+      "enemy_deck": "assault",
+      "seed": 2317,
+      "enemy_name": "交接所桥路督卫",
+      "enemy_portrait": "terrain_fort",
+      "control": {
+        "cells": [
+          [
+            3,
+            5
+          ],
+          [
+            8,
+            5
+          ]
+        ],
+        "required": 2,
+        "round_limit": 12
+      }
+    },
+    "c02_seed_bridge": {
+      "title": "先送下一季的种子",
+      "brief": "河门第二批货需分批过桥。控制两座桥南端，给车队留下完整的通行间隙。",
+      "objective": "己方新回合开始时，D5、I5两格都有友军，连续两次即胜；开局不计。12个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击败敌指挥官也胜，己方指挥官倒下则败。",
+      "map": "rivergate",
+      "hero": "warden",
+      "enemy_class": "warden",
+      "deck": "balanced",
+      "enemy_deck": "bastion",
+      "seed": 2318,
+      "enemy_name": "交接所桥路督卫",
+      "enemy_portrait": "terrain_fort",
+      "control": {
+        "cells": [
+          [
+            3,
+            5
+          ],
+          [
+            8,
+            5
+          ]
+        ],
+        "required": 2,
+        "round_limit": 12
+      }
+    },
+    "c02_dispatch": {
+      "title": "柜门后的回执",
+      "brief": "粮队已通过双桥。迫使承包社护运队停止转移值守柜，查验分批回执并确保留院人员安全。",
+      "objective": "击败敌方指挥官，打开东岸交接所。",
+      "map": "rivergate",
+      "hero": "pyromancer",
+      "enemy_class": "warden",
+      "deck": "assault",
+      "enemy_deck": "balanced",
+      "seed": 2319,
+      "enemy_name": "承包社护运队长",
+      "enemy_portrait": "terrain_fort"
     }
   }
 }

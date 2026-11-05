@@ -8,6 +8,7 @@ const CATALOG = preload("res://data/cards.tres")
 const MAPS = preload("res://data/maps.tres")
 const HEROES = preload("res://data/heroes.tres")
 const DECKS = preload("res://data/decks.tres")
+const ControlObjective = preload("res://scripts/control_objective.gd")
 var width: int = 8
 var height: int = 6
 const HAND_LIMIT: int = 8
@@ -49,6 +50,20 @@ var weather: String = "clear"
 var weather_remaining: int = 0
 var turn_time_limit: float = 90.0
 var time_remaining: float = 90.0
+var objective: Dictionary = {}
+
+func configure_objective(config: Dictionary) -> Dictionary:
+	if turn != 1 or winner != -1 or not objective.is_empty(): return _error("目标只能在开战前设置一次。")
+	var problem: String = ControlObjective.validate_config(config, map_definition)
+	if not problem.is_empty(): return _error(problem)
+	objective = ControlObjective.initial(config)
+	return {"ok": true}
+
+func objective_status() -> String:
+	if objective.is_empty(): return ""
+	var cells: PackedStringArray = []
+	for cell: Array in objective.cells: cells.append(cell_name(Vector2i(int(cell[0]), int(cell[1]))))
+	return "守住 %s\n己方回合开始时两格均有友军，连续 %d/%d 次；已过 %d/%d 轮。击败敌指挥官也可获胜。" % ["、".join(cells), objective.streak, objective.required, (turn - 1) / 2, objective.round_limit]
 
 func _init(seed_value: int = 42, map_id: String = "greenwood", blue_hero: String = "warden", red_hero: String = "pyromancer", blue_deck: String = "balanced", red_deck: String = "balanced", seconds_per_turn: float = 90.0, blue_custom: Dictionary = {}) -> void:
 	match_seed = seed_value
@@ -590,6 +605,7 @@ func _start_turn() -> void:
 	_draw(active_side, 1)
 	_cleanup()
 	_check_winner()
+	ControlObjective.check_turn(self)
 	_record("%s回合 · 法力 %d/%d" % [side_name(active_side), player.mana, player.max_mana])
 
 func _draw(side: int, amount: int) -> void:
@@ -686,6 +702,7 @@ func _check_winner() -> void:
 	var red_alive: bool = not commander(1).is_empty()
 	if blue_alive and red_alive: return
 	winner = 2 if not blue_alive and not red_alive else (0 if blue_alive else 1)
+	if not objective.is_empty() and not blue_alive: winner = 1
 	_record("双方指挥官同时倒下，平局。" if winner == 2 else "%s取得胜利！" % side_name(winner))
 
 func _record(message: String) -> void:

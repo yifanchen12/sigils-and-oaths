@@ -88,6 +88,7 @@ func test_restore_validation() -> bool:
 		check(not runner.restore(broken).ok and runner.snapshot() == valid, "missing field rejected atomically " + field)
 	for value: Variant in [-1, 99, 0.5, "0", true, INF, NAN]:
 		var broken: Dictionary = valid.duplicate(true); broken.line = value
+		broken.erase("line_id") # Exercise the legacy index-only format.
 		check(not runner.restore(broken).ok and runner.snapshot() == valid, "invalid line rejected")
 	var broken: Dictionary = valid.duplicate(true); broken.node = "missing"
 	check(not runner.restore(broken).ok, "missing save node rejected")

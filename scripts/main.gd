@@ -159,6 +159,7 @@ func _ready() -> void:
 	story_view.advance_requested.connect(_advance_story)
 	story_view.choice_requested.connect(_choose_story)
 	story_view.battle_requested.connect(_begin_campaign_battle)
+	story_view.next_chapter_requested.connect(_next_story_chapter)
 	story_view.menu_requested.connect(_open_council)
 	story_view.save_requested.connect(_save_campaign)
 	campaign_confirmation = ConfirmationDialog.new()
@@ -308,6 +309,11 @@ func _show_story() -> void:
 	council.hide()
 	story_view.open(campaign_session.current(), campaign_session.token(), campaign_session.campaign.scenario(), campaign_session.backlog(), campaign_session.notice, campaign_session.unsaved)
 	_refresh()
+
+func _next_story_chapter(expected: Dictionary) -> void:
+	var result: Dictionary = campaign_session.next_chapter(expected)
+	if result.ok: _show_story()
+	else: story_view.set_status(result.message, true)
 
 func _advance_story(expected: Dictionary) -> void:
 	var result: Dictionary = campaign_session.advance(expected)
@@ -521,6 +527,9 @@ func _refresh() -> void:
 	%MapType.text = "%d × %d" % [battle.width, battle.height]
 	%BattleSummary.text = "你 %d/20  ·  法力 %d/%d    |    敌 %d/20    |    第%d轮 · %s · %s" % [blue_hp, player.mana, player.max_mana, red_hp, ceili(float(battle.turn) / 2), "你的回合" if battle.active_side == 0 else "敌方行动", battle.WEATHER[battle.weather].name]
 	%MapName.tooltip_text = battle.map_definition.description
+	if not battle.objective.is_empty():
+		%MapName.text = "%s / 守桥 %d/%d · 已过 %d/%d 轮" % [battle.map_definition.name, battle.objective.streak, battle.objective.required, (battle.turn - 1) / 2, battle.objective.round_limit]
+		%MapName.tooltip_text = battle.objective_status()
 	%WeatherStatus.text = battle.WEATHER[battle.weather].name + (" · 剩余 %d 行动回合" % battle.weather_remaining if battle.weather_remaining > 0 else " · 无环境修正")
 	%WeatherStatus.tooltip_text = battle.WEATHER[battle.weather].description
 	var own_hero: Dictionary = battle.hero(0)
@@ -576,6 +585,8 @@ func _refresh() -> void:
 		%ResultOverlay.show()
 		%ResultTitle.text = "苍蓝旗帜，仍在飘扬" if battle.winner == 0 else ("战场归于寂静" if battle.winner == 2 else "此役失利，再整旗鼓")
 		%ResultDetail.text = "%s\n共 %d 轮 · 种子 %d" % ["你取得了胜利！" if battle.winner == 0 else ("双方指挥官同时倒下，平局。" if battle.winner == 2 else "%s赢得本次战斗。" % battle.side_name(1)), ceili(float(battle.turn) / 2), battle.match_seed]
+		if not battle.objective.is_empty() and not blue.is_empty() and not red.is_empty():
+			%ResultDetail.text = "%s\n经过 %d 个完整轮次 · 种子 %d" % ["两处桥头连续驻守达标，粮队可以通行。" if battle.winner == 0 else "未在期限内稳住两处桥头，粮队撤回。", (battle.turn - 1) / 2, battle.match_seed]
 		%PlayAgain.text = ("继续剧情" if battle.winner == 0 else "返回战前 · 重新部署") if campaign_active else "再来一局"
 		if campaign_active: %ResultDetail.text += "\n" + campaign_session.notice
 		if not already_visible: %PlayAgain.grab_focus()
@@ -1002,6 +1013,7 @@ func _update_battle_peek() -> void:
 		var enemy_player: Dictionary = battle.players[1]
 		var weather_text: String = battle.WEATHER[battle.weather].name + (" · 剩余%d回合" % battle.weather_remaining if battle.weather_remaining > 0 else "")
 		var body: String = "生命%d/%d  护盾%d\n法力%d/%d  部队%d/6\n手牌%d张  牌库%d张\n\n%s\n%s\n\n%s：%d费 · %s\n%s\n\n%s\n%s" % [enemy.hp, enemy.max_hp, enemy.shield, enemy_player.mana, enemy_player.max_mana, battle.army_count(1), enemy_player.hand.size(), enemy_player.deck.size(), weather_text, battle.WEATHER[battle.weather].description, enemy_hero.skill, enemy_hero.cost, "就绪" if enemy_player.skill_cooldown == 0 else "冷却%d" % enemy_player.skill_cooldown, enemy_hero.skill_text, enemy_hero.passive, enemy_hero.passive_text]
+		if not battle.objective.is_empty(): body = battle.objective_status() + "\n\n" + body
 		battle_brief.present(Art.get_texture(enemy_hero.portrait), enemy.name, "敌方指挥官 · 公开战况", body, RED)
 	_position_battle_peek()
 

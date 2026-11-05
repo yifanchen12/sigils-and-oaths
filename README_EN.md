@@ -5,13 +5,13 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.14.1-dev" src="https://img.shields.io/badge/version-0.14.1--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.15.0-dev" src="https://img.shields.io/badge/version-0.15.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts; it includes no assets from either game. Current source is **0.14.1-dev**, with the first chapter and saves being developed; 0.13.0 is the latest milestone with native graphical validation on Windows. The interface is Chinese; this English README does not imply an English localization.
+The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts; it includes no assets from either game. Current source is **0.15.0-dev**, with two chapters, bridge-control encounters and cross-chapter saves being developed; 0.13.0 is the latest milestone with native graphical validation on Windows. The interface is Chinese; this English README does not imply an English localization.
 
 ## In-game screenshots
 
@@ -91,7 +91,9 @@ The archive contains 18 entries and 52 paragraphs: **5,558 distinct Chinese body
 
 Chapter 1 adds **6,964 body-text characters**, three decisions and eight route combinations. The road and riverside routes recover different evidence, with two encounters per route. Only victory grants its story facts; defeats retain a retry point. One route contains 4,828–5,071 characters. New/continue campaign, dialogue, choices, backlog and saving are wired into the UI. **Only parsing and pure-logic integration have been checked so far; native UI layout, interaction and normal-difficulty playthroughs remain pending.** Chapter text is reported separately from verified delivery totals.
 
-Campaign autosaves now include **complete battle state**: board, card order, skills/guard/root, weather, resources, clock and RNG, alongside dialogue and choices. Completed actions are saved immediately; the active clock is saved every five seconds. Menu entry and normal exit are wired to save too. Cross-process recovery and continued actions pass pure-logic checks; native exit and AI-resume interaction still need validation. Failed writes preserve the previous save and report an error. Newer or incompatible rules versions are protected. v1 saves migrate, but older files without a board resume at the briefing.
+Chapter 2 adds 6,357 Chinese body-text characters and carries the eight prior fact combinations into two new decisions: shipment priority and receipt inspection. Its 32 cumulative routes each contain two encounters. Relief priority uses Sera and the defensive deck; seed priority uses Ailin and the balanced deck. Hold both D5 and I5 at two consecutive player-turn starts within 12 full rounds, or defeat the opposing commander. Velo leads the dispatch-office encounter. Chapter transitions retain prior reading history and facts, and only commit after saving succeeds. Stable dialogue IDs survive inserted or reordered earlier lines. **New objective UI, chapter transitions and normal-difficulty playthroughs still await native validation.**
+
+Campaign autosaves now include **complete battle state**: board, card order, skills/guard/root, weather, resources, clock and RNG, alongside dialogue and choices. Completed actions are saved immediately; the active clock is saved every five seconds. Menu entry and normal exit are wired to save too. Cross-process recovery and continued actions pass pure-logic checks; native exit and AI-resume interaction still need validation. Failed writes preserve the previous save and report an error. Newer or incompatible rules versions are protected. The current v3 format accepts v1 story checkpoints and v2 full battles; files without a board resume at the briefing.
 
 Switching to a skirmish retains the ongoing campaign battle. An unexpected termination may lose the latest unsaved clock interval; backups and flushing cannot guarantee the newest write survives a sudden power loss. Enemy guards still use separate names and temporary fort icons with existing rules classes; dedicated NPC artwork remains pending.
 
@@ -180,12 +182,19 @@ Verified locally with **Godot 4.7.2 / Windows / Compatibility** for version 0.13
 
 0.14.1-dev passes 485 new and related full-save checks: snapshot 190, storage 31, session 204, migration/mid-battle 41, and two independent processes with 2+17 checks. Subsequent draws, an AI decision and future RNG samples match an independent baseline. No new graphical or full AI balance validation is claimed. See the [full battle save plan](docs/plans/battle-save.md).
 
+0.15.0-dev passes 1,533 windowless checks for story cursors, chapter continuity, objectives and related rules/saving, including two independent-process pairs. Main is parsed only. The two chapters contain 173 candidate prose paragraphs; native interaction and ordinary playthroughs remain pending. See the [chapter 2 acceptance scope](docs/plans/second-chapter.md).
+
 ```bash
 godot --headless --path . --editor --quit
 godot --headless --path . --script res://tests/test_battle.gd
 godot --headless --path . --script res://tests/test_unit_skills.gd
 godot --headless --path . --script res://tests/test_effect_forecast.gd
 godot --headless --path . --script res://tests/test_story_runner.gd
+godot --headless --path . --script res://tests/test_story_cursor.gd
+godot --headless --path . --script res://tests/test_campaign_chapters.gd
+godot --headless --path . --script res://tests/test_control_objective.gd
+godot --headless --path . --script res://tests/test_chapter_resume.gd -- --write
+godot --headless --path . --script res://tests/test_chapter_resume.gd -- --read
 godot --headless --path . --script res://tests/test_campaign_store.gd
 godot --headless --path . --script res://tests/test_campaign_store.gd -- --write
 godot --headless --path . --script res://tests/test_campaign_store.gd -- --read

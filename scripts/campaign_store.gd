@@ -4,7 +4,7 @@ extends RefCounted
 const Campaign = preload("res://scripts/campaign.gd")
 const Story = preload("res://scripts/story_runner.gd")
 const Snapshot = preload("res://scripts/battle_snapshot.gd")
-const VERSION: int = 2
+const VERSION: int = 3
 const MAX_BYTES: int = 1048576
 var path: String
 
@@ -28,7 +28,7 @@ func _read_path(source: String) -> Dictionary:
 		return {"ok": false, "message": "战役存档版本无效。"}
 	if data.version > VERSION: return {"ok": false, "future": true, "message": "存档来自较新版本，当前版本不会覆盖。"}
 	var validated: Dictionary = _validate(data.get("progress"), {} if int(data.version) == 1 else data.get("encounter"))
-	if validated.ok and int(data.version) == 1: validated["migrated"] = true
+	if validated.ok and int(data.version) < VERSION: validated["migrated"] = true
 	return validated
 
 func _validate(progress: Variant, encounter: Variant) -> Dictionary:
@@ -39,12 +39,14 @@ func _validate(progress: Variant, encounter: Variant) -> Dictionary:
 	var saved_encounter: Dictionary = {}
 	if not encounter.is_empty():
 		var page: Dictionary = campaign.story.current()
-		if page.type != "battle" or encounter.get("scenario") != page.scenario or encounter.get("revision") != page.revision:
+		if page.type != "battle" or encounter.get("scenario") != page.scenario or not Story._whole(encounter.get("revision")) or encounter.revision != page.revision:
 			return {"ok": false, "message": "战斗与当前剧情进度不一致。"}
 		restored = Snapshot.restore(encounter.get("battle"))
 		if not restored.ok: return restored
 		var battle: RefCounted = restored.battle
 		var setup: Dictionary = campaign.scenario()
+		if battle.ControlObjective.config(battle.objective) != battle.ControlObjective.config(setup.get("control", {})):
+			return {"ok": false, "message": "战斗目标与关卡不一致。"}
 		if battle.map_definition.id != setup.map or battle.match_seed != int(setup.seed) or battle.turn_time_limit != 90:
 			return {"ok": false, "message": "战斗地图、种子或时限与关卡不一致。"}
 		if battle.players[0].hero_id != setup.hero or battle.players[1].hero_id != setup.enemy_class or battle.deck(0).id != setup.deck or battle.deck(1).id != setup.enemy_deck:

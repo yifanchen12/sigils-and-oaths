@@ -20,7 +20,10 @@ func _init(save_path: String = "user://campaign_autosave.json") -> void:
 	store = Store.new(save_path)
 
 func current() -> Dictionary:
-	return campaign.story.current() if campaign.story != null else {"ok": false, "message": "尚未开始战役。"}
+	if campaign.story == null: return {"ok": false, "message": "尚未开始战役。"}
+	var page: Dictionary = campaign.story.current()
+	if page.type == "end": page["next_chapter"] = campaign.next_chapter()
+	return page
 
 func token() -> Dictionary:
 	return {"epoch": epoch, "revision": current().get("revision", -1)}
@@ -64,7 +67,7 @@ func load_campaign() -> Dictionary:
 	encounter_revision = int(current().revision) if encounter != null else -1
 	suspended = false
 	autosave_elapsed = 0.0
-	notice = loaded.get("message", "旧版剧情存档已兼容载入；本关将从战前开始。" if loaded.get("migrated", false) else "战役进度已恢复。")
+	notice = loaded.get("message", "旧版存档已兼容载入。" if loaded.get("migrated", false) else "战役进度已恢复。")
 	unsaved = false
 	if encounter != null and encounter.winner != -1: return finish_battle(encounter)
 	return {"ok": true}
@@ -100,6 +103,25 @@ func choose(option_id: String, expected: Dictionary) -> Dictionary:
 	if not result.ok: return result
 	return _after_action(campaign.story.choose(option_id, int(expected.revision)))
 
+func next_chapter(expected: Dictionary) -> Dictionary:
+	var result: Dictionary = _guard(expected)
+	if not result.ok: return result
+	var candidate: RefCounted = Campaign.new()
+	result = candidate.restore(campaign.snapshot())
+	if not result.ok: return result
+	result = candidate.advance_chapter()
+	if not result.ok: return result
+	result = store.save_progress(candidate.snapshot())
+	if not result.ok:
+		unsaved = true
+		notice = result.message
+		return result
+	campaign = candidate
+	epoch += 1
+	unsaved = false
+	notice = "上一章的选择已保留，新章起点已保存。"
+	return {"ok": true}
+
 func begin_battle(expected: Dictionary) -> Dictionary:
 	var result: Dictionary = _guard(expected)
 	if not result.ok: return result
@@ -109,6 +131,10 @@ func begin_battle(expected: Dictionary) -> Dictionary:
 	var setup: Dictionary = campaign.scenario()
 	encounter = BattleModel.new(int(setup.seed), setup.map, setup.hero, setup.enemy_class, setup.deck, setup.enemy_deck, 90)
 	encounter.set_commander_identity(1, setup.enemy_name, setup.enemy_portrait)
+	result = encounter.configure_objective(setup.get("control", {}))
+	if not result.ok:
+		encounter = null
+		return result
 	encounter_revision = int(current().revision)
 	suspended = false
 	result = save()
@@ -142,8 +168,4 @@ func resume_encounter() -> Dictionary:
 	return {"ok": true, "battle": encounter, "scenario": campaign.scenario()}
 
 func backlog() -> Array[Dictionary]:
-	var result: Array[Dictionary] = []
-	if campaign.story == null: return result
-	for id: String in campaign.story.state.history:
-		result.append({"id": id, "text": campaign.story.graph.strings[id]})
-	return result
+	return campaign.backlog()

@@ -1,5 +1,5 @@
 {
-  "scope": "Codex accessibility verified in 0.13.0. Chapter 1 is wired in source, with pure-logic reachability; awaiting native UI verification.",
+  "scope": "Codex accessibility verified in 0.13.0. Chapters 1-2 and chapter transitions are wired in source; graph paths carry actual prior endings. Native UI and ordinary playthrough verification remain pending.",
   "counting_method": "Distinct body paragraphs; Chinese Han characters only; excludes punctuation, summaries, headings, UI, plans and prompts.",
   "entries": 18,
   "paragraphs": 52,
@@ -20,13 +20,27 @@
       "graph_reachable_unique_characters": 6964,
       "route_count": 8,
       "shortest_route_characters": 4828,
+      "incoming_fact_combinations": 1,
       "longest_route_characters": 5071,
       "nodes": 20,
       "status": "Menu and story view wired; model/session paths checked; native UI/playthrough not yet validated."
+    },
+    {
+      "id": "chapter_02",
+      "body_paragraphs": 76,
+      "all_string_entries": 82,
+      "authored_unique_characters": 6357,
+      "graph_reachable_unique_characters": 6357,
+      "route_count": 32,
+      "shortest_route_characters": 4577,
+      "incoming_fact_combinations": 8,
+      "longest_route_characters": 4709,
+      "nodes": 15,
+      "status": "Menu and story view wired; model/session paths checked; native UI/playthrough not yet validated."
     }
   ],
-  "authored_total_characters": 12522,
-  "pending_ui_verification_characters": 6964,
+  "authored_total_characters": 18879,
+  "pending_ui_verification_characters": 13321,
   "limitations": "Exact-repeat audit only. Chapter paths assume battle victories and are not normal-difficulty playthroughs. Headings, choice prompts and option labels are excluded. Candidate chapter prose is not added to the verified delivery total until native UI checks pass; editorial quality and balance need separate review.",
   "errors": []
 }

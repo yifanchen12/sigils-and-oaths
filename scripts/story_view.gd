@@ -4,6 +4,7 @@ extends Control
 signal advance_requested(expected: Dictionary)
 signal choice_requested(option_id: String, expected: Dictionary)
 signal battle_requested(expected: Dictionary)
+signal next_chapter_requested(expected: Dictionary)
 signal menu_requested
 signal save_requested
 
@@ -166,13 +167,16 @@ func _render_page() -> void:
 			text_body.text = "%s\n\n作战目标\n%s\n\n敌方指挥：%s\n每回合 90 秒。战斗自动保存，退出后可继续当前局面。%s" % [setup.get("brief", ""), setup.get("objective", ""), setup.get("enemy_name", ""), retry]
 			actions.add_child(_button("重新出征" if page.attempts > 0 else "率军出征", _battle.bind(view_token.duplicate())))
 		"end":
-			speaker.text = "第一章 · 章末"
+			speaker.text = page.get("chapter", "本章") + " · 章末"
+			if not page.get("next_chapter", {}).is_empty():
+				actions.add_child(_button("进入" + page.next_chapter.title, _next_chapter.bind(view_token.duplicate())))
 			actions.add_child(_button("返回战前页", func() -> void: menu_requested.emit()))
 	if actions.get_child_count() > 0: actions.get_child(0).grab_focus()
 
 func _advance(expected: Dictionary) -> void: advance_requested.emit(expected)
 func _choose(option: String, expected: Dictionary) -> void: choice_requested.emit(option, expected)
 func _battle(expected: Dictionary) -> void: battle_requested.emit(expected)
+func _next_chapter(expected: Dictionary) -> void: next_chapter_requested.emit(expected)
 
 func _toggle_history() -> void:
 	showing_history = not showing_history

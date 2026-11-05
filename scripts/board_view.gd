@@ -317,6 +317,9 @@ func _draw() -> void:
 			var cell := Vector2i(x, y)
 			var rect := Rect2(grid.position + Vector2(x, y) * tile, Vector2.ONE * tile)
 			_draw_terrain(cell, rect, painted)
+			if not battle.objective.is_empty() and battle.objective.cells.has([x, y]):
+				draw_rect(rect.grow(-7), GOLD, false, 3)
+				_text("守", rect.position + Vector2(tile * 0.5, 16), 13, GOLD)
 			if cast_reach.has(cell):
 				draw_rect(rect.grow(-1), Color(0.34, 0.61, 0.90, 0.12))
 			if deploy.has(cell):

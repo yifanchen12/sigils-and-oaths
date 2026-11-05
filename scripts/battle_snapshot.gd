@@ -2,7 +2,7 @@ extends RefCounted
 ## Plain-data snapshots. No object deserialization, rendering or turn-start effects.
 
 const Model = preload("res://scripts/battle.gd")
-const VERSION: int = 1
+const VERSION: int = 2
 const SCALARS: Array[String] = ["active_side", "turn", "winner", "next_id", "match_seed", "deck_size", "weather", "weather_remaining", "turn_time_limit", "time_remaining"]
 const PLAYER_FIELDS: Array[String] = ["hero_id", "deck_id", "mana", "max_mana", "fatigue", "skill_cooldown", "spell_boost_used", "card_total"]
 const UNIT_INTS: Array[String] = ["id", "side", "hp", "max_hp", "atk", "defense", "move", "range", "shield", "last_move_distance", "rooted_turns"]
@@ -29,6 +29,7 @@ static func capture(battle: RefCounted) -> Dictionary:
 	var data: Dictionary = {"version": VERSION, "rules": rules_signature(), "map_id": battle.map_definition.id,
 		"rng_seed": str(battle.rng.seed), "rng_state": str(battle.rng.state), "players": [], "units": [], "terrain": [], "log": Array(battle.log_lines)}
 	for key: String in SCALARS: data[key] = battle.get(key)
+	data["objective"] = battle.objective.duplicate(true)
 	for side: int in range(2):
 		var source: Dictionary = battle.players[side]
 		var player: Dictionary = {}
@@ -72,6 +73,9 @@ static func validate(data: Variant) -> Dictionary:
 		return {"ok": false, "protected": true, "message": "战斗存档版本不兼容，原档保留。"}
 	if not data.get("rules") is String or data.rules.length() != 64: return {"ok": false, "message": "战斗规则签名缺失。"}
 	if data.get("rules") != rules_signature(): return {"ok": false, "protected": true, "message": "战斗存档与当前规则版本不同，原档保留。"}
+	if int(data.version) == 1:
+		data = data.duplicate(true)
+		data["objective"] = {}
 	var problem: String = _validate(data)
 	return {"ok": true} if problem.is_empty() else {"ok": false, "message": problem}
 
@@ -85,6 +89,8 @@ static func _validate(data: Dictionary) -> String:
 	if data.deck_size != Model.DECKS.DECK_SIZE: return "起始牌库数量与规则不一致。"
 	if not _whole(data.get("active_side"), 0, 1) or not _whole(data.get("winner"), -1, 2): return "行动方或胜负无效。"
 	if int(data.active_side) != (int(data.turn) - 1) % 2: return "回合与行动方不一致。"
+	var goal_problem: String = Model.ControlObjective.validate_state(data.get("objective"), data, map)
+	if not goal_problem.is_empty(): return goal_problem
 	if not Model.WEATHER.has(data.get("weather")) or not _whole(data.get("weather_remaining"), 0, 10000): return "天气状态无效。"
 	if (data.weather == "clear") != (data.weather_remaining == 0): return "天气期限不一致。"
 	if not _number(data.get("turn_time_limit"), 1, 3600) or not _number(data.get("time_remaining"), 0, data.turn_time_limit): return "回合计时无效。"
@@ -152,6 +158,9 @@ static func _validate(data: Dictionary) -> String:
 				cards[side] += 1
 		if cards[side] != int(player.card_total): return "卡牌总数与牌区、场上部队不一致。"
 	var actual_winner: int = -1 if commanders == [1, 1] else (2 if commanders == [0, 0] else (0 if commanders[0] == 1 else 1))
+	if not data.objective.is_empty():
+		if commanders[0] == 0: actual_winner = 1
+		elif commanders[1] == 1: actual_winner = Model.ControlObjective.objective_winner(data.objective, data)
 	if data.winner != actual_winner: return "指挥官状态与战果不一致。"
 	return ""
 
@@ -159,6 +168,10 @@ static func restore(data: Variant) -> Dictionary:
 	var checked: Dictionary = validate(data)
 	if not checked.ok: return checked
 	var battle: RefCounted = Model.new(int(data.match_seed), data.map_id, data.players[0].hero_id, data.players[1].hero_id)
+	if int(data.version) >= 2 and not data.objective.is_empty():
+		battle.objective = Model.ControlObjective.config(data.objective)
+		battle.objective["streak"] = int(data.objective.streak)
+		battle.objective["last_check"] = int(data.objective.last_check)
 	for key: String in SCALARS:
 		battle.set(key, data[key] if key in ["weather", "turn_time_limit", "time_remaining"] else int(data[key]))
 	battle.players.clear()

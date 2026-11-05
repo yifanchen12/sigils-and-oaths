@@ -12,6 +12,7 @@ HAN = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\U00020000-\U0002ebef]")
 def chapter_audit(ids, text_seen, errors):
     index = json.loads((ROOT / "data/campaign.json").read_text(encoding="utf-8"))
     reports = []
+    previous_endings = [{}]
     for entry in index["chapters"]:
         path = (ROOT / entry["path"].removeprefix("res://")).resolve()
         if not path.is_relative_to(ROOT):
@@ -35,6 +36,7 @@ def chapter_audit(ids, text_seen, errors):
                 text_seen[normalized] = line_id
                 weights[line_id] = len(normalized)
         routes, reached, read_lines = [], set(), set()
+        endings = []
 
         def matches(when, flags):
             return all(flags[key] == value for key, value in when.items())
@@ -61,10 +63,20 @@ def chapter_audit(ids, text_seen, errors):
             elif kind == "end":
                 read_lines.add(node["text"])
                 routes.append(sum(weights[line] for line in lines | {node["text"]}))
+                endings.append(flags.copy())
             else:
                 raise ValueError(f"Unknown chapter node: {node_id}")
 
-        walk(graph["start"], graph["defaults"], set(), set())
+        incoming = set()
+        for previous in previous_endings:
+            inherited = {}
+            for key in graph.get("inherits", []):
+                if key not in previous or type(previous[key]) is not type(graph["defaults"][key]):
+                    raise ValueError(f"Missing or mistyped inherited fact: {entry['id']} / {key}")
+                inherited[key] = previous[key]
+            incoming.add(json.dumps(inherited, sort_keys=True))
+            walk(graph["start"], graph["defaults"] | inherited, set(), set())
+        previous_endings = endings
         if read_lines != body:
             errors.append(f"Unreachable chapter body: {sorted(body - read_lines)}")
         if reached != nodes.keys():
@@ -74,6 +86,7 @@ def chapter_audit(ids, text_seen, errors):
             "authored_unique_characters": sum(weights.values()),
             "graph_reachable_unique_characters": sum(weights[line] for line in read_lines),
             "route_count": len(routes), "shortest_route_characters": min(routes),
+            "incoming_fact_combinations": len(incoming),
             "longest_route_characters": max(routes), "nodes": len(nodes),
             "status": "Menu and story view wired; model/session paths checked; native UI/playthrough not yet validated.",
         })
@@ -121,7 +134,7 @@ def audit():
     chapters = chapter_audit(ids, text_seen, errors)
     candidate = sum(chapter["graph_reachable_unique_characters"] for chapter in chapters)
     return {
-        "scope": "Codex accessibility verified in 0.13.0. Chapter 1 is wired in source, with pure-logic reachability; awaiting native UI verification.",
+        "scope": "Codex accessibility verified in 0.13.0. Chapters 1-2 and chapter transitions are wired in source; graph paths carry actual prior endings. Native UI and ordinary playthrough verification remain pending.",
         "counting_method": "Distinct body paragraphs; Chinese Han characters only; excludes punctuation, summaries, headings, UI, plans and prompts.",
         "entries": len(entries), "paragraphs": paragraphs,
         "unique_chinese_characters": count, "by_category": by_category,

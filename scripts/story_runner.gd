@@ -41,6 +41,12 @@ static func validate(source: Variant) -> String:
 	if nodes.is_empty() or not nodes.has(source.start): return "剧情起点不存在。"
 	for key: Variant in defaults:
 		if not key is String or not _flag_value(defaults[key]): return "剧情标志无效。"
+	var inherited: Variant = source.get("inherits", [])
+	if not inherited is Array: return "继承事实必须是列表。"
+	var inherited_keys: Dictionary = {}
+	for key: Variant in inherited:
+		if not key is String or not defaults.has(key) or inherited_keys.has(key): return "继承事实重复或未声明。"
+		inherited_keys[key] = true
 	for key: Variant in strings:
 		if not key is String or not strings[key] is String or strings[key].strip_edges().is_empty(): return "剧情文本无效。"
 	var references: Dictionary = {}
@@ -53,8 +59,11 @@ static func validate(source: Variant) -> String:
 			"dialogue":
 				if not node.get("lines") is Array or node.lines.is_empty(): return "对白没有内容：" + id
 				var unconditional: bool = false
+				var line_ids: Dictionary = {}
 				for line: Variant in node.lines:
 					if not line is Dictionary or not strings.has(line.get("id")): return "对白引用缺失：" + id
+					if line_ids.has(line.id): return "同一节点的对白编号重复：" + id
+					line_ids[line.id] = true
 					if not source.speakers.has(line.get("speaker")): return "说话人不存在：" + id
 					if not _flag_map(line.get("when", {}), defaults): return "对白条件无效：" + id
 					if line.get("when", {}).is_empty(): unconditional = true
@@ -72,6 +81,8 @@ static func validate(source: Variant) -> String:
 					if option_ids.has(option.id) or not strings.has(option.get("text")): return "选项重复或文本缺失：" + id
 					option_ids[option.id] = true
 					if not _flag_map(option.get("when", {}), defaults) or not _flag_map(option.get("set", {}), defaults): return "选项标志无效：" + id
+					for key: String in option.get("set", {}):
+						if inherited_keys.has(key): return "上一章的事实不能被本章选择改写。"
 					if option.get("when", {}).is_empty(): unconditional = true
 					references[option.text] = true
 					links.append(option.get("next"))
@@ -79,6 +90,8 @@ static func validate(source: Variant) -> String:
 			"battle":
 				if not node.get("scenario") is String or node.scenario.is_empty(): return "战斗缺少关卡编号：" + id
 				if not _flag_map(node.get("win_set", {}), defaults): return "战果标志无效：" + id
+				for key: String in node.get("win_set", {}):
+					if inherited_keys.has(key): return "上一章的事实不能被本章战果改写。"
 				links.append(node.get("win"))
 			"end":
 				if not strings.has(node.get("text")) or not node.get("ending") is String: return "章末信息缺失：" + id
@@ -214,7 +227,18 @@ func resolve_battle(outcome: int, revision: int) -> Dictionary:
 	return {"ok": true}
 
 func snapshot() -> Dictionary:
-	return state.duplicate(true)
+	var result: Dictionary = state.duplicate(true)
+	if not state.is_empty(): result["line_id"] = current().get("line_id", "")
+	return result
+
+func _saved_line(candidate: Dictionary, node: Dictionary) -> int:
+	# Old saves used array offsets. A supplied identity must never silently fall back.
+	if not candidate.has("line_id"): return int(candidate.line)
+	if not candidate.line_id is String: return -1
+	if node.type != "dialogue": return 0 if candidate.line_id.is_empty() else -1
+	for index: int in range(node.lines.size()):
+		if node.lines[index].id == candidate.line_id: return index
+	return -1
 
 func validate_state(candidate: Variant) -> String:
 	if graph.is_empty() or not candidate is Dictionary: return "剧情进度无效。"
@@ -224,10 +248,12 @@ func validate_state(candidate: Variant) -> String:
 	var flags: Dictionary = graph.defaults.duplicate(true)
 	flags.merge(candidate.flags, true)
 	var node: Dictionary = graph.nodes[candidate.node]
+	var line_index: int = _saved_line(candidate, node)
+	if line_index < 0: return "存档对白编号不存在或不属于当前节点。"
 	if node.type == "dialogue":
-		if candidate.line >= node.lines.size(): return "存档对白行号越界。"
-		for key: String in node.lines[int(candidate.line)].get("when", {}):
-			if flags[key] != node.lines[int(candidate.line)].when[key]: return "存档停在不可显示的对白。"
+		if line_index >= node.lines.size(): return "存档对白行号越界。"
+		for key: String in node.lines[line_index].get("when", {}):
+			if flags[key] != node.lines[line_index].when[key]: return "存档停在不可显示的对白。"
 	elif candidate.line != 0: return "非对白节点的行号无效。"
 	if not candidate.get("decisions") is Dictionary or not candidate.get("attempts") is Dictionary: return "存档记录无效。"
 	for id: Variant in candidate.decisions:
@@ -254,8 +280,11 @@ func restore(candidate: Variant) -> Dictionary:
 	next_state = next_state.duplicate(true)
 	var flags: Dictionary = graph.defaults.duplicate(true)
 	flags.merge(next_state.flags, true)
+	for key: String in flags:
+		if typeof(flags[key]) in [TYPE_INT, TYPE_FLOAT]: flags[key] = int(flags[key])
 	next_state.flags = flags
-	next_state.line = int(next_state.line)
+	for key: String in next_state.attempts: next_state.attempts[key] = int(next_state.attempts[key])
+	next_state.line = _saved_line(candidate, graph.nodes[candidate.node])
 	next_state.revision = int(next_state.revision)
 	state = next_state
 	return {"ok": true}
