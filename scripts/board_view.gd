@@ -319,7 +319,8 @@ func _draw() -> void:
 			_draw_terrain(cell, rect, painted)
 			if not battle.objective.is_empty() and battle.objective.cells.has([x, y]):
 				draw_rect(rect.grow(-7), GOLD, false, 3)
-				_text("守", rect.position + Vector2(tile * 0.5, 16), 13, GOLD)
+				draw_circle(rect.position + Vector2(tile * 0.5, 14), 11, Color("142337"))
+				_text("守", rect.position + Vector2(tile * 0.5, 19), 13, GOLD)
 			if cast_reach.has(cell):
 				draw_rect(rect.grow(-1), Color(0.34, 0.61, 0.90, 0.12))
 			if deploy.has(cell):

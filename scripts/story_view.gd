@@ -46,11 +46,15 @@ func _label(text: String, font_size: int, color: Color) -> Label:
 	label.add_theme_color_override("font_color", color)
 	return label
 
-func _button(text: String, callback: Callable) -> Button:
+func _button(text: String, callback: Callable, wrap: bool = true) -> Button:
 	var button := Button.new()
 	button.text = text
 	button.custom_minimum_size.y = 48
-	button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	# Toolbar buttons must keep their text width inside an HBox. Wrapping there
+	# lets the expanding title/status squeeze them into unreadable vertical bars.
+	button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART if wrap else TextServer.AUTOWRAP_OFF
+	button.add_theme_font_size_override("font_size", 18)
+	if not wrap: button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	button.pressed.connect(callback)
 	return button
 
@@ -68,9 +72,9 @@ func _build() -> void:
 	heading = _label("河门来信", 28, INK)
 	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(heading)
-	backlog_button = _button("已读回看", _toggle_history)
+	backlog_button = _button("已读回看", _toggle_history, false)
 	header.add_child(backlog_button)
-	header.add_child(_button("返回战前页  Esc", func() -> void: menu_requested.emit()))
+	header.add_child(_button("返回战前页  Esc", func() -> void: menu_requested.emit(), false))
 	var columns := HBoxContainer.new()
 	columns.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	columns.add_theme_constant_override("separation", 32)
@@ -111,7 +115,7 @@ func _build() -> void:
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	footer.add_child(status)
-	footer.add_child(_button("保存进度", func() -> void: save_requested.emit()))
+	footer.add_child(_button("保存进度", func() -> void: save_requested.emit(), false))
 
 func open(current_page: Dictionary, expected: Dictionary, scenario: Dictionary, backlog: Array[Dictionary], save_notice: String, save_failed: bool) -> void:
 	page = current_page.duplicate(true)
@@ -149,7 +153,7 @@ func _render_page() -> void:
 		backlog_button.grab_focus()
 		return
 	var speaker_id: String = page.get("speaker_id", "")
-	illustration.texture = Art.get_texture("sprite_" + speaker_id) if Art.HERO_ORDER.has(speaker_id) or Art.UNIT_ORDER.has(speaker_id) else Art.get_texture("terrain_fort")
+	illustration.texture = Art.get_texture("sprite_" + speaker_id) if Art.HERO_ORDER.has(speaker_id) or Art.UNIT_ORDER.has(speaker_id) else Art.get_texture(background_id)
 	speaker.text = page.get("speaker", "军议")
 	text_body.text = page.get("text", "")
 	text_body.scroll_to_line(0)

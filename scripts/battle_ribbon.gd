@@ -18,6 +18,13 @@ func _process(_delta: float) -> void:
 		last_second = second
 		queue_redraw()
 
+func subtitle_text() -> String:
+	if battle == null: return ""
+	var value: String = "%s  /  %s" % [battle.map_definition.name, battle.WEATHER[battle.weather].name]
+	if not battle.objective.is_empty():
+		value += "  ·  驻守 %d/%d  ·  已过 %d/%d 轮" % [battle.objective.streak, battle.objective.required, (battle.turn - 1) / 2, battle.objective.round_limit]
+	return value
+
 func _draw() -> void:
 	if battle == null or not hud_visible: return
 	var font: Font = get_theme_default_font()
@@ -48,10 +55,10 @@ func _draw() -> void:
 	var turn_text: String = "第 %02d 轮  ·  %s" % [ceili(float(battle.turn) / 2), "我方行动" if battle.active_side == 0 else "敌方行动"]
 	var text_width: float = font.get_string_size(turn_text, HORIZONTAL_ALIGNMENT_LEFT, -1, 17).x
 	draw_string(font, Vector2(center_x - text_width / 2, 27), turn_text, HORIZONTAL_ALIGNMENT_LEFT, -1, 17, Color("eddbac"))
-	var weather: String = battle.WEATHER[battle.weather].name
-	var subtitle: String = "%s  /  %s" % [battle.map_definition.name, weather]
-	text_width = font.get_string_size(subtitle, HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x
-	draw_string(font, Vector2(center_x - text_width / 2, 51), subtitle, HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color("a8bdcd"))
+	var subtitle: String = subtitle_text()
+	var subtitle_size: int = 14 if not battle.objective.is_empty() else 12
+	text_width = font.get_string_size(subtitle, HORIZONTAL_ALIGNMENT_LEFT, -1, subtitle_size).x
+	draw_string(font, Vector2(center_x - text_width / 2, 51), subtitle, HORIZONTAL_ALIGNMENT_LEFT, -1, subtitle_size, Color("eddbac") if not battle.objective.is_empty() else Color("a8bdcd"))
 	var clock_width: float = minf(220, size.x * 0.26)
 	var clock := Rect2(Vector2(center_x - clock_width / 2, 61), Vector2(clock_width, 3))
 	draw_rect(clock, Color("314359"))

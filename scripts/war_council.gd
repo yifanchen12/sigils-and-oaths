@@ -147,7 +147,7 @@ func _build() -> void:
 	continue_campaign.custom_minimum_size.y = 44
 	continue_campaign.pressed.connect(func() -> void: continue_campaign_requested.emit())
 	campaign_row.add_child(continue_campaign)
-	campaign_notice = _label("首章主线 · 剧情选择与战前检查点", 13, MUTED, true)
+	campaign_notice = _label("前三章主线 · 剧情选择与战斗进度保存", 13, MUTED, true)
 	left.add_child(campaign_notice)
 	var heroes_row := HBoxContainer.new()
 	heroes_row.add_theme_constant_override("separation", 10)

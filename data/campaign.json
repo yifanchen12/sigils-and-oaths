@@ -10,6 +10,11 @@
       "id": "chapter_02",
       "title": "第二章 · 两岸的粮单",
       "path": "res://data/narrative/chapters/chapter_02.json"
+    },
+    {
+      "id": "chapter_03",
+      "title": "第三章 · 风过断脊",
+      "path": "res://data/narrative/chapters/chapter_03.json"
     }
   ],
   "scenarios": {
@@ -118,6 +123,46 @@
       "seed": 2319,
       "enemy_name": "承包社护运队长",
       "enemy_portrait": "terrain_fort"
+    },
+    "c03_vent": {
+      "map": "ridgepass",
+      "hero": "warden",
+      "enemy_name": "掌运官杜骞",
+      "enemy_portrait": "terrain_fort",
+      "title": "风口的接应",
+      "brief": "上层检修廊下方的主井仍保持封闭。守住两个地表风口，让矿工卸下配重并撤出货物；战场范围为隘口地表。",
+      "objective": "己方新回合开始时，E6、H5两格都有友军，连续两次即胜；开局不计。10个完整轮次结束仍未达标则败，同时达标优先算胜。击败敌指挥官也胜，己方指挥官倒下则败。",
+      "enemy_class": "pyromancer",
+      "deck": "bastion",
+      "enemy_deck": "assault",
+      "seed": 3317,
+      "control": {
+        "cells": [
+          [
+            4,
+            4
+          ],
+          [
+            7,
+            5
+          ]
+        ],
+        "required": 2,
+        "round_limit": 10
+      }
+    },
+    "c03_ridge": {
+      "map": "ridgepass",
+      "hero": "warden",
+      "enemy_name": "掌运官杜骞",
+      "enemy_portrait": "terrain_fort",
+      "title": "山脊上的旗",
+      "brief": "工人撤出并封住检修廊。沿山脊与外坡推进，压制押运队指挥位。此战不需要驻守双点，也不设整局轮数期限；每行动回合仍为90秒。",
+      "objective": "击败敌方指挥官，取得外坡道路；己方指挥官倒下则败。",
+      "enemy_class": "warden",
+      "deck": "assault",
+      "enemy_deck": "bastion",
+      "seed": 3318
     }
   }
 }

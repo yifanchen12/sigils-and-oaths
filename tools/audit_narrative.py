@@ -2,6 +2,7 @@
 from pathlib import Path
 import argparse
 import json
+import hashlib
 import re
 import sys
 
@@ -11,6 +12,9 @@ HAN = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\U00020000-\U0002ebef]")
 
 def chapter_audit(ids, text_seen, errors):
     index = json.loads((ROOT / "data/campaign.json").read_text(encoding="utf-8"))
+    evidence_path = ROOT / "docs/narrative-native-ui.json"
+    evidence = json.loads(evidence_path.read_text(encoding="utf-8")) if evidence_path.exists() else {}
+    rendered_sources = evidence.get("chapter_sha256", {}) if evidence.get("passed") is True else {}
     reports = []
     previous_endings = [{}]
     for entry in index["chapters"]:
@@ -18,6 +22,7 @@ def chapter_audit(ids, text_seen, errors):
         if not path.is_relative_to(ROOT):
             raise ValueError("Chapter path is outside project")
         graph = json.loads(path.read_text(encoding="utf-8"))
+        native_rendered = rendered_sources.get(entry["id"]) == hashlib.sha256(path.read_text(encoding="utf-8").encode("utf-8")).hexdigest()
         nodes, strings = graph["nodes"], graph["strings"]
         body = {line["id"] for node in nodes.values() if node["type"] == "dialogue" for line in node["lines"]}
         body.update(node["text"] for node in nodes.values() if node["type"] == "end")
@@ -88,7 +93,8 @@ def chapter_audit(ids, text_seen, errors):
             "route_count": len(routes), "shortest_route_characters": min(routes),
             "incoming_fact_combinations": len(incoming),
             "longest_route_characters": max(routes), "nodes": len(nodes),
-            "status": "Menu and story view wired; model/session paths checked; native UI/playthrough not yet validated.",
+            "native_rendered_source_matches": native_rendered,
+            "status": "Native page rendering checked in 0.16.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending." if native_rendered else "Source differs from native rendering evidence or has not been rendered; native UI and ordinary playthrough checks pending.",
         })
     return reports
 
@@ -133,16 +139,19 @@ def audit():
         errors.append("Missing established character profile")
     chapters = chapter_audit(ids, text_seen, errors)
     candidate = sum(chapter["graph_reachable_unique_characters"] for chapter in chapters)
+    rendered = sum(chapter["graph_reachable_unique_characters"] for chapter in chapters if chapter["native_rendered_source_matches"])
     return {
-        "scope": "Codex accessibility verified in 0.13.0. Chapters 1-2 and chapter transitions are wired in source; graph paths carry actual prior endings. Native UI and ordinary playthrough verification remain pending.",
+        "scope": "Codex accessibility verified in 0.13.0. Chapters 1-3 carry actual prior endings. Native pages and selected control flows checked in 0.16.0-dev; fixture victories do not establish ordinary playthrough accessibility.",
         "counting_method": "Distinct body paragraphs; Chinese Han characters only; excludes punctuation, summaries, headings, UI, plans and prompts.",
         "entries": len(entries), "paragraphs": paragraphs,
         "unique_chinese_characters": count, "by_category": by_category,
         "release_target": 100000, "remaining_to_target": max(0, 100000 - count),
         "chapter_candidates": chapters,
         "authored_total_characters": count + candidate,
-        "pending_ui_verification_characters": candidate,
-        "limitations": "Exact-repeat audit only. Chapter paths assume battle victories and are not normal-difficulty playthroughs. Headings, choice prompts and option labels are excluded. Candidate chapter prose is not added to the verified delivery total until native UI checks pass; editorial quality and balance need separate review.",
+        "native_rendered_chapter_characters": rendered,
+        "pending_ui_verification_characters": candidate - rendered,
+        "pending_playthrough_verification_characters": candidate,
+        "limitations": "Exact-repeat audit only. Chapter paths assume battle victories and are not normal-difficulty playthroughs. Headings, choice prompts and option labels are excluded. Candidate chapter prose is not added to the verified delivery total until native access and ordinary playthrough checks pass; editorial quality and balance need separate review.",
         "errors": errors,
     }
 

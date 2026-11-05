@@ -13,20 +13,27 @@
       "title": "河门来信",
       "status": "revised_pending_reader_feedback",
       "nativeValidated": false,
-      "revision": "0.15.1-dev"
+      "revision": "0.15.1-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false
     },
     {
       "id": "chapter_02",
       "title": "两岸的粮单",
       "status": "revised_pending_reader_feedback",
       "nativeValidated": false,
-      "revision": "0.15.1-dev"
+      "revision": "0.15.1-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false
     },
     {
       "id": "chapter_03",
       "title": "风过断脊",
-      "status": "outline",
-      "nativeValidated": false
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "revision": "0.16.0-dev"
     },
     {
       "id": "chapter_04",

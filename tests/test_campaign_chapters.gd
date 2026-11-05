@@ -51,7 +51,7 @@ func walk(campaign: RefCounted, depth: int = 0) -> void:
 			second_endings.append(campaign.snapshot())
 			check(runner.state.decisions.size() == 2 and runner.state.attempts.size() == 2, "second chapter contains two decisions and two battles")
 			check(runner.state.flags.dispatch_receipts and runner.state.flags.clerk_safe, "chapter victories supply receipts and clerk safety")
-			check(campaign.next_chapter().is_empty() and not campaign.advance_chapter().ok, "no fabricated third chapter")
+			check(campaign.next_chapter().get("id") == "chapter_03", "second chapter exposes the authored third chapter")
 func test_paths() -> bool:
 	var campaign: RefCounted = Campaign.new()
 	check(campaign.start().ok, "first chapter starts")

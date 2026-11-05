@@ -528,7 +528,7 @@ func _refresh() -> void:
 	%BattleSummary.text = "你 %d/20  ·  法力 %d/%d    |    敌 %d/20    |    第%d轮 · %s · %s" % [blue_hp, player.mana, player.max_mana, red_hp, ceili(float(battle.turn) / 2), "你的回合" if battle.active_side == 0 else "敌方行动", battle.WEATHER[battle.weather].name]
 	%MapName.tooltip_text = battle.map_definition.description
 	if not battle.objective.is_empty():
-		%MapName.text = "%s / 守桥 %d/%d · 已过 %d/%d 轮" % [battle.map_definition.name, battle.objective.streak, battle.objective.required, (battle.turn - 1) / 2, battle.objective.round_limit]
+		%MapName.text = "%s / 驻守 %d/%d · 已过 %d/%d 轮" % [battle.map_definition.name, battle.objective.streak, battle.objective.required, (battle.turn - 1) / 2, battle.objective.round_limit]
 		%MapName.tooltip_text = battle.objective_status()
 	%WeatherStatus.text = battle.WEATHER[battle.weather].name + (" · 剩余 %d 行动回合" % battle.weather_remaining if battle.weather_remaining > 0 else " · 无环境修正")
 	%WeatherStatus.tooltip_text = battle.WEATHER[battle.weather].description
@@ -586,7 +586,7 @@ func _refresh() -> void:
 		%ResultTitle.text = "苍蓝旗帜，仍在飘扬" if battle.winner == 0 else ("战场归于寂静" if battle.winner == 2 else "此役失利，再整旗鼓")
 		%ResultDetail.text = "%s\n共 %d 轮 · 种子 %d" % ["你取得了胜利！" if battle.winner == 0 else ("双方指挥官同时倒下，平局。" if battle.winner == 2 else "%s赢得本次战斗。" % battle.side_name(1)), ceili(float(battle.turn) / 2), battle.match_seed]
 		if not battle.objective.is_empty() and not blue.is_empty() and not red.is_empty():
-			%ResultDetail.text = "%s\n经过 %d 个完整轮次 · 种子 %d" % ["两处桥头连续驻守达标，粮队可以通行。" if battle.winner == 0 else "未在期限内稳住两处桥头，粮队撤回。", (battle.turn - 1) / 2, battle.match_seed]
+			%ResultDetail.text = "%s\n经过 %d 个完整轮次 · 种子 %d" % ["两处据点连续驻守达标，本次驻守任务完成。" if battle.winner == 0 else "未在期限内稳住两处据点，本次驻守任务失败。", (battle.turn - 1) / 2, battle.match_seed]
 		%PlayAgain.text = ("继续剧情" if battle.winner == 0 else "返回战前 · 重新部署") if campaign_active else "再来一局"
 		if campaign_active: %ResultDetail.text += "\n" + campaign_session.notice
 		if not already_visible: %PlayAgain.grab_focus()
