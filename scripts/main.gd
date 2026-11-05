@@ -8,6 +8,7 @@ const PeekControl = preload("res://scripts/battle_peek.gd")
 const Store = preload("res://scripts/deck_store.gd")
 const DeckEditorControl = preload("res://scripts/deck_editor.gd")
 const Effects = preload("res://scripts/effect_forecast.gd")
+const LoreBook = preload("res://scripts/lore_book.gd")
 const TEAL := Color("70d3ba")
 const GOLD := Color("d0b579")
 const RED := Color("f08b76")
@@ -46,11 +47,12 @@ var grid_button: Button
 var unit_skill_button: Button
 var unit_action_label: Label
 var using_unit_skill: bool = false
+var lore_book: Control
 
 func _process(delta: float) -> void:
 	if battle == null: return
 	_position_battle_peek()
-	var paused: bool = not has_started or council.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible
+	var paused: bool = not has_started or council.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible or lore_book.visible
 	if paused or battle.winner != -1:
 		if paused and board.is_presenting(): board.reset_effects()
 		if battle.winner != -1 and not paused and not board.is_presenting() and not %ResultOverlay.visible: _refresh()
@@ -136,6 +138,9 @@ func _ready() -> void:
 	add_child(deck_editor)
 	deck_editor.deck_saved.connect(_on_deck_saved)
 	deck_editor.visibility_changed.connect(_refresh)
+	lore_book = LoreBook.new()
+	lore_book.theme = theme
+	add_child(lore_book)
 	var loaded: Dictionary = deck_store.load_deck()
 	if loaded.ok: custom_deck = loaded.definition
 	custom_load_notice = loaded.get("message", "")
@@ -187,6 +192,7 @@ func _ready() -> void:
 	council.resume_requested.connect(_resume_battle)
 	council.library_requested.connect(_open_library)
 	council.deck_editor_requested.connect(_open_deck_editor)
+	council.lore_requested.connect(func() -> void: lore_book.open(council.selected_hero))
 	_new_match(1)
 	council.open(current_map, current_hero, false, current_deck)
 
@@ -463,7 +469,7 @@ func _refresh_compact_hand() -> void:
 		%CompactHand.add_child(button)
 
 func _player_can_act() -> bool:
-	return battle != null and battle.active_side == 0 and battle.winner == -1 and not ai_running and not council.visible and not %CardsDialog.visible and not %RulesDialog.visible and not deck_editor.visible
+	return battle != null and battle.active_side == 0 and battle.winner == -1 and not ai_running and not council.visible and not %CardsDialog.visible and not %RulesDialog.visible and not deck_editor.visible and not lore_book.visible
 
 func _update_board() -> void:
 	board.predicted_losses.clear()
@@ -614,11 +620,13 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 	if action.type == "hero":
 		visual_action["effect_kind"] = battle.hero(side).effect
 		visual_action["visual_origin"] = battle.commander(side).pos
+		visual_action["visual_caster_id"] = battle.commander(side).id
 	if action.type in ["attack", "unit_skill"]:
 		var caster: Dictionary = battle.get_unit(int(action.get("unit_id", -1)))
 		if not caster.is_empty():
 			visual_action["unit_kind"] = caster.kind
 			visual_action["visual_origin"] = caster.pos
+			visual_action["visual_caster_id"] = caster.id
 			if action.type == "unit_skill": visual_action["effect_kind"] = {"mage": "damage", "healer": "heal", "sword": "shield"}.get(caster.kind, "")
 			if action.type == "attack" or caster.kind == "archer":
 				var target: Dictionary = battle.unit_at(action.target)
@@ -626,14 +634,18 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 	if action.type == "play":
 		var instance: Dictionary = battle.hand_card(battle.active_side, int(action.get("card_uid", -1)))
 		if not instance.is_empty():
-			visual_action["spell_effect"] = battle.definition(instance.card_id).get("effect", "")
+			var definition: Dictionary = battle.definition(instance.card_id)
+			visual_action["card_type"] = definition.type
+			visual_action["spell_effect"] = definition.get("effect", "")
 			visual_action["effect_kind"] = visual_action.spell_effect
 			var origin: Dictionary = {}
-			for caster: Dictionary in battle.units:
-				if caster.side != side or battle.distance(caster.pos, action.target) > battle.unit_cast_range(caster): continue
-				if origin.is_empty() or battle.distance(caster.pos, action.target) < battle.distance(origin.pos, action.target): origin = caster
+			if definition.type != "environment" and battle.inside(action.target):
+				for caster: Dictionary in battle.units:
+					if caster.side != side or battle.distance(caster.pos, action.target) > battle.unit_cast_range(caster): continue
+					if origin.is_empty() or battle.distance(caster.pos, action.target) < battle.distance(origin.pos, action.target): origin = caster
 			if origin.is_empty(): origin = battle.commander(side)
 			visual_action["visual_origin"] = origin.pos
+			visual_action["visual_caster_id"] = origin.id
 	var path: Array[Vector2i] = []
 	if action.type == "move" or (action.type == "unit_skill" and visual_action.get("unit_kind", "") == "cavalry"):
 		var unit: Dictionary = battle.get_unit(int(action.get("unit_id", -1)))
@@ -873,7 +885,7 @@ func _run_ai(token: int) -> void:
 	await get_tree().create_timer(0.35).timeout
 	var actions: int = 0
 	while token == generation and battle.winner == -1 and battle.active_side == 1 and actions < 64:
-		if council.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible:
+		if council.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible or lore_book.visible:
 			await get_tree().create_timer(0.1).timeout
 			continue
 		var action: Dictionary = EnemyAI.choose(battle)
@@ -896,7 +908,7 @@ func _run_ai(token: int) -> void:
 
 func _input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo: return
-	if council == null or council.visible or %RulesDialog.visible or %CardsDialog.visible or deck_editor.visible: return
+	if council == null or council.visible or %RulesDialog.visible or %CardsDialog.visible or deck_editor.visible or lore_book.visible: return
 	if event.keycode == KEY_TAB:
 		_toggle_battlefield()
 		get_viewport().set_input_as_handled()
@@ -916,7 +928,7 @@ func _input(event: InputEvent) -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo: return
 	if council.visible: return
-	if %RulesDialog.visible or %CardsDialog.visible or deck_editor.visible: return
+	if %RulesDialog.visible or %CardsDialog.visible or deck_editor.visible or lore_book.visible: return
 	if event.keycode == KEY_ESCAPE:
 		if battle.winner == -1: _cancel()
 		get_viewport().set_input_as_handled()

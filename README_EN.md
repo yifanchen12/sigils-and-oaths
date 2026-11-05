@@ -5,13 +5,13 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.12.2" src="https://img.shields.io/badge/version-0.12.2-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.13.0" src="https://img.shields.io/badge/version-0.13.0-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts; it includes no assets from either game. **Version 0.12.2 is a playable development build**, tested on Windows desktop against a local AI. The game interface is currently Chinese; this English README does not imply an English localization.
+The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts; it includes no assets from either game. **Version 0.13.0 is a playable development build**, tested on Windows desktop against a local AI. The game interface is currently Chinese; this English README does not imply an English localization.
 
 ## In-game screenshots
 
@@ -57,7 +57,7 @@ Select a friendly troop and press **Q**, or click its skill button above the boa
 
 All skills except cavalry's extra movement end movement and attack for that unit. Root prevents extra movement and guard interception. Interception does not stop spells or retaliation and cannot chain; the earliest deployed eligible guard is chosen. Defense uses the guard's own terrain, retaliation uses its original position and range, and lethal damage does not spill into the protected ally.
 
-Forecasts identify the actual defender. Combat includes melee lunges and slashes, arrows and magic projectiles, interception, impact, advantage labels and retaliation. Rules resolve once; animation does not move rule positions or deal damage again. Sword, spear and cavalry units each have three original anticipation, strike and recovery poses. Guards brace before impact, retaliation has its own pose timing, and action artwork faces the opponent. Other characters still use standing artwork with effects. Full walking cycles and a separate full-screen battle scene are not implemented.
+Forecasts identify the actual defender. Combat includes melee lunges and slashes, arrows and magic projectiles, interception, impact, advantage labels and retaliation. Rules resolve once; animation does not move rule positions or deal damage again. All six troop types and three commanders now have three original preparation, action and recovery poses. Guards brace, retaliation has separate timing, and local spells animate an eligible friendly caster while weather uses the commander. Full walking cycles and a separate full-screen battle scene are not implemented.
 
 ![Nine melee poses at enlarged and board scale](docs/screenshots/melee-pose-gallery.png)
 
@@ -80,6 +80,19 @@ Healing uses green trails and a cross, protection uses a shield shape, and area 
 ![Area damage listed by board coordinate](docs/screenshots/area-spell-preview.png)
 
 </details>
+
+## World archive and campaign development
+
+Open the archive from the war council to read profiles for three commanders and six troop captains, six battlefield histories, and the background of the oaths and the Long Day disaster. The reader reuses the original portraits and full-body artwork, pauses local combat and returns to the menu with Escape.
+
+![Ailin's in-game character archive](docs/screenshots/lore-warden.png)
+
+The archive contains 18 entries and 52 paragraphs: **5,558 distinct Chinese body-text characters**, excluding headings, summaries, UI, design documents and prompts. The planned game is an ensemble war story with relationships and optional romance, targeting at least 100,000 accessible Chinese characters. **Campaign chapters, story choices and campaign saves are not connected yet**; skirmishes remain the playable core.
+
+[Text audit](docs/narrative-audit.json) · [Narrative direction](docs/narrative-direction.md) · [Campaign acceptance plan](docs/plans/steam-campaign.md) · [Steam readiness](docs/release/steam-readiness.md)
+
+![Ranged troop poses](docs/screenshots/ranged-pose-gallery.png)
+![Commander poses](docs/screenshots/hero-pose-gallery.png)
 
 ## Quick start
 
@@ -155,7 +168,7 @@ tools/         Map-guide, audit-image and diagnostic utilities
 docs/          Screenshots, validation and development records
 ```
 
-Verified locally with **Godot 4.7.2 / Windows / Compatibility** for version 0.12.2: 160 action-pose checks, 257 UI checks and 56 spell-feedback checks passed. Version 0.12.1 passed 134 effect-forecast checks, 113 normal-attack forecast checks and 51 unit-skill window checks. Unit rules, full AI matches and map-art results retain their actual validation versions in [`docs/validation.md`](docs/validation.md).
+Verified locally with **Godot 4.7.2 / Windows / Compatibility** for version 0.13.0: 274 melee-pose, 363 ranged/casting-pose, 122 archive-UI, 257 existing-UI, 56 feedback, 134 effect-forecast and 28 casting/clock checks passed (1,234 total). Unit rules, full AI matches and map-art results retain their actual validation versions in [`docs/validation.md`](docs/validation.md). These checks do not constitute a complete campaign playthrough or Steam approval.
 
 ```bash
 godot --headless --path . --editor --quit
@@ -168,6 +181,9 @@ godot --path . --script res://tests/test_map_art.gd --resolution 1440x1000 --aud
 godot --path . --script res://tests/test_unit_skills_ui.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_feedback_polish.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_action_poses.gd --resolution 1440x1000 --audio-driver Dummy
+godot --path . --script res://tests/test_cast_poses.gd --resolution 1440x1000 --audio-driver Dummy
+godot --path . --script res://tests/test_lore_book.gd --resolution 1440x1000 --audio-driver Dummy
+python tools/audit_narrative.py
 ```
 
 UI, forecast, map-art and skill-window checks require a graphical window. Earlier commands and rules are in [`docs/development.md`](docs/development.md) (Chinese); use this page and the in-game help for the new skills.
@@ -177,7 +193,7 @@ UI, forecast, map-art and skill-window checks require a graphical window. Earlie
 - Single-player development build; no multiplayer, touch adaptation or packaged release. macOS and Linux have not been validated.
 - Ranged attacks and spells currently do not check line of sight. AI diagnostics are not a substitute for competitive human playtesting.
 - One custom deck is saved locally at Godot's `user://custom_deck.json`; player data is not included in this repository.
-- Development uses AI-assisted coding and original image generation. The cel-shaded characters are all adults. Artwork sources, full prompts and generation provenance are recorded in [`assets/art/manifest.json`](assets/art/manifest.json). Source PNGs remain intact; Godot draws text, values, grids and highlights.
+- Development uses AI-assisted coding, original image generation and narrative writing. Narrative content is fixed during development; the game does not call a live generation service. The cel-shaded characters are all adults. Artwork sources, full prompts and generation provenance are recorded in [`assets/art/manifest.json`](assets/art/manifest.json). Source PNGs remain intact; Godot draws text, values, grids and highlights.
 - Issues with reproduction steps, window size, map and commander are welcome. Do not attach credentials or unrelated personal files.
 
 ## License

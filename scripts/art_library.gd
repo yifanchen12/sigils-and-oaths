@@ -14,7 +14,25 @@ const ACTION_SHEETS: Dictionary = {
 		"feet": [Vector2(403, 677), Vector2(358, 683), Vector2(385, 684)]},
 	"cavalry": {"path": "res://assets/art/actions/cavalry-v2.png", "scale": 1.45,
 		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
-		"feet": [Vector2(470, 640), Vector2(472, 641), Vector2(388, 645)]}
+		"feet": [Vector2(470, 640), Vector2(472, 641), Vector2(388, 645)]},
+	"archer": {"path": "res://assets/art/actions/archer-v2.png", "scale": 1.25,
+		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
+		"feet": [Vector2(402, 670), Vector2(398, 669), Vector2(296, 674)]},
+	"mage": {"path": "res://assets/art/actions/mage-v2.png", "scale": 1.20,
+		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
+		"feet": [Vector2(366, 677), Vector2(326, 672), Vector2(284, 676)]},
+	"healer": {"path": "res://assets/art/actions/healer-v2.png", "scale": 1.15,
+		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
+		"feet": [Vector2(370, 675), Vector2(375, 672), Vector2(296, 670)]},
+	"warden": {"path": "res://assets/art/actions/warden-v2.png", "scale": 1.35,
+		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
+		"feet": [Vector2(427, 632), Vector2(337, 626), Vector2(288, 635)]},
+	"pyromancer": {"path": "res://assets/art/actions/pyromancer-v2.png", "scale": 1.35,
+		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
+		"feet": [Vector2(443, 662), Vector2(449, 662), Vector2(270, 663)]},
+	"grove": {"path": "res://assets/art/actions/grove-v2.png", "scale": 1.20,
+		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
+		"feet": [Vector2(380, 653), Vector2(404, 653), Vector2(273, 652)]}
 }
 const TERRAIN_ORDER: Array[String] = ["plain", "forest", "mountain", "road", "water", "bridge", "hill", "ruins", "fort"]
 const MAP_PROPS: Array[String] = ["map_forest", "map_mountain", "map_fort"]

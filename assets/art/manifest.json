@@ -1144,6 +1144,390 @@
       "role": "Normal attack, guard and retaliation key poses.",
       "processing": "Raw PNG copied byte-for-byte. Native AtlasTexture regions follow inspected transparent gaps; shared per-character scale and measured foot pivots preserve aspect and baseline. No source pixel edits.",
       "status": "Integrated; nine alpha/edge/pivot checks and native-scale gallery reviewed; 160 Windows action checks, 257 UI checks and 56 feedback checks passed."
+    },
+    {
+      "id": "action_archer",
+      "path": "assets/art/actions/archer-v2.png",
+      "source_filename": "exec-dc3d8c1a-122d-41ab-bfe9-0d2e5f007e1f.png",
+      "parent_source_filename": "exec-a951709f-2f30-41c8-8964-ffd0a4103e06.png",
+      "initial_reference": "assets/art/unit_sprites_cel_2.png",
+      "integrated_on": "2026-11-06",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "35801f103b8bb1b920d0804bed1fd4b39b2c96a065bfdf4ec8052086029a9d0d",
+      "frame_order": [
+        "anticipation",
+        "strike_or_cast",
+        "recovery"
+      ],
+      "regions": [
+        [
+          0,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          836,
+          724
+        ],
+        [
+          1560,
+          0,
+          612,
+          724
+        ]
+      ],
+      "feet": [
+        [
+          402,
+          670
+        ],
+        [
+          398,
+          669
+        ],
+        [
+          296,
+          674
+        ]
+      ],
+      "runtime_scale": 1.25,
+      "prompt_files": [
+        "assets/art/prompt-action-archer-v1.txt",
+        "assets/art/prompt-action-archer-v2.txt"
+      ],
+      "role": "Attack, retaliation and eligible unit/commander/card casting key poses.",
+      "processing": "Raw native image_gen PNG copied intact. Godot AtlasTexture regions, foot pivots and horizontal mirroring only; no pixel edits. No mipmaps.",
+      "status": "Integrated; transparent edges and pivots checked. 363 Windows cast-pose checks passed; native galleries inspected. Three key poses, not a full walk cycle."
+    },
+    {
+      "id": "action_mage",
+      "path": "assets/art/actions/mage-v2.png",
+      "source_filename": "exec-b225a7ca-959b-47d6-a3d2-b73687f0b85a.png",
+      "parent_source_filename": "exec-ad04bfc1-34c3-4c49-9f81-283833c3a24a.png",
+      "initial_reference": "assets/art/unit_sprites_cel_2.png",
+      "integrated_on": "2026-11-06",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "7b9a87cfc0731d66b867c96b7a9cc5f7449b55da83cb729c81e113b2954f4800",
+      "frame_order": [
+        "anticipation",
+        "strike_or_cast",
+        "recovery"
+      ],
+      "regions": [
+        [
+          0,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          836,
+          724
+        ],
+        [
+          1560,
+          0,
+          612,
+          724
+        ]
+      ],
+      "feet": [
+        [
+          366,
+          677
+        ],
+        [
+          326,
+          672
+        ],
+        [
+          284,
+          676
+        ]
+      ],
+      "runtime_scale": 1.2,
+      "prompt_files": [
+        "assets/art/prompt-action-mage-v1.txt",
+        "assets/art/prompt-action-mage-v2.txt"
+      ],
+      "role": "Attack, retaliation and eligible unit/commander/card casting key poses.",
+      "processing": "Raw native image_gen PNG copied intact. Godot AtlasTexture regions, foot pivots and horizontal mirroring only; no pixel edits. No mipmaps.",
+      "status": "Integrated; transparent edges and pivots checked. 363 Windows cast-pose checks passed; native galleries inspected. Three key poses, not a full walk cycle."
+    },
+    {
+      "id": "action_healer",
+      "path": "assets/art/actions/healer-v2.png",
+      "source_filename": "exec-9a0a5505-9b87-47f7-9d92-961533aa4078.png",
+      "parent_source_filename": "exec-b2984848-2548-4b06-abfb-c6606a57d7d9.png",
+      "initial_reference": "assets/art/unit_sprites_cel_2.png",
+      "integrated_on": "2026-11-06",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "5e5aa4b4986b8faaf127c87614d0013bad651d123dba4e4154ef4ec233cfe2ab",
+      "frame_order": [
+        "anticipation",
+        "strike_or_cast",
+        "recovery"
+      ],
+      "regions": [
+        [
+          0,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          836,
+          724
+        ],
+        [
+          1560,
+          0,
+          612,
+          724
+        ]
+      ],
+      "feet": [
+        [
+          370,
+          675
+        ],
+        [
+          375,
+          672
+        ],
+        [
+          296,
+          670
+        ]
+      ],
+      "runtime_scale": 1.15,
+      "prompt_files": [
+        "assets/art/prompt-action-healer-v1.txt",
+        "assets/art/prompt-action-healer-v2.txt"
+      ],
+      "role": "Attack, retaliation and eligible unit/commander/card casting key poses.",
+      "processing": "Raw native image_gen PNG copied intact. Godot AtlasTexture regions, foot pivots and horizontal mirroring only; no pixel edits. No mipmaps.",
+      "status": "Integrated; transparent edges and pivots checked. 363 Windows cast-pose checks passed; native galleries inspected. Three key poses, not a full walk cycle."
+    },
+    {
+      "id": "action_warden",
+      "path": "assets/art/actions/warden-v2.png",
+      "source_filename": "exec-ae2e450c-8875-490c-9e26-644b5a524595.png",
+      "parent_source_filename": "exec-d5843057-e0d8-4140-b205-929f80e5bed4.png",
+      "initial_reference": "assets/art/hero_sprites_cel.png",
+      "integrated_on": "2026-11-06",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "ac21527a350fbed4be30cb0c81baab7f3a9852e41ae8b5757ff0ad62a96fcf17",
+      "frame_order": [
+        "anticipation",
+        "strike_or_cast",
+        "recovery"
+      ],
+      "regions": [
+        [
+          0,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          836,
+          724
+        ],
+        [
+          1560,
+          0,
+          612,
+          724
+        ]
+      ],
+      "feet": [
+        [
+          427,
+          632
+        ],
+        [
+          337,
+          626
+        ],
+        [
+          288,
+          635
+        ]
+      ],
+      "runtime_scale": 1.35,
+      "prompt_files": [
+        "assets/art/prompt-action-warden-v1.txt",
+        "assets/art/prompt-action-warden-v2.txt"
+      ],
+      "role": "Attack, retaliation and eligible unit/commander/card casting key poses.",
+      "processing": "Raw native image_gen PNG copied intact. Godot AtlasTexture regions, foot pivots and horizontal mirroring only; no pixel edits. No mipmaps.",
+      "status": "Integrated; transparent edges and pivots checked. 363 Windows cast-pose checks passed; native galleries inspected. Three key poses, not a full walk cycle."
+    },
+    {
+      "id": "action_pyromancer",
+      "path": "assets/art/actions/pyromancer-v2.png",
+      "source_filename": "exec-fb2ec0c3-d63b-48a6-aaa4-882f8b513984.png",
+      "parent_source_filename": "exec-900733a7-016d-4c6a-ade5-5673389703ac.png",
+      "initial_reference": "assets/art/hero_sprites_cel.png",
+      "integrated_on": "2026-11-06",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "03c5ee888a0d8338ff273588fe7e3de55cba8248cd00ae3d239b902657c07b2e",
+      "frame_order": [
+        "anticipation",
+        "strike_or_cast",
+        "recovery"
+      ],
+      "regions": [
+        [
+          0,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          836,
+          724
+        ],
+        [
+          1560,
+          0,
+          612,
+          724
+        ]
+      ],
+      "feet": [
+        [
+          443,
+          662
+        ],
+        [
+          449,
+          662
+        ],
+        [
+          270,
+          663
+        ]
+      ],
+      "runtime_scale": 1.35,
+      "prompt_files": [
+        "assets/art/prompt-action-pyromancer-v1.txt",
+        "assets/art/prompt-action-pyromancer-v2.txt"
+      ],
+      "role": "Attack, retaliation and eligible unit/commander/card casting key poses.",
+      "processing": "Raw native image_gen PNG copied intact. Godot AtlasTexture regions, foot pivots and horizontal mirroring only; no pixel edits. No mipmaps.",
+      "status": "Integrated; transparent edges and pivots checked. 363 Windows cast-pose checks passed; native galleries inspected. Three key poses, not a full walk cycle."
+    },
+    {
+      "id": "action_grove",
+      "path": "assets/art/actions/grove-v2.png",
+      "source_filename": "exec-ef025587-35f5-47bf-b032-ed39cbbfbc25.png",
+      "parent_source_filename": "exec-f520f34b-094f-4dfe-8cc1-6982c8ded942.png",
+      "initial_reference": "assets/art/hero_sprites_cel.png",
+      "integrated_on": "2026-11-06",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "64d06242501c16f51efb4fbb0b6f3f1e3f1675f01925886dd0164e8e544dc8f0",
+      "frame_order": [
+        "anticipation",
+        "strike_or_cast",
+        "recovery"
+      ],
+      "regions": [
+        [
+          0,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          836,
+          724
+        ],
+        [
+          1560,
+          0,
+          612,
+          724
+        ]
+      ],
+      "feet": [
+        [
+          380,
+          653
+        ],
+        [
+          404,
+          653
+        ],
+        [
+          273,
+          652
+        ]
+      ],
+      "runtime_scale": 1.2,
+      "prompt_files": [
+        "assets/art/prompt-action-grove-v1.txt",
+        "assets/art/prompt-action-grove-v2.txt"
+      ],
+      "role": "Attack, retaliation and eligible unit/commander/card casting key poses.",
+      "processing": "Raw native image_gen PNG copied intact. Godot AtlasTexture regions, foot pivots and horizontal mirroring only; no pixel edits. No mipmaps.",
+      "status": "Integrated; transparent edges and pivots checked. 363 Windows cast-pose checks passed; native galleries inspected. Three key poses, not a full walk cycle."
     }
   ]
 }

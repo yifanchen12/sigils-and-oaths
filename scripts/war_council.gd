@@ -5,6 +5,7 @@ signal start_requested(map_id: String, hero_id: String, deck_id: String)
 signal resume_requested
 signal library_requested
 signal deck_editor_requested
+signal lore_requested
 
 const BattleModel = preload("res://scripts/battle.gd")
 const Art = preload("res://scripts/art_library.gd")
@@ -21,6 +22,7 @@ var start_button: Button
 var resume_button: Button
 var library_button: Button
 var editor_button: Button
+var lore_button: Button
 var deck_choice: OptionButton
 var background: Texture2D
 var map_options: Array[Dictionary] = []
@@ -123,6 +125,11 @@ func _build() -> void:
 	left.add_child(hero_title)
 	left.add_child(hero_name)
 	left.add_child(hero_lore)
+	lore_button = Button.new()
+	lore_button.text = "共誓档案  ·  人物与世界"
+	lore_button.custom_minimum_size.y = 40
+	lore_button.pressed.connect(func() -> void: lore_requested.emit())
+	left.add_child(lore_button)
 	var heroes_row := HBoxContainer.new()
 	heroes_row.add_theme_constant_override("separation", 10)
 	left.add_child(heroes_row)

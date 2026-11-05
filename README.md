@@ -5,13 +5,13 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.12.2" src="https://img.shields.io/badge/version-0.12.2-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.13.0" src="https://img.shields.io/badge/version-0.13.0-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法研究参考《炉石传说》的卡牌资源节奏与《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡面、美术与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前是可玩的 **0.12.2 开发版**，面向 Windows 桌面单机对战 AI。
+玩法研究参考《炉石传说》的卡牌资源节奏与《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡面、美术与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前是可玩的 **0.13.0 开发版**，面向 Windows 桌面单机对战 AI。
 
 ## 实机画面
 
@@ -58,7 +58,7 @@
 
 除骑兵再机动外，技能会结束该单位的移动与攻击。定身阻止再机动和枪兵接应。援护不拦截法术或反击；多个守卫由较早部署者接应，不连锁。守卫使用自己脚下的防御地形，反击按原位射程判断，阵亡时不向被保护者溢出伤害。
 
-攻击预估会指出实际承伤的守卫。战斗表现包含近战突进与斩击、箭矢和法术飞行、援护拦截、命中、克制提示及反击；规则只结算一次，动画不改棋子真实位置或重复扣血。步兵、枪兵、骑兵各有蓄力、出手、收招三张原创动作姿态，援护先举盾，反击也会切换姿态，并按对手方向翻转。其余角色暂用站姿配合特效；当前尚无完整行走循环或独立全屏战斗过场。
+攻击预估会指出实际承伤的守卫。战斗表现包含近战突进与斩击、箭矢和法术飞行、援护拦截、命中、克制提示及反击；规则只结算一次，动画不改棋子真实位置或重复扣血。六兵种与三指挥官共九角色，各有准备、出手、收招三张原创姿态。援护与防护技能先举盾，反击按独立时间线播放；法术牌由合法范围内的友军呈现施法，天气由指挥官呈现。当前尚无完整行走循环或独立全屏战斗过场。
 
 ![三兵种九帧动作与棋盘尺寸对照](docs/screenshots/melee-pose-gallery.png)
 
@@ -81,6 +81,19 @@
 ![按坐标列出的群体伤害预估](docs/screenshots/area-spell-preview.png)
 
 </details>
+
+## 共誓档案与长篇战役开发
+
+战前页点击「共誓档案」，可阅读三位指挥官、六位部队队长、六处战场，以及盟约、纹章与长昼之灾的背景。档案复用原有人物肖像与全身立绘，阅读时暂停本地战斗，Esc返回菜单。
+
+![艾琳人物档案实机](docs/screenshots/lore-warden.png)
+
+当前已接入18篇、52段，去重后为 **5,558个中文正文汉字**。标题、摘要、按钮、设计稿与提示词不计入。完整目标是群像战争史诗、人物羁绊与适量感情线，至少十万字可达正文；**主线章节、剧情选择和战役存档尚未接入**，目前仍以遭遇战为可玩主体。
+
+[正文统计](docs/narrative-audit.json) · [叙事方向](docs/narrative-direction.md) · [完整战役验收计划](docs/plans/steam-campaign.md) · [Steam发行准备状态](docs/release/steam-readiness.md)
+
+![远程部队动作](docs/screenshots/ranged-pose-gallery.png)
+![指挥官动作](docs/screenshots/hero-pose-gallery.png)
 
 ## 快速开始
 
@@ -156,7 +169,7 @@ tools/         地图导图、核对图及诊断工具
 docs/          实机截图、验收与开发记录
 ```
 
-本机 **Godot 4.7.2 / Windows / Compatibility** 验证：0.12.2动作姿态160项、界面257项、法术反馈56项通过。0.12.1已验证效果预估134项、普攻预估113项和六技能窗口51项；六技能规则、完整AI对局和地图专项保留各自实际验证版本，详见 [`docs/validation.md`](docs/validation.md)。
+本机 **Godot 4.7.2 / Windows / Compatibility** 验证：0.13.0近战姿态274项、远程/施法姿态363项、档案界面122项、原有界面257项、法术反馈56项、效果预估134项、施法与计时28项均通过，共1,234项。六技能规则、完整AI对局和地图专项保留各自实际验证版本，详见 [`docs/validation.md`](docs/validation.md)。这些检查不等同完整战役通关或Steam审核。
 
 ```bash
 godot --headless --path . --editor --quit
@@ -169,6 +182,9 @@ godot --path . --script res://tests/test_map_art.gd --resolution 1440x1000 --aud
 godot --path . --script res://tests/test_unit_skills_ui.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_feedback_polish.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_action_poses.gd --resolution 1440x1000 --audio-driver Dummy
+godot --path . --script res://tests/test_cast_poses.gd --resolution 1440x1000 --audio-driver Dummy
+godot --path . --script res://tests/test_lore_book.gd --resolution 1440x1000 --audio-driver Dummy
+python tools/audit_narrative.py
 ```
 
 界面、预估、地图和技能窗口检查需要真实图形窗口。初版规则与开发命令见 [`docs/development.md`](docs/development.md)；新增技能以本页及游戏内说明为准。
@@ -178,7 +194,7 @@ godot --path . --script res://tests/test_action_poses.gd --resolution 1440x1000 
 - 当前是单机开发版，尚未提供联机、触屏适配或打包发行版；macOS/Linux未完成验证。
 - 远程攻击和法术目前不检查视线。AI对局诊断不能代替真人竞技平衡测试。
 - 自定义套牌只有一个本地槽，保存于Godot的 `user://custom_deck.json`，不随仓库上传。
-- 本项目使用AI辅助编程与原创图像生成。角色采用日式赛璐璐方向，全部设定为成年人；地图与卡面原图、完整提示词及生成来源见 [`assets/art/manifest.json`](assets/art/manifest.json)。美术源PNG保留原样，UI文字、数值、网格和高亮由Godot绘制。
+- 本项目使用AI辅助编程、原创图像生成与叙事创作。叙事为开发时固定的文本，游戏运行不调用实时生成服务。角色采用日式赛璐璐方向，全部设定为成年人；地图与卡面原图、完整提示词及生成来源见 [`assets/art/manifest.json`](assets/art/manifest.json)。美术源PNG保留原样，UI文字、数值、网格和高亮由Godot绘制。
 - 欢迎通过Issue反馈复现步骤、窗口尺寸、地图、指挥官和遇到的问题；报告中无需附任何账号、密码或本机个人文件。
 
 ## 许可

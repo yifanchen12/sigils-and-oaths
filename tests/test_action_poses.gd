@@ -23,7 +23,7 @@ func inspect_atlas() -> void:
 			fingerprints.append(hash(image.get_data()))
 		check(fingerprints.size() == 3 and fingerprints[0] != fingerprints[1] and fingerprints[1] != fingerprints[2] and fingerprints[0] != fingerprints[2], "three different pose images for " + kind)
 	check(Art.get_action_texture("sword", -1) == null and Art.get_action_texture("spear", 3) == null, "rest and invalid frames use standing fallback")
-	check(Art.get_action_texture("mage", 0) == null and Art.get_action_texture("unknown", 0) == null, "unconverted characters keep standing artwork")
+	check(Art.get_action_texture("unknown", 0) == null, "unknown characters keep standing artwork")
 
 func inspect_timing(attacker_id: int, defender_id: int, guarding: bool) -> void:
 	game.board.set_process(false)

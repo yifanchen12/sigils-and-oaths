@@ -1,0 +1,17 @@
+{
+  "scope": "All codex entries are exposed by LoreBook's directory. No chapter text is shipped yet.",
+  "counting_method": "Distinct body paragraphs; Chinese Han characters only; excludes punctuation, summaries, headings, UI, plans and prompts.",
+  "entries": 18,
+  "paragraphs": 52,
+  "unique_chinese_characters": 5558,
+  "by_category": {
+    "世界": 1132,
+    "人物": 3232,
+    "地理": 1194
+  },
+  "release_target": 100000,
+  "remaining_to_target": 94442,
+  "campaign_route_characters": 0,
+  "limitations": "Exact-repeat audit only; thematic repetition and prose quality require editorial review. Codex is not a playable campaign.",
+  "errors": []
+}

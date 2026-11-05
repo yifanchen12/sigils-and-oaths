@@ -44,6 +44,7 @@ var motion_path: Array[Vector2i] = []
 var motion_tween: Tween
 var flash_tween: Tween
 var combat: Dictionary = {}
+var casting_pose: Dictionary = {}
 var action_duration: float = 0.0
 var presentation_remaining: float = 0.0
 var motion_progress: float = 1.0:
@@ -72,6 +73,10 @@ func _process(delta: float) -> void:
 	if not combat.is_empty():
 		combat.age += delta
 		if combat.age >= combat.duration: combat.clear()
+		queue_redraw()
+	if not casting_pose.is_empty():
+		casting_pose.age += delta
+		if casting_pose.age >= casting_pose.duration: casting_pose.clear()
 		queue_redraw()
 	if not effects.is_empty():
 		for index: int in range(effects.size() - 1, -1, -1):
@@ -143,6 +148,7 @@ func reset_effects() -> void:
 	if flash_tween != null and flash_tween.is_valid(): flash_tween.kill()
 	effects.clear()
 	combat.clear()
+	casting_pose.clear()
 	action_duration = 0.0
 	presentation_remaining = 0.0
 	predicted_losses.clear()
@@ -157,6 +163,7 @@ func is_presenting() -> bool:
 
 func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) -> void:
 	combat.clear()
+	casting_pose.clear()
 	action_duration = 0.0
 	var effect_kind: String = action.get("effect_kind", "")
 	var casts: bool = effect_kind in ["damage", "area", "heal", "shield", "blessing", "firestrike"] and action.has("target") and battle.inside(action.target)
@@ -168,6 +175,14 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 			action_duration = 1.0 if forecast.counter_damage > 0 else 0.66
 			combat = {"attacker": actors[action.unit_id], "defender": actors[forecast.defender_id],
 				"protected": actors[forecast.protected_id], "forecast": forecast, "age": 0.0, "duration": action_duration}
+	var pose_action: bool = action.type == "hero" or (action.type == "unit_skill" and action.get("unit_kind", "") != "cavalry") or (action.type == "play" and action.get("card_type", "") in ["spell", "environment"])
+	if pose_action and combat.is_empty() and action.has("visual_caster_id"):
+		var caster: Dictionary = battle.get_unit(int(action.visual_caster_id))
+		if not caster.is_empty():
+			var kind: String = battle.hero(caster.side).portrait if caster.kind == "commander" else str(caster.kind)
+			var target: Vector2i = action.get("target", caster.pos)
+			casting_pose = {"unit_id": caster.id, "age": 0.0, "duration": 0.72, "brace": kind in ["sword", "spear", "warden"], "facing": float(target.x - caster.pos.x) if battle.inside(target) else 1.0}
+			action_duration = maxf(action_duration, 0.72)
 	var previous_ids: Dictionary = {}
 	for old: Dictionary in before:
 		var delay: float = 0.32 if casts else 0.0
@@ -334,7 +349,7 @@ func _draw() -> void:
 			var progress: float = motion_progress * (motion_path.size() - 1)
 			var segment: int = mini(motion_path.size() - 2, int(progress))
 			at = cell_center(motion_path[segment]).lerp(cell_center(motion_path[segment + 1]), progress - segment)
-		_draw_unit(unit, at, tile)
+		_draw_unit(unit, at, tile, 1.0, cast_pose(unit.id), float(casting_pose.get("facing", 1.0)))
 	if not combat.is_empty(): _draw_combat(tile)
 	_draw_guard_links()
 	_draw_weather(grid)
@@ -479,6 +494,12 @@ func combat_pose(unit_id: int) -> int:
 	if combat.forecast.intercepted and time < 0.50: return 0
 	return -1
 
+func cast_pose(unit_id: int) -> int:
+	if casting_pose.is_empty() or unit_id != casting_pose.unit_id: return -1
+	if casting_pose.age < 0.0 or casting_pose.age >= casting_pose.duration: return -1
+	if casting_pose.brace: return 0 if casting_pose.age < 0.45 else 2
+	return _strike_pose(casting_pose.age, 0.0, 0.14, 0.45, casting_pose.duration)
+
 func _strike_pose(time: float, start: float, strike: float, recover: float, finish: float) -> int:
 	if time < start or time >= finish: return -1
 	if time < strike: return 0
@@ -554,7 +575,8 @@ func _draw_unit(unit: Dictionary, at: Vector2, tile: float, opacity: float = 1.0
 			# Measured source regions preserve long weapons; a shared scale and foot pivots avoid stretching or sliding.
 			var pixels_to_world: float = tile * Art.action_scale(sprite_id) / sprite.get_height()
 			extent = sprite.get_size() * pixels_to_world
-			origin = Vector2(0, tile * 0.24) - Art.action_feet(sprite_id, pose) * pixels_to_world
+			# Match the standing artwork's existing foot baseline, avoiding a jump at pose transitions.
+			origin = Vector2(0, tile * 0.37) - Art.action_feet(sprite_id, pose) * pixels_to_world
 		# Mirror only the action artwork; faction, health and status labels stay readable.
 		draw_set_transform(at + height_offset, 0, Vector2(-1 if action_sprite != null and facing < -0.05 else 1, 1))
 		draw_texture_rect(sprite, Rect2(origin, extent), false, Color(0.72, 0.76, 0.78, opacity) if exhausted and action_sprite == null else Color(1, 1, 1, opacity))
