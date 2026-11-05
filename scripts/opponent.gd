@@ -2,18 +2,20 @@ class_name Opponent
 extends RefCounted
 ## A small deterministic heuristic, using only its own cards and the public board.
 const ObjectiveAI = preload("res://scripts/objective_ai.gd")
+const TacticalAI = preload("res://scripts/tactical_ai.gd")
 
 static func choose(battle: Battle) -> Dictionary:
 	var best: Dictionary = {"type": "end_turn"}
 	var fields: Dictionary = {}
 	var objective: Dictionary = ObjectiveAI.prepare(battle)
+	var threats: Dictionary = TacticalAI.prepare(battle)
 	# Keep end-turn as the tie winner. In a control emergency its value can be
 	# negative, but ordinary zero-value actions still must not replace waiting.
 	var best_score: float = evaluate(battle, best, fields, objective)
 	for unit: Dictionary in battle.units:
 		if unit.side == battle.active_side and not battle.movement_cells(unit).is_empty(): fields[unit.id] = _approach_field(battle, unit)
 	for action: Dictionary in battle.get_legal_actions(battle.active_side):
-		var score: float = evaluate(battle, action, fields, objective)
+		var score: float = evaluate(battle, action, fields, objective) + TacticalAI.value(battle, action, threats)
 		if score > best_score:
 			best = action
 			best_score = score
@@ -55,7 +57,9 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 				"mage":
 					var loss: int = maxi(0, battle.fire_damage(3) - int(victim.shield))
 					return 42.0 + mini(loss, int(victim.hp)) * 6.0 + (3000.0 if victim.kind == "commander" and loss >= int(victim.hp) else (40.0 if loss >= int(victim.hp) else 0.0))
-				"healer": return 28.0 + mini(3, int(victim.max_hp) - int(victim.hp)) * 8.0
+				# Meaningful healing should beat a nonlethal one-point poke. A
+				# finishing attack retains its separate kill/victory priority.
+				"healer": return 52.0 + mini(3, int(victim.max_hp) - int(victim.hp)) * 8.0
 		"hero":
 			var leader: Dictionary = battle.hero(side)
 			var target: Dictionary = battle.unit_at(action.target)

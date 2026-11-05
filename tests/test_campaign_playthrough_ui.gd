@@ -11,15 +11,21 @@ var row: Dictionary
 var shadow: Battle
 var cursor: int = 0
 var writing: bool = false
+var scenario_id: String = "c03_vent"
+var post_line: String = ""
+var post_node: String = ""
 
 func checkpoint() -> RefCounted:
 	var campaign: RefCounted = Campaign.new(); campaign.start()
 	while true:
 		var page: Dictionary = campaign.story.current()
-		if campaign.story.graph.id == "chapter_03" and page.type == "battle": return campaign
+		if page.type == "battle" and page.scenario == scenario_id: return campaign
 		match page.type:
 			"dialogue": campaign.story.advance(page.revision)
-			"choice": campaign.story.choose(page.options[0].id, page.revision)
+			"choice":
+				var option: String = page.options[0].id
+				if scenario_id == "c02_seed_bridge" and page.options.any(func(item: Dictionary): return item.id == "seed"): option = "seed"
+				campaign.story.choose(option, page.revision)
 			"battle": campaign.story.resolve_battle(0, page.revision)
 			"end": campaign.advance_chapter()
 	return campaign
@@ -79,12 +85,21 @@ func advance_shadow() -> void:
 	cursor += 1
 
 func run() -> void:
-	create_timer(180).timeout.connect(func() -> void: push_error("native encounter playthrough timeout"); quit(2))
+	create_timer(240).timeout.connect(func() -> void: push_error("native encounter playthrough timeout"); quit(2))
+	for arg: String in OS.get_cmdline_user_args():
+		if arg.begins_with("--scenario="): scenario_id = arg.trim_prefix("--scenario=")
+	check(scenario_id in ["c02_relief_bridge", "c02_seed_bridge", "c03_vent"], "native objective scenario is supported")
+	if failures > 0: quit(1); return
+	post_node = "vent_after" if scenario_id == "c03_vent" else "bridge_after"
+	post_line = "c03.vent_after.01" if scenario_id == "c03_vent" else "c02.bridge_after.01"
 	writing = OS.get_cmdline_user_args().has("--write")
 	if not writing and not OS.get_cmdline_user_args().has("--read"): check(false, "choose writer then reader"); quit(1); return
-	var report: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(Replay.PATH))
+	var trace_path: String = "res://tests/fixtures/campaign_v018_selfplay.json" if scenario_id == "c03_vent" else "res://tests/fixtures/campaign_v018_cautious.json"
+	var report: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(trace_path))
 	for candidate: Dictionary in report.games:
-		if candidate.scenario == "c03_vent": row = candidate
+		if candidate.scenario == scenario_id: row = candidate
+	check(not row.is_empty() and row.winner == 0, "native fixture is a recorded winning route")
+	if failures > 0: quit(1); return
 	var campaign: RefCounted = checkpoint()
 	var config: Dictionary = campaign.scenario()
 	shadow = Battle.new(int(config.seed), config.map, config.hero, config.enemy_class, config.deck, config.enemy_deck, 90)
@@ -104,6 +119,8 @@ func run() -> void:
 		check(game.battle.turn == 1 and Replay.state_without_clock(game.battle) == Replay.state_without_clock(shadow), "native encounter starts with exact authored resources, card order and empty army")
 	else:
 		var resume: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(CURSOR))
+		check(resume.scenario == scenario_id, "reader uses the same encounter as the exited process")
+		if failures > 0: quit(1); return
 		var loaded: RefCounted = Session.new(SAVE)
 		check(loaded.load_campaign().ok and loaded.encounter != null, "new native process can load full saved battle")
 		if loaded.encounter == null: quit(1); return
@@ -133,12 +150,15 @@ func run() -> void:
 			break
 		if writing and game.battle.turn == 8 and game.battle.active_side == 1:
 			game._open_council(); await settle()
+			# Allow the council's 0.18-second portrait fade to finish while the
+			# menu keeps combat and its clock paused.
+			await create_timer(0.25).timeout
 			check(game.campaign_session.save().ok and game.battle.active_side == 1, "menu pauses and saves before pending AI action")
 			var file: FileAccess = FileAccess.open(CURSOR, FileAccess.WRITE)
 			check(file != null, "write independent-process continuation cursor")
 			if file == null: quit(1); return
-			file.store_string(JSON.stringify({"cursor": cursor, "snapshot": Snapshot.capture(game.battle)}, "", true, true)); file.close()
-			await capture("campaign-native-before-exit")
+			file.store_string(JSON.stringify({"scenario": scenario_id, "cursor": cursor, "snapshot": Snapshot.capture(game.battle)}, "", true, true)); file.close()
+			await capture("v018-" + scenario_id + "-before-exit")
 			print("NATIVE PLAYTHROUGH WRITER: %d CHECKS | FAILURES: %d | ACTIONS: %d | ENEMY TURN: %d" % [checks, failures, cursor, game.battle.turn])
 			if failures > 0: quit(1); return
 			# Same handler as the real window close signal; next invocation starts
@@ -149,15 +169,17 @@ func run() -> void:
 	else:
 		await wait_for_player()
 		await create_timer(0.8).timeout
-		check(game.battle.winner == 0 and game.battle.objective.streak == 2 and game.battle.turn == 17, "real native battle wins by control from its initial state")
+		check(game.battle.winner == 0 and game.battle.objective.streak == 2 and game.battle.turn == int(row.turn), "real native battle wins by control from its initial state")
 		check(Replay.state_without_clock(game.battle) == Replay.state_without_clock(shadow), "final native state matches independently replayed rules result")
-		check(game.campaign_session.current().node == "vent_after" and game.campaign_session.campaign.story.state.flags.supply_route == "maintenance", "actual victory advances and saves only the selected story branch")
-		await capture("campaign-native-control-victory")
+		check(game.campaign_session.current().node == post_node, "actual victory advances and saves the expected story node")
+		var flags: Dictionary = game.campaign_session.campaign.story.state.flags
+		check(flags.supply_route == "maintenance" if scenario_id == "c03_vent" else flags.priority == ("seed" if scenario_id == "c02_seed_bridge" else "relief"), "victory preserves the selected branch consequence")
+		await capture("v018-" + scenario_id + "-victory")
 		await click(game.get_node("%PlayAgain").get_global_rect().get_center())
-		check(game.story_view.visible and game.story_view.page.line_id == "c03.vent_after.01", "real continue-story button opens postbattle prose")
-		await capture("campaign-native-victory-story")
+		check(game.story_view.visible and game.story_view.page.line_id == post_line, "real continue-story button opens postbattle prose")
+		await capture("v018-" + scenario_id + "-story")
 		var fresh: RefCounted = Session.new(SAVE)
-		check(fresh.load_campaign().ok and fresh.current().line_id == "c03.vent_after.01" and fresh.encounter == null, "saved victory resumes as dialogue without replaying rewards")
+		check(fresh.load_campaign().ok and fresh.current().line_id == post_line and fresh.encounter == null, "saved victory resumes as dialogue without replaying rewards")
 	print("NATIVE PLAYTHROUGH %s: %d CHECKS | FAILURES: %d | ACTIONS: %d | DISPLAY: %s" % ["WRITER" if writing else "READER", checks, failures, cursor, DisplayServer.get_name()])
 	game.queue_free(); await process_frame
 	quit(0 if failures == 0 else 1)

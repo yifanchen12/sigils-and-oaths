@@ -20,11 +20,19 @@ static func state_without_clock(battle: RefCounted) -> Dictionary:
 	state.erase("time_remaining")
 	return JSON.parse_string(JSON.stringify(state, "", true, true))
 func run() -> void:
-	var report: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(PATH))
+	var source: String = PATH
+	for arg: String in OS.get_cmdline_user_args():
+		if arg.begins_with("--fixture="): source = arg.trim_prefix("--fixture=")
+	var report: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(source))
 	var catalog: RefCounted = Campaign.new()
 	var wins: int = 0
 	var moves: int = 0
-	check(report.games.size() == catalog.index.scenarios.size(), "every authored scenario has a trace including losses")
+	var expected_ids: Array = []
+	for id: String in catalog.index.scenarios:
+		if report.get("coverage", "all_scenarios") != "objective_scenarios" or catalog.index.scenarios[id].has("control"): expected_ids.append(id)
+	var recorded_ids: Array = report.games.map(func(row: Dictionary): return row.scenario)
+	expected_ids.sort(); recorded_ids.sort()
+	check(expected_ids == recorded_ids, "every scenario in the declared suite has exactly one trace including losses")
 	for row: Dictionary in report.games:
 		var config: Dictionary = catalog.index.scenarios[row.scenario]
 		var battle: Battle = Model.new(int(config.seed), config.map, config.hero, config.enemy_class, config.deck, config.enemy_deck, 90.0)
