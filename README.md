@@ -5,13 +5,13 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.14.0-dev" src="https://img.shields.io/badge/version-0.14.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.14.1-dev" src="https://img.shields.io/badge/version-0.14.1--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法研究参考《炉石传说》的卡牌资源节奏与《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡面、美术与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前源码为 **0.14.0-dev**，面向 Windows 桌面单机对战 AI；首章剧情正在接入，最新完成图形验收的里程碑为0.13.0。
+玩法研究参考《炉石传说》的卡牌资源节奏与《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡面、美术与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前源码为 **0.14.1-dev**，面向 Windows 桌面单机对战 AI；首章剧情与存档正在完善，最新完成图形验收的里程碑为0.13.0。
 
 ## 实机画面
 
@@ -92,7 +92,9 @@
 
 首章「河门来信」新增 **6,964个正文汉字**、三次选择和八条路线组合。军道与河岸路线带回不同证据，每条路线连接两场战斗；胜利后才写入对应事实，失败保留重试点。单条路线正文为4,828–5,071字。菜单已接入「新战役」「继续战役」，剧情页提供已读回看和保存；**这些入口目前通过语法与纯逻辑衔接检查，尚未做原生窗口、正常难度通关和视觉验收**，新正文单独列为待验，不计入已验收交付量。
 
-战役自动存档保存对白位置、选择与战前检查点，含有效备份和较新版本保护；**尚不保存战斗中途的棋盘**，退出战斗后再读档会从战前重开。敌方守备使用独立名称和临时工事图标，沿用既有职业规则；专属敌军美术尚待制作。
+战役自动槽现保存对白、选择与**完整战斗局面**：棋盘、牌序、技能/援护/定身、天气、资源、计时及随机数状态。动作结算后保存，活动战斗每5秒补存计时；菜单和正常退出也接入保存。跨进程恢复与继续行动已通过纯逻辑检查，窗口退出及AI恢复的原生交互仍待验。保存失败会保留旧档并提示；新版本或规则不兼容的存档不会被自动覆盖。v1旧档可迁移，但没有中途棋盘的旧档仍从战前开始。
+
+切换自由对战会保留进行中的战役局面，返回时继续。意外终止可能丢失最近保存间隔的计时；备份与文件刷新不能保证突然断电时保住最新一次写入。敌方守备仍使用独立名称和临时工事图标，沿用既有职业规则，专属敌军美术待制作。
 
 [正文统计](docs/narrative-audit.json) · [叙事方向](docs/narrative-direction.md) · [完整战役验收计划](docs/plans/steam-campaign.md) · [Steam发行准备状态](docs/release/steam-readiness.md)
 
@@ -177,6 +179,8 @@ docs/          实机截图、验收与开发记录
 
 0.14.0-dev另做首章图、存储、跨进程恢复和会话到真实战斗规则的无窗口检查，回归六技能、效果预估与回合计时。测试中的短战斗使用可控局面验证结算，不能当作正常难度通关或平衡结论。新界面仍待原生验证。
 
+0.14.1-dev完整存档新增及关联回归共485项通过，含190项快照、31项存储、204项会话、41项迁移/中途保存、两个独立进程的2+17项检查。恢复后的抽牌、AI决策及后续随机数与独立基线相同；没有新增图形验收或完整AI平衡样本。详见[完整战斗存档计划与边界](docs/plans/battle-save.md)。
+
 ```bash
 godot --headless --path . --editor --quit
 godot --headless --path . --script res://tests/test_battle.gd
@@ -187,6 +191,10 @@ godot --headless --path . --script res://tests/test_campaign_store.gd
 godot --headless --path . --script res://tests/test_campaign_store.gd -- --write
 godot --headless --path . --script res://tests/test_campaign_store.gd -- --read
 godot --headless --path . --script res://tests/test_campaign_session.gd
+godot --headless --path . --script res://tests/test_battle_snapshot.gd
+godot --headless --path . --script res://tests/test_battle_save.gd
+godot --headless --path . --script res://tests/test_battle_save.gd -- --write
+godot --headless --path . --script res://tests/test_battle_save.gd -- --read
 godot --path . --script res://tests/test_ui.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_forecast.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_map_art.gd --resolution 1440x1000 --audio-driver Dummy -- --complete

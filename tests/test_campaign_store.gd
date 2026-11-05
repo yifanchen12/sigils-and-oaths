@@ -63,13 +63,13 @@ func test_storage() -> bool:
 	fresh.story.resolve_battle(0, fresh.story.current().revision)
 	check(fresh.story.state.flags.witness_present and fresh.story.current().node == "river_after", "only victory grants witness and advances")
 	check(store.save_progress(fresh.snapshot()).ok, "postbattle dialogue persists")
-	for future_version: int in [2, 1000000001]:
+	for future_version: int in [Store.VERSION + 1, 1000000001]:
 		var future: String = JSON.stringify({"version": future_version, "progress": beginning})
 		check(write_raw(PATH, future), "write future fixture")
 		check(store.load_progress().get("future", false), "newer schema is reported without fallback")
 		check(not store.save_progress(beginning).ok and FileAccess.get_file_as_string(PATH) == future, "future save remains untouched")
 	cleanup(PATH)
-	check(write_raw(PATH + ".bak", JSON.stringify({"version": 2, "progress": beginning})), "write future backup fixture")
+	check(write_raw(PATH + ".bak", JSON.stringify({"version": Store.VERSION + 1, "progress": beginning})), "write future backup fixture")
 	check(store.load_progress().get("future", false) and not store.save_progress(beginning).ok, "future backup is protected even without primary")
 	cleanup(PATH)
 	check(store.save_progress(beginning).ok, "reset fixture")

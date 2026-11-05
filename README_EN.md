@@ -5,13 +5,13 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.14.0-dev" src="https://img.shields.io/badge/version-0.14.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.14.1-dev" src="https://img.shields.io/badge/version-0.14.1--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts; it includes no assets from either game. Current source is **0.14.0-dev**, with the first chapter being integrated; 0.13.0 is the latest milestone with native graphical validation on Windows. The interface is Chinese; this English README does not imply an English localization.
+The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts; it includes no assets from either game. Current source is **0.14.1-dev**, with the first chapter and saves being developed; 0.13.0 is the latest milestone with native graphical validation on Windows. The interface is Chinese; this English README does not imply an English localization.
 
 ## In-game screenshots
 
@@ -91,7 +91,9 @@ The archive contains 18 entries and 52 paragraphs: **5,558 distinct Chinese body
 
 Chapter 1 adds **6,964 body-text characters**, three decisions and eight route combinations. The road and riverside routes recover different evidence, with two encounters per route. Only victory grants its story facts; defeats retain a retry point. One route contains 4,828–5,071 characters. New/continue campaign, dialogue, choices, backlog and saving are wired into the UI. **Only parsing and pure-logic integration have been checked so far; native UI layout, interaction and normal-difficulty playthroughs remain pending.** Chapter text is reported separately from verified delivery totals.
 
-Campaign autosaves store dialogue position, decisions and pre-battle checkpoints, with a last-good backup and protection for newer save versions. **Mid-battle board state is not saved:** reloading during a battle restarts from its briefing. Enemy guards use separate names and temporary fort icons with existing rules classes; dedicated NPC artwork remains pending.
+Campaign autosaves now include **complete battle state**: board, card order, skills/guard/root, weather, resources, clock and RNG, alongside dialogue and choices. Completed actions are saved immediately; the active clock is saved every five seconds. Menu entry and normal exit are wired to save too. Cross-process recovery and continued actions pass pure-logic checks; native exit and AI-resume interaction still need validation. Failed writes preserve the previous save and report an error. Newer or incompatible rules versions are protected. v1 saves migrate, but older files without a board resume at the briefing.
+
+Switching to a skirmish retains the ongoing campaign battle. An unexpected termination may lose the latest unsaved clock interval; backups and flushing cannot guarantee the newest write survives a sudden power loss. Enemy guards still use separate names and temporary fort icons with existing rules classes; dedicated NPC artwork remains pending.
 
 [Text audit](docs/narrative-audit.json) · [Narrative direction](docs/narrative-direction.md) · [Campaign acceptance plan](docs/plans/steam-campaign.md) · [Steam readiness](docs/release/steam-readiness.md)
 
@@ -176,6 +178,8 @@ Verified locally with **Godot 4.7.2 / Windows / Compatibility** for version 0.13
 
 0.14.0-dev adds headless checks for the chapter graph, storage, cross-process recovery and coordination with the real battle resolver, plus unit-skill, effect-forecast and clock regressions. Short fixture battles validate transitions, not normal-difficulty completion or balance. New UI verification is pending.
 
+0.14.1-dev passes 485 new and related full-save checks: snapshot 190, storage 31, session 204, migration/mid-battle 41, and two independent processes with 2+17 checks. Subsequent draws, an AI decision and future RNG samples match an independent baseline. No new graphical or full AI balance validation is claimed. See the [full battle save plan](docs/plans/battle-save.md).
+
 ```bash
 godot --headless --path . --editor --quit
 godot --headless --path . --script res://tests/test_battle.gd
@@ -186,6 +190,10 @@ godot --headless --path . --script res://tests/test_campaign_store.gd
 godot --headless --path . --script res://tests/test_campaign_store.gd -- --write
 godot --headless --path . --script res://tests/test_campaign_store.gd -- --read
 godot --headless --path . --script res://tests/test_campaign_session.gd
+godot --headless --path . --script res://tests/test_battle_snapshot.gd
+godot --headless --path . --script res://tests/test_battle_save.gd
+godot --headless --path . --script res://tests/test_battle_save.gd -- --write
+godot --headless --path . --script res://tests/test_battle_save.gd -- --read
 godot --path . --script res://tests/test_ui.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_forecast.gd --resolution 1440x1000 --audio-driver Dummy
 godot --path . --script res://tests/test_map_art.gd --resolution 1440x1000 --audio-driver Dummy -- --complete

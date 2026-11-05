@@ -54,6 +54,7 @@ var campaign_session: RefCounted = CampaignSession.new()
 var campaign_active: bool = false
 var story_view: Control
 var campaign_confirmation: ConfirmationDialog
+var quit_confirmation: ConfirmationDialog
 
 func _process(delta: float) -> void:
 	if battle == null: return
@@ -81,6 +82,9 @@ func _process(delta: float) -> void:
 		error_message = false
 		_refresh()
 		if ai_running: _run_ai(generation)
+	if campaign_active and campaign_session.encounter == battle:
+		var autosaved: Dictionary = campaign_session.autosave_tick(delta)
+		if not autosaved.ok: _show_hint(campaign_session.notice, true)
 	_update_clock_ui(false)
 
 func _update_clock_ui(paused: bool = false) -> void:
@@ -99,6 +103,8 @@ func _draw() -> void:
 
 func _ready() -> void:
 	resized.connect(queue_redraw)
+	get_tree().auto_accept_quit = false
+	get_window().close_requested.connect(_request_exit)
 	DisplayServer.window_set_title("纹章与誓约 · v%s" % ProjectSettings.get_setting("application/config/version", "dev"))
 	_make_theme()
 	# Reuse the canonical controls so shortcuts, focus and pointer routes agree.
@@ -162,6 +168,12 @@ func _ready() -> void:
 	campaign_confirmation.cancel_button_text = "保留进度"
 	campaign_confirmation.confirmed.connect(_new_campaign)
 	add_child(campaign_confirmation)
+	quit_confirmation = ConfirmationDialog.new()
+	quit_confirmation.title = "战役进度尚未保存"
+	quit_confirmation.ok_button_text = "仍然退出"
+	quit_confirmation.cancel_button_text = "返回游戏"
+	quit_confirmation.confirmed.connect(func() -> void: get_tree().quit())
+	add_child(quit_confirmation)
 	var loaded: Dictionary = deck_store.load_deck()
 	if loaded.ok: custom_deck = loaded.definition
 	custom_load_notice = loaded.get("message", "")
@@ -220,6 +232,9 @@ func _ready() -> void:
 	council.open(current_map, current_hero, false, current_deck)
 
 func _open_council() -> void:
+	if campaign_session.campaign.story != null:
+		campaign_session.save()
+		council.campaign_notice.text = campaign_session.notice
 	story_view.hide()
 	council.open(current_map, current_hero, has_started and battle.winner == -1, current_deck)
 	_refresh()
@@ -234,8 +249,11 @@ func _start_from_council(map_id: String, hero_id: String, deck_id: String) -> vo
 		_open_deck_editor()
 		deck_editor.status.text = "请先保存30张合法的自定义套牌。"
 		return
+	var suspended: Dictionary = campaign_session.leave_battle()
+	if not suspended.ok:
+		council.campaign_notice.text = suspended.message
+		return
 	campaign_active = false
-	campaign_session.leave_battle()
 	story_view.hide()
 	current_map = map_id
 	current_hero = hero_id
@@ -278,7 +296,8 @@ func _continue_campaign() -> void:
 			council.campaign_notice.text = result.message
 			return
 	campaign_active = true
-	_show_story()
+	if campaign_session.encounter != null: _mount_campaign_encounter(campaign_session.resume_encounter())
+	else: _show_story()
 
 func _show_story() -> void:
 	generation += 1
@@ -304,11 +323,29 @@ func _save_campaign() -> void:
 	campaign_session.save()
 	story_view.set_status(campaign_session.notice, campaign_session.unsaved)
 
+func _request_exit() -> void:
+	if campaign_session.campaign.story == null:
+		get_tree().quit()
+		return
+	var saved: Dictionary = campaign_session.save()
+	if saved.ok:
+		get_tree().quit()
+		return
+	_open_council()
+	if not campaign_session.unsaved:
+		get_tree().quit()
+		return
+	quit_confirmation.dialog_text = campaign_session.notice + "\n本次退出已取消。返回游戏可重试；仍然退出可能丢失未保存的进度。"
+	quit_confirmation.popup_centered()
+
 func _begin_campaign_battle(expected: Dictionary) -> void:
 	var result: Dictionary = campaign_session.begin_battle(expected)
 	if not result.ok:
 		story_view.set_status(result.message, true)
 		return
+	_mount_campaign_encounter(result)
+
+func _mount_campaign_encounter(result: Dictionary) -> void:
 	current_map = result.scenario.map
 	current_hero = result.scenario.hero
 	current_deck = result.scenario.deck
@@ -320,6 +357,10 @@ func _begin_campaign_battle(expected: Dictionary) -> void:
 	if not expanded_battlefield: _toggle_battlefield()
 	_refresh()
 	board.grab_focus()
+	if battle.active_side == 1 and battle.winner == -1:
+		ai_running = true
+		_refresh()
+		_run_ai(generation)
 
 func _open_library() -> void:
 	var deck_id: String = council.selected_deck if council.visible else current_deck
@@ -434,14 +475,14 @@ func _new_match(seed_value: int, prepared: Battle = null) -> void:
 	selected_unit = -1
 	inspected_card = -1
 	hovered_cell = Vector2i(-1, -1)
-	if battle != null and battle.changed.is_connected(_refresh): battle.changed.disconnect(_refresh)
+	if battle != null and battle.changed.is_connected(_on_battle_changed): battle.changed.disconnect(_on_battle_changed)
 	var hero_index: int = 0
 	for index: int in range(BattleModel.HEROES.heroes.size()):
 		if BattleModel.HEROES.heroes[index].id == current_hero: hero_index = index
 	var enemy_id: String = BattleModel.HEROES.heroes[(hero_index + 1) % BattleModel.HEROES.heroes.size()].id
 	var enemy_deck: String = "balanced" if current_deck == "custom" else current_deck
 	battle = prepared if prepared != null else BattleModel.new(seed_value, current_map, current_hero, enemy_id, current_deck, enemy_deck, 90, custom_deck)
-	battle.changed.connect(_refresh)
+	battle.changed.connect(_on_battle_changed)
 	board.battle = battle
 	board.fit_map()
 	board.reset_effects()
@@ -451,6 +492,12 @@ func _new_match(seed_value: int, prepared: Battle = null) -> void:
 	message = "选择部队牌，再点击己方部队身旁的青色格部署。"
 	error_message = false
 	_refresh()
+
+func _on_battle_changed() -> void:
+	_refresh()
+	if campaign_active and campaign_session.encounter == battle:
+		campaign_session.save()
+		if campaign_session.unsaved: _show_hint(campaign_session.notice, true)
 
 func _refresh() -> void:
 	if battle == null: return
@@ -969,8 +1016,9 @@ func _unit_status(unit: Dictionary) -> String:
 	return "可移动一次，并攻击一次。"
 
 func _show_hint(value: String, is_error: bool) -> void:
-	hint.text = value
-	hint.add_theme_color_override("font_color", RED if is_error else Color("a1c4b6"))
+	var save_failed: bool = campaign_active and campaign_session.unsaved
+	hint.text = "战役尚未保存 · " + campaign_session.notice + "（回战前页重试）" if save_failed else value
+	hint.add_theme_color_override("font_color", RED if is_error or save_failed else Color("a1c4b6"))
 
 func _end_turn() -> void:
 	using_unit_skill = false
@@ -981,7 +1029,7 @@ func _end_turn() -> void:
 	ai_running = true
 	using_hero = false
 	_apply_with_feedback({"type": "end_turn"})
-	message = "赤曜军团正在行动…"
+	message = "%s正在行动…" % battle.side_name(1)
 	error_message = false
 	_refresh()
 	_run_ai(generation)

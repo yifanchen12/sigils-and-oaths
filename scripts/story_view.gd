@@ -163,7 +163,7 @@ func _render_page() -> void:
 			speaker.text = setup.get("title", "战前军议")
 			var retry: String = ""
 			if page.last_outcome != "": retry = "\n\n上一战" + ("失利" if page.last_outcome == "defeat" else "平局") + "，剧情停在此处。重新出征将重建同一战场。"
-			text_body.text = "%s\n\n作战目标\n%s\n\n敌方指挥：%s\n每回合 90 秒。战斗中退出，下次从战前重新开始。%s" % [setup.get("brief", ""), setup.get("objective", ""), setup.get("enemy_name", ""), retry]
+			text_body.text = "%s\n\n作战目标\n%s\n\n敌方指挥：%s\n每回合 90 秒。战斗自动保存，退出后可继续当前局面。%s" % [setup.get("brief", ""), setup.get("objective", ""), setup.get("enemy_name", ""), retry]
 			actions.add_child(_button("重新出征" if page.attempts > 0 else "率军出征", _battle.bind(view_token.duplicate())))
 		"end":
 			speaker.text = "第一章 · 章末"
