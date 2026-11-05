@@ -94,7 +94,7 @@ def chapter_audit(ids, text_seen, errors):
             "incoming_fact_combinations": len(incoming),
             "longest_route_characters": max(routes), "nodes": len(nodes),
             "native_rendered_source_matches": native_rendered,
-            "status": "Native page rendering checked in 0.16.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending." if native_rendered else "Source differs from native rendering evidence or has not been rendered; native UI and ordinary playthrough checks pending.",
+            "status": f"Native page rendering checked in {evidence.get('milestone', 'unknown')}; chapter access uses victory fixtures. Normal-difficulty playthrough still pending." if native_rendered else "Source differs from native rendering evidence or has not been rendered; native UI and ordinary playthrough checks pending.",
         })
     return reports
 
@@ -141,7 +141,7 @@ def audit():
     candidate = sum(chapter["graph_reachable_unique_characters"] for chapter in chapters)
     rendered = sum(chapter["graph_reachable_unique_characters"] for chapter in chapters if chapter["native_rendered_source_matches"])
     return {
-        "scope": "Codex accessibility verified in 0.13.0. Chapters 1-3 carry actual prior endings. Native pages and selected control flows checked in 0.16.0-dev; fixture victories do not establish ordinary playthrough accessibility.",
+        "scope": "Codex accessibility verified in 0.13.0. Registered chapters carry actual prior endings. Native source hashes identify rendered pages; fixture victories do not establish ordinary playthrough accessibility.",
         "counting_method": "Distinct body paragraphs; Chinese Han characters only; excludes punctuation, summaries, headings, UI, plans and prompts.",
         "entries": len(entries), "paragraphs": paragraphs,
         "unique_chinese_characters": count, "by_category": by_category,

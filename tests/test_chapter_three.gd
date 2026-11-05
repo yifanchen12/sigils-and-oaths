@@ -56,7 +56,7 @@ func walk(campaign: RefCounted, depth: int = 0) -> void:
 				check(runner.state.flags.supply_route == ("maintenance" if runner.state.flags.pass_route == "vent" else "long_road"), "battle awards the chosen supply route")
 				var copy: RefCounted = Campaign.new()
 				check(copy.restore(JSON.parse_string(JSON.stringify(campaign.snapshot()))).ok and copy.snapshot() == campaign.snapshot(), "three-chapter history roundtrips")
-				check(campaign.next_chapter().is_empty(), "no unwritten fourth chapter")
+				check(campaign.next_chapter().get("id") == "chapter_04", "third chapter offers its authored harbor continuation")
 func clean() -> void:
 	for suffix: String in ["", ".bak", ".tmp"]:
 		if FileAccess.file_exists(PATH + suffix): DirAccess.remove_absolute(PATH + suffix)

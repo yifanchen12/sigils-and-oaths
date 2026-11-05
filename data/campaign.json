@@ -15,6 +15,11 @@
       "id": "chapter_03",
       "title": "第三章 · 风过断脊",
       "path": "res://data/narrative/chapters/chapter_03.json"
+    },
+    {
+      "id": "chapter_04",
+      "title": "第四章 · 港口不眠",
+      "path": "res://data/narrative/chapters/chapter_04.json"
     }
   ],
   "scenarios": {
@@ -163,6 +168,32 @@
       "deck": "assault",
       "enemy_deck": "bastion",
       "seed": 3318
+    },
+    "c04_dock": {
+      "title": "返潮靠岸",
+      "brief": "北坞雇卫拒绝放下跳板。沿港口横桥推进，压制岸上的指挥位置，让被扣船工下船。",
+      "objective": "击败敌方指挥官，解除返潮所在岸位的封锁。",
+      "map": "harbor",
+      "hero": "warden",
+      "enemy_class": "warden",
+      "deck": "balanced",
+      "enemy_deck": "bastion",
+      "seed": 4317,
+      "enemy_name": "北坞雇卫长",
+      "enemy_portrait": "terrain_fort"
+    },
+    "c04_pump": {
+      "title": "低坞夜班",
+      "brief": "雇卫封住泵房，不许工匠轮换抽水设备。利用岸边石垒接近守机阵线，夺下指挥位置。",
+      "objective": "击败敌方指挥官，让本地工匠接管泵房。",
+      "map": "harbor",
+      "hero": "pyromancer",
+      "enemy_class": "warden",
+      "deck": "assault",
+      "enemy_deck": "balanced",
+      "seed": 4318,
+      "enemy_name": "泵房守机队长",
+      "enemy_portrait": "terrain_fort"
     }
   }
 }

@@ -14,6 +14,7 @@ var writing: bool = false
 var scenario_id: String = "c03_vent"
 var post_line: String = ""
 var post_node: String = ""
+var capture_prefix: String = "v018-"
 
 func checkpoint() -> RefCounted:
 	var campaign: RefCounted = Campaign.new(); campaign.start()
@@ -39,7 +40,7 @@ func button(parent: Node, caption: String) -> Button:
 
 func wait_for_player() -> bool:
 	var deadline: int = Time.get_ticks_msec() + 30000
-	while game.battle.winner == -1 and (game.battle.active_side != 0 or game.ai_running or game.board.is_presenting()):
+	while game.ai_running or game.board.is_presenting() or (game.battle.winner == -1 and game.battle.active_side != 0):
 		if Time.get_ticks_msec() >= deadline: check(false, "live AI/animation completes within bounded time"); return false
 		await create_timer(0.03).timeout
 	# The turn-end refresh rebuilds cards; container layout is deferred until
@@ -88,13 +89,15 @@ func run() -> void:
 	create_timer(240).timeout.connect(func() -> void: push_error("native encounter playthrough timeout"); quit(2))
 	for arg: String in OS.get_cmdline_user_args():
 		if arg.begins_with("--scenario="): scenario_id = arg.trim_prefix("--scenario=")
-	check(scenario_id in ["c02_relief_bridge", "c02_seed_bridge", "c03_vent"], "native objective scenario is supported")
+	check(scenario_id in ["c01_bridge", "c02_relief_bridge", "c02_seed_bridge", "c03_vent"], "native encounter scenario is supported")
 	if failures > 0: quit(1); return
 	post_node = "vent_after" if scenario_id == "c03_vent" else "bridge_after"
 	post_line = "c03.vent_after.01" if scenario_id == "c03_vent" else "c02.bridge_after.01"
+	if scenario_id == "c01_bridge": post_line = "c01.w01"; capture_prefix = "v0181-"
 	writing = OS.get_cmdline_user_args().has("--write")
 	if not writing and not OS.get_cmdline_user_args().has("--read"): check(false, "choose writer then reader"); quit(1); return
 	var trace_path: String = "res://tests/fixtures/campaign_v018_selfplay.json" if scenario_id == "c03_vent" else "res://tests/fixtures/campaign_v018_cautious.json"
+	if scenario_id == "c01_bridge": trace_path = "res://tests/fixtures/campaign_v0181_bridge.json"
 	var report: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(trace_path))
 	for candidate: Dictionary in report.games:
 		if candidate.scenario == scenario_id: row = candidate
@@ -103,7 +106,7 @@ func run() -> void:
 	var campaign: RefCounted = checkpoint()
 	var config: Dictionary = campaign.scenario()
 	shadow = Battle.new(int(config.seed), config.map, config.hero, config.enemy_class, config.deck, config.enemy_deck, 90)
-	shadow.set_commander_identity(1, config.enemy_name, config.enemy_portrait); shadow.configure_objective(config.control)
+	shadow.set_commander_identity(1, config.enemy_name, config.enemy_portrait); shadow.configure_objective(config.get("control", {}))
 	game = MainScene.instantiate(); game.deck_store = Store.new("res://.tools/native_play_deck.json")
 	game.campaign_session = Session.new(SAVE)
 	if writing:
@@ -158,7 +161,7 @@ func run() -> void:
 			check(file != null, "write independent-process continuation cursor")
 			if file == null: quit(1); return
 			file.store_string(JSON.stringify({"scenario": scenario_id, "cursor": cursor, "snapshot": Snapshot.capture(game.battle)}, "", true, true)); file.close()
-			await capture("v018-" + scenario_id + "-before-exit")
+			await capture(capture_prefix + scenario_id + "-before-exit")
 			print("NATIVE PLAYTHROUGH WRITER: %d CHECKS | FAILURES: %d | ACTIONS: %d | ENEMY TURN: %d" % [checks, failures, cursor, game.battle.turn])
 			if failures > 0: quit(1); return
 			# Same handler as the real window close signal; next invocation starts
@@ -169,15 +172,18 @@ func run() -> void:
 	else:
 		await wait_for_player()
 		await create_timer(0.8).timeout
-		check(game.battle.winner == 0 and game.battle.objective.streak == 2 and game.battle.turn == int(row.turn), "real native battle wins by control from its initial state")
+		check(game.battle.winner == 0 and game.battle.turn == int(row.turn), "real native battle wins from its initial state")
+		if scenario_id == "c01_bridge": check(game.battle.commander(1).is_empty() and not game.battle.commander(0).is_empty(), "bridge victory actually defeats the opposing commander")
+		else: check(game.battle.objective.streak == 2, "objective victory achieves both consecutive control credits")
 		check(Replay.state_without_clock(game.battle) == Replay.state_without_clock(shadow), "final native state matches independently replayed rules result")
 		check(game.campaign_session.current().node == post_node, "actual victory advances and saves the expected story node")
 		var flags: Dictionary = game.campaign_session.campaign.story.state.flags
-		check(flags.supply_route == "maintenance" if scenario_id == "c03_vent" else flags.priority == ("seed" if scenario_id == "c02_seed_bridge" else "relief"), "victory preserves the selected branch consequence")
-		await capture("v018-" + scenario_id + "-victory")
+		if scenario_id == "c01_bridge": check(flags.route == "road", "bridge victory preserves the preceding selected road route")
+		else: check(flags.supply_route == "maintenance" if scenario_id == "c03_vent" else flags.priority == ("seed" if scenario_id == "c02_seed_bridge" else "relief"), "victory preserves the selected branch consequence")
+		await capture(capture_prefix + scenario_id + "-victory")
 		await click(game.get_node("%PlayAgain").get_global_rect().get_center())
 		check(game.story_view.visible and game.story_view.page.line_id == post_line, "real continue-story button opens postbattle prose")
-		await capture("v018-" + scenario_id + "-story")
+		await capture(capture_prefix + scenario_id + "-story")
 		var fresh: RefCounted = Session.new(SAVE)
 		check(fresh.load_campaign().ok and fresh.current().line_id == post_line and fresh.encounter == null, "saved victory resumes as dialogue without replaying rewards")
 	print("NATIVE PLAYTHROUGH %s: %d CHECKS | FAILURES: %d | ACTIONS: %d | DISPLAY: %s" % ["WRITER" if writing else "READER", checks, failures, cursor, DisplayServer.get_name()])

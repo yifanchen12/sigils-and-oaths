@@ -38,8 +38,11 @@
     {
       "id": "chapter_04",
       "title": "港口不眠",
-      "status": "outline",
-      "nativeValidated": false
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "revision": "0.19.0-dev"
     },
     {
       "id": "chapter_05",

@@ -5,13 +5,13 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.18.0-dev" src="https://img.shields.io/badge/version-0.18.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.19.0-dev" src="https://img.shields.io/badge/version-0.19.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts; it includes no assets from either game. Current source is **0.18.0-dev**, with three chapters, branching encounters and cross-chapter saves wired in. Native narrative pages are checked. Version 0.18.0-dev adds deployment-risk and healer-action decisions; both chapter-2 bridge routes now have native victories from original resources, including exit/relaunch and enemy-AI continuation. The chapter-1 bridge, continuous campaign completion and overall pacing still need work. The interface is Chinese; this English README does not imply an English localization.
+The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts, with no assets from either game. Current source is **0.19.0-dev**, with four chapters, branching encounters and cross-chapter saves. The new harbor chapter brings Lorne and Mirei home and makes Velo face his debts. All four chapters have native page checks; the chapter-1 bridge now has a native victory from original resources, exit/relaunch continuation and postbattle-story verification. The complete campaign, overall balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
 
 ## In-game screenshots
 
@@ -48,7 +48,7 @@ AI captures and holds control points, using knockback, spells and guard to conte
 
 ![Actual chapter-2 relief-route control victory](docs/screenshots/v018-c02_relief_bridge-victory.png)
 
-Narrative fixtures skip earlier chapters in these single-encounter tests; this is not continuous campaign completion. Eight symmetric-policy scenarios and three cautious-player objective scenarios retain all wins and losses separately. Ordinary battles still include long games, and no winning chapter-1 bridge record has been found. [Results, limitations and reproduction commands](docs/tactical-survival.md).
+A test-only player strategy now wins the chapter-1 bridge by concentrating on the left crossing: 260 legal actions against unchanged production AI and original resources/card order, also verified through two native processes with exit/relaunch. Earlier encounters are still skipped by narrative fixtures, so this is not continuous campaign completion. All previous losing records remain available; ordinary battles still include long games. [Chapter-1 bridge evidence](docs/bridge-playthrough.md) · [Chapter-2 controls and historical diagnostics](docs/tactical-survival.md).
 
 ## Unit skills and combat animation
 
@@ -119,6 +119,12 @@ Version 0.16.0-dev passes 1,520 relevant model checks and 2,264 native UI checks
 
 ![Ranged troop poses](docs/screenshots/ranged-pose-gallery.png)
 ![Commander poses](docs/screenshots/hero-pose-gallery.png)
+
+Chapter 4 adds **6,024 Chinese body-text characters**, two harbor encounters and separate choices about crew accommodation and unpaid wages. The crew leaves the locked ship, the old foundry pattern gets a concrete origin, and Velo must surrender assets or income while installment debts remain explicit. A chapter-4 route contains 5,147–5,258 characters. Four chapters have 512 cumulative choice paths with seven encounters per path; total authored prose including the archive is **28,082 characters**. Native rendering covers 360 chapter paragraphs / 22,524 characters. Continuous ordinary-difficulty accessibility remains unverified, so the conservative accepted count stays at 5,558.
+
+![Chapter 4: Lorne returns to the warehouse](docs/screenshots/chapter4-home.png)
+
+The chapter and related model suite passed 6,325 checks; native pages and controls passed 3,085. Harbor deployment is checked, but ordinary-resource harbor victories are still pending. New NPC portraits and dedicated narrative backgrounds are also pending. [Chapter-4 editorial and verification notes](docs/narrative/chapter-04-review.md).
 
 ## Quick start
 
