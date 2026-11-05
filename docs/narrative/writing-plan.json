@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "title": "纹章与誓约",
+  "writingMode": "serial",
+  "status": "in_progress",
+  "source": "data/narrative/chapters/*.json",
+  "bible": "writing-bible.md",
+  "releaseTargetUniqueHan": 100000,
+  "editorialAcceptance": "Conflict, character motive, distinct dialogue, causal choices, continuity and actual branch reachability. Counts alone cannot pass prose quality.",
+  "chapters": [
+    {
+      "id": "chapter_01",
+      "title": "河门来信",
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "revision": "0.15.1-dev"
+    },
+    {
+      "id": "chapter_02",
+      "title": "两岸的粮单",
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "revision": "0.15.1-dev"
+    },
+    {
+      "id": "chapter_03",
+      "title": "风过断脊",
+      "status": "outline",
+      "nativeValidated": false
+    },
+    {
+      "id": "chapter_04",
+      "title": "港口不眠",
+      "status": "outline",
+      "nativeValidated": false
+    },
+    {
+      "id": "chapter_05",
+      "title": "水从哪里来",
+      "status": "outline",
+      "nativeValidated": false
+    },
+    {
+      "id": "chapter_06",
+      "title": "棋庭旧印",
+      "status": "outline",
+      "nativeValidated": false
+    },
+    {
+      "id": "chapter_07",
+      "title": "未送达的名字",
+      "status": "outline",
+      "nativeValidated": false
+    },
+    {
+      "id": "chapter_08",
+      "title": "长昼的第八夜",
+      "status": "outline",
+      "nativeValidated": false
+    },
+    {
+      "id": "chapter_09",
+      "title": "谁来签字",
+      "status": "outline",
+      "nativeValidated": false
+    },
+    {
+      "id": "chapter_10",
+      "title": "共誓之地",
+      "status": "outline",
+      "nativeValidated": false
+    }
+  ]
+}
