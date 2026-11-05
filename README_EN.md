@@ -5,13 +5,13 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.16.0-dev" src="https://img.shields.io/badge/version-0.16.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.17.0-dev" src="https://img.shields.io/badge/version-0.17.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts; it includes no assets from either game. Current source is **0.16.0-dev**, with three chapters, branching encounters and cross-chapter saves wired in. Version 0.16.0-dev checks native narrative pages and objective UI; normal-difficulty campaign completion and balance remain unverified. The interface is Chinese; this English README does not imply an English localization.
+The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts; it includes no assets from either game. Current source is **0.17.0-dev**, with three chapters, branching encounters and cross-chapter saves wired in. Native narrative pages are checked. Version 0.17.0-dev adds objective-aware AI and plays the chapter-3 vent encounter from its initial resources, including exit/relaunch and enemy-AI continuation. Full campaign completion and balance remain unverified. The interface is Chinese; this English README does not imply an English localization.
 
 ## In-game screenshots
 
@@ -41,6 +41,14 @@ These are actual game-window captures from 0.13.0 and earlier milestones, includ
 | Lead with a commander | Ailin protects the front, Velo strengthens fire, and Sera supports healing and woodland recovery; each has active and passive abilities |
 | Change the next exchange | Rain, fog, sun and snow affect both sides; replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
+
+## Objectives and a complete native encounter
+
+AI now captures and holds control points, using knockback, spells and guard to contest progress. Ordinary encounters retain their previous policy. All eight authored scenarios have 1,576 recorded legal actions, including losses. The chapter-3 vent encounter is played from its original resources through 81 actions in the native window: exit on an enemy turn, relaunch, resume AI, win by control at the start of round 9, and continue into saved postbattle dialogue.
+
+![Actual control victory and saved story result](docs/screenshots/campaign-native-control-victory.png)
+
+Earlier chapters use narrative fixtures to reach this encounter, so this is not a continuous campaign completion claim. Both chapter-2 bridge routes still have failed policy-diagnostic runs. [Full results, limitations and reproduction commands](docs/campaign-ai.md).
 
 ## Unit skills and combat animation
 
@@ -93,7 +101,7 @@ Chapter 1 contains **5,820 body-text characters**, three decisions and eight rou
 
 Chapter 2 contains 4,914 Chinese body-text characters and carries the eight prior fact combinations into two new decisions: shipment priority and receipt inspection. Its 32 cumulative routes each contain two encounters. Relief priority uses Sera and the defensive deck; seed priority uses Ailin and the balanced deck. Hold both D5 and I5 at two consecutive player-turn starts within 12 full rounds, or defeat the opposing commander. Velo leads the dispatch-office encounter. Chapter transitions retain prior reading history and facts, and only commit after saving succeeds. Stable dialogue IDs survive inserted or reordered earlier lines. **Native chapter pages and transitions are checked. The shared two-point objective is exercised in chapter 3; chapter 2 still needs complete native combat-result and ordinary-playthrough checks.**
 
-Campaign autosaves now include **complete battle state**: board, card order, skills/guard/root, weather, resources, clock and RNG, alongside dialogue and choices. Completed actions are saved immediately; the active clock is saved every five seconds. Menu entry and normal exit are wired to save too. Cross-process recovery and continued actions pass pure-logic checks; native menu save/continue is checked, while actual exit/relaunch and AI-resume interaction still need validation. Failed writes preserve the previous save and report an error. Newer or incompatible rules versions are protected. The current v3 format accepts v1 story checkpoints and v2 full battles; files without a board resume at the briefing.
+Campaign autosaves now include **complete battle state**: board, card order, skills/guard/root, weather, resources, clock and RNG, alongside dialogue and choices. Completed actions are saved immediately; the active clock is saved every five seconds. Menu entry and normal exit are wired to save too. Cross-process recovery and continued actions pass pure-logic checks. Version 0.17.0-dev additionally exits during the vent encounter, loads it in a new native process, resumes enemy AI and plays through to victory and the saved postbattle dialogue. Failed writes preserve the previous save and report an error. Newer or incompatible rules versions are protected. The current v3 format accepts v1 story checkpoints and v2 full battles; files without a board resume at the briefing.
 
 Switching to a skirmish retains the ongoing campaign battle. An unexpected termination may lose the latest unsaved clock interval; backups and flushing cannot guarantee the newest write survives a sudden power loss. Enemy guards still use separate names and temporary fort icons with existing rules classes; dedicated NPC artwork remains pending.
 

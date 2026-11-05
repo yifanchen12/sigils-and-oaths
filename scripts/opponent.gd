@@ -1,21 +1,29 @@
 class_name Opponent
 extends RefCounted
 ## A small deterministic heuristic, using only its own cards and the public board.
+const ObjectiveAI = preload("res://scripts/objective_ai.gd")
 
 static func choose(battle: Battle) -> Dictionary:
 	var best: Dictionary = {"type": "end_turn"}
-	var best_score: float = 0.0
 	var fields: Dictionary = {}
+	var objective: Dictionary = ObjectiveAI.prepare(battle)
+	# Keep end-turn as the tie winner. In a control emergency its value can be
+	# negative, but ordinary zero-value actions still must not replace waiting.
+	var best_score: float = evaluate(battle, best, fields, objective)
 	for unit: Dictionary in battle.units:
 		if unit.side == battle.active_side and not battle.movement_cells(unit).is_empty(): fields[unit.id] = _approach_field(battle, unit)
 	for action: Dictionary in battle.get_legal_actions(battle.active_side):
-		var score: float = evaluate(battle, action, fields)
+		var score: float = evaluate(battle, action, fields, objective)
 		if score > best_score:
 			best = action
 			best_score = score
 	return best
 
-static func evaluate(battle: Battle, action: Dictionary, fields: Dictionary = {}) -> float:
+static func evaluate(battle: Battle, action: Dictionary, fields: Dictionary = {}, objective: Dictionary = {}) -> float:
+	if not battle.objective.is_empty() and objective.is_empty(): objective = ObjectiveAI.prepare(battle)
+	return _combat_value(battle, action, fields) + ObjectiveAI.value(battle, action, objective)
+
+static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary = {}) -> float:
 	var side: int = battle.active_side
 	var enemy_leader: Dictionary = battle.commander(1 - side)
 	match String(action.type):
