@@ -133,7 +133,12 @@ $LicenseOutput = New-Item -ItemType Directory -Path (Join-Path $PackageDir 'lice
 Copy-Item -LiteralPath (Join-Path $LicenseCache 'Godot-LICENSE.txt'), (Join-Path $LicenseCache 'Godot-COPYRIGHT.txt') -Destination $LicenseOutput.FullName
 $SourceCommit = (& git -C $ProjectRoot rev-parse HEAD | Out-String).Trim()
 if ($LASTEXITCODE -ne 0) { throw 'Unable to determine source commit.' }
-$SourceDirty = [bool]((& git -C $ProjectRoot status --porcelain | Out-String).Trim())
+$StatusLines = @(& git -C $ProjectRoot status --porcelain --untracked-files=all)
+$MaterialChanges = @($StatusLines | Where-Object {
+    $_ -and $_ -notmatch '^\?\? (?:scripts/|tests/).+\.gd\.uid$' -and $_ -notmatch '^\?\? docs/screenshots/.+\.png\.import$'
+})
+$SourceDirty = $MaterialChanges.Count -gt 0
+if ($SourceDirty) { throw 'Source has uncommitted material changes; commit or discard them before release export.' }
 $Payload = @('SigilsAndOaths.exe', 'SigilsAndOaths.pck') | ForEach-Object {
     $Path = Join-Path $PackageDir $_
     [ordered]@{file=$_; bytes=(Get-Item -LiteralPath $Path).Length; sha256=(Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant()}
