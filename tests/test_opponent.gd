@@ -35,6 +35,7 @@ func run() -> void:
 	test_safe_draw()
 	test_healer_support()
 	test_public_information()
+	test_mage_armor_choice()
 	print("OPPONENT CHECKS: %d | FAILURES: %d" % [checks, failures])
 	quit(0 if failures == 0 else 1)
 
@@ -89,3 +90,36 @@ func test_healer_support() -> void:
 	check(action.type == "move" and action.get("unit_id", -1) == healer.id, "healer seeks reachable support position")
 	if action.type == "move":
 		check(game.apply_action(action).ok and game.distance(healer.pos, wounded.pos) <= 1, "healer moves adjacent to wounded ally rather than rushing past")
+
+func test_mage_armor_choice() -> void:
+	for weather: String in ["clear", "rain", "sun"]:
+		var game: Battle = fresh()
+		game.players[0].mana = 1
+		game.weather = weather
+		game.weather_remaining = 2 if weather != "clear" else 0
+		var mage: Dictionary = troop(game, "mage", Vector2i(4, 4), 0)
+		mage.moved = true
+		var defender: Dictionary = troop(game, "spear", Vector2i(4, 2), 1)
+		game.terrain[defender.pos] = "fort"
+		check(game.damage_preview(mage, defender) == 1 and game.fire_damage(3) > 1, "actual armor makes the spell more effective than the free shot")
+		var action: Dictionary = EnemyAI.choose(game)
+		check(action.type == "unit_skill" and action.get("unit_id", -1) == mage.id and action.target == defender.pos, "mage spends available mana to pierce armor: " + weather)
+		if action.type == "unit_skill":
+			check(game.apply_action(action).ok and defender.hp == defender.max_hp - game.fire_damage(3) and mage.hp == mage.max_hp and game.players[0].mana == 0, "chosen spell deals actual weather damage without retaliation and pays mana")
+	var game: Battle = fresh()
+	var mage: Dictionary = troop(game, "mage", Vector2i(4, 4), 0)
+	mage.moved = true
+	var defender: Dictionary = troop(game, "spear", Vector2i(4, 2), 1)
+	game.terrain[defender.pos] = "fort"
+	var action: Dictionary = EnemyAI.choose(game)
+	check(action.type == "attack" and game.apply_action(action).ok, "mage without mana retains its legal normal attack")
+	game = fresh(); game.players[0].mana = 1
+	mage = troop(game, "mage", Vector2i(4, 4), 0); mage.moved = true
+	defender = troop(game, "archer", Vector2i(4, 2), 1)
+	defender.hp = 2; defender.shield = 1
+	var guard: Dictionary = troop(game, "spear", Vector2i(5, 2), 1); guard.guarding = true
+	check(game.attack_defender(mage, defender).id == guard.id, "ordinary shot would be intercepted by the neighboring spear")
+	action = EnemyAI.choose(game)
+	check(action.type == "unit_skill" and action.get("unit_id", -1) == mage.id and action.target == defender.pos, "mage selects a shield-aware lethal spell that bypasses guard")
+	if action.type == "unit_skill":
+		check(game.apply_action(action).ok and game.get_unit(defender.id).is_empty() and guard.hp == guard.max_hp, "actual spell removes the shielded target and leaves the guard unharmed")

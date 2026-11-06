@@ -5,13 +5,13 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.26.0-dev" src="https://img.shields.io/badge/version-0.26.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.27.0-dev" src="https://img.shields.io/badge/version-0.27.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法研究参考《炉石传说》的卡牌资源节奏与《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡面、美术与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前源码为 **0.26.0-dev**，面向 Windows 桌面单机对战 AI；八章剧情、分支关卡与跨章存档已接入。新章「长昼的第八夜」走进过水廊与旧炉坊，追索维洛师父的遭遇，并选择如何让居民的供水继续运转。完整战役、整体平衡与十万字目标仍在开发。
+玩法研究参考《炉石传说》的卡牌资源节奏与《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡面、美术与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前源码为 **0.27.0-dev**，面向 Windows 桌面单机对战 AI；八章剧情、分支关卡与跨章存档已接入。新章「长昼的第八夜」走进过水廊与旧炉坊，追索维洛师父的遭遇，并选择如何让居民的供水继续运转。完整战役、整体平衡与十万字目标仍在开发。
 
 ## 实机画面
 
@@ -47,7 +47,13 @@
 | 改变下一轮战局 | 暴雨、浓雾、烈日、寒潮影响双方；可替换或驱散天气，也可造路、筑垒、击退、定身与换位 |
 | 在有限时间内决策 | 每个行动回合90秒；定向法术限定在友军3格内、法师4格内，天气影响全场 |
 
-## 0.26：两条日陨路线可通关
+## 0.27：法师穿甲决策与港口、棋庭通关
+
+AI法师现在能正确比较星火与普攻，重甲工事中的敌人不再因评分错位而只挨一点普攻。港口两战与棋庭已完成正常资源原生获胜、独立进程读档和战后衔接，2612项检查通过。
+
+泵房第9轮取胜，北坞与棋庭仍需32/31轮。当前15关同策略诊断9胜6败；日陨缓压的旧玩家策略在新AI下失败，旧版胜利保留为历史证据。完整连续战役与整体平衡仍待完成。[当前结果与实机记录](docs/harbor-court-playthrough.md)。
+
+## 历史0.26：两条日陨路线可通关
 
 隔离路线完成两点驻守，缓压路线击败守机管事；两关都在正式资源下验证了原生退出、重开与战后衔接。战前页现在先显示目标，小窗口也能直接读到建议和出征按钮。
 

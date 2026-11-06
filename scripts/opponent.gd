@@ -55,8 +55,11 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 					var defender: Dictionary = battle.get_unit(forecast.defender_id)
 					return _attack_value(battle, caster, defender, forecast) - 2.0
 				"mage":
-					var loss: int = maxi(0, battle.fire_damage(3) - int(victim.shield))
-					return 42.0 + mini(loss, int(victim.hp)) * 6.0 + (3000.0 if victim.kind == "commander" and loss >= int(victim.hp) else (40.0 if loss >= int(victim.hp) else 0.0))
+					# Compare spells and ordinary attacks on the same scale. Fire
+					# bypasses armor/guard and does not provoke retaliation.
+					var damage: int = battle.fire_damage(3)
+					var loss: int = mini(int(victim.hp), maxi(0, damage - int(victim.shield)))
+					return _attack_value(battle, caster, victim, {"damage": damage, "target_loss": loss, "attacker_loss": 0}) - 2.0
 				# Meaningful healing should beat a nonlethal one-point poke. A
 				# finishing attack retains its separate kill/victory priority.
 				"healer": return 52.0 + mini(3, int(victim.max_hp) - int(victim.hp)) * 8.0
