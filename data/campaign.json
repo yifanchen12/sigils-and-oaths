@@ -35,6 +35,11 @@
       "id": "chapter_07",
       "title": "第七章 · 未送达的名字",
       "path": "res://data/narrative/chapters/chapter_07.json"
+    },
+    {
+      "id": "chapter_08",
+      "title": "第八章 · 长昼的第八夜",
+      "path": "res://data/narrative/chapters/chapter_08.json"
     }
   ],
   "scenarios": {
@@ -262,6 +267,46 @@
       "seed": 6317,
       "enemy_name": "留守队长陶因",
       "enemy_portrait": "terrain_fort"
+    },
+    "c08_isolate": {
+      "map": "sunspire",
+      "hero": "pyromancer",
+      "enemy_class": "warden",
+      "deck": "balanced",
+      "enemy_deck": "bastion",
+      "seed": 8317,
+      "enemy_name": "守机管事阮衡",
+      "enemy_portrait": "terrain_fort",
+      "title": "外台的两端",
+      "brief": "维洛率队夺取外台两处接应位置，阻止守机队继续压送。战后由工班隔离新支线，保留居民饮用支管；战场没有动态水位伤害。",
+      "objective": "己方新回合开始时，E6、H5两格都有友军，连续两次即胜；开局不计。12个完整轮次结束仍未达标则败，同时达标优先算胜。击败敌指挥官也胜，己方指挥官倒下则败。",
+      "control": {
+        "cells": [
+          [
+            4,
+            4
+          ],
+          [
+            7,
+            5
+          ]
+        ],
+        "required": 2,
+        "round_limit": 12
+      }
+    },
+    "c08_buffer": {
+      "map": "sunspire",
+      "hero": "pyromancer",
+      "enemy_class": "warden",
+      "deck": "assault",
+      "enemy_deck": "balanced",
+      "seed": 8318,
+      "enemy_name": "守机管事阮衡",
+      "enemy_portrait": "terrain_fort",
+      "title": "调压院前",
+      "brief": "维洛沿军道夺取调压院的指挥位置，让工班拿回总闸手轮。胜利后再清理冷却池缓压，旧模损失由剧情呈现。",
+      "objective": "击败守机管事阮衡，解除调压院武装封锁；己方指挥官倒下则败。无整局轮数期限，每行动回合90秒。"
     }
   }
 }

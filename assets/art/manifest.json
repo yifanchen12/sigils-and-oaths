@@ -1764,6 +1764,44 @@
       "processing": "Original PNG copied intact. Native Godot cover crop, tint and overlays only.",
       "status": "production; source and native screenshots visually reviewed in 0.24.0-dev",
       "validation": "docs/narrative/chapter-07-review.md"
+    },
+    {
+      "id": "scene_waterpass",
+      "path": "assets/art/narrative/waterpass-day-v1.png",
+      "source_filename": "exec-3b960511-0571-40ba-8d7f-0661bf1c2ddb.png",
+      "reference_source_filename": "exec-c3379b98-db06-4c74-8526-73d7cb9fd4f8.png",
+      "prompt_key": "passage",
+      "prompt_file": "assets/art/narrative/chapter08-prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "6b5a64e3c77de1992d3d1db6a3d0436c2e1d82e92911906792d5b0575eeda8a2",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative backdrop; not simulated geometry.",
+      "processing": "Intact original PNG; native crop and overlay only.",
+      "status": "source and native screenshots visually reviewed; original bytes verified; chapter UI passed",
+      "validation": "docs/narrative/chapter-08-review.md"
+    },
+    {
+      "id": "scene_oldfurnace",
+      "path": "assets/art/narrative/oldfurnace-day-v1.png",
+      "source_filename": "exec-8fbbe33b-0960-400f-9eb7-a4c1533f7745.png",
+      "reference_source_filename": "exec-d1c791d9-e22f-4872-b609-b099e0fe6700.png",
+      "prompt_key": "furnace_correction",
+      "prompt_file": "assets/art/narrative/chapter08-prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "74b0b814b006639a5371da727c8b419c48a6c894498f34b68f557e6f67d350db",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative backdrop; not simulated geometry.",
+      "processing": "Intact original PNG; native crop and overlay only.",
+      "status": "source and native screenshots visually reviewed; original bytes verified; chapter UI passed",
+      "validation": "docs/narrative/chapter-08-review.md"
     }
   ]
 }

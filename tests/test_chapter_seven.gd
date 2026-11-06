@@ -71,7 +71,7 @@ func walk_seven(campaign: RefCounted) -> void:
 				check(campaign.completed == old_history, "earlier histories remain byte-equivalent objects")
 				var copy: RefCounted = Campaign.new()
 				check(copy.restore(JSON.parse_string(JSON.stringify(campaign.snapshot()))).ok and copy.snapshot() == campaign.snapshot(), "all decisions and read histories roundtrip")
-				check(campaign.next_chapter().is_empty(), "unwritten eighth chapter is not offered")
+				check(campaign.next_chapter().get("id") == "chapter_08", "completed seventh chapter offers installed eighth")
 				return
 			_: check(false, "no encounter or unknown page in seventh chapter"); return
 	check(false, "seventh route terminates")

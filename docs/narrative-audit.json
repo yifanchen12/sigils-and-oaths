@@ -24,7 +24,7 @@
       "longest_route_characters": 4197,
       "nodes": 20,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.24.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.25.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
     },
     {
       "id": "chapter_02",
@@ -38,7 +38,7 @@
       "longest_route_characters": 3559,
       "nodes": 15,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.24.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.25.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
     },
     {
       "id": "chapter_03",
@@ -52,7 +52,7 @@
       "longest_route_characters": 4851,
       "nodes": 17,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.24.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.25.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
     },
     {
       "id": "chapter_04",
@@ -66,7 +66,7 @@
       "longest_route_characters": 5258,
       "nodes": 17,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.24.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.25.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
     },
     {
       "id": "chapter_05",
@@ -80,7 +80,7 @@
       "longest_route_characters": 5839,
       "nodes": 16,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.24.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.25.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
     },
     {
       "id": "chapter_06",
@@ -94,7 +94,7 @@
       "longest_route_characters": 6048,
       "nodes": 16,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.24.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.25.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
     },
     {
       "id": "chapter_07",
@@ -108,13 +108,27 @@
       "longest_route_characters": 7181,
       "nodes": 14,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.24.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.25.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+    },
+    {
+      "id": "chapter_08",
+      "body_paragraphs": 183,
+      "all_string_entries": 186,
+      "authored_unique_characters": 8079,
+      "graph_reachable_unique_characters": 8079,
+      "route_count": 49152,
+      "shortest_route_characters": 7105,
+      "incoming_fact_combinations": 24576,
+      "longest_route_characters": 7144,
+      "nodes": 16,
+      "native_rendered_source_matches": true,
+      "status": "Native page rendering checked in 0.25.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
     }
   ],
-  "authored_total_characters": 52624,
-  "native_rendered_chapter_characters": 47066,
+  "authored_total_characters": 60703,
+  "native_rendered_chapter_characters": 55145,
   "pending_ui_verification_characters": 0,
-  "pending_playthrough_verification_characters": 47066,
+  "pending_playthrough_verification_characters": 55145,
   "limitations": "Exact-repeat audit only. Chapter paths assume battle victories and are not normal-difficulty playthroughs. Headings, choice prompts and option labels are excluded. Candidate chapter prose is not added to the verified delivery total until native access and ordinary playthrough checks pass; editorial quality and balance need separate review.",
   "errors": []
 }

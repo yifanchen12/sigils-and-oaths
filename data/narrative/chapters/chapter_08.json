@@ -1,0 +1,1184 @@
+{
+  "version": 1,
+  "id": "chapter_08",
+  "title": "第八章 · 长昼的第八夜",
+  "start": "rope",
+  "inherits": [
+    "route",
+    "witness_present",
+    "seal_copy",
+    "relief",
+    "public_ledger",
+    "priority",
+    "receipt_method",
+    "dispatch_receipts",
+    "clerk_safe",
+    "letter_reply",
+    "letter_delivered",
+    "pass_route",
+    "supply_route",
+    "mine_cargo",
+    "harbor_shelter",
+    "foundry_terms",
+    "crew_safe",
+    "harbor_pump",
+    "pump_route_known",
+    "water_plan",
+    "water_released",
+    "grove_mandate",
+    "charter_copy",
+    "evidence_council",
+    "court_access",
+    "father_trail",
+    "letter_company",
+    "camp_company"
+  ],
+  "defaults": {
+    "route": "none",
+    "witness_present": false,
+    "seal_copy": false,
+    "relief": "none",
+    "public_ledger": false,
+    "priority": "none",
+    "receipt_method": "none",
+    "dispatch_receipts": false,
+    "clerk_safe": false,
+    "letter_reply": "none",
+    "letter_delivered": false,
+    "pass_route": "none",
+    "supply_route": "none",
+    "mine_cargo": false,
+    "harbor_shelter": "none",
+    "foundry_terms": "none",
+    "crew_safe": false,
+    "harbor_pump": false,
+    "pump_route_known": false,
+    "water_plan": "none",
+    "water_released": false,
+    "grove_mandate": "none",
+    "charter_copy": false,
+    "evidence_council": "none",
+    "court_access": false,
+    "father_trail": false,
+    "letter_company": "none",
+    "camp_company": "none",
+    "pressure_plan": "none",
+    "sunspire_stable": false
+  },
+  "speakers": {
+    "narrator": "旁白",
+    "warden": "艾琳",
+    "pyromancer": "维洛",
+    "grove": "赛菈",
+    "sword": "洛恩",
+    "spear": "芙蕾",
+    "cavalry": "莉希",
+    "archer": "希弥",
+    "mage": "伊瑟",
+    "healer": "米芮",
+    "clerk": "赫姆",
+    "qin": "秦婶",
+    "yubai": "余白",
+    "tangsui": "唐穗",
+    "foreman": "工班长",
+    "sang": "桑岚",
+    "ruan": "阮衡"
+  },
+  "nodes": {
+    "rope": {
+      "type": "dialogue",
+      "background": "scene_waterpass",
+      "lines": [
+        {
+          "id": "c08.rope.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.rope.02",
+          "speaker": "spear"
+        },
+        {
+          "id": "c08.rope.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.rope.04",
+          "speaker": "healer"
+        },
+        {
+          "id": "c08.rope.05",
+          "speaker": "foreman"
+        },
+        {
+          "id": "c08.rope.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.rope.07",
+          "speaker": "mage"
+        },
+        {
+          "id": "c08.rope.08",
+          "speaker": "warden"
+        },
+        {
+          "id": "c08.rope.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.rope.10",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.rope.11",
+          "speaker": "foreman"
+        },
+        {
+          "id": "c08.rope.12",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.rope.13",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.rope.14",
+          "speaker": "foreman"
+        },
+        {
+          "id": "c08.rope.15",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.rope.16",
+          "speaker": "mage"
+        },
+        {
+          "id": "c08.rope.17",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.rope.18",
+          "speaker": "warden"
+        }
+      ],
+      "next": "diagram"
+    },
+    "diagram": {
+      "type": "dialogue",
+      "background": "scene_waterpass",
+      "lines": [
+        {
+          "id": "c08.diagram.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.diagram.02",
+          "speaker": "mage"
+        },
+        {
+          "id": "c08.diagram.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c08.diagram.04",
+          "speaker": "mage"
+        },
+        {
+          "id": "c08.diagram.05",
+          "speaker": "narrator",
+          "when": {
+            "camp_company": "clinic"
+          }
+        },
+        {
+          "id": "c08.diagram.06",
+          "speaker": "narrator",
+          "when": {
+            "camp_company": "bridge"
+          }
+        },
+        {
+          "id": "c08.diagram.07",
+          "speaker": "narrator",
+          "when": {
+            "camp_company": "watch"
+          }
+        },
+        {
+          "id": "c08.diagram.08",
+          "speaker": "foreman"
+        },
+        {
+          "id": "c08.diagram.09",
+          "speaker": "mage"
+        },
+        {
+          "id": "c08.diagram.10",
+          "speaker": "foreman"
+        },
+        {
+          "id": "c08.diagram.11",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.diagram.12",
+          "speaker": "mage"
+        },
+        {
+          "id": "c08.diagram.13",
+          "speaker": "foreman"
+        },
+        {
+          "id": "c08.diagram.14",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.diagram.15",
+          "speaker": "mage"
+        },
+        {
+          "id": "c08.diagram.16",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.diagram.17",
+          "speaker": "sang"
+        }
+      ],
+      "next": "furnace"
+    },
+    "furnace": {
+      "type": "dialogue",
+      "background": "scene_oldfurnace",
+      "lines": [
+        {
+          "id": "c08.furnace.01",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.furnace.02",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.furnace.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.furnace.04",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.furnace.05",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.furnace.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.furnace.07",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.furnace.08",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.furnace.09",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.furnace.10",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.furnace.11",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.furnace.12",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.furnace.13",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.furnace.14",
+          "speaker": "mage"
+        },
+        {
+          "id": "c08.furnace.15",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.furnace.16",
+          "speaker": "foreman"
+        },
+        {
+          "id": "c08.furnace.17",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.furnace.18",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.furnace.19",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.furnace.20",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.furnace.21",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "proposal"
+    },
+    "proposal": {
+      "type": "dialogue",
+      "background": "battlefield_sunspire",
+      "lines": [
+        {
+          "id": "c08.proposal.01",
+          "speaker": "ruan"
+        },
+        {
+          "id": "c08.proposal.02",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.proposal.03",
+          "speaker": "ruan"
+        },
+        {
+          "id": "c08.proposal.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.proposal.05",
+          "speaker": "foreman"
+        },
+        {
+          "id": "c08.proposal.06",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.proposal.07",
+          "speaker": "mage"
+        },
+        {
+          "id": "c08.proposal.08",
+          "speaker": "warden"
+        },
+        {
+          "id": "c08.proposal.09",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "pressure"
+    },
+    "pressure": {
+      "type": "choice",
+      "background": "battlefield_sunspire",
+      "prompt": "c08.pressure.prompt",
+      "options": [
+        {
+          "id": "isolate",
+          "text": "c08.pressure.isolate",
+          "set": {
+            "pressure_plan": "isolate"
+          },
+          "next": "isolate"
+        },
+        {
+          "id": "buffer",
+          "text": "c08.pressure.buffer",
+          "set": {
+            "pressure_plan": "buffer"
+          },
+          "next": "buffer"
+        }
+      ]
+    },
+    "isolate": {
+      "type": "dialogue",
+      "background": "battlefield_sunspire",
+      "lines": [
+        {
+          "id": "c08.isolate.01",
+          "speaker": "warden"
+        },
+        {
+          "id": "c08.isolate.02",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.isolate.03",
+          "speaker": "grove"
+        },
+        {
+          "id": "c08.isolate.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.isolate.05",
+          "speaker": "spear"
+        },
+        {
+          "id": "c08.isolate.06",
+          "speaker": "sword"
+        },
+        {
+          "id": "c08.isolate.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.isolate.08",
+          "speaker": "ruan"
+        },
+        {
+          "id": "c08.isolate.09",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.isolate.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.isolate.11",
+          "speaker": "pyromancer"
+        }
+      ],
+      "next": "isolate_battle"
+    },
+    "buffer": {
+      "type": "dialogue",
+      "background": "battlefield_sunspire",
+      "lines": [
+        {
+          "id": "c08.buffer.01",
+          "speaker": "warden"
+        },
+        {
+          "id": "c08.buffer.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.buffer.03",
+          "speaker": "spear"
+        },
+        {
+          "id": "c08.buffer.04",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.buffer.05",
+          "speaker": "warden"
+        },
+        {
+          "id": "c08.buffer.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.buffer.07",
+          "speaker": "mage"
+        },
+        {
+          "id": "c08.buffer.08",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.buffer.09",
+          "speaker": "ruan"
+        },
+        {
+          "id": "c08.buffer.10",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.buffer.11",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "buffer_battle"
+    },
+    "isolate_battle": {
+      "type": "battle",
+      "background": "battlefield_sunspire",
+      "scenario": "c08_isolate",
+      "win": "after",
+      "win_set": {
+        "sunspire_stable": true
+      }
+    },
+    "buffer_battle": {
+      "type": "battle",
+      "background": "battlefield_sunspire",
+      "scenario": "c08_buffer",
+      "win": "after",
+      "win_set": {
+        "sunspire_stable": true
+      }
+    },
+    "after": {
+      "type": "dialogue",
+      "background": "battlefield_sunspire",
+      "lines": [
+        {
+          "id": "c08.after.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.after.02",
+          "speaker": "foreman"
+        },
+        {
+          "id": "c08.after.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.after.04",
+          "speaker": "healer"
+        },
+        {
+          "id": "c08.after.05",
+          "speaker": "ruan"
+        },
+        {
+          "id": "c08.after.06",
+          "speaker": "healer"
+        },
+        {
+          "id": "c08.after.07",
+          "speaker": "narrator",
+          "when": {
+            "pressure_plan": "isolate"
+          }
+        },
+        {
+          "id": "c08.after.08",
+          "speaker": "narrator",
+          "when": {
+            "pressure_plan": "buffer"
+          }
+        },
+        {
+          "id": "c08.after.09",
+          "speaker": "mage"
+        },
+        {
+          "id": "c08.after.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.after.11",
+          "speaker": "warden"
+        },
+        {
+          "id": "c08.after.12",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "ashes"
+    },
+    "ashes": {
+      "type": "dialogue",
+      "background": "scene_oldfurnace",
+      "lines": [
+        {
+          "id": "c08.ashes.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.ashes.02",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.ashes.03",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.ashes.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.ashes.05",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.ashes.06",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.ashes.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.ashes.08",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.ashes.09",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.ashes.10",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.ashes.11",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.ashes.12",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.ashes.13",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.ashes.14",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.ashes.15",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.ashes.16",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.ashes.17",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.ashes.18",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.ashes.19",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.ashes.20",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.ashes.21",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.ashes.22",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "eighthnight"
+    },
+    "eighthnight": {
+      "type": "dialogue",
+      "background": "scene_waterpass",
+      "lines": [
+        {
+          "id": "c08.eighthnight.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.eighthnight.02",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.eighthnight.03",
+          "speaker": "mage"
+        },
+        {
+          "id": "c08.eighthnight.04",
+          "speaker": "foreman"
+        },
+        {
+          "id": "c08.eighthnight.05",
+          "speaker": "mage"
+        },
+        {
+          "id": "c08.eighthnight.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.eighthnight.07",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.eighthnight.08",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.eighthnight.09",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.eighthnight.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.eighthnight.11",
+          "speaker": "foreman"
+        },
+        {
+          "id": "c08.eighthnight.12",
+          "speaker": "mage"
+        },
+        {
+          "id": "c08.eighthnight.13",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.eighthnight.14",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.eighthnight.15",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.eighthnight.16",
+          "speaker": "warden"
+        },
+        {
+          "id": "c08.eighthnight.17",
+          "speaker": "sang"
+        },
+        {
+          "id": "c08.eighthnight.18",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.eighthnight.19",
+          "speaker": "warden"
+        },
+        {
+          "id": "c08.eighthnight.20",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "pool"
+    },
+    "pool": {
+      "type": "dialogue",
+      "background": "battlefield_sunspire",
+      "lines": [
+        {
+          "id": "c08.pool.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.pool.02",
+          "speaker": "ruan"
+        },
+        {
+          "id": "c08.pool.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c08.pool.04",
+          "speaker": "ruan"
+        },
+        {
+          "id": "c08.pool.05",
+          "speaker": "foreman"
+        },
+        {
+          "id": "c08.pool.06",
+          "speaker": "narrator",
+          "when": {
+            "pressure_plan": "isolate"
+          }
+        },
+        {
+          "id": "c08.pool.07",
+          "speaker": "narrator",
+          "when": {
+            "pressure_plan": "buffer"
+          }
+        },
+        {
+          "id": "c08.pool.08",
+          "speaker": "pyromancer",
+          "when": {
+            "foundry_terms": "sale"
+          }
+        },
+        {
+          "id": "c08.pool.09",
+          "speaker": "pyromancer",
+          "when": {
+            "foundry_terms": "lease"
+          }
+        },
+        {
+          "id": "c08.pool.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.pool.11",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.pool.12",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.pool.13",
+          "speaker": "mage"
+        },
+        {
+          "id": "c08.pool.14",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "return"
+    },
+    "return": {
+      "type": "dialogue",
+      "background": "scene_school_day",
+      "lines": [
+        {
+          "id": "c08.return.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.return.02",
+          "speaker": "qin"
+        },
+        {
+          "id": "c08.return.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c08.return.04",
+          "speaker": "qin"
+        },
+        {
+          "id": "c08.return.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.return.06",
+          "speaker": "sword"
+        },
+        {
+          "id": "c08.return.07",
+          "speaker": "qin"
+        },
+        {
+          "id": "c08.return.08",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.return.09",
+          "speaker": "grove",
+          "when": {
+            "pressure_plan": "isolate"
+          }
+        },
+        {
+          "id": "c08.return.10",
+          "speaker": "grove",
+          "when": {
+            "pressure_plan": "buffer"
+          }
+        },
+        {
+          "id": "c08.return.11",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.return.12",
+          "speaker": "yubai"
+        },
+        {
+          "id": "c08.return.13",
+          "speaker": "warden"
+        },
+        {
+          "id": "c08.return.14",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "night"
+    },
+    "night": {
+      "type": "dialogue",
+      "background": "scene_sunspire_camp",
+      "lines": [
+        {
+          "id": "c08.night.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.night.02",
+          "speaker": "mage"
+        },
+        {
+          "id": "c08.night.03",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.night.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.night.05",
+          "speaker": "narrator",
+          "when": {
+            "camp_company": "bridge"
+          }
+        },
+        {
+          "id": "c08.night.06",
+          "speaker": "narrator",
+          "when": {
+            "camp_company": "clinic"
+          }
+        },
+        {
+          "id": "c08.night.07",
+          "speaker": "narrator",
+          "when": {
+            "camp_company": "watch"
+          }
+        },
+        {
+          "id": "c08.night.08",
+          "speaker": "warden"
+        },
+        {
+          "id": "c08.night.09",
+          "speaker": "grove",
+          "when": {
+            "grove_mandate": "shared"
+          }
+        },
+        {
+          "id": "c08.night.10",
+          "speaker": "grove",
+          "when": {
+            "grove_mandate": "witness"
+          }
+        },
+        {
+          "id": "c08.night.11",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c08.night.12",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c08.night.13",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end",
+      "background": "scene_sunspire_camp",
+      "ending": "day_eight_accounted",
+      "text": "c08.end"
+    }
+  },
+  "strings": {
+    "c08.rope.01": "测绳往下滑了半寸。洛恩伸手去捞，芙蕾的枪横过来，将他的手挡在台阶外。廊口最后一盏灯也暗下去，下面传来工人的叫声，听不清是在喊人还是喊停。",
+    "c08.rope.02": "绳留着，人退上来。别往下添一个。",
+    "c08.rope.03": "最下面的工人踩空一级，被同伴揪住后领。两个人一起跌到上层石台，背后的水猛地拍在墙上。洛恩跪下来拉住他们，等靴尖离开台阶才向后挪。湿绳勒进掌心，他没有松开。",
+    "c08.rope.04": "躺稳，别急着站。先让我看看腿。你们谁看见他刚才碰到哪儿了？",
+    "c08.rope.05": "右膝，磕在转角。灯掉进水里了，不是忽然灭的。我说过下边有台阶，他没有踩着。",
+    "c08.rope.06": "伊瑟将红线移到绳结旁，又停住。他把刚画的圈划去，在原处重新做记号。艾琳看见他的手一直在抖，没有催第三遍，只问该站在哪里才不会挡住他。",
+    "c08.rope.07": "都留在这道接缝后面。先别拆石板。我想量两端——不，得同时量。刚才水退了，不是空了，它从另一头回来。",
+    "c08.rope.08": "希弥去找另一处观察口。带工班的人，不要独自下去。洛恩，接住的人先送到外拱，绳子交下一班。",
+    "c08.rope.09": "工班长从腰间卸下两把短尺，叫出两个队员的名字。一人沿墙走向高处，另一人留下盯绳。希弥在岔口折下一截白草，绑在回头能看见的栏柱上，向艾琳比了个停在原地的手势。",
+    "c08.rope.10": "总泵还在转？",
+    "c08.rope.11": "北区要水。昨晚只隔了东街这一小段，没碰总泵。你们以为把人从旧院搬出去，底下就能随便开？",
+    "c08.rope.12": "我问谁在转，不是问谁要喝水。",
+    "c08.rope.13": "工班长盯着他，手仍按着尺。艾琳向两人之间跨了半步。远处观察口传来第一声回报，工班长立刻转身，听完那个数，又叫对方重报一次。",
+    "c08.rope.14": "阮衡。他管总闸，守机队也听他的。我们管街边支线，没拿到他那把手轮的钥匙。",
+    "c08.rope.15": "第二股水来得比第一股低，却把墙边的浮木带向相反方向。伊瑟趴在干燥石缝上，手指没有追着水面走，始终按着原来的记号。等另一端回话，他才把两次测量并排写下。",
+    "c08.rope.16": "能看出它在往返，还不能说下一次会多高。请再等一趟。我会把上次的最高处也标上，不照旧总图那条平线算。",
+    "c08.rope.17": "莉希带着受伤工人的同伴先回北街。艾琳让她把“没有进廊”和“工人右膝受伤”都说清，不能只报一声平安。秦婶等的是午前消息，学堂也得给担架留门。栗雨仍在休息，这一趟换了当地修水队的短程车。",
+    "c08.rope.18": "告诉他们别急着收铺盖。回程看一眼北井，井水若变浑，带一瓶回来。走吧。",
+    "c08.diagram.01": "送人走后，工班长取出一张沾了油的总图，用两把短尺压平。伊瑟先看见右下角的名字，喉咙动了一下。维洛已经伸手指向停用线，他却将那只手轻轻推开。",
+    "c08.diagram.02": "这张的校录人是我。先看这里。",
+    "c08.diagram.03": "你录过这条管？",
+    "c08.diagram.04": "旧观测数据。我把它们放进总图时，发现几处峰值不见了，问过导师。他说先照交来的底稿录，异议另附。我照做了。",
+    "c08.diagram.05": "米芮站在他身后，手里还拿着换下的绷带。她没有替他说昨晚已谈过，也没有走开。伊瑟翻到自己的计算稿，将写给工班的那段校录说明推到尺边。",
+    "c08.diagram.06": "洛恩刚缠好掌心，听见这话，拿起压图的尺又放回去。他在河门也听伊瑟说过图不对，却第一次知道这张正在用的图上有他的名字。",
+    "c08.diagram.07": "希弥从高处回来，站到图的另一边。她还带着刚报过的水位数，见伊瑟将自己的署名圈出来，便先把新数写在空白处，没急着合上记录板。",
+    "c08.diagram.08": "我照它估过夜班。昨天敢让人下去，也是因为这里写着停用。",
+    "c08.diagram.09": "停用是图上原有的标记，我没核过现场。削掉的峰值我看出来了，却只在附页写待查。附页没有跟着这张送到你手上。",
+    "c08.diagram.10": "所以我手上的算什么？",
+    "c08.diagram.11": "伊瑟没有回答得那么快。他抽出常芷交给他的副本，铺在油图旁。工班长不肯让出尺，他便用自己的法杖压住纸边，蓝晶磕在石上，发出很轻的一声响。",
+    "c08.diagram.12": "现在不能拿它定下井时辰。你刚才说的事，请写在我的说明后面。姓名、哪一班、我今天才告诉你，都写上。",
+    "c08.diagram.13": "我会写。不是写给你改个字就算。",
+    "c08.diagram.14": "艾琳看过两张纸，叫伊瑟退开半步，让留下的水工自己读数。他照着新尺重新量了一轮，与伊瑟所得相近，仍差一个小格。伊瑟将那个差值留下，没有取个整齐的平均数盖过去。",
+    "c08.diagram.15": "按高的这条留人。下面的事，我和你一起做；测错了，你当面叫停。",
+    "c08.diagram.16": "工班长收起旧图，只留下新测量和原始副本。远处有人用杖敲了三下石栏。一位挽着袖子的老妇站在通往旧炉的坡口，先看那张油图，再看维洛的脸。",
+    "c08.diagram.17": "你还认得炉房的门么？当年你从门底下钻出去，跑掉一只鞋。如今穿得这么像个会管事的了。",
+    "c08.furnace.01": "桑岚？你没搬走？",
+    "c08.furnace.02": "搬去哪？我这两条腿走得慢，房钱倒涨得快。先过来，别站在你师父的门前挡路。",
+    "c08.furnace.03": "旧炉房只剩半座。屋顶由新梁撑住，地上却还是旧砖，磨亮的路从炉门通到窗边。桑岚走到第三排砖停下，脚尖避开一道低陷，随手抓住墙边的扶杆。维洛跟着停住，差点叫出一声师父。",
+    "c08.furnace.04": "那块砖还没补？",
+    "c08.furnace.05": "补了两回，底下空，还是往下落。你们带来的管从它旁边过，问过底下有没有人修过吗？",
+    "c08.furnace.06": "维洛低头看新管。封箍编号与北船坞同批，他在港口见过铸件，连最后一道倒角都是自己改过的。他用指腹擦掉浮灰，露出的编号比想象中清楚。",
+    "c08.furnace.07": "我只卖过修复图，没有让他们接回塔基。",
+    "c08.furnace.08": "图上留没留这个口？",
+    "c08.furnace.09": "留了。检修用的。",
+    "c08.furnace.10": "口留着，人就能接。你下回回来，别光问他们用了谁的印。",
+    "c08.furnace.11": "她把一截旧铜箍递给他，边缘烧得发黑。维洛捏住之后才发现它比新的轻，内侧缺了一块，不是锈掉的，缺口处仍能摸出手工切削的刀纹。十五岁时，他在炉边看过这件东西。",
+    "c08.furnace.12": "旁通。师父关的是主阀，它绕过去了。",
+    "c08.furnace.13": "第五夜你们把热量留给诊所，主阀确实关了。那边的灯亮了一夜。我站在泵旁，听见塔那一路还在叫，以为是余压，没敢再停水。",
+    "c08.furnace.14": "这根旁通接到蓄能池？",
+    "c08.furnace.15": "桑岚没有点头。她叫工班拿来一根旧通条，从墙外那口穿过去，另一头的灰里响起刮擦声。希弥循声打开一块后配的盖板，背面还有尚未褪尽的红漆，管子就在砖后折向塔基。",
+    "c08.furnace.16": "从这里过去，水工的巡线图上没有。塔那边说归炉坊，炉坊又说是预留口。",
+    "c08.furnace.17": "我知道从哪一页删掉的。不是现在这一页，原来的修复图里有。我留给北坞的也有。",
+    "c08.furnace.18": "他将自己的手从编号上移开。旧铜箍在掌心转了半圈，黑灰蹭进他指节。伊瑟想去接，维洛摇头，把它放在两张图中间，不再收入外衣。",
+    "c08.furnace.19": "现在还想先拿它回去找谁？水在你脚底下。",
+    "c08.furnace.20": "先拆开这层新接头。旧的留着，让你的人看。",
+    "c08.furnace.21": "工班长没有立即动工具。他沿着新管看向坡上，调压院的旗已经升起来，守机队正在把路障搬到外台两端。阮衡站在最上一级，手里握着拆下的手轮，叫他们离墙远些。",
+    "c08.proposal.01": "那层箍不能松。总泵还连着北区井，一松，谁能保证两边不一起落压？你师父当年也说只关一头。",
+    "c08.proposal.02": "你拿他当年没关住的管，来证明今天不该关？",
+    "c08.proposal.03": "我拿今天还在出水的井跟你说话。你们从棋庭来，罗瑟签过多少张，我不知道？最后修坏了总要留一个人在这里。你们住得下么？",
+    "c08.proposal.04": "阮衡把手轮搁到脚边，露出背后两名持盾的守卫。艾琳没伸手去拿，先叫工班长把北井的支路指出来。那条细管经过旧炉外墙，与主泵下游分开，仍能靠现在的水位送水。",
+    "c08.proposal.05": "饮水这路先留。要止住往返，有两种干法。外台两头都让出来，我能隔掉新支线，接头和长管拆坏就不能卖了。或者清开调压院，把空冷却池当缓冲，池里存的旧模和料得扔出去。",
+    "c08.proposal.06": "池底不是空的。那批模子是寄放的，工匠等着开工。淹过带盐的回水，多半补不回来。",
+    "c08.proposal.07": "外台方案切得清楚，北区的井泵得轮班慢抽。冷却池能缓住这一阵，管还连着，后面仍要有人盯着。都不够让塔重新开机。",
+    "c08.proposal.08": "两边的人各要退到哪里？说给队长听。我们选了就做，不让工班在下面等两道相反口令。",
+    "c08.proposal.09": "阮衡抬脚踩住手轮，叫盾兵把坡口堵严。身后有人问是否继续压送，他说照原班次开。伊瑟握着尺朝上喊了一声，话被第一下金属撞击盖过去。艾琳看向外台两端，又看调压院那道窄门。",
+    "c08.pressure.prompt": "守机队正在重推总闸。饮水支路可以保留，两个稳压方案都要先取得作业位置。艾琳必须给出一条统一的进军路线。",
+    "c08.pressure.isolate": "夺取外台两端，隔离新支线；拆坏管材，井泵暂时轮班。",
+    "c08.pressure.buffer": "进入调压院，借冷却池缓压；损失池内旧模，保留后续看守。",
+    "c08.isolate.01": "走外台。维洛带队夺两头的接应位置，工班留在拱后。手轮没交出来之前，不许往管下钻。",
+    "c08.isolate.02": "那批长管是我的价买来的，我认得它值多少。要拆就拆，先别替我算还能剩几根。",
+    "c08.isolate.03": "轮班抽井得让北区知道。别等他们推桶过来才看见泵停了。",
+    "c08.isolate.04": "艾琳把第二趟消息交给骑手，连同要延迟回迁的解释一起送往学堂。赛菈留下本地井管人的名字，让接替者先去找他。她没有在这张与上游无关的条上盖代行印。",
+    "c08.isolate.05": "两头都要站稳，不能只从中间穿过去。洛恩跟左边，希弥看右侧高台。新兵接应过来先扎住，别因为能再叫一队，就把退路挤没了。",
+    "c08.isolate.06": "听到了。左边得留得下一副担架。我不把那地方拿来摆盾。",
+    "c08.isolate.07": "维洛把旧铜箍留在桑岚脚边，摘下披风上的长扣，免得挂住残墙。阮衡看出他们要分两路，命一队枪卫转向外台。有人抬着空桶从侧路过，守机队的盾先把他挡回去。",
+    "c08.isolate.08": "拆坏的管你买得起，下一季没有水呢？你拿什么再来买？",
+    "c08.isolate.09": "先停你这一次压送。下一季我会在这里听你问，但现在手轮放下。",
+    "c08.isolate.10": "阮衡弯腰提起手轮，退到盾阵后。第一支箭钉在旧炉门上，桑岚被工班长拉进墙后。维洛抬手挡住从砖缝溅出的火星，向两边的队长各看了一眼。",
+    "c08.isolate.11": "接应旗竖起来。两头一起。",
+    "c08.buffer.01": "进调压院。先夺回总闸，让工班开冷却池。饮水支路留人看着，谁也别趁乱切断。",
+    "c08.buffer.02": "桑岚低头看向院里。靠近墙根的旧模码了三层，上面用布包着木制的样板。她先把一只小样板拿到墙外，回头还想去取第二只，芙蕾挡住了她。",
+    "c08.buffer.03": "停在这里。那边已经架弓了。",
+    "c08.buffer.04": "那是我女儿留下的模。她回城开过两年铺，卖不动才走。我知道它不值几只桶，可你让我看着它泡进去——",
+    "c08.buffer.05": "能拿出来的我会让工班搬，箭停之前不能进去。我把你的这只放在外拱，晚些交回你手里。",
+    "c08.buffer.06": "桑岚攥住样板，没有马上交。维洛走到她旁边，将一块干布垫在缺角下，等她自己放开。远处的撞击又响了一次，三个人同时朝廊口看去。",
+    "c08.buffer.07": "池里会进带盐的水，之后要清泥才能再用。阮衡停手前，别去扳池口的小闸。两头一起动，水会追着人走。",
+    "c08.buffer.08": "我带队进院。左边那条军道把盾撑开，术士跟在接应后面。别用火去轰管墙，我们要拿回手轮。",
+    "c08.buffer.09": "那池不是留给你们倒污水的！里头的货各有主人，谁让你替他们扔？",
+    "c08.buffer.10": "我会留下来认赔。你现在让队伍放下弓，工班还能搬走一部分。",
+    "c08.buffer.11": "阮衡没有放下手轮。他背后的弓手却慢了半拍，望向那些还盖着布的旧模。队长一声催令把他叫回阵中，弦音紧接着擦过窄门。维洛将样板交给后方，转身举起自己的誓令。",
+    "c08.after.01": "守机队的旗倒下时，工班没有马上冲进去。芙蕾叫两头各报一次位置，等最后一名持弓的卫兵退到墙根，才将枪尖朝地上点了两下。工班长提着工具穿过阵线，第一件事是把手轮挂回原轴。",
+    "c08.after.02": "一边一个人。看着我，不看他们的旗。转半圈，停。",
+    "c08.after.03": "阮衡坐在断墙下，受伤的手被布包住。他望着重新装好的手轮，几次想站起来，都被身旁守卫拦下。米芮蹲到他面前，要他张开指头。他说先别管这个，她便将他的手按回膝上。",
+    "c08.after.04": "你现在帮不上那边。指头张开，我看看有没有骨头错位。",
+    "c08.after.05": "让他们别一下转到底。中间有一处卡着，硬拧会断。",
+    "c08.after.06": "听见了，已经有人去说。现在看我。",
+    "c08.after.07": "外台两端的接头卸开后，工班在空处嵌入盲板。拆下的长管有一段被撬裂，轧口也变了形，只能剪成短料。维洛蹲在那堆废管旁，看工人把仍可用的两根移到一侧，没让他们把裂的也写成能用。",
+    "c08.after.08": "冷却池先腾出一道能站人的边沿，工班才开引流口。回水带着灰白的泥涌进池底，几只没来得及吊出的旧模被浸没。桑岚抱着取回的样板站在墙外，数到第四只，便没再往下数。",
+    "c08.after.09": "这一趟没有越过刚才的红线。还不能撤尺，再看两次。我会留在这里。",
+    "c08.after.10": "艾琳沿着饮水支管走到另一头，看井管人接满一桶，闻过气味，又把沉下的水舀给工班看。北街来的车停在拱口，带回两只空水瓶和秦婶的一张口信：伤者已安顿，大家吃过午饭，晚饭前总得说清还能不能回家。",
+    "c08.after.11": "告诉她今晚先住学堂，我晚饭前回来。不是让她一直等消息，今晚我到她面前说。",
+    "c08.after.12": "她把自己的归程划在值班条上，留维洛和伊瑟在测量处。洛恩拾起那面倒旗，卷好交给被解除武装的守机队员。年轻人想问以后听谁的，嘴张开，又把话咽回去，先去帮同伴搬担架。",
+    "c08.ashes.01": "第二次读数结束后，桑岚把维洛叫到炉门后。她蹲不下去，便拿杖指着那排旧砖，叫他抽出最里面的一块。砖下不是密匣，只有半截生锈的铁钳，钳口咬着一片融过又凝住的铜。",
+    "c08.ashes.02": "我熔的印模。这里还有一块。",
+    "c08.ashes.03": "你以为扫进灰里，就都没了？我当年想拿去补锅，师父留下来的东西，舍不得。后来锈成这样，连锅都嫌它。",
+    "c08.ashes.04": "维洛托住钳口，铜片压在他的手掌上。那个缺角还在，和新命令上的图样几乎一样。他曾指望找到真正留下旧印的人，眼前却只有自己没收拾干净的一炉灰。",
+    "c08.ashes.05": "我不该把修复图留出去。那时还想着，有人肯接炉坊，总能把拖着的工钱付了。",
+    "c08.ashes.06": "付过一批。也确实有人靠那些图修好了泵。你若只想听我说全错了，好回去一把火烧掉，还得另找个人。",
+    "c08.ashes.07": "她扶着墙坐下，让他也坐。维洛没有挑干净的地方，外衣擦过旧砖，沾了一片灰。他将铁钳放在两人之间，第一次不再挡住那块铜。",
+    "c08.ashes.08": "第五夜之后，你见过他吗？我被送出城，只听说他在班房里，后来人就没了。",
+    "c08.ashes.09": "第六天见过。他右手裹着布，关主阀时烫的。看守让我送一桶水，我问还开不开，他说诊所那一路别动。没让我去求谁，也没叫我把你带回来。",
+    "c08.ashes.10": "他有没有说为什么不肯在认错条上签？",
+    "c08.ashes.11": "他说主阀是他关的，可以写。写他想停掉全城水，他不签。那张条把两件事写成了一件，我替他念过。",
+    "c08.ashes.12": "维洛盯着铁钳的两条柄，仿佛还能分清师父惯常握哪一边。桑岚从袖里取出手帕，擦了擦嘴角，没有接着说。调压院那边响起第三次读数的口令，他也没有回头。",
+    "c08.ashes.13": "班房塌的时候，你在什么地方？",
+    "c08.ashes.14": "炉房外头。第七天地脉断了，先是墙上那条缝开，随后班房屋顶往里落。我同两名水工过去，一面墙还烫，拆不开。等能进去，人已经救不回来了。",
+    "c08.ashes.15": "她把手放在自己左腿上，隔着衣料缓缓按了一遍。那道旧伤让她坐久便疼，但这次她没有起身。维洛抬头望向原来班房的位置，如今那里是一段被补过的矮墙。",
+    "c08.ashes.16": "我看过他的脸，替他洗过。北边旧工墓，第三排靠石榴树。后来补刻的姓字是我报的，没有送到你手上，是我不知道你去了哪里。",
+    "c08.ashes.17": "我回来过两次。都去找管档的人了。",
+    "c08.ashes.18": "我那两次可能正在给人挑水。也可能就坐在这里。你穿得很体面，后面跟着人，谁知道你还会钻门缝。",
+    "c08.ashes.19": "维洛忽然笑了一声，声音哑得像咳嗽。桑岚没有跟着笑。他把袖口挽到手肘，露出当年炉火留下的一小块浅疤，问旧工墓下午能不能去。她说门不锁，叫他先把手上的事交完。",
+    "c08.ashes.20": "一起去么？你走慢点，我等你。",
+    "c08.ashes.21": "我本来就走不快。你别先说等，走到半路又跑前面。",
+    "c08.ashes.22": "他点了一下头，没再答得更响。炉外的工班来叫人看第四次读数，维洛站起来时扶住铁钳，重新把它放好，叫对方等他洗一把脸。",
+    "c08.eighthnight.01": "第四次读数与第三次相近，水仍在流，来回拍墙的响声却弱下去。伊瑟把两张记录摆给桑岚，问她长昼之前有没有听见过同样的回响。她指着图上蓄能池的空位，没先看数字。",
+    "c08.eighthnight.02": "白天不响，夜间换班才响。起先是桶底震，后来架子也震。我们报上去，人家来换了两只松螺栓，说再有问题就写。",
+    "c08.eighthnight.03": "原始簿上有这几次，送进学院的新档没有。我当时以为只漏了抄写；三个月的峰都被同一只手改成平线，我还在等能认出那笔迹的人。",
+    "c08.eighthnight.04": "你现在能认出来了？",
+    "c08.eighthnight.05": "不能。可是把夜里的尖峰抹成平线，能让一次危险的换向看起来像平稳供水。写的人是谁要查，眼下这张图不能再这样用。",
+    "c08.eighthnight.06": "桑岚将那张油图翻到背面，找出停用标记下的小字。字是她自己的，后来被拓进新图，连“暂”的最后一笔也少了一截。她拿湿指头擦过那里，油没有被擦掉。",
+    "c08.eighthnight.07": "这是我报的。灾后第五年，他们说要把没登记的支路全封上。井泵靠它接着，我写了停用，想混过验收。后来图又抄了一回，再没人问我。",
+    "c08.eighthnight.08": "你刚才为什么不说？",
+    "c08.eighthnight.09": "你刚才还只说你没让人接塔基。咱俩谁先把好听的说完了？",
+    "c08.eighthnight.10": "维洛将将要出口的话咽回去。他重新展开自己的修复草图，把预留口与现用管并在一起。桑岚在油图上画出当年怕被封的那段，工班长看着两条线相接，脸色慢慢沉下来。",
+    "c08.eighthnight.11": "我带人沿停用线走过，问过他们底下有没有水。你们一个说图留着，一个说路停了。人踩上去，谁都能说自己只管一小段。",
+    "c08.eighthnight.12": "今天的新图，把你量过的两端和时间写上。没进去的地方留空。我陪你走到能看见的地方，不再从这里把另一头画满。",
+    "c08.eighthnight.13": "下午的光照在三张纸上，原始观测里的尖峰恰好落在手轮换向的时刻。桑岚讲起第五夜的诊所：大人把水分成小碗，灯亮着，有孩子睡着了。她讲到这里才承认，当晚她不敢继续停泵，明知塔那一路仍有响声，也没有再去叫人。",
+    "c08.eighthnight.14": "我怕灯也灭了。你要写，就把这个也写上。后头七日那一下，我们还是全黑了。",
+    "c08.eighthnight.15": "伊瑟把灯落水的位置与脚下台阶画进草图。刚才被拖上来的工人若在下面再多待片刻，就会被另一端的回水追上。他看向原始簿上密集的峰，不再伸手去把纸折小。",
+    "c08.eighthnight.16": "桑岚，当年第八夜，你在过水廊吗？有个从河门来的守桥人，跟两副担架往这里走。",
+    "c08.eighthnight.17": "我在外拱烧水，看见有人送伤者上来。守桥的我分不出，更不敢见了你就说认得。那一夜来的都沾满灰，留下名字的人不多。",
+    "c08.eighthnight.18": "艾琳握住内袋的边，点头说知道了。桑岚指给她看外廊旧担架架的位置，那里如今压着一层砖，没有谁的物件能单独辨认。她站了一会儿，叫工班先别把这层砖拿去补井口。",
+    "c08.eighthnight.19": "等把下面走稳了，请当年接过伤者的人再来看看。没人认得，也照原样告诉我。",
+    "c08.eighthnight.20": "维洛走到她身边，手里拿着洗净的铁钳。他没说一定找得到，也没把自己刚得的消息拿来安慰她。两人并排站在旧架前，等前方的接应旗重新竖起来，才向调压院走。",
+    "c08.pool.01": "阮衡已被移到阴处，旁边留着两名不属守机队的护卫。他看见新测量，先问北区还有几口井在出水。井管人逐一答了，最后补了一句：今晚的轮班由本地人排，你的人不能再拿手轮叫他们改。",
+    "c08.pool.02": "你们会把这张带到会盟上去。我也要去。",
+    "c08.pool.03": "可以答话，不能再带守机队进场。你的伤要由医士看过，能不能走，另说。",
+    "c08.pool.04": "我不是怕走不了。我怕你们把这一天说成，只要把我抓住，泵就修好了。",
+    "c08.pool.05": "我会说还有哪些没修好。我自己的班伤了人，用不着你替我怕。",
+    "c08.pool.06": "隔离后的管口用两层木架围起。井管人重新排了取水时辰，北区作坊先停两班，居民的饮水另走保留支路。维洛把报废长管的数量抄给工班，问能否当场卖短料抵工钱。工班长说得先称，他便把秤从车上拿来。",
+    "c08.pool.07": "冷却池暂时容下了回水，池口的夜班却必须有人守。伊瑟与本地水工各留一人，轮班看尺；被盐水浸过的模子捞到院边，用布逐只盖住。维洛让人记下货主，不许先按废铜价一口买走，桑岚的样板也放在其中核对。",
+    "c08.pool.08": "我在北坞的份额已转了，不能再拿它许第二遍。眼下能拿出来的在这里，差的我自己去谈。谁的模，谁先看，不替他们写收讫。",
+    "c08.pool.09": "那边还有欠饷，这边的赔付另算，别挪那两户的钱补好看。我让曲汀带明细来。今天先把工班这一班付了。",
+    "c08.pool.10": "桑岚没收维洛递来的钱。她把那块小样板翻给他看，背面有女儿小时候刻歪的记号，做工用不上，却也没舍得刨平。她说要先问女儿愿不愿意卖，信寄到南市就能找到。",
+    "c08.pool.11": "好。我不替她估价。你把地址给骑使，我在这封里写明白。",
+    "c08.pool.12": "伊瑟站在池边，将计算稿上的旧署名日期写到说明开头。名字写歪了一点，他没有划去重写。接过纸的工班长把受伤队员那一班补在后面，翻给他看了一遍，才将两份各自收好。",
+    "c08.pool.13": "给学院那份，请连着你的这页送。我自己再写一封，叫当年经手的校官带原稿来。",
+    "c08.pool.14": "艾琳看了看日头，离约定回北街的时辰还够。她把留守队长叫来，当面将两端的口令复述一遍；维洛要去旧工墓，先把替班的人带到新管旁，陪着看完一次读数才离开。",
+    "c08.return.01": "艾琳回到学堂时，秦婶正在给猫剪缠住脚的细绳。猫不肯安分，老人按着前爪，唐穗拿饼角引它抬头。看见她进门，三个人都没有立刻问，先合力把最后那一小截剪断。",
+    "c08.return.02": "坐这边。门口的凳子坏了一条腿，今天已经摔过一个了。说吧，晚上还回不回？",
+    "c08.return.03": "今晚不回。街边的支线稳了，墙下和过水廊还没走完。你们的门没拆，钥匙仍由你们拿。",
+    "c08.return.04": "我知道钥匙在我这儿。我问的是还得住几夜。先生让了前屋，明天学生在哪儿写字？",
+    "c08.return.05": "艾琳没有把“很快”说出口。她请先生过来，三个人把能用的屋数重新数了一遍。院侧还有一间堆教具的小屋，清出来能给大孩子上课，秦婶答应搬自己的桌子，前提是有人替她把漏雨的窗角封住。",
+    "c08.return.06": "我带两个人来。今天封，明早你看过再搬桌。不是把你的凳子往外一拖就算腾地方。",
+    "c08.return.07": "这回倒学得会了。猫不算你们三个人里头，别又让它跟着去爬梯子。",
+    "c08.return.08": "洛恩举起还缠着的手，示意自己今天只管扶梯、递钉。秦婶看见布边渗出的颜色，叫他坐回去，换别人来。芙蕾在廊下听见，隔着院子对新兵点了点头，没有再把自己的右肩送到梯下。",
+    "c08.return.09": "北区今晚轮班抽水，饮水走原先留下的支路。我跟井管人把时辰抄来，哪一班误了，去找纸上这两个人。别让你们再跑去问阮衡。",
+    "c08.return.10": "北区的泵先照常，冷却池多了夜班。饮水是另外留的支路，取水处没换。若桶底发白，留一碗给井管人看，不要等到一整锅都煮完。",
+    "c08.return.11": "余白正给船尾补最后一块外板，听见过水廊的事，停下刨子看了艾琳一会儿。她告诉他，找到了旧担架架的位置，没有找到能认出父亲的人。余白用手背擦去船上的刨花，叫她坐到阴处。",
+    "c08.return.12": "明天要是有人问，我就再讲一遍那晚看见的。你不用替我添。我也不会为了让你少跑一趟，把没见过的说给你听。",
+    "c08.return.13": "我会把今天问到的写给母亲。让她知道我还在这里，也知道还有哪些没问到。",
+    "c08.return.14": "唐穗从灶边端来热汤，把一只小碗放在她手边。艾琳想等别人先盛，唐穗将勺塞给她，说这锅专门做给回来得迟的人，再等就只剩皮了。她终于把袖口放下，接过了碗。",
+    "c08.night.01": "天黑后维洛才回来，鞋边带着旧工墓的红土。桑岚没有跟来，走到半路便由邻居的车接回家。他在井旁洗了两遍手，仍留着一小道铜灰。伊瑟递给他新测量，他先问工班吃过没有。",
+    "c08.night.02": "吃过了。夜班也换好。明天学院的人若来，我先说我的署名，不让你替我开头。",
+    "c08.night.03": "我也不想再替谁开头。给我留一把椅子，坐你旁边就行。",
+    "c08.night.04": "伊瑟点头，拉开旁边那张凳子。维洛坐下，取出用布包好的铁钳，没有展开给所有人看。米芮经过时替他换了一杯温水，看见杯边的手没有抖，便去问外屋的伤者能不能吃软饭。",
+    "c08.night.05": "洛恩给港口的第二封信短了许多，只添了今天手伤的消息，问阿琼有没有收到上一封信。他折好信，看到芙蕾把自己的值班条留在桌上，便先去找她核时辰，没顺手替她把后面的班全划掉。",
+    "c08.night.06": "米芮把木船从药篮里拿出来，移到不碍事的窗角。伊瑟看见它仍歪着，伸手想垫一片纸，她抬眼看了看，他便收回手，问明早是否还需要一起清药。",
+    "c08.night.07": "希弥在井边试了短笛的尾音，吹到昨天断开的地方，仍有一点气没接稳。莉希按约坐在旁边，听完才取出要交下一班的信袋，没有为这半首曲子再欠一趟夜路。",
+    "c08.night.08": "明日先请还在城里的人到外台，看过水尺再坐下来。给林社和两城的信今晚发，远处的代表到了，再定大议的日子。别替他们先写同意。",
+    "c08.night.09": "我通知上游三处共签人，水路条款随信送去，让他们带意见来。我自己的那份会说，不能替三处先点头。",
+    "c08.night.10": "我把邀请交给轮值主持者。明天我坐见证席，若有人还照旧叫我拍板，你先拦住。",
+    "c08.night.11": "莉希把邀请按去处装袋，将近处的交给步行传信人，远路的留到换骑。艾琳没有在信尾写“已查明长昼全部真相”。她将今天已确定的那几件事列在前面，又留出当事人需要回答的空处。",
+    "c08.night.12": "北坞的修复图由我带。不是只带那张能证明师父关过主阀的。",
+    "c08.night.13": "说完他把信纸推近灯下，终于给一直没写完的赔偿名单添了自己的落款。院外有人敲门，是阮衡派来看会面位置的护卫，进来前先把长刀交给门边的人。艾琳起身迎过去，手没有再压住内袋。",
+    "c08.end": "夜班的水尺留在原处，三次读数都没有再越过红线。学堂里的人睡下以后，塔基方向却送来一份新的启动请求：临时接法只够维持眼下的用水，三方若要恢复整条河道，必须共同决定那座蓄能池如何使用。\n艾琳将请求放到明天的座次旁。维洛还没走，赛菈也回到桌边。院里不再有人讨论谁先签一张空白令，众人先把地图摊开，给东街住户留出了一整边。"
+  }
+}

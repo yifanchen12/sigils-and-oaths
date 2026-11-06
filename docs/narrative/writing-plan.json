@@ -80,8 +80,13 @@
     {
       "id": "chapter_08",
       "title": "长昼的第八夜",
-      "status": "outline",
-      "nativeValidated": false
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "revision": "0.25.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 8079,
+      "wordCountPass": true
     },
     {
       "id": "chapter_09",

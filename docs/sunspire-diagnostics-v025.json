@@ -1,0 +1,97 @@
+{
+  "milestone": "0.25.0-dev",
+  "date": "2026-11-06",
+  "base_commit": "b19cfd83d27b02bde01d233a02f593372c996f6f",
+  "source_hash_encoding": "UTF-8, LF normalized",
+  "source_sha256": {
+    "data/campaign.json": "b218571a166764f763c8abde3c4c4b4b341723ed6a46c8beb93be83aa69bf4f4",
+    "data/cards.tres": "bb8cd2a74d382ddd809e073a5e805f30f6ddc2136fe6e5552043a6bb72a72a4f",
+    "data/heroes.tres": "a4b1f67a06643a06f423797b9b3745c6e7c4110b027e45f9ed42a0c204e79a3a",
+    "data/decks.tres": "f13aeaa4b604de31b9109ed156c136f56389826f5d727dbc71e4e0616b3bd89f",
+    "data/maps.tres": "573d6b8e214d92c54d449a7fcbd6f9a5c8fcf99afd31177e1e20294b96b8a5a5",
+    "scripts/battle.gd": "7cfaeb3a9122baf008125196defb4b74f12fbc7e214ede7ab94e17535d889057",
+    "scripts/opponent.gd": "6f1af5e863a92546abe6e9e36e305128b90da18c78b66a34ffe514985f5c7524",
+    "scripts/objective_ai.gd": "7253472fb4f50b78a04a1f201002f27fdc9424721ff09628af5d7b10e532698a",
+    "scripts/tactical_ai.gd": "16f928c382c7edce669f4c9fc61857bbf28d87f57110aabb112a5f804d4d854e",
+    "scripts/control_objective.gd": "9c27f865db02530ad060b2a8dbfaa2a11795ace2a1f1aa104153c8b14a5f1185",
+    "scripts/battle_snapshot.gd": "68f59e7e933e59b116b893efdc409360e7404709ed12f6d479cfcd1404c65cdd",
+    "tests/fixtures/campaign_pilot.gd": "8e2a194d1d3f4bef5a74b81325871fa0fde489147a46f89b2044a4bda8c34431",
+    "tests/benchmark_campaign.gd": "3dc36605b1462f2e85c9384ca968be5a735974f2d4d6833128eb3e0280ae7f5e",
+    "tests/test_campaign_replays.gd": "f070f9b93088d2d4d27ffdb4d65f1aafbc8d56ad015c1022ba4e8dea44ddfe78"
+  },
+  "groups": [
+    {
+      "fixture": "tests/fixtures/campaign_v025_sunspire.json",
+      "fixture_sha256": "3a289110c7ea2a9b0af5261f55f8f23540d4cfd761194cee5f70817c62e96ce8",
+      "policy": "production policy on both sides",
+      "coverage": "selected_scenarios",
+      "games": [
+        {
+          "actions": 123,
+          "decision_mean_ms": 15.313544715447154,
+          "decision_peak_ms": 64.843,
+          "illegal_action": "",
+          "max_control_streak": 1,
+          "reason": "deadline",
+          "scenario": "c08_isolate",
+          "seed": 8317.0,
+          "streak_resets": 1,
+          "turn": 25,
+          "winner": 1
+        },
+        {
+          "actions": 194,
+          "decision_mean_ms": 20.340025773195876,
+          "decision_peak_ms": 117.622,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c08_buffer",
+          "seed": 8318.0,
+          "streak_resets": 0,
+          "turn": 30,
+          "winner": 1
+        }
+      ],
+      "replay_checks": 647,
+      "replay_failures": 0
+    },
+    {
+      "fixture": "tests/fixtures/campaign_v025_sunspire_cautious.json",
+      "fixture_sha256": "5a5b42b905c8d130d94ae8f277e3b346cfde1e6eb27729413487dcb257e5f251",
+      "policy": "cautious test player against production opponent",
+      "coverage": "selected_scenarios",
+      "games": [
+        {
+          "actions": 137,
+          "decision_mean_ms": 19.58186131386861,
+          "decision_peak_ms": 69.316,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "deadline",
+          "scenario": "c08_isolate",
+          "seed": 8317.0,
+          "streak_resets": 0,
+          "turn": 25,
+          "winner": 1
+        },
+        {
+          "actions": 180,
+          "decision_mean_ms": 18.38293888888889,
+          "decision_peak_ms": 70.547,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c08_buffer",
+          "seed": 8318.0,
+          "streak_resets": 0,
+          "turn": 28,
+          "winner": 1
+        }
+      ],
+      "replay_checks": 647,
+      "replay_failures": 0
+    }
+  ],
+  "limitations": "Two authored scenario seeds, normal opening resources and production opponent. Both tested player policies lose both scenarios. Complete losing traces retained and independently replayed. No native battle victory, human difficulty or continuous campaign proof. Timings are concurrent local diagnostic samples, not an isolated performance benchmark."
+}

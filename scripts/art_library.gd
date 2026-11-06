@@ -10,7 +10,8 @@ const NARRATIVE_SCENES: Dictionary = {
 	"scene_clinic_day": "clinic-day-v1", "scene_clinic_night": "clinic-night-v1",
 	"scene_foundry": "foundry-night-v1", "scene_pump_closed": "pump-closed-v1", "scene_pump_open": "pump-open-v1",
 	"scene_eaststreet": "eaststreet-day-v1", "scene_sunspire_camp": "school-night-v1",
-	"scene_school_day": "school-day-v1", "scene_school_ward": "school-ward-night-v1"
+	"scene_school_day": "school-day-v1", "scene_school_ward": "school-ward-night-v1",
+	"scene_waterpass": "waterpass-day-v1", "scene_oldfurnace": "oldfurnace-day-v1"
 }
 const ACTION_SHEETS: Dictionary = {
 	"sword": {"path": "res://assets/art/actions/sword-v2.png", "scale": 1.50,
