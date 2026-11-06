@@ -54,6 +54,8 @@
 
 从「新战役」开始的救济路线已在原生窗口真实读过262段不同对白、9次选择并操作七战1858次：前六战获胜，第七战第四章泵房失败。两个独立进程共4517项检查通过，包括失败存档恢复与重试。「先送种子」路线也在模型诊断中六胜后于泵房失败，尚无对应七战原生验收。泵房另有从正常初始资源出发的单关测试打法获胜，不能视作连续战役通关。[连续流程与逐战证据](docs/continuous-campaign.md)。
 
+[下载0.31 Windows x64开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.31.0-dev)。发行包来自提交`1c38a28`，匿名公开下载的197614678字节与本地构建一致，SHA-256为`595efbc09432f3afc9b7ac52a2ef94f45abb090f6013bea4322fe9e222b725e3`。
+
 ![救济双桥实际驻守胜利](docs/screenshots/v031-continuous-c02_relief_bridge-victory.png)
 
 ## 0.30：首章两战连通到第二章

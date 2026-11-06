@@ -53,6 +53,8 @@ The relief bridge now fields a Balanced opposing deck while retaining its 12-rou
 
 From the actual New Campaign button, the native relief route read 262 distinct dialogue pages, made nine choices, and performed 1,858 visible actions across seven battles. It won six and lost the seventh at the chapter-four pump room. Two independent native processes passed 4,517 checks, including a reload and retry after defeat. The seed-priority branch also reached the pump-room loss in a model-only continuous run; it has no seven-battle native verification. A focused diagnostic player can win the pump encounter in isolation, which is not a continuous-campaign clear. [Route, limits and per-battle evidence](docs/continuous-campaign.md).
 
+[Download the 0.31 Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.31.0-dev). The 197,614,678-byte public anonymous download matches the local build from commit `1c38a28`; SHA-256: `595efbc09432f3afc9b7ac52a2ef94f45abb090f6013bea4322fe9e222b725e3`.
+
 ![Actual relief bridge control victory](docs/screenshots/v031-continuous-c02_relief_bridge-victory.png)
 
 ## 0.30: A continuous chapter-one route
