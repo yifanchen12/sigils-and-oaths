@@ -31,13 +31,22 @@ func fight_current() -> bool:
 		if failures > 0: return false
 		await player_action(Replay.action_from(row.trace[cursor].action))
 		advance_shadow()
+		# The native AI can start acting during click()'s animation settle after
+		# End Turn. Compare again when both sides reach the next player action.
+		if row.trace[cursor - 1].action.type == "end_turn": continue
+		if Replay.state_without_clock(game.battle) != Replay.state_without_clock(shadow):
+			var evidence := FileAccess.open("res://.tools/native-continuous-divergence.json", FileAccess.WRITE)
+			if evidence != null:
+				evidence.store_string(JSON.stringify({"scenario": row.scenario, "cursor": cursor, "action": row.trace[cursor - 1], "actual": Replay.state_without_clock(game.battle), "expected": Replay.state_without_clock(shadow)}, "\t", true, true))
+				evidence.close()
+			print("NATIVE DIVERGENCE scenario=", row.scenario, " cursor=", cursor, " action=", row.trace[cursor - 1].action)
 		check(Replay.state_without_clock(game.battle) == Replay.state_without_clock(shadow), "visible player input performs the expected legal action")
 	if failures > 0: return false
 	if not await wait_for_player(): return false
 	await create_timer(0.8).timeout
 	check(game.battle.winner == int(row.winner) and Replay.state_without_clock(game.battle) == Replay.state_without_clock(shadow), "terminal result comes from the complete native battle")
 	check(portable_progress() == row.story_after, "native outcome commits exactly the earned story state")
-	await capture("v028-continuous-" + row.scenario + ("-victory" if row.winner == 0 else "-defeat"))
+	await capture("v030-continuous-" + row.scenario + ("-victory" if row.winner == 0 else "-defeat"))
 	total_actions += cursor; game_index += 1
 	print("NATIVE CONTINUOUS BATTLE: %s | WINNER %d | ACTIONS %d" % [row.scenario, row.winner, cursor])
 	await click(game.get_node("%PlayAgain").get_global_rect().get_center())
@@ -58,7 +67,7 @@ func writer() -> void:
 	if failures > 0: return
 	await click(start.get_global_rect().get_center())
 	check(game.story_view.visible and game.campaign_session.campaign.completed.is_empty() and game.campaign_session.campaign.story.state.history.is_empty(), "new campaign opens at its first unread line")
-	await capture("v028-continuous-opening")
+	await capture("v030-continuous-opening")
 	while failures == 0 and read_ids.size() < 5000:
 		var page: Dictionary = game.campaign_session.current()
 		match String(page.type):
@@ -86,7 +95,7 @@ func writer() -> void:
 	check(game_index == continuous_report.games.size() and continuous_report.stop == "defeat", "all recorded encounters were genuinely played up to the first defeat")
 	check(portable_progress() == continuous_report.progress, "native route stops at the same complete campaign state")
 	check(game.story_view.text_body.text.contains("上一战失利") and game.story_view.actions.get_child(0).text == "重新出征", "failed battle offers retry without pretending the story advanced")
-	await capture("v028-continuous-retry")
+	await capture("v030-continuous-retry")
 	var file := FileAccess.open(CONTINUOUS_CURSOR, FileAccess.WRITE)
 	check(file != null, "record native process handoff")
 	if file == null: return
@@ -110,7 +119,7 @@ func reader() -> void:
 	await click(game.story_view.actions.get_child(0).get_global_rect().get_center())
 	check(game.campaign_session.encounter == game.battle and game.battle.winner == -1 and Replay.state_without_clock(game.battle) == Replay.state_without_clock(shadow), "actual retry rebuilds the unchanged opening without free resources")
 	check(game.campaign_session.campaign.snapshot() == previous, "starting a retry preserves earlier earned choices and does not record an unplayed result")
-	await capture("v028-continuous-restarted-battle")
+	await capture("v030-continuous-restarted-battle")
 	print("NATIVE CONTINUOUS READER: %d CHECKS | FAILURES: %d | RETRY: %s" % [checks, failures, game.campaign_session.current().scenario])
 
 func run() -> void:

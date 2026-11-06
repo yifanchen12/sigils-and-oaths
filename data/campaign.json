@@ -71,13 +71,13 @@
     },
     "c01_bridge": {
       "title": "桥头的两道印",
-      "brief": "两支奉不同命令行事的队伍在桥头相遇。压制守备指挥，争取重新交涉的机会。",
+      "brief": "两支奉不同命令行事的队伍在桥头相遇。压制守备指挥，争取重新交涉的机会。\n\n作战建议\n沿一座桥集中推进，先处理能持续救治前排的医师；留意对方弓手的射程，不要让艾琳独自承受齐射。",
       "objective": "击败敌方指挥官，控制桥头。",
       "map": "rivergate",
       "hero": "warden",
       "enemy_class": "warden",
       "deck": "balanced",
-      "enemy_deck": "bastion",
+      "enemy_deck": "balanced",
       "seed": 1319,
       "enemy_name": "河门守备官",
       "enemy_portrait": "terrain_fort"

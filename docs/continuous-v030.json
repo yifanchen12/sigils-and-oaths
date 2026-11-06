@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "game_version": "0.30.0-dev",
+  "date": "2026-11-07",
+  "scope": "Fixed-seed diagnostic policy. The relief route was also replayed through the native UI; the seed route is model-only. Neither establishes human balance or a full campaign clear.",
+  "routes": [
+    {
+      "choice": "relief",
+      "model_checks": 887,
+      "dialogue_count": 82,
+      "choice_count": 4,
+      "actions": 755,
+      "games": [
+        {
+          "scenario": "c01_road",
+          "winner": 0,
+          "actions": 151,
+          "side_turns": 25
+        },
+        {
+          "scenario": "c01_bridge",
+          "winner": 0,
+          "actions": 448,
+          "side_turns": 62
+        },
+        {
+          "scenario": "c02_relief_bridge",
+          "winner": 1,
+          "actions": 156,
+          "side_turns": 25
+        }
+      ],
+      "diagnostic_sha256": "623175e65e7c4db8c1c97361e48b294cdc443965aa52f5fe95af75cdbb654e36"
+    },
+    {
+      "choice": "seed",
+      "model_checks": 1225,
+      "dialogue_count": 97,
+      "choice_count": 4,
+      "actions": 1066,
+      "games": [
+        {
+          "scenario": "c01_road",
+          "winner": 0,
+          "actions": 151,
+          "side_turns": 25
+        },
+        {
+          "scenario": "c01_bridge",
+          "winner": 0,
+          "actions": 448,
+          "side_turns": 62
+        },
+        {
+          "scenario": "c02_seed_bridge",
+          "winner": 0,
+          "actions": 87,
+          "side_turns": 15
+        },
+        {
+          "scenario": "c02_dispatch",
+          "winner": 1,
+          "actions": 380,
+          "side_turns": 59
+        }
+      ],
+      "diagnostic_sha256": "517407a9123fd2e7584caac5ab0ac0ccce6975d09d8ee8f50218ce84d1c3a504"
+    }
+  ],
+  "native_relief": {
+    "writer_checks": 1791,
+    "reader_checks": 10,
+    "actions": 755,
+    "separate_process_reload": true
+  },
+  "screenshots_sha256": {
+    "v030-continuous-opening.png": "36544c9091b99cc2ee2494c5899d1948d0388aec5366ff9583bfaa996b66149c",
+    "v030-continuous-c01_road-victory.png": "3fec81a4067f3fa76184b62b2d07fa307fc0ea86dd63908bcab918f5afe424e0",
+    "v030-continuous-c01_bridge-victory.png": "e43ce6b87c2cd99d761dd0ca18302e9540f20bf6c43db0d19889bc44d648f692",
+    "v030-continuous-c02_relief_bridge-defeat.png": "5835069f4ad4a9ab7f2e43e6fc0c54813b133b95acb834d68a225876b0f4786c",
+    "v030-continuous-retry.png": "017cacaceb533aab91228740b246233b8d2eec18dfbb6db301eb550681598960",
+    "v030-continuous-restarted-battle.png": "2cda788063e832c273f763dbf5ff1e3707b72d403248363d1f4c2f2e9c336c3f"
+  }
+}

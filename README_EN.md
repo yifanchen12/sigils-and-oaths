@@ -5,17 +5,17 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.29.0-dev" src="https://img.shields.io/badge/version-0.29.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.30.0-dev" src="https://img.shields.io/badge/version-0.30.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone, concealed card play and counterplay from Duel Links, and terrain, unit counters and commanders from Langrisser. Characters, card effects, illustrations and map layouts are made for this project, with no assets from those games. Current source is **0.29.0-dev**, with eight chapters, branching encounters and cross-chapter saves; this update adds eight original spells, terrain cards and traps played from hand. The complete campaign, overall balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
+The design studies card resource pacing from Hearthstone, concealed card play and counterplay from Duel Links, and terrain, unit counters and commanders from Langrisser. Characters, card effects, illustrations and map layouts are made for this project, with no assets from those games. Current source is **0.30.0-dev**, with eight chapters, branching encounters and cross-chapter saves. Both chapter-one battles now connect through a real new-campaign playthrough to chapter two. The complete campaign, overall balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
 
 ## In-game screenshots
 
-The chapter-8 dialogue capture is from 0.25.0-dev; the battlefield captures below it are from 0.13.0 and earlier milestones.
+The chapter-8 dialogue capture is from 0.25.0-dev; the next two early battlefield captures are from 0.13.0 and earlier milestones.
 
 ![Chapter-8 water passage: rescue before measurement](docs/screenshots/v025-waterpass.png)
 
@@ -46,6 +46,14 @@ The chapter-8 dialogue capture is from 0.25.0-dev; the battlefield captures belo
 | Lead with a commander | Ailin protects the front, Velo strengthens fire, and Sera supports healing and woodland recovery; each has active and passive abilities |
 | Change the next exchange | Rain, fog, sun and snow affect both sides; replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
+
+## 0.30: A continuous chapter-one route
+
+The bridge encounter now fields a balanced opposing deck and gives practical bridge, healer and archer guidance. Two public-information diagnostic strategies lost to the old Bastion setup and won against this revised fixed encounter, though the battles still took roughly 25–31 full rounds. An already-started Bastion battle remains resumable; retrying uses the revised setup.
+
+Starting from the actual New Campaign button, a native Godot run advanced through 82 distinct dialogue pages, four choices and 755 visible battle actions. The first two encounters won, leading into chapter two; the relief-bridge control battle lost at its deadline. Two independent native processes passed 1,801 checks, including a disk reload and retry without duplicate rewards. A separate model run of the seed-priority branch reached a fourth encounter before defeat; its four-battle native route has not been verified. [Continuous route and failure evidence](docs/continuous-campaign.md).
+
+![Real chapter-one bridge victory in a continuous new campaign](docs/screenshots/v030-continuous-c01_bridge-victory.png)
 
 ## 0.29: Play traps from hand and contest the front
 

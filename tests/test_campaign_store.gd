@@ -2,6 +2,9 @@ extends SceneTree
 
 const Campaign = preload("res://scripts/campaign.gd")
 const Store = preload("res://scripts/campaign_store.gd")
+const Session = preload("res://scripts/campaign_session.gd")
+const BattleModel = preload("res://scripts/battle.gd")
+const Snapshot = preload("res://scripts/battle_snapshot.gd")
 const PATH: String = "res://.tools/test_campaign.json"
 const CROSS_PATH: String = "res://.tools/cross_process_campaign.json"
 var checks: int = 0
@@ -80,6 +83,41 @@ func test_storage() -> bool:
 	cleanup(PATH)
 	return true
 
+func test_bridge_deck_migration() -> bool:
+	cleanup(PATH)
+	var campaign: RefCounted = Campaign.new(); campaign.start()
+	for step: int in range(100):
+		var page: Dictionary = campaign.story.current()
+		if page.type == "battle":
+			if page.scenario == "c01_bridge": break
+			campaign.story.resolve_battle(0, page.revision) # Fixture-only prior result.
+		elif page.type == "dialogue": campaign.story.advance(page.revision)
+		elif page.type == "choice": campaign.story.choose("road" if page.node == "route" else page.options[0].id, page.revision)
+		else: break
+	check(campaign.story.current().get("scenario", "") == "c01_bridge", "legacy fixture reaches the exact bridge encounter")
+	if campaign.story.current().get("scenario", "") != "c01_bridge": return false
+	var setup: Dictionary = campaign.scenario()
+	var old: Battle = BattleModel.new(setup.seed, setup.map, setup.hero, setup.enemy_class, setup.deck, "bastion", 90)
+	old.set_commander_identity(1, setup.enemy_name, setup.enemy_portrait)
+	var encounter: Dictionary = {"scenario": "c01_bridge", "revision": campaign.story.current().revision, "battle": Snapshot.capture(old)}
+	var store: RefCounted = Store.new(PATH)
+	check(store.save_progress(campaign.snapshot(), encounter).ok, "0.29 bridge battle can be retained under the new scenario")
+	var fresh: RefCounted = Session.new(PATH)
+	check(fresh.load_campaign().ok and fresh.encounter != null and fresh.encounter.deck(1).id == "bastion", "fresh process restores original in-progress opponent deck")
+	if fresh.encounter == null: return false
+	check(fresh.save().ok, "resumed old battle can autosave without losing its deck")
+	var other: Battle = BattleModel.new(setup.seed, setup.map, setup.hero, setup.enemy_class, setup.deck, "assault", 90)
+	other.set_commander_identity(1, setup.enemy_name, setup.enemy_portrait)
+	encounter.battle = Snapshot.capture(other)
+	check(not store.save_progress(campaign.snapshot(), encounter).ok, "unrelated opponent deck cannot claim the migration exception")
+	fresh.encounter.commander(0).hp = 0
+	fresh.encounter._cleanup(); fresh.encounter._check_winner()
+	check(fresh.finish_battle(fresh.encounter).ok, "legacy battle failure persists as an ordinary retry")
+	var retry: Dictionary = fresh.begin_battle(fresh.token())
+	check(retry.ok and retry.battle.deck(1).id == "balanced", "retry uses current balanced bridge opponent")
+	cleanup(PATH)
+	return true
+
 func write_cross_process() -> bool:
 	cleanup(CROSS_PATH)
 	var campaign: RefCounted = at_river_battle()
@@ -105,5 +143,6 @@ func run() -> void:
 	var args: PackedStringArray = OS.get_cmdline_user_args()
 	var method: String = "write_cross_process" if args.has("--write") else ("read_cross_process" if args.has("--read") else "test_storage")
 	check(call(method) == true, method + " completed without runtime interruption")
+	if method == "test_storage": check(test_bridge_deck_migration(), "bridge deck migration completed without runtime interruption")
 	print("CAMPAIGN STORE CHECKS: %d | FAILURES: %d | DISPLAY: %s" % [checks, failures, DisplayServer.get_name()])
 	quit(0 if failures == 0 else 1)

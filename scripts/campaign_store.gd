@@ -49,7 +49,10 @@ func _validate(progress: Variant, encounter: Variant) -> Dictionary:
 			return {"ok": false, "message": "战斗目标与关卡不一致。"}
 		if battle.map_definition.id != setup.map or battle.match_seed != int(setup.seed) or battle.turn_time_limit != 90:
 			return {"ok": false, "message": "战斗地图、种子或时限与关卡不一致。"}
-		if battle.players[0].hero_id != setup.hero or battle.players[1].hero_id != setup.enemy_class or battle.deck(0).id != setup.deck or battle.deck(1).id != setup.enemy_deck:
+		# 0.29 used Bastion here. Keep an existing battle playable; retry starts
+		# the new Balanced encounter from the current campaign configuration.
+		var old_bridge_deck: bool = page.scenario == "c01_bridge" and setup.enemy_deck == "balanced" and battle.deck(1).id == "bastion"
+		if battle.players[0].hero_id != setup.hero or battle.players[1].hero_id != setup.enemy_class or battle.deck(0).id != setup.deck or (battle.deck(1).id != setup.enemy_deck and not old_bridge_deck):
 			return {"ok": false, "message": "战斗军势与关卡不一致。"}
 		if battle.players[0].has("hero_display") or battle.hero(1).name != setup.enemy_name or battle.hero(1).portrait != setup.enemy_portrait:
 			return {"ok": false, "message": "战斗指挥官身份与关卡不一致。"}

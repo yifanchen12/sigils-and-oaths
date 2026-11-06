@@ -9,7 +9,7 @@ const SAVE: String = "res://.tools/continuous_diagnostic_save.json"
 var checks: int = 0
 var failures: int = 0
 var session: RefCounted
-var report: Dictionary = {"policy": "production opponent on both sides", "coverage": "continuous_campaign", "note": "New campaign, first visible choices (except the declared opening route), real battle results and save/reload. Stops at first defeat. Automated diagnostic, not a human playthrough or balance verdict.", "route": "road", "choices": [], "chapters_entered": [], "dialogue_ids": [], "games": [], "reached_authored_end": false, "stop": ""}
+var report: Dictionary = {"policy": "production opponent on both sides", "coverage": "continuous_campaign", "note": "New campaign, first visible choices (except the declared opening route and priority), real battle results and save/reload. Stops at first defeat. Automated diagnostic, not a human playthrough or balance verdict.", "route": "road", "priority": "relief", "choices": [], "chapters_entered": [], "dialogue_ids": [], "games": [], "reached_authored_end": false, "stop": ""}
 
 func _initialize() -> void: call_deferred("run")
 func check(value: bool, label: String) -> bool:
@@ -69,7 +69,9 @@ func fight() -> bool:
 func run() -> void:
 	for arg: String in OS.get_cmdline_user_args():
 		if arg.begins_with("--route="): report.route = arg.trim_prefix("--route=")
+		if arg.begins_with("--priority="): report.priority = arg.trim_prefix("--priority=")
 	if not check(report.route in ["road", "river"], "opening route is explicit and recognized"): quit(1); return
+	if not check(report.priority in ["relief", "seed"], "chapter-two priority is explicit and recognized"): quit(1); return
 	for suffix: String in ["", ".bak", ".tmp"]:
 		if FileAccess.file_exists(SAVE + suffix): DirAccess.remove_absolute(SAVE + suffix)
 	session = Session.new(SAVE)
@@ -85,7 +87,7 @@ func run() -> void:
 				if not report.dialogue_ids.has(page.line_id): report.dialogue_ids.append(page.line_id)
 				check(session.advance(session.token()).ok, "advance one actual dialogue page")
 			"choice":
-				var option: String = report.route if chapter == "chapter_01" and page.node == "route" else page.options[0].id
+				var option: String = report.route if chapter == "chapter_01" and page.node == "route" else (report.priority if chapter == "chapter_02" and page.node == "priority" else page.options[0].id)
 				report.choices.append({"chapter": chapter, "node": page.node, "option": option})
 				check(session.choose(option, session.token()).ok, "choose a currently displayed option")
 			"battle":
@@ -97,9 +99,10 @@ func run() -> void:
 	check(pages < 5000, "continuous narrative finishes or stops without a graph loop")
 	if failures > 0: report.stop = "invalid"
 	report.progress = session.campaign.snapshot()
-	report.checks = checks; report.failures = failures
-	var file := FileAccess.open("res://.tools/continuous-campaign-" + report.route + ".json", FileAccess.WRITE)
+	var destination: String = "res://.tools/continuous-campaign-" + report.route + ("-seed" if report.priority == "seed" else "") + ".json"
+	var file := FileAccess.open(destination, FileAccess.WRITE)
 	if not check(file != null, "write complete continuous diagnostic including defeat"): quit(1); return
+	report.checks = checks; report.failures = failures
 	file.store_string(JSON.stringify(report, "\t", true, true)); file.close()
 	print("CONTINUOUS CAMPAIGN CHECKS: %d | FAILURES: %d | GAMES: %d | DIALOGUES: %d | STOP: %s | AUTHORED_END: %s" % [checks, failures, report.games.size(), report.dialogue_ids.size(), report.stop, report.reached_authored_end])
 	quit(0 if failures == 0 else 1)
