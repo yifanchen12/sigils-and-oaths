@@ -54,6 +54,8 @@
 
 从「新战役」第一句开始的实际原生窗口，连续点击82段不同对白、4次选择及三场总计755次战斗行动：首章军道、桥头获胜并进入第二章，救济双桥战在期限时失败。两个独立原生进程1801项检查通过，失败存档可重开且不重复发放前两战结果。「先送种子」分支的模型诊断走到第二章第四战才失败，尚无四战原生连续验收。[完整流程与失败记录](docs/continuous-campaign.md)。
 
+[下载0.30 Windows x64开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.30.0-dev)。发行包来自提交`17b0aa3`，公开下载的SHA-256与本地构建一致。
+
 ![新战役连续流程的首章桥头关胜利](docs/screenshots/v030-continuous-c01_bridge-victory.png)
 
 ## 0.29：从手牌伏设，围绕前线反制
@@ -204,7 +206,7 @@ git clone https://github.com/yifanchen12/sigils-and-oaths.git
 cd sigils-and-oaths
 ```
 
-只想试玩可下载 [Windows x64 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.29.0-dev)，解压后运行 `SigilsAndOaths.exe`。从源码运行则按以下步骤：
+只想试玩可下载 [Windows x64 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.30.0-dev)，解压后运行 `SigilsAndOaths.exe`。从源码运行则按以下步骤：
 
 1. 从 [Godot 官方下载页](https://godotengine.org/download/windows/)获取引擎；当前工程验证版本及官方归档地址见 [`docs/engine-download.json`](docs/engine-download.json)。
 2. 在 Godot 项目管理器中导入根目录的 `project.godot`，等待资源导入完成。

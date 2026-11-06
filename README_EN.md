@@ -53,6 +53,8 @@ The bridge encounter now fields a balanced opposing deck and gives practical bri
 
 Starting from the actual New Campaign button, a native Godot run advanced through 82 distinct dialogue pages, four choices and 755 visible battle actions. The first two encounters won, leading into chapter two; the relief-bridge control battle lost at its deadline. Two independent native processes passed 1,801 checks, including a disk reload and retry without duplicate rewards. A separate model run of the seed-priority branch reached a fourth encounter before defeat; its four-battle native route has not been verified. [Continuous route and failure evidence](docs/continuous-campaign.md).
 
+[Download the 0.30 Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.30.0-dev). The public ZIP's SHA-256 matches the local build from commit `17b0aa3`.
+
 ![Real chapter-one bridge victory in a continuous new campaign](docs/screenshots/v030-continuous-c01_bridge-victory.png)
 
 ## 0.29: Play traps from hand and contest the front
@@ -310,7 +312,7 @@ UI, forecast, map-art and skill-window checks require a graphical window. Earlie
 
 ## Current limits and artwork
 
-- Single-player development build with a [Windows x64 preview ZIP](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.29.0-dev); no multiplayer or touch adaptation. macOS and Linux have not been validated.
+- Single-player development build with a [Windows x64 preview ZIP](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.30.0-dev); no multiplayer or touch adaptation. macOS and Linux have not been validated.
 - Ranged attacks and spells currently do not check line of sight. AI diagnostics are not a substitute for competitive human playtesting.
 - One custom deck is saved locally at Godot's `user://custom_deck.json`; player data is not included in this repository.
 - One campaign autosave and a last-good backup use `user://campaign_autosave.json`. Starting over asks for in-game confirmation before replacing progress; these files are not published.
