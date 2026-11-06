@@ -67,7 +67,7 @@ func walk(campaign: RefCounted, depth: int = 0) -> void:
 					if runner.state.flags[key] != previous[key]: check(false, "inherited fact changed: " + key)
 				var copy: RefCounted = Campaign.new()
 				check(copy.restore(JSON.parse_string(JSON.stringify(campaign.snapshot()))).ok and copy.snapshot() == campaign.snapshot(), "six-chapter decisions and read histories roundtrip")
-				check(campaign.next_chapter().is_empty(), "unwritten seventh chapter not offered")
+				check(campaign.next_chapter().get("id") == "chapter_07", "completed court chapter offers installed seventh chapter")
 func clean() -> void:
 	for suffix: String in ["", ".bak", ".tmp"]:
 		if FileAccess.file_exists(PATH + suffix): DirAccess.remove_absolute(PATH + suffix)

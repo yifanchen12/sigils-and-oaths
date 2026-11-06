@@ -8,7 +8,9 @@ const HERO_ORDER: Array[String] = ["warden", "pyromancer", "grove"]
 const NARRATIVE_SCENES: Dictionary = {
 	"scene_harbor_locked": "harbor-locked-v1", "scene_harbor_open": "harbor-open-v1",
 	"scene_clinic_day": "clinic-day-v1", "scene_clinic_night": "clinic-night-v1",
-	"scene_foundry": "foundry-night-v1", "scene_pump_closed": "pump-closed-v1", "scene_pump_open": "pump-open-v1"
+	"scene_foundry": "foundry-night-v1", "scene_pump_closed": "pump-closed-v1", "scene_pump_open": "pump-open-v1",
+	"scene_eaststreet": "eaststreet-day-v1", "scene_sunspire_camp": "school-night-v1",
+	"scene_school_day": "school-day-v1", "scene_school_ward": "school-ward-night-v1"
 }
 const ACTION_SHEETS: Dictionary = {
 	"sword": {"path": "res://assets/art/actions/sword-v2.png", "scale": 1.50,

@@ -30,6 +30,11 @@
       "id": "chapter_06",
       "title": "第六章 · 棋庭旧印",
       "path": "res://data/narrative/chapters/chapter_06.json"
+    },
+    {
+      "id": "chapter_07",
+      "title": "第七章 · 未送达的名字",
+      "path": "res://data/narrative/chapters/chapter_07.json"
     }
   ],
   "scenarios": {

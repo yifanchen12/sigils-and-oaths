@@ -1,30 +1,33 @@
 {
   "version": 1,
-  "milestone": "0.22.0-dev",
+  "milestone": "0.24.0-dev",
   "date": "2026-11-06",
   "passed": true,
   "test": "tests/test_campaign_ui.gd",
-  "checks": 6562,
-  "dialogue_paragraphs": 617,
-  "ending_paragraphs": 6,
+  "checks": 8896,
+  "dialogue_paragraphs": 841,
+  "ending_paragraphs": 7,
   "chapter_sha256": {
     "chapter_01": "5aea819e93dc327a18c02448f86b9344ded8e91118e82fac168f3bb6906e2fae",
     "chapter_02": "f588d6350dca6f0448d4965d74659624fb716fa14f4d1703a3108ca62a763204",
     "chapter_03": "0e9ea23d41dfa15f0a665af1a49bf55d23706276d82c45892409f36e9f786f4b",
     "chapter_04": "f332fbfc0ac4af810a9af7c625de7c41e81e550c739b4399cdd14de84b53269c",
     "chapter_05": "e35be830811819e1253827e7f44a636cf6e82856e64b0d465ff1a7b3bf5c2826",
-    "chapter_06": "5fbc3d35db6b320ef8274084098832e25a92dfc4190981f896616c8ecc0dd458"
+    "chapter_06": "5fbc3d35db6b320ef8274084098832e25a92dfc4190981f896616c8ecc0dd458",
+    "chapter_07": "f1ac45ab841f38845a4e470e337019481ad63875281369d3b69d132985c6246e"
   },
-  "scope": "Final Windows renderer covers all six chapters, every conditional dialogue ID, two real chapter-6 choices at 1008x700, disk reload, old chapter-5 ending into chapter 6 and court deployment. Eileen dialogue portrait inspected with current body text. Story victories and prior objective troop placement use fixtures; not a normal-difficulty nine-encounter campaign playthrough.",
+  "scope": "Windows native renderer opens all seven chapters and every conditional paragraph ID. Three actual chapter-7 camp choices at 1008x700, fresh-session disk reads, old chapter-6 ending into chapter 7, four new backgrounds and existing chapter controls verified. Previous battles use victory fixtures; not a nine-encounter normal-difficulty playthrough.",
   "hashing": "SHA256 of UTF-8 chapter source after newline normalization to LF",
   "presentation_sha256": {
     "scripts/story_view.gd": "f063502658f444c5642f1c22fcde29c7d4228c0832e91601998eea4ffd502720",
     "scripts/story_runner.gd": "7079bed330174cafb46ee5eeba91753e24f2d089cacaa4d0233cd9719b5548c7",
-    "scripts/art_library.gd": "0f7dd717e6f18661d6320594b35ea0037c67dd6c2a1e2eb962d959d2f9bc6c5b",
-    "tests/test_campaign_ui.gd": "0b6dd322d325db54ecfebe9e457d9ae438278fcc03fd2e4ddc2b0b7b8bc42d73"
+    "scripts/art_library.gd": "722737a3677ec639fe77acf90d7e472c6d6b55109a41dc9e4d458d50ebfde2c4",
+    "tests/test_campaign_ui.gd": "1106397747dacd1ee8cbe0f2697083ed3669d2c266ee24d505f5d842691f07c0"
   },
   "art_evidence": "docs/narrative-art-v020.md",
   "chapter_05_evidence": "docs/narrative/chapter-05-review.md",
   "chapter_06_evidence": "docs/narrative/chapter-06-review.md",
-  "additional_art_evidence": "assets/art/narrative/warden-dialogue-source.json"
+  "additional_art_evidence": "assets/art/narrative/warden-dialogue-source.json",
+  "chapter_07_evidence": "docs/narrative/chapter-07-review.md",
+  "chapter_07_art_evidence": "assets/art/narrative/chapter07-sources.json"
 }

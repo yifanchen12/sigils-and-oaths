@@ -1,0 +1,1387 @@
+{
+  "version": 1,
+  "id": "chapter_07",
+  "title": "第七章 · 未送达的名字",
+  "start": "arrival",
+  "inherits": [
+    "route",
+    "witness_present",
+    "seal_copy",
+    "relief",
+    "public_ledger",
+    "priority",
+    "receipt_method",
+    "dispatch_receipts",
+    "clerk_safe",
+    "letter_reply",
+    "letter_delivered",
+    "pass_route",
+    "supply_route",
+    "mine_cargo",
+    "harbor_shelter",
+    "foundry_terms",
+    "crew_safe",
+    "harbor_pump",
+    "pump_route_known",
+    "water_plan",
+    "water_released",
+    "grove_mandate",
+    "charter_copy",
+    "evidence_council",
+    "court_access",
+    "father_trail",
+    "letter_company"
+  ],
+  "defaults": {
+    "route": "none",
+    "witness_present": false,
+    "seal_copy": false,
+    "relief": "none",
+    "public_ledger": false,
+    "priority": "none",
+    "receipt_method": "none",
+    "dispatch_receipts": false,
+    "clerk_safe": false,
+    "letter_reply": "none",
+    "letter_delivered": false,
+    "pass_route": "none",
+    "supply_route": "none",
+    "mine_cargo": false,
+    "harbor_shelter": "none",
+    "foundry_terms": "none",
+    "crew_safe": false,
+    "harbor_pump": false,
+    "pump_route_known": false,
+    "water_plan": "none",
+    "water_released": false,
+    "grove_mandate": "none",
+    "charter_copy": false,
+    "evidence_council": "none",
+    "court_access": false,
+    "father_trail": false,
+    "letter_company": "none",
+    "camp_company": "none"
+  },
+  "speakers": {
+    "narrator": "旁白",
+    "warden": "艾琳",
+    "pyromancer": "维洛",
+    "grove": "赛菈",
+    "sword": "洛恩",
+    "spear": "芙蕾",
+    "cavalry": "莉希",
+    "archer": "希弥",
+    "mage": "伊瑟",
+    "healer": "米芮",
+    "clerk": "赫姆",
+    "qin": "秦婶",
+    "yubai": "余白",
+    "tangsui": "唐穗",
+    "foreman": "工班长"
+  },
+  "nodes": {
+    "arrival": {
+      "type": "dialogue",
+      "background": "scene_eaststreet",
+      "lines": [
+        {
+          "id": "c07.arrival.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.arrival.02",
+          "speaker": "qin"
+        },
+        {
+          "id": "c07.arrival.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.arrival.04",
+          "speaker": "warden"
+        },
+        {
+          "id": "c07.arrival.05",
+          "speaker": "qin"
+        },
+        {
+          "id": "c07.arrival.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.arrival.07",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c07.arrival.08",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.arrival.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.arrival.10",
+          "speaker": "warden"
+        },
+        {
+          "id": "c07.arrival.11",
+          "speaker": "foreman"
+        },
+        {
+          "id": "c07.arrival.12",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "rooms"
+    },
+    "rooms": {
+      "type": "dialogue",
+      "background": "scene_eaststreet",
+      "lines": [
+        {
+          "id": "c07.rooms.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.rooms.02",
+          "speaker": "qin"
+        },
+        {
+          "id": "c07.rooms.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c07.rooms.04",
+          "speaker": "qin"
+        },
+        {
+          "id": "c07.rooms.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.rooms.06",
+          "speaker": "warden"
+        },
+        {
+          "id": "c07.rooms.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.rooms.08",
+          "speaker": "qin"
+        },
+        {
+          "id": "c07.rooms.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.rooms.10",
+          "speaker": "sword"
+        },
+        {
+          "id": "c07.rooms.11",
+          "speaker": "spear"
+        },
+        {
+          "id": "c07.rooms.12",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "boat"
+    },
+    "boat": {
+      "type": "dialogue",
+      "background": "scene_eaststreet",
+      "lines": [
+        {
+          "id": "c07.boat.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.boat.02",
+          "speaker": "yubai"
+        },
+        {
+          "id": "c07.boat.03",
+          "speaker": "sword"
+        },
+        {
+          "id": "c07.boat.04",
+          "speaker": "yubai"
+        },
+        {
+          "id": "c07.boat.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.boat.06",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c07.boat.07",
+          "speaker": "yubai"
+        },
+        {
+          "id": "c07.boat.08",
+          "speaker": "pyromancer",
+          "when": {
+            "foundry_terms": "sale"
+          }
+        },
+        {
+          "id": "c07.boat.09",
+          "speaker": "pyromancer",
+          "when": {
+            "foundry_terms": "lease"
+          }
+        },
+        {
+          "id": "c07.boat.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.boat.11",
+          "speaker": "spear"
+        },
+        {
+          "id": "c07.boat.12",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.boat.13",
+          "speaker": "yubai"
+        },
+        {
+          "id": "c07.boat.14",
+          "speaker": "sword"
+        },
+        {
+          "id": "c07.boat.15",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.boat.16",
+          "speaker": "yubai"
+        }
+      ],
+      "next": "names"
+    },
+    "names": {
+      "type": "dialogue",
+      "background": "scene_eaststreet",
+      "lines": [
+        {
+          "id": "c07.names.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.names.02",
+          "speaker": "yubai"
+        },
+        {
+          "id": "c07.names.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c07.names.04",
+          "speaker": "yubai"
+        },
+        {
+          "id": "c07.names.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.names.06",
+          "speaker": "clerk"
+        },
+        {
+          "id": "c07.names.07",
+          "speaker": "yubai"
+        },
+        {
+          "id": "c07.names.08",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.names.09",
+          "speaker": "tangsui"
+        },
+        {
+          "id": "c07.names.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.names.11",
+          "speaker": "tangsui"
+        },
+        {
+          "id": "c07.names.12",
+          "speaker": "warden"
+        },
+        {
+          "id": "c07.names.13",
+          "speaker": "tangsui"
+        },
+        {
+          "id": "c07.names.14",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.names.15",
+          "speaker": "tangsui"
+        },
+        {
+          "id": "c07.names.16",
+          "speaker": "qin"
+        },
+        {
+          "id": "c07.names.17",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.names.18",
+          "speaker": "qin"
+        },
+        {
+          "id": "c07.names.19",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.names.20",
+          "speaker": "yubai"
+        }
+      ],
+      "next": "father"
+    },
+    "father": {
+      "type": "dialogue",
+      "background": "scene_eaststreet",
+      "lines": [
+        {
+          "id": "c07.father.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.father.02",
+          "speaker": "yubai"
+        },
+        {
+          "id": "c07.father.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.father.04",
+          "speaker": "yubai"
+        },
+        {
+          "id": "c07.father.05",
+          "speaker": "warden"
+        },
+        {
+          "id": "c07.father.06",
+          "speaker": "yubai"
+        },
+        {
+          "id": "c07.father.07",
+          "speaker": "qin"
+        },
+        {
+          "id": "c07.father.08",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.father.09",
+          "speaker": "warden"
+        },
+        {
+          "id": "c07.father.10",
+          "speaker": "yubai"
+        },
+        {
+          "id": "c07.father.11",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.father.12",
+          "speaker": "warden"
+        },
+        {
+          "id": "c07.father.13",
+          "speaker": "yubai"
+        },
+        {
+          "id": "c07.father.14",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.father.15",
+          "speaker": "mage"
+        },
+        {
+          "id": "c07.father.16",
+          "speaker": "warden"
+        },
+        {
+          "id": "c07.father.17",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "transfer"
+    },
+    "transfer": {
+      "type": "dialogue",
+      "background": "scene_school_day",
+      "lines": [
+        {
+          "id": "c07.transfer.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.transfer.02",
+          "speaker": "sword"
+        },
+        {
+          "id": "c07.transfer.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.transfer.04",
+          "speaker": "grove"
+        },
+        {
+          "id": "c07.transfer.05",
+          "speaker": "qin"
+        },
+        {
+          "id": "c07.transfer.06",
+          "speaker": "narrator",
+          "when": {
+            "grove_mandate": "shared"
+          }
+        },
+        {
+          "id": "c07.transfer.07",
+          "speaker": "narrator",
+          "when": {
+            "grove_mandate": "witness"
+          }
+        },
+        {
+          "id": "c07.transfer.08",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.transfer.09",
+          "speaker": "yubai"
+        },
+        {
+          "id": "c07.transfer.10",
+          "speaker": "narrator",
+          "background": "scene_eaststreet"
+        },
+        {
+          "id": "c07.transfer.11",
+          "speaker": "qin",
+          "background": "scene_eaststreet"
+        },
+        {
+          "id": "c07.transfer.12",
+          "speaker": "foreman",
+          "background": "scene_eaststreet"
+        },
+        {
+          "id": "c07.transfer.13",
+          "speaker": "narrator",
+          "background": "scene_eaststreet"
+        }
+      ],
+      "next": "evening"
+    },
+    "evening": {
+      "type": "dialogue",
+      "background": "scene_sunspire_camp",
+      "lines": [
+        {
+          "id": "c07.evening.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.evening.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.evening.03",
+          "speaker": "narrator",
+          "when": {
+            "letter_company": "alone"
+          }
+        },
+        {
+          "id": "c07.evening.04",
+          "speaker": "narrator",
+          "when": {
+            "letter_company": "companions"
+          }
+        },
+        {
+          "id": "c07.evening.05",
+          "speaker": "warden"
+        },
+        {
+          "id": "c07.evening.06",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c07.evening.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.evening.08",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "camp"
+    },
+    "camp": {
+      "type": "choice",
+      "background": "scene_sunspire_camp",
+      "prompt": "c07.camp.prompt",
+      "options": [
+        {
+          "id": "bridge",
+          "text": "c07.camp.bridge",
+          "next": "bridge",
+          "set": {
+            "camp_company": "bridge"
+          }
+        },
+        {
+          "id": "clinic",
+          "text": "c07.camp.clinic",
+          "next": "clinic",
+          "set": {
+            "camp_company": "clinic"
+          }
+        },
+        {
+          "id": "watch",
+          "text": "c07.camp.watch",
+          "next": "watch",
+          "set": {
+            "camp_company": "watch"
+          }
+        }
+      ]
+    },
+    "bridge": {
+      "type": "dialogue",
+      "background": "scene_sunspire_camp",
+      "lines": [
+        {
+          "id": "c07.bridge.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.bridge.02",
+          "speaker": "warden"
+        },
+        {
+          "id": "c07.bridge.03",
+          "speaker": "sword",
+          "when": {
+            "harbor_shelter": "warehouse"
+          }
+        },
+        {
+          "id": "c07.bridge.04",
+          "speaker": "sword",
+          "when": {
+            "harbor_shelter": "households"
+          }
+        },
+        {
+          "id": "c07.bridge.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.bridge.06",
+          "speaker": "spear"
+        },
+        {
+          "id": "c07.bridge.07",
+          "speaker": "sword"
+        },
+        {
+          "id": "c07.bridge.08",
+          "speaker": "spear"
+        },
+        {
+          "id": "c07.bridge.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.bridge.10",
+          "speaker": "sword"
+        },
+        {
+          "id": "c07.bridge.11",
+          "speaker": "spear"
+        },
+        {
+          "id": "c07.bridge.12",
+          "speaker": "sword"
+        },
+        {
+          "id": "c07.bridge.13",
+          "speaker": "spear"
+        },
+        {
+          "id": "c07.bridge.14",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.bridge.15",
+          "speaker": "spear"
+        },
+        {
+          "id": "c07.bridge.16",
+          "speaker": "sword"
+        },
+        {
+          "id": "c07.bridge.17",
+          "speaker": "spear"
+        },
+        {
+          "id": "c07.bridge.18",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.bridge.19",
+          "speaker": "spear"
+        },
+        {
+          "id": "c07.bridge.20",
+          "speaker": "sword"
+        },
+        {
+          "id": "c07.bridge.21",
+          "speaker": "spear"
+        },
+        {
+          "id": "c07.bridge.22",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.bridge.23",
+          "speaker": "sword"
+        },
+        {
+          "id": "c07.bridge.24",
+          "speaker": "spear"
+        },
+        {
+          "id": "c07.bridge.25",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.bridge.26",
+          "speaker": "sword"
+        },
+        {
+          "id": "c07.bridge.27",
+          "speaker": "spear"
+        },
+        {
+          "id": "c07.bridge.28",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.bridge.29",
+          "speaker": "narrator",
+          "when": {
+            "harbor_shelter": "warehouse"
+          }
+        },
+        {
+          "id": "c07.bridge.30",
+          "speaker": "narrator",
+          "when": {
+            "harbor_shelter": "households"
+          }
+        },
+        {
+          "id": "c07.bridge.31",
+          "speaker": "sword"
+        },
+        {
+          "id": "c07.bridge.32",
+          "speaker": "spear"
+        },
+        {
+          "id": "c07.bridge.33",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.bridge.34",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "morning"
+    },
+    "clinic": {
+      "type": "dialogue",
+      "background": "scene_school_ward",
+      "lines": [
+        {
+          "id": "c07.clinic.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.clinic.02",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.clinic.03",
+          "speaker": "mage"
+        },
+        {
+          "id": "c07.clinic.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.clinic.05",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.clinic.06",
+          "speaker": "mage"
+        },
+        {
+          "id": "c07.clinic.07",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.clinic.08",
+          "speaker": "mage"
+        },
+        {
+          "id": "c07.clinic.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.clinic.10",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.clinic.11",
+          "speaker": "mage"
+        },
+        {
+          "id": "c07.clinic.12",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.clinic.13",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.clinic.14",
+          "speaker": "mage"
+        },
+        {
+          "id": "c07.clinic.15",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.clinic.16",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.clinic.17",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.clinic.18",
+          "speaker": "mage"
+        },
+        {
+          "id": "c07.clinic.19",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.clinic.20",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.clinic.21",
+          "speaker": "mage"
+        },
+        {
+          "id": "c07.clinic.22",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.clinic.23",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.clinic.24",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.clinic.25",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.clinic.26",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.clinic.27",
+          "speaker": "mage"
+        },
+        {
+          "id": "c07.clinic.28",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.clinic.29",
+          "speaker": "mage"
+        },
+        {
+          "id": "c07.clinic.30",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.clinic.31",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.clinic.32",
+          "speaker": "mage"
+        },
+        {
+          "id": "c07.clinic.33",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.clinic.34",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.clinic.35",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "morning"
+    },
+    "watch": {
+      "type": "dialogue",
+      "background": "scene_sunspire_camp",
+      "lines": [
+        {
+          "id": "c07.watch.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.watch.02",
+          "speaker": "archer"
+        },
+        {
+          "id": "c07.watch.03",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c07.watch.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.watch.05",
+          "speaker": "archer"
+        },
+        {
+          "id": "c07.watch.06",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c07.watch.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.watch.08",
+          "speaker": "cavalry",
+          "when": {
+            "letter_reply": "return"
+          }
+        },
+        {
+          "id": "c07.watch.09",
+          "speaker": "cavalry",
+          "when": {
+            "letter_reply": "unscheduled"
+          }
+        },
+        {
+          "id": "c07.watch.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.watch.11",
+          "speaker": "archer"
+        },
+        {
+          "id": "c07.watch.12",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c07.watch.13",
+          "speaker": "archer"
+        },
+        {
+          "id": "c07.watch.14",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.watch.15",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c07.watch.16",
+          "speaker": "archer"
+        },
+        {
+          "id": "c07.watch.17",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c07.watch.18",
+          "speaker": "archer"
+        },
+        {
+          "id": "c07.watch.19",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.watch.20",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c07.watch.21",
+          "speaker": "archer"
+        },
+        {
+          "id": "c07.watch.22",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c07.watch.23",
+          "speaker": "archer"
+        },
+        {
+          "id": "c07.watch.24",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.watch.25",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c07.watch.26",
+          "speaker": "archer"
+        },
+        {
+          "id": "c07.watch.27",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.watch.28",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.watch.29",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c07.watch.30",
+          "speaker": "archer"
+        },
+        {
+          "id": "c07.watch.31",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.watch.32",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c07.watch.33",
+          "speaker": "archer"
+        },
+        {
+          "id": "c07.watch.34",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.watch.35",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "morning"
+    },
+    "morning": {
+      "type": "dialogue",
+      "background": "scene_school_day",
+      "lines": [
+        {
+          "id": "c07.morning.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.morning.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.morning.03",
+          "speaker": "clerk"
+        },
+        {
+          "id": "c07.morning.04",
+          "speaker": "yubai"
+        },
+        {
+          "id": "c07.morning.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.morning.06",
+          "speaker": "narrator",
+          "when": {
+            "camp_company": "bridge"
+          }
+        },
+        {
+          "id": "c07.morning.07",
+          "speaker": "narrator",
+          "when": {
+            "camp_company": "clinic"
+          }
+        },
+        {
+          "id": "c07.morning.08",
+          "speaker": "narrator",
+          "when": {
+            "camp_company": "watch"
+          }
+        },
+        {
+          "id": "c07.morning.09",
+          "speaker": "narrator",
+          "when": {
+            "foundry_terms": "sale"
+          }
+        },
+        {
+          "id": "c07.morning.10",
+          "speaker": "narrator",
+          "when": {
+            "foundry_terms": "lease"
+          }
+        },
+        {
+          "id": "c07.morning.11",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.morning.12",
+          "speaker": "qin"
+        },
+        {
+          "id": "c07.morning.13",
+          "speaker": "warden"
+        }
+      ],
+      "next": "eastward"
+    },
+    "eastward": {
+      "type": "dialogue",
+      "background": "scene_eaststreet",
+      "lines": [
+        {
+          "id": "c07.eastward.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.eastward.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.eastward.03",
+          "speaker": "yubai"
+        },
+        {
+          "id": "c07.eastward.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.eastward.05",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c07.eastward.06",
+          "speaker": "mage"
+        },
+        {
+          "id": "c07.eastward.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.eastward.08",
+          "speaker": "warden"
+        },
+        {
+          "id": "c07.eastward.09",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end",
+      "text": "c07.end",
+      "ending": "names_answered",
+      "background": "scene_eaststreet"
+    }
+  },
+  "strings": {
+    "c07.arrival.01": "床卡在里间门上，谁也过不去。秦婶一手托着床脚，一手把枕头扔给门外的人。艾琳在院口报出父亲的旧职名，她只抬头看了一眼，又将快要滑下的床板顶回肩上。",
+    "c07.arrival.02": "来找人的，先抬这一头。别拔剑撬，门框下面有我埋的水管。",
+    "c07.arrival.03": "艾琳把剑带交给芙蕾，侧身挤过去。床腿挂住了门后的钉子，秦婶不肯松手，非要她先把钉头按平。二人折腾到袖口全是灰，才把床横着送进院里。床上刚躺过的老人坐在矮凳上，盯着被压扁的枕头。",
+    "c07.arrival.04": "这张床搬去哪一间？",
+    "c07.arrival.05": "这回问对了。我也在问。那边说北街能住，床能不能进、夜里有没有水，没人给我看过。",
+    "c07.arrival.06": "队伍比先行骑使晚了一日抵达。东街的搬迁通知已经贴出来，八户十九人把门打开，包袱却大多留在屋里。院子曾是临时诊所，旧牌拆下后垫了米缸；隔着半堵矮墙，余白的修船棚里还传来刨木声。",
+    "c07.arrival.07": "我去过学堂。教课的先生同意借后两间，学生明早到前院上课。井在走廊尽头，水还在。只是没想到这边有两张床得整抬。",
+    "c07.arrival.08": "先让我看那两位。能够坐车的不一定能挤在凳子上。洛恩，把帆布拉开些，别让太阳一直晒着他。",
+    "c07.arrival.09": "门外的工班长催人将支沟石盖掀开。秦婶抬起沾灰的手指着他，没说话。他将铁钩往后一收，解释这里只拆盖板，不会放空底下的水。艾琳走到沟边，看见还有洗衣盆放在下游。",
+    "c07.arrival.10": "等最后一户出去，再动这一段。你带我去看隔离口，留个人给她们指去北街的路。",
+    "c07.arrival.11": "可以等搬完，不能等查完旧账。你们要看的过水廊还往东，那里今晚要量回流。人要留得下，水也得有人接着看。",
+    "c07.arrival.12": "艾琳将写着父亲地址的纸收回去。秦婶从她身边挤过，带米芮进屋。经过那张床时，她伸手摸了摸刚修平的钉头，留下一个灰白的掌印。",
+    "c07.rooms.01": "秦婶把里间的东西一件件搬出。剪刀先入布袋，接着是盐罐和一只没盖的茶盒。艾琳以为茶盒里是零碎针线，秦婶拿出来的却是一叠没有封口的信，外边用洗得发软的头巾裹着。",
+    "c07.rooms.02": "这些跟我走。锅能借，信借不回来。你姓什么？刚才只听清守桥的。",
+    "c07.rooms.03": "艾琳。常芷让我来问，十七年前从桥北送进来的四个人，你还记不记得。",
+    "c07.rooms.04": "常芷还在那间馆里？我上回给她写信，说这里已经不挂牌了，没想到还有人拿着地址来。四个里头，有一个就在隔壁。你先别叫他，他要是把刨子放下了，又会说是别人耽误了他的活。",
+    "c07.rooms.05": "艾琳朝矮墙望去。余白背对院落，腰后别着一小段红绳。他把刨花扫成一堆，见他们看过来，就将船身上的湿布拉长了些。秦婶把茶盒塞进袋底，问艾琳是否带来那辆车的消息。",
+    "c07.rooms.06": "带了。我父亲在车上，送他们来。后来没回河门。我想问的是他。",
+    "c07.rooms.07": "秦婶手里还拎着袋子，过了片刻才放下。她看艾琳的眉眼，没说长得像谁。院外老人咳起来，米芮招手要热水，她便先去提壶，回到门口时给艾琳也倒了一碗。",
+    "c07.rooms.08": "等余白把船放稳。那时候我洗工衣，也帮这里换被褥，什么日子进来的人我还分得清。出去以后，我没全看见。",
+    "c07.rooms.09": "北街来人借走了量床宽的细绳，回来时在绳上打了两个结：外门够宽，后屋却窄半掌。洛恩提议把床腿卸掉，老人立即用拐杖敲了地。那是他妻子留下的床，拆过一次，木榫就再也拢不紧。",
+    "c07.rooms.10": "那先用前屋。小课桌我来搬，晚饭前给先生摆回另一间。床不拆，你坐着看我们抬。",
+    "c07.rooms.11": "前屋的门向街，夜里不能只挂一张帘。再找块门板。别为了把人抬进去，把看门的人漏了。",
+    "c07.rooms.12": "洛恩把量绳绕回掌心，没有再说凑合一夜。芙蕾叫来两名枪卫去北街搭门，自己只用左手提那袋信。秦婶要接过去，她摇了摇头，把袋子递给了旁边的艾琳。",
+    "c07.boat.01": "余白的船还不能下水。船尾缺两块外板，封缝的油灰装在阴处。洛恩在棚口比了比宽窄，觉得挡路的是撑顶那根斜木，伸手去解绑绳，被余白用刨子柄挡住。",
+    "c07.boat.02": "你拆了，雨下来谁给我撑回去？这船不是我的，买主已经付过一半钱。你们把人挪走了，他照样来找我。",
+    "c07.boat.03": "我想把出口放宽。船搁这儿，等沟开了就出不来。",
+    "c07.boat.04": "我知道它出不来，才从早上干到现在。别一来就把我知道的事再告诉我。",
+    "c07.boat.05": "维洛蹲下摸了摸船底滚木。棚口能过，难处在那道半尺高的石坎。旁边几根旧滑轨长短不一，他挑出两根，叫洛恩去问工班借四只木楔。余白看见他取轨，刨子终于朝下放了。",
+    "c07.boat.06": "吊到坎上再抽滚木，船底会裂。接一小段坡，先从中间过，别把力全压在两边。油灰省着点，港口现在卖得贵。",
+    "c07.boat.07": "你也欠船主的货？",
+    "c07.boat.08": "欠过。现在轮到别人嫌我的箱子占地方。",
+    "c07.boat.09": "还欠着。租息没到，下笔工钱得另想办法。先把船放好，我可不想再欠一副船底。",
+    "c07.boat.10": "维洛把袖口挽上去，守住滑轨。洛恩想让芙蕾托另一侧，她抬起右臂，抬到一半停住，只用枪尾在地上划出轮换位置。",
+    "c07.boat.11": "这个高度我托不了。叫新来的盾手接左边，别让他从船头钻。你听见我说停，就把滚木垫实，再松手。",
+    "c07.boat.12": "船身滑上石坎时，底下传来一声脆响。洛恩下意识又往前顶，芙蕾的枪尾敲在他脚边。他咬着牙停住，余白抽出被压碎的薄楔，换上厚木。等她再点头，船才越过了坎。",
+    "c07.boat.13": "好了，别再推。你们力气倒是够，谁教你们拿东西不喊停的？",
+    "c07.boat.14": "有人教。学生不太争气。",
+    "c07.boat.15": "他朝芙蕾笑了一下，见她正把右肩靠向廊柱，又将笑收回去。余白用布把船尾包好，在木架上写下买主的住处，留给工班看管。他拿刨子的手松开后，指节上留着一圈白印。",
+    "c07.boat.16": "找桥北那辆车的是你？我就是阿白。姓余的那个余，是后来才想起来的。",
+    "c07.names.01": "秦婶将一条长凳搬到院子阴处。余白站着，喝了两碗水才坐下。艾琳没有摊开整本副本，只把当时的到达日期写给他看。她写完最后一笔，笔尖还停在纸上。",
+    "c07.names.02": "我那会儿热得厉害，头上破了一块。有人问我家里是谁，我一直说阿娘在河西。河西那么大，光是废窑就有三处。我自己都不知道说的是哪一处。",
+    "c07.names.03": "后来找到她了吗？",
+    "c07.names.04": "找到了。过了两个月，她跟一支卖柴的队伍进城，挨家问。看见我时先扇了我一巴掌，第二下没打出来。她前年走的，埋在北坡。离这里近，我还能常去。",
+    "c07.names.05": "他将空碗转了半圈，手指压着碗口的缺处。赫姆站在院门边，本来想走近，听到那两个月，又停在原地。秦婶叫他进来，先问那份转运条是谁填的。",
+    "c07.names.06": "我接过中间一站的账。记了车到了，没有回信的住处空着。后来补账时，我把整批写成了交讫。我没见过你母亲。",
+    "c07.names.07": "她去问过，说都交出去了，不归那里管。她听成我已经到家了，以为是自己找错了路。",
+    "c07.names.08": "赫姆脱下帽子，攥在两手之间。余白看了他一会儿，让他把帽子戴回去，院里晒。他没有说算了，转头叫隔壁灶间的人把锅端来。",
+    "c07.names.09": "余白，你别坐着教别人，锅还等你垫木头。我刚烙的，底下那几张糊了，先别拿。",
+    "c07.names.10": "年轻女子端着平锅走进来，胳膊上挂着两条干净布。秦婶叫她唐穗，告诉艾琳，她也是那辆车送来的。唐穗听见旧名“穗丫头”，先笑了一下，随后将锅放得很轻。",
+    "c07.names.11": "我记得一盏灯，别的分不清。大人后来告诉我的事太多，有些我都以为是自己看见的。你要问车上是谁，还是问余白吧。",
+    "c07.names.12": "你母亲后来找到了你？",
+    "c07.names.13": "秦婶替我写信时找来的。她以为我跟舅家去了南边，舅家又以为我在她那里。我跟她住了好多年，去年才搬回来开灶。刚回来那阵，秦婶隔三天就来问我吃没吃饭，明明她才是来买饼的。",
+    "c07.names.14": "她把第一张没糊的饼递给秦婶，问是不是又有人要抄旧名单。艾琳指了指自己，说明来意。唐穗看向她的内袋，目光停了片刻，没有要求拿信来看。",
+    "c07.names.15": "那你也吃点。你刚才一直在搬东西。要是你母亲还在等，先告诉她你到哪里了。别等全问明白再写。",
+    "c07.names.16": "叶成老伯是第三个。后来在这里种过两年葱，冬天病走的，我们送到南坡了。还有一个小的，大家叫阿蓼，跟我住过几年，长大后随戏班出去。最近一封信是三年前来的，没留能寄到的住处。",
+    "c07.names.17": "秦婶从茶盒里取出一张旧纸，纸角贴着半片画得很拙的燕子。她把纸背转向艾琳，只给她看寄信那年的月份，便重新收了起来。街边有人喊，下一辆空车已经到院口。",
+    "c07.names.18": "我要问到了，会写信。现在还没有消息，就先留着。把她写在你们哪里都行，别写已找到。",
+    "c07.names.19": "艾琳将自己那张纸上的四行分开。余白和唐穗各写了能回信的住处，叶成的去处由秦婶另写一行，阿蓼那格仍空着。赫姆伸手接笔时，余白按住了纸。",
+    "c07.names.20": "写我说的这些。别加替我原谅谁。到了河门，你自己去讲你那一段。",
+    "c07.father.01": "最后一张饼分给了等车的老人。艾琳把笔放下，终于问起父亲的脸。余白没有立即答，先问她，守桥人是不是习惯将袖口向里折两道，怕碰着伤口的人。她的手按在膝上，点了一下头。",
+    "c07.father.02": "他给我喂过水。不是一碗倒下去，拿布角沾了，等我能咽再给第二口。我躺着烦，骂他磨蹭，他说先把这口咽了，骂完再给。",
+    "c07.father.03": "艾琳把眼睛移到余白手里的碗上。父亲也这样照料过发热的她，常被她推开。她想问他有没有说家里，却先问那是哪一天；问出口才发现，余白未必能记得日期。",
+    "c07.father.04": "塔暗下来以后。白得睡不着的那些天已经过了，城里却总在响。有人叫它第八夜，我记得是因为终于能看见灯罩里的火，不用手遮着。",
+    "c07.father.05": "他后来去哪儿了？",
+    "c07.father.06": "东头的过水廊。那边还在接地下出来的人。他先把我们交到这里，等接班的妇人来了，又去帮一趟。我那时已经坐起来，看见他跟着两副担架出门。",
+    "c07.father.07": "我来换晚班的时候，见过那两副空担架。前一班是黄婶，她后来去了女儿那里，已经过世。我只记得有人拿走了院里的长绳，没看清谁。",
+    "c07.father.08": "她将自己能记得的说完便停住。余白用指头在桌面画了旧巷子的走向。艾琳让他重画一遍，他便照做；画到最后一个拐弯，手指停在那里，等她接着问。",
+    "c07.father.09": "你看见他回来过吗？",
+    "c07.father.10": "没有。第二天我又烧起来，醒时已经在后屋。我没守着那扇门。",
+    "c07.father.11": "院子忽然空出一小会儿，只听见门外的人将滚木装上车。艾琳捏着自己的袖口，翻到里面，看了看那里已经磨平的针脚。她没有再把同一个问题问第三遍。",
+    "c07.father.12": "那条廊还能过去？",
+    "c07.father.13": "到入口可以。里边现在哪一段能走，得工班看过。我明早带你到外面，往下的事别让我作保。",
+    "c07.father.14": "维洛一直站在靠街的一边。听见过水廊，他抬头望向东侧断塔，又低头去看伊瑟摊开的草图。后者指着一条从旧池绕来的细线，嘴唇动了动，等艾琳把纸收好才开口。",
+    "c07.father.15": "现在要换的回水线也从那里过。我得先量，不然你们下去以后，上面一开支路，廊道就可能进水。明早我们一起到入口，等我和工班说可以，再进去。",
+    "c07.father.16": "好。到了先听你们的。余白，今晚不必为了我再走一趟。",
+    "c07.father.17": "她起身去接门外的空车。余白跟了两步，似乎还想补一句什么，最后只是把车闸扳紧，叫她先别抬。秦婶从柜里取出最后一只药瓶，放进自己围裙的兜里。",
+    "c07.transfer.01": "北街学堂的前屋先腾出来，学生的矮桌搬到另一边，拼成一长排。那两张床终于过了门，老人用手压住床沿试了试，叫抬床的人别走，从枕套里摸出几颗皱巴巴的枣，要他们一人拿一颗。",
+    "c07.transfer.02": "真要付工钱，刚才那颗钉子比我们费事，得给它也留一颗。",
+    "c07.transfer.03": "老人没听懂，秦婶却笑了，伸手在他背上拍了一掌。米芮让人把背光的床移近窗，自己坐下来重换一卷绷带。唐穗在院里支起薄锅，先生从讲桌下面抱来几块上月剩的炭。",
+    "c07.transfer.04": "晚上的饮水从北井挑，暂住的人也排到取水名单里。你们带来的药壶放这一边，别跟装油灰的混了。我的薄荷盆可以占半块窗沿么？",
+    "c07.transfer.05": "有根的东西放窗边。我写信的桌子靠门，晚上有人回来找，不用穿过他们的床。",
+    "c07.transfer.06": "赛菈把花盆放下，卷起袖子去提空桶。一个年轻人拿着分水条请她盖印，她指给他看来接班的本地井管人，说明自己只能核上游三处共签的那部分。年轻人等她讲完，又把纸带去井边。",
+    "c07.transfer.07": "赛菈把花盆放下，卷起袖子去提空桶。一个年轻人拿着分水条请她盖印，她翻开空着的印袋，让他去找本地井管人。纸递出去后，她仍跟着去看井绳够不够长。",
+    "c07.transfer.08": "余白的船架借放在学堂隔壁的空作坊，买主闻讯来看，摸了摸船底，没有当场催工钱。他答应明早带封缝的帮手来，余白却先说天亮后得出去一趟，午前才能回来。两人当着船的面把时辰改过。",
+    "c07.transfer.09": "我不是拿修船抵给你们。明早说好那一趟，我自己要去。回来还有活，别在廊里耗到晚上。",
+    "c07.transfer.10": "日头将落时，秦婶回东街锁门。艾琳陪她逐间看过，院里只剩一只猫没肯走，蹲在空柜上朝两人叫。秦婶拿饼角将它引下来，抱进竹篮，把钥匙拴回腰间，抬脚踩实门槛边松动的石头。",
+    "c07.transfer.11": "这块别挖走。回来一脚踩空，我还得来骂你们。",
+    "c07.transfer.12": "门槛留着。我今夜只处理街边支线，墙下的要等你回来一起看。廊口的水位还在变，主泵没动，你们也别去动。",
+    "c07.transfer.13": "工班在最后一户离开后才揭开支沟，隔离口的灯随后亮起。北街送来的水桶仍在，饮用支管没有被截断。莉希收到棋庭骑使的回执：补买的两车煤已经进炉房，常芷正让人补回廊灯的夜班。她读完把纸递给艾琳，没有再替栗雨添一趟路。",
+    "c07.evening.01": "学堂晚饭分得迟，最后一盆粥端出时，火上只剩一点薄焦。洛恩拿锅铲慢慢刮，芙蕾用左手把他的碗推开，让他先去换掉湿透的衬衣。伊瑟在旁边数药瓶，米芮拿走了他的笔，给他换成一只勺。",
+    "c07.evening.02": "艾琳在廊下写给母亲的信。她先写父亲来过这间诊所，停了一会儿，将“有人记得他”改成余白的名字，又添上明早要去过水廊。她没写很快就能找到，最后一行写得比前面小：家书我收到了，封边被我拆坏了一点。",
+    "c07.evening.03": "维洛经过时放下一盏灯。艾琳将信压在掌下，他没有凑近，扶好歪着的灯芯就走。她想起棋庭炊棚那壶热水，在他走到廊柱边时说了声谢。",
+    "c07.evening.04": "维洛经过时放下一盏灯。艾琳抬头问他，在棋庭有没有听清信末那几个字。他说听清了，却没替她往这封信里添，扶好歪着的灯芯便回到灶边。",
+    "c07.evening.05": "赫姆明早跟返程的粮车回河门，两名护粮军士陪同。他自己的账还要去答。我的信和居民的回信另装一袋，交给驿站，不放进要查验的那箱里。",
+    "c07.evening.06": "我把袋口封好，交给换班骑使。不是我自己送回去。明早栗雨能歇到你们回来，骑队有别人接东路。",
+    "c07.evening.07": "希弥靠在廊柱另一侧，听见最后一句才将热粥递给她。莉希接过去，发现碗边有一只小纸包，里面是断脊捎来的干果。姐姐的回信压在包底，刚才跟补煤回执一起到。她把信折进袖里，先吹了吹烫手的粥。",
+    "c07.evening.08": "余白指的过水廊到天亮才量水，工班把夜里的巡查接过去。学堂里的人陆续睡下，院墙外还能听见断续的木槌声。艾琳将一整班空出来，让队员吃饭、洗衣，也让自己不必在每处灯下都站到最后。",
+    "c07.camp.prompt": "学堂的灯还亮着。洛恩抱着装备走向河边，米芮的药还没分完，高廊上已经传来换岗的脚步。艾琳收起信，今晚想同谁走一段路？",
+    "c07.camp.bridge": "到河边台阶，陪洛恩和芙蕾收起这一班的装备。",
+    "c07.camp.clinic": "留在临时病室，帮米芮和伊瑟把夜间的药分好。",
+    "c07.camp.watch": "走上学堂高廊，陪莉希和希弥换最后一班岗。",
+    "c07.bridge.01": "洛恩把盾靠在台阶上，里面那张港口房租收据露出半角。艾琳将一碗热粥放到他旁边，他忙把收据往里塞，塞了两次，纸还是从松掉的胶边翘出来。",
+    "c07.bridge.02": "要我回避一会儿？",
+    "c07.bridge.03": "不用。不是藏欠条，就是不大想再念给人听。港口来信，说孩子们把球踢进住人的侧间，摔了两只碗，想问我能不能划一块地方。",
+    "c07.bridge.04": "不用。不是藏欠条，就是不大想再念给人听。港口来信，说货棚空着，孩子们问什么时候能踢球。棚里有两处漏雨，我没说过。",
+    "c07.bridge.05": "芙蕾沿台阶下来，左手拎着洗过的护肩。她将湿绳搭到栏上，隔开了晾衣与靠盾的位置。艾琳替她系好高处那端，见洛恩把纸铺开，便将灯挪过去，带空碗回到学堂。",
+    "c07.bridge.06": "你打算写什么时候？",
+    "c07.bridge.07": "等这边完了。我还能写什么时候？日陨的事收了，再把艾琳送回河门——",
+    "c07.bridge.08": "还有军队复核，补饷，旧账。你把它们排完，那个球该补第三次了。",
+    "c07.bridge.09": "洛恩攥着笔，先在纸角画了一条长线，又划掉。他听得出芙蕾没有嘲笑，仍觉得那句第三次扎耳朵。水面上漂过一截木片，碰到石阶又转走，他盯着它看了一会儿。",
+    "c07.bridge.10": "你以为我不想回去？我连一张像样的回信都写不出。说对不起，人家又没问我这个。说快了，我自己都不知道快在哪儿。",
+    "c07.bridge.11": "我没让你写归期。棚子的钥匙在谁手里？",
+    "c07.bridge.12": "面包铺的阿琼。钱也留了一点，不够把漏雨的全修好。",
+    "c07.bridge.13": "先修能踢球的那一头，让她找人看着。你问问她肯不肯。她不肯，再想别的。你不用人在港口，才准他们动一块木板。",
+    "c07.bridge.14": "洛恩低头看收据上的房租，算起留在铺子里的钱。算到一半，他把笔放下，去够栏上的湿护肩。芙蕾比他先碰到，手腕一翻，将皮带压回自己膝上。",
+    "c07.bridge.15": "晾着就行。这个我能弄。",
+    "c07.bridge.16": "我知道你能。白天那声响，我要是再往前推一点，你肩膀——",
+    "c07.bridge.17": "压坏的先是余白的船。我的肩膀你下午已经问过了。",
+    "c07.bridge.18": "她把皮带从坏掉的孔眼抽出来，换到旁边一个。洛恩没再伸手，坐回低一级的台阶。他的膝盖抵着盾，盾背旧纸发出轻微的响声。芙蕾试着抬臂，眉头动了动，慢慢放回去。",
+    "c07.bridge.19": "还疼。抬高就疼，冷了也疼。米芮让我别逞强，可你们每回问，我说一句还疼，后面就多三个人盯着我。",
+    "c07.bridge.20": "那我怎么问？",
+    "c07.bridge.21": "问我这班要不要换。别一直问疼不疼，也别自作主张把我的枪拿走。",
+    "c07.bridge.22": "洛恩嘴边已经有一句玩笑，听到最后几个字，又咽了回去。他从盾背抽出空着的值班条，把自己的那一栏转给她看。她看了一眼，拇指按在靠后的半班上。",
+    "c07.bridge.23": "后半班我接。前半班你自己带。明早我还要出发，换人之后就去睡，不坐旁边守着你，成么？",
+    "c07.bridge.24": "成。早该这么说。",
+    "c07.bridge.25": "她把值班条折好，碰到盾沿那道旧箭痕。河门第一场交锋留下的裂口补过，里面还嵌着一小片深色木屑。洛恩循着她的目光看过去，忽然笑了一声，这次声音很低。",
+    "c07.bridge.26": "当时我还觉得，白底旗总该认白底旗。你要是晚敲我一下，今天只能给船当滚木了。",
+    "c07.bridge.27": "会裂。你这根木头太爱往旁边滚。",
+    "c07.bridge.28": "他笑出了声，惊得栏下歇着的鸟飞起。芙蕾也笑了一下，随即叫他小声，前屋才睡稳。他赶紧捂住嘴，拿指节敲了敲自己的盾，像答应一个只有她听得见的口令。",
+    "c07.bridge.29": "信重写到第三行时，洛恩把余款的数写清，让阿琼先替孩子们修半个棚顶，隔出住人的一边；若不够，先告诉他缺多少，不必替他垫钱。他写下球别再往窗口踢，停笔想了想，又把那个“别”圈掉，换成请留个看球的人。",
+    "c07.bridge.30": "信重写到第三行时，洛恩把余款的数写清，让阿琼先修出半边能遮雨的棚顶，另一边暂时围住；若她愿意看着孩子开门，钥匙便先留在她手里。他写完问她肯不肯，特意在后面留了一块能写回话的空处。",
+    "c07.bridge.31": "你来港口的时候，要不要看看？不一定踢球。棚旁边那家鱼汤还行，虽然我每回都嫌他给得少。",
+    "c07.bridge.32": "等有哪一天不用接着赶路，再说。你先别替我给鱼汤铺留座。",
+    "c07.bridge.33": "洛恩点头，把信举远了吹干。芙蕾没立即起身，直到他将收据重新贴进盾背，才问还有没有干净纸。他从包里抽出两张给她，眼睛看向河面，让她自己写。",
+    "c07.bridge.34": "夜班将到，两人一起回廊下。洛恩抬手想接那件护肩，先看了她一眼。芙蕾把湿绳给他，护肩仍挂在自己左臂。到了分路处，她告诉他，前屋若有温水，给她留半壶；他应了，没再追着问要不要送到床边。",
+    "c07.clinic.01": "临时病室还留着旧讲台，学生练字用的小沙盘叠在门后。艾琳帮米芮把药包送到每张床边，读完老人手里的用法条，又陪他把那串剂量念了一遍。等她收碗离开，伊瑟仍站在讲台后，把散开的纸边一点点对齐。",
+    "c07.clinic.02": "已经齐了，再推就掉下去。先把手洗了。你下午摸过油灰，别帮我碰新布。",
+    "c07.clinic.03": "我碰的是船板，没碰油灰。也有木屑。你说得对，我去洗。",
+    "c07.clinic.04": "他洗了很久，回来时指节都发白。米芮坐在门边吃剩下的粥，旁边空着一只矮凳。他坐上去比她低半头，只好把膝盖侧过去。她看见了，笑着将药篮从另一张正常高的凳子上搬开。",
+    "c07.clinic.05": "你刚才在院里，想跟艾琳说什么？那句话从余白开口前就在你嘴边。",
+    "c07.clinic.06": "我没在塔里。长昼那年我十一岁，老家在内陆，井越来越深。我父亲每天换一段绳，换到最后，连晾衣服的都拆了。别人说塔熄了，我只记得母亲把窗板打开。",
+    "c07.clinic.07": "你担心她问你为什么没早点停？",
+    "c07.clinic.08": "担心她问我后来做了什么。学院让我把旧簿誊进新档，我发现尖峰不见了，却在校录页上签了名字。批注写的是原始波形待查，放在后面，没跟着总图一起送出去。",
+    "c07.clinic.09": "米芮咽下粥，将勺搁在碗沿，没有马上替他解释。伊瑟低头摩挲法杖上的蓝晶，晶面映出灯芯晃动的光。他想把话改得更准确，张开口，又合上。",
+    "c07.clinic.10": "新取水用到的那张图上，有你的名字？",
+    "c07.clinic.11": "有校录署名。不是我画的取水线，但我不能只说这一句。我总想等到能证明是谁删了峰值，再去指出那张总图不能直接用。没有等到。",
+    "c07.clinic.12": "病床那头传来一声咳嗽。米芮起身检查，伊瑟也跟过去，刚伸出手，她指了指旁边的灯。他便把灯举低，照着老人喝水，等人重新躺好才退回来。那几句话一直搁在两张空凳之间。",
+    "c07.clinic.13": "明天也把你这段告诉工班，别只讲原始副本上写了什么。你不能今晚问我一句，然后等我告诉你没关系。",
+    "c07.clinic.14": "我知道。也许我就是想听。",
+    "c07.clinic.15": "那我现在说不了。",
+    "c07.clinic.16": "伊瑟点了点头，取出自己的计算稿，在封皮内页写明那次校录的时间和署名，与常芷给的原始观测副本夹在一起。写到最后，笔尖划过空白页，留下半只习惯画的小船。",
+    "c07.clinic.17": "这艘怎么只画一半？",
+    "c07.clinic.18": "没来得及。以前画的时候，他们都要笑，说内陆人画的船，下水只会翻。",
+    "c07.clinic.19": "他们试过你这艘？",
+    "c07.clinic.20": "他看着那半只船，终于露出今晚第一个笑。米芮从药篮里拿出一小块包装木，角上还缠着细绳，是下午有人塞进去的。她把木块推到他手边，问能不能做一艘放得稳的，不必下水。",
+    "c07.clinic.21": "你留的那些东西，还缺一个分类的盒。",
+    "c07.clinic.22": "我不缺盒。我想看你画完，不是想添一套格子。做不做都行，明早这块木头我还拿来垫药篮。",
+    "c07.clinic.23": "伊瑟把尺收回夹册，换了一把小刀。第一片木屑削得太厚，他皱着眉，想另找一块。米芮将那片木屑捡起来，说弯的正好能当帆，他才把剩下的木块转了个方向，继续往下削。",
+    "c07.clinic.24": "房里渐渐只剩翻身和灯芯轻响。米芮把药篮放在脚边，背靠着柱子看他做。伊瑟原想解释船腹为何要留厚一些，说到第二句停了，问她眼睛是不是睁不住了。",
+    "c07.clinic.25": "能看见。听不进去那么多话了。你做，我歇一会儿。",
+    "c07.clinic.26": "他放轻刀声。她闭上眼后，他才敢把那张画船的纸移到灯下，补完尾部。纸角原本有一行公式，他没有涂满，留出一小片波浪。",
+    "c07.clinic.27": "我小时候说要带家里人去看海。后来真到港口，总说等有空。船票也查过几回，没买。我父亲到现在还以为，海边的水都是温的。",
+    "c07.clinic.28": "有凉的，也有灌一嘴沙的。告诉他鞋底别太薄，石滩难走。",
+    "c07.clinic.29": "你也去过那片石滩？",
+    "c07.clinic.30": "我的诊室就在缆仓旁边。我有时也出门，伊瑟。",
+    "c07.clinic.31": "他耳尖红起来，手里的刀停住。米芮睁眼看了他一会儿，撑着凳沿笑出声，又怕吵醒病人，压低了声音。她说港口西边有一段没那么硌脚的岸，退潮后能看到小蟹，适合不赶着量尺寸的人。",
+    "c07.clinic.32": "等能休息的时候，你带我去一次？我不带记录板。",
+    "c07.clinic.33": "带着也行，别整条路都看它。还有，我说累了就回去。",
+    "c07.clinic.34": "木船最后还是歪了一点，放在桌上会缓缓偏向一边。伊瑟用细绳给它拴了一面卷起的帆，推到米芮留空的药篮格旁。她没有让他把底削平，先用手护住那面薄帆，给它找了块不会被药瓶压到的地方。",
+    "c07.clinic.35": "轮值医士来接夜班时，米芮已经把明早的交代写好。伊瑟带走自己的夹册，她提起空碗。走过门槛，两人都慢了一步，回头看木船离灯火是不是太近。米芮先笑了，说药篮已经收在桌下，拉着他关小了门。",
+    "c07.watch.01": "高廊能看见东街的灯。莉希沿墙摸过每一处缺砖，在会绊脚的地方画上白灰圈。艾琳带来换班口令，她听完复述了一遍，又问到点之后是否有人来接。艾琳说有，让她看过值班条上接替的人名才离开。",
+    "c07.watch.02": "你这回倒肯等接班的人了。",
+    "c07.watch.03": "我也有长记性的时候。你别替我刻块牌挂墙上。",
+    "c07.watch.04": "希弥没接话，给她让出背风的一段。两人往日看路总是一前一后，站到同一面墙边，反倒都空出半步。莉希从袖里拿出姐姐的信，拆到封口时又折回去，先数了数东街尚亮的灯。",
+    "c07.watch.05": "那边工班有自己的人盯着。你要读，就读。",
+    "c07.watch.06": "我知道。我是想先看看她写了几页。",
+    "c07.watch.07": "信只有一页，字却比她写回去的多。莉珊先说母亲的咳嗽好了一点，马具铺换了门轴，最后才提到那次见面和已收到的信。莉希把纸举到灯下，看到姐姐用力写下的那行，肩膀一点点松了。",
+    "c07.watch.08": "她说，答应回来看看就回来看看，不用把剩下没做的活一次做完。又叫我别赶夜路，像我十七岁时头一回独自出门。",
+    "c07.watch.09": "她说，没定归期就先把日子过好。驿站夜班早有人接，不是我每回走过家门，都得再认一次错。她还写，回来的时候别顺手接一车信。",
+    "c07.watch.10": "希弥听着，目光停在纸边，没有去读剩下的字。莉希将信转给她看母亲画在角落的小马。四条腿长得不一样，她说母亲从来不觉得这算画错，栗雨跑起来本来就没两条腿在同一边。",
+    "c07.watch.11": "像你。",
+    "c07.watch.12": "我只有两条腿。",
+    "c07.watch.13": "都在往前赶。",
+    "c07.watch.14": "莉希伸手轻推了她一下，力道停在衣袖上。希弥往墙边让半步，没有避开。下面有人提着灯经过，两人一齐抬头，等看清是送水的工人，又各自收回目光。",
+    "c07.watch.15": "你家里有人等你回信么？我从来没问过。光会让你帮我看路。",
+    "c07.watch.16": "有。我姨母。她不问打仗，只问今年能不能回来挖笋。信到我手里时，笋都老了。",
+    "c07.watch.17": "那你回什么？",
+    "c07.watch.18": "说我会寄钱，请她去集市买。她把钱寄回来，添了一句：我要的是人，不是笋。",
+    "c07.watch.19": "莉希笑到一半，忽然没再笑下去。希弥从箭袋侧边取出一支短笛，笛口缠了细布。她用拇指擦去一点水气，解释那是集市买的，不是什么能向林子传令的东西。",
+    "c07.watch.20": "我知道。你上次吹到后面停了，洛恩还问是不是有人来了。",
+    "c07.watch.21": "是我不会。",
+    "c07.watch.22": "你也有不会的？",
+    "c07.watch.23": "多得很。只是平常没人特意来听。",
+    "c07.watch.24": "她把笛子收低，似乎觉得这句话说得多了。莉希看了看远处的工班灯，又看墙下的楼梯。下一班还没到，她没叫希弥现在就吹，先将信放回防潮袋，站得比刚才近一些。",
+    "c07.watch.25": "换班以后，我听。你不用特意吹完。",
+    "c07.watch.26": "我想吹完。",
+    "c07.watch.27": "两人等到换班的人把口令复述清楚，才沿楼梯下来。栗雨在院角的棚里啃草，听见莉希的脚步，耳朵朝她转了转。她走过去摸了摸马颈，没有给它扣鞍，也没有把剩下的一把干果全塞进它嘴里。",
+    "c07.watch.28": "希弥坐在井旁矮凳上试了第一声，气太急，音吹得又尖又短。莉希刚要说话，她抬起手示意等等。第二遍到了熟悉的停处，她把手指换慢一点，最后两声终于连在一起。",
+    "c07.watch.29": "原来后面是这样。",
+    "c07.watch.30": "其实还有半句。今天先这样。",
+    "c07.watch.31": "莉希将干果纸包递给她，拿出一枚放在自己掌心。希弥先看纸包，又看她的手，伸手取走那枚时碰到了指尖。莉希没有马上把手缩回袖里，两人都坐着，听楼上换班后的脚步来回走过。",
+    "c07.watch.32": "明天从过水廊回来，还要练么？",
+    "c07.watch.33": "要。你若想来，留在北街等。不必为了听半句，把自己的路赶成两倍。",
+    "c07.watch.34": "莉希答应后，低头把姐姐的信收得更深一些。她问下一次回上游能不能跟希弥去集市，话刚出口又补了一句，只在两人都得空的时候。希弥点头，没有替她数是哪一季的笋。",
+    "c07.watch.35": "离开井边时，她们一前一后走了几步，莉希停下来等。希弥把短笛塞回袋里，走到她身旁。两人借同一盏灯回去，到了各自门口才分开，谁也没再拿快慢来开玩笑。",
+    "c07.morning.01": "天亮前，秦婶在讲桌边封好最后一封信。写信的人坐在旁边，将每一句又听了一遍，听到惦记家里那只老猫时，抬手擦了擦眼角，叫她把后面催人回来的话划掉，只留有空回信。",
+    "c07.morning.02": "赫姆跟着返程粮车在院外等。余白将自己的那张说明交给他，唐穗另给了一小袋饼，说路过母亲现住的街口时，托驿站的人带进去。赫姆问要不要写收据，她说饼不用，信记得交。",
+    "c07.morning.03": "我到了先去赈济所。那句交讫是我补的，我会照原样说明。你的回信交哪处，我都记下了。",
+    "c07.morning.04": "讲完了，自己也给家里去封信。别让他们不知道你在哪儿。",
+    "c07.morning.05": "赫姆将帽子戴正，对着院里点了点头。艾琳把母亲的信袋交给换班骑使，确认目的地仍是河门原来的住处。她没有让赫姆替自己解释家书为何迟到，那部分另有罗瑟该写的信。",
+    "c07.morning.06": "洛恩把夜里写好的信塞进同一邮袋，另留一张给军需官，请他回港时去看货棚是否真能开门。昨夜他按时接了芙蕾的后半班，两人都睡足才来吃早饭。芙蕾将空水壶推到他手边，问这壶今天轮到谁烧，他指了指自己，转身去找灶上的铁钩。",
+    "c07.morning.07": "米芮的药篮空格里多了一只小木船。伊瑟给工班看自己的计算稿，先说那次校录署名，再讲新的测量安排。米芮将木船的帆压低一点，好让药篮盖合上，没替他在旁边补一句好话。",
+    "c07.morning.08": "莉希把给姐姐的短回信交出，只写干果已到、栗雨正在歇，没有又许一个到家的日期。希弥从院另一头过来，将短笛放在腰袋里，问她晚饭后愿不愿再听一遍。她说好，随即让新班骑手先把东路信取走。",
+    "c07.morning.09": "维洛收到了曲汀随旧邮路转来的第二张纸，问那些保留工图究竟装在哪只箱。他在背面画出门旁两只箱的位置，写完又去帮余白找封缝的钩子，袖子上还留着昨晚的木屑。",
+    "c07.morning.10": "维洛把下一笔能付的数再算一遍，给曲汀补了一封短函，请他先兑给那两户不愿等租息的人。他留够队伍回程路费才封袋，随后去帮余白找封缝的钩子，没再许别的支出。",
+    "c07.morning.11": "赛菈给薄荷浇过水，请秦婶照看一天。秦婶答应后，从窗边抽出一根细竹，让她把倒伏的那枝扎好再走。赛菈蹲在那里系了两次，第二次放松绳结，才将花盆转回光里。",
+    "c07.morning.12": "晚上回来还有饭。真要晚，就叫人带话。你们这么一大群，我不能靠听马蹄猜煮多少。",
+    "c07.morning.13": "午前会先送一趟消息。不用等我们开饭。",
+    "c07.eastward.01": "余白带队走过东街，先在自家棚门前停了停。工班把路边的沟盖按段码好，门槛那块松石还在原处。秦婶昨夜锁上的门没有被撬开，窗后能看见搬床后空出来的一片地。",
+    "c07.eastward.02": "艾琳站在院口，忽然听见屋里一滴水落进盆中。十七年前那辆车到这里时，父亲也许先看见过相似的盆、相似的门，她却已经无从问他先迈的是哪一只脚。余白叫她看前面的旧拱，她应了一声，跟上去。",
+    "c07.eastward.03": "那会儿从拱下穿过去，还有卖灯油的。现在房子塌了一半，走外边。到了过水廊我就停，我答应船主午前回去，别叫他又等一次。",
+    "c07.eastward.04": "伊瑟和本地工班走在前面，每过一处井盖就停下来听。维洛认出了墙根旧管上刻的接口号，蹲着摸了一下，叫人先别把旁边的新管拆掉。旧管口有一道后加的封箍，颜色与其余几段不同。",
+    "c07.eastward.05": "我师父修过这一种接口。封箍是后来换的。先把两段都留着，我得看它们如今接到哪里。",
+    "c07.eastward.06": "这边接旧池，另一边往塔基。图上画的是停用支路，可水声还在。",
+    "c07.eastward.07": "工班长把听杆压在地上，叫说话的人安静。过了一会儿，所有人都听见石板底下那阵沉闷的回响，先近后远，又从远处折回来。伊瑟将原始副本的折角展开，手指停在那个被新档削平的位置。",
+    "c07.eastward.08": "先把来路留好。北街的人还要回来，我们也要回来。",
+    "c07.eastward.09": "芙蕾让后队停在拱外，洛恩把接应位置报给她。余白指向过水廊入口，一道矮门半埋在旧台阶下面。艾琳摸了摸装着家书的内袋，回头确认来路上的队员仍看得见旗，等工班把测绳送下去，再向前走。",
+    "c07.end": "余白在入口外指完旧路，转身去修船。北街还等着午前的消息，艾琳让骑手记下第一趟该报的平安，留接应旗在拱外。\n测绳忽然擦着石沿移动。伊瑟俯身看去，水面越过红色刻线，又缓缓落回；廊内没有风，下面一盏提灯却灭了。维洛扶住正要下去的工人，让他先退上来。\n“再量一遍。”伊瑟把旧观测副本压在膝上，“从它刚才升起来的地方量。”"
+  }
+}

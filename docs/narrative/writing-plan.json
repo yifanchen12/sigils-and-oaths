@@ -69,8 +69,13 @@
     {
       "id": "chapter_07",
       "title": "未送达的名字",
-      "status": "outline",
-      "nativeValidated": false
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "revision": "0.24.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 10143,
+      "wordCountPass": true
     },
     {
       "id": "chapter_08",

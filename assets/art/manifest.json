@@ -1688,6 +1688,82 @@
       "processing": "Original generated PNG copied intact. Godot lossless import, alpha-border fix, mipmaps and native aspect-preserving display; no pixel edits.",
       "status": "source and final Windows narrative screenshots visually reviewed",
       "rights_note": "Original AI-generated project character, referenced only from existing original project art. Included in pre-generated-content disclosure inventory."
+    },
+    {
+      "id": "scene_eaststreet",
+      "path": "assets/art/narrative/eaststreet-day-v1.png",
+      "source_filename": "exec-c3379b98-db06-4c74-8526-73d7cb9fd4f8.png",
+      "reference_source_filename": null,
+      "prompt_key": "eaststreet_day",
+      "prompt_file": "assets/art/narrative/chapter07-prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "fc22a6299e488690f586353f79d4dd8f5e4116f9f9e7392c9ff8c21cb56afa4d",
+      "source_bytes_preserved": true,
+      "role": "Eye-level dialogue background, no gameplay or collision geometry.",
+      "processing": "Original PNG copied intact. Native Godot cover crop, tint and overlays only.",
+      "status": "production; source and native screenshots visually reviewed in 0.24.0-dev",
+      "validation": "docs/narrative/chapter-07-review.md"
+    },
+    {
+      "id": "scene_sunspire_camp",
+      "path": "assets/art/narrative/school-night-v1.png",
+      "source_filename": "exec-18906861-eee1-41d7-a2ea-e53c8d857ca4.png",
+      "reference_source_filename": "exec-c3d69727-214e-462e-9644-b8c8bca55b59.png",
+      "prompt_key": "school_night_correction",
+      "prompt_file": "assets/art/narrative/chapter07-prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "a1b4cc295edee64a5ac8b77dc98f70a8d57bdcf15055ca43180af499700328f1",
+      "source_bytes_preserved": true,
+      "role": "Eye-level dialogue background, no gameplay or collision geometry.",
+      "processing": "Original PNG copied intact. Native Godot cover crop, tint and overlays only.",
+      "status": "production; source and native screenshots visually reviewed in 0.24.0-dev",
+      "validation": "docs/narrative/chapter-07-review.md"
+    },
+    {
+      "id": "scene_school_day",
+      "path": "assets/art/narrative/school-day-v1.png",
+      "source_filename": "exec-ce19d38a-7b44-46fe-a3da-d97f5008b0ab.png",
+      "reference_source_filename": "exec-18906861-eee1-41d7-a2ea-e53c8d857ca4.png",
+      "prompt_key": "school_day",
+      "prompt_file": "assets/art/narrative/chapter07-prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "44d9618f252ad4e2ab4dffc8e2351cfd1a89cc9a2c25071962f163387becec72",
+      "source_bytes_preserved": true,
+      "role": "Eye-level dialogue background, no gameplay or collision geometry.",
+      "processing": "Original PNG copied intact. Native Godot cover crop, tint and overlays only.",
+      "status": "production; source and native screenshots visually reviewed in 0.24.0-dev",
+      "validation": "docs/narrative/chapter-07-review.md"
+    },
+    {
+      "id": "scene_school_ward",
+      "path": "assets/art/narrative/school-ward-night-v1.png",
+      "source_filename": "exec-4bf602b3-0022-40aa-bf80-139eac87c52e.png",
+      "reference_source_filename": "exec-18906861-eee1-41d7-a2ea-e53c8d857ca4.png",
+      "prompt_key": "school_ward",
+      "prompt_file": "assets/art/narrative/chapter07-prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "7e12bde6cdf40be535b2c950f04d98f1ea93939272e558f2e3f011570e1e7a70",
+      "source_bytes_preserved": true,
+      "role": "Eye-level dialogue background, no gameplay or collision geometry.",
+      "processing": "Original PNG copied intact. Native Godot cover crop, tint and overlays only.",
+      "status": "production; source and native screenshots visually reviewed in 0.24.0-dev",
+      "validation": "docs/narrative/chapter-07-review.md"
     }
   ]
 }

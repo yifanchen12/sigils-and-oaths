@@ -5,19 +5,19 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.23.0-dev" src="https://img.shields.io/badge/version-0.23.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.24.0-dev" src="https://img.shields.io/badge/version-0.24.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts, with no assets from either game. Current source is **0.23.0-dev**, with six chapters, branching encounters and cross-chapter saves. Chapter 6 brings Eileen face to face with her teacher and her father's undelivered letter, with evidence-disclosure choices and a new restrained dialogue portrait. All six chapters have native page checks. The latest AI accounts for vacated and newly occupied cells; the seed bridge has a fresh native victory and exit/relaunch check against this policy. The complete campaign, overall balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
+The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts, with no assets from either game. Current source is **0.24.0-dev**, with seven chapters, branching encounters and cross-chapter saves. Chapter 7 follows residents moving from an old clinic, family inquiries, three separate camp stories and four new day/night backgrounds. The complete campaign, overall balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
 
 ## In-game screenshots
 
-The chapter-4 dialogue capture is from 0.20.0-dev; the battlefield captures below it are from 0.13.0 and earlier milestones.
+The chapter-7 dialogue capture is from 0.24.0-dev; the battlefield captures below it are from 0.13.0 and earlier milestones.
 
-![Chapter-4 clinic: scene, portrait and dialogue](docs/screenshots/v020-clinic-dialogue.png)
+![Chapter-7 east street: Eileen asks about her father](docs/screenshots/v024-father-trail.png)
 
 [Scene states, small-window choices, backlog and verification](docs/narrative-art-v020.md).
 
@@ -46,6 +46,14 @@ The chapter-4 dialogue capture is from 0.20.0-dev; the battlefield captures belo
 | Change the next exchange | Rain, fog, sun and snow affect both sides; replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
 
+## Chapter 7: Undelivered Names
+
+Eileen reaches the old clinic hoping to ask about her father, but first has to help carry a bed through a narrow door. Once the residents reach the school, Yubai can tell her what he remembers. At night, choose the river steps with Loen and Frey, the temporary ward with Iser and Mire, or the gallery with Lishi and Ximi.
+
+This chapter adds **10,143 Chinese body-text characters** and four original backgrounds. Seven chapters plus the archive total **52,624 authored characters**, with 24,576 cumulative choice paths and nine encounters per path. All 848 chapter paragraphs have native rendering checks; 66,154 related model checks and 8,896 native checks passed, including actual choices and disk reloads for all three camp routes. Continuous ordinary-difficulty completion, external reading and the full 100,000-character script remain pending. [Chapter-7 editorial, art and verification](docs/narrative/chapter-07-review.md).
+
+![Three camp choices in a 1008×700 native window](docs/screenshots/v024-camp-small.png)
+
 ## 0.23: Position after moving
 
 AI now evaluates vacated cells and newly blocked routes. All outcomes from 13 fixed-seed diagnostics are retained; 927 related regression checks and 15,189 independent replay checks passed. The current-policy seed bridge completed 88 legal actions across two native processes, with save/exit, reload, victory and story handoff verified in 268 checks. Long games and a roughly 0.52-second peak decision remain; this is not human balance or continuous campaign proof. [Changes and native evidence](docs/ai-occupancy.md).
@@ -64,7 +72,7 @@ Eileen finally meets her teacher and sees her father's original suspension order
 
 ![Eileen reading her father's letter with the new noncombat portrait](docs/screenshots/v022-family-letter.png)
 
-The chapter adds **7,109 Chinese body-text characters**. Six chapters plus the archive total **42,481 authored characters**, with 8,192 cumulative choice paths and nine encounters per path. All 623 chapter paragraphs have native rendering checks; continuous ordinary-difficulty accessibility is still pending. This milestone passed 83,576 related model checks and 6,562 native checks. The new court diagnostic loses from normal resources; its complete trace is retained and passes 420 independent replay checks. [Chapter-6 editorial, art and verification notes](docs/narrative/chapter-06-review.md).
+At the 0.22 milestone, this chapter added **7,109 Chinese body-text characters**. Six chapters plus the archive totaled **42,481 authored characters**, with 8,192 cumulative choice paths and nine encounters per path. All 623 chapter paragraphs have native rendering checks; continuous ordinary-difficulty accessibility is still pending. This milestone passed 83,576 related model checks and 6,562 native checks. The new court diagnostic loses from normal resources; its complete trace is retained and passes 420 independent replay checks. [Chapter-6 editorial, art and verification notes](docs/narrative/chapter-06-review.md).
 
 The 0.22.0-dev chapter-5 channel route also has a native victory from original resources, exit/relaunch continuation and postbattle handoff, with 421 checks across two independent processes. [Native channel encounter evidence](docs/channel-playthrough.md).
 

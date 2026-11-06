@@ -72,13 +72,15 @@ func restore_page(id: String) -> void:
 	game._show_story()
 	await settle()
 func run() -> void:
-	create_timer(300).timeout.connect(func() -> void: push_error("campaign native UI timeout"); quit(2))
+	create_timer(450).timeout.connect(func() -> void: push_error("campaign native UI timeout"); quit(2))
 	for suffix: String in ["", ".bak", ".tmp"]:
 		if FileAccess.file_exists(PATH + suffix): DirAccess.remove_absolute(PATH + suffix)
 	var catalog: RefCounted = Campaign.new(); catalog.start(); prepare_page_catalog(catalog); collect(catalog, true)
+	var expected_dialogues: int = 0
 	for entry: Dictionary in catalog.index.chapters:
 		var graph: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(entry.path))
 		for node: Dictionary in graph.nodes.values():
+			expected_dialogues += node.get("lines", []).size()
 			for line: Dictionary in node.get("lines", []): check(pages.has(line.id), "every conditional authored paragraph has a native page: " + line.id)
 	game = MainScene.instantiate()
 	game.deck_store = Store.new("res://.tools/native_campaign_deck.json")
@@ -109,15 +111,43 @@ func run() -> void:
 			check(view.illustration.visible == has_portrait and (not has_portrait or view.illustration.texture != null), "only the actual named companion displays a portrait: " + id)
 		elif item.page.type == "end":
 			check(view.text_body.text == item.page.text, "authored ending paragraph renders: " + id)
-	check(rendered == 617, "all 617 distinct dialogue paragraphs rendered; six ending paragraphs checked separately")
+	check(rendered == expected_dialogues, "every distinct authored dialogue rendered; ending paragraphs checked separately")
 	# Real chapter-end buttons save history and advance through the session.
-	for chapter: String in ["chapter_01", "chapter_02", "chapter_03", "chapter_04", "chapter_05"]:
+	for chapter: String in ["chapter_01", "chapter_02", "chapter_03", "chapter_04", "chapter_05", "chapter_06"]:
 		check(game.campaign_session.campaign.restore(chapter_ends[chapter]).ok, "load end fixture " + chapter)
 		game._show_story(); await settle()
 		await click_named(view.actions, "进入")
 		check(game.campaign_session.campaign.completed.size() == int(chapter.right(2)), "native next-chapter button saves preceding history")
 	var fresh: RefCounted = Session.new(PATH)
-	check(fresh.load_campaign().ok and fresh.current().line_id == "c06.arrival.01", "native cross-chapter save resumes sixth chapter in a fresh session")
+	check(fresh.load_campaign().ok and fresh.current().line_id == "c07.arrival.01", "native cross-chapter save resumes seventh chapter in a fresh session")
+	await restore_page("c07.arrival.01")
+	await capture("v024-eaststreet")
+	await restore_page("c07.father.16")
+	await capture("v024-father-trail")
+	await restore_page("c07.transfer.01")
+	check(view.background_id == "scene_school_day", "resident transfer uses daylight school")
+	await capture("v024-school-day")
+	DisplayServer.window_set_size(Vector2i(1008, 700)); await settle()
+	for index: int in range(3):
+		var camp: String = ["bridge", "clinic", "watch"][index]
+		await restore_page("chapter_07.camp")
+		check_layout(view, "small window three-way camp choice")
+		if index == 0: await capture("v024-camp-small")
+		await click(view.actions.get_child(index).get_global_rect().get_center())
+		check(game.campaign_session.campaign.story.state.flags.camp_company == camp and view.page.line_id == "c07." + camp + ".01", "actual camp button enters " + camp)
+		check_layout(view, "small window camp opening " + camp)
+		fresh = Session.new(PATH)
+		check(fresh.load_campaign().ok and fresh.current().line_id == view.page.line_id and fresh.campaign.story.state.flags.camp_company == camp and fresh.encounter == null, "actual camp choice persists to disk " + camp)
+	DisplayServer.window_set_size(Vector2i(1296, 900)); await settle()
+	await restore_page("c07.bridge.01")
+	await capture("v024-river-camp")
+	await restore_page("c07.clinic.01")
+	check(view.background_id == "scene_school_ward", "temporary ward uses matching night interior")
+	await capture("v024-school-ward")
+	await restore_page("c07.watch.01")
+	await capture("v024-gallery-camp")
+	await restore_page("chapter_07.end")
+	check(find_button(view.actions, "进入") == null, "unwritten next chapter has no native entry button")
 	await restore_page("c06.teacher.03")
 	await capture("v022-teacher")
 	await restore_page("c06.archive.07")
