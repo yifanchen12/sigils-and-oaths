@@ -6,7 +6,7 @@
   "routes": [
     {
       "choice": "relief",
-      "model_checks": 887,
+      "model_checks": 888,
       "dialogue_count": 82,
       "choice_count": 4,
       "actions": 755,
@@ -30,7 +30,7 @@
           "side_turns": 25
         }
       ],
-      "diagnostic_sha256": "623175e65e7c4db8c1c97361e48b294cdc443965aa52f5fe95af75cdbb654e36"
+      "diagnostic_sha256": "a8690ac3b5f22c96235dd5e1de24f2a405187329ef643b98d37f9e515f53e7c1"
     },
     {
       "choice": "seed",
