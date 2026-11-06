@@ -1,5 +1,5 @@
 extends "res://tests/test_campaign_playthrough_ui.gd"
-## Isolate the third battle from the continuous report without forging a win.
+## Isolate the third battle from the continuous report without forging its result.
 const CONTINUOUS_REPORT = "res://.tools/continuous-campaign-road.json"
 
 func run() -> void:
@@ -31,7 +31,7 @@ func run() -> void:
 		if row.trace[cursor - 1].action.type != "end_turn":
 			check(Replay.state_without_clock(game.battle) == Replay.state_without_clock(shadow), "visible player action matches the model")
 	await wait_for_player()
-	check(game.battle.winner == 1 and Replay.state_without_clock(game.battle) == Replay.state_without_clock(shadow), "real objective deadline defeat matches complete model trace")
-	await capture("v030-relief-deadline")
+	check(game.battle.winner == int(row.winner) and Replay.state_without_clock(game.battle) == Replay.state_without_clock(shadow), "real objective result matches complete model trace")
+	await capture("v031-relief-objective-victory" if row.winner == 0 else "v030-relief-deadline")
 	print("RELIEF NATIVE: %d CHECKS | FAILURES: %d | ACTIONS: %d" % [checks, failures, cursor])
 	game.queue_free(); await process_frame; quit(0 if failures == 0 else 1)

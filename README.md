@@ -5,13 +5,13 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.30.0-dev" src="https://img.shields.io/badge/version-0.30.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.31.0-dev" src="https://img.shields.io/badge/version-0.31.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法研究参考《炉石传说》的卡牌资源节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、卡面与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前源码为 **0.30.0-dev**，面向 Windows 桌面单机对战 AI；八章剧情、分支关卡与跨章存档已接入。首章两战现可从新战役入口连贯获胜并进入第二章；完整战役、整体平衡与十万字目标仍在开发。
+玩法研究参考《炉石传说》的卡牌资源节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、卡面与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前源码为 **0.31.0-dev**，面向 Windows 桌面单机对战 AI；八章剧情、分支关卡与跨章存档已接入。从新战役入口连续游玩已实际六胜并走到第四章泵房败局；完整战役、整体平衡与十万字目标仍在开发。
 
 ## 实机画面
 
@@ -47,6 +47,14 @@
 | 选一个指挥官带队 | 艾琳保护阵线，维洛强化火焰，赛菈治疗与林地恢复；各有主动技能和被动能力 |
 | 改变下一轮战局 | 暴雨、浓雾、烈日、寒潮影响双方；可替换或驱散天气，也可造路、筑垒、击退、定身与换位 |
 | 在有限时间内决策 | 每个行动回合90秒；定向法术限定在友军3格内、法师4格内，天气影响全场 |
+
+## 0.31：两条第二章路线进入第四章
+
+救济双桥关改用均衡守军，保留12轮和双点连续驻守；押运队关改用壁垒己方军势。旧战斗继续沿用原编队，失败重试采用新版。两处改动都有固定开局的胜败对照和存档兼容检查。
+
+从「新战役」开始的救济路线已在原生窗口真实读过262段不同对白、9次选择并操作七战1858次：前六战获胜，第七战第四章泵房失败。两个独立进程共4517项检查通过，包括失败存档恢复与重试。「先送种子」路线也在模型诊断中六胜后于泵房失败，尚无对应七战原生验收。泵房另有从正常初始资源出发的单关测试打法获胜，不能视作连续战役通关。[连续流程与逐战证据](docs/continuous-campaign.md)。
+
+![救济双桥实际驻守胜利](docs/screenshots/v031-continuous-c02_relief_bridge-victory.png)
 
 ## 0.30：首章两战连通到第二章
 
@@ -206,7 +214,7 @@ git clone https://github.com/yifanchen12/sigils-and-oaths.git
 cd sigils-and-oaths
 ```
 
-只想试玩可下载 [Windows x64 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.30.0-dev)，解压后运行 `SigilsAndOaths.exe`。从源码运行则按以下步骤：
+只想试玩可下载 [Windows x64 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.31.0-dev)，解压后运行 `SigilsAndOaths.exe`。从源码运行则按以下步骤：
 
 1. 从 [Godot 官方下载页](https://godotengine.org/download/windows/)获取引擎；当前工程验证版本及官方归档地址见 [`docs/engine-download.json`](docs/engine-download.json)。
 2. 在 Godot 项目管理器中导入根目录的 `project.godot`，等待资源导入完成。

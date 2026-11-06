@@ -46,7 +46,7 @@ func fight_current() -> bool:
 	await create_timer(0.8).timeout
 	check(game.battle.winner == int(row.winner) and Replay.state_without_clock(game.battle) == Replay.state_without_clock(shadow), "terminal result comes from the complete native battle")
 	check(portable_progress() == row.story_after, "native outcome commits exactly the earned story state")
-	await capture("v030-continuous-" + row.scenario + ("-victory" if row.winner == 0 else "-defeat"))
+	await capture(capture_prefix + "-continuous-" + row.scenario + ("-victory" if row.winner == 0 else "-defeat"))
 	total_actions += cursor; game_index += 1
 	print("NATIVE CONTINUOUS BATTLE: %s | WINNER %d | ACTIONS %d" % [row.scenario, row.winner, cursor])
 	await click(game.get_node("%PlayAgain").get_global_rect().get_center())
@@ -67,7 +67,7 @@ func writer() -> void:
 	if failures > 0: return
 	await click(start.get_global_rect().get_center())
 	check(game.story_view.visible and game.campaign_session.campaign.completed.is_empty() and game.campaign_session.campaign.story.state.history.is_empty(), "new campaign opens at its first unread line")
-	await capture("v030-continuous-opening")
+	await capture(capture_prefix + "-continuous-opening")
 	while failures == 0 and read_ids.size() < 5000:
 		var page: Dictionary = game.campaign_session.current()
 		match String(page.type):
@@ -95,7 +95,7 @@ func writer() -> void:
 	check(game_index == continuous_report.games.size() and continuous_report.stop == "defeat", "all recorded encounters were genuinely played up to the first defeat")
 	check(portable_progress() == continuous_report.progress, "native route stops at the same complete campaign state")
 	check(game.story_view.text_body.text.contains("上一战失利") and game.story_view.actions.get_child(0).text == "重新出征", "failed battle offers retry without pretending the story advanced")
-	await capture("v030-continuous-retry")
+	await capture(capture_prefix + "-continuous-retry")
 	var file := FileAccess.open(CONTINUOUS_CURSOR, FileAccess.WRITE)
 	check(file != null, "record native process handoff")
 	if file == null: return
@@ -119,11 +119,14 @@ func reader() -> void:
 	await click(game.story_view.actions.get_child(0).get_global_rect().get_center())
 	check(game.campaign_session.encounter == game.battle and game.battle.winner == -1 and Replay.state_without_clock(game.battle) == Replay.state_without_clock(shadow), "actual retry rebuilds the unchanged opening without free resources")
 	check(game.campaign_session.campaign.snapshot() == previous, "starting a retry preserves earlier earned choices and does not record an unplayed result")
-	await capture("v030-continuous-restarted-battle")
+	await capture(capture_prefix + "-continuous-restarted-battle")
 	print("NATIVE CONTINUOUS READER: %d CHECKS | FAILURES: %d | RETRY: %s" % [checks, failures, game.campaign_session.current().scenario])
 
 func run() -> void:
-	create_timer(900).timeout.connect(func() -> void: push_error("continuous native flow timeout"); quit(2))
+	create_timer(2400).timeout.connect(func() -> void: push_error("continuous native flow timeout"); quit(2))
+	capture_prefix = "v030"
+	for arg: String in OS.get_cmdline_user_args():
+		if arg.begins_with("--capture-prefix="): capture_prefix = arg.trim_prefix("--capture-prefix=")
 	writing = OS.get_cmdline_user_args().has("--write")
 	check(writing or OS.get_cmdline_user_args().has("--read"), "choose writer then reader")
 	check(FileAccess.file_exists(REPORT), "run the continuous headless diagnostic before native validation")

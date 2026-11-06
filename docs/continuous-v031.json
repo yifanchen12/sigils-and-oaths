@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "game_version": "0.31.0-dev",
+  "date": "2026-11-07",
+  "scope": "Fixed-seed, public-information diagnostic and native UI replay from New Campaign through the first actual defeat. Not human balance or full-campaign completion.",
+  "route": {
+    "opening": "road",
+    "priority": "relief"
+  },
+  "chapters_entered": [
+    "chapter_01",
+    "chapter_02",
+    "chapter_03",
+    "chapter_04"
+  ],
+  "dialogue_count": 262,
+  "choice_count": 9,
+  "model_checks": 2230,
+  "model_failures": 0,
+  "model_report_sha256": "83a61ba6d1477a920c1af621ee653317b988ba428bc3492667fccaa875003b40",
+  "games": [
+    {
+      "scenario": "c01_road",
+      "winner": 0,
+      "actions": 151,
+      "side_turns": 25
+    },
+    {
+      "scenario": "c01_bridge",
+      "winner": 0,
+      "actions": 448,
+      "side_turns": 62
+    },
+    {
+      "scenario": "c02_relief_bridge",
+      "winner": 0,
+      "actions": 128,
+      "side_turns": 21
+    },
+    {
+      "scenario": "c02_dispatch",
+      "winner": 0,
+      "actions": 454,
+      "side_turns": 62
+    },
+    {
+      "scenario": "c03_vent",
+      "winner": 0,
+      "actions": 55,
+      "side_turns": 13
+    },
+    {
+      "scenario": "c04_dock",
+      "winner": 0,
+      "actions": 269,
+      "side_turns": 43
+    },
+    {
+      "scenario": "c04_pump",
+      "winner": 1,
+      "actions": 353,
+      "side_turns": 59
+    }
+  ],
+  "native_ui": {
+    "writer_checks": 4507,
+    "reader_checks": 10,
+    "actions": 1858,
+    "separate_process_reload": true
+  },
+  "alternate_seed_route_model_only": {
+    "model_checks": 2189,
+    "dialogue_count": 262,
+    "choice_count": 9,
+    "model_report_sha256": "d80bac0319743084c4a06cc2e8b288371c19ef0a5f9ba0fa670942e3802e98ca",
+    "games": [
+      {
+        "scenario": "c01_road",
+        "winner": 0,
+        "actions": 151,
+        "side_turns": 25
+      },
+      {
+        "scenario": "c01_bridge",
+        "winner": 0,
+        "actions": 448,
+        "side_turns": 62
+      },
+      {
+        "scenario": "c02_seed_bridge",
+        "winner": 0,
+        "actions": 87,
+        "side_turns": 15
+      },
+      {
+        "scenario": "c02_dispatch",
+        "winner": 0,
+        "actions": 454,
+        "side_turns": 62
+      },
+      {
+        "scenario": "c03_vent",
+        "winner": 0,
+        "actions": 55,
+        "side_turns": 13
+      },
+      {
+        "scenario": "c04_dock",
+        "winner": 0,
+        "actions": 269,
+        "side_turns": 43
+      },
+      {
+        "scenario": "c04_pump",
+        "winner": 1,
+        "actions": 353,
+        "side_turns": 59
+      }
+    ]
+  },
+  "isolated_pump_focus_model_only": {
+    "winner": 0,
+    "actions": 90,
+    "side_turns": 17,
+    "diagnostic_sha256": "c9f54f8e266bf90bb45af8bcbb464f059740338ad488528b17396562f225088d",
+    "note": "Fresh authored encounter, public battlefield information, focused diagnostic player, production opponent. Not reached by the continuous run or a native victory proof."
+  },
+  "screenshots_sha256": {
+    "v031-continuous-opening.png": "36544c9091b99cc2ee2494c5899d1948d0388aec5366ff9583bfaa996b66149c",
+    "v031-continuous-c01_road-victory.png": "3ac65fd42b51631145c2c8eda29ac167e4b542069cd3ad4ebc5baf1bcae9aee0",
+    "v031-continuous-c01_bridge-victory.png": "e18719d6f1a21181a6522b2bc24d53e9228732c437166a5c66647f016e7d52da",
+    "v031-continuous-c02_relief_bridge-victory.png": "ed538e7878cd04b974c75db531756b08bb486ecc22d93a18c8cea932b56e8592",
+    "v031-continuous-c02_dispatch-victory.png": "bd3b45ecf85bec1c1936fb6555bf3c7dc5a368351d6abb24da2b0591f4e3363a",
+    "v031-continuous-c03_vent-victory.png": "4606bfa1dfcc6d5527af94a7ef963f48b2cc25f86b3a2c4e483260acf4241700",
+    "v031-continuous-c04_dock-victory.png": "b5cb254519b9cb4569ac07a6c9845fa1d2bc34c7409d981b3cbae261cc6f5476",
+    "v031-continuous-c04_pump-defeat.png": "042c08f2d3549e1e06a045659591a07db1741ae8560ca4349ca5dcb50b8cae34",
+    "v031-continuous-retry.png": "d388ba11fe8368ae2d88ad34af7996cf9544469f114f7810fb1a1e9fe961ca28",
+    "v031-continuous-restarted-battle.png": "f78046a3f68f0c6fe525c5fb414ea7cc6c0c4035bebc2fd35535ace3d72a74be"
+  }
+}

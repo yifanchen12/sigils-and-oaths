@@ -5,13 +5,13 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.30.0-dev" src="https://img.shields.io/badge/version-0.30.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.31.0-dev" src="https://img.shields.io/badge/version-0.31.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone, concealed card play and counterplay from Duel Links, and terrain, unit counters and commanders from Langrisser. Characters, card effects, illustrations and map layouts are made for this project, with no assets from those games. Current source is **0.30.0-dev**, with eight chapters, branching encounters and cross-chapter saves. Both chapter-one battles now connect through a real new-campaign playthrough to chapter two. The complete campaign, overall balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
+The design studies card resource pacing from Hearthstone, concealed card play and counterplay from Duel Links, and terrain, unit counters and commanders from Langrisser. Characters, card effects, illustrations and map layouts are made for this project, with no assets from those games. Current source is **0.31.0-dev**, with eight chapters, branching encounters and cross-chapter saves. A continuous native New Campaign run won six battles before an actual chapter-four defeat. The complete campaign, overall balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
 
 ## In-game screenshots
 
@@ -46,6 +46,14 @@ The chapter-8 dialogue capture is from 0.25.0-dev; the next two early battlefiel
 | Lead with a commander | Ailin protects the front, Velo strengthens fire, and Sera supports healing and woodland recovery; each has active and passive abilities |
 | Change the next exchange | Rain, fog, sun and snow affect both sides; replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
+
+## 0.31: Both chapter-two routes reach chapter four
+
+The relief bridge now fields a Balanced opposing deck while retaining its 12-round, two-point hold objective. The dispatch encounter now fields a Bastion player deck. Already-started battles retain their old decks; a retry uses the revised setup. Fixed-opening comparisons and save-compatibility checks cover both changes.
+
+From the actual New Campaign button, the native relief route read 262 distinct dialogue pages, made nine choices, and performed 1,858 visible actions across seven battles. It won six and lost the seventh at the chapter-four pump room. Two independent native processes passed 4,517 checks, including a reload and retry after defeat. The seed-priority branch also reached the pump-room loss in a model-only continuous run; it has no seven-battle native verification. A focused diagnostic player can win the pump encounter in isolation, which is not a continuous-campaign clear. [Route, limits and per-battle evidence](docs/continuous-campaign.md).
+
+![Actual relief bridge control victory](docs/screenshots/v031-continuous-c02_relief_bridge-victory.png)
 
 ## 0.30: A continuous chapter-one route
 
@@ -312,7 +320,7 @@ UI, forecast, map-art and skill-window checks require a graphical window. Earlie
 
 ## Current limits and artwork
 
-- Single-player development build with a [Windows x64 preview ZIP](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.30.0-dev); no multiplayer or touch adaptation. macOS and Linux have not been validated.
+- Single-player development build with a [Windows x64 preview ZIP](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.31.0-dev); no multiplayer or touch adaptation. macOS and Linux have not been validated.
 - Ranged attacks and spells currently do not check line of sight. AI diagnostics are not a substitute for competitive human playtesting.
 - One custom deck is saved locally at Godot's `user://custom_deck.json`; player data is not included in this repository.
 - One campaign autosave and a last-good backup use `user://campaign_autosave.json`. Starting over asks for in-game confirmation before replacing progress; these files are not published.

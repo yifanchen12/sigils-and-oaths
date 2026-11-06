@@ -118,6 +118,80 @@ func test_bridge_deck_migration() -> bool:
 	cleanup(PATH)
 	return true
 
+func test_relief_deck_migration() -> bool:
+	cleanup(PATH)
+	var campaign: RefCounted = Campaign.new(); campaign.start()
+	for step: int in range(200):
+		var page: Dictionary = campaign.story.current()
+		if page.type == "battle":
+			if page.scenario == "c02_relief_bridge": break
+			campaign.story.resolve_battle(0, page.revision) # Fixture-only prior result.
+		elif page.type == "dialogue": campaign.story.advance(page.revision)
+		elif page.type == "choice": campaign.story.choose("road" if page.node == "route" else ("relief" if page.node == "priority" else page.options[0].id), page.revision)
+		elif page.type == "end" and not campaign.next_chapter().is_empty(): campaign.advance_chapter()
+		else: break
+	check(campaign.story.current().get("scenario", "") == "c02_relief_bridge", "legacy fixture reaches the exact relief encounter")
+	if campaign.story.current().get("scenario", "") != "c02_relief_bridge": return false
+	var setup: Dictionary = campaign.scenario()
+	var old: Battle = BattleModel.new(setup.seed, setup.map, setup.hero, setup.enemy_class, setup.deck, "assault", 90)
+	old.set_commander_identity(1, setup.enemy_name, setup.enemy_portrait)
+	old.configure_objective(setup.control)
+	var encounter: Dictionary = {"scenario": "c02_relief_bridge", "revision": campaign.story.current().revision, "battle": Snapshot.capture(old)}
+	var store: RefCounted = Store.new(PATH)
+	check(store.save_progress(campaign.snapshot(), encounter).ok, "0.30 relief battle survives its opponent deck change")
+	var fresh: RefCounted = Session.new(PATH)
+	check(fresh.load_campaign().ok and fresh.encounter != null and fresh.encounter.deck(1).id == "assault", "old in-progress relief battle keeps assault opponent")
+	if fresh.encounter == null: return false
+	check(fresh.save().ok, "resumed old relief battle can autosave")
+	var other: Battle = BattleModel.new(setup.seed, setup.map, setup.hero, setup.enemy_class, setup.deck, "bastion", 90)
+	other.set_commander_identity(1, setup.enemy_name, setup.enemy_portrait)
+	other.configure_objective(setup.control)
+	encounter.battle = Snapshot.capture(other)
+	check(not store.save_progress(campaign.snapshot(), encounter).ok, "unrelated relief opponent deck is rejected")
+	fresh.encounter.commander(0).hp = 0
+	fresh.encounter._cleanup(); fresh.encounter._check_winner()
+	check(fresh.finish_battle(fresh.encounter).ok, "old relief battle failure remains an ordinary retry")
+	var retry: Dictionary = fresh.begin_battle(fresh.token())
+	check(retry.ok and retry.battle.deck(1).id == "balanced", "relief retry uses current balanced opponent")
+	cleanup(PATH)
+	return true
+
+func test_dispatch_deck_migration() -> bool:
+	cleanup(PATH)
+	var campaign: RefCounted = Campaign.new(); campaign.start()
+	for step: int in range(240):
+		var page: Dictionary = campaign.story.current()
+		if page.type == "battle":
+			if page.scenario == "c02_dispatch": break
+			campaign.story.resolve_battle(0, page.revision) # Fixture-only prior result.
+		elif page.type == "dialogue": campaign.story.advance(page.revision)
+		elif page.type == "choice": campaign.story.choose("road" if page.node == "route" else ("relief" if page.node == "priority" else page.options[0].id), page.revision)
+		elif page.type == "end" and not campaign.next_chapter().is_empty(): campaign.advance_chapter()
+		else: break
+	check(campaign.story.current().get("scenario", "") == "c02_dispatch", "legacy fixture reaches dispatch after prior victories")
+	if campaign.story.current().get("scenario", "") != "c02_dispatch": return false
+	var setup: Dictionary = campaign.scenario()
+	var old: Battle = BattleModel.new(setup.seed, setup.map, setup.hero, setup.enemy_class, "assault", setup.enemy_deck, 90)
+	old.set_commander_identity(1, setup.enemy_name, setup.enemy_portrait)
+	var encounter: Dictionary = {"scenario": "c02_dispatch", "revision": campaign.story.current().revision, "battle": Snapshot.capture(old)}
+	var store: RefCounted = Store.new(PATH)
+	check(store.save_progress(campaign.snapshot(), encounter).ok, "0.30 dispatch battle survives its player deck change")
+	var fresh: RefCounted = Session.new(PATH)
+	check(fresh.load_campaign().ok and fresh.encounter != null and fresh.encounter.deck(0).id == "assault", "old in-progress dispatch battle keeps assault player deck")
+	if fresh.encounter == null: return false
+	check(fresh.save().ok, "resumed old dispatch battle can autosave")
+	var other: Battle = BattleModel.new(setup.seed, setup.map, setup.hero, setup.enemy_class, "balanced", setup.enemy_deck, 90)
+	other.set_commander_identity(1, setup.enemy_name, setup.enemy_portrait)
+	encounter.battle = Snapshot.capture(other)
+	check(not store.save_progress(campaign.snapshot(), encounter).ok, "unrelated dispatch player deck is rejected")
+	fresh.encounter.commander(0).hp = 0
+	fresh.encounter._cleanup(); fresh.encounter._check_winner()
+	check(fresh.finish_battle(fresh.encounter).ok, "old dispatch battle failure remains an ordinary retry")
+	var retry: Dictionary = fresh.begin_battle(fresh.token())
+	check(retry.ok and retry.battle.deck(0).id == "bastion", "dispatch retry uses current bastion player deck")
+	cleanup(PATH)
+	return true
+
 func write_cross_process() -> bool:
 	cleanup(CROSS_PATH)
 	var campaign: RefCounted = at_river_battle()
@@ -143,6 +217,9 @@ func run() -> void:
 	var args: PackedStringArray = OS.get_cmdline_user_args()
 	var method: String = "write_cross_process" if args.has("--write") else ("read_cross_process" if args.has("--read") else "test_storage")
 	check(call(method) == true, method + " completed without runtime interruption")
-	if method == "test_storage": check(test_bridge_deck_migration(), "bridge deck migration completed without runtime interruption")
+	if method == "test_storage":
+		check(test_bridge_deck_migration(), "bridge deck migration completed without runtime interruption")
+		check(test_relief_deck_migration(), "relief deck migration completed without runtime interruption")
+		check(test_dispatch_deck_migration(), "dispatch deck migration completed without runtime interruption")
 	print("CAMPAIGN STORE CHECKS: %d | FAILURES: %d | DISPLAY: %s" % [checks, failures, DisplayServer.get_name()])
 	quit(0 if failures == 0 else 1)
