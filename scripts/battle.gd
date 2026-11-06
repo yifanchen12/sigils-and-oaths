@@ -230,8 +230,8 @@ func deployment_cells(side: int) -> Array[Vector2i]:
 				result.append(cell)
 	return result
 
-func walk_distances(origin: Vector2i, unit: Dictionary = {}) -> Dictionary:
-	# ponytail: a small Dijkstra frontier is sufficient for the 48-cell weighted board.
+func walk_distances(origin: Vector2i, unit: Dictionary = {}, occupancy_overrides: Dictionary = {}, max_cost: int = -1) -> Dictionary:
+	# Overrides forecast a move/deployment without editing the live board.
 	var distances: Dictionary = {origin: 0}
 	var queue: Array[Vector2i] = [origin]
 	while not queue.is_empty():
@@ -241,19 +241,20 @@ func walk_distances(origin: Vector2i, unit: Dictionary = {}) -> Dictionary:
 		var current: Vector2i = queue.pop_at(cheapest)
 		for direction: Vector2i in DIRECTIONS:
 			var cell: Vector2i = current + direction
-			if not passable(cell) or not unit_at(cell).is_empty():
+			if not passable(cell) or bool(occupancy_overrides.get(cell, not unit_at(cell).is_empty())):
 				continue
 			var cost: int = int(distances[current]) + movement_cost(unit, cell)
+			if max_cost >= 0 and cost > max_cost: continue
 			if not distances.has(cell) or cost < int(distances[cell]):
 				distances[cell] = cost
 				if not queue.has(cell): queue.append(cell)
 	return distances
 
-func movement_cells(unit: Dictionary) -> Array[Vector2i]:
+func movement_cells(unit: Dictionary, occupancy_overrides: Dictionary = {}) -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
 	if unit.is_empty() or unit.moved or unit.attacked or unit.summoning or unit.move == 0 or int(unit.get("rooted_turns", 0)) > 0:
 		return result
-	var distances: Dictionary = walk_distances(unit.pos, unit)
+	var distances: Dictionary = walk_distances(unit.pos, unit, occupancy_overrides, movement_allowance(unit))
 	for cell: Vector2i in distances:
 		if cell != unit.pos and int(distances[cell]) <= movement_allowance(unit):
 			result.append(cell)

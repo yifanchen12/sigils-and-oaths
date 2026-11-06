@@ -5,13 +5,13 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.22.0-dev" src="https://img.shields.io/badge/version-0.22.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.23.0-dev" src="https://img.shields.io/badge/version-0.23.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts, with no assets from either game. Current source is **0.22.0-dev**, with six chapters, branching encounters and cross-chapter saves. Chapter 6 brings Eileen face to face with her teacher and her father's undelivered letter, with evidence-disclosure choices and a new restrained dialogue portrait. All six chapters have native page checks; the chapter-1 bridge now has a native victory from original resources, exit/relaunch continuation and postbattle-story verification. The complete campaign, overall balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
+The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts, with no assets from either game. Current source is **0.23.0-dev**, with six chapters, branching encounters and cross-chapter saves. Chapter 6 brings Eileen face to face with her teacher and her father's undelivered letter, with evidence-disclosure choices and a new restrained dialogue portrait. All six chapters have native page checks. The latest AI accounts for vacated and newly occupied cells; the seed bridge has a fresh native victory and exit/relaunch check against this policy. The complete campaign, overall balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
 
 ## In-game screenshots
 
@@ -46,7 +46,11 @@ The chapter-4 dialogue capture is from 0.20.0-dev; the battlefield captures belo
 | Change the next exchange | Rain, fog, sun and snow affect both sides; replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
 
-## Objectives and native continuation
+## 0.23: Position after moving
+
+AI now evaluates vacated cells and newly blocked routes. All outcomes from 13 fixed-seed diagnostics are retained; 927 related regression checks and 15,189 independent replay checks passed. The current-policy seed bridge completed 88 legal actions across two native processes, with save/exit, reload, victory and story handoff verified in 268 checks. Long games and a roughly 0.52-second peak decision remain; this is not human balance or continuous campaign proof. [Changes and native evidence](docs/ai-occupancy.md).
+
+## Historical objective and continuation evidence
 
 AI captures and holds control points, using knockback, spells and guard to contest progress. It now weighs recruit exposure and prioritizes meaningful healing over chip damage. Both chapter-2 bridge routes have native victories from original resources: exit during an enemy turn, relaunch, resume AI, complete control, then enter and save the corresponding postbattle story.
 
@@ -62,7 +66,7 @@ Eileen finally meets her teacher and sees her father's original suspension order
 
 The chapter adds **7,109 Chinese body-text characters**. Six chapters plus the archive total **42,481 authored characters**, with 8,192 cumulative choice paths and nine encounters per path. All 623 chapter paragraphs have native rendering checks; continuous ordinary-difficulty accessibility is still pending. This milestone passed 83,576 related model checks and 6,562 native checks. The new court diagnostic loses from normal resources; its complete trace is retained and passes 420 independent replay checks. [Chapter-6 editorial, art and verification notes](docs/narrative/chapter-06-review.md).
 
-The chapter-5 channel route now also has a native victory from original resources, exit/relaunch continuation and postbattle handoff, with 421 checks across two independent processes. [Native channel encounter evidence](docs/channel-playthrough.md).
+The 0.22.0-dev chapter-5 channel route also has a native victory from original resources, exit/relaunch continuation and postbattle handoff, with 421 checks across two independent processes. [Native channel encounter evidence](docs/channel-playthrough.md).
 
 ## Chapter 5: Where the Water Comes From
 

@@ -88,19 +88,31 @@ func advance_shadow() -> void:
 
 func run() -> void:
 	create_timer(240).timeout.connect(func() -> void: push_error("native encounter playthrough timeout"); quit(2))
+	var trace_override: String = ""
+	var prefix_override: String = ""
 	for arg: String in OS.get_cmdline_user_args():
 		if arg.begins_with("--scenario="): scenario_id = arg.trim_prefix("--scenario=")
+		if arg.begins_with("--fixture="): trace_override = arg.trim_prefix("--fixture=")
+		if arg.begins_with("--capture-prefix="): prefix_override = arg.trim_prefix("--capture-prefix=")
 	check(scenario_id in ["c01_bridge", "c02_relief_bridge", "c02_seed_bridge", "c03_vent", "c05_channel"], "native encounter scenario is supported")
 	if failures > 0: quit(1); return
 	post_node = "vent_after" if scenario_id == "c03_vent" else "bridge_after"
 	post_line = "c03.vent_after.01" if scenario_id == "c03_vent" else "c02.bridge_after.01"
 	if scenario_id == "c01_bridge": post_line = "c01.w01"; capture_prefix = "v0181-"
 	if scenario_id == "c05_channel": post_node = "after_water"; post_line = "c05.after_water.01"; capture_prefix = "v022-"
+	if not prefix_override.is_empty():
+		check(prefix_override.is_valid_filename(), "capture prefix is a filename component")
+		if failures > 0: quit(1); return
+		capture_prefix = prefix_override
 	writing = OS.get_cmdline_user_args().has("--write")
 	if not writing and not OS.get_cmdline_user_args().has("--read"): check(false, "choose writer then reader"); quit(1); return
 	var trace_path: String = "res://tests/fixtures/campaign_v018_selfplay.json" if scenario_id == "c03_vent" else "res://tests/fixtures/campaign_v018_cautious.json"
 	if scenario_id == "c01_bridge": trace_path = "res://tests/fixtures/campaign_v0181_bridge.json"
 	if scenario_id == "c05_channel": trace_path = "res://tests/fixtures/campaign_v021_grove.json"
+	if not trace_override.is_empty(): trace_path = trace_override
+	check(FileAccess.file_exists(trace_path), "native trace file exists")
+	if failures > 0: quit(1); return
+	var trace_hash: String = FileAccess.get_sha256(trace_path)
 	var report: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(trace_path))
 	for candidate: Dictionary in report.games:
 		if candidate.scenario == scenario_id: row = candidate
@@ -126,6 +138,7 @@ func run() -> void:
 	else:
 		var resume: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(CURSOR))
 		check(resume.scenario == scenario_id, "reader uses the same encounter as the exited process")
+		check(resume.get("trace_sha256", "") == trace_hash, "reader uses the same recorded trace as the exited process")
 		if failures > 0: quit(1); return
 		var loaded: RefCounted = Session.new(SAVE)
 		check(loaded.load_campaign().ok and loaded.encounter != null, "new native process can load full saved battle")
@@ -163,7 +176,7 @@ func run() -> void:
 			var file: FileAccess = FileAccess.open(CURSOR, FileAccess.WRITE)
 			check(file != null, "write independent-process continuation cursor")
 			if file == null: quit(1); return
-			file.store_string(JSON.stringify({"scenario": scenario_id, "cursor": cursor, "snapshot": Snapshot.capture(game.battle)}, "", true, true)); file.close()
+			file.store_string(JSON.stringify({"scenario": scenario_id, "trace_sha256": trace_hash, "cursor": cursor, "snapshot": Snapshot.capture(game.battle)}, "", true, true)); file.close()
 			await capture(capture_prefix + scenario_id + "-before-exit")
 			print("NATIVE PLAYTHROUGH WRITER: %d CHECKS | FAILURES: %d | ACTIONS: %d | ENEMY TURN: %d" % [checks, failures, cursor, game.battle.turn])
 			if failures > 0: quit(1); return

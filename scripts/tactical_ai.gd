@@ -13,13 +13,30 @@ static func prepare(battle: Battle, movement_weight: float = 0.45) -> Dictionary
 		var origins: Array[Vector2i] = [ready.pos]
 		origins.append_array(battle.movement_cells(ready))
 		threats.append({"unit": ready, "origins": origins})
-	return {"enemies": threats, "cache": {}, "movement_weight": movement_weight}
+	return {"enemies": threats, "layouts": {}, "cache": {}, "movement_weight": movement_weight}
 
 static func exposure(battle: Battle, unit: Dictionary, context: Dictionary) -> float:
-	var key: String = "%s:%d:%s:%d:%d:%d:%s" % [unit.kind, unit.side, str(unit.pos), unit.defense, unit.hp, unit.shield, int(unit.get("last_move_distance", 0)) > 0]
+	var source: Dictionary = battle.get_unit(int(unit.get("id", -1)))
+	var occupancy: Dictionary = {}
+	var layout_key: String = "current"
+	if source.is_empty() or source.pos != unit.pos:
+		if not source.is_empty(): occupancy[source.pos] = false
+		occupancy[unit.pos] = true
+		layout_key = "%s>%s" % [str(source.get("pos", "deployment")), str(unit.pos)]
+	var key: String = "%s:%s:%d:%s:%d:%d:%d:%s" % [layout_key, unit.kind, unit.side, str(unit.pos), unit.defense, unit.hp, unit.shield, int(unit.get("last_move_distance", 0)) > 0]
 	if context.cache.has(key): return float(context.cache[key])
+	var threats: Array = context.enemies
+	if not occupancy.is_empty():
+		if not context.layouts.has(layout_key):
+			var projected: Array[Dictionary] = []
+			for entry: Dictionary in context.enemies:
+				var origins: Array[Vector2i] = [entry.unit.pos]
+				origins.append_array(battle.movement_cells(entry.unit, occupancy))
+				projected.append({"unit": entry.unit, "origins": origins})
+			context.layouts[layout_key] = projected
+		threats = context.layouts[layout_key]
 	var incoming: float = 0.0
-	for entry: Dictionary in context.enemies:
+	for entry: Dictionary in threats:
 		var enemy: Dictionary = entry.unit
 		var worst: float = 0.0
 		for origin: Vector2i in entry.origins:
