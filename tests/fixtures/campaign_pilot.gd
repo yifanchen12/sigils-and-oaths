@@ -9,10 +9,10 @@ static func choose(battle: Battle) -> Dictionary:
 	var fields: Dictionary = {}
 	var objectives: Dictionary = Objectives.prepare(battle)
 	var threats: Dictionary = Tactics.prepare(battle, 1.0)
-	var best_score: float = AI.evaluate(battle, best, fields, objectives)
+	var best_score: float = AI.evaluate(battle, best, fields, objectives, threats)
 	for unit: Dictionary in battle.units:
 		if unit.side == battle.active_side and not battle.movement_cells(unit).is_empty(): fields[unit.id] = AI._approach_field(battle, unit)
 	for action: Dictionary in battle.get_legal_actions(battle.active_side):
-		var score: float = AI.evaluate(battle, action, fields, objectives) + Tactics.value(battle, action, threats)
+		var score: float = AI.evaluate(battle, action, fields, objectives, threats) + Tactics.value(battle, action, threats)
 		if score > best_score: best = action; best_score = score
 	return best

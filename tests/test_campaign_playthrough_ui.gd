@@ -14,7 +14,7 @@ var writing: bool = false
 var scenario_id: String = "c03_vent"
 var post_line: String = ""
 var post_node: String = ""
-var capture_prefix: String = "v018-"
+var capture_prefix: String = "v028-"
 
 func checkpoint() -> RefCounted:
 	var campaign: RefCounted = Campaign.new(); campaign.start()
@@ -99,24 +99,21 @@ func run() -> void:
 	if failures > 0: quit(1); return
 	post_node = "vent_after" if scenario_id == "c03_vent" else "bridge_after"
 	post_line = "c03.vent_after.01" if scenario_id == "c03_vent" else "c02.bridge_after.01"
-	if scenario_id == "c01_bridge": post_line = "c01.w01"; capture_prefix = "v0181-"
-	if scenario_id == "c05_channel": post_node = "after_water"; post_line = "c05.after_water.01"; capture_prefix = "v022-"
-	if scenario_id == "c04_dock": post_node = "ashore"; post_line = "c04.ashore.01"; capture_prefix = "v027-"
-	if scenario_id == "c04_pump": post_node = "after_pump"; post_line = "c04.after_pump.01"; capture_prefix = "v027-"
-	if scenario_id == "c06_court": post_node = "after_court"; post_line = "c06.after_court.01"; capture_prefix = "v027-"
-	if scenario_id.begins_with("c08_"): post_node = "after"; post_line = "c08.after.01"; capture_prefix = "v026-"
+	if scenario_id == "c01_bridge": post_line = "c01.w01"
+	if scenario_id == "c05_channel": post_node = "after_water"; post_line = "c05.after_water.01"
+	if scenario_id == "c04_dock": post_node = "ashore"; post_line = "c04.ashore.01"
+	if scenario_id == "c04_pump": post_node = "after_pump"; post_line = "c04.after_pump.01"
+	if scenario_id == "c06_court": post_node = "after_court"; post_line = "c06.after_court.01"
+	if scenario_id.begins_with("c08_"): post_node = "after"; post_line = "c08.after.01"
 	if not prefix_override.is_empty():
 		check(prefix_override.is_valid_filename(), "capture prefix is a filename component")
 		if failures > 0: quit(1); return
 		capture_prefix = prefix_override
 	writing = OS.get_cmdline_user_args().has("--write")
 	if not writing and not OS.get_cmdline_user_args().has("--read"): check(false, "choose writer then reader"); quit(1); return
-	var trace_path: String = "res://tests/fixtures/campaign_v018_selfplay.json" if scenario_id == "c03_vent" else "res://tests/fixtures/campaign_v018_cautious.json"
-	if scenario_id == "c01_bridge": trace_path = "res://tests/fixtures/campaign_v0181_bridge.json"
-	if scenario_id == "c05_channel": trace_path = "res://tests/fixtures/campaign_v021_grove.json"
-	if scenario_id in ["c04_dock", "c04_pump", "c06_court"]: trace_path = "res://tests/fixtures/campaign_v027_harbor.json"
-	if scenario_id == "c04_dock": trace_path = "res://tests/fixtures/campaign_v027_selfplay.json"
-	if scenario_id.begins_with("c08_"): trace_path = "res://tests/fixtures/campaign_v026_sunspire.json"
+	var trace_path: String = "res://tests/fixtures/campaign_v028_selfplay.json"
+	if scenario_id in ["c04_pump", "c06_court"]: trace_path = "res://tests/fixtures/campaign_v028_harbor.json"
+	if scenario_id.begins_with("c08_"): trace_path = "res://tests/fixtures/campaign_v028_sunspire.json"
 	if not trace_override.is_empty(): trace_path = trace_override
 	check(FileAccess.file_exists(trace_path), "native trace file exists")
 	if failures > 0: quit(1); return

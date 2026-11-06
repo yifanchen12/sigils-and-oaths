@@ -34,7 +34,7 @@ func run() -> void:
 	var catalog: RefCounted = Campaign.new()
 	var harbor: bool = OS.get_cmdline_user_args().has("--harbor-player")
 	pilot = HarborPilot if harbor else Pilot
-	var path: String = "res://tests/fixtures/campaign_v027_harbor.json" if harbor else "res://tests/fixtures/campaign_v027_sunspire.json"
+	var path: String = "res://tests/fixtures/campaign_v028_harbor.json" if harbor else "res://tests/fixtures/campaign_v028_sunspire.json"
 	var report: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path))
 	var scope: Array = ["c04_dock", "c04_pump", "c06_court"] if harbor else ["c08_isolate", "c08_buffer"]
 	check(report.scenario_ids == scope, "diagnostic scope names every encounter in the selected group, including losses")

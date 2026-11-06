@@ -5,13 +5,13 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.27.0-dev" src="https://img.shields.io/badge/version-0.27.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.28.0-dev" src="https://img.shields.io/badge/version-0.28.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts, with no assets from either game. Current source is **0.27.0-dev**, with eight chapters, branching encounters and cross-chapter saves. Chapter 8 enters the water passage and old furnace, follows the fate of Velo’s master and asks how to keep residents supplied with water. The complete campaign, overall balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
+The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts, with no assets from either game. Current source is **0.28.0-dev**, with eight chapters, branching encounters and cross-chapter saves. Chapter 8 enters the water passage and old furnace, follows the fate of Velo’s master and asks how to keep residents supplied with water. The complete campaign, overall balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
 
 ## In-game screenshots
 
@@ -46,11 +46,11 @@ The chapter-8 dialogue capture is from 0.25.0-dev; the battlefield captures belo
 | Change the next exchange | Rain, fog, sun and snow affect both sides; replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
 
-## 0.27: Mage decisions, harbor and court continuation
+## 0.28: Defense that supports advancing
 
-AI mages now compare their armor-piercing skill and normal attack on the same scale. Both harbor encounters and the court completed native wins, independent-process reloads and story handoffs in 2612 checks. The pump takes 9 rounds; dock and court still take 32/31.
+Spearmen now account for reachable threats, existing guards and interception costs; infantry compare added shields with the damage they can prevent. The dock encounter fell from a 32-round fatigue win to a 22-round commander defeat, with 719 native save, restart, continuation and story checks.
 
-The current 15-scenario self-play diagnostic records 9 wins and 6 losses. The previous Sunspire buffer player policy now loses against the updated opponent, so its 0.26 victory remains historical evidence. Continuous campaign completion and overall balance are pending. [Current results and native evidence](docs/harbor-court-playthrough.md).
+The 15-scenario self-play diagnostic has 6 wins and 9 losses; the previous Sunspire player policy loses both encounters. These local corrections and one faster win do not establish overall balance. All losses are retained; continuous campaign completion is still pending. [Current decisions, results and native evidence](docs/defensive-decisions.md).
 
 ## Historical 0.26: Both Sunspire routes completed
 

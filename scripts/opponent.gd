@@ -11,21 +11,21 @@ static func choose(battle: Battle) -> Dictionary:
 	var threats: Dictionary = TacticalAI.prepare(battle)
 	# Keep end-turn as the tie winner. In a control emergency its value can be
 	# negative, but ordinary zero-value actions still must not replace waiting.
-	var best_score: float = evaluate(battle, best, fields, objective)
+	var best_score: float = evaluate(battle, best, fields, objective, threats)
 	for unit: Dictionary in battle.units:
 		if unit.side == battle.active_side and not battle.movement_cells(unit).is_empty(): fields[unit.id] = _approach_field(battle, unit)
 	for action: Dictionary in battle.get_legal_actions(battle.active_side):
-		var score: float = evaluate(battle, action, fields, objective) + TacticalAI.value(battle, action, threats)
+		var score: float = evaluate(battle, action, fields, objective, threats) + TacticalAI.value(battle, action, threats)
 		if score > best_score:
 			best = action
 			best_score = score
 	return best
 
-static func evaluate(battle: Battle, action: Dictionary, fields: Dictionary = {}, objective: Dictionary = {}) -> float:
+static func evaluate(battle: Battle, action: Dictionary, fields: Dictionary = {}, objective: Dictionary = {}, threats: Dictionary = {}) -> float:
 	if not battle.objective.is_empty() and objective.is_empty(): objective = ObjectiveAI.prepare(battle)
-	return _combat_value(battle, action, fields) + ObjectiveAI.value(battle, action, objective)
+	return _combat_value(battle, action, fields, threats) + ObjectiveAI.value(battle, action, objective)
 
-static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary = {}) -> float:
+static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary = {}, threats: Dictionary = {}) -> float:
 	var side: int = battle.active_side
 	var enemy_leader: Dictionary = battle.commander(1 - side)
 	match String(action.type):
@@ -33,19 +33,8 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 			var caster: Dictionary = battle.get_unit(action.unit_id)
 			var victim: Dictionary = battle.unit_at(action.target)
 			match String(caster.kind):
-				"sword":
-					var threats: int = 0
-					for enemy: Dictionary in battle.units:
-						if enemy.side != side and battle.distance(enemy.pos, caster.pos) <= battle.attack_range(enemy) + 1: threats += 1
-					return 18.0 + threats * 12.0 if threats > 0 else -1.0
-				"spear":
-					var value: float = -1.0
-					for ally: Dictionary in battle.units:
-						if ally.side != side or ally.id == caster.id or battle.distance(caster.pos, ally.pos) != 1: continue
-						for enemy: Dictionary in battle.units:
-							if enemy.side != side and battle.distance(enemy.pos, ally.pos) <= battle.attack_range(enemy) + battle.movement_allowance(enemy):
-								value += 20.0 + (30.0 if ally.kind == "commander" else 0.0) + maxi(0, int(ally.max_hp) - int(ally.hp))
-					return value
+				"sword", "spear":
+					return TacticalAI.defense_value(battle, caster, threats)
 				"cavalry":
 					var before_distance: int = battle.distance(caster.pos, enemy_leader.pos)
 					var after_distance: int = battle.distance(action.target, enemy_leader.pos)

@@ -73,3 +73,71 @@ static func value(battle: Battle, action: Dictionary, context: Dictionary) -> fl
 		candidate.pos = action.target; candidate.last_move_distance = battle.distance(unit.pos, action.target)
 		return (exposure(battle, unit, context) - exposure(battle, candidate, context)) * 0.6
 	return 0.0
+
+static func _future_attack_damage(battle: Battle, attacker: Dictionary, origin: Vector2i, defender: Dictionary) -> int:
+	var candidate: Dictionary = attacker.duplicate()
+	candidate.pos = origin
+	var parts: Dictionary = battle.damage_breakdown(candidate, defender)
+	# The forecast attacker will be active next turn. Add its charge before
+	# minimum-damage clamping, using the real path for short detours.
+	var charge: int = 0
+	if attacker.kind == "cavalry" and origin != attacker.pos:
+		if battle.distance(attacker.pos, origin) >= 3 or battle.movement_path(attacker, origin).size() >= 4: charge = 1
+	var raw: int = parts.base + parts.advantage + parts.elevation + charge - parts.close_penalty - parts.armor - parts.terrain - parts.aura - parts.stance + parts.pierce
+	return maxi(1, raw) + (1 if attacker.kind == "archer" else 0)
+
+static func _loss_value(battle: Battle, unit: Dictionary, incoming: int) -> float:
+	var loss: int = mini(int(unit.hp), maxi(0, incoming - int(unit.shield)))
+	var value: float = loss * (14.0 if unit.kind == "commander" else 10.0)
+	if loss >= int(unit.hp): value += 2000.0 if unit.kind == "commander" else 65.0 + int(battle.definition(unit.kind).get("cost", 0)) * 9.0
+	return value
+
+static func defense_value(battle: Battle, caster: Dictionary, context: Dictionary = {}) -> float:
+	if context.is_empty(): context = prepare(battle)
+	if not context.has("defense_cache"): context.defense_cache = {}
+	if context.defense_cache.has(caster.id): return float(context.defense_cache[caster.id])
+	var value: float = -2.0 # One mana and the unit's remaining actions.
+	if caster.kind == "sword":
+		var incoming: int = 0
+		for entry: Dictionary in context.enemies:
+			var worst: int = 0
+			for origin: Vector2i in entry.origins:
+				var attacker: Dictionary = entry.unit.duplicate(); attacker.pos = origin
+				var distance: int = battle.distance(origin, caster.pos)
+				if distance <= battle.attack_range(attacker) and battle.attack_defender(attacker, caster).id == caster.id:
+					worst = maxi(worst, _future_attack_damage(battle, entry.unit, origin, caster))
+				if attacker.kind == "mage" and distance <= 2: worst = maxi(worst, battle.fire_damage(3))
+			incoming += worst
+		var shielded: Dictionary = caster.duplicate(); shielded.shield = maxi(3, int(caster.shield))
+		# Shield persists: a small preparation value remains even without an
+		# immediate threat, but cannot outweigh normal movement or attacks.
+		value += (int(shielded.shield) - int(caster.shield)) * 2.0 + _loss_value(battle, caster, incoming) - _loss_value(battle, shielded, incoming)
+	elif caster.kind == "spear":
+		var protected_damage: Dictionary = {}
+		var incoming: int = 0
+		for entry: Dictionary in context.enemies:
+			var best: float = 0.0
+			var selected: Dictionary = {}
+			for ally: Dictionary in battle.units:
+				if ally.side != caster.side or ally.id == caster.id or battle.distance(caster.pos, ally.pos) != 1: continue
+				for origin: Vector2i in entry.origins:
+					var attacker: Dictionary = entry.unit.duplicate(); attacker.pos = origin
+					if battle.distance(origin, ally.pos) > battle.attack_range(attacker): continue
+					var defender: Dictionary = battle.attack_defender(attacker, ally)
+					# Existing guards with lower IDs keep the interception.
+					if defender.id != ally.id and defender.id < caster.id: continue
+					var before: int = _future_attack_damage(battle, entry.unit, origin, defender)
+					var after: int = _future_attack_damage(battle, entry.unit, origin, caster)
+					if attacker.kind == "mage" and battle.distance(origin, ally.pos) <= 2 and _loss_value(battle, ally, battle.fire_damage(3)) >= _loss_value(battle, defender, before): continue
+					var benefit: float = _loss_value(battle, defender, before) - _loss_value(battle, caster, after)
+					if benefit > best:
+						best = benefit; selected = {"id":defender.id, "before":before, "after":after}
+			# One enemy gets one ordinary attack, even if it can reach several
+			# protected allies. Shields and casualties are counted once per unit.
+			if not selected.is_empty():
+				protected_damage[selected.id] = int(protected_damage.get(selected.id, 0)) + int(selected.before)
+				incoming += int(selected.after)
+		for id: int in protected_damage: value += _loss_value(battle, battle.get_unit(id), protected_damage[id])
+		value -= _loss_value(battle, caster, incoming)
+	context.defense_cache[caster.id] = value
+	return value
