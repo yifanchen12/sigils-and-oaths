@@ -24,7 +24,7 @@
       "longest_route_characters": 4197,
       "nodes": 20,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.25.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.26.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
     },
     {
       "id": "chapter_02",
@@ -38,7 +38,7 @@
       "longest_route_characters": 3559,
       "nodes": 15,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.25.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.26.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
     },
     {
       "id": "chapter_03",
@@ -52,7 +52,7 @@
       "longest_route_characters": 4851,
       "nodes": 17,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.25.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.26.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
     },
     {
       "id": "chapter_04",
@@ -66,7 +66,7 @@
       "longest_route_characters": 5258,
       "nodes": 17,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.25.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.26.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
     },
     {
       "id": "chapter_05",
@@ -80,7 +80,7 @@
       "longest_route_characters": 5839,
       "nodes": 16,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.25.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.26.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
     },
     {
       "id": "chapter_06",
@@ -94,7 +94,7 @@
       "longest_route_characters": 6048,
       "nodes": 16,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.25.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.26.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
     },
     {
       "id": "chapter_07",
@@ -108,7 +108,7 @@
       "longest_route_characters": 7181,
       "nodes": 14,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.25.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.26.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
     },
     {
       "id": "chapter_08",
@@ -122,7 +122,7 @@
       "longest_route_characters": 7144,
       "nodes": 16,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.25.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.26.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
     }
   ],
   "authored_total_characters": 60703,

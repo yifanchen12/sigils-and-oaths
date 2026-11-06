@@ -160,8 +160,11 @@ func _render_page() -> void:
 	_clear_actions()
 	backlog_button.text = "返回当前对白" if showing_history else "已读回看"
 	backlog_button.disabled = history.is_empty()
-	stage.visible = not showing_history
-	dialogue_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL if showing_history else Control.SIZE_FILL
+	# Battle objectives and retry details must not be pushed below a decorative
+	# stage in a small window. Dialogue still keeps its portrait/background space.
+	var briefing: bool = page.get("type", "") == "battle"
+	stage.visible = not showing_history and not briefing
+	dialogue_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL if showing_history or briefing else Control.SIZE_FILL
 	if showing_history:
 		illustration.hide()
 		speaker.text = "已经走过的路"
@@ -189,7 +192,7 @@ func _render_page() -> void:
 			speaker.text = setup.get("title", "战前军议")
 			var retry: String = ""
 			if page.last_outcome != "": retry = "\n\n上一战" + ("失利" if page.last_outcome == "defeat" else "平局") + "，剧情停在此处。重新出征将重建同一战场。"
-			text_body.text = "%s\n\n作战目标\n%s\n\n敌方指挥：%s\n每回合 90 秒。战斗自动保存，退出后可继续当前局面。%s" % [setup.get("brief", ""), setup.get("objective", ""), setup.get("enemy_name", ""), retry]
+			text_body.text = "作战目标\n%s\n\n%s\n\n敌方指挥：%s\n每回合 90 秒。战斗自动保存，退出后可继续当前局面。%s" % [setup.get("objective", ""), setup.get("brief", ""), setup.get("enemy_name", ""), retry]
 			actions.add_child(_button("重新出征" if page.attempts > 0 else "率军出征", _battle.bind(view_token.duplicate())))
 		"end":
 			speaker.text = page.get("chapter", "本章") + " · 章末"

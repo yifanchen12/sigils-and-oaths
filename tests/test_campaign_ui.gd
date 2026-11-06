@@ -139,6 +139,10 @@ func run() -> void:
 	DisplayServer.window_set_size(Vector2i(1296, 900)); await settle()
 	for plan: String in ["isolate", "buffer"]:
 		await restore_page("chapter_08." + plan + "_battle")
+		DisplayServer.window_set_size(Vector2i(1008, 700)); await settle()
+		check(not view.stage.visible and view.text_body.text.begins_with("作战目标\n") and view.text_body.text.contains("作战建议"), "small briefing prioritizes objective over advice and decorative stage")
+		check_layout(view, "small Sunspire briefing")
+		DisplayServer.window_set_size(Vector2i(1296, 900)); await settle()
 		await click_named(view.actions, "率军出征")
 		check(not view.visible and game.battle.map_definition.id == "sunspire" and game.battle.players[0].hero_id == "pyromancer", "native Sunspire deployment " + plan)
 		check((game.battle.objective.get("cells") == [[4, 4], [7, 5]] and game.battle.objective.round_limit == 12) if plan == "isolate" else game.battle.objective.is_empty(), "native route objective " + plan)
