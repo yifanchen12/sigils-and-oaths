@@ -57,11 +57,12 @@ func configure(definition: Dictionary, uid: int, mana: int, selected: bool, lock
 		if card.has("skill"): tooltip_text += "\n主动 · %s（1费，每回合一次）：%s" % [card.skill.name, card.skill.text]
 	elif card.effect not in ["draw", "mana", "weather", "clear_weather"]:
 		tooltip_text += "\n施法范围：友军3格、法师4格；换位另限指挥官3格。"
+	if card.type == "trap": tooltip_text += "\n每方最多2张伏设；对手只见数量。主动移动含骑兵再机动，不含部署、击退或换位。"
 	queue_redraw()
 
 func _draw() -> void:
-	if card.is_empty() or font == null: return
-	var accent: Color = Color("63c5ca") if card.type == "unit" else (Color("a6b9ee") if card.type == "environment" else GOLD)
+	if card.is_empty() or font == null or size.x < 32 or size.y < 32: return
+	var accent: Color = Color("63c5ca") if card.type == "unit" else (Color("b5a0ed") if card.type == "trap" else (Color("a6b9ee") if card.type == "environment" else GOLD))
 	var lit: bool = chosen or hovered or has_focus()
 	var top: float = 0 if chosen else lerpf(4, 0, hover_blend)
 	var frame := Rect2(Vector2(0, top), size - Vector2(0, top + 2))

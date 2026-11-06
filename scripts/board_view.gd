@@ -41,6 +41,7 @@ var redraw_clock: float = 0.0
 var effects: Array[Dictionary] = []
 var motion_unit: int = -1
 var motion_path: Array[Vector2i] = []
+var motion_ghost: Dictionary = {}
 var motion_tween: Tween
 var flash_tween: Tween
 var combat: Dictionary = {}
@@ -154,6 +155,7 @@ func reset_effects() -> void:
 	predicted_losses.clear()
 	predicted_gains.clear()
 	motion_unit = -1
+	motion_ghost.clear()
 	motion_progress = 1.0
 	flash_alpha = 0.0
 	last_cell = Vector2i(-1, -1)
@@ -164,9 +166,10 @@ func is_presenting() -> bool:
 func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) -> void:
 	combat.clear()
 	casting_pose.clear()
+	motion_ghost.clear()
 	action_duration = 0.0
 	var effect_kind: String = action.get("effect_kind", "")
-	var casts: bool = effect_kind in ["damage", "area", "heal", "shield", "blessing", "firestrike"] and action.has("target") and battle.inside(action.target)
+	var casts: bool = effect_kind in ["damage", "area", "heal", "shield", "blessing", "firestrike", "shatter_bolt", "rally_heal", "cleanse_root"] and action.has("target") and battle.inside(action.target)
 	var forecast: Dictionary = action.get("combat", {})
 	if not forecast.is_empty():
 		var actors: Dictionary = {}
@@ -190,7 +193,12 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 		previous_ids[old.id] = true
 		var current: Dictionary = battle.get_unit(old.id)
 		if current.is_empty():
-			_effect("burst", old.pos, "击破", RED, 0.8, delay)
+			var death_cell: Vector2i = old.pos
+			if old.id == int(action.get("unit_id", -1)) and path.size() >= 2:
+				death_cell = path.back()
+				delay = minf(0.42, 0.14 + path.size() * 0.04)
+				motion_ghost = old.duplicate(true)
+			_effect("burst", death_cell, "击破", RED, 0.8, delay)
 			continue
 		var hp_delta: int = int(current.hp) - int(old.hp)
 		var shield_delta: int = int(current.shield) - int(old.shield)
@@ -223,7 +231,7 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 			_effect("shield", defender.pos, "反击", GOLD, 0.6, 0.55)
 			if battle.ADVANTAGE.get(defender.kind, "") == attacker.kind: _effect("hit", attacker.pos, "反击克制 +2", RED, 0.65, 0.76)
 	if casts:
-		var style: String = "heal_cast" if effect_kind == "heal" else ("ward_cast" if effect_kind in ["shield", "blessing"] else ("fire_area" if effect_kind == "area" else "fire_cast"))
+		var style: String = "heal_cast" if effect_kind in ["heal", "rally_heal", "cleanse_root"] else ("ward_cast" if effect_kind in ["shield", "blessing"] else ("fire_area" if effect_kind == "area" else "fire_cast"))
 		var color: Color = Color("8ef2c8") if style == "heal_cast" else (GOLD if style == "ward_cast" else Color("ffb47b"))
 		var cells: Array[Vector2i] = [action.target]
 		if effect_kind == "area":
@@ -232,6 +240,10 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 		effects.append({"kind": style, "cell": action.target, "from": action.get("visual_origin", action.target), "cells": cells, "text": "", "color": color, "age": 0.0, "duration": 0.80})
 		action_duration = maxf(action_duration, 0.80)
 	if action.type == "unit_skill" and action.get("unit_kind", "") == "spear": _effect("shield", action.target, "援护展开", BLUE, 0.85)
+	if action.get("card_type", "") == "trap" and battle.inside(action.target): _effect("shield", action.target, "伏设", Color("b5a0ed"), 0.8)
+	if action.get("spell_effect", "") == "reveal_traps": _effect("shield", action.target, "寻痕", Color("b5a0ed"), 0.8)
+	for event: Dictionary in battle.last_trap_events:
+		if battle.inside(event.cell): _effect("burst", event.cell, event.name + " · " + event.reason, Color("c6a6ff"), 1.05)
 	presentation_remaining = action_duration
 	for effect: Dictionary in effects: presentation_remaining = maxf(presentation_remaining, float(effect.duration) - float(effect.age))
 	queue_redraw()
@@ -346,6 +358,11 @@ func _draw() -> void:
 			var points := PackedVector2Array()
 			for step: Vector2i in path: points.append(cell_center(step))
 			if points.size() >= 2: draw_polyline(points, Color("abcce5"), 2.5, true)
+	for trap: Dictionary in battle.visible_traps(0):
+		var at: Vector2 = cell_center(trap.pos) + Vector2(tile * 0.29, -tile * 0.30)
+		draw_circle(at, 10, Color("29203f"))
+		draw_arc(at, 10, 0, TAU, 24, Color("c6a6ff"), 1.5, true)
+		_text("伏", at + Vector2(0, 4), 12, Color("d8c6ff"))
 	for unit: Dictionary in battle.units:
 		if not combat.is_empty() and unit.id in [combat.attacker.id, combat.defender.id]: continue
 		var at: Vector2 = cell_center(unit.pos)
@@ -354,6 +371,11 @@ func _draw() -> void:
 			var segment: int = mini(motion_path.size() - 2, int(progress))
 			at = cell_center(motion_path[segment]).lerp(cell_center(motion_path[segment + 1]), progress - segment)
 		_draw_unit(unit, at, tile, 1.0, cast_pose(unit.id), float(casting_pose.get("facing", 1.0)))
+	if not motion_ghost.is_empty() and motion_progress < 1.0 and motion_path.size() > 1:
+		var progress: float = motion_progress * (motion_path.size() - 1)
+		var segment: int = mini(motion_path.size() - 2, int(progress))
+		var at: Vector2 = cell_center(motion_path[segment]).lerp(cell_center(motion_path[segment + 1]), progress - segment)
+		_draw_unit(motion_ghost, at, tile)
 	if not combat.is_empty(): _draw_combat(tile)
 	_draw_guard_links()
 	_draw_weather(grid)

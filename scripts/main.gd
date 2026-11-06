@@ -420,6 +420,7 @@ func _library_details(card: Dictionary, copies: int) -> void:
 		if card.has("skill"): %LibraryDetails.text += "\n主动 · %s（1费，每回合一次）：%s" % [card.skill.name, card.skill.text]
 	elif card.effect not in ["draw", "mana", "weather", "clear_weather"]:
 		%LibraryDetails.text += "\n施法范围：友军3格、法师4格；换位目标另须在指挥官3格内。"
+	if card.type == "trap": %LibraryDetails.text += "\n伏设上限2张；从手牌支付费用后等待触发。部署、击退与换位不触发地格陷阱。"
 
 func _make_theme() -> void:
 	var ui_theme := Theme.new()
@@ -532,6 +533,8 @@ func _refresh() -> void:
 		%MapName.tooltip_text = battle.objective_status()
 	%WeatherStatus.text = battle.WEATHER[battle.weather].name + (" · 剩余 %d 行动回合" % battle.weather_remaining if battle.weather_remaining > 0 else " · 无环境修正")
 	%WeatherStatus.tooltip_text = battle.WEATHER[battle.weather].description
+	%WeatherStatus.text += " · 伏设 我%d / 敌%d" % [battle.Traps.count(battle, 0), battle.Traps.count(battle, 1)]
+	%WeatherStatus.tooltip_text += "\n陷阱从手牌支付法力伏设，每方最多2张。只能看到己方位置；敌方触发或被探查时才公开。"
 	var own_hero: Dictionary = battle.hero(0)
 	%HeroSkill.text = "%s · %d费" % [own_hero.skill, own_hero.cost] if player.skill_cooldown == 0 else "%s · 冷却 %d" % [own_hero.skill, player.skill_cooldown]
 	%HeroSkill.disabled = not _player_can_act() or player.skill_cooldown > 0 or player.mana < own_hero.cost
@@ -686,6 +689,8 @@ func _select_card(uid: int) -> void:
 		return
 	else:
 		message = "选择青色空格部署「%s」；可紧邻任意己方部队。" % card.name if card.type == "unit" else "「%s」：选择赤色框内的合法目标。" % card.name
+		if card.type == "trap": message = "从手牌伏设「%s」：选择%s。己方最多2张伏设，对手只知道数量；右键取消。" % [card.name, "范围内空格" if card.trigger == "step" else "受保护友军"]
+		if card.id == "reveal_traps": message = "选择侦查中心：探查目标格及相邻四格；空查仍支付1法力并消耗卡牌。"
 		if battle.card_targets(uid, 0).is_empty(): message = "「%s」当前没有合法目标。" % card.name
 		error_message = false
 	_refresh()
@@ -772,8 +777,8 @@ func _commit(action: Dictionary) -> void:
 		if action.type == "hero": using_hero = false
 		if action.type == "unit_skill": using_unit_skill = false
 		if action.has("target") and battle.inside(action.target):
-			board.last_cell = action.target
-			board.flash(action.target)
+			board.last_cell = battle.last_movement_path.back() if not battle.last_movement_path.is_empty() else action.target
+			board.flash(board.last_cell)
 	_refresh()
 
 func _apply_with_feedback(action: Dictionary) -> Dictionary:
@@ -802,7 +807,7 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 			visual_action["spell_effect"] = definition.get("effect", "")
 			visual_action["effect_kind"] = visual_action.spell_effect
 			var origin: Dictionary = {}
-			if definition.type != "environment" and battle.inside(action.target):
+			if definition.get("effect", "") not in ["weather", "clear_weather"] and battle.inside(action.target):
 				for caster: Dictionary in battle.units:
 					if caster.side != side or battle.distance(caster.pos, action.target) > battle.unit_cast_range(caster): continue
 					if origin.is_empty() or battle.distance(caster.pos, action.target) < battle.distance(origin.pos, action.target): origin = caster
@@ -815,6 +820,11 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 		if not unit.is_empty(): path = battle.movement_path(unit, action.target)
 	var result: Dictionary = battle.apply_action(action)
 	if result.ok:
+		if not battle.last_combat.is_empty(): visual_action["combat"] = battle.last_combat.duplicate(true)
+		if not battle.last_movement_path.is_empty(): path = battle.last_movement_path.duplicate()
+		if visual_action.get("card_type", "") == "trap" and side == 1:
+			visual_action["target"] = Vector2i(-1, -1)
+			visual_action.erase("visual_caster_id"); visual_action.erase("visual_origin")
 		board.present_action(before, visual_action, path)
 		if battle.winner != -1: _refresh()
 	return result
@@ -885,6 +895,7 @@ func _attack_forecast_text(context: Dictionary) -> String:
 	if using_unit_skill and attacker.kind == "archer": lines += "精准射击 +1\n"
 	if prediction.counter_damage > 0 and battle.ADVANTAGE.get(target.kind, "") == attacker.kind: lines += "反击克制 +2\n"
 	if prediction.intercepted: lines = "%s援护%s，原目标不受伤。\n\n" % [target.name, context.selected_target.name] + lines
+	if battle.Traps.count(battle, 1) > 0: lines += "敌方存在伏设，预估未计入隐藏陷阱。\n"
 	var outcome: String = "目标存活并反击。"
 	if prediction.target_loss >= target.hp: outcome = "目标被击破，不会反击。"
 	elif battle.distance(attacker.pos, target.pos) > battle.attack_range(target): outcome = "目标射程不足，不会反击。"
@@ -892,7 +903,7 @@ func _attack_forecast_text(context: Dictionary) -> String:
 	return "生命损失 %d  /  反击 %d\n\n目标生命  %d → %d\n我方生命  %d → %d\n\n%s\n已计入护盾：我方%d / 敌方%d\n%s\n点击目标确认攻击。" % [prediction.target_loss, prediction.attacker_loss, target.hp, target.hp - prediction.target_loss, attacker.hp, attacker.hp - prediction.attacker_loss, lines, attacker.shield, target.shield, outcome]
 
 func _attack_hint(context: Dictionary) -> String:
-	return ("援护拦截 · %s承伤。" % context.target.name if context.prediction.intercepted else "") + "攻击预览：敌方生命 %d → %d  /  我方生命 %d → %d  ·  浅金段为预计损失，点击目标确认。" % [context.target.hp, context.target.hp - context.prediction.target_loss, context.attacker.hp, context.attacker.hp - context.prediction.attacker_loss]
+	return ("敌方有伏设，预估未含隐藏陷阱。" if battle.Traps.count(battle, 1) > 0 else "") + ("援护拦截 · %s承伤。" % context.target.name if context.prediction.intercepted else "") + "攻击预览：敌方生命 %d → %d  /  我方生命 %d → %d  ·  浅金段为预计损失，点击目标确认。" % [context.target.hp, context.target.hp - context.prediction.target_loss, context.attacker.hp, context.attacker.hp - context.prediction.attacker_loss]
 
 func _on_cell_hovered(cell: Vector2i) -> void:
 	if is_queued_for_deletion() or not is_inside_tree(): return
@@ -910,6 +921,8 @@ func _on_cell_hovered(cell: Vector2i) -> void:
 	elif battle.inside(cell) and target.is_empty():
 		var terrain_name: String = battle.TERRAIN[battle.ground(cell)].name
 		var terrain_text: String = battle.TERRAIN[battle.ground(cell)].description
+		for trap: Dictionary in battle.visible_traps(0):
+			if trap.pos == cell: terrain_text += " 己方伏设「%s」：%s" % [battle.definition(trap.card_id).name, battle.definition(trap.card_id).text.replace("\n", "")]
 		if not unit.is_empty():
 			terrain_text += " 当前部队进入费用 %s。" % (str(battle.movement_cost(unit, cell)) if battle.passable(cell) else "不可通行")
 		_show_hint("%s · %s：%s" % [battle.cell_name(cell), terrain_name, terrain_text], false)
@@ -1005,8 +1018,11 @@ func _update_battle_peek() -> void:
 	var effect: Dictionary = _effect_context()
 	if not effect.is_empty():
 		var target: Dictionary = battle.get_unit(effect.target_id)
-		var asset: String = battle.hero(target.side).portrait if target.kind == "commander" else str(target.kind)
-		battle_peek.present(Art.get_texture(asset), effect.title, "效果预估 · " + str(target.name), Effects.describe(effect, battle, true), TEAL if target.side == 0 else RED)
+		if target.is_empty():
+			battle_peek.present(Art.get_texture(str(effect.effect)), effect.title, "范围预估 · " + battle.cell_name(hovered_cell), Effects.describe(effect, battle, true), TEAL)
+		else:
+			var asset: String = battle.hero(target.side).portrait if target.kind == "commander" else str(target.kind)
+			battle_peek.present(Art.get_texture(asset), effect.title, "效果预估 · " + str(target.name), Effects.describe(effect, battle, true), TEAL if target.side == 0 else RED)
 	var enemy: Dictionary = battle.commander(1)
 	if not enemy.is_empty():
 		var enemy_hero: Dictionary = battle.hero(1)
@@ -1054,14 +1070,15 @@ func _run_ai(token: int) -> void:
 			await get_tree().create_timer(0.1).timeout
 			continue
 		var action: Dictionary = EnemyAI.choose(battle)
+		var hidden_placement: bool = action.type == "play" and battle.definition(battle.hand_card(1, int(action.card_uid)).card_id).type == "trap"
 		var result: Dictionary = _apply_with_feedback(action)
 		if not result.ok:
 			push_error("AI action rejected: " + str(result.message))
 			battle.end_turn()
 			break
-		if action.has("target") and battle.inside(action.target):
-			board.last_cell = action.target
-			board.flash(action.target)
+		if not hidden_placement and action.has("target") and battle.inside(action.target):
+			board.last_cell = battle.last_movement_path.back() if not battle.last_movement_path.is_empty() else action.target
+			board.flash(board.last_cell)
 		actions += 1
 		if battle.winner != -1 or battle.active_side != 1: break
 		await get_tree().create_timer(maxf(board.action_duration, 0.45 if action.type == "move" else 0.32)).timeout

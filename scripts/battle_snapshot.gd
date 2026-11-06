@@ -2,7 +2,8 @@ extends RefCounted
 ## Plain-data snapshots. No object deserialization, rendering or turn-start effects.
 
 const Model = preload("res://scripts/battle.gd")
-const VERSION: int = 2
+const VERSION: int = 3
+const EXPANSION_CARDS: Array[String] = ["shatter_bolt", "rally_heal", "cleanse_root", "reveal_traps", "seedwood", "anchor_snare", "ember_mine", "oath_ward"]
 const SCALARS: Array[String] = ["active_side", "turn", "winner", "next_id", "match_seed", "deck_size", "weather", "weather_remaining", "turn_time_limit", "time_remaining"]
 const PLAYER_FIELDS: Array[String] = ["hero_id", "deck_id", "mana", "max_mana", "fatigue", "skill_cooldown", "spell_boost_used", "card_total"]
 const UNIT_INTS: Array[String] = ["id", "side", "hp", "max_hp", "atk", "defense", "move", "range", "shield", "last_move_distance", "rooted_turns"]
@@ -11,6 +12,23 @@ const UNIT_TEXT: Array[String] = ["name", "kind", "short"]
 
 static func rules_signature() -> String:
 	return JSON.stringify([Model.CATALOG.cards, Model.HEROES.heroes, Model.DECKS.decks, Model.MAPS.maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
+
+static func pre_expansion_signature() -> String:
+	# Additive card pool only: retain exact old cards/decks/maps in the hash.
+	# A future change to those definitions still invalidates old battle saves.
+	var cards: Array[Dictionary] = []
+	var decks: Array[Dictionary] = []
+	for card: Dictionary in Model.CATALOG.cards:
+		if card.id not in EXPANSION_CARDS: cards.append(card)
+	for deck: Dictionary in Model.DECKS.decks:
+		if deck.id != "ambush": decks.append(deck)
+	return JSON.stringify([cards, Model.HEROES.heroes, decks, Model.MAPS.maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
+
+static func normalize_legacy(data: Dictionary) -> Dictionary:
+	var result: Dictionary = data.duplicate(true)
+	if int(result.version) == 1: result["objective"] = {}
+	if int(result.version) < 3: result["traps"] = []
+	return result
 
 static func _whole(value: Variant, minimum: int = 0, maximum: int = 1000000) -> bool:
 	return typeof(value) in [TYPE_INT, TYPE_FLOAT] and is_finite(float(value)) and float(value) == floorf(float(value)) and value >= minimum and value <= maximum
@@ -30,6 +48,9 @@ static func capture(battle: RefCounted) -> Dictionary:
 		"rng_seed": str(battle.rng.seed), "rng_state": str(battle.rng.state), "players": [], "units": [], "terrain": [], "log": Array(battle.log_lines)}
 	for key: String in SCALARS: data[key] = battle.get(key)
 	data["objective"] = battle.objective.duplicate(true)
+	data["traps"] = []
+	for trap: Dictionary in battle.traps:
+		data.traps.append({"side": trap.side, "unit_id": trap.unit_id, "pos": [trap.pos.x, trap.pos.y], "card": trap.card.duplicate(true)})
 	for side: int in range(2):
 		var source: Dictionary = battle.players[side]
 		var player: Dictionary = {}
@@ -72,10 +93,9 @@ static func validate(data: Variant) -> Dictionary:
 	if data.version > VERSION:
 		return {"ok": false, "protected": true, "message": "战斗存档版本不兼容，原档保留。"}
 	if not data.get("rules") is String or data.rules.length() != 64: return {"ok": false, "message": "战斗规则签名缺失。"}
-	if data.get("rules") != rules_signature(): return {"ok": false, "protected": true, "message": "战斗存档与当前规则版本不同，原档保留。"}
-	if int(data.version) == 1:
-		data = data.duplicate(true)
-		data["objective"] = {}
+	if data.get("rules") != rules_signature() and not (int(data.version) < 3 and data.rules == pre_expansion_signature()): return {"ok": false, "protected": true, "message": "战斗存档与当前规则版本不同，原档保留。"}
+	if int(data.version) < 3 and data.get("traps", []) != []: return {"ok": false, "message": "旧版战斗不能包含伏设区。"}
+	data = normalize_legacy(data)
 	var problem: String = _validate(data)
 	return {"ok": true} if problem.is_empty() else {"ok": false, "message": problem}
 
@@ -135,6 +155,30 @@ static func _validate(data: Dictionary) -> String:
 			if unit.card.card_id != unit.kind: return "部署牌与兵种不一致。"
 			troops[int(unit.side)] += 1
 			cards[int(unit.side)] += 1
+	if not data.get("traps") is Array or data.traps.size() > Model.Traps.LIMIT * 2: return "伏设区无效。"
+	var trap_counts: Array[int] = [0, 0]
+	var trap_slots: Dictionary = {}
+	for trap: Variant in data.traps:
+		if not trap is Dictionary or not _whole(trap.get("side"), 0, 1) or not _whole(trap.get("unit_id"), -1): return "伏设归属无效。"
+		var issue: String = _card(trap.get("card"), ids, int(data.next_id))
+		if not issue.is_empty(): return issue
+		var card: Dictionary = Model.CATALOG.find(trap.card.card_id)
+		if card.type != "trap" or trap.card.has("unit_id"): return "伏设区只能存放陷阱牌。"
+		var pos: Variant = trap.get("pos")
+		if not pos is Array or pos.size() != 2 or not _whole(pos[0], -1, width - 1) or not _whole(pos[1], -1, height - 1): return "伏设位置无效。"
+		var slot: String = "%d:%s:%d" % [trap.side, str(pos), trap.unit_id]
+		if trap_slots.has(slot): return "同一位置不能重复伏设。"
+		trap_slots[slot] = true
+		if card.trigger == "step":
+			if trap.unit_id != -1 or pos[0] < 0 or pos[1] < 0 or data.terrain[int(pos[1]) * width + int(pos[0])] in ["mountain", "water"]: return "地格陷阱位置无效。"
+		else:
+			var protected: bool = false
+			for unit: Dictionary in data.units:
+				if unit.id == trap.unit_id and unit.side == trap.side: protected = true
+			if not protected or pos[0] != -1 or pos[1] != -1: return "护军陷阱必须关联存活的友军。"
+		trap_counts[int(trap.side)] += 1
+		cards[int(trap.side)] += 1
+		if trap_counts[int(trap.side)] > Model.Traps.LIMIT: return "伏设数量超过上限。"
 	for side: int in range(2):
 		if commanders[side] > 1 or troops[side] > Model.UNIT_LIMIT: return "指挥官或普通部队数量超限。"
 		var player: Variant = data.players[side]
@@ -167,6 +211,7 @@ static func _validate(data: Dictionary) -> String:
 static func restore(data: Variant) -> Dictionary:
 	var checked: Dictionary = validate(data)
 	if not checked.ok: return checked
+	data = normalize_legacy(data)
 	var battle: RefCounted = Model.new(int(data.match_seed), data.map_id, data.players[0].hero_id, data.players[1].hero_id)
 	if int(data.version) >= 2 and not data.objective.is_empty():
 		battle.objective = Model.ControlObjective.config(data.objective)
@@ -185,6 +230,9 @@ static func restore(data: Variant) -> Dictionary:
 			for card: Dictionary in raw[zone]: player[zone].append(_decode_card(card))
 		battle.players.append(player)
 	battle.units.clear()
+	battle.traps.clear()
+	for raw: Dictionary in data.traps:
+		battle.traps.append({"side": int(raw.side), "unit_id": int(raw.unit_id), "pos": Vector2i(int(raw.pos[0]), int(raw.pos[1])), "card": _decode_card(raw.card)})
 	for raw: Dictionary in data.units:
 		var unit: Dictionary = {}
 		for key: String in UNIT_INTS: unit[key] = int(raw[key])

@@ -52,9 +52,24 @@ const SPELL_ATLASES: Dictionary = {
 	"weather_1": ["rain", "fog", "sun"], "weather_2": ["snow", "clear_skies", "initiative"],
 	"tactics_1": ["repulse", "frostbind", "dispel"], "tactics_2": ["exchange", "onslaught", "rampart"]
 }
+const EXPANSION_ATLASES: Dictionary = {
+	"spells-v1": ["shatter_bolt", "rally_heal", "cleanse_root", "reveal_traps"],
+	"traps-forest-v1": ["anchor_snare", "ember_mine", "oath_ward", "seedwood"]
+}
 
 static func get_texture(asset_id: String) -> Texture2D:
 	if textures.has(asset_id): return textures[asset_id]
+	for sheet: String in EXPANSION_ATLASES:
+		var index: int = EXPANSION_ATLASES[sheet].find(asset_id)
+		if index >= 0:
+			var art: Texture2D = _atlas("res://assets/art/expansion/%s.png" % sheet, index, 2, 2)
+			if art != null and sheet == "spells-v1":
+				# The generated sheet's horizontal seam is y=599, not 627.
+				# Runtime source regions preserve the original PNG bytes.
+				var regions: Array[Rect2] = [Rect2(2, 2, 623, 595), Rect2(629, 2, 623, 595), Rect2(2, 601, 623, 651), Rect2(629, 601, 623, 651)]
+				(art as AtlasTexture).region = regions[index]
+			if art != null: textures[asset_id] = art
+			return art
 	var path: String = "res://assets/art/%s.png" % asset_id
 	if NARRATIVE_SCENES.has(asset_id): path = "res://assets/art/narrative/%s.png" % NARRATIVE_SCENES[asset_id]
 	if asset_id == "menu" and ResourceLoader.exists("res://assets/art/menu_cel.png"): path = "res://assets/art/menu_cel.png"

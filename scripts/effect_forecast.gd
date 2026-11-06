@@ -27,8 +27,8 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 			if card.cost > battle.players[side].mana or not battle.card_targets(instance.uid, side).has(cell): return {}
 			title = card.name
 			effect = str(card.get("effect", ""))
-			if effect not in ["damage", "area", "heal", "shield", "dispel", "repulse"]: return {}
-			if effect in ["damage", "area"]: amount = battle.spell_damage(card, side)
+			if effect not in ["damage", "area", "heal", "shield", "dispel", "repulse", "shatter_bolt", "rally_heal", "cleanse_root"]: return {}
+			if effect in ["damage", "area", "shatter_bolt"]: amount = battle.spell_damage(card, side)
 			elif effect == "repulse": amount = int(card.amount) + (1 if battle.repulse_destination(target, side) == cell else 0)
 			else: amount = int(card.get("amount", 0))
 		"hero":
@@ -39,9 +39,12 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 			if effect == "damage": amount = battle.fire_damage(int(hero.amount))
 			elif effect != "blessing": return {}
 		_: return {}
-	if target.is_empty(): return {}
+	if target.is_empty() and effect != "rally_heal": return {}
 	var changes: Array[Dictionary] = []
-	if effect == "area":
+	if effect == "rally_heal":
+		for ally: Dictionary in battle.units:
+			if ally.side == side and battle.distance(ally.pos, cell) <= 1: changes.append(_change(ally, "heal", amount))
+	elif effect == "area":
 		for victim: Dictionary in battle.units:
 			if victim.side != side and battle.distance(victim.pos, cell) <= 1: changes.append(_change(victim, "damage", amount))
 	else:
@@ -51,6 +54,9 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 		changes.append(change)
 	var note: String = ""
 	match effect:
+		"shatter_bolt": note = "先移除全部护盾，再结算法术伤害；不触发援护或受击陷阱。"
+		"rally_heal": note = "目标格与相邻四格的友军同时恢复生命；不恢复行动。"
+		"cleanse_root": note = "解除定身并恢复1生命；已经消耗的移动与攻击不会重置。"
 		"damage", "area": note = "法术无视防御，护盾先抵挡；不触发援护或反击。"
 		"heal": note = "恢复不超过生命上限；不会恢复目标的行动次数。"
 		"shield": note = "护盾变为%d，不叠加。" % amount
@@ -58,15 +64,16 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 		"dispel": note = "仅移除护盾，不造成生命伤害。"
 		"repulse": note = "退路受阻时增加1伤害；击破后不再位移。"
 	if str(action.get("type", "")) == "unit_skill": note += "\n消耗1法力，结束施术部队的行动。"
-	return {"title": title, "effect": effect, "amount": amount, "target_id": target.id, "changes": changes, "note": note}
+	return {"title": title, "effect": effect, "amount": amount, "target_id": target.get("id", -1), "changes": changes, "note": note}
 
 static func _change(unit: Dictionary, effect: String, amount: int) -> Dictionary:
 	var hp: int = unit.hp
 	var shield: int = unit.shield
-	if effect in ["damage", "area", "repulse"]:
+	if effect == "shatter_bolt": hp = maxi(0, hp - amount); shield = 0
+	elif effect in ["damage", "area", "repulse"]:
 		hp = maxi(0, hp - maxi(0, amount - shield))
 		shield = maxi(0, shield - amount)
-	elif effect == "heal": hp = mini(int(unit.max_hp), hp + amount)
+	elif effect in ["heal", "cleanse_root"]: hp = mini(int(unit.max_hp), hp + amount)
 	elif effect == "shield": shield = amount
 	elif effect == "dispel": shield = 0
 	elif effect == "blessing":
@@ -78,7 +85,7 @@ static func _change(unit: Dictionary, effect: String, amount: int) -> Dictionary
 
 static func describe(forecast: Dictionary, battle: Battle, compact: bool = false) -> String:
 	var lines := PackedStringArray()
-	if forecast.effect in ["damage", "area"]: lines.append("本次火焰伤害 %d\n" % forecast.amount)
+	if forecast.effect in ["damage", "area", "shatter_bolt"]: lines.append("本次火焰伤害 %d\n" % forecast.amount)
 	if forecast.effect == "area": lines.append("范围命中 %d 名敌军\n" % forecast.changes.size())
 	for change: Dictionary in forecast.changes:
 		var label: String = "%s · %s" % [battle.cell_name(change.position_before), change.name]

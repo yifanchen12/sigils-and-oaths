@@ -91,4 +91,28 @@ cards = Array[Dictionary]([{
 }, {
 "id": "clear_skies", "name": "晴空号令", "short": "晴", "type": "environment", "effect": "clear_weather", "cost": 1,
 "text": "立即驱散当前天气，\n使战场恢复晴朗。\n晴朗时不能使用。", "tag": "环境 · 驱散"
+}, {
+"id": "shatter_bolt", "name": "破阵谕火", "short": "烬", "type": "spell", "effect": "shatter_bolt", "cost": 3, "amount": 2,
+"text": "先移除敌军全部护盾，\n再造成2点火焰伤害。\n受天气与赤烬首发加成影响。", "tag": "法术 · 破盾"
+}, {
+"id": "rally_heal", "name": "同行祷雨", "short": "祷", "type": "spell", "effect": "rally_heal", "cost": 3, "amount": 2,
+"text": "为目标格及相邻四格\n所有友军恢复2生命。\n不会恢复行动次数。", "tag": "法术 · 群疗"
+}, {
+"id": "cleanse_root", "name": "净途符", "short": "净", "type": "spell", "effect": "cleanse_root", "cost": 1, "amount": 1,
+"text": "解除一名友军的定身，\n并恢复1生命。\n不会重置已经消耗的行动。", "tag": "法术 · 解缚"
+}, {
+"id": "reveal_traps", "name": "寻痕灯", "short": "探", "type": "spell", "effect": "reveal_traps", "cost": 1,
+"text": "探查目标格及相邻四格，\n拆除范围内的敌方陷阱。\n空查仍消耗此牌与法力。", "tag": "法术 · 反伏设"
+}, {
+"id": "seedwood", "name": "林息落种", "short": "林", "type": "environment", "effect": "terrain", "terrain": "forest", "cost": 2,
+"text": "将施法范围内一格改为森林。\n提供防御，并改变移动费用。\n不能覆盖山地、河流或桥梁。", "tag": "环境 · 植林"
+}, {
+"id": "anchor_snare", "name": "锚索伏阵", "short": "缚", "type": "trap", "effect": "trap", "trigger": "step", "cost": 2, "amount": 1, "root": true,
+"text": "伏设空格。敌军主动踏入时，\n造成1伤害并中断移动，\n本回合定身。触发后弃置。", "tag": "陷阱 · 地格 / 缚足"
+}, {
+"id": "ember_mine", "name": "余烬地雷", "short": "雷", "type": "trap", "effect": "trap", "trigger": "step", "cost": 3, "amount": 3, "fire": true,
+"text": "伏设空格。敌军主动踏入时，\n造成3点火焰伤害，受天气影响。\n无指挥官加成，触发后弃置。", "tag": "陷阱 · 地格 / 爆破"
+}, {
+"id": "oath_ward", "name": "回誓屏障", "short": "誓", "type": "trap", "effect": "trap", "trigger": "attack", "cost": 2, "amount": 3,
+"text": "伏设于友军。下次实际承受\n普攻前获得3护盾（上限5）。\n随其移动，触发后弃置。", "tag": "陷阱 · 受击反制"
 }])

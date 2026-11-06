@@ -82,8 +82,38 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 			var card: Dictionary = battle.definition(instance.card_id)
 			if card.type == "unit":
 				return 50.0 + int(card.cost) * 2.0 - battle.distance(action.target, enemy_leader.pos) * 1.5 + (2.0 if battle.ground(action.target) == "forest" else 0.0)
+			if card.type == "trap":
+				if threats.is_empty(): threats = TacticalAI.prepare(battle)
+				if card.trigger == "attack":
+					var guarded: Dictionary = battle.unit_at(action.target)
+					return minf(42.0, TacticalAI.exposure(battle, guarded, threats)) + 6.0 - mini(3, int(guarded.shield)) * 2.0
+				var value: float = -1.0
+				for entry: Dictionary in threats.enemies:
+					if not entry.origins.has(action.target): continue
+					var nearest: int = 999
+					for ally: Dictionary in battle.units:
+						if ally.side == side: nearest = mini(nearest, battle.distance(ally.pos, action.target))
+					value = maxf(value, 28.0 - nearest * 4.0 + (6.0 if card.get("root", false) and entry.unit.kind == "cavalry" else 0.0))
+				return value
 			var target: Dictionary = battle.unit_at(action.target)
 			match String(card.effect):
+				"shatter_bolt":
+					var damage: int = battle.spell_damage(card, side)
+					return 35.0 + damage * 5.0 + int(target.shield) * 6.0 + (3000.0 if target.kind == "commander" else 40.0) * float(damage >= int(target.hp))
+				"rally_heal":
+					var healing: int = 0
+					for ally: Dictionary in battle.units:
+						if ally.side == side and battle.distance(ally.pos, action.target) <= 1: healing += mini(int(card.amount), int(ally.max_hp) - int(ally.hp))
+					return 12.0 + healing * 7.0
+				"cleanse_root": return 15.0 + mini(1, int(target.max_hp) - int(target.hp)) * 5.0 + (16.0 if int(target.rooted_turns) > 0 else 0.0)
+				"reveal_traps":
+					# Search from public army positions only. Never read enemy trap
+					# identity, protected unit, position or future cards.
+					if battle.Traps.count(battle, 1 - side) == 0: return -1.0
+					var proximity: int = 999
+					for enemy: Dictionary in battle.units:
+						if enemy.side != side: proximity = mini(proximity, battle.distance(enemy.pos, action.target))
+					return 20.0 - proximity * 2.0
 				"damage", "area":
 					var score: float = 35.0
 					var amount: int = battle.spell_damage(card, side)
@@ -109,6 +139,10 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 
 				"march": return 5.0 if battle.distance(target.pos, enemy_leader.pos) > int(target.range) else -1.0
 				"terrain":
+					if card.terrain == "forest":
+						if target.is_empty(): return -1.0
+						if target.side == side: return 10.0 + (1 - battle.terrain_defense(target)) * 8.0 - (15.0 if target.kind == "cavalry" else 0.0)
+						return 12.0 if target.kind == "cavalry" else -1.0
 					if card.terrain == "fort":
 						return 12.0 + (10.0 if target.kind == "commander" else 0.0)
 					if not target.is_empty():

@@ -1,0 +1,656 @@
+{
+  "schema_version": 1,
+  "game_version": "0.29.0-dev",
+  "recorded_on": "2026-11-07",
+  "rules_signature": "cfa2d45e178d74f3bb5967d0eb5e999e2ec18c5d66afd4896eacf86434394c46",
+  "battle_snapshot_version": 3,
+  "generator": "tests/benchmark_expansion.gd",
+  "scope": "Fixed-seed headless execution diagnostics; not human balance, native UI, or full campaign completion evidence.",
+  "setup": {
+    "seed": 2901,
+    "maps": [
+      "greenwood",
+      "rivergate",
+      "sunspire"
+    ],
+    "expansion_preset": "ambush",
+    "opponent_presets": [
+      "balanced",
+      "assault",
+      "bastion"
+    ],
+    "both_seats_against_old_presets": true,
+    "mirrors_per_map": 1,
+    "player_policy": "production AI on both sides",
+    "commanders": [
+      "warden",
+      "warden"
+    ],
+    "simulated_seconds_per_action": 0.35,
+    "action_cap": 1000
+  },
+  "counting_notes": [
+    "Twenty-one distinct declared openings share one seed; this is not a statistical balance sample.",
+    "turn is the internal side-turn counter, not a full round.",
+    "Card plays and trap triggers count both sides, including both expansion decks in mirrors.",
+    "Zero plays or triggers remain explicit; triggers exclude disarming and invalidation.",
+    "Mirror winners are recorded by side and excluded from expansion-versus-old-preset win/loss totals.",
+    "Compact report omits full action traces and final snapshots; all source report rule signatures matched the signature above."
+  ],
+  "summary": {
+    "games": 21,
+    "cross_preset_games": 18,
+    "cross_preset_expansion_wins": 5,
+    "cross_preset_expansion_losses": 13,
+    "mirror_games": 3,
+    "failures": 0,
+    "illegal_actions": 0,
+    "action_caps_reached": 0,
+    "actions": 5280,
+    "new_card_plays": {
+      "shatter_bolt": 43,
+      "rally_heal": 24,
+      "cleanse_root": 17,
+      "reveal_traps": 6,
+      "seedwood": 24,
+      "anchor_snare": 48,
+      "ember_mine": 26,
+      "oath_ward": 33
+    },
+    "trap_triggers": {
+      "anchor_snare": 34,
+      "ember_mine": 18,
+      "oath_ward": 30
+    }
+  },
+  "games": [
+    {
+      "map": "greenwood",
+      "seed": 2901,
+      "opponent": "balanced",
+      "match_type": "cross_preset",
+      "expansion_side": 0,
+      "winner": 0,
+      "expansion_result": "win",
+      "turn": 27,
+      "actions": 173,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 2,
+        "rally_heal": 1,
+        "cleanse_root": 1,
+        "reveal_traps": 0,
+        "seedwood": 1,
+        "anchor_snare": 2,
+        "ember_mine": 0,
+        "oath_ward": 1
+      },
+      "trap_triggers": {
+        "anchor_snare": 1,
+        "ember_mine": 0,
+        "oath_ward": 1
+      }
+    },
+    {
+      "map": "greenwood",
+      "seed": 2901,
+      "opponent": "balanced",
+      "match_type": "cross_preset",
+      "expansion_side": 1,
+      "winner": 0,
+      "expansion_result": "loss",
+      "turn": 35,
+      "actions": 207,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 2,
+        "rally_heal": 1,
+        "cleanse_root": 0,
+        "reveal_traps": 0,
+        "seedwood": 1,
+        "anchor_snare": 2,
+        "ember_mine": 1,
+        "oath_ward": 0
+      },
+      "trap_triggers": {
+        "anchor_snare": 1,
+        "ember_mine": 0,
+        "oath_ward": 0
+      }
+    },
+    {
+      "map": "greenwood",
+      "seed": 2901,
+      "opponent": "assault",
+      "match_type": "cross_preset",
+      "expansion_side": 0,
+      "winner": 1,
+      "expansion_result": "loss",
+      "turn": 36,
+      "actions": 204,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 2,
+        "rally_heal": 1,
+        "cleanse_root": 1,
+        "reveal_traps": 0,
+        "seedwood": 1,
+        "anchor_snare": 2,
+        "ember_mine": 0,
+        "oath_ward": 2
+      },
+      "trap_triggers": {
+        "anchor_snare": 2,
+        "ember_mine": 0,
+        "oath_ward": 1
+      }
+    },
+    {
+      "map": "greenwood",
+      "seed": 2901,
+      "opponent": "assault",
+      "match_type": "cross_preset",
+      "expansion_side": 1,
+      "winner": 0,
+      "expansion_result": "loss",
+      "turn": 19,
+      "actions": 103,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 1,
+        "rally_heal": 1,
+        "cleanse_root": 0,
+        "reveal_traps": 0,
+        "seedwood": 1,
+        "anchor_snare": 2,
+        "ember_mine": 0,
+        "oath_ward": 0
+      },
+      "trap_triggers": {
+        "anchor_snare": 1,
+        "ember_mine": 0,
+        "oath_ward": 0
+      }
+    },
+    {
+      "map": "greenwood",
+      "seed": 2901,
+      "opponent": "bastion",
+      "match_type": "cross_preset",
+      "expansion_side": 0,
+      "winner": 0,
+      "expansion_result": "win",
+      "turn": 62,
+      "actions": 390,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 2,
+        "rally_heal": 1,
+        "cleanse_root": 1,
+        "reveal_traps": 0,
+        "seedwood": 1,
+        "anchor_snare": 2,
+        "ember_mine": 2,
+        "oath_ward": 2
+      },
+      "trap_triggers": {
+        "anchor_snare": 2,
+        "ember_mine": 1,
+        "oath_ward": 1
+      }
+    },
+    {
+      "map": "greenwood",
+      "seed": 2901,
+      "opponent": "bastion",
+      "match_type": "cross_preset",
+      "expansion_side": 1,
+      "winner": 1,
+      "expansion_result": "win",
+      "turn": 48,
+      "actions": 352,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 2,
+        "rally_heal": 1,
+        "cleanse_root": 1,
+        "reveal_traps": 0,
+        "seedwood": 1,
+        "anchor_snare": 2,
+        "ember_mine": 2,
+        "oath_ward": 2
+      },
+      "trap_triggers": {
+        "anchor_snare": 2,
+        "ember_mine": 2,
+        "oath_ward": 2
+      }
+    },
+    {
+      "map": "greenwood",
+      "seed": 2901,
+      "opponent": "ambush",
+      "match_type": "mirror",
+      "expansion_side": 0,
+      "winner": 1,
+      "expansion_result": null,
+      "turn": 34,
+      "actions": 193,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 4,
+        "rally_heal": 2,
+        "cleanse_root": 1,
+        "reveal_traps": 2,
+        "seedwood": 2,
+        "anchor_snare": 4,
+        "ember_mine": 2,
+        "oath_ward": 2
+      },
+      "trap_triggers": {
+        "anchor_snare": 4,
+        "ember_mine": 0,
+        "oath_ward": 2
+      }
+    },
+    {
+      "map": "rivergate",
+      "seed": 2901,
+      "opponent": "balanced",
+      "match_type": "cross_preset",
+      "expansion_side": 0,
+      "winner": 1,
+      "expansion_result": "loss",
+      "turn": 38,
+      "actions": 232,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 2,
+        "rally_heal": 1,
+        "cleanse_root": 1,
+        "reveal_traps": 0,
+        "seedwood": 1,
+        "anchor_snare": 2,
+        "ember_mine": 0,
+        "oath_ward": 2
+      },
+      "trap_triggers": {
+        "anchor_snare": 1,
+        "ember_mine": 0,
+        "oath_ward": 2
+      }
+    },
+    {
+      "map": "rivergate",
+      "seed": 2901,
+      "opponent": "balanced",
+      "match_type": "cross_preset",
+      "expansion_side": 1,
+      "winner": 0,
+      "expansion_result": "loss",
+      "turn": 19,
+      "actions": 107,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 1,
+        "rally_heal": 1,
+        "cleanse_root": 0,
+        "reveal_traps": 0,
+        "seedwood": 1,
+        "anchor_snare": 2,
+        "ember_mine": 0,
+        "oath_ward": 0
+      },
+      "trap_triggers": {
+        "anchor_snare": 2,
+        "ember_mine": 0,
+        "oath_ward": 0
+      }
+    },
+    {
+      "map": "rivergate",
+      "seed": 2901,
+      "opponent": "assault",
+      "match_type": "cross_preset",
+      "expansion_side": 0,
+      "winner": 1,
+      "expansion_result": "loss",
+      "turn": 61,
+      "actions": 410,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 2,
+        "rally_heal": 1,
+        "cleanse_root": 1,
+        "reveal_traps": 0,
+        "seedwood": 1,
+        "anchor_snare": 2,
+        "ember_mine": 2,
+        "oath_ward": 2
+      },
+      "trap_triggers": {
+        "anchor_snare": 2,
+        "ember_mine": 2,
+        "oath_ward": 1
+      }
+    },
+    {
+      "map": "rivergate",
+      "seed": 2901,
+      "opponent": "assault",
+      "match_type": "cross_preset",
+      "expansion_side": 1,
+      "winner": 0,
+      "expansion_result": "loss",
+      "turn": 51,
+      "actions": 337,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 2,
+        "rally_heal": 1,
+        "cleanse_root": 1,
+        "reveal_traps": 0,
+        "seedwood": 1,
+        "anchor_snare": 2,
+        "ember_mine": 2,
+        "oath_ward": 2
+      },
+      "trap_triggers": {
+        "anchor_snare": 2,
+        "ember_mine": 2,
+        "oath_ward": 2
+      }
+    },
+    {
+      "map": "rivergate",
+      "seed": 2901,
+      "opponent": "bastion",
+      "match_type": "cross_preset",
+      "expansion_side": 0,
+      "winner": 0,
+      "expansion_result": "win",
+      "turn": 66,
+      "actions": 428,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 2,
+        "rally_heal": 1,
+        "cleanse_root": 1,
+        "reveal_traps": 0,
+        "seedwood": 1,
+        "anchor_snare": 2,
+        "ember_mine": 2,
+        "oath_ward": 2
+      },
+      "trap_triggers": {
+        "anchor_snare": 2,
+        "ember_mine": 2,
+        "oath_ward": 2
+      }
+    },
+    {
+      "map": "rivergate",
+      "seed": 2901,
+      "opponent": "bastion",
+      "match_type": "cross_preset",
+      "expansion_side": 1,
+      "winner": 0,
+      "expansion_result": "loss",
+      "turn": 58,
+      "actions": 378,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 2,
+        "rally_heal": 1,
+        "cleanse_root": 1,
+        "reveal_traps": 0,
+        "seedwood": 1,
+        "anchor_snare": 2,
+        "ember_mine": 2,
+        "oath_ward": 2
+      },
+      "trap_triggers": {
+        "anchor_snare": 1,
+        "ember_mine": 2,
+        "oath_ward": 2
+      }
+    },
+    {
+      "map": "rivergate",
+      "seed": 2901,
+      "opponent": "ambush",
+      "match_type": "mirror",
+      "expansion_side": 0,
+      "winner": 0,
+      "expansion_result": null,
+      "turn": 66,
+      "actions": 360,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 4,
+        "rally_heal": 2,
+        "cleanse_root": 2,
+        "reveal_traps": 2,
+        "seedwood": 2,
+        "anchor_snare": 4,
+        "ember_mine": 4,
+        "oath_ward": 4
+      },
+      "trap_triggers": {
+        "anchor_snare": 2,
+        "ember_mine": 3,
+        "oath_ward": 4
+      }
+    },
+    {
+      "map": "sunspire",
+      "seed": 2901,
+      "opponent": "balanced",
+      "match_type": "cross_preset",
+      "expansion_side": 0,
+      "winner": 1,
+      "expansion_result": "loss",
+      "turn": 28,
+      "actions": 158,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 2,
+        "rally_heal": 1,
+        "cleanse_root": 1,
+        "reveal_traps": 0,
+        "seedwood": 1,
+        "anchor_snare": 2,
+        "ember_mine": 0,
+        "oath_ward": 2
+      },
+      "trap_triggers": {
+        "anchor_snare": 2,
+        "ember_mine": 0,
+        "oath_ward": 2
+      }
+    },
+    {
+      "map": "sunspire",
+      "seed": 2901,
+      "opponent": "balanced",
+      "match_type": "cross_preset",
+      "expansion_side": 1,
+      "winner": 0,
+      "expansion_result": "loss",
+      "turn": 25,
+      "actions": 144,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 1,
+        "rally_heal": 1,
+        "cleanse_root": 0,
+        "reveal_traps": 0,
+        "seedwood": 1,
+        "anchor_snare": 2,
+        "ember_mine": 0,
+        "oath_ward": 0
+      },
+      "trap_triggers": {
+        "anchor_snare": 0,
+        "ember_mine": 0,
+        "oath_ward": 0
+      }
+    },
+    {
+      "map": "sunspire",
+      "seed": 2901,
+      "opponent": "assault",
+      "match_type": "cross_preset",
+      "expansion_side": 0,
+      "winner": 1,
+      "expansion_result": "loss",
+      "turn": 35,
+      "actions": 187,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 2,
+        "rally_heal": 1,
+        "cleanse_root": 1,
+        "reveal_traps": 0,
+        "seedwood": 1,
+        "anchor_snare": 2,
+        "ember_mine": 0,
+        "oath_ward": 2
+      },
+      "trap_triggers": {
+        "anchor_snare": 2,
+        "ember_mine": 0,
+        "oath_ward": 2
+      }
+    },
+    {
+      "map": "sunspire",
+      "seed": 2901,
+      "opponent": "assault",
+      "match_type": "cross_preset",
+      "expansion_side": 1,
+      "winner": 0,
+      "expansion_result": "loss",
+      "turn": 21,
+      "actions": 121,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 1,
+        "rally_heal": 1,
+        "cleanse_root": 0,
+        "reveal_traps": 0,
+        "seedwood": 1,
+        "anchor_snare": 2,
+        "ember_mine": 0,
+        "oath_ward": 0
+      },
+      "trap_triggers": {
+        "anchor_snare": 1,
+        "ember_mine": 0,
+        "oath_ward": 0
+      }
+    },
+    {
+      "map": "sunspire",
+      "seed": 2901,
+      "opponent": "bastion",
+      "match_type": "cross_preset",
+      "expansion_side": 0,
+      "winner": 0,
+      "expansion_result": "win",
+      "turn": 41,
+      "actions": 265,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 2,
+        "rally_heal": 1,
+        "cleanse_root": 1,
+        "reveal_traps": 0,
+        "seedwood": 1,
+        "anchor_snare": 2,
+        "ember_mine": 1,
+        "oath_ward": 2
+      },
+      "trap_triggers": {
+        "anchor_snare": 1,
+        "ember_mine": 0,
+        "oath_ward": 2
+      }
+    },
+    {
+      "map": "sunspire",
+      "seed": 2901,
+      "opponent": "bastion",
+      "match_type": "cross_preset",
+      "expansion_side": 1,
+      "winner": 0,
+      "expansion_result": "loss",
+      "turn": 31,
+      "actions": 181,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 1,
+        "rally_heal": 1,
+        "cleanse_root": 0,
+        "reveal_traps": 0,
+        "seedwood": 1,
+        "anchor_snare": 2,
+        "ember_mine": 2,
+        "oath_ward": 0
+      },
+      "trap_triggers": {
+        "anchor_snare": 2,
+        "ember_mine": 0,
+        "oath_ward": 0
+      }
+    },
+    {
+      "map": "sunspire",
+      "seed": 2901,
+      "opponent": "ambush",
+      "match_type": "mirror",
+      "expansion_side": 0,
+      "winner": 1,
+      "expansion_result": null,
+      "turn": 60,
+      "actions": 350,
+      "illegal_action": false,
+      "action_cap_reached": false,
+      "new_card_plays": {
+        "shatter_bolt": 4,
+        "rally_heal": 2,
+        "cleanse_root": 2,
+        "reveal_traps": 2,
+        "seedwood": 2,
+        "anchor_snare": 4,
+        "ember_mine": 4,
+        "oath_ward": 4
+      },
+      "trap_triggers": {
+        "anchor_snare": 1,
+        "ember_mine": 4,
+        "oath_ward": 4
+      }
+    }
+  ]
+}

@@ -57,6 +57,12 @@ func run() -> void:
 			if not outcome.ok: break
 			moves += 1
 		var expected: Dictionary = row.final.duplicate(true)
+		if int(expected.version) < Snapshot.VERSION:
+			var migrated: Dictionary = Snapshot.restore(expected)
+			check(migrated.ok, "historical fixture uses the explicit additive expansion migration")
+			if not migrated.ok: continue
+			expected = Snapshot.capture(migrated.battle)
+			expected = JSON.parse_string(JSON.stringify(expected, "", true, true))
 		check(absf(battle.time_remaining - float(expected.time_remaining)) < 0.00001, "recorded action cadence preserves clock")
 		expected.erase("time_remaining")
 		check(state_without_clock(battle) == expected, "entire final state including cards, units, RNG and objective reproduces")

@@ -53,6 +53,10 @@ func zone_invariants(battle: Battle) -> bool:
 			if ids.has(unit.card.uid): return false
 			ids[unit.card.uid] = true
 			count += 1
+		for trap: Dictionary in battle.traps:
+			if trap.side != side: continue
+			if ids.has(trap.card.uid): return false
+			ids[trap.card.uid] = true; count += 1
 		if count != int(battle.players[side].card_total): return false
 	for unit: Dictionary in battle.units:
 		if occupied.has(unit.pos): return false
@@ -61,7 +65,7 @@ func zone_invariants(battle: Battle) -> bool:
 
 func run() -> void:
 	var battle: Battle = fresh()
-	check(battle.CATALOG.cards.size() == 25 and battle.deck_size == 30, "24 collectible definitions plus initiative and 30-card deck")
+	check(battle.CATALOG.cards.size() == 33 and battle.deck_size == 30, "32 collectible definitions plus initiative and 30-card deck")
 	check(battle.players[0].hand.size() == 5 and battle.players[1].hand.size() == 6, "second player opening compensation")
 	check(zone_invariants(battle), "initial zones")
 	var duplicate: Battle = BattleModel.new(42, "classic_greenwood")

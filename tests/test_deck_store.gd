@@ -150,6 +150,8 @@ func test_custom_matches() -> void:
 			var cards: Array = game.players[side].hand + game.players[side].deck + game.players[side].discard
 			for unit: Dictionary in game.units:
 				if unit.side == side and unit.has("card"): cards.append(unit.card)
+			for trap: Dictionary in game.traps:
+				if trap.side == side: cards.append(trap.card)
 			var uids: Dictionary = {}
 			for card: Dictionary in cards: uids[card.uid] = true
 			check(uids.size() == cards.size() and cards.size() == game.players[side].card_total, "custom match preserves unique cards across all zones")

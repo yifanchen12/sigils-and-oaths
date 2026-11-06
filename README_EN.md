@@ -5,13 +5,13 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.28.0-dev" src="https://img.shields.io/badge/version-0.28.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.29.0-dev" src="https://img.shields.io/badge/version-0.29.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts, with no assets from either game. Current source is **0.28.0-dev**, with eight chapters, branching encounters and cross-chapter saves. Chapter 8 enters the water passage and old furnace, follows the fate of Velo’s master and asks how to keep residents supplied with water. The complete campaign, overall balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
+The design studies card resource pacing from Hearthstone, concealed card play and counterplay from Duel Links, and terrain, unit counters and commanders from Langrisser. Characters, card effects, illustrations and map layouts are made for this project, with no assets from those games. Current source is **0.29.0-dev**, with eight chapters, branching encounters and cross-chapter saves; this update adds eight original spells, terrain cards and traps played from hand. The complete campaign, overall balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
 
 ## In-game screenshots
 
@@ -38,7 +38,8 @@ The chapter-8 dialogue capture is from 0.25.0-dev; the battlefield captures belo
 
 | Tactical choice | Implemented |
 | --- | --- |
-| Reinforce from cards | 24 collectible card types, three 30-card presets and one saved custom deck; adjacent deployment can extend from newly summoned units |
+| Reinforce from cards | 32 collectible card types, four 30-card presets and one saved custom deck; adjacent deployment can extend from newly summoned units |
+| Set traps and counter them | Movement snares, mines and protective wards are paid for from hand; each side has two trap slots, enemies see only the count, and a search spell can reveal and remove traps |
 | Cover different unit roles | Infantry beats spears, spears beat cavalry, cavalry beats infantry; archers, mages and healers have distinct ranges and roles |
 | Use active unit skills | Six one-mana abilities: shielding, interception, extra movement, a precise shot, fire damage and healing; once per unit per turn |
 | Contest useful ground | Six fully illustrated 12×10 maps; defensive forests, hills and forts, roads and bridges for mobility, and healing ruins |
@@ -46,11 +47,20 @@ The chapter-8 dialogue capture is from 0.25.0-dev; the battlefield captures belo
 | Change the next exchange | Rain, fog, sun and snow affect both sides; replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
 
-## 0.28: Defense that supports advancing
+## 0.29: Play traps from hand and contest the front
 
-Spearmen now account for reachable threats, existing guards and interception costs; infantry compare added shields with the damage they can prevent. The dock encounter fell from a 32-round fatigue win to a 22-round commander defeat, with 719 native save, restart, continuation and story checks.
+The expansion adds **four spells, one terrain card and three traps**. Anchor Snare interrupts an enemy's voluntary movement, Ember Mine deals weather-sensitive fire damage, and Oath Ward grants a shield before its protected unit actually takes a normal attack. Pay the card's cost from hand to arm it; it remains in the trap zone until consumed. Placement uses the existing three-cell friendly casting range, extended to four by mages. Opponents cannot see the trap's identity or position.
 
-The 15-scenario self-play diagnostic has 6 wins and 9 losses; the previous Sunspire player policy loses both encounters. These local corrections and one faster win do not establish overall balance. All losses are retained; continuous campaign completion is still pending. [Current decisions, results and native evidence](docs/defensive-decisions.md).
+The other cards break shields before dealing fire damage, heal a cross-shaped area, cleanse roots, search for hidden traps, or turn a local tile into forest. Select the new **誓痕伏阵** preset in skirmish mode or add these cards to a custom deck; authored campaign encounters retain their assigned armies. New illustrations were generated with native image_gen, with provenance retained.
+
+All 125 expansion rule checks passed. Twenty-one distinct automated openings completed without illegal actions or reaching the action cap: the new preset won 5 of 18 matchups against older presets, with three mirror matches recorded separately. These verify execution, while balance still needs tuning and human playtesting. Authored prose remains at 60,703 Chinese characters, and continuous campaign completion is pending. [Cards, trigger order and verification scope](docs/card-expansion.md) · [GitHub Releases](https://github.com/yifanchen12/sigils-and-oaths/releases).
+
+The native interface fixture passed 55 checks. A full skirmish from unmodified 30-card decks completed 173 real input actions across 27 side turns (round 14 in the UI), passing 458 checks. These screenshots show the actual deck editor and that match's terminal screen.
+
+![Trap filter and three playable trap cards](docs/screenshots/v029-trap-deck-editor.png)
+![Terminal screen of one native new-versus-old preset skirmish](docs/screenshots/v029-expansion-match-result.png)
+
+See the [historical 0.28 verification](docs/defensive-decisions.md) for defensive AI changes and the dock's native continuation test.
 
 ## Historical 0.26: Both Sunspire routes completed
 
