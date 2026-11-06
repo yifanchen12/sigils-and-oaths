@@ -53,7 +53,7 @@ The expansion adds **four spells, one terrain card and three traps**. Anchor Sna
 
 The other cards break shields before dealing fire damage, heal a cross-shaped area, cleanse roots, search for hidden traps, or turn a local tile into forest. Select the new **誓痕伏阵** preset in skirmish mode or add these cards to a custom deck; authored campaign encounters retain their assigned armies. New illustrations were generated with native image_gen, with provenance retained.
 
-All 125 expansion rule checks passed. Twenty-one distinct automated openings completed without illegal actions or reaching the action cap: the new preset won 5 of 18 matchups against older presets, with three mirror matches recorded separately. These verify execution, while balance still needs tuning and human playtesting. Authored prose remains at 60,703 Chinese characters, and continuous campaign completion is pending. [Cards, trigger order and verification scope](docs/card-expansion.md) · [GitHub Releases](https://github.com/yifanchen12/sigils-and-oaths/releases).
+All 125 expansion rule checks passed. Twenty-one distinct automated openings completed without illegal actions or reaching the action cap: the new preset won 5 of 18 matchups against older presets, with three mirror matches recorded separately. These verify execution, while balance still needs tuning and human playtesting. Authored prose remains at 60,703 Chinese characters, and continuous campaign completion is pending. [Cards, trigger order and verification scope](docs/card-expansion.md) · [0.29 Windows development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.29.0-dev).
 
 The native interface fixture passed 55 checks. A full skirmish from unmodified 30-card decks completed 173 real input actions across 27 side turns (round 14 in the UI), passing 458 checks. These screenshots show the actual deck editor and that match's terminal screen.
 
@@ -302,7 +302,7 @@ UI, forecast, map-art and skill-window checks require a graphical window. Earlie
 
 ## Current limits and artwork
 
-- Single-player development build; no multiplayer, touch adaptation or packaged release. macOS and Linux have not been validated.
+- Single-player development build with a [Windows x64 preview ZIP](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.29.0-dev); no multiplayer or touch adaptation. macOS and Linux have not been validated.
 - Ranged attacks and spells currently do not check line of sight. AI diagnostics are not a substitute for competitive human playtesting.
 - One custom deck is saved locally at Godot's `user://custom_deck.json`; player data is not included in this repository.
 - One campaign autosave and a last-good backup use `user://campaign_autosave.json`. Starting over asks for in-game confirmation before replacing progress; these files are not published.

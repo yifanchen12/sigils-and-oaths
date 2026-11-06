@@ -54,7 +54,7 @@
 
 破阵谕火破盾后造成伤害，同行祷雨提供十字范围群疗，净途符解除定身，寻痕灯探查并拆除伏设，林息落种把局部地格改成森林。新牌可在遭遇战选用 **「誓痕伏阵」** 预组，或加入自定义套牌；既有战役仍使用各关既定军势。新卡面由原生 image_gen 生成并保留来源记录。
 
-125项扩展规则检查通过，21个不同开局的自动对局没有非法行动，也没有触及行动上限；其中18场新旧预组对战为新预组5胜13负，另3场为镜像对局。它们验证结算与运行，整体数值仍需调整和真人试玩。正文仍为60,703字，完整连续战役未完成。[新卡、触发顺序与验证范围](docs/card-expansion.md) · [GitHub Releases](https://github.com/yifanchen12/sigils-and-oaths/releases)。
+125项扩展规则检查通过，21个不同开局的自动对局没有非法行动，也没有触及行动上限；其中18场新旧预组对战为新预组5胜13负，另3场为镜像对局。它们验证结算与运行，整体数值仍需调整和真人试玩。正文仍为60,703字，完整连续战役未完成。[新卡、触发顺序与验证范围](docs/card-expansion.md) · [0.29 Windows开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.29.0-dev)。
 
 原生界面夹具55项检查通过；从未经修改的30张预组开局，实机点击完成173次行动、27个半回合（界面第14轮）的遭遇战，458项检查通过。下图分别为真实组牌窗口与该场实际终局。
 
@@ -195,6 +195,8 @@ AI会抢点、留守，并用击退、法术和援护争夺驻守进度；现在
 git clone https://github.com/yifanchen12/sigils-and-oaths.git
 cd sigils-and-oaths
 ```
+
+只想试玩可下载 [Windows x64 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.29.0-dev)，解压后运行 `SigilsAndOaths.exe`。从源码运行则按以下步骤：
 
 1. 从 [Godot 官方下载页](https://godotengine.org/download/windows/)获取引擎；当前工程验证版本及官方归档地址见 [`docs/engine-download.json`](docs/engine-download.json)。
 2. 在 Godot 项目管理器中导入根目录的 `project.godot`，等待资源导入完成。
