@@ -7,8 +7,30 @@ const Fixture = preload("res://tests/fixtures/saved_battle.gd")
 const PATH: String = "res://.tools/native_campaign.json"
 var pages: Dictionary = {}
 var chapter_ends: Dictionary = {}
-func collect(campaign: RefCounted) -> void:
+var future_condition_keys: Dictionary = {}
+var collected_entries: Dictionary = {}
+func prepare_page_catalog(campaign: RefCounted) -> void:
+	# Native rendering needs distinct pages, not every completed history. Keep
+	# conditions from this AND later chapters so a later inherited branch is never
+	# lost when earlier chapters converge. Exhaustive history checks stay separate.
+	var keys: Dictionary = {}
+	for index: int in range(campaign.index.chapters.size() - 1, -1, -1):
+		var entry: Dictionary = campaign.index.chapters[index]
+		var graph: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(entry.path))
+		for node: Dictionary in graph.nodes.values():
+			var rows: Array = node.get("lines", []) + node.get("options", [])
+			for row: Dictionary in rows:
+				for key: String in row.get("when", {}): keys[key] = true
+		future_condition_keys[entry.id] = keys.keys()
+func collect(campaign: RefCounted, entering: bool = false) -> void:
 	var runner: RefCounted = campaign.story
+	if entering:
+		var relevant: Dictionary = {}
+		for key: String in future_condition_keys[runner.graph.id]:
+			if runner.state.flags.has(key): relevant[key] = runner.state.flags[key]
+		var signature: String = runner.graph.id + JSON.stringify(relevant, "", true, true)
+		if collected_entries.has(signature): return
+		collected_entries[signature] = true
 	var page: Dictionary = runner.current()
 	var id: String = page.get("line_id", runner.graph.id + "." + page.node)
 	if not pages.has(id): pages[id] = {"page": page, "scenario": campaign.scenario(), "snapshot": campaign.snapshot()}
@@ -21,7 +43,7 @@ func collect(campaign: RefCounted) -> void:
 		"battle": runner.resolve_battle(0, page.revision); collect(campaign)
 		"end":
 			if not chapter_ends.has(runner.graph.id): chapter_ends[runner.graph.id] = campaign.snapshot()
-			if not campaign.next_chapter().is_empty(): campaign.advance_chapter(); collect(campaign)
+			if not campaign.next_chapter().is_empty(): campaign.advance_chapter(); collect(campaign, true)
 func find_button(parent: Node, text_part: String) -> Button:
 	if parent is Button and parent.text.contains(text_part): return parent
 	for child: Node in parent.get_children():
@@ -53,7 +75,11 @@ func run() -> void:
 	create_timer(300).timeout.connect(func() -> void: push_error("campaign native UI timeout"); quit(2))
 	for suffix: String in ["", ".bak", ".tmp"]:
 		if FileAccess.file_exists(PATH + suffix): DirAccess.remove_absolute(PATH + suffix)
-	var catalog: RefCounted = Campaign.new(); catalog.start(); collect(catalog)
+	var catalog: RefCounted = Campaign.new(); catalog.start(); prepare_page_catalog(catalog); collect(catalog, true)
+	for entry: Dictionary in catalog.index.chapters:
+		var graph: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(entry.path))
+		for node: Dictionary in graph.nodes.values():
+			for line: Dictionary in node.get("lines", []): check(pages.has(line.id), "every conditional authored paragraph has a native page: " + line.id)
 	game = MainScene.instantiate()
 	game.deck_store = Store.new("res://.tools/native_campaign_deck.json")
 	game.campaign_session = Session.new(PATH)
@@ -83,15 +109,40 @@ func run() -> void:
 			check(view.illustration.visible == has_portrait and (not has_portrait or view.illustration.texture != null), "only the actual named companion displays a portrait: " + id)
 		elif item.page.type == "end":
 			check(view.text_body.text == item.page.text, "authored ending paragraph renders: " + id)
-	check(rendered == 488, "all 488 distinct dialogue paragraphs rendered; five ending paragraphs checked separately")
+	check(rendered == 617, "all 617 distinct dialogue paragraphs rendered; six ending paragraphs checked separately")
 	# Real chapter-end buttons save history and advance through the session.
-	for chapter: String in ["chapter_01", "chapter_02", "chapter_03", "chapter_04"]:
+	for chapter: String in ["chapter_01", "chapter_02", "chapter_03", "chapter_04", "chapter_05"]:
 		check(game.campaign_session.campaign.restore(chapter_ends[chapter]).ok, "load end fixture " + chapter)
 		game._show_story(); await settle()
 		await click_named(view.actions, "进入")
 		check(game.campaign_session.campaign.completed.size() == int(chapter.right(2)), "native next-chapter button saves preceding history")
 	var fresh: RefCounted = Session.new(PATH)
-	check(fresh.load_campaign().ok and fresh.current().line_id == "c05.arrival.01", "native cross-chapter save resumes fifth chapter in a fresh session")
+	check(fresh.load_campaign().ok and fresh.current().line_id == "c06.arrival.01", "native cross-chapter save resumes sixth chapter in a fresh session")
+	await restore_page("c06.teacher.03")
+	await capture("v022-teacher")
+	await restore_page("c06.archive.07")
+	await capture("v022-father-record")
+	await restore_page("chapter_06.disclosure")
+	DisplayServer.window_set_size(Vector2i(1008, 700)); await settle()
+	check_layout(view, "small window evidence choice")
+	await capture("v022-evidence-small")
+	await click(view.actions.get_child(1).get_global_rect().get_center())
+	check(game.campaign_session.campaign.story.state.flags.evidence_council == "witnessed" and view.page.line_id == "c06.witnessed.01", "actual evidence choice opens time-limited witnessed review")
+	await restore_page("chapter_06.letter_choice")
+	check_layout(view, "small window personal letter choice")
+	await capture("v022-letter-small")
+	await click(view.actions.get_child(1).get_global_rect().get_center())
+	check(game.campaign_session.campaign.story.state.flags.letter_company == "companions" and view.page.line_id == "c06.companions.01", "actual letter choice asks companions to remain")
+	fresh = Session.new(PATH)
+	check(fresh.load_campaign().ok and fresh.campaign.story.state.flags.letter_company == "companions", "personal choice persists to disk")
+	DisplayServer.window_set_size(Vector2i(1296, 900)); await settle()
+	await restore_page("c06.companions.06")
+	await capture("v022-family-letter")
+	await restore_page("chapter_06.court_battle")
+	check(view.text_body.text.contains("陶因"), "court briefing names actual opponent")
+	await click_named(view.actions, "率军出征")
+	check(not view.visible and game.battle.map_definition.id == "citadel" and game.battle.players[0].hero_id == "warden" and game.battle.objective.is_empty(), "actual sixth-chapter deployment uses court and ordinary commander objective")
+	await capture("v022-court-opening")
 	await restore_page("c05.arrival.10")
 	await capture("v021-syla-home")
 	await restore_page("c05.house.09")

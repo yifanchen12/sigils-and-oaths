@@ -25,6 +25,11 @@
       "id": "chapter_05",
       "title": "第五章 · 水从哪里来",
       "path": "res://data/narrative/chapters/chapter_05.json"
+    },
+    {
+      "id": "chapter_06",
+      "title": "第六章 · 棋庭旧印",
+      "path": "res://data/narrative/chapters/chapter_06.json"
     }
   ],
   "scenarios": {
@@ -238,6 +243,19 @@
       "enemy_deck": "assault",
       "seed": 5318,
       "enemy_name": "渠首管事岑槐",
+      "enemy_portrait": "terrain_fort"
+    },
+    "c06_court": {
+      "title": "棋庭的留守者",
+      "brief": "陶因扣留工班并封住庭院。艾琳率队夺回石庭，让本地工班接手旧炉，档库留给共同见证者保管。",
+      "objective": "击败棋庭留守队长陶因，解除庭院的武装封锁。",
+      "map": "citadel",
+      "hero": "warden",
+      "enemy_class": "warden",
+      "deck": "bastion",
+      "enemy_deck": "balanced",
+      "seed": 6317,
+      "enemy_name": "留守队长陶因",
       "enemy_portrait": "terrain_fort"
     }
   }

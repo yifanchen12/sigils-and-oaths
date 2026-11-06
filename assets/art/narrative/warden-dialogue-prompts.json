@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "milestone": "0.22.0-dev",
+  "tool": "native image_gen",
+  "model": "not exposed by runtime",
+  "reference": "assets/art/hero_sprites_cel.png",
+  "initial": {
+    "source_filename": "exec-f03ebd4e-b197-415a-84b3-75f39d4cbb9a.png",
+    "prompt": "Create one production narrative portrait for the original Chinese card-and-tactics game Sigils & Oaths. The attached existing atlas is an IDENTITY AND LINE/COLOUR REFERENCE. Use ONLY the leftmost blonde woman Eileen; do not include the man or brunette. Eileen is unmistakably an adult 29-year-old woman. Preserve her short tousled ivory-blonde hair, turquoise eyes, mature anime face, normal seven-head body proportions, ivory-and-gold light armour, green cape, shoulder-baring outfit and long boots. Match the original clean ink contours and two-level cel shading, bright flat ivory/emerald/old gold shapes, no painterly realism, no ornate added detail. Change the battle pose into a quiet standing visual-novel dialogue pose: shoulders relaxed, feet planted fairly close, torso upright and slightly turned toward the viewer's right, arms lowered naturally, sword completely sheathed at her hip and shield strapped behind her back or resting out of frame. Her mouth is gently closed, expression serious and attentive with a little tiredness; absolutely no grin, flirt pose, raised sword, tears, or combat effects. She needs to speak about a missing father and an uncomfortable conversation with her teacher; neutral restrained emotion, not exaggerated distress. Single full-body figure from head to boots, all hair/cape/feet contained with 5 percent clear margins. Vertical portrait composition, approximately 1024x1536. REAL transparent background with alpha, no ground, shadows on scenery, checkered background, text, signature, frame, second figure or extra limbs. This is a new noncombat pose in the same original character design, not a new costume or redesigned face."
+  },
+  "cleanup": {
+    "source_filename": "exec-3d74081a-cad1-4765-9c3c-6b9795acc96e.png",
+    "reference_source_filename": "exec-f03ebd4e-b197-415a-84b3-75f39d4cbb9a.png",
+    "prompt": "Edit this exact Eileen narrative portrait. Keep the character, face, serious closed-mouth expression, hair, pose, costume, proportions, sheath, hands and all ink/cel-shaded details unchanged. Remove every diffuse green/beige/grey atmospheric glow or haze surrounding the character, including soft halo near hair, cape, legs and feet. Outside her actual drawn silhouette must be completely transparent alpha, not a coloured or feathered cloud. Preserve only narrow clean anti-aliasing on the actual outer contour. Her clothing and skin must be fully opaque. Keep the entire head, cape and both boots intact, with no silhouette cuts. Return the same 1024x1536 single full-body portrait on REAL transparent background. No scene, ground shadow, checkerboard, text, border, lighting bloom or additional objects."
+  }
+}

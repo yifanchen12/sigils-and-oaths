@@ -26,6 +26,7 @@ func checkpoint() -> RefCounted:
 			"choice":
 				var option: String = page.options[0].id
 				if scenario_id == "c02_seed_bridge" and page.options.any(func(item: Dictionary): return item.id == "seed"): option = "seed"
+				if scenario_id == "c05_channel" and campaign.story.graph.id == "chapter_05" and page.node == "water": option = "channel"
 				campaign.story.choose(option, page.revision)
 			"battle": campaign.story.resolve_battle(0, page.revision)
 			"end": campaign.advance_chapter()
@@ -89,15 +90,17 @@ func run() -> void:
 	create_timer(240).timeout.connect(func() -> void: push_error("native encounter playthrough timeout"); quit(2))
 	for arg: String in OS.get_cmdline_user_args():
 		if arg.begins_with("--scenario="): scenario_id = arg.trim_prefix("--scenario=")
-	check(scenario_id in ["c01_bridge", "c02_relief_bridge", "c02_seed_bridge", "c03_vent"], "native encounter scenario is supported")
+	check(scenario_id in ["c01_bridge", "c02_relief_bridge", "c02_seed_bridge", "c03_vent", "c05_channel"], "native encounter scenario is supported")
 	if failures > 0: quit(1); return
 	post_node = "vent_after" if scenario_id == "c03_vent" else "bridge_after"
 	post_line = "c03.vent_after.01" if scenario_id == "c03_vent" else "c02.bridge_after.01"
 	if scenario_id == "c01_bridge": post_line = "c01.w01"; capture_prefix = "v0181-"
+	if scenario_id == "c05_channel": post_node = "after_water"; post_line = "c05.after_water.01"; capture_prefix = "v022-"
 	writing = OS.get_cmdline_user_args().has("--write")
 	if not writing and not OS.get_cmdline_user_args().has("--read"): check(false, "choose writer then reader"); quit(1); return
 	var trace_path: String = "res://tests/fixtures/campaign_v018_selfplay.json" if scenario_id == "c03_vent" else "res://tests/fixtures/campaign_v018_cautious.json"
 	if scenario_id == "c01_bridge": trace_path = "res://tests/fixtures/campaign_v0181_bridge.json"
+	if scenario_id == "c05_channel": trace_path = "res://tests/fixtures/campaign_v021_grove.json"
 	var report: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(trace_path))
 	for candidate: Dictionary in report.games:
 		if candidate.scenario == scenario_id: row = candidate
@@ -173,12 +176,13 @@ func run() -> void:
 		await wait_for_player()
 		await create_timer(0.8).timeout
 		check(game.battle.winner == 0 and game.battle.turn == int(row.turn), "real native battle wins from its initial state")
-		if scenario_id == "c01_bridge": check(game.battle.commander(1).is_empty() and not game.battle.commander(0).is_empty(), "bridge victory actually defeats the opposing commander")
+		if scenario_id in ["c01_bridge", "c05_channel"]: check(game.battle.commander(1).is_empty() and not game.battle.commander(0).is_empty(), "ordinary encounter victory actually defeats the opposing commander")
 		else: check(game.battle.objective.streak == 2, "objective victory achieves both consecutive control credits")
 		check(Replay.state_without_clock(game.battle) == Replay.state_without_clock(shadow), "final native state matches independently replayed rules result")
 		check(game.campaign_session.current().node == post_node, "actual victory advances and saves the expected story node")
 		var flags: Dictionary = game.campaign_session.campaign.story.state.flags
 		if scenario_id == "c01_bridge": check(flags.route == "road", "bridge victory preserves the preceding selected road route")
+		elif scenario_id == "c05_channel": check(flags.water_plan == "channel" and flags.water_released and flags.grove_mandate == "none", "channel victory preserves water choice and does not silently award representative authority")
 		else: check(flags.supply_route == "maintenance" if scenario_id == "c03_vent" else flags.priority == ("seed" if scenario_id == "c02_seed_bridge" else "relief"), "victory preserves the selected branch consequence")
 		await capture(capture_prefix + scenario_id + "-victory")
 		await click(game.get_node("%PlayAgain").get_global_rect().get_center())

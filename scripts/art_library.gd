@@ -109,6 +109,8 @@ static func get_texture(asset_id: String) -> Texture2D:
 
 static func get_narrative_portrait(kind: String) -> Texture2D:
 	if not HERO_ORDER.has(kind) and not UNIT_ORDER.has(kind): return null
+	if kind == "warden":
+		return load("res://assets/art/narrative/warden-dialogue-v1.png")
 	if kind not in ["spear", "pyromancer"]: return get_texture("sprite_" + kind)
 	var key: String = "narrative_" + kind
 	if not textures.has(key):

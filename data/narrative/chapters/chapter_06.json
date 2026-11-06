@@ -1,0 +1,909 @@
+{
+  "version": 1,
+  "id": "chapter_06",
+  "title": "第六章 · 棋庭旧印",
+  "start": "arrival",
+  "inherits": [
+    "route",
+    "witness_present",
+    "seal_copy",
+    "relief",
+    "public_ledger",
+    "priority",
+    "receipt_method",
+    "dispatch_receipts",
+    "clerk_safe",
+    "letter_reply",
+    "letter_delivered",
+    "pass_route",
+    "supply_route",
+    "mine_cargo",
+    "harbor_shelter",
+    "foundry_terms",
+    "crew_safe",
+    "harbor_pump",
+    "pump_route_known",
+    "water_plan",
+    "water_released",
+    "grove_mandate",
+    "charter_copy"
+  ],
+  "defaults": {
+    "route": "none",
+    "witness_present": false,
+    "seal_copy": false,
+    "relief": "none",
+    "public_ledger": false,
+    "priority": "none",
+    "receipt_method": "none",
+    "dispatch_receipts": false,
+    "clerk_safe": false,
+    "letter_reply": "none",
+    "letter_delivered": false,
+    "pass_route": "none",
+    "supply_route": "none",
+    "mine_cargo": false,
+    "harbor_shelter": "none",
+    "foundry_terms": "none",
+    "crew_safe": false,
+    "harbor_pump": false,
+    "pump_route_known": false,
+    "water_plan": "none",
+    "water_released": false,
+    "grove_mandate": "none",
+    "charter_copy": false,
+    "evidence_council": "none",
+    "court_access": false,
+    "father_trail": false,
+    "letter_company": "none"
+  },
+  "speakers": {
+    "narrator": "旁白",
+    "warden": "艾琳",
+    "pyromancer": "维洛",
+    "grove": "赛菈",
+    "sword": "洛恩",
+    "spear": "芙蕾",
+    "cavalry": "莉希",
+    "archer": "希弥",
+    "mage": "伊瑟",
+    "healer": "米芮",
+    "clerk": "赫姆",
+    "sister": "莉珊",
+    "miner": "钟叔",
+    "hauler": "杜骞",
+    "sailor": "杜棠",
+    "creditor": "曲汀",
+    "mother": "瑟南",
+    "nurser": "榆汀",
+    "sluice_keeper": "岑槐",
+    "teacher": "罗瑟",
+    "captain": "陶因",
+    "keeper": "常芷"
+  },
+  "nodes": {
+    "arrival": {
+      "type": "dialogue",
+      "background": "battlefield_citadel",
+      "lines": [
+        {
+          "id": "c06.arrival.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.arrival.02",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.arrival.03",
+          "speaker": "captain"
+        },
+        {
+          "id": "c06.arrival.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.arrival.05",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.arrival.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.arrival.07",
+          "speaker": "narrator",
+          "when": {
+            "grove_mandate": "shared"
+          }
+        },
+        {
+          "id": "c06.arrival.08",
+          "speaker": "narrator",
+          "when": {
+            "grove_mandate": "witness"
+          }
+        },
+        {
+          "id": "c06.arrival.09",
+          "speaker": "teacher"
+        },
+        {
+          "id": "c06.arrival.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.arrival.11",
+          "speaker": "warden"
+        }
+      ],
+      "next": "teacher"
+    },
+    "teacher": {
+      "type": "dialogue",
+      "background": "battlefield_citadel",
+      "lines": [
+        {
+          "id": "c06.teacher.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.teacher.02",
+          "speaker": "teacher"
+        },
+        {
+          "id": "c06.teacher.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.teacher.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.teacher.05",
+          "speaker": "teacher"
+        },
+        {
+          "id": "c06.teacher.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.teacher.07",
+          "speaker": "keeper"
+        },
+        {
+          "id": "c06.teacher.08",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.teacher.09",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.teacher.10",
+          "speaker": "teacher"
+        },
+        {
+          "id": "c06.teacher.11",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c06.teacher.12",
+          "speaker": "teacher"
+        },
+        {
+          "id": "c06.teacher.13",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.teacher.14",
+          "speaker": "warden"
+        }
+      ],
+      "next": "archive"
+    },
+    "archive": {
+      "type": "dialogue",
+      "background": "battlefield_citadel",
+      "lines": [
+        {
+          "id": "c06.archive.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.archive.02",
+          "speaker": "keeper"
+        },
+        {
+          "id": "c06.archive.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.archive.04",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.archive.05",
+          "speaker": "teacher"
+        },
+        {
+          "id": "c06.archive.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.archive.07",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.archive.08",
+          "speaker": "teacher"
+        },
+        {
+          "id": "c06.archive.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.archive.10",
+          "speaker": "keeper"
+        },
+        {
+          "id": "c06.archive.11",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.archive.12",
+          "speaker": "grove"
+        },
+        {
+          "id": "c06.archive.13",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.archive.14",
+          "speaker": "warden"
+        }
+      ],
+      "next": "orders"
+    },
+    "orders": {
+      "type": "dialogue",
+      "background": "battlefield_citadel",
+      "lines": [
+        {
+          "id": "c06.orders.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.orders.02",
+          "speaker": "teacher"
+        },
+        {
+          "id": "c06.orders.03",
+          "speaker": "grove"
+        },
+        {
+          "id": "c06.orders.04",
+          "speaker": "teacher"
+        },
+        {
+          "id": "c06.orders.05",
+          "speaker": "mage"
+        },
+        {
+          "id": "c06.orders.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.orders.07",
+          "speaker": "teacher"
+        },
+        {
+          "id": "c06.orders.08",
+          "speaker": "grove"
+        },
+        {
+          "id": "c06.orders.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.orders.10",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c06.orders.11",
+          "speaker": "teacher"
+        },
+        {
+          "id": "c06.orders.12",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.orders.13",
+          "speaker": "warden"
+        }
+      ],
+      "next": "disclosure"
+    },
+    "disclosure": {
+      "type": "choice",
+      "background": "battlefield_citadel",
+      "prompt": "c06.disclosure.prompt",
+      "options": [
+        {
+          "id": "open",
+          "text": "c06.disclosure.open",
+          "next": "open",
+          "set": {
+            "evidence_council": "open"
+          }
+        },
+        {
+          "id": "witnessed",
+          "text": "c06.disclosure.witnessed",
+          "next": "witnessed",
+          "set": {
+            "evidence_council": "witnessed"
+          }
+        }
+      ]
+    },
+    "open": {
+      "type": "dialogue",
+      "background": "battlefield_citadel",
+      "lines": [
+        {
+          "id": "c06.open.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.open.02",
+          "speaker": "teacher"
+        },
+        {
+          "id": "c06.open.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.open.04",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.open.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.open.06",
+          "speaker": "captain"
+        },
+        {
+          "id": "c06.open.07",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "courtyard"
+    },
+    "witnessed": {
+      "type": "dialogue",
+      "background": "battlefield_citadel",
+      "lines": [
+        {
+          "id": "c06.witnessed.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.witnessed.02",
+          "speaker": "keeper"
+        },
+        {
+          "id": "c06.witnessed.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.witnessed.04",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c06.witnessed.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.witnessed.06",
+          "speaker": "captain"
+        },
+        {
+          "id": "c06.witnessed.07",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "courtyard"
+    },
+    "courtyard": {
+      "type": "dialogue",
+      "background": "battlefield_citadel",
+      "lines": [
+        {
+          "id": "c06.courtyard.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.courtyard.02",
+          "speaker": "teacher"
+        },
+        {
+          "id": "c06.courtyard.03",
+          "speaker": "captain"
+        },
+        {
+          "id": "c06.courtyard.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.courtyard.05",
+          "speaker": "captain"
+        },
+        {
+          "id": "c06.courtyard.06",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.courtyard.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.courtyard.08",
+          "speaker": "spear"
+        },
+        {
+          "id": "c06.courtyard.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.courtyard.10",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.courtyard.11",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "court_battle"
+    },
+    "court_battle": {
+      "type": "battle",
+      "scenario": "c06_court",
+      "win": "after_court",
+      "win_set": {
+        "court_access": true,
+        "father_trail": true
+      }
+    },
+    "after_court": {
+      "type": "dialogue",
+      "background": "battlefield_citadel",
+      "lines": [
+        {
+          "id": "c06.after_court.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.after_court.02",
+          "speaker": "healer"
+        },
+        {
+          "id": "c06.after_court.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.after_court.04",
+          "speaker": "keeper"
+        },
+        {
+          "id": "c06.after_court.05",
+          "speaker": "narrator",
+          "when": {
+            "evidence_council": "open"
+          }
+        },
+        {
+          "id": "c06.after_court.06",
+          "speaker": "narrator",
+          "when": {
+            "evidence_council": "witnessed"
+          }
+        },
+        {
+          "id": "c06.after_court.07",
+          "speaker": "grove",
+          "when": {
+            "grove_mandate": "shared"
+          }
+        },
+        {
+          "id": "c06.after_court.08",
+          "speaker": "grove",
+          "when": {
+            "grove_mandate": "witness"
+          }
+        },
+        {
+          "id": "c06.after_court.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.after_court.10",
+          "speaker": "mage"
+        },
+        {
+          "id": "c06.after_court.11",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.after_court.12",
+          "speaker": "warden"
+        }
+      ],
+      "next": "farewell"
+    },
+    "farewell": {
+      "type": "dialogue",
+      "background": "battlefield_citadel",
+      "lines": [
+        {
+          "id": "c06.farewell.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.farewell.02",
+          "speaker": "keeper"
+        },
+        {
+          "id": "c06.farewell.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.farewell.04",
+          "speaker": "teacher"
+        },
+        {
+          "id": "c06.farewell.05",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.farewell.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.farewell.07",
+          "speaker": "teacher"
+        },
+        {
+          "id": "c06.farewell.08",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.farewell.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.farewell.10",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.farewell.11",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.farewell.12",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "letter_choice"
+    },
+    "letter_choice": {
+      "type": "choice",
+      "background": "battlefield_citadel",
+      "prompt": "c06.letter_choice.prompt",
+      "options": [
+        {
+          "id": "alone",
+          "text": "c06.letter_choice.alone",
+          "next": "alone",
+          "set": {
+            "letter_company": "alone"
+          }
+        },
+        {
+          "id": "companions",
+          "text": "c06.letter_choice.companions",
+          "next": "companions",
+          "set": {
+            "letter_company": "companions"
+          }
+        }
+      ]
+    },
+    "alone": {
+      "type": "dialogue",
+      "background": "battlefield_citadel",
+      "lines": [
+        {
+          "id": "c06.alone.01",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.alone.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.alone.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.alone.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.alone.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.alone.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.alone.07",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.alone.08",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "departure"
+    },
+    "companions": {
+      "type": "dialogue",
+      "background": "battlefield_citadel",
+      "lines": [
+        {
+          "id": "c06.companions.01",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.companions.02",
+          "speaker": "grove"
+        },
+        {
+          "id": "c06.companions.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.companions.04",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.companions.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.companions.06",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.companions.07",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c06.companions.08",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.companions.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.companions.10",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "departure"
+    },
+    "departure": {
+      "type": "dialogue",
+      "background": "battlefield_citadel",
+      "lines": [
+        {
+          "id": "c06.departure.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.departure.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.departure.03",
+          "speaker": "clerk"
+        },
+        {
+          "id": "c06.departure.04",
+          "speaker": "warden"
+        },
+        {
+          "id": "c06.departure.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.departure.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.departure.07",
+          "speaker": "narrator",
+          "when": {
+            "foundry_terms": "sale"
+          }
+        },
+        {
+          "id": "c06.departure.08",
+          "speaker": "narrator",
+          "when": {
+            "foundry_terms": "lease"
+          }
+        },
+        {
+          "id": "c06.departure.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c06.departure.10",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end",
+      "text": "c06.end",
+      "ending": "court_opened",
+      "background": "battlefield_citadel"
+    }
+  },
+  "strings": {
+    "c06.arrival.01": "“剑留下，人可以进去。”\n陶因说完，先把自己的剑解下，交给门内的卫兵。艾琳没有照做。罗瑟的信在她手里折出了四道深痕；从林社赶来的第二天，靴上的泥已经干成一层白壳，邀请她的人却还没有露面。",
+    "c06.arrival.02": "信里没有缴械这一项。我的队员也要进去。",
+    "c06.arrival.03": "议事廊容得下你们，军队容不下。外营有井和炉灶，我让厨工留了饭。你可以先派人查看；不能把接应印一路铺到档库门口。",
+    "c06.arrival.04": "希弥绕过外营回来，报出两处出口和井的位置。芙蕾让枪卫停在车旁，洛恩接过她的水袋，没有往门洞里挤。艾琳终于解开剑带，把剑交给芙蕾。门内另有缴械台，她没有将剑放上去。",
+    "c06.arrival.05": "我、维洛、赛菈先进去，伊瑟带卷。其他人留外营。到换灯的时候还没回话，先把炊棚后面的路让出来，不要往门里抢。",
+    "c06.arrival.06": "庭院的黑白石条比艾琳记得的窄。她受训时总被叫去重走最后一列，如今那一列上搭了晒衣架。一个修缮工抱着孩子从架下钻过，听见甲叶碰响，侧身让到井边；陶因扶住几乎被碰倒的木盆，等他们走完才继续带路。",
+    "c06.arrival.07": "墙上刻着三方见证人的名字，下沿被新砌的工具棚遮去一截。赛菈停在暮林那一列前，向陶因说明林社来使仍在路上，自己只在现有共签范围内发言。陶因将名牌的“全权”二字刮掉。",
+    "c06.arrival.08": "墙上刻着三方见证人的名字，下沿被新砌的工具棚遮去一截。陶因递来“暮林代行者”的名牌，赛菈没有接，另取一块空木片写下姓名。她把多余那块推回去，告诉他林社代表将另行到场。",
+    "c06.arrival.09": "艾琳。先吃一点，原件还在校验。",
+    "c06.arrival.10": "罗瑟站在廊尽头，手里端着一碗她从前总嫌太稀的麦粥。他头发已白了大半，袖口仍缝得很窄。艾琳没有去接碗，将来信放到他手边。纸角碰着碗沿，很快湿了一点。",
+    "c06.arrival.11": "我等了十七年。你信里说原件在这里。",
+    "c06.teacher.01": "罗瑟把粥放到矮窗台上。他让陶因退到廊外，却没有关门；庭院里修锅的锤声隔几下响一次。艾琳认得那张长桌，过去她抄错一行，老师就让她从最上面重来。他指了指原先的位置，她仍站着。",
+    "c06.teacher.02": "我会给你看。河门的报告也到了。你带兵打过自己领过饷的桥头，守备官说你劫走了军粮。你带来的通行令，拿出来。",
+    "c06.teacher.03": "通行令和封锁令都在。你先回答你写的那一行，别先让我交课卷。",
+    "c06.teacher.04": "维洛将椅子拉开半尺，给伊瑟腾出放卷的地方。伊瑟没有立刻摊开，先从筒里抽出一片木衬，压住潮纸的弯角。罗瑟看了一眼他手上还未褪去的渠泥，回身取下腰间的两把钥匙。",
+    "c06.teacher.05": "好。先看你父亲的。常芷在下面，她会把库页取齐。你可以记下柜号，也可以当着她的面把每一页翻完。",
+    "c06.teacher.06": "地下档库没有想象中的铁门阵列。纸柜垫在半尺高的石脚上，墙角搁着接漏的盆。常芷将最后一滴水倒入桶里，才接过钥匙。她在馆里做了二十年，认得罗瑟的脚步，却仍要他先擦掉靴底的沙。",
+    "c06.teacher.07": "请不要把灯放在卷上。总监要的两册都取来了，封皮上的裂口原就有，开卷时别从这里扯。",
+    "c06.teacher.08": "艾琳第一次看到父亲的官名与“停职”两个字并在一起。纸边发脆，中间的墨却比老师的头发黑。下方没有通缉，没有处决，只有解除守桥职务、交出正钥、次日送棋庭问话。罗瑟的签字紧贴最后一行。",
+    "c06.teacher.09": "他交了钥匙。你们为什么仍写失踪？",
+    "c06.teacher.10": "交正钥的人是接班的军士。他到桥上时，你父亲已经不在。那一夜先来的令是拘提，我把它改成停职，派车去接他，以为能让他先离开桥。",
+    "c06.teacher.11": "你以为他看见“停职”会觉得自己得救了？",
+    "c06.teacher.12": "他没看见。我派的人走了货桥，人群把路堵死了。接班军士从行人桥上去，两队错开。第二天，我收到的是一张他不在岗的回条。",
+    "c06.teacher.13": "艾琳翻到背面，指腹停在透过来的字上。她曾设想过很多个把父亲带走的人，却没设想过一辆根本没接到他的车。常芷把压纸的布条移开，露出下一页的接收栏；老师伸手想替她翻，艾琳先按住了。",
+    "c06.teacher.14": "我自己看。",
+    "c06.archive.01": "接收栏后有一页补记，晚了两天才入库。一个赶救援车的人在桥北碰到父亲，车上还有四个找不到家属的人。父亲跟车去了日陨东侧的临时诊所，留下要回河门核对名字的口信；补记末尾没有写他后来是否回来。",
+    "c06.archive.02": "这页原来夹在赈济车的账里。整理时归过来，年份就在右上角。总监那年已经调去北城；后来他每次来借阅，借的都是正卷。",
+    "c06.archive.03": "罗瑟俯下身看了一会儿，没有去碰纸。艾琳将他那盏灯向旁边挪开，补记的墨下显出一处划痕：已全员转移。父亲把“全员”划掉，改成尚有四人待认。她认得那个改得太挤的“待”字，小时候他替她补过功课。",
+    "c06.archive.04": "你一直没翻到这一页？",
+    "c06.archive.05": "没有。我查过拘提队，查过桥上死伤。没有他的名字，我就……把问话停了。我以为再追下去，只会把你和你母亲也叫来。",
+    "c06.archive.06": "艾琳看向常芷。常芷没有替他解释，取来一块干净木板，让她把两页并排放稳。灯芯轻轻响了一下，艾琳把手从父亲的字边挪开。",
+    "c06.archive.07": "她每次去问，都只拿到“尚在查访”四个字。你来看我入队，给我改名字牌，教我写每一道命令的去向。那时候你已经停了。",
+    "c06.archive.08": "是。",
+    "c06.archive.09": "门口传来陶因催问的声音，罗瑟叫他等。常芷从柜底又取出一只封套，边上写着补记所附私物：一封未送家书，一枚桥北车行木筹。艾琳拆开外套，看见父亲在信封上写母亲名字，下面又加了一个小小的“琳”。",
+    "c06.archive.10": "当年随车送回来的。被夹作问话凭据，没有办过寄送。家属现在能领，我给你记在这张条上；原卷仍留馆。",
+    "c06.archive.11": "她拿着信，过了片刻才点头。罗瑟将领物条推近，笔尖已经蘸好。艾琳没有用那支笔，借了常芷腰间的短笔。签完后，她把信收进贴身的内袋，备用桥钥匙碰了它一下。",
+    "c06.archive.12": "先收好。这里潮，外面能坐。",
+    "c06.archive.13": "艾琳朝她摇头，将通行令取出来。维洛以为她还要问父亲，已经把椅子让开；她却把当前封锁令也放到桌上，推到罗瑟面前。",
+    "c06.archive.14": "他最后去的是哪一家诊所，我会去找。现在先看活人还在挨着的这两道令。你叫我们来，总不是只为了把这封信还给我。",
+    "c06.orders.01": "常芷换了一个柜，取出本月的调候原本。三种签押都在，附印仍能回应伊瑟法杖上的蓝晶。赛菈将林社带来的抄件压在旁边，把那段早已删除的停水款指给罗瑟看；他没有说是抄错。",
+    "c06.orders.02": "我让他们加回去的。先保主塔的稳压池，再让支渠取水。冬季供能的管壁已经裂了两处，我不能等到城里先断掉。",
+    "c06.orders.03": "你收到过井水下降的记录。后面还有居民要喝的水，不是你图上多出来的一条线。",
+    "c06.orders.04": "收到的是修正后的数。我派人复测，回报说还能维持。新泵只能轮换，按预计，关支渠四天足够把池补上。",
+    "c06.orders.05": "哪一份修正？请给我原来的页码，不要给汇总。我在学院看过同样的削峰办法。四天是按删掉的那一段算的。",
+    "c06.orders.06": "罗瑟拿出附册，伊瑟沿着读到中间，停了两次，才把计算稿摆到旁边。常芷看着两张不同的曲线，去找了夹在封底的送验日期。改稿发生在签押之前，纸上留着学院校录处的章，没有具体抄录者的名字。附册末尾还钉着沿渠工人逐日记下的水位，伊瑟先抄了日期，没急着把这几页抽出来。",
+    "c06.orders.07": "赤曜驻庭议员同意修复，暮林留驻的抄录官见证抄送。紧急印还在库里，遇到断供可以先用。我签了扩大取水的执行范围。",
+    "c06.orders.08": "抄录官能见证收到，不能替十二林社答应停井。那条款已经删了。你知道他没有这个权。",
+    "c06.orders.09": "罗瑟没有回答。维洛把原本转向自己，看到出资栏后留着同样的空白。那位驻庭议员同意的是修复费，追加的护渠兵饷另记在下一页；正是下一页，决定了岑槐可以借多少人守住渠首。",
+    "c06.orders.10": "工匠拿走了我的修复图，你拿走了别人的“同意”。两边拆开看，都能说只动了一点。凑到一起，北坞和支流就都得照你想的活。",
+    "c06.orders.11": "我不推给他们。今晚停掉新取水，旧楼怎么供暖，医务所的泵怎么转？你们也要给我一个安排。",
+    "c06.orders.12": "米芮在外营接到传话，带一名本地锅炉工进来。工人说旧炉可以先供诊所和住人的两排楼，整座庭院的回廊灯要停；备煤只够三夜，夜班也欠两个人。罗瑟去看窗外的灯，艾琳把他的椅子推回桌前。",
+    "c06.orders.13": "先把不该开的那一路撤掉。煤和班次一起列，谁去补就写谁。你请三方来核对，现在原本在这里，外面的人还不知道这里谈到了什么。",
+    "c06.disclosure.prompt": "调候原本已证实罗瑟扩大取水范围，旧条款被重新调用。可以立即向庭外宣读有害条款与签发者，隐去无关病患家属姓名；也可先由三方随行者与本地工班代表当面质证，原件共同留馆，明早公开结论。后者需接受庭外代表监督，不能无限期封存。",
+    "c06.disclosure.open": "立即公开有害条款与签发者；无关个人姓名另行遮盖。",
+    "c06.disclosure.witnessed": "先由三方随行者与工班代表质证，明早公开结论，原件共同留馆。",
+    "c06.open.01": "常芷拿来薄纸，只摹取取水条款、签押和增派护渠队的那页，不把赈济车上的病患名字带出去。罗瑟站在桌旁看她摹完，忽然伸出手，指了一处字。",
+    "c06.open.02": "“暂行”也留着。我写了，却没有给结束的日子。别替我删。",
+    "c06.open.03": "艾琳没有接过全部纸。她让罗瑟拿着自己签过的那一页，两人一起走到回廊口。修锅的锤声先停，随后是棚下收衣服的人。洛恩将挡在井旁的车移开，留出能退回家门的空道。",
+    "c06.open.04": "先听这一段。这里有你们正在照做的关闸令，也有谁让它多管了三条支渠。名字和条款都会留下，原件还在馆里，不跟军队走。",
+    "c06.open.05": "有人让她从头读第二遍，有人喊要停掉自己工棚的借款。艾琳把纸拿低，问喊话的人是哪一棚；陶因却已经从后廊走来，要卫兵将告示板翻面。一个锅炉工拦住他，手被压在板沿，疼得缩了回去。",
+    "c06.open.06": "你把令念出去，守渠的人今晚就会散。谁送煤上来，谁守旧炉？你们明天就走，这里的人都得留下。",
+    "c06.open.07": "罗瑟叫他先放开工人。陶因松了手，仍立在告示板前。外营的人已经听见争吵，芙蕾把艾琳的剑送到廊下，停在双方之间，没有拔出。",
+    "c06.witnessed.01": "艾琳请常芷打开侧间，让三方随行者与本地工班各留一人读原本。庭外等到消息，先来的却是一个端着空饭盆的厨工。他没有看摆好的椅子，站在门槛外问何时才算谈完。",
+    "c06.witnessed.02": "明早换第一盏灯前，给出结论。卷不出馆，今夜钥匙由我和你们推来的人各执一把。你可以进来看谁在里面，名字就贴门边。",
+    "c06.witnessed.03": "厨工把饭盆往腰上一夹，选了同住一条巷子的锅炉工留下，自己回去转述。有人仍不信，守在门外数灯。赛菈把林社水文副本递到他们手里，允许比对抄下，没有替尚未到场的正式代表签新的取水条件。",
+    "c06.witnessed.04": "我的名字也挂上。到明早还没拿出东西，就敲门，别信里面传出去的“再等一会儿”。",
+    "c06.witnessed.05": "常芷给每人倒了半杯水，刚要读下一页，陶因就带着两名卫兵进来。他让锅炉工退到屋外，说调度不得交给无军职的人；对方坐着没动，卫兵伸手来拉，杯子落到地上。",
+    "c06.witnessed.06": "我听见你们要停新管。旧炉三夜的煤都没上山，谁保证夜里不断？他们可以提出意见，不能拿走调令。",
+    "c06.witnessed.07": "艾琳叫卫兵松手。陶因没有点头，工人的袖口被扯开了一条。罗瑟看向门口等消息的厨工，叫陶因跟自己出去；芙蕾正把艾琳的剑送到廊下，听见椅脚刮地的响声，停住了。",
+    "c06.courtyard.01": "陶因在回廊里扣住了那名锅炉工，要把他带去值房。罗瑟的声音比先前高了一点，仍用的是训练时叫人归列的口令。陶因回过头，手没有松。",
+    "c06.courtyard.02": "把人留下。新管的扩大调令从现在起停止。旧炉照我们刚才议的排班，我会给你写清楚。",
+    "c06.courtyard.03": "上一次你也说等写清楚。那年裁了两班守炉的人，我替你去挨家送半个月的欠饷。十七年了，还是让下面的人先信你这一次。",
+    "c06.courtyard.04": "罗瑟停住，像忽然看见了这名每天在门外等他的人。陶因将锅炉工推给身后卫兵，抓起缴械台上自己的剑。他没有朝罗瑟举剑，先指向通往外营的门。",
+    "c06.courtyard.05": "艾琳带兵越了三处守备线，问话还没完。人和卷都留下，我照最后收到的调令守到交班。总监，你要撤我，等能接这个班的人来。",
+    "c06.courtyard.06": "你要留我，可以先把工人放了。他不欠你一个军职。",
+    "c06.courtyard.07": "陶因叫身后的队伍合拢。芙蕾将艾琳的剑柄送进她手里，自己退到廊柱边，报出队员的位置。外营的接应印一枚接一枚亮起；洛恩将炊棚后的路清出来，米芮带住在工具棚的两户人从那里离开。",
+    "c06.courtyard.08": "中央石庭是他的枪列，两边回廊有弓。居民到外营去了。你留在门侧，我接中列；看见我抬枪再进，不要一个人追到库口。",
+    "c06.courtyard.09": "艾琳扣上剑带，向罗瑟要回通行令。老师看着她伸出的手，把令和刚取下的指挥牌一同放上去。她只拿走自己的令，将指挥牌留在矮墙上。",
+    "c06.courtyard.10": "别把这个给我。我带来的队伍，我自己下令。你让还肯听你的人撤到居民那边，别站在两队中间。",
+    "c06.courtyard.11": "罗瑟抬手召回廊下的传令兵，亲自带他向外营去。陶因仍守在黑白石庭尽头，身后的旗没有落。艾琳等最后一名厨工走过井台，才向芙蕾点头。",
+    "c06.after_court.01": "陶因的剑落在井沿下。芙蕾没有让人追着溃兵冲进值房，先叫两边停下，把被扣的锅炉工带出来。他捂着扯裂的袖子，第一句话问旧炉旁还有没有人在；洛恩陪他走了一段，直到看见工班接上夜火。",
+    "c06.after_court.02": "陶因，手给我。伤在这边，别老回头。我会把你交给看守，不会叫你现在站起来认错。",
+    "c06.after_court.03": "常芷把落在地上的杯片扫进灰桶，重新摆上原本。她先问有没有人死在库口，得知伤员都转到外营，才让艾琳把带血的手套脱掉。罗瑟已经回来，坐在他刚才没肯坐稳的那张椅子上。",
+    "c06.after_court.04": "册子留馆。你们要副本，我在场做；要谁来见证，就请谁坐下。我不把这二十年的卷搬进任何一方的军车里。",
+    "c06.after_court.05": "天黑前，告示板重新立起来。罗瑟把扩大取水的那页读完，念出自己的职名，又将停用新管的命令给各班传令兵看。有人仍在骂，厨工让他们先给抄字的人留一张桌。常芷把病患家属页锁回独立柜中。",
+    "c06.after_court.06": "侧间的灯一直亮到后半夜。三方随行者、工班与庭外推来的两人逐页核对，罗瑟承认自己扩大了条款范围。换第一盏灯前，常芷把有各方异议附注的结论送到门外；守了一夜的人接过，并没因此都肯跟罗瑟说话。",
+    "c06.after_court.07": "本地三处已经接到停扩大取水的口信，原来给居民的水不在停用范围里。正式代表到后还要核一遍。我的共签期限也写在旁边，不能抄掉。",
+    "c06.after_court.08": "我能说明林地发生了什么，不能替林社签新的配水数。正式代表到了，请让他直接看原本；别把我的名字填进空出来的签押格。",
+    "c06.after_court.09": "伊瑟和锅炉工在炉房待了一个时辰，把诊所和住人的两排楼接回旧炉。回廊的灯一段段熄了，库房留下提灯。维洛数出买煤的银子，装袋前又数一遍，交给去近村拉车的工人；剩下几枚收回内袋，添了一笔次日要补的路费。",
+    "c06.after_court.10": "只能先隔开这一段。日陨那边的稳压池还在拉水，要在现场分路，不能从这里猛地切断。我要带原始波动页去，抄件上的尖峰已经没有了。",
+    "c06.after_court.11": "常芷把带峰值的原始观测页给他看过，留原页入馆，做了两份有她押缝的副本。一份交伊瑟，一份发给日陨工班先查对应支路；他把自己的计算稿也留了一份，没再只圈出别人的错误。",
+    "c06.after_court.12": "先通知那边准备换路，别等我们到了才开工。我还要找那家东侧诊所。能不能一起送信？",
+    "c06.farewell.01": "常芷从救援车的账后取出诊所当年的地址，墙上的旧街图还能对上。那里早已改成住人的院落，近年的赈济联络簿有两位旧工人的回信：余白修船，秦婶替邻居写信，都仍住日陨。她请艾琳让他们自己决定是否愿意谈，不把名字贴到告示板上。",
+    "c06.farewell.02": "你父亲在那辆车上的去向，到这里就断了。信是他交给车夫带回河门的，后来跟回条一起进库。我不把后面的空格替他填上。",
+    "c06.farewell.03": "艾琳将地址抄在另纸，听见罗瑟叫她。老师站在从前教她列阵的石条边，披风没有扣，肩上少了总监的指挥牌。他让随从去外营等，手里只剩一支写秃的笔。",
+    "c06.farewell.04": "我留下。扩大取水、重新调用旧款、拘提改停职，还有后来没有再问的部分，我都写了。你把该带的东西带走，河门那一战就说是我授意。",
+    "c06.farewell.05": "不是你。粮车到了门前，我决定打过去。你不能替我签一遍，就当我们都回到昨天。",
+    "c06.farewell.06": "罗瑟低头看着笔。艾琳想起自己第一次拿到军职时，老师替她把太长的剑带割短了一截；那时她以为，终于有人能把父亲没走完的路讲给自己听。现在罗瑟把笔搁到窗台上，和那碗凉透的麦粥并在一起。",
+    "c06.farewell.07": "我想叫你离那条桥远一点。给你安排城里驻守，你总要外派。后来我以为，不把旧事交给你，你就能把自己的日子过完。",
+    "c06.farewell.08": "我家里每天都在过那一天。你只是不用回来听。",
+    "c06.farewell.09": "廊外有人要罗瑟去说明值班名册，他答应后仍没动。艾琳从他旁边走过，过了两步停下来，没有回头。她告诉他母亲如今仍收补衣的活，寄回去的领物回单，不准再写尚在查访。",
+    "c06.farewell.10": "你自己写信。写你做过什么，什么时候不再找。她回不回，由她。",
+    "c06.farewell.11": "罗瑟说好。艾琳没有等他再说别的，走向外营。灯火比来时少，井旁却搭起了一张能让伤员平躺的床板。芙蕾正换肩上的绷带，洛恩背朝她坐着，捧住水盆，不再忙着替她做所有事。",
+    "c06.farewell.12": "维洛在炊棚替人看小炉，火收得很低。他看见艾琳，想开一句旧时的玩笑，眼光落到她按着内袋的手，便把话收回。赛菈把一只空凳从薄荷盆旁挪开，留出背风的位置。",
+    "c06.letter_choice.prompt": "父亲的信已经领回，属于艾琳本人。她可以独自读完，也可以请维洛和赛菈留下。两人都在炊棚外等着，她可以自己决定是否开口。",
+    "c06.letter_choice.alone": "先一个人读，其他事等天亮再谈。",
+    "c06.letter_choice.companions": "请维洛和赛菈留下，自己决定读给他们听多少。",
+    "c06.alone.01": "我想一个人待一会儿。今晚别替我留灯。",
+    "c06.alone.02": "赛菈将凳子往里移了些，没有问何时回来。维洛把小炉上的热水换到带盖的壶里，放在她够得到的地方，两人沿井边退开。炊棚另一头有人在洗锅，没有人来催她睡。",
+    "c06.alone.03": "艾琳拆信时撕坏了一点封边。她把那片纸捡回来，搁在膝上，又想起常芷的嘱咐，连同信一起铺到盾的背面。父亲先问母亲有没有把门边那件蓝衣改小，然后才说桥上的人已经过了大半。",
+    "c06.alone.04": "“琳的靴子若又磨破，就从我的旧靴上剪一块。别照我的脚样给她裁，她总嫌走不快。”\n艾琳读到这里，用手掌遮住下面两行。她记得那双靴，左脚补得很硬，母亲让她多穿一双袜。她一直以为是补靴的人舍不得软皮。",
+    "c06.alone.05": "后面说车上还有四个人叫不全家里人的名字，他跟车到诊所，等有人来接替，就把他们的住处送回桥头。他让母亲把备用钥匙收好，倘若有人半夜敲侧门，先看清车夫的木筹，别让孩子去开。",
+    "c06.alone.06": "信里没有说再也不回来。末尾只问家里剩的面够不够，字写到纸边，他将最后一个字塞在上面。艾琳用指尖在空处比了一下，没有替它添日期，也没有把想问的话写到背面。",
+    "c06.alone.07": "不够了。后来很长一阵都不够。",
+    "c06.alone.08": "她把这句话说得很轻，炊棚里只听见锅沿相碰。过了许久，她将信重新折好，拿起温水喝了一口。天亮前换岗的人从棚外经过，她自己伸手掀起帘子，请对方替她带一碗粥来。",
+    "c06.companions.01": "你们先别走。我不一定会念出来。",
+    "c06.companions.02": "嗯。要我挪远一点就说。",
+    "c06.companions.03": "维洛把小炉往外挪，免得烟扑到纸上。艾琳拆坏了一角信封，他伸手帮忙，伸到一半停住，改把干净木板递给她。她将纸铺平，先读了很久，才出声念第一段。",
+    "c06.companions.04": "他说，要是我的靴子又破了，就从他旧靴上剪一块。不要照他的脚样裁，我总嫌走不快。",
+    "c06.companions.05": "她看着自己如今的军靴，忽然很想脱下来。赛菈将热水推近，艾琳拿起杯子却没喝，接着读到桥上的人过了大半，车里还有四个人叫不全家人的名字。父亲要跟他们去东侧诊所，等人接替后再回桥头补上住处。",
+    "c06.companions.06": "他叫我母亲收好侧门备用钥匙。有人半夜来，先看车夫的木筹，不许我去开。那晚我一直在门边。他不知道。",
+    "c06.companions.07": "那时候你多大？",
+    "c06.companions.08": "十二。我以为只要听见车轮就能跑得比母亲快。她把桌子搬过来，挡在门前，跟我一起坐到天亮。",
+    "c06.companions.09": "维洛点了点头，低头去拧水壶松动的盖。他没有接着讲自己的师父。赛菈把手放在两张凳子之间，掌心朝上；艾琳看见了，先碰了一下，随后握住。两人都没有把纸拿走。",
+    "c06.companions.10": "信末问家里的面还够不够。艾琳读了一半停下，将信折回去。三个人又坐了许久，直到炊棚里有人开始淘麦。她松开赛菈的手，问今天能不能多煮一碗，带给还守着伤员的人。",
+    "c06.departure.01": "早上，常芷带来两份装订好的副本，分别附上原件存柜处和昨夜读卷的人名。艾琳只收下应带走的部分，父亲的信另放内袋。罗瑟的说明留馆供后来的代表看，负责看守他的不是陶因旧部。",
+    "c06.departure.02": "赫姆在外营门口徘徊了两次，终于向艾琳开口。他问名单上的四个人有没有找到家。艾琳说还不知道，把能寄问的两处地址给他看；他认出其中一条转运线，答应写明自己当年只经手到哪里，不把未见过的人补成已送达。",
+    "c06.departure.03": "河门那边要我回话，我会回。能不能先让信跟你们走？到了诊所，若有人愿意答，给我留一份。",
+    "c06.departure.04": "可以。别替他们写答案。你的回程也得安排，不能一直跟着我们的车。",
+    "c06.departure.05": "莉希将去日陨工班的预告信交给换班骑使，给自己的骑队留一上午修蹄。栗雨在外营啃着湿草，没有被拉到队首。希弥沿东行道路看回来，把低洼的旧渡口划掉；两人难得没有争哪条路更快。",
+    "c06.departure.06": "林社正式代表终于到庭，赛菈把昨夜的记录交给他，说明自己签过和没签过的部分。代表先去见常芷，又去外营问工人，没有请她替自己说完。她等到对方确实接手，才回来提起薄荷盆。",
+    "c06.departure.07": "维洛收到港口的短笺，曲汀确认本批欠饷已经付清，铸管线新持有人要他移走旧办公室的箱子。他把要保留的工图列给伊瑟，没把失去的屋子说成随手送出去的一间。",
+    "c06.departure.08": "维洛收到港口的短笺，曲汀列了下一笔分期的日期，租息尚未入账。他算过随身余款，将能先付的数写在回信里，另问还未同意分期的两户可否先领足；没有再许一个自己拿不出的总数。",
+    "c06.departure.09": "洛恩把外营的空车还给修缮工，留下借用时记下的一截断绳。对方原以为军队会直接把车带走，蹲下看了看新绑的车轴，叫孩子去拿路上能吃的饼。芙蕾只收了够两人的那份，其余放回篮里。",
+    "c06.departure.10": "出门时，艾琳又经过那排黑白石条。罗瑟隔着值房的窗看见她，手里已经没有指挥牌。她没有行学生的礼，也没有绕开窗下的路；走过最后一列后，回头确认同伴都已跟上。",
+    "c06.end": "日陨来使在下山的岔路追上队伍。他从湿布包里取出工班按伊瑟副本画出的换路草图：旧诊所所在的东街，正压在需要先撤人的支线上。\n艾琳把父亲最后去过的地址放在图旁。送水车还停在那里，院落里有人住，余白的修船棚也在那一片。她让莉希先送出见面和撤离的消息，自己将队伍带向渡口。\n车里四个没有全名的人，十七年里也许早已长大、离开，或者再也没有回来。下一站，他们要先敲开仍有人住的门。"
+  }
+}

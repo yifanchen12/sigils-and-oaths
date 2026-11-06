@@ -1661,6 +1661,33 @@
       "processing": "Original PNG copied intact. Cover cropping, mild tint and text are rendered by Godot; no pixel edits.",
       "status": "production; source and native screenshots visually reviewed in 0.20.0-dev",
       "validation": "docs/narrative-art-v020.md"
+    },
+    {
+      "id": "narrative_warden",
+      "path": "assets/art/narrative/warden-dialogue-v1.png",
+      "milestone": "0.22.0-dev",
+      "tool": "native image_gen",
+      "model": "not exposed by runtime",
+      "source_filename": "exec-3d74081a-cad1-4765-9c3c-6b9795acc96e.png",
+      "reference_source_filename": "exec-f03ebd4e-b197-415a-84b3-75f39d4cbb9a.png",
+      "identity_reference": "assets/art/hero_sprites_cel.png",
+      "prompt_file": "assets/art/narrative/warden-dialogue-prompts.json",
+      "sha256": "5812ae3dd23e264946a299a68aa2fb8d9c31b2080134af0a756238571cac2eea",
+      "source_bytes_preserved": true,
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "fully_transparent_pixels": 933736,
+      "role": "Default Eileen dialogue portrait; restrained expression and sheathed weapon. Battle and card sprites retain their existing assets.",
+      "processing": "Original generated PNG copied intact. Godot lossless import, alpha-border fix, mipmaps and native aspect-preserving display; no pixel edits.",
+      "status": "source and final Windows narrative screenshots visually reviewed",
+      "rights_note": "Original AI-generated project character, referenced only from existing original project art. Included in pre-generated-content disclosure inventory."
     }
   ]
 }

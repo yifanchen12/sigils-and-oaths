@@ -58,8 +58,13 @@
     {
       "id": "chapter_06",
       "title": "棋庭旧印",
-      "status": "outline",
-      "nativeValidated": false
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "revision": "0.22.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 7109,
+      "wordCountPass": true
     },
     {
       "id": "chapter_07",
