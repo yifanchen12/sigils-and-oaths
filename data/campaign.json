@@ -20,6 +20,11 @@
       "id": "chapter_04",
       "title": "第四章 · 港口不眠",
       "path": "res://data/narrative/chapters/chapter_04.json"
+    },
+    {
+      "id": "chapter_05",
+      "title": "第五章 · 水从哪里来",
+      "path": "res://data/narrative/chapters/chapter_05.json"
     }
   ],
   "scenarios": {
@@ -193,6 +198,46 @@
       "enemy_deck": "balanced",
       "seed": 4318,
       "enemy_name": "泵房守机队长",
+      "enemy_portrait": "terrain_fort"
+    },
+    "c05_nursery": {
+      "title": "林岗的夜班",
+      "brief": "先保高坡苗床，由队伍为下游运水。守住林间两处高坡岗，让本地工人从后侧接替分水口。",
+      "objective": "己方新回合开始时，F6、G5两格都有友军，连续两次即胜；开局不计。12个完整轮次结束仍未达标则败，同时达标优先算胜。击败敌指挥官也胜，己方指挥官倒下则败。",
+      "map": "greenwood",
+      "hero": "grove",
+      "enemy_class": "warden",
+      "deck": "bastion",
+      "enemy_deck": "balanced",
+      "seed": 5317,
+      "enemy_name": "渠首管事岑槐",
+      "enemy_portrait": "terrain_fort",
+      "control": {
+        "cells": [
+          [
+            5,
+            4
+          ],
+          [
+            6,
+            5
+          ]
+        ],
+        "required": 2,
+        "round_limit": 12
+      }
+    },
+    "c05_channel": {
+      "title": "分水口前",
+      "brief": "先清下游支渠，高坡缺水苗另行割弃改种。借林地与高地夺下护渠队指挥位置，让工人上坡接管闸口。",
+      "objective": "击败渠首管事岑槐，解除分水口的武装封锁。",
+      "map": "greenwood",
+      "hero": "grove",
+      "enemy_class": "warden",
+      "deck": "balanced",
+      "enemy_deck": "assault",
+      "seed": 5318,
+      "enemy_name": "渠首管事岑槐",
       "enemy_portrait": "terrain_fort"
     }
   }

@@ -47,8 +47,13 @@
     {
       "id": "chapter_05",
       "title": "水从哪里来",
-      "status": "outline",
-      "nativeValidated": false
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "revision": "0.21.0-dev",
+      "wordCount": 7290,
+      "wordCountPass": true
     },
     {
       "id": "chapter_06",

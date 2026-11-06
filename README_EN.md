@@ -5,13 +5,13 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.20.0-dev" src="https://img.shields.io/badge/version-0.20.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.21.0-dev" src="https://img.shields.io/badge/version-0.21.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts, with no assets from either game. Current source is **0.20.0-dev**, with four chapters, branching encounters and cross-chapter saves. The harbor chapter brings Lorne and Mirei home and makes Velo face his debts; seven dedicated scenes and a redesigned dialogue view are now integrated. All four chapters have native page checks; the chapter-1 bridge now has a native victory from original resources, exit/relaunch continuation and postbattle-story verification. The complete campaign, overall balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
+The design studies card resource pacing from Hearthstone and terrain, unit counters and commanders from Langrisser. The project uses its own characters, cards, artwork and map layouts, with no assets from either game. Current source is **0.21.0-dev**, with five chapters, branching encounters and cross-chapter saves. The new chapter brings Syla home to damaged nursery beds, her mother and a contested mandate; players decide water allocation and her authority. All five chapters have native page checks; the chapter-1 bridge now has a native victory from original resources, exit/relaunch continuation and postbattle-story verification. The complete campaign, overall balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
 
 ## In-game screenshots
 
@@ -53,6 +53,14 @@ AI captures and holds control points, using knockback, spells and guard to conte
 ![Actual chapter-2 relief-route control victory](docs/screenshots/v018-c02_relief_bridge-victory.png)
 
 A test-only player strategy now wins the chapter-1 bridge by concentrating on the left crossing: 260 legal actions against unchanged production AI and original resources/card order, also verified through two native processes with exit/relaunch. Earlier encounters are still skipped by narrative fixtures, so this is not continuous campaign completion. All previous losing records remain available; ordinary battles still include long games. [Chapter-1 bridge evidence](docs/bridge-playthrough.md) · [Chapter-2 controls and historical diagnostics](docs/tactical-survival.md).
+
+## Chapter 5: Where the Water Comes From
+
+Syla returns to find her banner taken down. Preserving the hillside nursery requires another night of water hauling downstream; clearing the channel first costs damaged hillside crops. Her mother will not decide for her, and winning the canal encounter does not automatically restore her mandate. She can accept a limited term with local co-signatures or return the seal and travel as a witness.
+
+![Chapter-5 water choice in a 1008×700 native window](docs/screenshots/v021-water-small.png)
+
+The chapter adds **7,290 Chinese body-text characters**, with 5,784–5,839 per route, two decisions and one branching encounter. Five chapters have 2,048 cumulative choice paths and eight encounters per path; authored prose including the archive totals **35,372 characters**. All 493 chapter paragraphs have native rendering checks, but continuous ordinary-difficulty access remains pending and the conservative accepted count stays at 5,558. Related models passed 21,730 checks and native UI passed 4,716. Both new fixed-seed diagnostic traces are retained: one win and one loss, 252 legal actions independently replayed. These are not balance or full-campaign evidence. [Chapter-5 editorial and verification notes](docs/narrative/chapter-05-review.md).
 
 ## Unit skills and combat animation
 
@@ -124,7 +132,7 @@ Version 0.16.0-dev passes 1,520 relevant model checks and 2,264 native UI checks
 ![Ranged troop poses](docs/screenshots/ranged-pose-gallery.png)
 ![Commander poses](docs/screenshots/hero-pose-gallery.png)
 
-Chapter 4 adds **6,024 Chinese body-text characters**, two harbor encounters and separate choices about crew accommodation and unpaid wages. The crew leaves the locked ship, the old foundry pattern gets a concrete origin, and Velo must surrender assets or income while installment debts remain explicit. A chapter-4 route contains 5,147–5,258 characters. Four chapters have 512 cumulative choice paths with seven encounters per path; total authored prose including the archive is **28,082 characters**. Native rendering covers 360 chapter paragraphs / 22,524 characters. Continuous ordinary-difficulty accessibility remains unverified, so the conservative accepted count stays at 5,558.
+Chapter 4 adds **6,024 Chinese body-text characters**, two harbor encounters and separate choices about crew accommodation and unpaid wages. The crew leaves the locked ship, the old foundry pattern gets a concrete origin, and Velo must surrender assets or income while installment debts remain explicit. A chapter-4 route contains 5,147–5,258 characters. Four chapters have 512 cumulative choice paths with seven encounters per path; that milestone contained **28,082 authored characters** including the archive, with 360 chapter paragraphs / 22,524 characters rendered natively.
 
 ![Chapter 4: after the crew leaves the ship](docs/screenshots/v020-harbor-open.png)
 
