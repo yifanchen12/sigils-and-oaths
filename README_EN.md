@@ -53,6 +53,8 @@ The chapter-nine choice among joint rotation, a staged bypass and a season-long 
 
 Ten chapters plus the archive contain **74,422 distinct authored Chinese body-text characters**. All 88 chapter-ten body paragraphs rendered in native Godot UI, passing 1,050 checks. Each governance plan entered from a real prior ten-win save, won the new native battle in 213, 98 or 165 pointer actions, and resumed its earned ending in an independent process; 1,516 checks passed. One fixed New Campaign model route won eleven battles through 2,500 legal actions and read 998 dialogue IDs, 16 choices and 53,561 Chinese characters. These are specified winning openings, not evidence of human difficulty or all branch win rates. [Chapter-ten design and verification](docs/narrative/chapter-10-review.md) · [Eleven-battle summary](docs/continuous-v034.json).
 
+[Download the 0.34 Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.34.0-dev). The anonymous public download is 202,462,792 bytes and matches the local build from source commit `bd53bd3`; SHA-256: `05bdd696cf3de7b652078117abca123618d93bef4999af9ece915e75e09dbf12`.
+
 ![Joint-rotation gate victory in the native client](docs/screenshots/v034-joint-gate-victory.png)
 
 ## 0.33: Three chapter-nine governance plans
