@@ -55,6 +55,11 @@
       "id": "chapter_11",
       "title": "第十一章 · 北岸有回信",
       "path": "res://data/narrative/chapters/chapter_11.json"
+    },
+    {
+      "id": "chapter_12",
+      "title": "第十二章 · 一根轴的归属",
+      "path": "res://data/narrative/chapters/chapter_12.json"
     }
   ],
   "scenarios": {
@@ -346,6 +351,30 @@
       "map": "towergate", "hero": "grove", "enemy_class": "warden", "deck": "balanced", "enemy_deck": "balanced", "seed": 10343,
       "enemy_name": "塔门值守长尹纾", "enemy_portrait": "terrain_fort",
       "control": {"cells": [[3, 3], [10, 3]], "required": 2, "round_limit": 20}
+    },
+    "c12_joint_depot": {
+      "title": "共同轮值 · 北岸量轴",
+      "brief": "三方见证者在南侧等候。沿中央坡道和两翼缺口进入备件库前场，在F9测量位与K9装车口各留一支部队，保护工班的工作窗口。北岸守军会伏设陷阱，接近前先侦查。",
+      "objective": "己方新回合开始时，F9、K9两处作业位均有友军，连续两次即胜；开局不计。20个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击退敌指挥官也胜，己方指挥官倒下则败。战胜仅取得量轴机会，轴的归属在战后决定。",
+      "map": "northbank", "hero": "warden", "enemy_class": "warden", "deck": "ambush", "enemy_deck": "ambush", "seed": 12031,
+      "enemy_name": "北岸联防队长鲁苇", "enemy_portrait": "terrain_fort",
+      "control": {"cells": [[5, 3], [10, 3]], "required": 2, "round_limit": 20}
+    },
+    "c12_split_depot": {
+      "title": "分段旁路 · 抢出测量时辰",
+      "brief": "维洛带轻装队由南侧上坡，必须为赶工的量轴组争出时间。在F9与K9各布一支部队并连续守住两个己方回合开始；北岸守军会伏设陷阱。",
+      "objective": "己方新回合开始时，F9、K9两处作业位均有友军，连续两次即胜；开局不计。18个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击退敌指挥官也胜，己方指挥官倒下则败。战胜仅取得量轴机会，轴的归属在战后决定。",
+      "map": "northbank", "hero": "pyromancer", "enemy_class": "warden", "deck": "assault", "enemy_deck": "ambush", "seed": 12032,
+      "enemy_name": "北岸联防队长鲁苇", "enemy_portrait": "terrain_fort",
+      "control": {"cells": [[5, 3], [10, 3]], "required": 2, "round_limit": 18}
+    },
+    "c12_hold_depot": {
+      "title": "封池一季 · 留住北岸退路",
+      "brief": "赛菈率守望队保护两翼运水路，先看清北岸伏设，再为量轴组稳住F9和K9两处作业位。工班只在战后入场。",
+      "objective": "己方新回合开始时，F9、K9两处作业位均有友军，连续两次即胜；开局不计。22个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击退敌指挥官也胜，己方指挥官倒下则败。战胜仅取得量轴机会，轴的归属在战后决定。",
+      "map": "northbank", "hero": "grove", "enemy_class": "warden", "deck": "balanced", "enemy_deck": "ambush", "seed": 12033,
+      "enemy_name": "北岸联防队长鲁苇", "enemy_portrait": "terrain_fort",
+      "control": {"cells": [[5, 3], [10, 3]], "required": 2, "round_limit": 22}
     }
   }
 }

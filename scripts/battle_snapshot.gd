@@ -19,6 +19,16 @@ static func maps_before_towergate() -> Array[Dictionary]:
 		if not map.get("campaign_only", false): maps.append(map)
 	return maps
 
+static func maps_before_northbank() -> Array[Dictionary]:
+	var maps: Array[Dictionary] = []
+	for map: Dictionary in Model.MAPS.maps:
+		if map.id != "northbank": maps.append(map)
+	return maps
+
+static func pre_northbank_signature() -> String:
+	# A new chapter-only map leaves already-started 0.35 battles intact.
+	return JSON.stringify([Model.CATALOG.cards, Model.HEROES.heroes, Model.DECKS.decks, maps_before_northbank(), Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
+
 static func pre_towergate_signature() -> String:
 	# A chapter-only map must not invalidate a running battle on an unchanged
 	# original map. This is the exact 0.33 catalog, not a wildcard signature.
@@ -104,9 +114,10 @@ static func validate(data: Variant) -> Dictionary:
 	if data.version > VERSION:
 		return {"ok": false, "protected": true, "message": "战斗存档版本不兼容，原档保留。"}
 	if not data.get("rules") is String or data.rules.length() != 64: return {"ok": false, "message": "战斗规则签名缺失。"}
-	var old_map_ok: bool = data.get("map_id") != "towergate" and data.get("rules") == pre_towergate_signature()
-	var old_cards_ok: bool = int(data.version) < 3 and data.get("map_id") != "towergate" and data.get("rules") == pre_expansion_signature()
-	if data.get("rules") != rules_signature() and not old_map_ok and not old_cards_ok: return {"ok": false, "protected": true, "message": "战斗存档与当前规则版本不同，原档保留。"}
+	var old_map_ok: bool = data.get("map_id") not in ["towergate", "northbank"] and data.get("rules") == pre_towergate_signature()
+	var old_cards_ok: bool = int(data.version) < 3 and data.get("map_id") not in ["towergate", "northbank"] and data.get("rules") == pre_expansion_signature()
+	var old_northbank_ok: bool = data.get("map_id") != "northbank" and data.get("rules") == pre_northbank_signature()
+	if data.get("rules") != rules_signature() and not old_map_ok and not old_cards_ok and not old_northbank_ok: return {"ok": false, "protected": true, "message": "战斗存档与当前规则版本不同，原档保留。"}
 	if int(data.version) < 3 and data.get("traps", []) != []: return {"ok": false, "message": "旧版战斗不能包含伏设区。"}
 	data = normalize_legacy(data)
 	var problem: String = _validate(data)

@@ -5,17 +5,19 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.35.0-dev" src="https://img.shields.io/badge/version-0.35.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.36.0-dev" src="https://img.shields.io/badge/version-0.36.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone, concealed card play and counterplay from Duel Links, and terrain, unit counters and commanders from Langrisser. Characters, card effects, illustrations and map layouts are made for this project, with no assets from those games. Current source is **0.35.0-dev**, with eleven chapters, branching encounters and cross-chapter saves. One fixed New Campaign model route won eleven consecutive battles and reached the current chapter-eleven end page. Three native saves that had already won the gate battle each completed chapter eleven and resumed the ending in a separate process. Three earlier encounters use public-information diagnostic player policies. The story conclusion, human balance and the 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
+The design studies card resource pacing from Hearthstone, concealed card play and counterplay from Duel Links, and terrain, unit counters and commanders from Langrisser. Characters, card effects, illustrations and map layouts are made for this project, with no assets from those games. Current source is **0.36.0-dev**, with twelve chapters, branching encounters and cross-chapter saves. One fixed New Campaign model route won eleven consecutive battles and reached chapter eleven. Three separate earned chapter-eleven saves each entered and won the new depot battle in chapter twelve. The story conclusion, human balance and the 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
 
 ## In-game screenshots
 
-The chapter-eleven north-bank ferry capture is from 0.35.0-dev. The 14×12 tower gate capture is from 0.34.0-dev; the next two early battlefield captures are from 0.13.0 and earlier milestones.
+The 16×12 north-bank depot capture is from 0.36.0-dev. The chapter-eleven ferry capture is from 0.35.0-dev and the 14×12 tower gate capture is from 0.34.0-dev. Later battlefield captures are from earlier milestones.
+
+![Chapter-twelve original north-bank depot battlefield](docs/screenshots/v036-northbank-map.png)
 
 ![Chapter-eleven old ferry landing](docs/screenshots/v035-c11-riverbank-01.png)
 
@@ -44,10 +46,16 @@ The chapter-eleven north-bank ferry capture is from 0.35.0-dev. The 14×12 tower
 | Set traps and counter them | Movement snares, mines and protective wards are paid for from hand; each side has two trap slots, enemies see only the count, and a search spell can reveal and remove traps |
 | Cover different unit roles | Infantry beats spears, spears beat cavalry, cavalry beats infantry; archers, mages and healers have distinct ranges and roles |
 | Use active unit skills | Six one-mana abilities: shielding, interception, extra movement, a precise shot, fire damage and healing; once per unit per turn |
-| Contest useful ground | Six selectable 12×10 maps plus a 14×12 chapter-ten gate battlefield; defensive forests, hills and forts, roads and bridges for mobility, and healing ruins |
+| Contest useful ground | Six selectable 12×10 maps, a 14×12 chapter-ten gate, and a 16×12 chapter-twelve depot; defensive forests, hills and forts, roads and bridges for mobility, and healing ruins |
 | Lead with a commander | Ailin protects the front, Velo strengthens fire, and Sera supports healing and woodland recovery; each has active and passive abilities |
 | Change the next exchange | Rain, fog, sun and snow affect both sides; replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
+
+## 0.36: Who holds the spare shaft
+
+Chapter twelve adds an original 16×12 north-bank depot map. Hold the F9 measuring slab and K9 loading apron across two player-turn checks, or drive off the opposing commander, before the crew can open the crate. Measurement finds a usable but unfinished spare that still needs a sleeve and pressure testing. After the battle, choose whether to borrow the shaft for the city with food, replacement and return obligations to three villages, or leave it at the depot and cast a new one for the city. The three governance plans change commander, deck and deadline; the defender pays for traps from its hand.
+
+The twelve chapters and archive contain **85,371 distinct authored Chinese body-text characters**, below the 100,000 target. All 68 chapter-twelve body paragraphs rendered in native Godot UI, passing 840 checks; 48 inherited model routes passed 29,881 checks. Three previously earned saves each won the new battle through legal actions, reloaded mid-battle and reached a custody ending, passing 624 checks. They do not establish one continuous twelve-win run, human difficulty or win rates across every branch. [Chapter-twelve review](docs/narrative/chapter-12-review.md) · [Earned battle results](docs/chapter12-earned-results.json).
 
 ## 0.35: The north-bank reply
 

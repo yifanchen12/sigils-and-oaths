@@ -28,7 +28,7 @@ func writer() -> void:
 		await click(game.story_view.actions.get_child(0).get_global_rect().get_center())
 	check(game.campaign_session.current().type == "end" and game.campaign_session.campaign.story.graph.id == "chapter_11", "witness chapter reaches authored end")
 	check(lines_seen >= 105 and witnessed.has("c11.mark.01") and witnessed.has("c11.supply.01"), "witness and immediate supply conflict played before ending")
-	check(game.campaign_session.campaign.next_chapter().is_empty(), "no unwritten twelfth chapter offered")
+	check(game.campaign_session.campaign.next_chapter().get("id") == "chapter_12", "earned eleventh ending offers authored twelfth chapter")
 	check(game.campaign_session.save().ok, "earned chapter eleven end saved to disk")
 	await capture("v035-" + plan + "-chapter11-ending")
 	print("ELEVENTH NATIVE WRITER: %d CHECKS | FAILURES: %d | PLAN: %s | PARAGRAPHS: %d" % [checks, failures, plan, lines_seen])

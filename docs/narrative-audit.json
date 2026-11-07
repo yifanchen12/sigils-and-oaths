@@ -1,5 +1,5 @@
 {
-  "scope": "Codex accessibility verified in 0.13.0. Registered chapter graphs carry preceding ending facts. Native source hashes identify rendered page catalogues; one eleven-battle route has separate native evidence.",
+  "scope": "Codex accessibility verified in 0.13.0. Registered chapter graphs carry preceding ending facts. Native source hashes identify rendered page catalogues; a continuous eleven-battle route and three earned depot continuations have separate evidence.",
   "counting_method": "Distinct body paragraphs; Chinese Han characters only; excludes punctuation, summaries, headings, UI, plans and prompts.",
   "entries": 18,
   "paragraphs": 52,
@@ -10,7 +10,7 @@
     "地理": 1194
   },
   "release_target": 100000,
-  "remaining_to_target": 94442,
+  "remaining_to_target": 14629,
   "chapter_candidates": [
     {
       "id": "chapter_01",
@@ -165,12 +165,26 @@
       "nodes": 17,
       "native_rendered_source_matches": true,
       "status": "Every conditional page rendered in Godot. Three actual prior gate-win saves entered and finished this witness chapter; each ending resumed in a separate native process. Earlier battle paths and human play remain unchecked."
+    },
+    {
+      "id": "chapter_12",
+      "body_paragraphs": 68,
+      "all_string_entries": 71,
+      "authored_unique_characters": 4016,
+      "graph_reachable_unique_characters": 4016,
+      "route_count": 294912,
+      "shortest_route_characters": 3432,
+      "incoming_fact_combinations": 147456,
+      "longest_route_characters": 3455,
+      "nodes": 13,
+      "native_rendered_source_matches": true,
+      "status": "Every conditional page rendered in native Godot. Three earned chapter-eleven saves advanced through real depot battles with legal actions, battle reload and both custody choices represented across plans. Other routes and human balance remain unchecked."
     }
   ],
-  "authored_total_characters": 81355,
-  "native_rendered_chapter_characters": 75797,
+  "authored_total_characters": 85371,
+  "native_rendered_chapter_characters": 79813,
   "pending_ui_verification_characters": 0,
-  "pending_playthrough_verification_characters": 75797,
-  "limitations": "Exact-repeat audit only. Graph enumeration assumes battle victories; it does not prove every complete route can win. One fixed eleven-battle route has native win evidence, using declared diagnostic player policies in three encounters and a separate native gate continuation from actual prior saves. Headings, choice prompts and option labels are excluded. Reaching 100,000 characters along a single playable route, human editorial review and balance remain separate requirements.",
+  "pending_playthrough_verification_characters": 79813,
+  "limitations": "Exact-repeat audit only. Graph enumeration assumes battle victories; it does not prove every complete route can win. One fixed eleven-battle route has native win evidence; three earned chapter-eleven saves also entered and won chapter twelve using a declared diagnostic policy. This is not one continuous twelve-battle proof. Headings, choice prompts and option labels are excluded. Reaching 100,000 characters along a single playable route, human editorial review and balance remain separate requirements.",
   "errors": []
 }

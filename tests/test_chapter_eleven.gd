@@ -38,7 +38,7 @@ func walk_eleven(campaign: RefCounted, plan: String, disk: bool) -> void:
 			"end":
 				eleventh_seen[campaign.story.graph.nodes[page.node].text] = true
 				eleventh_routes += 1
-				check(pages >= 105 and campaign.next_chapter().is_empty(), "eleventh witness route reaches authored end after full testimony: " + plan)
+				check(pages >= 105 and campaign.next_chapter().get("id") == "chapter_12", "eleventh witness route reaches authored end and opens twelfth: " + plan)
 				for key: String in inherited: check(campaign.story.state.flags[key] == inherited[key], "eleventh preserves inherited fact: " + key)
 				if disk: _disk_roundtrip(campaign, plan + " ending")
 				return

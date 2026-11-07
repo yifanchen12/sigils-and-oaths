@@ -120,6 +120,17 @@
       "playthroughValidated": false,
       "wordCount": 6933,
       "wordCountPass": false
+    },
+    {
+      "id": "chapter_12",
+      "title": "一根轴的归属",
+      "status": "draft_pending_reader_feedback_and_continuous_playthrough",
+      "nativeValidated": false,
+      "revision": "0.36.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 4016,
+      "wordCountPass": false
     }
   ]
 }

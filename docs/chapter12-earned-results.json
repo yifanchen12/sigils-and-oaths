@@ -1,0 +1,38 @@
+{
+	"checks": 624,
+	"failures": 0,
+	"games": [
+		{
+			"actions": 74,
+			"governance_plan": "joint",
+			"objective_streak": 2,
+			"reason": "control",
+			"reloaded_in_battle": true,
+			"scenario": "c12_depot",
+			"turn": 15,
+			"winner": 0
+		},
+		{
+			"actions": 109,
+			"governance_plan": "split",
+			"objective_streak": 2,
+			"reason": "control",
+			"reloaded_in_battle": true,
+			"scenario": "c12_depot",
+			"turn": 23,
+			"winner": 0
+		},
+		{
+			"actions": 228,
+			"governance_plan": "hold",
+			"objective_streak": 0,
+			"reason": "commander",
+			"reloaded_in_battle": true,
+			"scenario": "c12_depot",
+			"turn": 39,
+			"winner": 0
+		}
+	],
+	"human_playtest": false,
+	"provenance": "chapter-eleven native earned save fixtures; focus policy uses visible state and legal actions against production opponent"
+}

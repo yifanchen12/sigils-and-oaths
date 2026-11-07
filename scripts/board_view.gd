@@ -330,9 +330,13 @@ func _draw() -> void:
 			var rect := Rect2(grid.position + Vector2(x, y) * tile, Vector2.ONE * tile)
 			_draw_terrain(cell, rect, painted)
 			if not battle.objective.is_empty() and battle.objective.cells.has([x, y]):
-				draw_rect(rect.grow(-7), GOLD, false, 3)
-				draw_circle(rect.position + Vector2(tile * 0.5, 14), 11, Color("142337"))
-				_text("守", rect.position + Vector2(tile * 0.5, 19), 13, GOLD)
+				var work_label: String = "守"
+				if battle.map_definition.id == "northbank": work_label = "量" if x == 5 else "装"
+				draw_rect(rect.grow(-2), Color(0.98, 0.78, 0.36, 0.24))
+				draw_rect(rect.grow(-2), Color("172638"), false, 4)
+				draw_rect(rect.grow(-5), GOLD, false, 2)
+				draw_circle(rect.position + Vector2(tile * 0.5, 15), 13, Color("142337"))
+				_text(work_label, rect.position + Vector2(tile * 0.5, 20), 14, GOLD)
 			if cast_reach.has(cell):
 				draw_rect(rect.grow(-1), Color(0.34, 0.61, 0.90, 0.12))
 			if deploy.has(cell):

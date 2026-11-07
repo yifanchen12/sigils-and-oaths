@@ -1849,6 +1849,22 @@
       "processing": "Intact original PNG; native crop and overlay only.",
       "status": "source image visually reviewed; native chapter UI pending",
       "validation": "docs/narrative/chapter-11-design.md"
+    },
+    {
+      "id": "battlefield_northbank",
+      "path": "assets/art/battlefields/northbank-v2.png",
+      "source_filename": "exec-81e9e5fd-97b9-43a8-83bd-07c004ecc1d9.png",
+      "reference_path": "assets/art/battlefields/towergate-v2.png",
+      "rule_reference": "data/maps.tres / northbank.rows",
+      "prompt_file": "assets/art/battlefields/northbank-source.md",
+      "size": [1448, 1086],
+      "mode": "RGB",
+      "sha256": "d2fa663ef5cef0ffd1622e8532bf83b5c3b4cee36c08eecff2f558d7133fa58a",
+      "source_bytes_preserved": true,
+      "role": "Sixteen by twelve north-bank depot battlefield with three ridge approaches; terrain rules are data-driven.",
+      "processing": "Original PNG copied intact. Godot overlays grid, units and objectives.",
+      "status": "source visually reviewed; native board alignment and click hit tests passed",
+      "validation": "docs/narrative/chapter-12-design.md"
     }
   ]
 }
