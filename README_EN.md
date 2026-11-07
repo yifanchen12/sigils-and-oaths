@@ -5,17 +5,21 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.38.0-dev" src="https://img.shields.io/badge/version-0.38.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.39.0-dev" src="https://img.shields.io/badge/version-0.39.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone, concealed card play and counterplay from Duel Links, and terrain, unit counters and commanders from Langrisser. Characters, card effects, illustrations and map layouts are made for this project, with no assets from those games. Current source is **0.38.0-dev**, with fourteen chapters, branching encounters and cross-chapter saves. One fixed New Campaign model route won eleven consecutive battles and reached chapter eleven. Three separate earned chapter-eleven saves won the depot battle in chapter twelve and continued into chapter thirteen. Two chapter-thirteen ending saves then won the new chapter-fourteen channel battle. These are separate verification routes. The story conclusion, human balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
+The design studies card resource pacing from Hearthstone, concealed card play and counterplay from Duel Links, and terrain, unit counters and commanders from Langrisser. Characters, card effects, illustrations and map layouts are made for this project, with no assets from those games. Current source is **0.39.0-dev**, with fifteen chapters, branching encounters and cross-chapter saves. One fixed New Campaign model route won eleven consecutive battles and reached chapter eleven. Three separate earned chapter-eleven saves won the depot battle in chapter twelve and continued into chapter thirteen. Two chapter-thirteen ending saves then won the chapter-fourteen channel battle and each continued through chapter fifteen. These are separate verification routes. The story conclusion, human balance and the 100,000-character target on a single playable route remain unfinished. The interface is Chinese; this README does not imply an English localization.
 
 ## In-game screenshots
 
-The new 16×12 spillway battlefield is from 0.38.0-dev. The chapter-thirteen mill scene is from 0.37.0-dev; the north-bank depot is from 0.36.0-dev. Later captures are from earlier milestones.
+The new mill-morning scene is from 0.39.0-dev. The 16×12 spillway battlefield is from 0.38.0-dev; the north-bank depot is from 0.36.0-dev. Later captures are from earlier milestones.
+
+![Original chapter-fifteen mill-morning StoryView](docs/screenshots/v039-mill-morning-small.png)
+
+![Original chapter-fifteen valve-hall StoryView](docs/screenshots/v039-tower-valve-small.png)
 
 ![Original chapter-fourteen spillway battlefield](docs/screenshots/v038-spillway-map.png)
 
@@ -56,6 +60,12 @@ The new 16×12 spillway battlefield is from 0.38.0-dev. The chapter-thirteen mil
 | Lead with a commander | Ailin protects the front, Velo strengthens fire, and Sera supports healing and woodland recovery; each has active and passive abilities |
 | Change the next exchange | Rain, fog, sun and snow affect both sides; replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
+
+## 0.39: Water beneath the valve
+
+Chapter fifteen follows both water orders on the next morning. The mill, the east street and the tower still need the same scarce water. The borrowed or retained shaft and three governance choices change the worksite dialogue. A new casting sample fails inspection, and a second pressure step reveals a leak at the old inner valve. Choose a two-day recast or a removable sleeve with a next-day low-pressure retest that delays the north-bank replacement by one night. Water carts continue under both choices; the tower has not passed high-pressure acceptance.
+
+Two new original scene paintings extend this project's mill and workshop art. Twelve structural continuations and two separately earned channel-win endings passed 3,242 checks; all 104 body pages rendered in native Godot UI with 1,005 checks passing. [Chapter-fifteen review](docs/narrative/chapter-15-review.md). The fifteen chapters and archive contain **100,313 distinct Chinese body-text Han characters across all reachable branches**. A single playable route is much shorter, and the story conclusion and human balance remain unfinished.
 
 ## 0.38: The spillway
 

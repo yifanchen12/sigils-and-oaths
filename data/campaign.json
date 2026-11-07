@@ -70,6 +70,11 @@
       "id": "chapter_14",
       "title": "第十四章 · 暗渠分水",
       "path": "res://data/narrative/chapters/chapter_14.json"
+    },
+    {
+      "id": "chapter_15",
+      "title": "第十五章 · 阀下水痕",
+      "path": "res://data/narrative/chapters/chapter_15.json"
     }
   ],
   "scenarios": {

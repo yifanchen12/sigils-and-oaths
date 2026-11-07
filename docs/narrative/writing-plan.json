@@ -153,6 +153,17 @@
       "playthroughValidated": false,
       "wordCount": 3382,
       "wordCountPass": false
+    },
+    {
+      "id": "chapter_15",
+      "title": "阀下水痕",
+      "status": "draft_pending_reader_feedback_and_complete_story",
+      "nativeValidated": false,
+      "revision": "0.39.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 6885,
+      "wordCountPass": false
     }
   ]
 }

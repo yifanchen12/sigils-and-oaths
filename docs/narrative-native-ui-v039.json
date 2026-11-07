@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "milestone": "0.39.0-dev",
+  "date": "2026-11-07",
+  "passed": true,
+  "chapter_sha256": {
+    "chapter_15": "d9df4a1e099d4a8c6d8b812fca0c32578e85880d0493b1c2e583dd4e53e9eaef"
+  },
+  "catalogue_test": "tests/test_chapter_fifteen_catalog_ui.gd",
+  "catalogue_checks": 1005,
+  "catalogue_body_pages": 104,
+  "catalogue_scope": "Every 102 dialogue paragraph and two endings rendered in native Godot StoryView from twelve chapter-fourteen structural outcome saves. Two repair choices and small 1008x700 layout checked; original mill and valve-hall screenshots visually reviewed. The prior battle victory in these catalogue saves was injected in the previous milestone's structural test.",
+  "continuation_test": "tests/test_chapter_fifteen.gd",
+  "continuation_checks": 3242,
+  "continuation_scope": "Twelve structural prior outcomes cover three governance plans, both water orders and both repair choices; two separately earned chapter-fourteen battle endings also enter and finish this chapter. Save and reload checked. No new battle or continuous fifteen-chapter playthrough.",
+  "limitations": "Aggregate distinct Han count is separate from route length. Human prose review, difficulty, complete story conclusion and Steam acceptance remain open."
+}

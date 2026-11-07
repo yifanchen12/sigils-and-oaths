@@ -14,7 +14,9 @@ const NARRATIVE_SCENES: Dictionary = {
 	"scene_waterpass": "waterpass-day-v1", "scene_oldfurnace": "oldfurnace-day-v1",
 	"scene_council_terrace": "council-terrace-day-v1",
 	"scene_redroof": "redroof-day-v1", "scene_northbank_memorial": "northbank-memorial-v1",
-	"scene_northbank_mill": "northbank-mill-v1"
+	"scene_northbank_mill": "northbank-mill-v1",
+	"scene_northbank_mill_morning": "northbank-mill-morning-v1",
+	"scene_tower_valve": "tower-valve-v1"
 }
 const ACTION_SHEETS: Dictionary = {
 	"sword": {"path": "res://assets/art/actions/sword-v2.png", "scale": 1.50,

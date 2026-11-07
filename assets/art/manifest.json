@@ -1923,6 +1923,34 @@
       "processing": "Original PNG copied intact; card frame and text rendered by Godot.",
       "status": "source and native card rendering visually reviewed",
       "validation": "tests/test_channel_cards.gd"
+    },
+    {
+      "id": "scene_northbank_mill_morning",
+      "path": "assets/art/narrative/northbank-mill-morning-v1.png",
+      "source_filename": "exec-d6748205-1286-48e4-8dc0-4015b15810f9.png",
+      "prompt_file": "assets/art/narrative/chapter15-source.md",
+      "size": [1672, 941],
+      "mode": "RGB",
+      "sha256": "813f8c3b94a1b01283b6b00891e284f3043601098eda76bf1bee64c0ce115379",
+      "source_bytes_preserved": true,
+      "role": "Chapter fifteen's next-morning mill and water allocation scene.",
+      "processing": "Original generated PNG copied intact; UI crop and dark overlay in Godot.",
+      "status": "source and native chapter UI visually reviewed",
+      "validation": "tests/test_chapter_fifteen_catalog_ui.gd"
+    },
+    {
+      "id": "scene_tower_valve",
+      "path": "assets/art/narrative/tower-valve-v1.png",
+      "source_filename": "exec-ef99cd26-da2f-404e-8606-66692d18a6c9.png",
+      "prompt_file": "assets/art/narrative/chapter15-source.md",
+      "size": [1536, 1024],
+      "mode": "RGB",
+      "sha256": "f8e78b1971900085dc1cfbe6336d52c26168c712381066bbe3adab7ff0f2f159",
+      "source_bytes_preserved": true,
+      "role": "Chapter fifteen's inner valve hall and safe evacuation route.",
+      "processing": "Original generated PNG copied intact; UI crop and dark overlay in Godot.",
+      "status": "source and native chapter UI visually reviewed",
+      "validation": "tests/test_chapter_fifteen_catalog_ui.gd"
     }
   ]
 }
