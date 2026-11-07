@@ -109,6 +109,17 @@
       "playthroughValidated": false,
       "wordCount": 4970,
       "wordCountPass": false
+    },
+    {
+      "id": "chapter_11",
+      "title": "北岸有回信",
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "revision": "0.35.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 6933,
+      "wordCountPass": false
     }
   ]
 }

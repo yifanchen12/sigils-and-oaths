@@ -5,17 +5,19 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.34.0-dev" src="https://img.shields.io/badge/version-0.34.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.35.0-dev" src="https://img.shields.io/badge/version-0.35.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone, concealed card play and counterplay from Duel Links, and terrain, unit counters and commanders from Langrisser. Characters, card effects, illustrations and map layouts are made for this project, with no assets from those games. Current source is **0.34.0-dev**, with ten chapters, branching encounters and cross-chapter saves. One fixed New Campaign model route won eleven consecutive battles and reached the current chapter-ten end page. Starting from actual earlier ten-win native saves, all three governance plans won the added gate battle through native pointer input. Three earlier encounters use public-information diagnostic player policies. The story conclusion, human balance and the 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
+The design studies card resource pacing from Hearthstone, concealed card play and counterplay from Duel Links, and terrain, unit counters and commanders from Langrisser. Characters, card effects, illustrations and map layouts are made for this project, with no assets from those games. Current source is **0.35.0-dev**, with eleven chapters, branching encounters and cross-chapter saves. One fixed New Campaign model route won eleven consecutive battles and reached the current chapter-eleven end page. Three native saves that had already won the gate battle each completed chapter eleven and resumed the ending in a separate process. Three earlier encounters use public-information diagnostic player policies. The story conclusion, human balance and the 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
 
 ## In-game screenshots
 
-The 14×12 tower gate capture is from 0.34.0-dev; the next two early battlefield captures are from 0.13.0 and earlier milestones.
+The chapter-eleven north-bank ferry capture is from 0.35.0-dev. The 14×12 tower gate capture is from 0.34.0-dev; the next two early battlefield captures are from 0.13.0 and earlier milestones.
+
+![Chapter-eleven old ferry landing](docs/screenshots/v035-c11-riverbank-01.png)
 
 ![Chapter-ten original two-bridge tower gate battlefield](docs/screenshots/v034-towergate-map.png)
 
@@ -46,6 +48,12 @@ The 14×12 tower gate capture is from 0.34.0-dev; the next two early battlefield
 | Lead with a commander | Ailin protects the front, Velo strengthens fire, and Sera supports healing and woodland recovery; each has active and passive abilities |
 | Change the next exchange | Rain, fog, sun and snow affect both sides; replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
+
+## 0.35: The north-bank reply
+
+Chapter eleven adds original red-roof house and old ferry landing scenes. Two firsthand witnesses tell Ailin what happened during her father's last rescue and where he was buried. The family retains the choice of whether to read a returned letter and when to restore his name to the memorial. The cracked inner valve and north-bank spare remain practical objectives for later chapters. Earlier companion and governance choices change the dialogue.
+
+Eleven chapters plus the archive contain **81,355 distinct authored Chinese body-text characters**. All 119 chapter-eleven paragraphs rendered in native Godot UI with 1,361 checks passing. Each of three governance plans entered from an actual prior gate-win save, read 112 pages and resumed its ending in a separate process. A model check covered 24 inherited routes and 12,627 assertions. The fixed eleven-battle route used 2,500 legal actions and read 1,110 dialogue IDs, 16 choices and 60,044 Han characters. This establishes one specified route, not human difficulty or all branch win rates. [Chapter-eleven review](docs/narrative/chapter-11-review.md) · [Continuous campaign summary](docs/continuous-v035.json).
 
 ## 0.34: The two-bridge tower gate
 

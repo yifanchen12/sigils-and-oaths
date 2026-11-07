@@ -50,6 +50,11 @@
       "id": "chapter_10",
       "title": "第十章 · 门前两次响声",
       "path": "res://data/narrative/chapters/chapter_10.json"
+    },
+    {
+      "id": "chapter_11",
+      "title": "第十一章 · 北岸有回信",
+      "path": "res://data/narrative/chapters/chapter_11.json"
     }
   ],
   "scenarios": {

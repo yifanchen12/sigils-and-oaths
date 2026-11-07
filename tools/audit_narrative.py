@@ -15,7 +15,7 @@ def chapter_audit(ids, text_seen, errors):
     evidence_path = ROOT / "docs/narrative-native-ui.json"
     evidence = json.loads(evidence_path.read_text(encoding="utf-8")) if evidence_path.exists() else {}
     rendered_sources = evidence.get("chapter_sha256", {}).copy() if evidence.get("passed") is True else {}
-    for milestone in ("v033", "v034"):
+    for milestone in ("v033", "v034", "v035"):
         later_path = ROOT / f"docs/narrative-native-ui-{milestone}.json"
         if later_path.exists():
             later = json.loads(later_path.read_text(encoding="utf-8"))
@@ -92,6 +92,16 @@ def chapter_audit(ids, text_seen, errors):
             errors.append(f"Unreachable chapter body: {sorted(body - read_lines)}")
         if reached != nodes.keys():
             errors.append(f"Unreachable chapter nodes: {sorted(nodes.keys() - reached)}")
+        if native_rendered and entry["id"] == "chapter_11":
+            status = "Every conditional page rendered in Godot. Three actual prior gate-win saves entered and finished this witness chapter; each ending resumed in a separate native process. Earlier battle paths and human play remain unchecked."
+        elif native_rendered and entry["id"] == "chapter_10":
+            status = "Every conditional page rendered in Godot. A native battle from actual prior ten-win saves reached this chapter end on three plans; other openings and human play remain unchecked."
+        elif native_rendered and entry["id"] == "chapter_09":
+            status = "Every conditional page rendered in Godot. A ten-battle route reached this chapter; other battle paths and human play remain unchecked."
+        elif native_rendered:
+            status = f"Native page rendering checked in {evidence.get('milestone', 'unknown')}; fixture victories provide all-page access. A later eleven-battle route has separate native evidence."
+        else:
+            status = "Source differs from native rendering evidence or has not been rendered; native UI check pending."
         reports.append({
             "id": entry["id"], "body_paragraphs": len(body), "all_string_entries": len(strings),
             "authored_unique_characters": sum(weights.values()),
@@ -100,7 +110,7 @@ def chapter_audit(ids, text_seen, errors):
             "incoming_fact_combinations": len(incoming),
             "longest_route_characters": max(routes), "nodes": len(nodes),
             "native_rendered_source_matches": native_rendered,
-            "status": "Every conditional page rendered in Godot. A native battle from actual prior ten-win saves reached this chapter end on three plans; other openings and human play remain unchecked." if native_rendered and entry["id"] == "chapter_10" else ("Every conditional page rendered in Godot. A ten-battle route reached this chapter; other battle paths and human play remain unchecked." if native_rendered and entry["id"] == "chapter_09" else (f"Native page rendering checked in {evidence.get('milestone', 'unknown')}; fixture victories provide all-page access. A later ten-battle route has separate native evidence." if native_rendered else "Source differs from native rendering evidence or has not been rendered; native UI check pending.")),
+            "status": status,
         })
     return reports
 

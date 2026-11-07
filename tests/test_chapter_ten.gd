@@ -53,7 +53,7 @@ func walk_ten(campaign: RefCounted, plan: String, disk: bool) -> void:
 			"end":
 				tenth_seen[campaign.story.graph.nodes[page.node].text] = true
 				tenth_routes += 1
-				check(battles == 1 and campaign.next_chapter().is_empty(), "one gate battle reaches current tenth ending")
+				check(battles == 1 and campaign.next_chapter().get("id") == "chapter_11", "one gate battle reaches tenth ending and unlocks eleventh")
 				for key: String in inherited: check(campaign.story.state.flags[key] == inherited[key], "tenth does not erase earlier fact: " + key)
 				var portable: Variant = JSON.parse_string(JSON.stringify(campaign.snapshot()))
 				var copy: RefCounted = Campaign.new()
