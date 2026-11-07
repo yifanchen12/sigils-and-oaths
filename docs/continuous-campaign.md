@@ -28,6 +28,8 @@
 
 可用 `godot --headless --path . --script res://tests/benchmark_campaign_continuous.gd -- --route=road --priority=relief --pump-focus --nursery-focus --court-focus` 复核固定路线；原生窗口按顺序执行 `godot --path . --audio-driver Dummy --script res://tests/test_campaign_continuous_ui.gd -- --write --capture-prefix=v032 --report=res://.tools/continuous-campaign-road-pump-focus-nursery-focus-court-focus.json` 与同命令的 `--read`。这不是人工试玩、其他分支通关或整体平衡证明；棋庭等关卡仍有明显长局。
 
+对应[0.32 Windows开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.32.0-dev)已公开；匿名下载的字节数与SHA-256见[发行准备记录](release/steam-readiness.md)。
+
 ## 0.31 两条第二章路线推进到第四章（2026-11-07）
 
 救济双桥关保留原12轮期限与两点连续驻守规则，将敌方军势由突袭改为均衡；固定种子2317下，生产策略和谨慎测试策略均从期限失败变为驻守获胜。押运队关保留敌方均衡军势，将己方军势由突袭改为壁垒；固定种子2319下，两种策略均从指挥官败亡变为胜利。战前说明分别提示分兵守桥和枪医阵线。这些是既定开局的关卡调试，不是随机种子胜率或真人平衡测试。已经开始的旧军势战斗可继续保存，失败重试采用当前关卡军势；不接受其他军势伪装旧档。

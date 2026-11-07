@@ -54,6 +54,8 @@
 
 日陨隔离关保留12轮双点驻守目标，敌军从壁垒改为均衡；旧版已经开始的战斗仍可读档，失败重试采用当前编队。该路线实际读到约42,598个汉字，第八章终页仍为后续蓄能池冲突留了入口，第九、十章尚未写成。[十战逐场记录、操作策略与截图](docs/continuous-campaign.md)。
 
+[下载0.32 Windows x64开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.32.0-dev)。发行包来自提交`35ac83a`；匿名公开下载197615362字节，与本地构建一致，SHA-256为`3fe558c27013be1cff4b665c7211f47139c80524011e76e11d04c6a136c5589d`。
+
 ![第八章终页：新的蓄能池议题](docs/screenshots/v032-continuous-ending.png)
 
 ## 0.31：两条第二章路线进入第四章

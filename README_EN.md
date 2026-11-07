@@ -53,6 +53,8 @@ The road, relief and Sunspire-isolation choices led from the actual New Campaign
 
 The Sunspire isolation encounter still requires holding two points within 12 rounds; its opposing preset changed from Bastion to Balanced. Already-started old battles remain resumable, while a retry uses the current setup. This route read 42,598 Chinese ideographs in dialogue. The eighth chapter leaves the reservoir dispute open; chapters nine and ten are still outlines. [Per-battle record, policies and screenshots](docs/continuous-campaign.md).
 
+[Download the 0.32 Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.32.0-dev). The anonymous public download is 197,615,362 bytes and matches the local build from commit `35ac83a`; SHA-256: `3fe558c27013be1cff4b665c7211f47139c80524011e76e11d04c6a136c5589d`.
+
 ![Current chapter-eight end page](docs/screenshots/v032-continuous-ending.png)
 
 ## 0.31: Both chapter-two routes reach chapter four
