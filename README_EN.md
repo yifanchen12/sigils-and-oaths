@@ -57,6 +57,8 @@ Chapter twelve adds an original 16×12 north-bank depot map. Hold the F9 measuri
 
 The twelve chapters and archive contain **85,371 distinct authored Chinese body-text characters**, below the 100,000 target. All 68 chapter-twelve body paragraphs rendered in native Godot UI, passing 840 checks; 48 inherited model routes passed 29,881 checks. Three previously earned saves each won the new battle through legal actions, reloaded mid-battle and reached a custody ending, passing 624 checks. They do not establish one continuous twelve-win run, human difficulty or win rates across every branch. [Chapter-twelve review](docs/narrative/chapter-12-review.md) · [Earned battle results](docs/chapter12-earned-results.json).
 
+[Download the 0.36 Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.36.0-dev). The anonymous public download is 210,297,517 bytes and matches the local build from source commit `0138600`. SHA-256: `2c2b287adca83d2596cadd397973b5c1190955c581548c030b78a3ae85e82088`. ZIP CRC, 286 PCK entries and standalone startup were checked.
+
 ## 0.35: The north-bank reply
 
 Chapter eleven adds original red-roof house and old ferry landing scenes. Two firsthand witnesses tell Ailin what happened during her father's last rescue and where he was buried. The family retains the choice of whether to read a returned letter and when to restore his name to the memorial. The cracked inner valve and north-bank spare remain practical objectives for later chapters. Earlier companion and governance choices change the dialogue.
