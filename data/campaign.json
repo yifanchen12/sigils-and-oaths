@@ -273,7 +273,7 @@
       "hero": "pyromancer",
       "enemy_class": "warden",
       "deck": "balanced",
-      "enemy_deck": "bastion",
+      "enemy_deck": "balanced",
       "seed": 8317,
       "enemy_name": "守机管事阮衡",
       "enemy_portrait": "terrain_fort",

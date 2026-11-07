@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "game_version": "0.32.0-dev",
+  "date": "2026-11-07",
+  "scope": "One fixed-seed authored road/relief/isolate route, public-information diagnostic player on three named encounters and production AI elsewhere. Native replay follows all visible inputs. This proves a route exists, not human balance or complete branch coverage.",
+  "chapters_entered": [
+    "chapter_01",
+    "chapter_02",
+    "chapter_03",
+    "chapter_04",
+    "chapter_05",
+    "chapter_06",
+    "chapter_07",
+    "chapter_08"
+  ],
+  "dialogue_count": 799,
+  "read_han_characters": 42598,
+  "read_han_count_method": "Count CJK Unified Ideographs in the 799 distinct rendered dialogue strings on this route; exclude endings, archive entries, UI labels and unvisited branches.",
+  "choice_count": 15,
+  "model_checks": 3251,
+  "model_failures": 0,
+  "model_report_sha256": "d19259ab963be0f1e73516bd49eb327d39a63e1bf324aff87c616ed8623a48e3",
+  "games": [
+    {
+      "scenario": "c01_road",
+      "winner": 0,
+      "actions": 151,
+      "side_turns": 25
+    },
+    {
+      "scenario": "c01_bridge",
+      "winner": 0,
+      "actions": 448,
+      "side_turns": 62
+    },
+    {
+      "scenario": "c02_relief_bridge",
+      "winner": 0,
+      "actions": 128,
+      "side_turns": 21
+    },
+    {
+      "scenario": "c02_dispatch",
+      "winner": 0,
+      "actions": 454,
+      "side_turns": 62
+    },
+    {
+      "scenario": "c03_vent",
+      "winner": 0,
+      "actions": 55,
+      "side_turns": 13
+    },
+    {
+      "scenario": "c04_dock",
+      "winner": 0,
+      "actions": 269,
+      "side_turns": 43
+    },
+    {
+      "scenario": "c04_pump",
+      "winner": 0,
+      "actions": 90,
+      "side_turns": 17
+    },
+    {
+      "scenario": "c05_nursery",
+      "winner": 0,
+      "actions": 132,
+      "side_turns": 25
+    },
+    {
+      "scenario": "c06_court",
+      "winner": 0,
+      "actions": 445,
+      "side_turns": 62
+    },
+    {
+      "scenario": "c08_isolate",
+      "winner": 0,
+      "actions": 115,
+      "side_turns": 21
+    }
+  ],
+  "reached_authored_end": true,
+  "native_ui": {
+    "writer_checks": 5540,
+    "reader_checks": 8,
+    "actions": 2287,
+    "separate_process_reload": true
+  },
+  "screenshots_sha256": {
+    "v032-continuous-opening.png": "36544c9091b99cc2ee2494c5899d1948d0388aec5366ff9583bfaa996b66149c",
+    "v032-continuous-c01_road-victory.png": "3ac65fd42b51631145c2c8eda29ac167e4b542069cd3ad4ebc5baf1bcae9aee0",
+    "v032-continuous-c01_bridge-victory.png": "a6f52df886d65f701c0a6707f85b38de971a45d0cd6469c07cfb42d6933747db",
+    "v032-continuous-c02_relief_bridge-victory.png": "b2b51e5c020ede05b96b34aaae12adefcc677d2e3718be3a1ed636c582ca16af",
+    "v032-continuous-c02_dispatch-victory.png": "abeb45b7c8bcde3fd65de22d5b0e0407b9f2f4b6329ccd77a27419848047149e",
+    "v032-continuous-c03_vent-victory.png": "4606bfa1dfcc6d5527af94a7ef963f48b2cc25f86b3a2c4e483260acf4241700",
+    "v032-continuous-c04_dock-victory.png": "6b5b89137174581fd375af2bd0762e115a398f92a4134acabf3aebc2a5d03696",
+    "v032-continuous-c04_pump-victory.png": "41311f0534a0598f25d500c4fe3cb21014578f61dbe13b5ea8353c895b969c36",
+    "v032-continuous-c05_nursery-victory.png": "fd52690afbba9361213a60887421b82a3eee1f286d7edb1f02a5254601d7d99f",
+    "v032-continuous-c06_court-victory.png": "cb7cd6fa739b7512cc1e3a09c4258c1665876e8a48b085713ce5906c6f534b88",
+    "v032-continuous-c08_isolate-victory.png": "bf82e411653e60fe12df1ad2145a6f6dfb78f12018af653dbbf199c4192969e6",
+    "v032-continuous-ending.png": "6c3fa34891d36bbb5286a831dad51114e28475429983e2c90e6db4e195e0b69d",
+    "v032-continuous-resumed-ending.png": "10c1a9f0d1f64c5a925f46902bf4fe4cfa617c5938432f1040878c75d48e2ccd"
+  }
+}

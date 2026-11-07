@@ -5,13 +5,13 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.31.0-dev" src="https://img.shields.io/badge/version-0.31.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.32.0-dev" src="https://img.shields.io/badge/version-0.32.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法研究参考《炉石传说》的卡牌资源节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、卡面与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前源码为 **0.31.0-dev**，面向 Windows 桌面单机对战 AI；八章剧情、分支关卡与跨章存档已接入。从新战役入口连续游玩已实际六胜并走到第四章泵房败局；完整战役、整体平衡与十万字目标仍在开发。
+玩法研究参考《炉石传说》的卡牌资源节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、卡面与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前源码为 **0.32.0-dev**，面向 Windows 桌面单机对战 AI；八章剧情、分支关卡与跨章存档已接入。一条固定路线已从新战役入口连续十胜，抵达现有第八章终页；其中三关使用公开信息测试打法。第九、十章、故事结局、整体平衡与十万字目标仍在开发。
 
 ## 实机画面
 
@@ -47,6 +47,14 @@
 | 选一个指挥官带队 | 艾琳保护阵线，维洛强化火焰，赛菈治疗与林地恢复；各有主动技能和被动能力 |
 | 改变下一轮战局 | 暴雨、浓雾、烈日、寒潮影响双方；可替换或驱散天气，也可造路、筑垒、击退、定身与换位 |
 | 在有限时间内决策 | 每个行动回合90秒；定向法术限定在友军3格内、法师4格内，天气影响全场 |
+
+## 0.32：从新战役连续走到现有第八章终页
+
+军道、救济、日陨隔离的一条固定选择路线，连续打完八章十战。原生 Godot 窗口实际点击799段不同对白、15次选项和2287次战斗行动，十战全胜；独立新进程继续战役后恢复同一终页，两进程5548项检查通过。泵房、苗圃、棋庭的己方使用只读取公开战场信息的集中目标测试打法，其余己方与全部敌方使用生产AI。这证明这条路线有合法胜解，不能推出真人玩家的难度或其他分支的胜率。
+
+日陨隔离关保留12轮双点驻守目标，敌军从壁垒改为均衡；旧版已经开始的战斗仍可读档，失败重试采用当前编队。该路线实际读到约42,598个汉字，第八章终页仍为后续蓄能池冲突留了入口，第九、十章尚未写成。[十战逐场记录、操作策略与截图](docs/continuous-campaign.md)。
+
+![第八章终页：新的蓄能池议题](docs/screenshots/v032-continuous-ending.png)
 
 ## 0.31：两条第二章路线进入第四章
 

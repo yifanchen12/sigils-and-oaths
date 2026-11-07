@@ -192,6 +192,42 @@ func test_dispatch_deck_migration() -> bool:
 	cleanup(PATH)
 	return true
 
+func test_isolate_deck_migration() -> bool:
+	cleanup(PATH)
+	var campaign: RefCounted = Campaign.new(); campaign.start()
+	for step: int in range(1600):
+		var page: Dictionary = campaign.story.current()
+		if page.type == "battle":
+			if page.scenario == "c08_isolate": break
+			campaign.story.resolve_battle(0, page.revision) # Fixture-only prior result.
+		elif page.type == "dialogue": campaign.story.advance(page.revision)
+		elif page.type == "choice": campaign.story.choose("road" if campaign.story.graph.id == "chapter_01" and page.node == "route" else ("relief" if page.node == "priority" else ("isolate" if page.node == "pressure" else page.options[0].id)), page.revision)
+		elif page.type == "end" and not campaign.next_chapter().is_empty(): campaign.advance_chapter()
+		else: break
+	check(campaign.story.current().get("scenario", "") == "c08_isolate", "legacy fixture reaches the exact Sunspire isolation encounter")
+	if campaign.story.current().get("scenario", "") != "c08_isolate": return false
+	var setup: Dictionary = campaign.scenario()
+	var old: Battle = BattleModel.new(setup.seed, setup.map, setup.hero, setup.enemy_class, setup.deck, "bastion", 90)
+	old.set_commander_identity(1, setup.enemy_name, setup.enemy_portrait); old.configure_objective(setup.control)
+	var encounter: Dictionary = {"scenario": "c08_isolate", "revision": campaign.story.current().revision, "battle": Snapshot.capture(old)}
+	var store: RefCounted = Store.new(PATH)
+	check(store.save_progress(campaign.snapshot(), encounter).ok, "0.31 isolation battle survives its opponent deck change")
+	var fresh: RefCounted = Session.new(PATH)
+	check(fresh.load_campaign().ok and fresh.encounter != null and fresh.encounter.deck(1).id == "bastion", "old in-progress isolation battle keeps bastion opponent")
+	if fresh.encounter == null: return false
+	check(fresh.save().ok, "resumed old isolation battle can autosave")
+	var other: Battle = BattleModel.new(setup.seed, setup.map, setup.hero, setup.enemy_class, setup.deck, "assault", 90)
+	other.set_commander_identity(1, setup.enemy_name, setup.enemy_portrait); other.configure_objective(setup.control)
+	encounter.battle = Snapshot.capture(other)
+	check(not store.save_progress(campaign.snapshot(), encounter).ok, "unrelated isolation opponent deck is rejected")
+	fresh.encounter.commander(0).hp = 0
+	fresh.encounter._cleanup(); fresh.encounter._check_winner()
+	check(fresh.finish_battle(fresh.encounter).ok, "old isolation battle failure remains an ordinary retry")
+	var retry: Dictionary = fresh.begin_battle(fresh.token())
+	check(retry.ok and retry.battle.deck(1).id == "balanced", "isolation retry uses current balanced opponent")
+	cleanup(PATH)
+	return true
+
 func write_cross_process() -> bool:
 	cleanup(CROSS_PATH)
 	var campaign: RefCounted = at_river_battle()
@@ -221,5 +257,6 @@ func run() -> void:
 		check(test_bridge_deck_migration(), "bridge deck migration completed without runtime interruption")
 		check(test_relief_deck_migration(), "relief deck migration completed without runtime interruption")
 		check(test_dispatch_deck_migration(), "dispatch deck migration completed without runtime interruption")
+		check(test_isolate_deck_migration(), "isolation deck migration completed without runtime interruption")
 	print("CAMPAIGN STORE CHECKS: %d | FAILURES: %d | DISPLAY: %s" % [checks, failures, DisplayServer.get_name()])
 	quit(0 if failures == 0 else 1)

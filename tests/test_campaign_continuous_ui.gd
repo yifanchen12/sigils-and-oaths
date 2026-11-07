@@ -1,9 +1,10 @@
 extends "res://tests/test_campaign_playthrough_ui.gd"
 ## No checkpoint() calls: enter through New Campaign, read the actual pages,
-## execute every encountered battle, then reload the first real defeat.
+## execute every encountered battle, then reload the actual defeat or ending.
 const CONTINUOUS_SAVE: String = "res://.tools/native_continuous_save.json"
 const CONTINUOUS_CURSOR: String = "res://.tools/native_continuous_cursor.json"
 const REPORT: String = "res://.tools/continuous-campaign-road.json"
+var report_path: String = REPORT
 var continuous_report: Dictionary
 var game_index: int = 0
 var choice_index: int = 0
@@ -92,25 +93,34 @@ func writer() -> void:
 				await click(game.story_view.actions.get_child(0).get_global_rect().get_center())
 	if failures > 0: return
 	check(read_ids == continuous_report.dialogue_ids and choice_index == continuous_report.choices.size(), "native route read exactly the continuous pages and choices")
-	check(game_index == continuous_report.games.size() and continuous_report.stop == "defeat", "all recorded encounters were genuinely played up to the first defeat")
+	check(game_index == continuous_report.games.size() and continuous_report.stop in ["defeat", "authored_end"], "all recorded encounters were genuinely played to the same terminal state")
 	check(portable_progress() == continuous_report.progress, "native route stops at the same complete campaign state")
-	check(game.story_view.text_body.text.contains("上一战失利") and game.story_view.actions.get_child(0).text == "重新出征", "failed battle offers retry without pretending the story advanced")
-	await capture(capture_prefix + "-continuous-retry")
+	if continuous_report.stop == "defeat":
+		check(game.story_view.text_body.text.contains("上一战失利") and game.story_view.actions.get_child(0).text == "重新出征", "failed battle offers retry without pretending the story advanced")
+		await capture(capture_prefix + "-continuous-retry")
+	else:
+		check(continuous_report.reached_authored_end and game.campaign_session.current().type == "end" and game.campaign_session.campaign.next_chapter().is_empty(), "actual victory reaches the authored final page without a hidden next chapter")
+		await capture(capture_prefix + "-continuous-ending")
 	var file := FileAccess.open(CONTINUOUS_CURSOR, FileAccess.WRITE)
 	check(file != null, "record native process handoff")
 	if file == null: return
-	file.store_string(JSON.stringify({"report_sha256": FileAccess.get_sha256(REPORT), "progress": game.campaign_session.campaign.snapshot(), "actions": total_actions}, "\t", true, true)); file.close()
+	file.store_string(JSON.stringify({"report_sha256": FileAccess.get_sha256(report_path), "progress": game.campaign_session.campaign.snapshot(), "actions": total_actions, "stop": continuous_report.stop}, "\t", true, true)); file.close()
 	print("NATIVE CONTINUOUS WRITER: %d CHECKS | FAILURES: %d | BATTLES: %d | ACTIONS: %d | DIALOGUES: %d" % [checks, failures, game_index, total_actions, read_ids.size()])
 	if failures == 0: game.get_window().close_requested.emit()
 
 func reader() -> void:
 	var handoff: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(CONTINUOUS_CURSOR))
-	check(handoff.get("report_sha256", "") == FileAccess.get_sha256(REPORT), "independent native process reads the same diagnostic")
+	check(handoff.get("report_sha256", "") == FileAccess.get_sha256(report_path), "independent native process reads the same diagnostic")
 	var resume: Button = button(game.council, "继续战役")
 	check(resume != null, "fresh native process offers continue campaign")
 	if failures > 0: return
 	await click(resume.get_global_rect().get_center())
-	check(game.story_view.visible and portable_progress() == handoff.progress, "continue reloads the exact real defeat without duplicate attempts or rewards")
+	check(game.story_view.visible and portable_progress() == handoff.progress, "continue reloads the exact real terminal progress without duplicate attempts or rewards")
+	if handoff.stop == "authored_end":
+		check(game.campaign_session.encounter == null and game.campaign_session.current().type == "end" and game.campaign_session.campaign.next_chapter().is_empty(), "fresh process resumes the actual final page without replaying the last victory")
+		await capture(capture_prefix + "-continuous-resumed-ending")
+		print("NATIVE CONTINUOUS READER: %d CHECKS | FAILURES: %d | ENDING: %s" % [checks, failures, game.campaign_session.campaign.story.graph.id])
+		return
 	check(game.campaign_session.encounter == null and game.campaign_session.current().last_outcome == "defeat", "completed lost battle is not resumed as an active encounter")
 	var previous: Dictionary = game.campaign_session.campaign.snapshot()
 	var config: Dictionary = game.campaign_session.campaign.scenario()
@@ -123,15 +133,16 @@ func reader() -> void:
 	print("NATIVE CONTINUOUS READER: %d CHECKS | FAILURES: %d | RETRY: %s" % [checks, failures, game.campaign_session.current().scenario])
 
 func run() -> void:
-	create_timer(2400).timeout.connect(func() -> void: push_error("continuous native flow timeout"); quit(2))
+	create_timer(3600).timeout.connect(func() -> void: push_error("continuous native flow timeout"); quit(2))
 	capture_prefix = "v030"
 	for arg: String in OS.get_cmdline_user_args():
 		if arg.begins_with("--capture-prefix="): capture_prefix = arg.trim_prefix("--capture-prefix=")
+		if arg.begins_with("--report="): report_path = arg.trim_prefix("--report=")
 	writing = OS.get_cmdline_user_args().has("--write")
 	check(writing or OS.get_cmdline_user_args().has("--read"), "choose writer then reader")
-	check(FileAccess.file_exists(REPORT), "run the continuous headless diagnostic before native validation")
+	check(report_path.begins_with("res://.tools/continuous-campaign-") and report_path.ends_with(".json") and FileAccess.file_exists(report_path), "run the selected continuous headless diagnostic before native validation")
 	if failures > 0: quit(1); return
-	continuous_report = JSON.parse_string(FileAccess.get_file_as_string(REPORT))
+	continuous_report = JSON.parse_string(FileAccess.get_file_as_string(report_path))
 	check(continuous_report.get("coverage", "") == "continuous_campaign" and continuous_report.get("failures", -1) == 0 and continuous_report.route == "road", "native source is a valid continuous road-route diagnostic")
 	if failures > 0: quit(1); return
 	if writing:

@@ -49,9 +49,9 @@ func _validate(progress: Variant, encounter: Variant) -> Dictionary:
 			return {"ok": false, "message": "战斗目标与关卡不一致。"}
 		if battle.map_definition.id != setup.map or battle.match_seed != int(setup.seed) or battle.turn_time_limit != 90:
 			return {"ok": false, "message": "战斗地图、种子或时限与关卡不一致。"}
-		# Preserve only the two previously published encounters whose opponent
-		# deck changed; retry always starts with the current campaign setup.
-		var previous_enemy_deck: String = "bastion" if page.scenario == "c01_bridge" else ("assault" if page.scenario == "c02_relief_bridge" else "")
+		# Preserve only published encounters whose opponent deck changed;
+		# retry always starts with the current campaign setup.
+		var previous_enemy_deck: String = {"c01_bridge": "bastion", "c02_relief_bridge": "assault", "c08_isolate": "bastion"}.get(page.scenario, "")
 		var old_encounter: bool = setup.enemy_deck == "balanced" and battle.deck(1).id == previous_enemy_deck
 		var old_dispatch_deck: bool = page.scenario == "c02_dispatch" and setup.deck == "bastion" and battle.deck(0).id == "assault"
 		if battle.players[0].hero_id != setup.hero or battle.players[1].hero_id != setup.enemy_class or (battle.deck(0).id != setup.deck and not old_dispatch_deck) or (battle.deck(1).id != setup.enemy_deck and not old_encounter):
