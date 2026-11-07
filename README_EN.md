@@ -63,7 +63,9 @@ Chapter fourteen follows both night-watch discoveries. The upstream choice start
 
 Two chapter-thirteen earned saves won the new battle with legal actions against production AI on turns 37 and 33, with exact midbattle reloads. All 58 body pages rendered in native Godot UI with 597 checks passing. These are specified winning openings, not evidence of human balance, broad seed coverage or one continuous fourteen-chapter run. [Chapter-fourteen review](docs/narrative/chapter-14-review.md) · [Earned game records](docs/chapter14-earned-results.json).
 
-The fourteen chapters and archive contain **93,428 distinct Chinese body-text Han characters**, 6,572 below the aggregate target; a single route is shorter. The download link and build checks will be added after the public package is verified.
+The fourteen chapters and archive contain **93,428 distinct Chinese body-text Han characters**, 6,572 below the aggregate target; a single route is shorter.
+
+[Download the 0.38 Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.38.0-dev). The anonymous public download is 218,960,277 bytes, SHA-256 `311111ca3740d95ed96afef9a5613b2ee9390050d5ad45783d8ccf6334050913`, and matches the local build from source commit `2c1c9e5`. ZIP CRC, 296 PCK entries and standalone startup were checked.
 
 ## 0.37: The night trial
 
