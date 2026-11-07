@@ -65,6 +65,11 @@
       "id": "chapter_13",
       "title": "第十三章 · 试转之夜",
       "path": "res://data/narrative/chapters/chapter_13.json"
+    },
+    {
+      "id": "chapter_14",
+      "title": "第十四章 · 暗渠分水",
+      "path": "res://data/narrative/chapters/chapter_14.json"
     }
   ],
   "scenarios": {
@@ -380,6 +385,22 @@
       "map": "northbank", "hero": "grove", "enemy_class": "warden", "deck": "balanced", "enemy_deck": "ambush", "seed": 12033,
       "enemy_name": "北岸联防队长鲁苇", "enemy_portrait": "terrain_fort",
       "control": {"cells": [[5, 3], [10, 3]], "required": 2, "round_limit": 22}
+    },
+    "c14_upstream_channel": {
+      "title": "上游先查 · 架桥夺闸",
+      "brief": "赛菈与希弥昨夜量出暗渠石缝，工班带来一组临桥木架。南岸两座旧桥狭窄，可在己方施法范围内从岸边向河中接续架桥。保护南岸量槽，并跨河占住北岸闸位，连续守住两次己方回合开始。",
+      "objective": "己方新回合开始时，南岸量槽与北岸闸位都有友军，连续两次即胜；开局不计。22个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击退敌指挥官也胜，己方指挥官倒下则败。守住两处作业位只取得检查与封漏机会，不能擅自全面开闸。",
+      "map": "spillway", "hero": "grove", "enemy_class": "warden", "deck": "channel", "enemy_deck": "balanced", "seed": 14031,
+      "enemy_name": "暗渠守闸长孟绫", "enemy_portrait": "terrain_fort", "bonus_card": "span_kit",
+      "control": {"cells": [[5, 6], [10, 3]], "required": 2, "round_limit": 22}
+    },
+    "c14_tower_channel": {
+      "title": "塔内先查 · 护印夺闸",
+      "brief": "希弥昨夜标出回水槽的漏铆，桑岚预备了回流护印。南岸两座旧桥狭窄，工班的临桥木架可临时改变河面路线。保护南岸量槽，并跨河占住北岸闸位，连续守住两次己方回合开始。",
+      "objective": "己方新回合开始时，南岸量槽与北岸闸位都有友军，连续两次即胜；开局不计。22个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击退敌指挥官也胜，己方指挥官倒下则败。守住两处作业位只取得检查与封漏机会，不能擅自全面开闸。",
+      "map": "spillway", "hero": "grove", "enemy_class": "warden", "deck": "channel", "enemy_deck": "bastion", "seed": 14032,
+      "enemy_name": "暗渠守闸长孟绫", "enemy_portrait": "terrain_fort", "bonus_card": "countercurrent_ward",
+      "control": {"cells": [[5, 6], [10, 3]], "required": 2, "round_limit": 22}
     }
   }
 }

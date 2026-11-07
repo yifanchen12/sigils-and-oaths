@@ -51,7 +51,7 @@ func walk(plan: String, watch: String) -> void:
 			"end":
 				seen[session.campaign.story.graph.nodes[page.node].text] = true
 				routes += 1
-				check(choices == 1 and session.campaign.story.state.flags.night_watch == watch and session.campaign.next_chapter().is_empty(), "distinct watch outcome reaches authored end: " + plan + "/" + watch)
+				check(choices == 1 and session.campaign.story.state.flags.night_watch == watch and session.campaign.next_chapter().get("id") == "chapter_14", "distinct watch outcome offers fourteenth chapter: " + plan + "/" + watch)
 				for key: String in prior: check(session.campaign.story.state.flags[key] == prior[key], "thirteenth ending preserves earlier fact: " + key)
 				_reopen(session, "chapter end")
 				return

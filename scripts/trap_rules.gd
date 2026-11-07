@@ -20,17 +20,17 @@ static func targets(battle: RefCounted, card: Dictionary, side: int) -> Array[Ve
 	for cell: Vector2i in battle.casting_cells(side):
 		var unit: Dictionary = battle.unit_at(cell)
 		if card.trigger == "step" and (not battle.passable(cell) or not unit.is_empty()): continue
-		if card.trigger == "attack" and (unit.is_empty() or unit.side != side): continue
+		if card.trigger in ["attack", "spell"] and (unit.is_empty() or unit.side != side): continue
 		var occupied: bool = false
 		for trap: Dictionary in battle.traps:
 			if trap.side != side: continue
 			if card.trigger == "step" and trap.unit_id == -1 and trap.pos == cell: occupied = true
-			if card.trigger == "attack" and trap.unit_id == unit.id: occupied = true
+			if card.trigger in ["attack", "spell"] and trap.unit_id == unit.id: occupied = true
 		if not occupied: result.append(cell)
 	return result
 
 static func place(battle: RefCounted, instance: Dictionary, card: Dictionary, cell: Vector2i) -> void:
-	var anchored: bool = card.trigger == "attack"
+	var anchored: bool = card.trigger in ["attack", "spell"]
 	battle.traps.append({"side": battle.active_side, "card": instance, "pos": Vector2i(-1, -1) if anchored else cell, "unit_id": battle.unit_at(cell).id if anchored else -1})
 	battle._record("%s从手牌伏设了一张陷阱。" % battle.side_name(battle.active_side))
 
@@ -57,6 +57,15 @@ static func attacked(battle: RefCounted, defender: Dictionary) -> void:
 	for trap: Dictionary in battle.traps.duplicate():
 		if trap.unit_id != defender.id: continue
 		var card: Dictionary = battle.definition(trap.card.card_id)
+		if card.trigger != "attack": continue
+		consume(battle, trap, "触发")
+		defender.shield = mini(5, int(defender.shield) + int(card.amount))
+
+static func spelled(battle: RefCounted, defender: Dictionary) -> void:
+	for trap: Dictionary in battle.traps.duplicate():
+		if trap.unit_id != defender.id or trap.side == battle.active_side: continue
+		var card: Dictionary = battle.definition(trap.card.card_id)
+		if card.trigger != "spell": continue
 		consume(battle, trap, "触发")
 		defender.shield = mini(5, int(defender.shield) + int(card.amount))
 

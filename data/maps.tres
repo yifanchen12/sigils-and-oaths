@@ -30,6 +30,11 @@ maps = Array[Dictionary]([{
 "rows": ["mm....rrrr....mm", "mm....trrt....mm", "...f.t.rr.t.f...", "...frrrrrrrrf...", "...frr.rr.rrh...", "wwwmhmmrrmmhmmmm", "www.rr.rr.rrffff", "wwwhrr.rr.rrffff", "...frrrrrrrrffff", "....rf.rr.frf...", ".......rr.......", "......rrrr......"],
 "spawns": [Vector2i(7, 11), Vector2i(8, 0)], "ruins": []
 }, {
+"id": "spillway", "name": "暗渠分水闸", "subtitle": "双桥侧攻 · 临桥改道", "theme": "river", "selectable": false, "campaign_only": true,
+"description": "十六列十二行的旧暗渠。南北两岸由西东两道石桥连接，中段河面可用临桥木架接续新渡路；北岸双闸位须同时守住。水面不可徒步通行，工班抢修与守卫拉扯决定推进方向。",
+"rows": ["mm...rrrrrr...mm", "mm..trrrrrrt..mm", "....frrrrrrf....", "...rrrrrrrrrr...", "wwwbwwwwwwwwbwww", "wwwbwwwwwwwwbwww", "...rr..rr..rr...", "...rr..rr..rr...", "...frrrrrrrrf...", "...frrrrrrrrf...", ".....rrrrrr.....", "......rrrr......"],
+"spawns": [Vector2i(7, 11), Vector2i(8, 0)], "ruins": []
+}, {
 "id": "ridgepass", "name": "断脊隘口", "subtitle": "隘口卡位 · 分兵绕后", "theme": "forest",
 "description": "两道断脊山带分割推进路线；中场开阔地连接隘口，分兵、击退和前线增援可以改变通路归属。",
 "rows": ["...f..r.....", ".rrr.hrr.f..", ".rmm..fm.r..", "mm..m..m...m", "..r.rh..rr..", "..rr..hr.r..", "m...m..m..mm", "..r.mf..mmr.", "..f.rrh.rrr.", ".....r..f..."],

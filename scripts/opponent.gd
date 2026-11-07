@@ -84,8 +84,14 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 				return 50.0 + int(card.cost) * 2.0 - battle.distance(action.target, enemy_leader.pos) * 1.5 + (2.0 if battle.ground(action.target) == "forest" else 0.0)
 			if card.type == "trap":
 				if threats.is_empty(): threats = TacticalAI.prepare(battle)
-				if card.trigger == "attack":
+				if card.trigger in ["attack", "spell"]:
 					var guarded: Dictionary = battle.unit_at(action.target)
+					if card.trigger == "spell":
+						var pressure: float = 0.0
+						for enemy: Dictionary in battle.units:
+							if enemy.side != side and enemy.kind == "mage" and battle.distance(enemy.pos, guarded.pos) <= 2: pressure = 15.0
+						if battle.hero(1 - side).effect == "firestrike" and battle.distance(battle.commander(1 - side).pos, guarded.pos) <= battle.hero_cast_range(1 - side): pressure = maxf(pressure, 12.0)
+						return 11.0 + pressure + (8.0 if int(guarded.hp) <= 3 else 0.0) - mini(3, int(guarded.shield)) * 2.0
 					return minf(42.0, TacticalAI.exposure(battle, guarded, threats)) + 6.0 - mini(3, int(guarded.shield)) * 2.0
 				var value: float = -1.0
 				for entry: Dictionary in threats.enemies:
@@ -139,6 +145,14 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 
 				"march": return 5.0 if battle.distance(target.pos, enemy_leader.pos) > int(target.range) else -1.0
 				"terrain":
+					if card.terrain == "bridge":
+						var own_distance: int = 999
+						var enemy_distance: int = 999
+						for unit: Dictionary in battle.units:
+							if unit.side == side: own_distance = mini(own_distance, battle.distance(unit.pos, action.target))
+							else: enemy_distance = mini(enemy_distance, battle.distance(unit.pos, action.target))
+						if own_distance > enemy_distance: return -1.0
+						return 18.0 + (3 - own_distance) * 3.0 - mini(enemy_distance, 5)
 					if card.terrain == "forest":
 						if target.is_empty(): return -1.0
 						if target.side == side: return 10.0 + (1 - battle.terrain_defense(target)) * 8.0 - (15.0 if target.kind == "cavalry" else 0.0)

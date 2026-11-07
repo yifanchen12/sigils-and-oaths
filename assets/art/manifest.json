@@ -1879,6 +1879,50 @@
       "processing": "Intact original PNG; native crop and overlay only.",
       "status": "source visually reviewed; native chapter UI checked",
       "validation": "docs/narrative/chapter-13-review.md"
+    },
+    {
+      "id": "battlefield_spillway",
+      "path": "assets/art/battlefields/spillway-v2.png",
+      "source_filename": "exec-6f3827ec-a337-4a68-b951-57565f0e859f.png",
+      "reference_path": "assets/art/battlefields/northbank-v2.png",
+      "rule_reference": "data/maps.tres / spillway.rows",
+      "prompt_file": "assets/art/battlefields/spillway-source.md",
+      "size": [1448, 1086],
+      "mode": "RGB",
+      "sha256": "cf5818b693c4f26a6e6a0daf6db5def8adbbc5a30a6ccaba9b64c82d4517fc94",
+      "source_bytes_preserved": true,
+      "role": "Sixteen by twelve two-bridge waterworks battlefield, south measuring site, north gate site and card-built central crossing.",
+      "processing": "Original PNG copied intact; Godot overlays rule grid, units, objectives and dynamic bridges.",
+      "status": "source and native board visually reviewed; 51 map and pointer checks passed",
+      "validation": "docs/narrative/chapter-14-review.md"
+    },
+    {
+      "id": "span_kit",
+      "path": "assets/art/expansion/span-kit-v1.png",
+      "source_filename": "exec-ee9c4092-be46-4992-b24a-f0e15df15481.png",
+      "prompt_file": "assets/art/expansion/channel-card-source.md",
+      "size": [1536, 1024],
+      "mode": "RGB",
+      "sha256": "6b9d29fa4f729dab16ec6552d4f697a4c0a4e4324a8e26910a22290e0daaa0b5",
+      "source_bytes_preserved": true,
+      "role": "Hand-played temporary bridge construction card painting.",
+      "processing": "Original PNG copied intact; card frame and text rendered by Godot.",
+      "status": "source and native card rendering visually reviewed",
+      "validation": "tests/test_channel_cards.gd"
+    },
+    {
+      "id": "countercurrent_ward",
+      "path": "assets/art/expansion/countercurrent-ward-v1.png",
+      "source_filename": "exec-17cf4aa1-9b0d-40b4-971d-36846988f7b0.png",
+      "prompt_file": "assets/art/expansion/channel-card-source.md",
+      "size": [1536, 1024],
+      "mode": "RGB",
+      "sha256": "2d49983190106407fe49a7f321d3a3d081636df668138f6317172e718da5222d",
+      "source_bytes_preserved": true,
+      "role": "Hand-played hidden spell-counter ward card painting.",
+      "processing": "Original PNG copied intact; card frame and text rendered by Godot.",
+      "status": "source and native card rendering visually reviewed",
+      "validation": "tests/test_channel_cards.gd"
     }
   ]
 }

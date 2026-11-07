@@ -115,4 +115,10 @@ cards = Array[Dictionary]([{
 }, {
 "id": "oath_ward", "name": "回誓屏障", "short": "誓", "type": "trap", "effect": "trap", "trigger": "attack", "cost": 2, "amount": 3,
 "text": "伏设于友军。下次实际承受\n普攻前获得3护盾（上限5）。\n随其移动，触发后弃置。", "tag": "陷阱 · 受击反制"
+}, {
+"id": "span_kit", "name": "临桥木架", "short": "桥", "type": "spell", "effect": "terrain", "terrain": "bridge", "cost": 3,
+"text": "在友军施法范围内，将一格\n邻接可通行地面的河流架为桥。\n桥梁永久留在战场，可接续架设。", "tag": "法术 · 临桥"
+}, {
+"id": "countercurrent_ward", "name": "回流护印", "short": "护", "type": "trap", "effect": "trap", "trigger": "spell", "cost": 2, "amount": 3,
+"text": "从手牌伏设于友军。下次实际\n承受敌方伤害法术或技能前获得\n3护盾（上限5）；不防普攻。", "tag": "陷阱 · 术击反制"
 }])

@@ -1,0 +1,520 @@
+{
+  "version": 1,
+  "id": "chapter_14",
+  "title": "第十四章 · 暗渠分水",
+  "start": "before_dawn",
+  "inherits": [
+    "route",
+    "witness_present",
+    "seal_copy",
+    "relief",
+    "public_ledger",
+    "priority",
+    "receipt_method",
+    "dispatch_receipts",
+    "clerk_safe",
+    "letter_reply",
+    "letter_delivered",
+    "pass_route",
+    "supply_route",
+    "mine_cargo",
+    "harbor_shelter",
+    "foundry_terms",
+    "crew_safe",
+    "harbor_pump",
+    "pump_route_known",
+    "water_plan",
+    "water_released",
+    "grove_mandate",
+    "charter_copy",
+    "evidence_council",
+    "court_access",
+    "father_trail",
+    "letter_company",
+    "camp_company",
+    "pressure_plan",
+    "sunspire_stable",
+    "governance_plan",
+    "tower_gate_secured",
+    "northbank_access",
+    "shaft_custody",
+    "night_watch"
+  ],
+  "defaults": {
+    "route": "none",
+    "witness_present": false,
+    "seal_copy": false,
+    "relief": "none",
+    "public_ledger": false,
+    "priority": "none",
+    "receipt_method": "none",
+    "dispatch_receipts": false,
+    "clerk_safe": false,
+    "letter_reply": "none",
+    "letter_delivered": false,
+    "pass_route": "none",
+    "supply_route": "none",
+    "mine_cargo": false,
+    "harbor_shelter": "none",
+    "foundry_terms": "none",
+    "crew_safe": false,
+    "harbor_pump": false,
+    "pump_route_known": false,
+    "water_plan": "none",
+    "water_released": false,
+    "grove_mandate": "none",
+    "charter_copy": false,
+    "evidence_council": "none",
+    "court_access": false,
+    "father_trail": false,
+    "letter_company": "none",
+    "camp_company": "none",
+    "pressure_plan": "none",
+    "sunspire_stable": false,
+    "governance_plan": "none",
+    "tower_gate_secured": false,
+    "northbank_access": false,
+    "shaft_custody": "none",
+    "night_watch": "none",
+    "channel_secured": false,
+    "channel_order": "none"
+  },
+  "speakers": {
+    "narrator": "旁白",
+    "warden": "艾琳",
+    "pyromancer": "维洛",
+    "grove": "赛菈",
+    "sword": "洛恩",
+    "spear": "芙蕾",
+    "cavalry": "莉希",
+    "archer": "希弥",
+    "mage": "伊瑟",
+    "healer": "米芮",
+    "clerk": "赫姆",
+    "qin": "秦婶",
+    "yubai": "余白",
+    "tangsui": "唐穗",
+    "foreman": "工班长",
+    "sang": "桑岚",
+    "ruan": "阮衡",
+    "chair": "轮值主持者",
+    "court_delegate": "议庭代表",
+    "forge_delegate": "赤曜勘料员",
+    "forest_delegate": "林社代表",
+    "porter": "旧担架手",
+    "gate_captain": "尹纾",
+    "luoming": "罗明",
+    "mengling": "守闸长孟绫",
+    "runner": "北岸信使",
+    "captain_north": "鲁苇",
+    "miller": "磨坊管事祁栎",
+    "cart_driver": "车夫阿起",
+    "apprentice": "学徒阿澄"
+  },
+  "nodes": {
+    "before_dawn": {
+      "type": "dialogue",
+      "background": "scene_northbank_mill",
+      "lines": [
+        {
+          "id": "c14.before_dawn.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c14.before_dawn.02",
+          "speaker": "miller"
+        },
+        {
+          "id": "c14.before_dawn.03",
+          "speaker": "narrator",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c14.before_dawn.04",
+          "speaker": "miller",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c14.before_dawn.05",
+          "speaker": "narrator",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c14.before_dawn.06",
+          "speaker": "miller",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c14.before_dawn.07",
+          "speaker": "grove"
+        },
+        {
+          "id": "c14.before_dawn.08",
+          "speaker": "miller"
+        },
+        {
+          "id": "c14.before_dawn.09",
+          "speaker": "cart_driver"
+        },
+        {
+          "id": "c14.before_dawn.10",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "evidence"
+    },
+    "evidence": {
+      "type": "dialogue",
+      "background": "scene_waterpass",
+      "lines": [
+        {
+          "id": "c14.evidence.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c14.evidence.02",
+          "speaker": "archer",
+          "when": {
+            "night_watch": "upstream"
+          }
+        },
+        {
+          "id": "c14.evidence.03",
+          "speaker": "grove",
+          "when": {
+            "night_watch": "upstream"
+          }
+        },
+        {
+          "id": "c14.evidence.04",
+          "speaker": "narrator",
+          "when": {
+            "night_watch": "tower"
+          }
+        },
+        {
+          "id": "c14.evidence.05",
+          "speaker": "sang",
+          "when": {
+            "night_watch": "tower"
+          }
+        },
+        {
+          "id": "c14.evidence.06",
+          "speaker": "archer",
+          "when": {
+            "night_watch": "tower"
+          }
+        },
+        {
+          "id": "c14.evidence.07",
+          "speaker": "spear"
+        },
+        {
+          "id": "c14.evidence.08",
+          "speaker": "sword"
+        },
+        {
+          "id": "c14.evidence.09",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c14.evidence.10",
+          "speaker": "grove"
+        }
+      ],
+      "next": "gate_brief"
+    },
+    "gate_brief": {
+      "type": "dialogue",
+      "background": "scene_waterpass",
+      "lines": [
+        {
+          "id": "c14.gate_brief.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c14.gate_brief.02",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c14.gate_brief.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c14.gate_brief.04",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c14.gate_brief.05",
+          "speaker": "spear"
+        },
+        {
+          "id": "c14.gate_brief.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c14.gate_brief.07",
+          "speaker": "sword"
+        },
+        {
+          "id": "c14.gate_brief.08",
+          "speaker": "spear"
+        },
+        {
+          "id": "c14.gate_brief.09",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c14.gate_brief.10",
+          "speaker": "warden"
+        },
+        {
+          "id": "c14.gate_brief.11",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "channel_battle"
+    },
+    "channel_battle": {
+      "type": "battle",
+      "scenario": "c14_channel",
+      "win": "after_battle",
+      "win_set": {
+        "channel_secured": true
+      }
+    },
+    "after_battle": {
+      "type": "dialogue",
+      "background": "scene_waterpass",
+      "lines": [
+        {
+          "id": "c14.after_battle.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c14.after_battle.02",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c14.after_battle.03",
+          "speaker": "spear"
+        },
+        {
+          "id": "c14.after_battle.04",
+          "speaker": "sword"
+        },
+        {
+          "id": "c14.after_battle.05",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c14.after_battle.06",
+          "speaker": "sang"
+        },
+        {
+          "id": "c14.after_battle.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c14.after_battle.08",
+          "speaker": "archer",
+          "when": {
+            "night_watch": "upstream"
+          }
+        },
+        {
+          "id": "c14.after_battle.09",
+          "speaker": "archer",
+          "when": {
+            "night_watch": "tower"
+          }
+        },
+        {
+          "id": "c14.after_battle.10",
+          "speaker": "grove"
+        },
+        {
+          "id": "c14.after_battle.11",
+          "speaker": "miller"
+        },
+        {
+          "id": "c14.after_battle.12",
+          "speaker": "qin"
+        },
+        {
+          "id": "c14.after_battle.13",
+          "speaker": "warden"
+        }
+      ],
+      "next": "water_order"
+    },
+    "water_order": {
+      "type": "choice",
+      "prompt": "c14.water_order.prompt",
+      "options": [
+        {
+          "id": "seal",
+          "text": "c14.water_order.seal",
+          "set": {
+            "channel_order": "seal"
+          },
+          "next": "seal_after"
+        },
+        {
+          "id": "metered",
+          "text": "c14.water_order.metered",
+          "set": {
+            "channel_order": "metered"
+          },
+          "next": "metered_after"
+        }
+      ]
+    },
+    "seal_after": {
+      "type": "dialogue",
+      "background": "scene_northbank_mill",
+      "lines": [
+        {
+          "id": "c14.seal_after.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c14.seal_after.02",
+          "speaker": "miller"
+        },
+        {
+          "id": "c14.seal_after.03",
+          "speaker": "qin"
+        },
+        {
+          "id": "c14.seal_after.04",
+          "speaker": "sang"
+        },
+        {
+          "id": "c14.seal_after.05",
+          "speaker": "sword"
+        },
+        {
+          "id": "c14.seal_after.06",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "seal_end"
+    },
+    "metered_after": {
+      "type": "dialogue",
+      "background": "scene_eaststreet",
+      "lines": [
+        {
+          "id": "c14.metered_after.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c14.metered_after.02",
+          "speaker": "qin"
+        },
+        {
+          "id": "c14.metered_after.03",
+          "speaker": "miller"
+        },
+        {
+          "id": "c14.metered_after.04",
+          "speaker": "warden"
+        },
+        {
+          "id": "c14.metered_after.05",
+          "speaker": "grove"
+        },
+        {
+          "id": "c14.metered_after.06",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "metered_end"
+    },
+    "seal_end": {
+      "type": "end",
+      "background": "scene_northbank_mill",
+      "ending": "channel_sealed",
+      "text": "c14.seal_end"
+    },
+    "metered_end": {
+      "type": "end",
+      "background": "scene_eaststreet",
+      "ending": "channel_metered",
+      "text": "c14.metered_end"
+    }
+  },
+  "strings": {
+    "c14.before_dawn.01": "天还没亮，磨坊屋檐下的灯就被风吹得贴向墙。祁栎把昨夜插在水边的木楔拔起半寸，水痕没有跟着上来。轮子空转了一小圈，磨石间的麦粒发出干涩的响。等在门外的三村车夫都听见了，没人再催他开门。",
+    "c14.before_dawn.02": "我昨晚说慢半班能磨，没答应停在这里等你们查完。麦袋已经卸到墙根，潮气会先进袋底。今天给我一刻能转的水，比给我一段解释有用。",
+    "c14.before_dawn.03": "借出的旧轴此刻还在城里低压试转后的检验架上。祁栎一眼就认出运轴车留下的双轮辙；车辙旁排着粮车，第二车面粉终于在晨雾里到了，却赶不上上一夜的饭。",
+    "c14.before_dawn.04": "面到了，我签收。可是这不是借轴的利息，更不是把今天的水也抵了。你们把轴还回来之前，我要的是可磨的时辰；还回来之后，我也要看它有没有多一道伤。",
+    "c14.before_dawn.05": "北岸旧轴仍在磨坊仓里，祁栎给它垫了干布。城里的新坯正退火，塔还不能加压。两处同时缺水，至少证明今日的慢轮不能全推给借轴一事。",
+    "c14.before_dawn.06": "轴在我这儿，轮子也没水。你们昨晚说塔里有漏，我没说不信；今天我得亲眼看上游那道闸。别把‘没有借轴’写成‘北岸没损失’。",
+    "c14.before_dawn.07": "你说得对。我先让人把标杆留在原位，水位是水位，不因哪边拿着轴就改读数。你今天派个人跟我去暗渠，带那根记过刻度的木楔。",
+    "c14.before_dawn.08": "我去。磨坊交给阿起看门，他认得麦袋上的村名，也认得城里送来的面。有人来拿粮，让他当面数，别替我预签。",
+    "c14.before_dawn.09": "我守门。昨晚跑过一次空车，今天不再把空桶、空袋和空马说成一车援助。谁送到了，我就写谁的名字。",
+    "c14.before_dawn.10": "艾琳把屋檐下的水表摊开，北岸这一栏留了一整行空白。她没有把祁栎的抱怨抄成结论，只写下停轮时刻、木楔刻度和仍未检验的旧轴。赶路前，她让阿起再读一遍这行字。",
+    "c14.evidence.01": "上游路口，赛菈夜里插的两根标杆还在。希弥的灯油已经烧尽，鞋底沾着暗渠口的新木屑。石缝通向一条被草盖住的旧引水沟，水声从石下传出来，却没有人能从表面看见它流往哪里。",
+    "c14.evidence.02": "我昨晚沿缝走到第三块石板，听到下头有两股水。西边那股冲走了木屑，东边那股很细。我们还没走到出口，闸里的人先把门锁了。",
+    "c14.evidence.03": "闸锁没动，缝却在漏。我们知道要先架板跨河，不知道谁能把下游的口闭住。若为了抓一个开闸的人把整条河叫作敌人，田会先受伤。",
+    "c14.evidence.04": "希弥昨夜留在塔内，今晨才把箭尾划过的漏铆位置画进工图。桑岚带了一小包沾水的石粉，粉末沿回水槽缝缘沉成一条细线。上游的标杆是赛菈天亮后补插的，较昨夜少了一次读数。",
+    "c14.evidence.05": "塔里那颗铆钉我没拧。它下头接旧暗槽，拧紧也许只让漏点换个地方。护印是我给守闸人做的，挨第一下法术时护住人，护不住水槽。",
+    "c14.evidence.06": "我看见的是漏，不是有人动手。昨晚少查的半里上游路，现在再走也得认是白天的读数。别叫我替没到过的地方作证。",
+    "c14.evidence.07": "两座老桥都窄，敌人若堵在桥头，抬担架的人会被挤到水边。我带枪兵走左桥，洛恩护工班在南岸。真要架新板，先让他们站稳再递木料。",
+    "c14.evidence.08": "我能看见河中央那块没有桥的水。带来的木架是短的，一次接不到对岸；要两次，从岸边一点点搭。到时候别让我一脚踩在半截板上，背后人却说已经过河。",
+    "c14.evidence.09": "赤曜送的铜箍只够两组木架。架好了可以走人，不能拿它当坝。若谁想趁过桥时顺手开闸，我会先把那人的手从闸杆上拿开。",
+    "c14.evidence.10": "赛菈用一段草绳在石上摆出三条线：两条通往已有石桥，一条到中段水面便停了。她把木架摆在线端，没有替任何人画上对岸。战斗里能不能接过去，要看岸边还有没有活着的友军和足够的法力。",
+    "c14.gate_brief.01": "暗渠守闸长孟绫隔河看着这队人。她的守卫占着北岸闸位，南岸量槽旁还有昨夜来不及收的工具。新开一道口，东街的桶也许会快些装满；水若从石缝下漏掉，三村的轮子会停得更久。她没有把两件事说成同一件事。",
+    "c14.gate_brief.02": "鲁苇答应你们量轴，没答应把闸匙交出来。我守的是村里的轮水。昨夜少了一指，今天你们一队人带着牌和兵来到桥前，我得知道你们要量哪里。",
+    "c14.gate_brief.03": "南岸量槽要有人护着，北岸闸位也要有人上去。城里塔还漏，不能让它吃掉田里的水。量清之前不开大闸。你派人盯我写的每个数。",
+    "c14.gate_brief.04": "南岸你守得住，北岸未必。两处都护住两个班次，我让水工上前。桥上的枪口别朝水工；他们退，我的人也退。你若守不住，就别叫他们在箭下开石。",
+    "c14.gate_brief.05": "成交。我们先上桥，把撤路留给抬板的人。谁靠近工班，先问他脚下是石桥还是新木板。",
+    "c14.gate_brief.06": "一条吊木料的绳突然从南桥栏上滑脱。木架撞上桥腹，溅起一大片水。北岸有弓弦响，箭钉进落水的绳结，离洛恩举起的盾只有一掌。正在桥头量水的年轻工人一屁股坐到石阶上，后背贴着湿墙。",
+    "c14.gate_brief.07": "我看见箭了。先让我把那个人拖回来，绳卡在他脚边。芙蕾，别拽我肩！",
+    "c14.gate_brief.08": "那是桥沿，不是空地。盾先往下放，让他抓住边。你跨过去，我得在箭下再捡你一次。",
+    "c14.gate_brief.09": "谁放的箭？我说过等我手势。——艾琳，我会查这支箭。但你的人已经上桥，我现在退闸位，村里水工会当我把他们卖了。",
+    "c14.gate_brief.10": "先拉人。芙蕾守桥口，谁也别追着箭过去。孟绫，两个作业位我会自己占，你把人从闸杆前撤开。等桥上没人受箭，我们再数水。",
+    "c14.gate_brief.11": "孟绫把北闸的铜牌挂到栏杆上，南岸工班也举起量槽木牌。没有旗号宣布盟约，只有两边守卫各自退开一步。艾琳给工班的命令很短：人先过桥，水位后定。",
+    "c14.after_battle.01": "南岸量槽与北闸同时有人站住时，孟绫真的让守卫退了。工班走上石阶，把昨夜的木楔放进槽沿。桥板还在河面上滴水，桥上的人先把伤者让过去。",
+    "c14.after_battle.02": "我按约定给你们量。先看下游出口，再动上游闸。谁碰闸杆，我叫人记名字。今天守在这里的都是活人，不能把他们算成闸位上的记号。",
+    "c14.after_battle.03": "洛恩，桥头那工人站得起来吗？我把箭拔了，绳结还在他脚边。你若又想替他走一趟，先把你的盾递给我。",
+    "c14.after_battle.04": "站得起，膝盖擦破一点。他说那支箭是射绳的，我说我当时只看见箭。你先拿盾，我去把他送到南岸；回来再问射箭的人。",
+    "c14.after_battle.05": "我的弓手说他看见木架要砸到水工，没等手势就射了。箭尖上只有绳纤维，我问过那水工，他没看清弓手。记过归我记，射向桥口这件事归他认。",
+    "c14.after_battle.06": "塔里的漏铆和这边的旧石缝不是同一处孔。两处同时漏，水表却只少一指，说明还有一股回水没进昨夜的表。今天关一边、量一边，才能知道每一指去了哪儿。",
+    "c14.after_battle.07": "木架跨在中央，两岸守卫第一次从同一块新板上把读数递过去。希弥故意站在南端，不向北岸的人伸手要纸；她等对面先读出刻度，自己再复诵。昨夜的选择决定她能先指出哪一处，但不能替另一处补证。",
+    "c14.after_battle.08": "石缝到废渠的水比夜里急了。那道闸锁还在原位，我的灯昨晚照到这里，没照到下游。先记漏向，别急着给守闸人安一个开闸的罪。",
+    "c14.after_battle.09": "我昨晚划的那颗铆钉没换位置。今天赛菈补量了上游，我才知道这股水不是从那颗铆钉全漏出来的。两张图放在一起，别把我那张抬得比她的高。",
+    "c14.after_battle.10": "如果把石缝全堵死，今夜磨坊会有水，塔的回水槽却可能承受更高的压。若按刻度放一股回水，东街的桶能早到，但磨坊今晚得少磨半班。两边都要有人值守，也都要在明早重新量。",
+    "c14.after_battle.11": "我可以少磨半班，不能在一张纸上替所有村签。你告诉我什么时候开，什么时候停；麦袋由我自己挪。若你封漏，别把东街那一排桶说成没看见。",
+    "c14.after_battle.12": "东街今天的桶数我带来了。你们若把水送进城，我会写上从哪一道闸来；若明天还送桶，我就写明天仍送桶。孩子能看懂数字，别拿‘局势稳定’四个字塞给他们。",
+    "c14.after_battle.13": "艾琳望向两边仍湿着的木牌。她父亲教过她在桥上数车时，先数真正过桥的轮子。现在要数的是还没到的人手、尚未承压的轴，以及一条会因这次命令而少水的田渠。她把笔递给孟绫，请守闸长先写水位。",
+    "c14.water_order.prompt": "南岸量槽与北闸已守住，今夜只能先执行一种调水令。如何安排封漏和送水？",
+    "c14.water_order.seal": "先封石缝，磨坊保水；东街继续按桶配送",
+    "c14.water_order.metered": "按刻度放回水入城；磨坊减半班并当面补偿",
+    "c14.seal_after.01": "砂袋抵住石缝时，祁栎站在水轮旁数了十次转动。磨石重新咬住麦，门口排队的人没有欢呼，先把挡雨布从麦袋上卷起。赛菈仍守在上游标杆旁，等石缝下的水真正停流才撤人。",
+    "c14.seal_after.02": "今晚能磨。我会在三村的簿上写这半班是怎么来的，也写东街今天仍由人提桶。明早别拿我这句‘能磨’去证明塔也能开。",
+    "c14.seal_after.03": "送桶的人手已经排好了。东街听见封漏会有人骂，我不拦；我只把明天的桶数和到门时辰写清。你们谁能多来一辆车，先去跟车夫说，不用让我在纸上凭空添一辆。",
+    "c14.seal_after.04": "我今夜拆塔里那枚漏铆，低压复测。新坯没过高压前，塔依旧不开。砂袋若被冲走，值守的人先退，不准让洛恩和工班站在裂缝正对面。",
+    "c14.seal_after.05": "我站在外门，你已经说过了。今晚我会先数人，再数袋子；砂袋掉了就叫你们，不把自己塞进缝里。",
+    "c14.seal_after.06": "艾琳把封漏令留一份给孟绫，一份送到秦兰手里。两份都写着明早复测，没写‘危机解除’。磨坊的轮声沿河传远时，东街的送桶车也刚出了城门。",
+    "c14.metered_after.01": "孟绫每放下一格闸板，希弥就在木牌上划一道。城里的回水槽有了声音，东街第一只桶没再等到下午。磨坊那边，祁栎让人把还没磨的麦袋抬高，水轮慢了半班，他把原定交粮时刻逐户改在板上。",
+    "c14.metered_after.02": "水来了，我写是暗渠按刻度放的。今晚可以少派两辆桶车，车夫的工钱照给；他们明天要不要再来，得等你们早晨的水位，别拿今天的一桶定一周。",
+    "c14.metered_after.03": "少磨半班我答应过，但这不是三村免费借出的半班。明天你们把补偿的粮车和实际水位给我看；没到的东西，我仍旧留空，不替你们写‘已送’。",
+    "c14.metered_after.04": "我签。补偿从城里军仓出，我亲自看车到磨坊门口。若新轴试压失败，东街恢复送桶；不能让今天的半班变成一个再也不用补的旧账。",
+    "c14.metered_after.05": "赛菈在河边换了一根新标杆。她把今夜的刻度写在艾琳签名旁，没有写‘同意城里先用’。林社只认这一个时辰的读数；明早若田渠更低，这条水路要重新谈。",
+    "c14.metered_after.06": "夜里东街有水声，磨坊的轮声却早停了。艾琳沿着两声之间的堤路走到桥中央，看见孟绫还站在闸板旁。她们没有隔河喊话，互相亮出手里的时刻板，确认最后一格都能被对方看清。",
+    "c14.seal_end": "暗渠南岸量槽与北闸已由两岸共同量守，石缝暂封；磨坊保住今夜水轮，东街继续送桶。塔内漏铆、新轴高压试验与明晨复测仍未完成。第十四章结束。",
+    "c14.metered_end": "暗渠南岸量槽与北闸已由两岸共同量守，按刻度送回水入城；东街今夜得水，磨坊减磨半班，城里欠补偿粮车。塔内漏铆、新轴高压试验与明晨复测仍未完成。第十四章结束。"
+  }
+}

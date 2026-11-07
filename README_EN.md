@@ -5,17 +5,21 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.37.0-dev" src="https://img.shields.io/badge/version-0.37.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.38.0-dev" src="https://img.shields.io/badge/version-0.38.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone, concealed card play and counterplay from Duel Links, and terrain, unit counters and commanders from Langrisser. Characters, card effects, illustrations and map layouts are made for this project, with no assets from those games. Current source is **0.37.0-dev**, with thirteen chapters, branching encounters and cross-chapter saves. One fixed New Campaign model route won eleven consecutive battles and reached chapter eleven. Three separate earned chapter-eleven saves each entered and won the depot battle in chapter twelve, then continued into chapter thirteen. The story conclusion, human balance and the 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
+The design studies card resource pacing from Hearthstone, concealed card play and counterplay from Duel Links, and terrain, unit counters and commanders from Langrisser. Characters, card effects, illustrations and map layouts are made for this project, with no assets from those games. Current source is **0.38.0-dev**, with fourteen chapters, branching encounters and cross-chapter saves. One fixed New Campaign model route won eleven consecutive battles and reached chapter eleven. Three separate earned chapter-eleven saves won the depot battle in chapter twelve and continued into chapter thirteen. Two chapter-thirteen ending saves then won the new chapter-fourteen channel battle. These are separate verification routes. The story conclusion, human balance and 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
 
 ## In-game screenshots
 
-The chapter-thirteen mill scene is from 0.37.0-dev. The 16×12 north-bank depot capture is from 0.36.0-dev, the chapter-eleven ferry capture from 0.35.0-dev, and the 14×12 tower gate capture from 0.34.0-dev. Later battlefield captures are from earlier milestones.
+The new 16×12 spillway battlefield is from 0.38.0-dev. The chapter-thirteen mill scene is from 0.37.0-dev; the north-bank depot is from 0.36.0-dev. Later captures are from earlier milestones.
+
+![Original chapter-fourteen spillway battlefield](docs/screenshots/v038-spillway-map.png)
+
+![A bridge kit creating a central river crossing](docs/screenshots/v038-spillway-bridge.png)
 
 ![Chapter-thirteen north-bank mill and story UI](docs/screenshots/v037-northbank-mill-small.png)
 
@@ -44,14 +48,22 @@ The chapter-thirteen mill scene is from 0.37.0-dev. The 16×12 north-bank depot 
 
 | Tactical choice | Implemented |
 | --- | --- |
-| Reinforce from cards | 32 collectible card types, four 30-card presets and one saved custom deck; adjacent deployment can extend from newly summoned units |
-| Set traps and counter them | Movement snares, mines and protective wards are paid for from hand; each side has two trap slots, enemies see only the count, and a search spell can reveal and remove traps |
+| Reinforce from cards | 35 card types, five 30-card presets and one saved custom deck; adjacent deployment can extend from newly summoned units |
+| Set traps and counter them | Movement snares, mines, attack wards and spell wards are paid for from hand; each side has two trap slots, enemies see only the count, and a search spell can reveal and remove traps |
 | Cover different unit roles | Infantry beats spears, spears beat cavalry, cavalry beats infantry; archers, mages and healers have distinct ranges and roles |
 | Use active unit skills | Six one-mana abilities: shielding, interception, extra movement, a precise shot, fire damage and healing; once per unit per turn |
-| Contest useful ground | Six selectable 12×10 maps, a 14×12 chapter-ten gate, and a 16×12 chapter-twelve depot; defensive forests, hills and forts, roads and bridges for mobility, and healing ruins |
+| Contest useful ground | Six selectable 12×10 maps, a 14×12 gate and two 16×12 campaign maps; build a local bridge across water, use forests, hills and forts for defense |
 | Lead with a commander | Ailin protects the front, Velo strengthens fire, and Sera supports healing and woodland recovery; each has active and passive abilities |
 | Change the next exchange | Rain, fog, sun and snow affect both sides; replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
+
+## 0.38: The spillway
+
+Chapter fourteen follows both night-watch discoveries. The upstream choice starts with a bridge kit; the tower choice starts with a countercurrent ward. A new original 16×12 waterworks map has two existing stone bridges, while hand-played bridge cards can form a third route across the open central river. The ward protects one friendly unit from the next enemy damage spell or skill, but does not trigger on an ordinary attack. Protect the south measuring site and capture the north intake site through two consecutive player-turn checks. After combat, choose between sealing the leak to preserve the mill or sending metered water to the city while compensating the villages; the order persists in campaign saves.
+
+Two chapter-thirteen earned saves won the new battle with legal actions against production AI on turns 37 and 33, with exact midbattle reloads. All 58 body pages rendered in native Godot UI with 597 checks passing. These are specified winning openings, not evidence of human balance, broad seed coverage or one continuous fourteen-chapter run. [Chapter-fourteen review](docs/narrative/chapter-14-review.md) · [Earned game records](docs/chapter14-earned-results.json).
+
+The fourteen chapters and archive contain **93,428 distinct Chinese body-text Han characters**, 6,572 below the aggregate target; a single route is shorter. The download link and build checks will be added after the public package is verified.
 
 ## 0.37: The night trial
 

@@ -15,7 +15,7 @@ def chapter_audit(ids, text_seen, errors):
     evidence_path = ROOT / "docs/narrative-native-ui.json"
     evidence = json.loads(evidence_path.read_text(encoding="utf-8")) if evidence_path.exists() else {}
     rendered_sources = evidence.get("chapter_sha256", {}).copy() if evidence.get("passed") is True else {}
-    for milestone in ("v033", "v034", "v035", "v036", "v037"):
+    for milestone in ("v033", "v034", "v035", "v036", "v037", "v038"):
         later_path = ROOT / f"docs/narrative-native-ui-{milestone}.json"
         if later_path.exists():
             later = json.loads(later_path.read_text(encoding="utf-8"))
@@ -106,7 +106,9 @@ def chapter_audit(ids, text_seen, errors):
             errors.append(f"Unreachable chapter body: {sorted(body - read_lines)}")
         if reached != nodes.keys():
             errors.append(f"Unreachable chapter nodes: {sorted(nodes.keys() - reached)}")
-        if native_rendered and entry["id"] == "chapter_13":
+        if native_rendered and entry["id"] == "chapter_14":
+            status = "All authored pages rendered in native Godot. Two separate earned night-watch saves won the channel battle through legal actions and resumed after a midbattle reload. Human difficulty and broad branch win rates remain unchecked."
+        elif native_rendered and entry["id"] == "chapter_13":
             status = "All conditional pages rendered in native Godot. Three separate earned depot-win saves entered the chapter and each reached both night-watch endings, with cross-process save checks. No new tactical battle or human playtest."
         elif native_rendered and entry["id"] == "chapter_12":
             status = "Every conditional page rendered in native Godot. Three earned chapter-eleven saves advanced through real depot battles with legal actions, battle reload and both custody choices represented across plans. Other routes and human balance remain unchecked."
@@ -175,7 +177,7 @@ def audit():
     candidate = sum(chapter["graph_reachable_unique_characters"] for chapter in chapters)
     rendered = sum(chapter["graph_reachable_unique_characters"] for chapter in chapters if chapter["native_rendered_source_matches"])
     return {
-        "scope": "Codex accessibility verified in 0.13.0. Registered chapter graphs carry preceding ending facts. Native source hashes identify rendered page catalogues; a continuous eleven-battle route, three earned depot continuations and six earned chapter-thirteen readings have separate evidence.",
+        "scope": "Codex accessibility verified in 0.13.0. Registered chapter graphs carry preceding ending facts. Native source hashes identify rendered page catalogues; a continuous eleven-battle route, three earned depot continuations, six chapter-thirteen readings and two earned channel victories have separate evidence.",
         "counting_method": "Distinct body paragraphs; Chinese Han characters only; excludes punctuation, summaries, headings, UI, plans and prompts.",
         "entries": len(entries), "paragraphs": paragraphs,
         "unique_chinese_characters": count, "by_category": by_category,
@@ -185,7 +187,7 @@ def audit():
         "native_rendered_chapter_characters": rendered,
         "pending_ui_verification_characters": candidate - rendered,
         "pending_playthrough_verification_characters": candidate,
-        "limitations": "Exact-repeat audit only. Graph enumeration assumes battle victories; it does not prove every complete route can win. One fixed eleven-battle route has native win evidence; three earned chapter-eleven saves also entered and won chapter twelve using a declared diagnostic policy, then entered chapter thirteen. This is not one continuous twelve-battle proof. Headings, choice prompts and option labels are excluded. Reaching 100,000 characters along a single playable route, human editorial review and balance remain separate requirements.",
+        "limitations": "Exact-repeat audit only. Graph enumeration assumes battle victories; it does not prove every complete route can win. One fixed eleven-battle route has native win evidence; three earned chapter-eleven saves separately won chapter twelve and entered chapter thirteen; two earned chapter-thirteen endings separately won chapter fourteen using declared diagnostic policies. This is not one continuous fourteen-battle proof. Headings, choice prompts and option labels are excluded. Reaching 100,000 characters along a single playable route, human editorial review and balance remain separate requirements.",
         "errors": errors,
     }
 

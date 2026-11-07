@@ -332,6 +332,7 @@ func _draw() -> void:
 			if not battle.objective.is_empty() and battle.objective.cells.has([x, y]):
 				var work_label: String = "守"
 				if battle.map_definition.id == "northbank": work_label = "量" if x == 5 else "装"
+				if battle.map_definition.id == "spillway": work_label = "量" if x == 5 else "闸"
 				draw_rect(rect.grow(-2), Color(0.98, 0.78, 0.36, 0.24))
 				draw_rect(rect.grow(-2), Color("172638"), false, 4)
 				draw_rect(rect.grow(-5), GOLD, false, 2)

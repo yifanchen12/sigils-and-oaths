@@ -4,6 +4,7 @@ extends RefCounted
 const Model = preload("res://scripts/battle.gd")
 const VERSION: int = 3
 const EXPANSION_CARDS: Array[String] = ["shatter_bolt", "rally_heal", "cleanse_root", "reveal_traps", "seedwood", "anchor_snare", "ember_mine", "oath_ward"]
+const CHANNEL_CARDS: Array[String] = ["span_kit", "countercurrent_ward"]
 const SCALARS: Array[String] = ["active_side", "turn", "winner", "next_id", "match_seed", "deck_size", "weather", "weather_remaining", "turn_time_limit", "time_remaining"]
 const PLAYER_FIELDS: Array[String] = ["hero_id", "deck_id", "mana", "max_mana", "fatigue", "skill_cooldown", "spell_boost_used", "card_total"]
 const UNIT_INTS: Array[String] = ["id", "side", "hp", "max_hp", "atk", "defense", "move", "range", "shield", "last_move_distance", "rooted_turns"]
@@ -12,6 +13,27 @@ const UNIT_TEXT: Array[String] = ["name", "kind", "short"]
 
 static func rules_signature() -> String:
 	return JSON.stringify([Model.CATALOG.cards, Model.HEROES.heroes, Model.DECKS.decks, Model.MAPS.maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
+
+static func cards_before_channel() -> Array[Dictionary]:
+	var cards: Array[Dictionary] = []
+	for card: Dictionary in Model.CATALOG.cards:
+		if card.id not in CHANNEL_CARDS: cards.append(card)
+	return cards
+
+static func decks_before_channel() -> Array[Dictionary]:
+	var decks: Array[Dictionary] = []
+	for deck: Dictionary in Model.DECKS.decks:
+		if deck.id != "channel": decks.append(deck)
+	return decks
+
+static func maps_before_channel() -> Array[Dictionary]:
+	var maps: Array[Dictionary] = []
+	for map: Dictionary in Model.MAPS.maps:
+		if map.id != "spillway": maps.append(map)
+	return maps
+
+static func pre_v038_signature() -> String:
+	return JSON.stringify([cards_before_channel(), Model.HEROES.heroes, decks_before_channel(), maps_before_channel(), Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
 
 static func maps_before_towergate() -> Array[Dictionary]:
 	var maps: Array[Dictionary] = []
@@ -22,17 +44,17 @@ static func maps_before_towergate() -> Array[Dictionary]:
 static func maps_before_northbank() -> Array[Dictionary]:
 	var maps: Array[Dictionary] = []
 	for map: Dictionary in Model.MAPS.maps:
-		if map.id != "northbank": maps.append(map)
+		if map.id not in ["northbank", "spillway"]: maps.append(map)
 	return maps
 
 static func pre_northbank_signature() -> String:
 	# A new chapter-only map leaves already-started 0.35 battles intact.
-	return JSON.stringify([Model.CATALOG.cards, Model.HEROES.heroes, Model.DECKS.decks, maps_before_northbank(), Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
+	return JSON.stringify([cards_before_channel(), Model.HEROES.heroes, decks_before_channel(), maps_before_northbank(), Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
 
 static func pre_towergate_signature() -> String:
 	# A chapter-only map must not invalidate a running battle on an unchanged
 	# original map. This is the exact 0.33 catalog, not a wildcard signature.
-	return JSON.stringify([Model.CATALOG.cards, Model.HEROES.heroes, Model.DECKS.decks, maps_before_towergate(), Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
+	return JSON.stringify([cards_before_channel(), Model.HEROES.heroes, decks_before_channel(), maps_before_towergate(), Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
 
 static func pre_expansion_signature() -> String:
 	# Additive card pool only: retain exact old cards/decks/maps in the hash.
@@ -40,9 +62,9 @@ static func pre_expansion_signature() -> String:
 	var cards: Array[Dictionary] = []
 	var decks: Array[Dictionary] = []
 	for card: Dictionary in Model.CATALOG.cards:
-		if card.id not in EXPANSION_CARDS: cards.append(card)
+		if card.id not in EXPANSION_CARDS and card.id not in CHANNEL_CARDS: cards.append(card)
 	for deck: Dictionary in Model.DECKS.decks:
-		if deck.id != "ambush": decks.append(deck)
+		if deck.id not in ["ambush", "channel"]: decks.append(deck)
 	return JSON.stringify([cards, Model.HEROES.heroes, decks, maps_before_towergate(), Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
 
 static func normalize_legacy(data: Dictionary) -> Dictionary:
@@ -114,10 +136,11 @@ static func validate(data: Variant) -> Dictionary:
 	if data.version > VERSION:
 		return {"ok": false, "protected": true, "message": "战斗存档版本不兼容，原档保留。"}
 	if not data.get("rules") is String or data.rules.length() != 64: return {"ok": false, "message": "战斗规则签名缺失。"}
-	var old_map_ok: bool = data.get("map_id") not in ["towergate", "northbank"] and data.get("rules") == pre_towergate_signature()
-	var old_cards_ok: bool = int(data.version) < 3 and data.get("map_id") not in ["towergate", "northbank"] and data.get("rules") == pre_expansion_signature()
-	var old_northbank_ok: bool = data.get("map_id") != "northbank" and data.get("rules") == pre_northbank_signature()
-	if data.get("rules") != rules_signature() and not old_map_ok and not old_cards_ok and not old_northbank_ok: return {"ok": false, "protected": true, "message": "战斗存档与当前规则版本不同，原档保留。"}
+	var old_map_ok: bool = data.get("map_id") not in ["towergate", "northbank", "spillway"] and data.get("rules") == pre_towergate_signature()
+	var old_cards_ok: bool = int(data.version) < 3 and data.get("map_id") not in ["towergate", "northbank", "spillway"] and data.get("rules") == pre_expansion_signature()
+	var old_northbank_ok: bool = data.get("map_id") not in ["northbank", "spillway"] and data.get("rules") == pre_northbank_signature()
+	var old_channel_ok: bool = data.get("map_id") != "spillway" and data.get("rules") == pre_v038_signature()
+	if data.get("rules") != rules_signature() and not old_map_ok and not old_cards_ok and not old_northbank_ok and not old_channel_ok: return {"ok": false, "protected": true, "message": "战斗存档与当前规则版本不同，原档保留。"}
 	if int(data.version) < 3 and data.get("traps", []) != []: return {"ok": false, "message": "旧版战斗不能包含伏设区。"}
 	data = normalize_legacy(data)
 	var problem: String = _validate(data)

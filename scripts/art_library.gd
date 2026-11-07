@@ -59,6 +59,9 @@ const EXPANSION_ATLASES: Dictionary = {
 	"spells-v1": ["shatter_bolt", "rally_heal", "cleanse_root", "reveal_traps"],
 	"traps-forest-v1": ["anchor_snare", "ember_mine", "oath_ward", "seedwood"]
 }
+const CHANNEL_CARD_ART: Dictionary = {
+	"span_kit": "span-kit-v1", "countercurrent_ward": "countercurrent-ward-v1"
+}
 
 static func get_texture(asset_id: String) -> Texture2D:
 	if textures.has(asset_id): return textures[asset_id]
@@ -74,6 +77,7 @@ static func get_texture(asset_id: String) -> Texture2D:
 			if art != null: textures[asset_id] = art
 			return art
 	var path: String = "res://assets/art/%s.png" % asset_id
+	if CHANNEL_CARD_ART.has(asset_id): path = "res://assets/art/expansion/%s.png" % CHANNEL_CARD_ART[asset_id]
 	if NARRATIVE_SCENES.has(asset_id): path = "res://assets/art/narrative/%s.png" % NARRATIVE_SCENES[asset_id]
 	if asset_id == "menu" and ResourceLoader.exists("res://assets/art/menu_cel.png"): path = "res://assets/art/menu_cel.png"
 	if asset_id == "trail" and ResourceLoader.exists("res://assets/art/trail_cel.png"): path = "res://assets/art/trail_cel.png"

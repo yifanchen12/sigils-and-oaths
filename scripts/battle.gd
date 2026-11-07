@@ -383,7 +383,7 @@ func _resolve_unit_skill(unit: Dictionary, cell: Vector2i) -> void:
 		"cavalry":
 			_move_unit(unit, cell)
 		"archer": _resolve_attack(unit, unit_at(cell), 1)
-		"mage": _hurt(unit_at(cell), fire_damage(3))
+		"mage": _spell_hit(unit_at(cell), fire_damage(3))
 		"healer":
 			var target: Dictionary = unit_at(cell)
 			target.hp = mini(int(target.max_hp), int(target.hp) + 3)
@@ -432,7 +432,13 @@ func spell_cells(card: Dictionary, side: int) -> Array[Vector2i]:
 			for x: int in range(width):
 				var cell := Vector2i(x, y)
 				var occupant: Dictionary = unit_at(cell)
-				if not passable(cell) or ground(cell) in ["bridge", String(card.terrain)]: continue
+				if card.terrain == "bridge":
+					if ground(cell) != "water": continue
+					var supported: bool = false
+					for direction: Vector2i in DIRECTIONS:
+						if passable(cell + direction): supported = true
+					if not supported: continue
+				elif not passable(cell) or ground(cell) in ["bridge", String(card.terrain)]: continue
 				if not can_cast_at(cell, side): continue
 				if card.terrain == "fort" and (occupant.is_empty() or occupant.side != side): continue
 				result.append(cell)
@@ -672,7 +678,7 @@ func _resolve_spell(card: Dictionary, cell: Vector2i) -> void:
 	match String(card.effect):
 		"shatter_bolt":
 			target.shield = 0
-			_hurt(target, spell_damage(card, active_side))
+			_spell_hit(target, spell_damage(card, active_side))
 		"rally_heal":
 			for ally: Dictionary in units:
 				if ally.side == active_side and distance(ally.pos, cell) <= 1: ally.hp = mini(int(ally.max_hp), int(ally.hp) + int(card.amount))
@@ -680,11 +686,11 @@ func _resolve_spell(card: Dictionary, cell: Vector2i) -> void:
 			target.rooted_turns = 0
 			target.hp = mini(int(target.max_hp), int(target.hp) + int(card.amount))
 		"reveal_traps": Traps.reveal(self, cell, active_side)
-		"damage": _hurt(target, spell_damage(card, active_side))
+		"damage": _spell_hit(target, spell_damage(card, active_side))
 		"area":
 			for unit: Dictionary in units:
 				if unit.side != active_side and distance(unit.pos, cell) <= 1:
-					_hurt(unit, spell_damage(card, active_side))
+					_spell_hit(unit, spell_damage(card, active_side))
 		"heal": target.hp = mini(int(target.max_hp), int(target.hp) + int(card.amount))
 		"shield": target.shield = card.amount
 		"march": target.moved = false
@@ -699,7 +705,7 @@ func _resolve_spell(card: Dictionary, cell: Vector2i) -> void:
 			_record("%s变为%s。" % [cell_name(cell), TERRAIN[String(card.terrain)].name])
 		"repulse":
 			var destination: Vector2i = repulse_destination(target, active_side)
-			_hurt(target, int(card.amount) + (1 if destination == target.pos else 0))
+			_spell_hit(target, int(card.amount) + (1 if destination == target.pos else 0))
 			if target.hp > 0 and destination != target.pos:
 				target.pos = destination
 				_record("%s被击退到%s。" % [target.name, cell_name(destination)])
@@ -723,11 +729,15 @@ func _resolve_hero(leader_hero: Dictionary, cell: Vector2i) -> void:
 		"blessing":
 			target.hp = mini(int(target.max_hp), int(target.hp) + 2)
 			target.shield = mini(5, int(target.shield) + 3)
-		"firestrike": _hurt(target, fire_damage(int(leader_hero.amount)))
+		"firestrike": _spell_hit(target, fire_damage(int(leader_hero.amount)))
 		"renewal":
 			for unit: Dictionary in units:
 				if unit.side == active_side and distance(commander(active_side).pos, unit.pos) <= hero_cast_range(active_side): unit.hp = mini(int(unit.max_hp), int(unit.hp) + 2)
 			_draw(active_side, 1)
+
+func _spell_hit(target: Dictionary, amount: int) -> void:
+	Traps.spelled(self, target)
+	_hurt(target, amount)
 
 func _hurt(target: Dictionary, amount: int) -> void:
 	var absorbed: int = mini(int(target.shield), amount)

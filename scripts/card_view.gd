@@ -57,7 +57,10 @@ func configure(definition: Dictionary, uid: int, mana: int, selected: bool, lock
 		if card.has("skill"): tooltip_text += "\n主动 · %s（1费，每回合一次）：%s" % [card.skill.name, card.skill.text]
 	elif card.effect not in ["draw", "mana", "weather", "clear_weather"]:
 		tooltip_text += "\n施法范围：友军3格、法师4格；换位另限指挥官3格。"
-	if card.type == "trap": tooltip_text += "\n每方最多2张伏设；对手只见数量。主动移动含骑兵再机动，不含部署、击退或换位。"
+	if card.type == "trap":
+		tooltip_text += "\n每方最多2张伏设；对手只见数量。"
+		if card.trigger == "step": tooltip_text += "主动移动含骑兵再机动，不含部署、击退或换位。"
+		elif card.trigger == "spell": tooltip_text += "只在敌方伤害法术或技能命中保护对象前触发。"
 	queue_redraw()
 
 func _draw() -> void:
