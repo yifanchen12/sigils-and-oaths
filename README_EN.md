@@ -5,19 +5,19 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.33.0-dev" src="https://img.shields.io/badge/version-0.33.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.34.0-dev" src="https://img.shields.io/badge/version-0.34.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone, concealed card play and counterplay from Duel Links, and terrain, unit counters and commanders from Langrisser. Characters, card effects, illustrations and map layouts are made for this project, with no assets from those games. Current source is **0.33.0-dev**, with nine chapters, branching encounters and cross-chapter saves. One fixed New Campaign route won ten consecutive battles and reached the current chapter-nine end page, using public-information diagnostic player policies in three encounters. Chapter ten, the story conclusion, overall balance and the 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
+The design studies card resource pacing from Hearthstone, concealed card play and counterplay from Duel Links, and terrain, unit counters and commanders from Langrisser. Characters, card effects, illustrations and map layouts are made for this project, with no assets from those games. Current source is **0.34.0-dev**, with ten chapters, branching encounters and cross-chapter saves. One fixed New Campaign model route won eleven consecutive battles and reached the current chapter-ten end page. Starting from actual earlier ten-win native saves, all three governance plans won the added gate battle through native pointer input. Three earlier encounters use public-information diagnostic player policies. The story conclusion, human balance and the 100,000-character target remain in development. The interface is Chinese; this README does not imply an English localization.
 
 ## In-game screenshots
 
-The chapter-9 dialogue capture is from 0.33.0-dev; the next two early battlefield captures are from 0.13.0 and earlier milestones.
+The 14×12 tower gate capture is from 0.34.0-dev; the next two early battlefield captures are from 0.13.0 and earlier milestones.
 
-![Chapter-9 council terrace: water readings and labor costs](docs/screenshots/v033-council-terrace.png)
+![Chapter-ten original two-bridge tower gate battlefield](docs/screenshots/v034-towergate-map.png)
 
 [Scene states, small-window choices, backlog and verification](docs/narrative-art-v020.md).
 
@@ -42,14 +42,22 @@ The chapter-9 dialogue capture is from 0.33.0-dev; the next two early battlefiel
 | Set traps and counter them | Movement snares, mines and protective wards are paid for from hand; each side has two trap slots, enemies see only the count, and a search spell can reveal and remove traps |
 | Cover different unit roles | Infantry beats spears, spears beat cavalry, cavalry beats infantry; archers, mages and healers have distinct ranges and roles |
 | Use active unit skills | Six one-mana abilities: shielding, interception, extra movement, a precise shot, fire damage and healing; once per unit per turn |
-| Contest useful ground | Six fully illustrated 12×10 maps; defensive forests, hills and forts, roads and bridges for mobility, and healing ruins |
+| Contest useful ground | Six selectable 12×10 maps plus a 14×12 chapter-ten gate battlefield; defensive forests, hills and forts, roads and bridges for mobility, and healing ruins |
 | Lead with a commander | Ailin protects the front, Velo strengthens fire, and Sera supports healing and woodland recovery; each has active and passive abilities |
 | Change the next exchange | Rain, fog, sun and snow affect both sides; replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
 
+## 0.34: The two-bridge tower gate
+
+The chapter-nine choice among joint rotation, a staged bypass and a season-long reservoir seal now determines the chapter-ten commander, deck and round limit. An original 14×12 map has two crossings. Hold D9 and K9 through two consecutive own-turn-start checks, or defeat the gate captain, to secure the outer valve. Prior pressure control, shipyard material ownership and the forest community's mandate change dialogue. Victory secures only the bridges and outer valve; the cracked inner valve, water costs and Ailin's father's transfer record remain unresolved.
+
+Ten chapters plus the archive contain **74,422 distinct authored Chinese body-text characters**. All 88 chapter-ten body paragraphs rendered in native Godot UI, passing 1,050 checks. Each governance plan entered from a real prior ten-win save, won the new native battle in 213, 98 or 165 pointer actions, and resumed its earned ending in an independent process; 1,516 checks passed. One fixed New Campaign model route won eleven battles through 2,500 legal actions and read 998 dialogue IDs, 16 choices and 53,561 Chinese characters. These are specified winning openings, not evidence of human difficulty or all branch win rates. [Chapter-ten design and verification](docs/narrative/chapter-10-review.md) · [Eleven-battle summary](docs/continuous-v034.json).
+
+![Joint-rotation gate victory in the native client](docs/screenshots/v034-joint-gate-victory.png)
+
 ## 0.33: Three chapter-nine governance plans
 
-After the eighth night, residents first account for housing, wages and water readings. Delegates arrive later. The player chooses a joint local and three-party rotation, separately controlled bypass pipes, or sealing the main reservoir for one season. Each plan names its supply limits, delays and costs. Earlier isolation or buffering, Vero's debt and Syla's mandate alter the dialogue. One original terrace background was added. The chapter ends at a conflict over control of the tower gate; the chapter-ten battle and story ending are still unwritten.
+After the eighth night, residents first account for housing, wages and water readings. Delegates arrive later. The player chooses a joint local and three-party rotation, separately controlled bypass pipes, or sealing the main reservoir for one season. Each plan names its supply limits, delays and costs. Earlier isolation or buffering, Vero's debt and Syla's mandate alter the dialogue. One original terrace background was added. In the 0.33 release, the chapter ended at a conflict over control of the tower gate, before the next battle was implemented.
 
 Nine chapters plus the archive contain **69,452 distinct authored Chinese body-text characters**. All 158 chapter-nine conditional body paragraphs rendered in Godot StoryView with 1,442 checks passing. A copy of the separately verified actual ten-win save entered each of the three plans, reached the chapter-nine end page and resumed in an independent process. The fixed ten-battle model route reached the current chapter-nine end after 924 dialogue IDs, 16 choices and 2,287 legal battle actions; it reads about 49,401 Chinese characters. Three encounters use declared public-information diagnostic player policies. Human full-playthrough and other battle-path win rates remain unverified. [Chapter-nine design and evidence](docs/narrative/chapter-09-review.md).
 

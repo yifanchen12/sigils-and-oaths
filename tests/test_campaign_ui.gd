@@ -23,27 +23,39 @@ func prepare_page_catalog(campaign: RefCounted) -> void:
 				for key: String in row.get("when", {}): keys[key] = true
 		future_condition_keys[entry.id] = keys.keys()
 func collect(campaign: RefCounted, entering: bool = false) -> void:
-	var runner: RefCounted = campaign.story
-	if entering:
-		var relevant: Dictionary = {}
-		for key: String in future_condition_keys[runner.graph.id]:
-			if runner.state.flags.has(key): relevant[key] = runner.state.flags[key]
-		var signature: String = runner.graph.id + JSON.stringify(relevant, "", true, true)
-		if collected_entries.has(signature): return
-		collected_entries[signature] = true
-	var page: Dictionary = runner.current()
-	var id: String = page.get("line_id", runner.graph.id + "." + page.node)
-	if not pages.has(id): pages[id] = {"page": page, "scenario": campaign.scenario(), "snapshot": campaign.snapshot()}
-	match page.type:
-		"dialogue": runner.advance(page.revision); collect(campaign)
-		"choice":
-			for option: Dictionary in page.options:
-				var branch: RefCounted = Campaign.new()
-				branch.restore(campaign.snapshot()); branch.story.choose(option.id, page.revision); collect(branch)
-		"battle": runner.resolve_battle(0, page.revision); collect(campaign)
-		"end":
-			if not chapter_ends.has(runner.graph.id): chapter_ends[runner.graph.id] = campaign.snapshot()
-			if not campaign.next_chapter().is_empty(): campaign.advance_chapter(); collect(campaign, true)
+	var pending: Array[Dictionary] = [{"campaign": campaign, "entering": entering}]
+	while not pending.is_empty():
+		var item: Dictionary = pending.pop_back()
+		var branch: RefCounted = item.campaign
+		var runner: RefCounted = branch.story
+		if item.entering:
+			var relevant: Dictionary = {}
+			for key: String in future_condition_keys[runner.graph.id]:
+				if runner.state.flags.has(key): relevant[key] = runner.state.flags[key]
+			var signature: String = runner.graph.id + JSON.stringify(relevant, "", true, true)
+			if collected_entries.has(signature): continue
+			collected_entries[signature] = true
+		var page: Dictionary = runner.current()
+		var id: String = page.get("line_id", runner.graph.id + "." + page.node)
+		if not pages.has(id): pages[id] = {"page": page, "scenario": branch.scenario(), "snapshot": branch.snapshot()}
+		match page.type:
+			"dialogue":
+				runner.advance(page.revision)
+				pending.append({"campaign": branch, "entering": false})
+			"choice":
+				for option: Dictionary in page.options:
+					var chosen: RefCounted = Campaign.new()
+					chosen.restore(branch.snapshot())
+					chosen.story.choose(option.id, page.revision)
+					pending.append({"campaign": chosen, "entering": false})
+			"battle":
+				runner.resolve_battle(0, page.revision)
+				pending.append({"campaign": branch, "entering": false})
+			"end":
+				if not chapter_ends.has(runner.graph.id): chapter_ends[runner.graph.id] = branch.snapshot()
+				if not branch.next_chapter().is_empty():
+					branch.advance_chapter()
+					pending.append({"campaign": branch, "entering": true})
 func find_button(parent: Node, text_part: String) -> Button:
 	if parent is Button and parent.text.contains(text_part): return parent
 	for child: Node in parent.get_children():

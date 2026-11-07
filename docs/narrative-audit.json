@@ -1,5 +1,5 @@
 {
-  "scope": "Codex accessibility verified in 0.13.0. Registered chapter graphs carry preceding ending facts. Native source hashes identify rendered page catalogues; one ten-battle route has separate native evidence.",
+  "scope": "Codex accessibility verified in 0.13.0. Registered chapter graphs carry preceding ending facts. Native source hashes identify rendered page catalogues; one eleven-battle route has separate native evidence.",
   "counting_method": "Distinct body paragraphs; Chinese Han characters only; excludes punctuation, summaries, headings, UI, plans and prompts.",
   "entries": 18,
   "paragraphs": 52,
@@ -24,7 +24,7 @@
       "longest_route_characters": 4197,
       "nodes": 20,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. One later ten-battle route has separate native evidence."
+      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. A later ten-battle route has separate native evidence."
     },
     {
       "id": "chapter_02",
@@ -38,7 +38,7 @@
       "longest_route_characters": 3559,
       "nodes": 15,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. One later ten-battle route has separate native evidence."
+      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. A later ten-battle route has separate native evidence."
     },
     {
       "id": "chapter_03",
@@ -52,7 +52,7 @@
       "longest_route_characters": 4851,
       "nodes": 17,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. One later ten-battle route has separate native evidence."
+      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. A later ten-battle route has separate native evidence."
     },
     {
       "id": "chapter_04",
@@ -66,7 +66,7 @@
       "longest_route_characters": 5258,
       "nodes": 17,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. One later ten-battle route has separate native evidence."
+      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. A later ten-battle route has separate native evidence."
     },
     {
       "id": "chapter_05",
@@ -80,7 +80,7 @@
       "longest_route_characters": 5839,
       "nodes": 16,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. One later ten-battle route has separate native evidence."
+      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. A later ten-battle route has separate native evidence."
     },
     {
       "id": "chapter_06",
@@ -94,7 +94,7 @@
       "longest_route_characters": 6048,
       "nodes": 16,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. One later ten-battle route has separate native evidence."
+      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. A later ten-battle route has separate native evidence."
     },
     {
       "id": "chapter_07",
@@ -108,7 +108,7 @@
       "longest_route_characters": 7181,
       "nodes": 14,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. One later ten-battle route has separate native evidence."
+      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. A later ten-battle route has separate native evidence."
     },
     {
       "id": "chapter_08",
@@ -122,7 +122,7 @@
       "longest_route_characters": 7144,
       "nodes": 16,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. One later ten-battle route has separate native evidence."
+      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. A later ten-battle route has separate native evidence."
     },
     {
       "id": "chapter_09",
@@ -137,12 +137,26 @@
       "nodes": 14,
       "native_rendered_source_matches": true,
       "status": "Every conditional page rendered in Godot. A ten-battle route reached this chapter; other battle paths and human play remain unchecked."
+    },
+    {
+      "id": "chapter_10",
+      "body_paragraphs": 88,
+      "all_string_entries": 88,
+      "authored_unique_characters": 4970,
+      "graph_reachable_unique_characters": 4970,
+      "route_count": 147456,
+      "shortest_route_characters": 4236,
+      "incoming_fact_combinations": 147456,
+      "longest_route_characters": 4275,
+      "nodes": 11,
+      "native_rendered_source_matches": true,
+      "status": "Every conditional page rendered in Godot. A native battle from actual prior ten-win saves reached this chapter end on three plans; other openings and human play remain unchecked."
     }
   ],
-  "authored_total_characters": 69452,
-  "native_rendered_chapter_characters": 63894,
+  "authored_total_characters": 74422,
+  "native_rendered_chapter_characters": 68864,
   "pending_ui_verification_characters": 0,
-  "pending_playthrough_verification_characters": 63894,
-  "limitations": "Exact-repeat audit only. Graph enumeration assumes battle victories; it does not prove every complete route can win. One fixed ten-battle route has native win evidence, using declared diagnostic player policies in three encounters. Headings, choice prompts and option labels are excluded. Reaching 100,000 characters along a single playable route, human editorial review and balance remain separate requirements.",
+  "pending_playthrough_verification_characters": 68864,
+  "limitations": "Exact-repeat audit only. Graph enumeration assumes battle victories; it does not prove every complete route can win. One fixed eleven-battle route has native win evidence, using declared diagnostic player policies in three encounters and a separate native gate continuation from actual prior saves. Headings, choice prompts and option labels are excluded. Reaching 100,000 characters along a single playable route, human editorial review and balance remain separate requirements.",
   "errors": []
 }

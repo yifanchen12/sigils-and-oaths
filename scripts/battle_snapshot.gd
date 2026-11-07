@@ -13,6 +13,17 @@ const UNIT_TEXT: Array[String] = ["name", "kind", "short"]
 static func rules_signature() -> String:
 	return JSON.stringify([Model.CATALOG.cards, Model.HEROES.heroes, Model.DECKS.decks, Model.MAPS.maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
 
+static func maps_before_towergate() -> Array[Dictionary]:
+	var maps: Array[Dictionary] = []
+	for map: Dictionary in Model.MAPS.maps:
+		if not map.get("campaign_only", false): maps.append(map)
+	return maps
+
+static func pre_towergate_signature() -> String:
+	# A chapter-only map must not invalidate a running battle on an unchanged
+	# original map. This is the exact 0.33 catalog, not a wildcard signature.
+	return JSON.stringify([Model.CATALOG.cards, Model.HEROES.heroes, Model.DECKS.decks, maps_before_towergate(), Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
+
 static func pre_expansion_signature() -> String:
 	# Additive card pool only: retain exact old cards/decks/maps in the hash.
 	# A future change to those definitions still invalidates old battle saves.
@@ -22,7 +33,7 @@ static func pre_expansion_signature() -> String:
 		if card.id not in EXPANSION_CARDS: cards.append(card)
 	for deck: Dictionary in Model.DECKS.decks:
 		if deck.id != "ambush": decks.append(deck)
-	return JSON.stringify([cards, Model.HEROES.heroes, decks, Model.MAPS.maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
+	return JSON.stringify([cards, Model.HEROES.heroes, decks, maps_before_towergate(), Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
 
 static func normalize_legacy(data: Dictionary) -> Dictionary:
 	var result: Dictionary = data.duplicate(true)
@@ -93,7 +104,9 @@ static func validate(data: Variant) -> Dictionary:
 	if data.version > VERSION:
 		return {"ok": false, "protected": true, "message": "战斗存档版本不兼容，原档保留。"}
 	if not data.get("rules") is String or data.rules.length() != 64: return {"ok": false, "message": "战斗规则签名缺失。"}
-	if data.get("rules") != rules_signature() and not (int(data.version) < 3 and data.rules == pre_expansion_signature()): return {"ok": false, "protected": true, "message": "战斗存档与当前规则版本不同，原档保留。"}
+	var old_map_ok: bool = data.get("map_id") != "towergate" and data.get("rules") == pre_towergate_signature()
+	var old_cards_ok: bool = int(data.version) < 3 and data.get("map_id") != "towergate" and data.get("rules") == pre_expansion_signature()
+	if data.get("rules") != rules_signature() and not old_map_ok and not old_cards_ok: return {"ok": false, "protected": true, "message": "战斗存档与当前规则版本不同，原档保留。"}
 	if int(data.version) < 3 and data.get("traps", []) != []: return {"ok": false, "message": "旧版战斗不能包含伏设区。"}
 	data = normalize_legacy(data)
 	var problem: String = _validate(data)

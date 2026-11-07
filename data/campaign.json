@@ -45,6 +45,11 @@
       "id": "chapter_09",
       "title": "第九章 · 谁来签字",
       "path": "res://data/narrative/chapters/chapter_09.json"
+    },
+    {
+      "id": "chapter_10",
+      "title": "第十章 · 门前两次响声",
+      "path": "res://data/narrative/chapters/chapter_10.json"
     }
   ],
   "scenarios": {
@@ -312,6 +317,30 @@
       "title": "调压院前",
       "brief": "维洛沿军道夺取调压院的指挥位置，让工班拿回总闸手轮。胜利后工班才能清理冷却池，以其中寄存的旧模与料换取缓压空间。\n\n作战建议\n保持中央队形，别让前排独自追进两翼。优先处理能被集中击破的伤兵和敌方医师，留部队接应后方指挥官；这场战斗没有整局轮次期限，不必抢攻。",
       "objective": "击败守机管事阮衡，解除调压院武装封锁；己方指挥官倒下则败。无整局轮数期限，每行动回合90秒。"
+    },
+    "c10_joint_gate": {
+      "title": "共同轮值 · 双桥接管",
+      "brief": "艾琳带轻装接管队走两座石桥，本地水工和三方见证者在后方等候。先保护跨渠的前线，再在两处门前接应位各留一支部队，阻止守军继续按旧令锁住检修口。",
+      "objective": "己方新回合开始时，D9、K9两处门前接应位均有友军，连续两次即胜；开局不计。18个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击败敌指挥官也胜，己方指挥官倒下则败。",
+      "map": "towergate", "hero": "warden", "enemy_class": "warden", "deck": "assault", "enemy_deck": "balanced", "seed": 10341,
+      "enemy_name": "塔门值守长尹纾", "enemy_portrait": "terrain_fort",
+      "control": {"cells": [[3, 3], [10, 3]], "required": 2, "round_limit": 18}
+    },
+    "c10_split_gate": {
+      "title": "分段旁路 · 双桥开工",
+      "brief": "维洛率旁路工班从两桥接近外阀。材料车只等十六轮，先建立跨渠阵线，再同时占住两处门前接应位，夺回可复测的接口。",
+      "objective": "己方新回合开始时，D9、K9两处门前接应位均有友军，连续两次即胜；开局不计。16个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击败敌指挥官也胜，己方指挥官倒下则败。",
+      "map": "towergate", "hero": "pyromancer", "enemy_class": "warden", "deck": "assault", "enemy_deck": "balanced", "seed": 10342,
+      "enemy_name": "塔门值守长尹纾", "enemy_portrait": "terrain_fort",
+      "control": {"cells": [[3, 3], [10, 3]], "required": 2, "round_limit": 16}
+    },
+    "c10_hold_gate": {
+      "title": "封池一季 · 守住饮水",
+      "brief": "赛菈护送饮水队抵达塔门，阻止旧令强行开池。给两座石桥各留一支守军，同时守住门前接应位，让工班取得封存检修口的时间。",
+      "objective": "己方新回合开始时，D9、K9两处门前接应位均有友军，连续两次即胜；开局不计。20个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击败敌指挥官也胜，己方指挥官倒下则败。",
+      "map": "towergate", "hero": "grove", "enemy_class": "warden", "deck": "balanced", "enemy_deck": "balanced", "seed": 10343,
+      "enemy_name": "塔门值守长尹纾", "enemy_portrait": "terrain_fort",
+      "control": {"cells": [[3, 3], [10, 3]], "required": 2, "round_limit": 20}
     }
   }
 }

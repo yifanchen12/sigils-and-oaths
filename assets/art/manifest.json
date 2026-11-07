@@ -1802,6 +1802,21 @@
       "processing": "Intact original PNG; native crop and overlay only.",
       "status": "source and native screenshots visually reviewed; original bytes verified; chapter UI passed",
       "validation": "docs/narrative/chapter-08-review.md"
+    },
+    {
+      "id": "battlefield_towergate",
+      "path": "assets/art/battlefields/towergate-v2.png",
+      "source_filename": "exec-53cd5fc2-973c-48e0-b660-2469cc12ec8d.png",
+      "reference_path": "assets/art/battlefields/sunspire-v2.png",
+      "prompt_file": "assets/art/battlefields/towergate-source.md",
+      "size": [1354, 1161],
+      "mode": "RGB",
+      "sha256": "e11e19b927847342199c165613ba39243643ce01a91f22aa3898532139936dd4",
+      "source_bytes_preserved": true,
+      "role": "Fourteen by twelve campaign gate battlefield with two bridge crossings; terrain rules live in data/maps.tres.",
+      "processing": "Original PNG copied intact. Godot overlays the rule grid, units, weather and objective markers.",
+      "status": "Original source and native map screenshot visually reviewed; 45 map and compatibility checks passed.",
+      "validation": "docs/narrative/chapter-10-review.md"
     }
   ]
 }

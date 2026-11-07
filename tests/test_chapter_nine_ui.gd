@@ -44,7 +44,7 @@ func writer() -> void:
 				check(false, "ninth ends before the separately authored tower battle")
 				return
 			"end":
-				check(game.campaign_session.campaign.story.graph.id == "chapter_09" and game.campaign_session.campaign.next_chapter().is_empty() and ninth_choices == 1, "ninth terminates at its currently authored end page")
+				check(game.campaign_session.campaign.story.graph.id == "chapter_09" and game.campaign_session.campaign.next_chapter().get("id") == "chapter_10" and ninth_choices == 1, "ninth offers the installed tenth after its end page")
 				check(game.campaign_session.save().ok, "final ninth page is saved without another battle result")
 				await capture("v033-" + plan + "-ending")
 				print("NINTH NATIVE WRITER: %d CHECKS | FAILURES: %d | PLAN: %s | DIALOGUES: %d | CHOICES: %d" % [checks, failures, plan, ninth_lines, ninth_choices])
@@ -57,7 +57,7 @@ func reader() -> void:
 	if failures > 0: return
 	await click(resume.get_global_rect().get_center())
 	check(game.story_view.visible and game.campaign_session.encounter == null and game.campaign_session.campaign.story.graph.id == "chapter_09" and game.campaign_session.current().type == "end", "independent process resumes ninth ending without a battle")
-	check(game.campaign_session.campaign.completed.size() == 8 and game.campaign_session.campaign.story.state.flags.governance_plan == plan and game.campaign_session.campaign.next_chapter().is_empty(), "all prior chapters and chosen governance survive disk reload")
+	check(game.campaign_session.campaign.completed.size() == 8 and game.campaign_session.campaign.story.state.flags.governance_plan == plan and game.campaign_session.campaign.next_chapter().get("id") == "chapter_10", "all prior chapters and chosen governance survive disk reload")
 	await capture("v033-" + plan + "-resumed")
 	print("NINTH NATIVE READER: %d CHECKS | FAILURES: %d | PLAN: %s" % [checks, failures, plan])
 

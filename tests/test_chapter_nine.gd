@@ -71,7 +71,7 @@ func walk_nine(campaign: RefCounted, plan: String) -> void:
 			"end":
 				seen[campaign.story.graph.nodes[page.node].text] = true
 				routes += 1
-				check(choices == 1 and campaign.story.state.decisions.size() == 1 and campaign.next_chapter().is_empty(), "one decision reaches authored ninth ending")
+				check(choices == 1 and campaign.story.state.decisions.size() == 1 and campaign.next_chapter().get("id") == "chapter_10", "one decision reaches ninth ending and offers installed tenth")
 				for key: String in inherited:
 					check(campaign.story.state.flags[key] == inherited[key], "ninth leaves earlier fact untouched: " + key)
 				var portable: Variant = JSON.parse_string(JSON.stringify(campaign.snapshot()))

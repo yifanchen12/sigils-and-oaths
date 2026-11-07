@@ -101,9 +101,14 @@
     },
     {
       "id": "chapter_10",
-      "title": "共誓之地",
-      "status": "outline",
-      "nativeValidated": false
+      "title": "门前两次响声",
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "revision": "0.34.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 4970,
+      "wordCountPass": false
     }
   ]
 }

@@ -4,6 +4,7 @@ extends RefCounted
 const Story = preload("res://scripts/story_runner.gd")
 const BattleModel = preload("res://scripts/battle.gd")
 const INDEX_PATH: String = "res://data/campaign.json"
+const GATE_VARIANTS: Dictionary = {"joint": "c10_joint_gate", "split": "c10_split_gate", "hold": "c10_hold_gate"}
 var index: Dictionary = {}
 var story: RefCounted
 var completed: Array[Dictionary] = []
@@ -26,8 +27,10 @@ func _source(chapter_id: String) -> Dictionary:
 		if source.id != chapter_id: return {"ok": false, "message": "章节编号与目录不一致。"}
 		for node: Dictionary in source.nodes.values():
 			if node.type == "battle":
-				problem = validate_scenario(index.scenarios.get(node.scenario))
-				if not problem.is_empty(): return {"ok": false, "message": problem}
+				var scenario_ids: Array = GATE_VARIANTS.values() if node.scenario == "c10_gate" else [node.scenario]
+				for scenario_id: String in scenario_ids:
+					problem = validate_scenario(index.scenarios.get(scenario_id))
+					if not problem.is_empty(): return {"ok": false, "message": problem}
 		return {"ok": true, "source": source}
 	return {"ok": false, "message": "没有找到该章节。"}
 
@@ -37,7 +40,8 @@ static func validate_scenario(value: Variant) -> String:
 		if not value.get(key) is String or value[key].is_empty(): return "关卡配置缺少" + key
 	if not Story._whole(value.get("seed"), 1, 999999): return "关卡种子无效。"
 	var maps: Array = []
-	for map: Dictionary in BattleModel.MAPS.available(): maps.append(map.id)
+	for map: Dictionary in BattleModel.MAPS.maps:
+		if map.get("selectable", true) or map.get("campaign_only", false): maps.append(map.id)
 	if not maps.has(value.map): return "关卡地图不存在。"
 	var heroes: Array = []
 	for hero: Dictionary in BattleModel.HEROES.heroes: heroes.append(hero.id)
@@ -88,7 +92,9 @@ func advance_chapter() -> Dictionary:
 
 func scenario() -> Dictionary:
 	if story == null or story.current().type != "battle": return {}
-	return index.scenarios[story.current().scenario].duplicate(true)
+	var scenario_id: String = story.current().scenario
+	if scenario_id == "c10_gate": scenario_id = GATE_VARIANTS.get(str(story.state.flags.get("governance_plan", "")), "")
+	return index.scenarios.get(scenario_id, {}).duplicate(true)
 
 func snapshot() -> Dictionary:
 	if story == null: return {}

@@ -20,6 +20,11 @@ maps = Array[Dictionary]([{
 "rows": ["m..rr.r....m", ".h.rr.r.ff..", "..rr.hrr....", ".frt..r.rh..", "..rrh..rr...", "...rr..hrr..", "..hr.r..trf.", "....rrh.rr..", "..ff.r.rr.h.", "m....r.rr..m"],
 "spawns": [Vector2i(5, 9), Vector2i(6, 0)], "ruins": [Vector2i(2, 4), Vector2i(9, 5)]
 }, {
+"id": "towergate", "name": "日陨塔门", "subtitle": "双桥涉渠 · 门前夺位", "theme": "harbor", "selectable": false, "campaign_only": true,
+"description": "十四列十二行的水工外庭；两道石桥越过运水渠，门前平台可从左右包抄。花坛与低矮工事能掩护守军，推进方需要保护跨桥后的增援线。",
+"rows": ["mmmmm.rr.mmmmm", "mmh..rrrr..hmm", ".t..rrrrrr..t.", "..rrrrrrrrrr..", "wwwbbwwwwbbwww", "wwwbbwwwwbbwww", "...rr....rr...", "...rr....rr...", "...rt....tr...", "....t....t....", "...rr....rr...", "...rr....rr..."],
+"spawns": [Vector2i(6, 11), Vector2i(7, 0)], "ruins": []
+}, {
 "id": "ridgepass", "name": "断脊隘口", "subtitle": "隘口卡位 · 分兵绕后", "theme": "forest",
 "description": "两道断脊山带分割推进路线；中场开阔地连接隘口，分兵、击退和前线增援可以改变通路归属。",
 "rows": ["...f..r.....", ".rrr.hrr.f..", ".rmm..fm.r..", "mm..m..m...m", "..r.rh..rr..", "..rr..hr.r..", "m...m..m..mm", "..r.mf..mmr.", "..f.rrh.rrr.", ".....r..f..."],
