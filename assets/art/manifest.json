@@ -1865,6 +1865,20 @@
       "processing": "Original PNG copied intact. Godot overlays grid, units and objectives.",
       "status": "source visually reviewed; native board alignment and click hit tests passed",
       "validation": "docs/narrative/chapter-12-design.md"
+    },
+    {
+      "id": "scene_northbank_mill",
+      "path": "assets/art/narrative/northbank-mill-v1.png",
+      "source_filename": "exec-5de056c9-cbfe-4ce6-b320-99683e3e3602.png",
+      "prompt_file": "assets/art/narrative/chapter13-source.md",
+      "size": [1536, 1024],
+      "mode": "RGB",
+      "sha256": "c1b58ac847322690894d3929bff972c76d56f705eba9fbdc391d1b618aa17be8",
+      "source_bytes_preserved": true,
+      "role": "Northbank mill dawn narrative backdrop; river wheel and flour queue make custody consequences visible.",
+      "processing": "Intact original PNG; native crop and overlay only.",
+      "status": "source visually reviewed; native chapter UI pending",
+      "validation": "docs/narrative/chapter-13-review.md"
     }
   ]
 }

@@ -60,6 +60,11 @@
       "id": "chapter_12",
       "title": "第十二章 · 一根轴的归属",
       "path": "res://data/narrative/chapters/chapter_12.json"
+    },
+    {
+      "id": "chapter_13",
+      "title": "第十三章 · 试转之夜",
+      "path": "res://data/narrative/chapters/chapter_13.json"
     }
   ],
   "scenarios": {

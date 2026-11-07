@@ -131,6 +131,17 @@
       "playthroughValidated": false,
       "wordCount": 4016,
       "wordCountPass": false
+    },
+    {
+      "id": "chapter_13",
+      "title": "试转之夜",
+      "status": "draft_pending_reader_feedback_and_complete_story",
+      "nativeValidated": false,
+      "revision": "0.37.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 4675,
+      "wordCountPass": false
     }
   ]
 }

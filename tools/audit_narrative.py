@@ -15,7 +15,7 @@ def chapter_audit(ids, text_seen, errors):
     evidence_path = ROOT / "docs/narrative-native-ui.json"
     evidence = json.loads(evidence_path.read_text(encoding="utf-8")) if evidence_path.exists() else {}
     rendered_sources = evidence.get("chapter_sha256", {}).copy() if evidence.get("passed") is True else {}
-    for milestone in ("v033", "v034", "v035", "v036"):
+    for milestone in ("v033", "v034", "v035", "v036", "v037"):
         later_path = ROOT / f"docs/narrative-native-ui-{milestone}.json"
         if later_path.exists():
             later = json.loads(later_path.read_text(encoding="utf-8"))
@@ -23,7 +23,7 @@ def chapter_audit(ids, text_seen, errors):
                 rendered_sources.update(later.get("chapter_sha256", {}))
     reports = []
     previous_endings = [{}]
-    for entry in index["chapters"]:
+    for chapter_index, entry in enumerate(index["chapters"]):
         path = (ROOT / entry["path"].removeprefix("res://")).resolve()
         if not path.is_relative_to(ROOT):
             raise ValueError("Chapter path is outside project")
@@ -48,6 +48,8 @@ def chapter_audit(ids, text_seen, errors):
                 weights[line_id] = len(normalized)
         routes, reached, read_lines = [], set(), set()
         endings = []
+        final_chapter = chapter_index + 1 == len(index["chapters"])
+        current_weight = 1
 
         def matches(when, flags):
             return all(flags[key] == value for key, value in when.items())
@@ -73,12 +75,15 @@ def chapter_audit(ids, text_seen, errors):
                 walk(node["win"], flags | node.get("win_set", {}), lines, chain)
             elif kind == "end":
                 read_lines.add(node["text"])
-                routes.append(sum(weights[line] for line in lines | {node["text"]}))
-                endings.append(flags.copy())
+                routes.append((sum(weights[line] for line in lines | {node["text"]}), current_weight))
+                if chapter_index + 1 < len(index["chapters"]):
+                    endings.append(flags.copy())
             else:
                 raise ValueError(f"Unknown chapter node: {node_id}")
 
         incoming = set()
+        conditional_keys = {key for node in nodes.values() for row in node.get("lines", []) + node.get("options", []) for key in row.get("when", {})}
+        final_groups = {}
         for previous in previous_endings:
             inherited = {}
             for key in graph.get("inherits", []):
@@ -86,13 +91,24 @@ def chapter_audit(ids, text_seen, errors):
                     raise ValueError(f"Missing or mistyped inherited fact: {entry['id']} / {key}")
                 inherited[key] = previous[key]
             incoming.add(json.dumps(inherited, sort_keys=True))
-            walk(graph["start"], graph["defaults"] | inherited, set(), set())
+            if final_chapter:
+                relevant = {key: inherited[key] for key in conditional_keys if key in inherited}
+                signature = json.dumps(relevant, sort_keys=True)
+                if signature not in final_groups: final_groups[signature] = [inherited, 0]
+                final_groups[signature][1] += 1
+            else:
+                walk(graph["start"], graph["defaults"] | inherited, set(), set())
+        if final_chapter:
+            for inherited, current_weight in final_groups.values():
+                walk(graph["start"], graph["defaults"] | inherited, set(), set())
         previous_endings = endings
         if read_lines != body:
             errors.append(f"Unreachable chapter body: {sorted(body - read_lines)}")
         if reached != nodes.keys():
             errors.append(f"Unreachable chapter nodes: {sorted(nodes.keys() - reached)}")
-        if native_rendered and entry["id"] == "chapter_12":
+        if native_rendered and entry["id"] == "chapter_13":
+            status = "All conditional pages rendered in native Godot. Three separate earned depot-win saves entered the chapter and each reached both night-watch endings, with cross-process save checks. No new tactical battle or human playtest."
+        elif native_rendered and entry["id"] == "chapter_12":
             status = "Every conditional page rendered in native Godot. Three earned chapter-eleven saves advanced through real depot battles with legal actions, battle reload and both custody choices represented across plans. Other routes and human balance remain unchecked."
         elif native_rendered and entry["id"] == "chapter_11":
             status = "Every conditional page rendered in Godot. Three actual prior gate-win saves entered and finished this witness chapter; each ending resumed in a separate native process. Earlier battle paths and human play remain unchecked."
@@ -108,9 +124,9 @@ def chapter_audit(ids, text_seen, errors):
             "id": entry["id"], "body_paragraphs": len(body), "all_string_entries": len(strings),
             "authored_unique_characters": sum(weights.values()),
             "graph_reachable_unique_characters": sum(weights[line] for line in read_lines),
-            "route_count": len(routes), "shortest_route_characters": min(routes),
+            "route_count": sum(weight for _, weight in routes), "shortest_route_characters": min(length for length, _ in routes),
             "incoming_fact_combinations": len(incoming),
-            "longest_route_characters": max(routes), "nodes": len(nodes),
+            "longest_route_characters": max(length for length, _ in routes), "nodes": len(nodes),
             "native_rendered_source_matches": native_rendered,
             "status": status,
         })
@@ -159,7 +175,7 @@ def audit():
     candidate = sum(chapter["graph_reachable_unique_characters"] for chapter in chapters)
     rendered = sum(chapter["graph_reachable_unique_characters"] for chapter in chapters if chapter["native_rendered_source_matches"])
     return {
-        "scope": "Codex accessibility verified in 0.13.0. Registered chapter graphs carry preceding ending facts. Native source hashes identify rendered page catalogues; a continuous eleven-battle route and three earned depot continuations have separate evidence.",
+        "scope": "Codex accessibility verified in 0.13.0. Registered chapter graphs carry preceding ending facts. Native source hashes identify rendered page catalogues; a continuous eleven-battle route, three earned depot continuations and six earned chapter-thirteen readings have separate evidence.",
         "counting_method": "Distinct body paragraphs; Chinese Han characters only; excludes punctuation, summaries, headings, UI, plans and prompts.",
         "entries": len(entries), "paragraphs": paragraphs,
         "unique_chinese_characters": count, "by_category": by_category,
@@ -169,7 +185,7 @@ def audit():
         "native_rendered_chapter_characters": rendered,
         "pending_ui_verification_characters": candidate - rendered,
         "pending_playthrough_verification_characters": candidate,
-        "limitations": "Exact-repeat audit only. Graph enumeration assumes battle victories; it does not prove every complete route can win. One fixed eleven-battle route has native win evidence; three earned chapter-eleven saves also entered and won chapter twelve using a declared diagnostic policy. This is not one continuous twelve-battle proof. Headings, choice prompts and option labels are excluded. Reaching 100,000 characters along a single playable route, human editorial review and balance remain separate requirements.",
+        "limitations": "Exact-repeat audit only. Graph enumeration assumes battle victories; it does not prove every complete route can win. One fixed eleven-battle route has native win evidence; three earned chapter-eleven saves also entered and won chapter twelve using a declared diagnostic policy, then entered chapter thirteen. This is not one continuous twelve-battle proof. Headings, choice prompts and option labels are excluded. Reaching 100,000 characters along a single playable route, human editorial review and balance remain separate requirements.",
         "errors": errors,
     }
 

@@ -51,7 +51,7 @@ func walk_twelve(campaign: RefCounted, plan: String, custody: String, disk: bool
 			"end":
 				twelfth_seen[campaign.story.graph.nodes[page.node].text] = true
 				twelfth_routes += 1
-				check(battles == 1 and decisions == 1 and campaign.next_chapter().is_empty(), "twelfth route ends after one battle and one custody decision")
+				check(battles == 1 and decisions == 1 and campaign.next_chapter().get("id") == "chapter_13", "twelfth route ends after one battle and one custody decision, then offers thirteenth")
 				for key: String in inherited: check(campaign.story.state.flags[key] == inherited[key], "prior fact preserved: " + key)
 				var copy: RefCounted = Campaign.new()
 				check(copy.restore(JSON.parse_string(JSON.stringify(campaign.snapshot()))).ok and copy.snapshot() == campaign.snapshot(), "full twelve-chapter history roundtrips")

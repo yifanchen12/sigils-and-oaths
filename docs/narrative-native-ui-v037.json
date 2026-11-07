@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "milestone": "0.37.0-dev",
+  "date": "2026-11-07",
+  "passed": true,
+  "chapter_sha256": {
+    "chapter_13": "07e59a402b5fbbabb73c1a61c638cf7afb0db200efaab3907754ee8e27d8810a"
+  },
+  "catalogue_test": "tests/test_chapter_thirteen_catalog_ui.gd",
+  "catalogue_checks": 916,
+  "catalogue_body_paragraphs": 97,
+  "catalogue_rendered_pages": 98,
+  "catalogue_scope": "All 95 chapter-thirteen dialogue paragraphs, both ending pages and the night-watch choice render in native Godot StoryView; 1008x700 layout and a native screenshot were checked. Routes start from actual earned chapter-twelve results.",
+  "earned_test": "tests/test_chapter_thirteen_earned.gd",
+  "earned_checks": 990,
+  "earned_routes": 6,
+  "earned_scope": "Three separate, actual depot-victory saves each enter chapter thirteen and reach both night-watch endings. Both shaft custody values occur among these saves. Chapter opening, choice and ending are reloaded from disk, preserving earlier decisions. This does not prove one continuous twelve-battle run.",
+  "limitations": "No human playtest, representative balance result or complete story ending. This witness and repair chapter adds no new tactical battle. Full single-route 100000-character and Steam readiness targets remain open."
+}
