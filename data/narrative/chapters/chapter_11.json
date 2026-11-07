@@ -1,0 +1,842 @@
+{
+  "version": 1,
+  "id": "chapter_11",
+  "title": "第十一章 · 北岸有回信",
+  "start": "letter",
+  "inherits": [
+    "route",
+    "witness_present",
+    "seal_copy",
+    "relief",
+    "public_ledger",
+    "priority",
+    "receipt_method",
+    "dispatch_receipts",
+    "clerk_safe",
+    "letter_reply",
+    "letter_delivered",
+    "pass_route",
+    "supply_route",
+    "mine_cargo",
+    "harbor_shelter",
+    "foundry_terms",
+    "crew_safe",
+    "harbor_pump",
+    "pump_route_known",
+    "water_plan",
+    "water_released",
+    "grove_mandate",
+    "charter_copy",
+    "evidence_council",
+    "court_access",
+    "father_trail",
+    "letter_company",
+    "camp_company",
+    "pressure_plan",
+    "sunspire_stable",
+    "governance_plan",
+    "tower_gate_secured"
+  ],
+  "defaults": {
+    "route": "none",
+    "witness_present": false,
+    "seal_copy": false,
+    "relief": "none",
+    "public_ledger": false,
+    "priority": "none",
+    "receipt_method": "none",
+    "dispatch_receipts": false,
+    "clerk_safe": false,
+    "letter_reply": "none",
+    "letter_delivered": false,
+    "pass_route": "none",
+    "supply_route": "none",
+    "mine_cargo": false,
+    "harbor_shelter": "none",
+    "foundry_terms": "none",
+    "crew_safe": false,
+    "harbor_pump": false,
+    "pump_route_known": false,
+    "water_plan": "none",
+    "water_released": false,
+    "grove_mandate": "none",
+    "charter_copy": false,
+    "evidence_council": "none",
+    "court_access": false,
+    "father_trail": false,
+    "letter_company": "none",
+    "camp_company": "none",
+    "pressure_plan": "none",
+    "sunspire_stable": false,
+    "governance_plan": "none",
+    "tower_gate_secured": false
+  },
+  "speakers": {
+    "narrator": "旁白",
+    "warden": "艾琳",
+    "pyromancer": "维洛",
+    "grove": "赛菈",
+    "sword": "洛恩",
+    "spear": "芙蕾",
+    "cavalry": "莉希",
+    "archer": "希弥",
+    "mage": "伊瑟",
+    "healer": "米芮",
+    "clerk": "赫姆",
+    "qin": "秦婶",
+    "yubai": "余白",
+    "tangsui": "唐穗",
+    "foreman": "工班长",
+    "sang": "桑岚",
+    "ruan": "阮衡",
+    "chair": "轮值主持者",
+    "court_delegate": "议庭代表",
+    "forge_delegate": "赤曜勘料员",
+    "forest_delegate": "林社代表",
+    "porter": "旧担架手",
+    "gate_captain": "尹纾",
+    "luoming": "罗明",
+    "mengling": "孟绫",
+    "runner": "北岸信使"
+  },
+  "nodes": {
+    "letter": {
+      "type": "dialogue",
+      "background": "scene_redroof",
+      "lines": [
+        {
+          "id": "c11.letter.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c11.letter.02",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c11.letter.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.letter.04",
+          "speaker": "archer"
+        },
+        {
+          "id": "c11.letter.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c11.letter.06",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.letter.07",
+          "speaker": "luoming"
+        }
+      ],
+      "next": "threshold"
+    },
+    "threshold": {
+      "type": "dialogue",
+      "background": "scene_redroof",
+      "lines": [
+        {
+          "id": "c11.threshold.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c11.threshold.02",
+          "speaker": "luoming"
+        },
+        {
+          "id": "c11.threshold.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.threshold.04",
+          "speaker": "luoming"
+        },
+        {
+          "id": "c11.threshold.05",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.threshold.06",
+          "speaker": "luoming"
+        },
+        {
+          "id": "c11.threshold.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c11.threshold.08",
+          "speaker": "warden"
+        }
+      ],
+      "next": "four_passengers"
+    },
+    "four_passengers": {
+      "type": "dialogue",
+      "background": "scene_redroof",
+      "lines": [
+        {
+          "id": "c11.four_passengers.01",
+          "speaker": "luoming"
+        },
+        {
+          "id": "c11.four_passengers.02",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.four_passengers.03",
+          "speaker": "luoming"
+        },
+        {
+          "id": "c11.four_passengers.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c11.four_passengers.05",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c11.four_passengers.06",
+          "speaker": "luoming"
+        },
+        {
+          "id": "c11.four_passengers.07",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c11.four_passengers.08",
+          "speaker": "warden"
+        }
+      ],
+      "next": "mengling_arrives"
+    },
+    "mengling_arrives": {
+      "type": "dialogue",
+      "background": "scene_redroof",
+      "lines": [
+        {
+          "id": "c11.mengling_arrives.01",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c11.mengling_arrives.02",
+          "speaker": "luoming"
+        },
+        {
+          "id": "c11.mengling_arrives.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.mengling_arrives.04",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c11.mengling_arrives.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c11.mengling_arrives.06",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.mengling_arrives.07",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c11.mengling_arrives.08",
+          "speaker": "luoming"
+        }
+      ],
+      "next": "riverbank"
+    },
+    "riverbank": {
+      "type": "dialogue",
+      "background": "scene_northbank_memorial",
+      "lines": [
+        {
+          "id": "c11.riverbank.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c11.riverbank.02",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c11.riverbank.03",
+          "speaker": "luoming"
+        },
+        {
+          "id": "c11.riverbank.04",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.riverbank.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c11.riverbank.06",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.riverbank.07",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c11.riverbank.08",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "mark"
+    },
+    "mark": {
+      "type": "dialogue",
+      "background": "scene_northbank_memorial",
+      "lines": [
+        {
+          "id": "c11.mark.01",
+          "speaker": "luoming"
+        },
+        {
+          "id": "c11.mark.02",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.mark.03",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c11.mark.04",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.mark.05",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "companions"
+    },
+    "companions": {
+      "type": "dialogue",
+      "background": "scene_northbank_memorial",
+      "lines": [
+        {
+          "id": "c11.companions.01",
+          "speaker": "sword",
+          "when": {
+            "camp_company": "bridge"
+          }
+        },
+        {
+          "id": "c11.companions.02",
+          "speaker": "spear",
+          "when": {
+            "camp_company": "bridge"
+          }
+        },
+        {
+          "id": "c11.companions.03",
+          "speaker": "mage",
+          "when": {
+            "camp_company": "clinic"
+          }
+        },
+        {
+          "id": "c11.companions.04",
+          "speaker": "healer",
+          "when": {
+            "camp_company": "clinic"
+          }
+        },
+        {
+          "id": "c11.companions.05",
+          "speaker": "cavalry",
+          "when": {
+            "camp_company": "watch"
+          }
+        },
+        {
+          "id": "c11.companions.06",
+          "speaker": "archer",
+          "when": {
+            "camp_company": "watch"
+          }
+        },
+        {
+          "id": "c11.companions.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c11.companions.08",
+          "speaker": "warden"
+        }
+      ],
+      "next": "return_letter"
+    },
+    "return_letter": {
+      "type": "dialogue",
+      "background": "scene_redroof",
+      "lines": [
+        {
+          "id": "c11.return_letter.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c11.return_letter.02",
+          "speaker": "luoming"
+        },
+        {
+          "id": "c11.return_letter.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.return_letter.04",
+          "speaker": "luoming"
+        },
+        {
+          "id": "c11.return_letter.05",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c11.return_letter.06",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.return_letter.07",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "ferry_work"
+    },
+    "ferry_work": {
+      "type": "dialogue",
+      "background": "scene_redroof",
+      "lines": [
+        {
+          "id": "c11.ferry_work.01",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c11.ferry_work.02",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.ferry_work.03",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c11.ferry_work.04",
+          "speaker": "luoming"
+        },
+        {
+          "id": "c11.ferry_work.05",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.ferry_work.06",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c11.ferry_work.07",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "city_message"
+    },
+    "city_message": {
+      "type": "dialogue",
+      "background": "scene_redroof",
+      "lines": [
+        {
+          "id": "c11.city_message.01",
+          "speaker": "runner"
+        },
+        {
+          "id": "c11.city_message.02",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.city_message.03",
+          "speaker": "runner"
+        },
+        {
+          "id": "c11.city_message.04",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.city_message.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c11.city_message.06",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c11.city_message.07",
+          "speaker": "luoming"
+        },
+        {
+          "id": "c11.city_message.08",
+          "speaker": "warden"
+        }
+      ],
+      "next": "return_road"
+    },
+    "return_road": {
+      "type": "dialogue",
+      "background": "scene_waterpass",
+      "lines": [
+        {
+          "id": "c11.return_road.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c11.return_road.02",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.return_road.03",
+          "speaker": "sword"
+        },
+        {
+          "id": "c11.return_road.04",
+          "speaker": "spear"
+        },
+        {
+          "id": "c11.return_road.05",
+          "speaker": "narrator",
+          "when": {
+            "governance_plan": "joint"
+          }
+        },
+        {
+          "id": "c11.return_road.06",
+          "speaker": "narrator",
+          "when": {
+            "governance_plan": "split"
+          }
+        },
+        {
+          "id": "c11.return_road.07",
+          "speaker": "narrator",
+          "when": {
+            "governance_plan": "hold"
+          }
+        },
+        {
+          "id": "c11.return_road.08",
+          "speaker": "warden"
+        }
+      ],
+      "next": "gate_alarm"
+    },
+    "gate_alarm": {
+      "type": "dialogue",
+      "background": "scene_pump_open",
+      "lines": [
+        {
+          "id": "c11.gate_alarm.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c11.gate_alarm.02",
+          "speaker": "sang"
+        },
+        {
+          "id": "c11.gate_alarm.03",
+          "speaker": "mage"
+        },
+        {
+          "id": "c11.gate_alarm.04",
+          "speaker": "gate_captain"
+        },
+        {
+          "id": "c11.gate_alarm.05",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c11.gate_alarm.06",
+          "speaker": "grove"
+        },
+        {
+          "id": "c11.gate_alarm.07",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.gate_alarm.08",
+          "speaker": "mengling"
+        }
+      ],
+      "next": "triage"
+    },
+    "triage": {
+      "type": "dialogue",
+      "background": "scene_pump_open",
+      "lines": [
+        {
+          "id": "c11.triage.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c11.triage.02",
+          "speaker": "foreman"
+        },
+        {
+          "id": "c11.triage.03",
+          "speaker": "healer"
+        },
+        {
+          "id": "c11.triage.04",
+          "speaker": "qin"
+        },
+        {
+          "id": "c11.triage.05",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.triage.06",
+          "speaker": "sang"
+        },
+        {
+          "id": "c11.triage.07",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "supply"
+    },
+    "supply": {
+      "type": "dialogue",
+      "background": "scene_waterpass",
+      "lines": [
+        {
+          "id": "c11.supply.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c11.supply.02",
+          "speaker": "gate_captain"
+        },
+        {
+          "id": "c11.supply.03",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c11.supply.04",
+          "speaker": "forge_delegate"
+        },
+        {
+          "id": "c11.supply.05",
+          "speaker": "forest_delegate"
+        },
+        {
+          "id": "c11.supply.06",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.supply.07",
+          "speaker": "sword"
+        },
+        {
+          "id": "c11.supply.08",
+          "speaker": "spear"
+        }
+      ],
+      "next": "quiet_room"
+    },
+    "quiet_room": {
+      "type": "dialogue",
+      "background": "scene_sunspire_camp",
+      "lines": [
+        {
+          "id": "c11.quiet_room.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c11.quiet_room.02",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.quiet_room.03",
+          "speaker": "sword"
+        },
+        {
+          "id": "c11.quiet_room.04",
+          "speaker": "healer"
+        },
+        {
+          "id": "c11.quiet_room.05",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c11.quiet_room.06",
+          "speaker": "grove"
+        },
+        {
+          "id": "c11.quiet_room.07",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "nightwatch"
+    },
+    "nightwatch": {
+      "type": "dialogue",
+      "background": "scene_sunspire_camp",
+      "lines": [
+        {
+          "id": "c11.nightwatch.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c11.nightwatch.02",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c11.nightwatch.03",
+          "speaker": "archer"
+        },
+        {
+          "id": "c11.nightwatch.04",
+          "speaker": "mage"
+        },
+        {
+          "id": "c11.nightwatch.05",
+          "speaker": "warden"
+        },
+        {
+          "id": "c11.nightwatch.06",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end",
+      "background": "scene_sunspire_camp",
+      "ending": "northbank_witnesses",
+      "text": "c11.end"
+    }
+  },
+  "strings": {
+    "c11.letter.01": "北岸的晨雾散得比城里快。莉希昨夜送出的信压在红瓦屋门槛上，封蜡已拆，纸上多了一行字：‘请本人来。带着车号，不要带兵。’门前半枯的梨树今年又结了果，最矮的那一枝用旧缰绳牵住。",
+    "c11.letter.02": "我送到时他正要关门。他看了车号，把信收进去，过了很久才出来写这几个字。没说认识你父亲。我也没替你问。马我拴在堤口，走回去正好能避开早班水车。",
+    "c11.letter.03": "你在这儿等我，不用进屋。若他不见，我会把信拿回来，不让你替我敲第三次。城里有事就叫人沿堤找，不用拿马往门口冲。",
+    "c11.letter.04": "堤口看得到渡头，也看得到他家后窗。我去那边。艾琳，屋里若只有一个老人，说话声音不用跟塔门一样大。隔墙的人听得见。",
+    "c11.letter.05": "艾琳把写有车号的便笺折回掌心。石阶前有两道不同深浅的车辙，新的从门口绕开，旧的直通水边。她沿旧辙走到屋前，才发现门闩早已抽开，罗明只是没有替她推门。",
+    "c11.letter.06": "我是艾琳。昨晚那封信是我写的。若你只认车号，我先给你看；若你记得开车的人，我想听你自己说。",
+    "c11.letter.07": "先把门合上。河边风大，纸会翻。茶在桌上，不是为你煮的，昨夜我没睡。车号我认得，开车的人我也认得；后面的话，你听完恐怕不会想喝。",
+    "c11.threshold.01": "屋里只有一张长桌，桌脚用两块不同颜色的木楔垫平。罗明把茶盏往艾琳面前推了一寸，又收回去，像是不确定她想不想接。墙边挂着一段已经不能用的渡索，磨得发亮的是人手摸过的地方。",
+    "c11.threshold.02": "十七年前第九日，我守的是北岸接驳所，不是收殓所。后来上头把字改了，尹纾小时候照着新牌认。我知道她读错，却没去改那块牌。你要骂我，等我把那天说完。",
+    "c11.threshold.03": "我先问当天的事。底单只剩车号，车上有几个人？谁亲眼见他们下来？你不用替别人猜，我会去找能自己说话的人。",
+    "c11.threshold.04": "四个。两个成年人，两个半大的孩子；其中一个腿伤，那个守桥人把她抱过了石坎。车进所里时外面还下着灰，门前的水位刚过我膝盖。我给车夫拿绳，没问他的官职。",
+    "c11.threshold.05": "我父亲穿的是什么？他身上没有通行印，钥匙在我母亲手里。你若是后来听人说的，就到这里。",
+    "c11.threshold.06": "灰领短披，左袖口缝着一道深蓝线，针脚歪得很。扣子只剩一颗，他一边扶人一边老去摸那颗空扣眼。我见他时，他活着，也知道自己是谁。",
+    "c11.threshold.07": "艾琳的手停在茶盏外。那道线是母亲替父亲补的，她小时候嫌补得像一道河岔。罗明没有看见她的表情，低头把杯盖转了半圈；水汽从缺口钻出来，很快就散了。",
+    "c11.threshold.08": "车上四个人活着到这儿，我听见了。之后呢？别从‘他是好人’开始，说他往哪边走。",
+    "c11.four_passengers.01": "他去水边。旧索渡那天只剩一条能载人的小舟，西岸还有个孩子在石台上。你父亲要我把绳头系牢，我说轮轴昨日就裂了，他回头看了一眼，又问有没有别的绳。我说没有。",
+    "c11.four_passengers.02": "你让他走了？",
+    "c11.four_passengers.03": "我拦过。我当时有四个人要安置，一只船不能再回去。他说先把这边的人送进屋，他自己去水里试浅滩。水不浅。他怕吗？怕。我看见他走到石阶边，停了两次。",
+    "c11.four_passengers.04": "罗明把桌边的旧索拉直，一段纤维立刻裂开。他没有把它递给艾琳看。门外有人把木桶放下，桶箍碰到石阶，艾琳转头时，罗明已经起身去开后门。",
+    "c11.four_passengers.05": "罗叔，今天你别替我说我当年只有十五岁。我能记得那孩子的叫声，也能记得你让人把门关上。她站在我旁边，腿上那道口子是你帮她包的。",
+    "c11.four_passengers.06": "孟绫，你娘还等你送药。",
+    "c11.four_passengers.07": "药我送了。你昨夜叫我来，又想让我回去？让她听我说。车上四个里有我，我当时十六，不是十五。腿伤的是我娘，抱人过石坎的是那位守桥官。",
+    "c11.four_passengers.08": "你是车上的人。先坐。罗明说他去了西岸找孩子；你从哪里看见他？",
+    "c11.mengling_arrives.01": "从后窗。那孩子没在西岸，她被水困在中间旧渡台，手里攥着一只鞋。罗叔当时看不到台面，只看见她举手。我喊过，叫那位军官别走旧轮，他听了，换了石阶下水。",
+    "c11.mengling_arrives.02": "我没看见台面。这一句她说得对。我说‘西岸’说了十七年，省事，也省得有人问当时那孩子为什么在旧渡台上。",
+    "c11.mengling_arrives.03": "孩子后来上岸了吗？",
+    "c11.mengling_arrives.04": "上了。她抓住你父亲甩来的短绳，我们在这头拉。最后两尺，罗叔和我一起拽她。他还在台上，索轮忽然转了一下，台边整块石盖翻了。他退得太慢，手抓到了绳，却没抓住岸。",
+    "c11.mengling_arrives.05": "孟绫说到这里，把手背放在桌上。她的指节有常年修缆留下的硬皮，拇指根却有一处新磨破的红痕。艾琳看见后问她如今做什么，她说修北岸的渡轮，今天停班，是罗明昨夜托人来叫的。",
+    "c11.mengling_arrives.06": "你们后来找他了吗？我需要知道看见的是谁，不要替我把结尾换成一句好听的话。",
+    "c11.mengling_arrives.07": "找了。我们把那孩子安顿在屋里，三个人沿下游找；太阳落前，罗叔和我在旧堤弯把他抬上来。我看见他的脸、左袖和那颗没扣上的扣子。不是别人。",
+    "c11.mengling_arrives.08": "遗体在旧渡头旁边。那孩子后来跟亲人去了南坡，她活着。你要是愿意，我带你过去。你也可以先坐一会儿；门不锁。",
+    "c11.riverbank.01": "渡头比屋里亮。废了十七年的轮架仍立在半道，绳槽里长着草，另一侧只剩一道低墙。墙脚的石面有人补过，旧水线从新灰下露出一点。孟绫走得快，到柳树前才放慢，转身等艾琳把最后几步走完。",
+    "c11.riverbank.02": "那日天黑前就埋了。我们当时借来的是运砂的铲，土里全是小石子。我娘把干净的一块布盖在他袖上，不是为了遮伤，是怕那件披肩被泥水浸坏。他生前帮她过坎，她想替他做一点。",
+    "c11.riverbank.03": "石头原先有名字。第二周来的人说他的职名还在停职簿上，要我磨掉，不然这处救援所连四个人的口粮都得重新核。我照做了。有人替我挡过那块石，我没让他挡。",
+    "c11.riverbank.04": "我不会在这儿替你说‘没办法’。四个人要吃饭是真的，名字被磨掉也是你做的。你今日带我来，我能知道他在哪儿；十七年里，我母亲不知道。",
+    "c11.riverbank.05": "艾琳走到石前，拨开一片压在花茎上的柳叶。上面没有姓名，也没有她想象过的军徽。她把手按在石背，那里比迎光的一面凉。身后的河流声与河门旧桥不一样，她站了很久才听出渡轮断索时该往哪边响。",
+    "c11.riverbank.06": "娘把披肩左袖补了三次，最后一次用的线颜色深。那天他本可以留在屋里。他到底说了什么？说过要回家吗？",
+    "c11.riverbank.07": "他只问那孩子会不会游水。我说她不会。他说‘我也不会游得多快’，让罗叔把绳别打死结。他还问我娘有没有吃饭。她说吃了，其实没有。没有谁在那儿讲以后。",
+    "c11.riverbank.08": "艾琳笑了一下，又停住。她父亲不会游得多快。小时候她学凫水，他总让她先抓桥墩，自己站到腰深处就不肯再往前。她记得这件小事，比记得他的官印更清楚。",
+    "c11.mark.01": "我写过一封信，寄到河门的临时住处。三个月后原封退回来，说那户人搬了。我把信压在桌屉里，后来听说你们回到桥边，我却没再寄。不是路断了；越等越难开口。",
+    "c11.mark.02": "你有十七年。若你今日说得早一点，我或许会替你想个理由。现在我不想。我会带着孟绫的话回去，让我母亲知道他在哪里；你那封信，给我看看，读不读由我定。",
+    "c11.mark.03": "我这几年也没去河门找你。罗叔说他已寄过，我便当你们知道。后来我在河上做工，每次看到这块石都以为该去问一声，还是没去。那份沉默也有我的一份。",
+    "c11.mark.04": "你那年十六，先管住自己和你娘。后来没问，我听见了。谁也不用在这里排队认错，让我替你们分轻重。今天我先记住地点。",
+    "c11.mark.05": "孟绫从包里拿出几朵还带水的白花，放在石边，自己退开。罗明没有上前。他摘了帽子，手指扣住帽檐的一处旧补丁。艾琳把写有车号的便笺展开，背面原本空着，现在只写了‘北岸旧渡头’五个字。",
+    "c11.companions.01": "芙蕾让我来问你什么时候回去。我说先别催，车我看着。她还说柳树下那块石若需要搬，叫我先试重量。我没动；你看过之后再说。",
+    "c11.companions.02": "石头不动。要补名，等艾琳和她母亲谈完，再找会刻字的人。洛恩，别碰她放在边上的花；走路也别挡着路。",
+    "c11.companions.03": "那年河门的临时住址已经换过三次。退信只能解释信为什么没到，解释不了后来为什么不再找。我把这两件事分开记，不用你现在答。",
+    "c11.companions.04": "先喝水。你从城里来一路没吃东西，我没有药能替代早饭。伊瑟说话难听，是怕你把一封没到的信当成你当年做错了什么。",
+    "c11.companions.05": "我昨夜有空骑，就把信送来。回去的马不急着走。我在堤口等，你要沿河再走一段，我替你看时间，但不会给你编一个一定赶得上的时辰。",
+    "c11.companions.06": "站在上面看，这块石没有刻字，河对岸也看不清。你若不想让全城的人明天就指着它讲故事，我知道一条少人走的回路。",
+    "c11.companions.07": "艾琳把帽檐压低，没接任何人伸来的手。有人留在柳树外，有人替她从堤上挡住了来往的车。她在石前站到脚底发麻，才把便笺重新折好。孟绫听见她向那块石说了两句极轻的话，没有往前凑。",
+    "c11.companions.08": "我会回来。先回去告诉娘，再问她想把名字刻在哪里。今天别动这块石，也别替我带花去河门。",
+    "c11.return_letter.01": "罗明从最下层抽屉取出一只薄信封。封口被水汽顶出一道弯，背面印着当年河门临时驿站的退回章。他让艾琳自己拿，没把十七年前写下的句子先念给她听。",
+    "c11.return_letter.02": "里面是我当时写的，没改过。地址是他口述的，我记错了巷名，还是那条巷后来改了名，我现在分不清。退回来后，我把它压在桌底。我欠你的不止这个。",
+    "c11.return_letter.03": "你当年知道他的姓名和住处，却把名字从石上磨掉。为什么不去问桥头？那里还有守桥人，母亲没离开河门。",
+    "c11.return_letter.04": "怕。我起初怕四个人的口粮被追，后来怕你母亲见我。再后来每年有人过河，我总说下回托他带一句。说到第十年，连我自己也听不进去。你不用替我记住这些年是哪一年。",
+    "c11.return_letter.05": "我娘活下来，第二年就在这屋后种菜。她每逢渡口有人说要找亲属，总让罗叔把名字写大些。她不知道他把这封信收起来；我也是昨夜才看见。她今天等我回去，我会把自己知道的告诉她。",
+    "c11.return_letter.06": "我带走信，封口先不拆。回河门时我让母亲自己决定要不要读。她该听到的是两个人亲眼见过的事，不是一张纸替你们开口。若你愿意，过几天去当面说；若不愿，我也会说。",
+    "c11.return_letter.07": "罗明点了头，眼睛却落在那段旧索上。他想说些什么，艾琳已把信放进内袋。她没有带走索，也没有把红瓦屋当成可以一把火烧尽的地方；屋外的木桶还等着孟绫送到下一个渡工手里。",
+    "c11.ferry_work.01": "索渡现在不用了，北岸新桥让车走得快。可风大时还是有人问我这处旧台能不能过水。我总说不能，轮轴裂过一次，后来没人认真补。你们城里要修塔门，别把旧器件看着完整就装上去。",
+    "c11.ferry_work.02": "工班正量内阀杆，我没让人进左廊。你见过那套轴吗？不需要你替我们签保用，只问可替换的型号在哪里。",
+    "c11.ferry_work.03": "见过。塔里的阀杆比旧渡轮长三指，两头插槽一样。北岸备件库原有两根，一根去年借给西岸磨坊，另一根还在库里，但我上月去看时封条已经换过。要拿，先现场量，别信我的旧尺寸。",
+    "c11.ferry_work.04": "那库房归北岸联防队轮值。不是尹纾那队，他们守的是三座村的磨坊和堤口。上周他们把运料车往西岸赶，车上有没有那根轴，我没看见。",
+    "c11.ferry_work.05": "我会让桑岚拿量尺去，不靠你一句‘插槽一样’就拆。北岸今天还供三座村用水，若两边抢一根东西，我们先算清各自能停多久。",
+    "c11.ferry_work.06": "我跟你们去量。我不替联防队说话，他们也不是只会握枪的人；去年大雪，是他们把我娘的药车从堤口拉回来。若库房真空了，我会当着他们的面问。",
+    "c11.ferry_work.07": "艾琳看见孟绫把桶提到门外，桶底磕在刚修好的石阶上，声音短而实。红瓦屋并没有因为有人把十七年前的事说清就停下早班；堤口又有两辆车驶过，车夫朝孟绫喊今天的水深。",
+    "c11.city_message.01": "城里新一班量到的裂纹比早班长半指。桑岚叫停了内廊清理，外阀手轮退回昨日半圈的位置。饮用支路还在送水，但她要你在日落前回塔，跟三方说清明早先停哪一班。",
+    "c11.city_message.02": "有人受伤吗？内廊还有工人吗？",
+    "c11.city_message.03": "没人进去。尹纾这次自己拦了两名要搬护板的兵，米芮把一人手背的旧伤重新包了。裂纹是桑岚和伊瑟各量一次后才叫我来报的，不是又有哪位城里军官猜到了坏消息。",
+    "c11.city_message.04": "好。先让城里按桑岚的停工线做，我回去听两人各自的数。你跑一趟北岸，吃过东西再返程，不要替我跟议庭说‘内门失守’。门还在那里。",
+    "c11.city_message.05": "信使去洗手时，罗明站在门内，没有问艾琳能不能晚一点走。艾琳把红瓦屋门前的车辙又看了一遍，新轮印压住旧轮印，偏了小半掌。她终于知道那辆旧车曾停在哪里，也知道自己不能把今天的城交给另一个未到场的人照看。",
+    "c11.city_message.06": "我收工具跟你走。到塔前先看他们量的是哪个面，若是裂纹沿旧焊线走，备件库那根轴得连套筒一起拿。罗叔，我娘那边我会让邻居看，她知道我去工作。",
+    "c11.city_message.07": "我把剩下的旧车次也理出来。你没让我用它们替今天的读数作证，我知道。等你去河门，我会去找你母亲；她若不见，我站在门外说完再走。",
+    "c11.city_message.08": "先别替她决定在不在家。给她写信，写你什么时候能到，不要再把送不送交给碰巧过桥的人。",
+    "c11.return_road.01": "回城的道上，莉希把马牵得比出发时慢。艾琳没有催。过北井时，她看见第六户孩子正坐在门口挑石子，秦婶陪在旁边，两人都没抬头听路上的军靴声。",
+    "c11.return_road.02": "罗明和孟绫都亲眼见到父亲最后一程。我先把事实带回去，母亲那里由我自己说。现在先去塔门，别让城里的人从别人嘴里听见父亲的名字，拿他替今天的命令盖章。",
+    "c11.return_road.03": "你若想我去送信，就给我一个地址。别让我猜该写多少。我能照着原话念，不会把你父亲讲成跟酒馆画像一样的人。",
+    "c11.return_road.04": "洛恩，先把桥上换班的人点齐。艾琳要写信会开口；你把水车路空出来，她今晚才能从塔门回去写。",
+    "c11.return_road.05": "共同轮值的三名见证者已在外桥轮完第一班，第二班却缺赤曜的替换人。艾琳让工班长把低流量上限照旧留着，少来的那一方不能让其余两方擅自加闸。",
+    "c11.return_road.06": "分段旁路的第一车接头仍停在虚线后，车夫在车上睡着，账上照样记着等待的工时。艾琳叫醒他，让人把车先倒出伤者撤路，今晚不为赶工把未量好的套筒抬进门。",
+    "c11.return_road.07": "封池一季的木牌旁多了一张运水车时刻表。北井排队的人没有散，赛菈正让车夫把两桶药水先卸到诊室，再回头装居民的桶；这一趟她亲自把时辰改了。",
+    "c11.return_road.08": "三条路都绕不开这根裂杆。先让桑岚看完内外两面，能停的停，不能停的把居民后路写给秦婶看。北岸的备用轴要去量，不是现在就去抢。",
+    "c11.gate_alarm.01": "护板平放在旧布上，边沿还留着早班画的三个点。桑岚用干布擦掉粉笔，重新在裂纹两端划线；伊瑟从另一面把同样的长度报了一遍，数目差了半指。两人没争谁的眼睛更准，先换了位置再量。",
+    "c11.gate_alarm.02": "这次一样。裂纹沿老焊线向里走，慢是慢，没停。手轮再退半圈会断住东街的供水，我今晚不让它动。外台每班两个人照看，谁听到第三下响，先喊人撤，不许自己钻进去找。",
+    "c11.gate_alarm.03": "内外两面都长了。上回我只量一边，写成‘接近旧纹’，今天补上另一边的数和我的名字。若北岸有同槽备用轴，换之前仍要拆开看，不能把一根旧轴当治好整段水路。",
+    "c11.gate_alarm.04": "我的兵守外廊，工班的人只到白线。昨夜我不肯让他们过桥，是怕自己得替里面的人死；现在我会站在白线外，谁想越过去，我先叫他把当班名字报清。",
+    "c11.gate_alarm.05": "你这回倒肯让人看。我能把套筒尺寸画出来，料从哪里来另算。赤曜若说已经替城里出了钱，让他们拿付过工钱的那一页来，别拿我师父的旧图吓人。",
+    "c11.gate_alarm.06": "上游今晚先按现表送。苗床的水能少一轮，东街的病人不能靠‘也许修好’喝水。我要秦婶看见今晚到明早有多少桶，不要她从城门口又猜一遍。",
+    "c11.gate_alarm.07": "我从北岸带回来一名修渡轮的工人。孟绫先看裂纹，桑岚看她的手法；谁不认可就当面说。别因为她曾被我父亲救过，就把她的话当成不必核对的答案。",
+    "c11.gate_alarm.08": "我看。先把灯挪低一点，别用强光照得白纹全看不见。我修索轮的，不懂你们整座塔；能判断哪根轴不能再承力，别的请你们自己量。",
+    "c11.triage.01": "灯挪低后，白纹的末端在两个旧铆钉之间露出来。工班长用细绳比过尺寸，孟绫在绳头打了个可以解开的结，桑岚拿第二根绳复核。两人核完，才让门外的人进来搬走桌上的旧护板。",
+    "c11.triage.02": "今夜不拆内轴。能顶的临时木楔只用来防护板掉，不用来压裂纹。明早我带两名水工去北岸库房量备用件，留两名守外台；别把四个人写成八个人的班。",
+    "c11.triage.03": "诊室能接两名伤工，不能替每个想进内廊的人准备一张床。秦兰今天能坐起来，换药还要我在场。你们若想借她来证明旧守军愿意合作，等她自己点头。",
+    "c11.triage.04": "今晚东街八户的桶我按时刻表带走，水少就给我写少了多少。孩子的热退了，他明早要去学堂；他不该因为这根杆又搬一次床。",
+    "c11.triage.05": "住处先不动。工班长在白线画一条退路，秦婶拿另一张图带回街口。出现停水预警先到诊室和学堂，不等军令绕完一圈；等明日量过北岸备件再决定下一步。",
+    "c11.triage.06": "这句我能照做。若裂纹今晚突然跳过铆钉，我喊停机，你的守军先撤。我需要的是能听见‘撤’的人，不是多一页说我愿意负责的纸。",
+    "c11.triage.07": "工班长把灯熄了两盏，只留能看见白线的一盏。刚才围在门口的人散去各自岗位，北井车轮在外街转过，声音先远后近，没有被塔里的低鸣盖住。",
+    "c11.supply.01": "轮值主持者把北岸备件库的位置钉在桌边。孟绫指出入口在堤背，库房前的道路只容一辆车倒退；她画完便把粉笔递给尹纾，问守军能否从塔门借两副搬运架。",
+    "c11.supply.02": "搬运架能借，兵不能跟着你们去抢库。北岸联防队去年还送过我们煤，他们今天守的是三座村的磨坊。你要我拿一纸新令叫他们交轴，先说磨坊坏了谁赔。",
+    "c11.supply.03": "我没有叫你替我抢。我去量那根轴在不在，若还在，问他们眼下要拿去哪里。城里这边也有人等水，不只他们的磨坊。先把两边的数摆出来。",
+    "c11.supply.04": "赤曜可以出一车新钢坯，不能今晚就把它叫作合格阀杆。铸出来还要退火和试压，我不想让车夫早晨走到库门口才知道城里根本没备好替代物。",
+    "c11.supply.05": "林社明早给北井添两车水，先帮东街撑住半天。苗床少水是已经发生的事，别在桌上把这两车又算成无代价。若你们要从上游再借人，先找本地的轮值者。",
+    "c11.supply.06": "我明早带队去库房，不逼任何一方把全部用水让给另一方。我们先占住卸货道，让工人能量轴、各方能说话；若有人拿武装队把路封死，才由我负责开路。",
+    "c11.supply.07": "这回别让我搬完架子又被拦在门口。芙蕾守车尾，我守前头；谁想说话，先把枪放到看得见的地方。我能听，也能在说不通时往后退。",
+    "c11.supply.08": "你退的时候喊一声。库房只容一辆车倒，别让两队人挤在同一条弯上。艾琳，我先去看看明早车能从哪边掉头，再回来画格子。",
+    "c11.quiet_room.01": "入夜后，艾琳把罗明的退信从内袋取出。退回章压住信封的一角，里面的纸在烛光下透出几道墨痕。她想起自己答应让母亲决定读不读，便将信封原样放回。亲见的证词已经足够让她把消息带回家；封口不该由她替母亲拆开。",
+    "c11.quiet_room.02": "娘会先听我说，不先看这封信。她记得他左袖怎么补，也记得家里那条巷什么时候改名。我们回河门以后，她愿意来北岸就陪她来；她不愿意，我不拿石头逼她。",
+    "c11.quiet_room.03": "阿琼今天回信了。半个货棚可以先修，另一半她要我回去再商量。我不在你这儿多说她的事，明早搬架我能来；后日若没事，我想请半天假回港口。",
+    "c11.quiet_room.04": "我的诊室夜班缺一个人倒水。我先让秦兰的弟弟来帮忙，他说愿意，明晚再问一次。她现在知道自己腿的伤情，不用谁把好消息塞给她，叫她立刻高兴。",
+    "c11.quiet_room.05": "桑岚刚才叫我别拿旧图替新裂纹说话，骂得对。我把师父那套接头看了十七年，还是会想他要是在，会先把谁拦下来。你若明早带队，我把车和料都准备好，欠的工钱也照数留着。",
+    "c11.quiet_room.06": "上游的两车水我让代表自己写进轮值表，没借我旧印。你今天问罗明的事，我没有在外面讲。等你愿意，我陪你去看那棵柳树；你不愿意，我回去照顾苗床。",
+    "c11.quiet_room.07": "艾琳听着他们一个个说完，头一次没有把每件事排成自己明早必须亲自去做的名单。她在地图上给北岸库房画了一个空圈，给学堂和诊室各留一条撤路。圈里的东西要等天亮去看，路却可以今晚先画好。",
+    "c11.nightwatch.01": "夜班将换时，塔门没有再响。伊瑟与桑岚的两张新尺仍挂在白线外，读数没有朝好的方向回去，却也未跳过第二个铆钉。尹纾在门下替换了一个困得站不直的兵，让他去诊室取药，自己把旧令锁进柜里。",
+    "c11.nightwatch.02": "我明早先走到北岸库房外看路，不进去。我把两队人和两辆车能在哪儿错开记下来。若你们晚到，我不替你们答应任何人交货。",
+    "c11.nightwatch.03": "我去看堤后的林道。库房门口若真只有一条退路，弓手不能站在工人身后把他们堵住。谁先发现另一条，回来在图上画实线；没有就别在战前讲得像有。",
+    "c11.nightwatch.04": "我只带今日量过的尺寸，旧图留在城里。库房那根轴若在，我们照实物复核；若不在，至少先知道它去了哪里，不把‘去找’写成‘找到了’。",
+    "c11.nightwatch.05": "明早我带人去北岸。罗明欠我的话不会因为这场仗消失；我父亲也不会因为我多打赢一场就回来。今晚先让学堂和诊室有水，让工人能睡一班。",
+    "c11.nightwatch.06": "她把便笺放在地图旁，压住的是北岸旧渡头的位置。另一张图画着备件库门前那条狭路。两张纸的边角在灯下挨着，她没有把其中一张叠到另一张上。",
+    "c11.end": "北岸旧渡头有一块无名石。艾琳终于知道父亲在哪里，也知道十七年里谁没有把消息送到河门。她会先把亲见证人的话带给母亲，再决定石上该怎样写名字。\n塔门内阀杆的裂纹仍在延长，饮用支路照临时表运转。北岸备件库前只有一条狭路；天亮后，工班必须先见到那根轴，才谈得上修复。"
+  }
+}

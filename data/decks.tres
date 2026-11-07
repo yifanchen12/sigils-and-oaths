@@ -19,4 +19,14 @@ decks = Array[Dictionary]([{
 "cards": {"sword": 3, "spear": 4, "cavalry": 1, "archer": 4, "mage": 2, "healer": 4,
 "bolt": 1, "heal": 2, "ward": 2, "rampart": 2,
 "rain": 1, "fog": 1, "frostbind": 1, "dispel": 1, "exchange": 1}
+}, {
+"id": "ambush", "name": "誓痕伏阵", "description": "从手牌伏设地格与护军陷阱，以探查、解缚和群疗争夺前线。",
+"cards": {"sword": 3, "spear": 3, "cavalry": 2, "archer": 3, "mage": 3, "healer": 2,
+"anchor_snare": 2, "ember_mine": 2, "oath_ward": 2, "shatter_bolt": 2, "rally_heal": 1,
+"cleanse_root": 1, "reveal_traps": 1, "seedwood": 1, "bolt": 1, "march": 1}
+}, {
+"id": "channel", "name": "暗渠工班", "description": "在水域前用临桥木架延伸阵线，以回流护印防术击，适合河谷与运水渠战场。",
+"cards": {"sword": 3, "spear": 3, "cavalry": 2, "archer": 4, "mage": 3, "healer": 3,
+"span_kit": 2, "countercurrent_ward": 2, "reveal_traps": 1, "anchor_snare": 1, "oath_ward": 1,
+"shatter_bolt": 1, "rally_heal": 1, "heal": 1, "fog": 1, "trail": 1}
 }])

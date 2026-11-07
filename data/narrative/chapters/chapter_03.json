@@ -1,0 +1,686 @@
+{
+  "version": 1,
+  "id": "chapter_03",
+  "title": "第三章 · 风过断脊",
+  "start": "arrival",
+  "inherits": [
+    "route",
+    "witness_present",
+    "seal_copy",
+    "relief",
+    "public_ledger",
+    "priority",
+    "receipt_method",
+    "dispatch_receipts",
+    "clerk_safe"
+  ],
+  "defaults": {
+    "route": "none",
+    "witness_present": false,
+    "seal_copy": false,
+    "relief": "none",
+    "public_ledger": false,
+    "priority": "none",
+    "receipt_method": "none",
+    "dispatch_receipts": false,
+    "clerk_safe": false,
+    "letter_reply": "none",
+    "letter_delivered": false,
+    "pass_route": "none",
+    "supply_route": "none",
+    "mine_cargo": false
+  },
+  "speakers": {
+    "narrator": "旁白",
+    "warden": "艾琳",
+    "pyromancer": "维洛",
+    "grove": "赛菈",
+    "sword": "洛恩",
+    "spear": "芙蕾",
+    "cavalry": "莉希",
+    "archer": "希弥",
+    "mage": "伊瑟",
+    "healer": "米芮",
+    "clerk": "赫姆",
+    "sister": "莉珊",
+    "miner": "钟叔",
+    "hauler": "杜骞"
+  },
+  "strings": {
+    "c03.arrival.01": "空矿车冲下坡时，洛恩以为车里坐着人。\n他刚把盾举过头顶，芙蕾一枪勾住他的腰带，将他扯回石墙后。矿车擦着盾缘过去，翻进路边的废槽，撞出一片碎木。车上只有一件鼓起的麻袋，滚开后露出半截铁管。",
+    "c03.arrival.02": "我看见袋子动了。……行，先别松手，我站稳了。",
+    "c03.arrival.03": "芙蕾松开枪，盯着坡上悬空的拉索。\n“退到白石后。一个一个来。”\n她的队员先动，拉着还想去捡铁管的车夫一起退。坡顶有人吹响短哨，又吹一遍。那声音让芙蕾把枪握得更紧，直到山上回了三下敲铁声。",
+    "c03.arrival.04": "河门到断脊，马队走了整整一天，辎重还在后面。天将黑时，他们才看见镇口的旧绞盘。艾琳先前在图上圈过的封道石就立在旁边，下方积着黑水，石面却有刚被车轮蹭出的白痕。",
+    "c03.arrival.05": "上面还有人吗？别让他们下坡。希弥，找另一条能落脚的路；米芮，先看车夫。",
+    "c03.arrival.06": "一个跛脚的男人从坡后下来，拿木塞堵住断裂的制动箱。芙蕾叫他钟叔。他没应，先把绞盘柄锁住，才看清她枪上的饰带。\n“八年了。”他说，“回来还带着枪。”\n芙蕾把枪尾挪离他的脚。",
+    "c03.arrival.07": "车没人坐，载货的也已经上来了。你们要找主井，石就在那儿。要我开石，免谈。上头这条检修廊能进人，不是一条给军队走的路。",
+    "c03.arrival.08": "维洛蹲下去拨开麻袋。铁管两端包着油布，外头却缝着麦粮的运记。赫姆将河门抄来的回执摊开，想问钟叔是不是这一批。老人按住纸，把掉在上面的木屑扫回地上。\n“明天再问。天黑看不清绳，谁也别上去。”",
+    "c03.arrival.09": "赛菈先派人把北坡坏粒的口信带回林社，回来时仍攥着阿妲给她的小布袋。钟叔说镇上能腾出晒场，她只谢了他，没把种袋交出去。",
+    "c03.arrival.10": "米芮叫随队信使把药方带回河门，特意又问了一遍医院的细粉是否已经入仓。钟叔看见她身后空了一半的药箱，领人去开镇上的诊棚。",
+    "c03.arrival.11": "莉希把栗雨牵进镇，走到第三扇门前便放慢了脚步。门上的旧驿牌翻过来，背面漆着“修鞍、补辔”。她伸手去敲，门却从里面开了。\n女人提着油灯，先照马的膝盖，再照她的脸。\n“还知道走这条街？”",
+    "c03.shop.01": "莉希叫了声姐。莉珊没让开门，伸手解下栗雨磨毛的胸带，翻到灯底下。\n“这条该换了。”\n“我在河门补过。”\n“我看得见。”\n希弥接过缰绳，照约定留在门外。莉希踩过门槛，靴上的碎石掉进木屑里。",
+    "c03.shop.02": "铺里多了两张工作台，小时候睡过的床拆去半边，压着成捆的鞣皮。莉希在原来放水壶的地方摸了个空。姐姐指了指墙边，她端起杯子，发现把手已经换过。那封揉软的信还在她掌心，没处放。",
+    "c03.shop.03": "原来的驿站呢？我路上没看见灯。……信在这儿。不是报平安的那种，我写了为什么没回来接班。",
+    "c03.shop.04": "我知道你不想接。你出门那天就说了。母亲这半年跟我住，旧站的夜班停了，能转的信转来铺子。你每次写“等忙完”，她就少请一个人。",
+    "c03.shop.05": "莉希把杯子放下。她想说自己在路上见过多少没有等到撤离信的人，开口却先问母亲在哪。\n“去隔壁住了。那边有火炕。”莉珊拿起锥子，“你要见，吃完过去。别穿甲进屋，她会起来给你添炭。”",
+    "c03.shop.06": "我不是不想见她。我怕一见，她就问什么时候走。我总只能说马上。",
+    "c03.shop.07": "那就说马上。她听得懂。你怕她难过，便说下回多住几天；我把床铺好，过了三个月，又拆掉。你要送那些信，就去送。家里不能一直替你空着一副班。",
+    "c03.shop.08": "门外响了一声马鼻。莉希望向门缝，希弥的影子靠在外墙上，没有往里看。栗雨伸头去够她手里的干草，被轻轻拨回。莉希坐回凳上，把信从杯子底下抽出来。",
+    "c03.shop.09": "莉珊终于放下锥子。\n“我不叫你辞职。明早也不留你。”\n她把空杯拿走，却没接那封信。\n“你想让我怎么回母亲？回得准的那一句。”",
+    "c03.letter.prompt": "莉珊要一个能照着安排家事的答复。两种选择都会把信亲手交出；你可以约定这场战事结束后回访并提前报信，也可以坦白目前无法许诺归期。",
+    "c03.letter.return": "约定战后回访；未能成行就提前送信，家里照常安排值班。",
+    "c03.letter.unscheduled": "交信解释，承认现在没有可靠归期，请家里不再等自己接班。",
+    "c03.letter_return.01": "我想回来住几天，等这次仗停下来。你照常请人，别给我留夜班。我能动身时先送信，没消息就别备床。这封里有我没敢当面说的，你先看。",
+    "c03.letter_return.02": "莉珊接过信，没有当着她拆。\n“战停是什么时候？”\n“不知道。”\n“那先这么记。”\n她把信收进抽屉，将一张空驿笺推过来：“你到港口，再报一次。别等觉得有好消息才写。”",
+    "c03.letter_return.03": "莉希写了马队下一处收信地址，最后一笔在“碧潮”旁擦出一点墨。姐姐用旧布吸掉，仍看得清。临出门，她拿上换好的胸带，问母亲是不是还喝浓茶。莉珊说变淡了，让她自己去尝。",
+    "c03.letter_unscheduled.01": "我现在给不了归期。不是下个月，也不是等这趟走完。你请人接夜班，钱从我寄回的那份里扣。信你收着，我想说的都在里面；哪里还没说清，等我去了港口，你写信骂我。",
+    "c03.letter_unscheduled.02": "姐姐拿过信，指腹在反复揭开的封口上停了一下。\n“钱先顾你的马。人已经请了。”\n莉希点头，过一会又问：“那你刚才……”\n“我不敢告诉母亲你不会回来接班。你自己去说。”",
+    "c03.letter_unscheduled.03": "莉希将下一处收信地址抄在工作台的纸角上。莉珊剪下那一角，把港口的名字从歪掉的折痕里捋平。出门时，新胸带搭在莉希臂上。她没再提明早要赶多早，先去了隔壁的火炕屋。",
+    "c03.old_mine.01": "次日清晨，钟叔在封道石旁等他们。他带了一盏矿灯，不许维洛用火替它点亮。灯芯浸在小小的罩里，火只够照见脚前一圈。芙蕾走在他后面，沿山侧数过四个锈铁环，在第五个前停住。",
+    "c03.old_mine.02": "这不是原来的绳。旧的在更低的地方，封在石后面。那年轮班出了事，我们在里面，外头听不见人说话，只能敲管。",
+    "c03.old_mine.03": "钟叔把灯挂上铁环，照出石后的旧灰。芙蕾伸手摸了一下，没蹭掉。\n“最后是谁叫撤？”洛恩问。\n“我。”\n他不再往前问。钟叔却说：“你只叫了一次。我们等你再叫，你一直没有出声。”",
+    "c03.old_mine.04": "我听见里面还有两下。我想，也许把绳放回去，能再下一个人。可上头的架已经在响。我叫撤，等你们拉我上去，又叫你们别封。",
+    "c03.old_mine.05": "我封的。你把灯扔进泥里，说还能下去。后来你进了枪卫，我就知道，你还想找个能替你下第二次的人。",
+    "c03.old_mine.06": "芙蕾猛地转头，右肩抬到一半又放下。\n“我的队员不替那两声下井。”\n钟叔也看见她收肩，问是不是当年的伤。\n“后来当兵伤的。别把两件事搅在一起。”\n他低头拨灯芯，没再追问。",
+    "c03.old_mine.07": "洛恩站在第五环外，把原本想搭过去的手收回盾带。芙蕾从枪上解开一小截旧工衣，露出内侧缝过的线。\n“你给我的。”她对钟叔说，“救援队撤完，剩下这件。我当时以为，拿走就能少回来一次。”\n钟叔没接，让她自己收好。",
+    "c03.old_mine.08": "老人带他们上到石封旁的矮坡。上层检修廊绕过塌陷的主井，洞口只容一个人弯腰。新绳挂在旧铁钩上，一名搬运工背着木箱出来，肩垫已被油浸黑。看见外来的兵，他把箱放下，先把手举了起来。",
+    "c03.old_mine.09": "粮车进不去。两个人错身都得侧着走。回执写的那些货，若全靠肩背……等一下，赫姆，把袋数给我看，别给总重。",
+    "c03.old_mine.10": "赫姆翻到矿道那一张。搬运工瞥见河门的栏印，忽然说自己没见过粮，只背过这样的箱。维洛掀起箱口的油布，露出几只成套的金属筒。他没有立即摸，先问工人从哪边上来。\n“东口。拿船运来的货。”",
+    "c03.old_mine.11": "伊瑟算到一半，把铅笔横在纸上。按眼前这几个人的脚程，整夜都搬也搬不完那张单上的粮。钟叔却抽走了给他看路的灯。\n“知道了就下去。你们来查谁，我管不着。别把能挣这几趟工钱的廊也堵了。”",
+    "c03.conflict.01": "山下传来拆螺栓的声音。钟叔回头，四个人已经围住公用绞盘，另一人拿撬杠挑起底座。芙蕾认出其中一个，是刚才替他们扶灯的搬运工。他避开她的眼睛，手仍抓着撬杠。",
+    "c03.conflict.02": "杜骞！说好借到月底，你拆我的底座干什么？人和货都运完了，钱也该结了。",
+    "c03.conflict.03": "穿灰外套的掌运官从绞盘后出来，把脱下的手套塞在腰间。\n“上面的货还没交清。港口扣了我的船，押的就是这台机。”\n“机是镇里的。”\n“修机的钱是我垫的。你从三月拖到现在，我拿你的绞盘不是去卖，是让船上那二十个人能下船。”",
+    "c03.conflict.04": "钟叔伸手去抓铁柄，一名护卫横过枪杆，将他推到石阶下。芙蕾挡在两人之间。灰外套看见她的军徽，脸色变了，叫撬底座的人继续。山脊上的旗手升起另一面旗，原本散在货架旁的护运兵开始向两侧聚拢。",
+    "c03.conflict.05": "别拦。镇上这几家也有份，你们问问他们还等不等得起。我今天交不出东西，船上断水的不是你们。谁答应替我把人领出来，就先说名字。",
+    "c03.conflict.06": "艾琳想让他先把船名说完。维洛却已经走到机架前，叫住另一个正要切索的工人。\n“别割那条。下面还有配重。”\n工人看向杜骞。杜骞按住腰间的刀，盯着维洛胸前的赤曜扣饰。\n“你是哪家船厂的人？”",
+    "c03.conflict.07": "我付过同样的押金，最后也没救出所有人。你把它拆走，这个镇今天就断了吊运。先停半天，船名给我，我替你找港里的债主。",
+    "c03.conflict.08": "半天？刚才那辆车怎么翻的，你看见了。我手下也会怕。我让他们多干半天，下个断绳的就要家里人来找。你只要说能替我付清，我现在便停。",
+    "c03.conflict.09": "维洛没有说能。杜骞拔出刀，指向两处通风口旁的空地，让护运兵守住工人撤料的路。一名工人先把撬杠放下，另一名骂他胆小。芙蕾叫自己的队员不要靠近绞索；洛恩这次先退到她指的位置，才把盾竖起来。",
+    "c03.conflict.10": "山脊有一条路，能绕到他们旗后，马要牵着走。检修廊两头的空地也能守，但中间隔着山石，要分两队。别从下面穿，入口只够一人，进去就退不回来。",
+    "c03.conflict.11": "钟叔将灯交给芙蕾。保住两处地表风口，他能带人取回配重、卸净检修廊里的货，以后留下人工背运的小通道；镇上还得持续修它。若把这条廊也封掉，便不再争绞盘，军队沿山脊压住杜骞的指挥位。往后货要走外路，多绕一日，马匹也得歇。",
+    "c03.conflict.12": "主井不开。选上层，我只守上层，下面再响也不派人进去。选山脊，就先把人撤清再封口。钟叔，你想留下什么，自己说，别等我替你说。",
+    "c03.conflict.13": "钟叔望着松动的底座，终于点了头：“我想留下机，也想留下这条廊。可修不起，我会自己封。”\n艾琳把两队的接应位置指给洛恩。她还没下令，坡上的弓手已经将箭搭到弦上。",
+    "c03.route.prompt": "主井保持封闭。保留上层检修廊，需要分兵驻守两个地表风口，镇上继续承担维护；封廊走山脊则攻击押运指挥，放弃近路，后续补给多绕一日。两路都能查到已卸下的货，不会失去主线线索。",
+    "c03.route.vent": "守住两个地表风口：连续驻守两次、限十轮；保留人工背运的检修廊。",
+    "c03.route.ridge": "撤清人员并封廊，沿山脊击败杜骞：放弃近路，改走外路补给。",
+    "c03.vent_brief.01": "留下上层通道。芙蕾守西侧，洛恩守东侧，谁那边有空就先接应谁。主井外的石不动。钟叔带工人退到盾后，等我确认两头都稳住，再回去卸配重。",
+    "c03.vent_brief.02": "芙蕾把矿灯交回钟叔，逐个点过队员站位。洛恩想问她需不需要换到自己这一侧，话到嘴边，先报了东口的石阶。她应了一声，长枪从他盾旁撤开，转向另一条路。两队之间的山石很快遮住了彼此。",
+    "c03.vent_brief.03": "我沿中间接信，走过一段再决定能不能折返。需要再机动就留出法力，别把路程算满。栗雨不会为了你们多一双腿。",
+    "c03.vent_brief.04": "杜骞将旗插在绞盘上方。第一排护运兵向西口压来，另一排绕着货架逼近东口。钟叔弯腰拾起地上的制动楔，握在手里等。",
+    "c03.vent_after.01": "护运旗降下后，钟叔先锁配重，再逐个拆吊钩。没有人喊着往井里跑，工人按旧口令应声，一个接一个退到地表。芙蕾看着第五个铁环下的人走过来，数到最后一个，又让洛恩报了一次东口人数。",
+    "c03.vent_after.02": "都在。最矮的那个刚从你后面过去，他嫌我挡路，叫我让一让。你要再数，我站边上。",
+    "c03.vent_after.03": "芙蕾仍数了一遍，随后蹲下，将枪尾从一名伤兵的衣角移开。钟叔递来矿灯，她没接。\n“放到廊边。”她说，“还要用。”\n老人把灯重新挂好，拿来一根木条，量断车留下的轮距。",
+    "c03.vent_after.04": "赛菈问通道下一次能运多少。钟叔伸出两根手指，说两人一组背，不能套车，更不能拿这条路顶掉外路的修缮。她看向维洛。他这次先问需要多少新索，没有先写一个总价。",
+    "c03.vent_after.05": "天色暗下时，旧绞盘留在原处，镇上的工人却没有全回来。一个搬运工说自己宁可去港里找活，也不愿再听断索声。钟叔把他那份工钱放在石阶上，让他走以前来拿。",
+    "c03.ridge_brief.01": "封检修廊。先点人，工人从西口出来，货留下。希弥领骑队上山脊，余队从外坡接应。今天拿下指挥位，明天留出一天整马修路，不催人连夜追。",
+    "c03.ridge_brief.02": "钟叔没有动。芙蕾将矿灯交还给他，自己扶住临时盖板。老人站了一会，终于招呼最后一名搬运工出来，和她一起把盖板推回入口。木头落地时，仍能听见后面细细的风。",
+    "c03.ridge_brief.03": "骑队下马，过石缝再上鞍。移动以后若要再机动，先看剩下的路值不值得走，别把撤路用掉。我到旗后会报位置，不是让你们听见动静就冲。",
+    "c03.ridge_brief.04": "杜骞发现了山脊上的影子，急忙叫人拖走指挥旗。洛恩等到希弥回了手势，才率盾队顶上外坡。身后传来钟叔一下一下敲紧盖板的声音，芙蕾没有回头。",
+    "c03.ridge_after.01": "杜骞的旗倒在山脊外侧。栗雨从窄路下来时，莉希仍牵着它，右手提起那副差点刮落的鞍袋。希弥在后面捡回一条断辔，递给她。两人都没有提刚才哪一步还能走快。",
+    "c03.ridge_after.02": "米芮给一名骑手包扎脚踝。她让人挪开挡光的盾，抬头对艾琳说：“他说还能骑。我说今晚不能。”\n“明天也先看你。”艾琳答。\n骑手想反驳，看见莉希已经把他的缰绳接过去，便将半脱的靴子放下。",
+    "c03.ridge_after.03": "钟叔将封廊的最后一枚钉敲平。有个搬运工把帽子摔在地上，问往后谁给他活干。老人说外路还要修，对方反问修路几日才结工钱。钟叔没答出来。赛菈蹲下拾起帽子，拍掉土递还给他。",
+    "c03.ridge_after.04": "明天我带人去外坡，先把能走车的宽度量出来。别记成镇上的工。是我们要从这里过，军队也得出人。",
+    "c03.ridge_after.05": "修路需要的木料从盖板旁运走。芙蕾留到最后，摸了摸封道石上八年前的刻痕。钟叔没有陪她站着，先去找领班算明天的工钱。她等他走出一段，才跟上去问还缺几把镐。",
+    "c03.cargo.01": "卸下的货箱排在坡脚。杜骞坐在其中一只上，刀已被收走，仍不肯松开那副灰手套。一个替他搬货的工人来要钱，他从靴筒里摸出两枚银片，对方数过，没走。\n“另一半呢？”\n“在船上。”",
+    "c03.cargo.02": "赫姆把一只粮袋翻过来，内侧粘着黑油。袋底的运记被人裁下，重新缝到货箱罩布上。钟叔认出自己的针脚，脸涨红了。\n“他们说旧袋抵一笔运费。”\n赫姆没有责怪他，蹲下来，把缝线一根根拆开。",
+    "c03.cargo.03": "河门那张写的是粮。这里运的若是铁，就不能拿它补我那几笔。把整块布留着，我回去得给他们看。我的单还是我的，这批另算。",
+    "c03.cargo.04": "伊瑟打开一只箱，取出厚壁套管。它的一端有旧炉坊的缺角纹，另一端却留着新车床的细密刀痕。维洛看了一眼，便叫他将两端分开放。\n“套管新造的，印是旧样。”\n“你认得？”艾琳问。",
+    "c03.cargo.05": "碧潮港，北船坞。我出过那条铸管线的修复款。新模的导槽是这样，边上多一道退火槽。我们给抽水机做它，装进调候塔也能用，但要换阀。我当时签过图。",
+    "c03.cargo.06": "赛菈把手里的套管转了半圈。\n“你资助的船厂、你欠钱的护运队，现在一起挡路。还有多少？”\n维洛看着那道新槽，答得很慢。\n“几家修复厂，哪家还在接什么单，我不知道。”\n“那就到了港口一家家看。”",
+    "c03.cargo.07": "杜骞忽然抬头：“你认识北船坞的人？”\n维洛问船名。对方将一片木牌扔过来，上面刻着“返潮”，下方是两道尚未兑掉的欠饷记号。\n“先别找管子。我的人还在那条船上。舱门从外面锁，换班也不让下。”",
+    "c03.cargo.08": "谁锁的？你离船以后见过他们吗？",
+    "c03.cargo.09": "船厂留人看抵押货，说怕我们拆了泵逃债。三天前，我弟从气窗递出这块牌。让你们的人去问东堤卖饼的，他替我送过一回水。你们要绑我就绑，别拿他们也算护运兵。",
+    "c03.cargo.10": "艾琳将木牌给莉希，叫她把“返潮”写进先行口信。希弥提醒东堤水路比主队快，莉希却先摸了栗雨的腿。她换了一名昨夜留镇的信使，嘱咐他到港先找卖饼的人，别独自上船。",
+    "c03.cargo.11": "杜骞由镇里的民卫看守，等他交清货物去向，再处理拆机和伤人的事。钟叔不肯替他说情，也没赶走送饭的工人。赫姆收好那块有针脚的旧粮布，和维洛分背两只较轻的套管箱。",
+    "c03.night.01": "夜里，洛恩在晒场找芙蕾练了一次撤回。他举盾走到白石前，听她叫停，便退两步，枪尾从他脚侧扫过。\n“不转身？”他问。\n“你身后有我。转身会把盾让开。”\n第二回，他退得太急，差点踩住她的靴尖。",
+    "c03.night.02": "我不是想替谁下那第二次。刚才上坡，我真觉得能把车拦住。你要是没勾我，我已经撞上去了。……别笑，盾还是租来的，坏了两头赔。",
+    "c03.night.03": "芙蕾没有笑。她将长枪放到墙边，捏住右肩活动了一下。\n“我听得见你怕。”\n洛恩把盾放下。\n“很响？”\n“很响。下次用它报位置。”\n他想接句玩笑，最后只答了好。",
+    "c03.night.04": "两人收完器械，钟叔端着汤经过晒场。他对芙蕾说，早上那句话说重了。芙蕾端起碗，没有替他接完。老人站了一阵，自己去坐远处的台阶。汤里几片野葱贴在碗边，她用勺背慢慢拨下去。",
+    "c03.night.05": "莉希从母亲屋里出来，比自己说的晚了半个时辰。希弥仍坐在马具铺外，拿一小截笛管试音，吹到末尾总断。莉希在旁边坐下，听她又错了一次，才说：“你可以从中间重来。”\n希弥把笛管递给她。她没接，两个人都笑了。",
+    "c03.night.06": "莉珊送来一包干饼，外头夹着一张给港口驿站的回函纸。\n“空的？”莉希问。\n“省得你说找不到。”\n她将纸收进新换的鞍袋，向姐姐报了一遍地址。这一回，没把港口以后也一口气说完。",
+    "c03.night.07": "莉珊送来一包干饼，顺手把旧驿站的钥匙拿走。莉希松开钥匙圈时慢了一下。\n“给新来的夜班人。”姐姐说。\n“嗯。”\n门关上前，她又叫了声姐：“你看完信，别只挑不气人的回。”\n莉珊说，那可有得写了。",
+    "c03.night.08": "检修廊旁又亮起矿灯，留镇的一队枪卫替工人守夜，等新索运来才撤。钟叔在灯下写用料，写错一行便整行划掉。芙蕾没有回洞口，先去问自己的队员谁要把家信留给过路人带走。",
+    "c03.night.09": "外坡立起几根明日修路用的木桩，辎重在镇外多留一日。莉希把轮换骑手排好，又将栗雨的那一栏划掉，另添了一个休字。芙蕾领了两把镐，靠在出镇的墙边，和队员约好天亮集合。",
+    "c03.night.10": "赫姆将留给河门的信交到艾琳手上，请她确认回信不会绕开值守长。他写了矿道的货，也写自己会回去；末尾没有再替哪一批尚未见过的粮签收。艾琳读完还给他，让他自己封。",
+    "c03.night.11": "维洛在灯下拆开套管箱，看了很久的旧印。伊瑟坐到对面，把新模的槽口拓在纸上，没问他师父的事。远处马具铺灭了一盏灯，镇口的民卫刚接过杜骞的夜班。\n“北船坞有人认得你？”伊瑟问。\n维洛将箱盖合上：“很多。”",
+    "c03.end": "临睡前，先行信使的替马人送回一张短笺。他在下山驿亭遇到港口来的车，车夫认得“返潮”，说今早还见它泊在北坞。\n短笺末尾还转述了车夫的一句话：封船的人正在等赤烬执政官。\n艾琳把短笺放到维洛箱上。他看过，没有收进衣袋，推到灯下让其余人也看。"
+  },
+  "nodes": {
+    "arrival": {
+      "type": "dialogue",
+      "background": "battlefield_ridgepass",
+      "lines": [
+        {
+          "id": "c03.arrival.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.arrival.02",
+          "speaker": "sword"
+        },
+        {
+          "id": "c03.arrival.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.arrival.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.arrival.05",
+          "speaker": "warden"
+        },
+        {
+          "id": "c03.arrival.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.arrival.07",
+          "speaker": "miner"
+        },
+        {
+          "id": "c03.arrival.08",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.arrival.09",
+          "speaker": "narrator",
+          "when": {
+            "priority": "relief"
+          }
+        },
+        {
+          "id": "c03.arrival.10",
+          "speaker": "narrator",
+          "when": {
+            "priority": "seed"
+          }
+        },
+        {
+          "id": "c03.arrival.11",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "shop"
+    },
+    "shop": {
+      "type": "dialogue",
+      "background": "battlefield_ridgepass",
+      "lines": [
+        {
+          "id": "c03.shop.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.shop.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.shop.03",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c03.shop.04",
+          "speaker": "sister"
+        },
+        {
+          "id": "c03.shop.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.shop.06",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c03.shop.07",
+          "speaker": "sister"
+        },
+        {
+          "id": "c03.shop.08",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.shop.09",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "letter"
+    },
+    "letter": {
+      "type": "choice",
+      "background": "battlefield_ridgepass",
+      "prompt": "c03.letter.prompt",
+      "options": [
+        {
+          "id": "return",
+          "text": "c03.letter.return",
+          "set": {
+            "letter_reply": "return",
+            "letter_delivered": true
+          },
+          "next": "letter_return"
+        },
+        {
+          "id": "unscheduled",
+          "text": "c03.letter.unscheduled",
+          "set": {
+            "letter_reply": "unscheduled",
+            "letter_delivered": true
+          },
+          "next": "letter_unscheduled"
+        }
+      ]
+    },
+    "letter_return": {
+      "type": "dialogue",
+      "background": "battlefield_ridgepass",
+      "lines": [
+        {
+          "id": "c03.letter_return.01",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c03.letter_return.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.letter_return.03",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "old_mine"
+    },
+    "letter_unscheduled": {
+      "type": "dialogue",
+      "background": "battlefield_ridgepass",
+      "lines": [
+        {
+          "id": "c03.letter_unscheduled.01",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c03.letter_unscheduled.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.letter_unscheduled.03",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "old_mine"
+    },
+    "old_mine": {
+      "type": "dialogue",
+      "background": "battlefield_ridgepass",
+      "lines": [
+        {
+          "id": "c03.old_mine.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.old_mine.02",
+          "speaker": "spear"
+        },
+        {
+          "id": "c03.old_mine.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.old_mine.04",
+          "speaker": "spear"
+        },
+        {
+          "id": "c03.old_mine.05",
+          "speaker": "miner"
+        },
+        {
+          "id": "c03.old_mine.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.old_mine.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.old_mine.08",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.old_mine.09",
+          "speaker": "mage"
+        },
+        {
+          "id": "c03.old_mine.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.old_mine.11",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "conflict"
+    },
+    "conflict": {
+      "type": "dialogue",
+      "background": "battlefield_ridgepass",
+      "lines": [
+        {
+          "id": "c03.conflict.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.conflict.02",
+          "speaker": "miner"
+        },
+        {
+          "id": "c03.conflict.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.conflict.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.conflict.05",
+          "speaker": "hauler"
+        },
+        {
+          "id": "c03.conflict.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.conflict.07",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c03.conflict.08",
+          "speaker": "hauler"
+        },
+        {
+          "id": "c03.conflict.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.conflict.10",
+          "speaker": "archer"
+        },
+        {
+          "id": "c03.conflict.11",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.conflict.12",
+          "speaker": "spear"
+        },
+        {
+          "id": "c03.conflict.13",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "route"
+    },
+    "route": {
+      "type": "choice",
+      "background": "battlefield_ridgepass",
+      "prompt": "c03.route.prompt",
+      "options": [
+        {
+          "id": "vent",
+          "text": "c03.route.vent",
+          "set": {
+            "pass_route": "vent"
+          },
+          "next": "vent_brief"
+        },
+        {
+          "id": "ridge",
+          "text": "c03.route.ridge",
+          "set": {
+            "pass_route": "ridge"
+          },
+          "next": "ridge_brief"
+        }
+      ]
+    },
+    "vent_brief": {
+      "type": "dialogue",
+      "background": "battlefield_ridgepass",
+      "lines": [
+        {
+          "id": "c03.vent_brief.01",
+          "speaker": "warden"
+        },
+        {
+          "id": "c03.vent_brief.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.vent_brief.03",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c03.vent_brief.04",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "vent_battle"
+    },
+    "vent_battle": {
+      "type": "battle",
+      "background": "battlefield_ridgepass",
+      "scenario": "c03_vent",
+      "win": "vent_after",
+      "win_set": {
+        "supply_route": "maintenance",
+        "mine_cargo": true
+      }
+    },
+    "vent_after": {
+      "type": "dialogue",
+      "background": "battlefield_ridgepass",
+      "lines": [
+        {
+          "id": "c03.vent_after.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.vent_after.02",
+          "speaker": "sword"
+        },
+        {
+          "id": "c03.vent_after.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.vent_after.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.vent_after.05",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "cargo"
+    },
+    "ridge_brief": {
+      "type": "dialogue",
+      "background": "battlefield_ridgepass",
+      "lines": [
+        {
+          "id": "c03.ridge_brief.01",
+          "speaker": "warden"
+        },
+        {
+          "id": "c03.ridge_brief.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.ridge_brief.03",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c03.ridge_brief.04",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "ridge_battle"
+    },
+    "ridge_battle": {
+      "type": "battle",
+      "background": "battlefield_ridgepass",
+      "scenario": "c03_ridge",
+      "win": "ridge_after",
+      "win_set": {
+        "supply_route": "long_road",
+        "mine_cargo": true
+      }
+    },
+    "ridge_after": {
+      "type": "dialogue",
+      "background": "battlefield_ridgepass",
+      "lines": [
+        {
+          "id": "c03.ridge_after.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.ridge_after.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.ridge_after.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.ridge_after.04",
+          "speaker": "spear"
+        },
+        {
+          "id": "c03.ridge_after.05",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "cargo"
+    },
+    "cargo": {
+      "type": "dialogue",
+      "background": "battlefield_ridgepass",
+      "lines": [
+        {
+          "id": "c03.cargo.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.cargo.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.cargo.03",
+          "speaker": "clerk"
+        },
+        {
+          "id": "c03.cargo.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.cargo.05",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c03.cargo.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.cargo.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.cargo.08",
+          "speaker": "warden"
+        },
+        {
+          "id": "c03.cargo.09",
+          "speaker": "hauler"
+        },
+        {
+          "id": "c03.cargo.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.cargo.11",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "night"
+    },
+    "night": {
+      "type": "dialogue",
+      "background": "battlefield_ridgepass",
+      "lines": [
+        {
+          "id": "c03.night.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.night.02",
+          "speaker": "sword"
+        },
+        {
+          "id": "c03.night.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.night.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.night.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.night.06",
+          "speaker": "narrator",
+          "when": {
+            "letter_reply": "return"
+          }
+        },
+        {
+          "id": "c03.night.07",
+          "speaker": "narrator",
+          "when": {
+            "letter_reply": "unscheduled"
+          }
+        },
+        {
+          "id": "c03.night.08",
+          "speaker": "narrator",
+          "when": {
+            "pass_route": "vent"
+          }
+        },
+        {
+          "id": "c03.night.09",
+          "speaker": "narrator",
+          "when": {
+            "pass_route": "ridge"
+          }
+        },
+        {
+          "id": "c03.night.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c03.night.11",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end",
+      "ending": "ridgepass_crossed",
+      "background": "battlefield_ridgepass",
+      "text": "c03.end"
+    }
+  }
+}

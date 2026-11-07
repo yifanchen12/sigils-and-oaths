@@ -7,26 +7,32 @@ script = ExtResource("1")
 cards = Array[Dictionary]([{
 "id": "sword", "name": "誓约步兵", "short": "步", "type": "unit", "kind": "sword", "cost": 1,
 "atk": 3, "hp": 5, "defense": 1, "move": 2, "range": 1,
+"skill": {"name": "誓约坚守", "cost": 1, "text": "自身护盾至少变为3，不叠加。结束移动与攻击。"},
 "text": "森林移动费用仅 1。\n克制枪兵，伤害 +2。", "tag": "步兵 · 前线"
 }, {
 "id": "spear", "name": "铁壁枪卫", "short": "枪", "type": "unit", "kind": "spear", "cost": 2,
 "atk": 3, "hp": 7, "defense": 2, "move": 2, "range": 1,
+"skill": {"name": "铁壁援护", "cost": 1, "text": "至下次己方回合，替上下左右相邻友军承受普通攻击。定身时不能接应；不拦法术。结束行动。"},
 "text": "本回合未移动时防御 +1。\n森林费用 1，克骑兵伤害 +2。", "tag": "枪兵 · 防御"
 }, {
 "id": "cavalry", "name": "逐风骑士", "short": "骑", "type": "unit", "kind": "cavalry", "cost": 3,
 "atk": 5, "hp": 5, "defense": 0, "move": 4, "range": 1,
+"skill": {"name": "疾风再动", "cost": 1, "text": "已移动、未攻击时，再移动最多2点地形费用。保留攻击机会；定身不可用。"},
 "text": "本回合移动至少 3 格，攻击 +1。\n军道出发移动 +1，克步兵。", "tag": "骑兵 · 机动"
 }, {
 "id": "archer", "name": "暮林游侠", "short": "弓", "type": "unit", "kind": "archer", "cost": 2,
 "atk": 3, "hp": 4, "defense": 0, "move": 2, "range": 3,
+"skill": {"name": "精准射击", "cost": 1, "text": "按普通攻击射程攻击，伤害+1，仍受援护与反击。结束行动。"},
 "text": "射程 3 格，高地再 +1。\n攻击相邻敌军时伤害 -1。", "tag": "弓手 · 远程"
 }, {
 "id": "mage", "name": "星火术士", "short": "法", "type": "unit", "kind": "mage", "cost": 4,
 "atk": 5, "hp": 4, "defense": 0, "move": 2, "range": 2,
+"skill": {"name": "星火迸发", "cost": 1, "text": "自身2格内一名敌军受到3火焰伤害，受天气影响，无视防御。结束行动。"},
 "text": "射程 2 格，攻击无视 1 防御。\n生命较低，需要友军保护。", "tag": "法师 · 爆发"
 }, {
 "id": "healer", "name": "晨光医师", "short": "医", "type": "unit", "kind": "healer", "cost": 3,
 "atk": 2, "hp": 5, "defense": 0, "move": 2, "range": 2,
+"skill": {"name": "战地急救", "cost": 1, "text": "治疗自身2格内一名受伤友军3生命。结束移动与攻击。"},
 "text": "己方回合开始时，治疗\n自身及相邻友军 1 点生命。", "tag": "治疗兵 · 支援"
 }, {
 "id": "bolt", "name": "星火箭", "short": "焰", "type": "spell", "effect": "damage", "cost": 2, "amount": 4,
@@ -85,4 +91,34 @@ cards = Array[Dictionary]([{
 }, {
 "id": "clear_skies", "name": "晴空号令", "short": "晴", "type": "environment", "effect": "clear_weather", "cost": 1,
 "text": "立即驱散当前天气，\n使战场恢复晴朗。\n晴朗时不能使用。", "tag": "环境 · 驱散"
+}, {
+"id": "shatter_bolt", "name": "破阵谕火", "short": "烬", "type": "spell", "effect": "shatter_bolt", "cost": 3, "amount": 2,
+"text": "先移除敌军全部护盾，\n再造成2点火焰伤害。\n受天气与赤烬首发加成影响。", "tag": "法术 · 破盾"
+}, {
+"id": "rally_heal", "name": "同行祷雨", "short": "祷", "type": "spell", "effect": "rally_heal", "cost": 3, "amount": 2,
+"text": "为目标格及相邻四格\n所有友军恢复2生命。\n不会恢复行动次数。", "tag": "法术 · 群疗"
+}, {
+"id": "cleanse_root", "name": "净途符", "short": "净", "type": "spell", "effect": "cleanse_root", "cost": 1, "amount": 1,
+"text": "解除一名友军的定身，\n并恢复1生命。\n不会重置已经消耗的行动。", "tag": "法术 · 解缚"
+}, {
+"id": "reveal_traps", "name": "寻痕灯", "short": "探", "type": "spell", "effect": "reveal_traps", "cost": 1,
+"text": "探查目标格及相邻四格，\n拆除范围内的敌方陷阱。\n空查仍消耗此牌与法力。", "tag": "法术 · 反伏设"
+}, {
+"id": "seedwood", "name": "林息落种", "short": "林", "type": "environment", "effect": "terrain", "terrain": "forest", "cost": 2,
+"text": "将施法范围内一格改为森林。\n提供防御，并改变移动费用。\n不能覆盖山地、河流或桥梁。", "tag": "环境 · 植林"
+}, {
+"id": "anchor_snare", "name": "锚索伏阵", "short": "缚", "type": "trap", "effect": "trap", "trigger": "step", "cost": 2, "amount": 1, "root": true,
+"text": "伏设空格。敌军主动踏入时，\n造成1伤害并中断移动，\n本回合定身。触发后弃置。", "tag": "陷阱 · 地格 / 缚足"
+}, {
+"id": "ember_mine", "name": "余烬地雷", "short": "雷", "type": "trap", "effect": "trap", "trigger": "step", "cost": 3, "amount": 3, "fire": true,
+"text": "伏设空格。敌军主动踏入时，\n造成3点火焰伤害，受天气影响。\n无指挥官加成，触发后弃置。", "tag": "陷阱 · 地格 / 爆破"
+}, {
+"id": "oath_ward", "name": "回誓屏障", "short": "誓", "type": "trap", "effect": "trap", "trigger": "attack", "cost": 2, "amount": 3,
+"text": "伏设于友军。下次实际承受\n普攻前获得3护盾（上限5）。\n随其移动，触发后弃置。", "tag": "陷阱 · 受击反制"
+}, {
+"id": "span_kit", "name": "临桥木架", "short": "桥", "type": "spell", "effect": "terrain", "terrain": "bridge", "cost": 3,
+"text": "在友军施法范围内，将一格\n邻接可通行地面的河流架为桥。\n桥梁永久留在战场，可接续架设。", "tag": "法术 · 临桥"
+}, {
+"id": "countercurrent_ward", "name": "回流护印", "short": "护", "type": "trap", "effect": "trap", "trigger": "spell", "cost": 2, "amount": 3,
+"text": "从手牌伏设于友军。下次实际\n承受敌方伤害法术或技能前获得\n3护盾（上限5）；不防普攻。", "tag": "陷阱 · 术击反制"
 }])

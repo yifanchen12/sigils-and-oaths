@@ -87,9 +87,9 @@ func _build() -> void:
 	filters.add_theme_constant_override("separation", 8)
 	content.add_child(filters)
 	var group := ButtonGroup.new()
-	for kind: String in ["all", "unit", "spell", "environment"]:
+	for kind: String in ["all", "unit", "spell", "environment", "trap"]:
 		var filter := Button.new()
-		filter.text = {"all": "全部卡牌", "unit": "部队", "spell": "法术", "environment": "环境"}[kind]
+		filter.text = {"all": "全部卡牌", "unit": "部队", "spell": "法术", "environment": "环境", "trap": "陷阱"}[kind]
 		filter.toggle_mode = true
 		filter.button_group = group
 		filter.button_pressed = kind == "all"

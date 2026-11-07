@@ -5,6 +5,9 @@ signal start_requested(map_id: String, hero_id: String, deck_id: String)
 signal resume_requested
 signal library_requested
 signal deck_editor_requested
+signal lore_requested
+signal new_campaign_requested
+signal continue_campaign_requested
 
 const BattleModel = preload("res://scripts/battle.gd")
 const Art = preload("res://scripts/art_library.gd")
@@ -21,6 +24,8 @@ var start_button: Button
 var resume_button: Button
 var library_button: Button
 var editor_button: Button
+var lore_button: Button
+var campaign_notice: Label
 var deck_choice: OptionButton
 var background: Texture2D
 var map_options: Array[Dictionary] = []
@@ -123,6 +128,27 @@ func _build() -> void:
 	left.add_child(hero_title)
 	left.add_child(hero_name)
 	left.add_child(hero_lore)
+	lore_button = Button.new()
+	lore_button.text = "共誓档案  ·  人物与世界"
+	lore_button.custom_minimum_size.y = 40
+	lore_button.pressed.connect(func() -> void: lore_requested.emit())
+	left.add_child(lore_button)
+	var campaign_row := HBoxContainer.new()
+	campaign_row.add_theme_constant_override("separation", 10)
+	left.add_child(campaign_row)
+	var new_campaign := Button.new()
+	new_campaign.text = "新战役 · 河门来信"
+	new_campaign.custom_minimum_size.y = 44
+	new_campaign.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	new_campaign.pressed.connect(func() -> void: new_campaign_requested.emit())
+	campaign_row.add_child(new_campaign)
+	var continue_campaign := Button.new()
+	continue_campaign.text = "继续战役"
+	continue_campaign.custom_minimum_size.y = 44
+	continue_campaign.pressed.connect(func() -> void: continue_campaign_requested.emit())
+	campaign_row.add_child(continue_campaign)
+	campaign_notice = _label("前三章主线 · 剧情选择与战斗进度保存", 13, MUTED, true)
+	left.add_child(campaign_notice)
 	var heroes_row := HBoxContainer.new()
 	heroes_row.add_theme_constant_override("separation", 10)
 	left.add_child(heroes_row)
@@ -159,7 +185,7 @@ func _build() -> void:
 	layout.add_theme_constant_override("separation", 12)
 	sheet.add_child(layout)
 	layout.add_child(_label("作 战 准 备", 28, INK))
-	layout.add_child(_label("WAR COUNCIL     /     选择你的下一场战役", 12, GOLD))
+	layout.add_child(_label("WAR COUNCIL     /     自由对战", 12, GOLD))
 	layout.add_child(HSeparator.new())
 	layout.add_child(_label("01   战场 · 12 × 10", 17, GOLD))
 	var maps_row := GridContainer.new()
@@ -220,7 +246,7 @@ func _build() -> void:
 	layout.add_child(_label("邻接友军即可增援  ·  地形制胜  ·  每回合90秒", 13, Color("a9bdc9")))
 	start_button = Button.new()
 	start_button.custom_minimum_size = Vector2(0, 64)
-	start_button.text = "率 军 出 征     →"
+	start_button.text = "自 由 对 战     →"
 	start_button.add_theme_font_size_override("font_size", 24)
 	start_button.add_theme_stylebox_override("normal", _style(Color("365a71"), GOLD))
 	start_button.pressed.connect(func() -> void: start_requested.emit(selected_map, selected_hero, selected_deck))

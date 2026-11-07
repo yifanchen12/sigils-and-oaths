@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "milestone": "0.35.0-dev",
+  "generated_on": "2026-11-07",
+  "tool": "native image_gen",
+  "model": "not exposed by runtime",
+  "prompt_record": "faithful summary; exact tool-call text not retained in source",
+  "rights_note": "Original project art; no third-party game images were supplied as reference.",
+  "assets": [
+    {
+      "id": "scene_redroof",
+      "path": "assets/art/narrative/redroof-day-v1.png",
+      "source_filename": "exec-28d1805a-f724-4376-9ba1-599ad9492314.png",
+      "reference_path": "assets/art/narrative/school-day-v1.png",
+      "prompt_key": "redroof",
+      "prompt_file": "assets/art/narrative/chapter11-prompts.json",
+      "size": [1672, 941],
+      "mode": "RGB",
+      "sha256": "d9ba5ce281670bd58097f9854648f3c09f607a0f4ba0bd89363c2f34f8c06370",
+      "source_bytes_preserved": true,
+      "role": "Narrative backdrop; game geometry remains data driven."
+    },
+    {
+      "id": "scene_northbank_memorial",
+      "path": "assets/art/narrative/northbank-memorial-v1.png",
+      "source_filename": "exec-f630df4d-710e-44af-ac2c-db734420b801.png",
+      "reference_path": "assets/art/narrative/redroof-day-v1.png",
+      "prompt_key": "memorial",
+      "prompt_file": "assets/art/narrative/chapter11-prompts.json",
+      "size": [1672, 941],
+      "mode": "RGB",
+      "sha256": "f812ba56636daa6470ac4afc998a6b6a80c08ba9dc9dd311fe9c19b13f8dee0e",
+      "source_bytes_preserved": true,
+      "role": "Narrative backdrop; game geometry remains data driven."
+    }
+  ]
+}

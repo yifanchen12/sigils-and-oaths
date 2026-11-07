@@ -5,6 +5,48 @@ extends RefCounted
 static var textures: Dictionary = {}
 const UNIT_ORDER: Array[String] = ["sword", "spear", "cavalry", "archer", "mage", "healer"]
 const HERO_ORDER: Array[String] = ["warden", "pyromancer", "grove"]
+const NARRATIVE_SCENES: Dictionary = {
+	"scene_harbor_locked": "harbor-locked-v1", "scene_harbor_open": "harbor-open-v1",
+	"scene_clinic_day": "clinic-day-v1", "scene_clinic_night": "clinic-night-v1",
+	"scene_foundry": "foundry-night-v1", "scene_pump_closed": "pump-closed-v1", "scene_pump_open": "pump-open-v1",
+	"scene_eaststreet": "eaststreet-day-v1", "scene_sunspire_camp": "school-night-v1",
+	"scene_school_day": "school-day-v1", "scene_school_ward": "school-ward-night-v1",
+	"scene_waterpass": "waterpass-day-v1", "scene_oldfurnace": "oldfurnace-day-v1",
+	"scene_council_terrace": "council-terrace-day-v1",
+	"scene_redroof": "redroof-day-v1", "scene_northbank_memorial": "northbank-memorial-v1",
+	"scene_northbank_mill": "northbank-mill-v1",
+	"scene_northbank_mill_morning": "northbank-mill-morning-v1",
+	"scene_tower_valve": "tower-valve-v1"
+}
+const ACTION_SHEETS: Dictionary = {
+	"sword": {"path": "res://assets/art/actions/sword-v2.png", "scale": 1.50,
+		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
+		"feet": [Vector2(324, 615), Vector2(352, 616), Vector2(334, 616)]},
+	"spear": {"path": "res://assets/art/actions/spear-v2.png", "scale": 1.25,
+		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
+		"feet": [Vector2(403, 677), Vector2(358, 683), Vector2(385, 684)]},
+	"cavalry": {"path": "res://assets/art/actions/cavalry-v2.png", "scale": 1.45,
+		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
+		"feet": [Vector2(470, 640), Vector2(472, 641), Vector2(388, 645)]},
+	"archer": {"path": "res://assets/art/actions/archer-v2.png", "scale": 1.25,
+		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
+		"feet": [Vector2(402, 670), Vector2(398, 669), Vector2(296, 674)]},
+	"mage": {"path": "res://assets/art/actions/mage-v2.png", "scale": 1.20,
+		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
+		"feet": [Vector2(366, 677), Vector2(326, 672), Vector2(284, 676)]},
+	"healer": {"path": "res://assets/art/actions/healer-v2.png", "scale": 1.15,
+		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
+		"feet": [Vector2(370, 675), Vector2(375, 672), Vector2(296, 670)]},
+	"warden": {"path": "res://assets/art/actions/warden-v2.png", "scale": 1.35,
+		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
+		"feet": [Vector2(427, 632), Vector2(337, 626), Vector2(288, 635)]},
+	"pyromancer": {"path": "res://assets/art/actions/pyromancer-v2.png", "scale": 1.35,
+		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
+		"feet": [Vector2(443, 662), Vector2(449, 662), Vector2(270, 663)]},
+	"grove": {"path": "res://assets/art/actions/grove-v2.png", "scale": 1.20,
+		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
+		"feet": [Vector2(380, 653), Vector2(404, 653), Vector2(273, 652)]}
+}
 const TERRAIN_ORDER: Array[String] = ["plain", "forest", "mountain", "road", "water", "bridge", "hill", "ruins", "fort"]
 const MAP_PROPS: Array[String] = ["map_forest", "map_mountain", "map_fort"]
 const MAP_PROPS_EXTRA: Array[String] = ["map_hill", "map_ruins", "map_harbor_fort"]
@@ -15,10 +57,30 @@ const SPELL_ATLASES: Dictionary = {
 	"weather_1": ["rain", "fog", "sun"], "weather_2": ["snow", "clear_skies", "initiative"],
 	"tactics_1": ["repulse", "frostbind", "dispel"], "tactics_2": ["exchange", "onslaught", "rampart"]
 }
+const EXPANSION_ATLASES: Dictionary = {
+	"spells-v1": ["shatter_bolt", "rally_heal", "cleanse_root", "reveal_traps"],
+	"traps-forest-v1": ["anchor_snare", "ember_mine", "oath_ward", "seedwood"]
+}
+const CHANNEL_CARD_ART: Dictionary = {
+	"span_kit": "span-kit-v1", "countercurrent_ward": "countercurrent-ward-v1"
+}
 
 static func get_texture(asset_id: String) -> Texture2D:
 	if textures.has(asset_id): return textures[asset_id]
+	for sheet: String in EXPANSION_ATLASES:
+		var index: int = EXPANSION_ATLASES[sheet].find(asset_id)
+		if index >= 0:
+			var art: Texture2D = _atlas("res://assets/art/expansion/%s.png" % sheet, index, 2, 2)
+			if art != null and sheet == "spells-v1":
+				# The generated sheet's horizontal seam is y=599, not 627.
+				# Runtime source regions preserve the original PNG bytes.
+				var regions: Array[Rect2] = [Rect2(2, 2, 623, 595), Rect2(629, 2, 623, 595), Rect2(2, 601, 623, 651), Rect2(629, 601, 623, 651)]
+				(art as AtlasTexture).region = regions[index]
+			if art != null: textures[asset_id] = art
+			return art
 	var path: String = "res://assets/art/%s.png" % asset_id
+	if CHANNEL_CARD_ART.has(asset_id): path = "res://assets/art/expansion/%s.png" % CHANNEL_CARD_ART[asset_id]
+	if NARRATIVE_SCENES.has(asset_id): path = "res://assets/art/narrative/%s.png" % NARRATIVE_SCENES[asset_id]
 	if asset_id == "menu" and ResourceLoader.exists("res://assets/art/menu_cel.png"): path = "res://assets/art/menu_cel.png"
 	if asset_id == "trail" and ResourceLoader.exists("res://assets/art/trail_cel.png"): path = "res://assets/art/trail_cel.png"
 	if asset_id.begins_with("battlefield_"): path = "res://assets/art/battlefields/%s-v2.png" % asset_id.trim_prefix("battlefield_")
@@ -71,6 +133,42 @@ static func get_texture(asset_id: String) -> Texture2D:
 	elif asset_id == "trail": texture = get_texture("terrain_road")
 	if texture != null: textures[asset_id] = texture
 	return texture
+
+static func get_narrative_portrait(kind: String) -> Texture2D:
+	if not HERO_ORDER.has(kind) and not UNIT_ORDER.has(kind): return null
+	if kind == "warden":
+		return load("res://assets/art/narrative/warden-dialogue-v1.png")
+	if kind not in ["spear", "pyromancer"]: return get_texture("sprite_" + kind)
+	var key: String = "narrative_" + kind
+	if not textures.has(key):
+		# Neighbouring banners/cloaks cross the nominal middle cells in these
+		# sheets. Dialogue crops exclude them; lower cloak edges stay behind
+		# the reading panel. The battle atlas and source PNG remain unchanged.
+		var portrait := AtlasTexture.new()
+		portrait.atlas = load("res://assets/art/unit_sprites_cel_1.png" if kind == "spear" else "res://assets/art/hero_sprites_cel.png")
+		portrait.region = Rect2(760, 0, 640 if kind == "spear" else 660, 724)
+		portrait.filter_clip = true
+		textures[key] = portrait
+	return textures[key]
+
+static func get_action_texture(kind: String, frame: int) -> Texture2D:
+	if frame < 0 or frame > 2 or not ACTION_SHEETS.has(kind): return null
+	var key: String = "action_%s_%d" % [kind, frame]
+	if textures.has(key): return textures[key]
+	var sheet: Dictionary = ACTION_SHEETS[kind]
+	if not ResourceLoader.exists(sheet.path): return null
+	var texture := AtlasTexture.new()
+	texture.atlas = load(sheet.path)
+	texture.region = sheet.regions[frame]
+	texture.filter_clip = true
+	textures[key] = texture
+	return texture
+
+static func action_feet(kind: String, frame: int) -> Vector2:
+	return ACTION_SHEETS[kind].feet[frame]
+
+static func action_scale(kind: String) -> float:
+	return ACTION_SHEETS[kind].scale
 
 static func _atlas(path: String, index: int, columns: int, rows: int) -> Texture2D:
 	if not ResourceLoader.exists(path): return null

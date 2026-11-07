@@ -1,0 +1,679 @@
+{
+  "version": 1,
+  "id": "chapter_10",
+  "title": "第十章 · 门前两次响声",
+  "start": "before",
+  "inherits": [
+    "route",
+    "witness_present",
+    "seal_copy",
+    "relief",
+    "public_ledger",
+    "priority",
+    "receipt_method",
+    "dispatch_receipts",
+    "clerk_safe",
+    "letter_reply",
+    "letter_delivered",
+    "pass_route",
+    "supply_route",
+    "mine_cargo",
+    "harbor_shelter",
+    "foundry_terms",
+    "crew_safe",
+    "harbor_pump",
+    "pump_route_known",
+    "water_plan",
+    "water_released",
+    "grove_mandate",
+    "charter_copy",
+    "evidence_council",
+    "court_access",
+    "father_trail",
+    "letter_company",
+    "camp_company",
+    "pressure_plan",
+    "sunspire_stable",
+    "governance_plan"
+  ],
+  "defaults": {
+    "route": "none",
+    "witness_present": false,
+    "seal_copy": false,
+    "relief": "none",
+    "public_ledger": false,
+    "priority": "none",
+    "receipt_method": "none",
+    "dispatch_receipts": false,
+    "clerk_safe": false,
+    "letter_reply": "none",
+    "letter_delivered": false,
+    "pass_route": "none",
+    "supply_route": "none",
+    "mine_cargo": false,
+    "harbor_shelter": "none",
+    "foundry_terms": "none",
+    "crew_safe": false,
+    "harbor_pump": false,
+    "pump_route_known": false,
+    "water_plan": "none",
+    "water_released": false,
+    "grove_mandate": "none",
+    "charter_copy": false,
+    "evidence_council": "none",
+    "court_access": false,
+    "father_trail": false,
+    "letter_company": "none",
+    "camp_company": "none",
+    "pressure_plan": "none",
+    "sunspire_stable": false,
+    "governance_plan": "none",
+    "tower_gate_secured": false
+  },
+  "speakers": {
+    "narrator": "旁白",
+    "warden": "艾琳",
+    "pyromancer": "维洛",
+    "grove": "赛菈",
+    "sword": "洛恩",
+    "spear": "芙蕾",
+    "cavalry": "莉希",
+    "archer": "希弥",
+    "mage": "伊瑟",
+    "healer": "米芮",
+    "clerk": "赫姆",
+    "qin": "秦婶",
+    "yubai": "余白",
+    "tangsui": "唐穗",
+    "foreman": "工班长",
+    "sang": "桑岚",
+    "ruan": "阮衡",
+    "chair": "轮值主持者",
+    "court_delegate": "议庭代表",
+    "forge_delegate": "赤曜勘料员",
+    "forest_delegate": "林社代表",
+    "porter": "旧担架手",
+    "gate_captain": "尹纾"
+  },
+  "nodes": {
+    "before": {
+      "type": "dialogue",
+      "background": "scene_council_terrace",
+      "lines": [
+        {
+          "id": "c10.before.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c10.before.02",
+          "speaker": "foreman"
+        },
+        {
+          "id": "c10.before.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c10.before.04",
+          "speaker": "qin"
+        },
+        {
+          "id": "c10.before.05",
+          "speaker": "healer"
+        },
+        {
+          "id": "c10.before.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c10.before.07",
+          "speaker": "sword"
+        },
+        {
+          "id": "c10.before.08",
+          "speaker": "spear"
+        },
+        {
+          "id": "c10.before.09",
+          "speaker": "warden"
+        },
+        {
+          "id": "c10.before.10",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "warrant"
+    },
+    "warrant": {
+      "type": "dialogue",
+      "background": "scene_waterpass",
+      "lines": [
+        {
+          "id": "c10.warrant.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c10.warrant.02",
+          "speaker": "gate_captain"
+        },
+        {
+          "id": "c10.warrant.03",
+          "speaker": "court_delegate"
+        },
+        {
+          "id": "c10.warrant.04",
+          "speaker": "gate_captain"
+        },
+        {
+          "id": "c10.warrant.05",
+          "speaker": "foreman"
+        },
+        {
+          "id": "c10.warrant.06",
+          "speaker": "gate_captain"
+        },
+        {
+          "id": "c10.warrant.07",
+          "speaker": "mage"
+        },
+        {
+          "id": "c10.warrant.08",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c10.warrant.09",
+          "speaker": "gate_captain"
+        },
+        {
+          "id": "c10.warrant.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c10.warrant.11",
+          "speaker": "sang",
+          "when": {
+            "pressure_plan": "isolate"
+          }
+        },
+        {
+          "id": "c10.warrant.12",
+          "speaker": "sang",
+          "when": {
+            "pressure_plan": "buffer"
+          }
+        }
+      ],
+      "next": "dispute"
+    },
+    "dispute": {
+      "type": "dialogue",
+      "background": "scene_council_terrace",
+      "lines": [
+        {
+          "id": "c10.dispute.01",
+          "speaker": "chair"
+        },
+        {
+          "id": "c10.dispute.02",
+          "speaker": "gate_captain"
+        },
+        {
+          "id": "c10.dispute.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c10.dispute.04",
+          "speaker": "gate_captain"
+        },
+        {
+          "id": "c10.dispute.05",
+          "speaker": "spear"
+        },
+        {
+          "id": "c10.dispute.06",
+          "speaker": "sword"
+        },
+        {
+          "id": "c10.dispute.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c10.dispute.08",
+          "speaker": "healer"
+        },
+        {
+          "id": "c10.dispute.09",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "muster"
+    },
+    "muster": {
+      "type": "dialogue",
+      "background": "scene_sunspire_camp",
+      "lines": [
+        {
+          "id": "c10.muster.01",
+          "speaker": "narrator",
+          "when": {
+            "governance_plan": "joint"
+          }
+        },
+        {
+          "id": "c10.muster.02",
+          "speaker": "warden",
+          "when": {
+            "governance_plan": "joint"
+          }
+        },
+        {
+          "id": "c10.muster.03",
+          "speaker": "narrator",
+          "when": {
+            "governance_plan": "split"
+          }
+        },
+        {
+          "id": "c10.muster.04",
+          "speaker": "pyromancer",
+          "when": {
+            "governance_plan": "split"
+          }
+        },
+        {
+          "id": "c10.muster.05",
+          "speaker": "narrator",
+          "when": {
+            "governance_plan": "hold"
+          }
+        },
+        {
+          "id": "c10.muster.06",
+          "speaker": "grove",
+          "when": {
+            "governance_plan": "hold"
+          }
+        },
+        {
+          "id": "c10.muster.07",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "gate_battle"
+    },
+    "gate_battle": {
+      "type": "battle",
+      "background": "battlefield_towergate",
+      "scenario": "c10_gate",
+      "win": "after",
+      "win_set": {
+        "tower_gate_secured": true
+      }
+    },
+    "after": {
+      "type": "dialogue",
+      "background": "scene_council_terrace",
+      "lines": [
+        {
+          "id": "c10.after.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c10.after.02",
+          "speaker": "gate_captain"
+        },
+        {
+          "id": "c10.after.03",
+          "speaker": "healer"
+        },
+        {
+          "id": "c10.after.04",
+          "speaker": "sword"
+        },
+        {
+          "id": "c10.after.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c10.after.06",
+          "speaker": "warden"
+        },
+        {
+          "id": "c10.after.07",
+          "speaker": "gate_captain"
+        },
+        {
+          "id": "c10.after.08",
+          "speaker": "narrator",
+          "when": {
+            "governance_plan": "joint"
+          }
+        },
+        {
+          "id": "c10.after.09",
+          "speaker": "narrator",
+          "when": {
+            "governance_plan": "split"
+          }
+        },
+        {
+          "id": "c10.after.10",
+          "speaker": "narrator",
+          "when": {
+            "governance_plan": "hold"
+          }
+        },
+        {
+          "id": "c10.after.11",
+          "speaker": "grove",
+          "when": {
+            "grove_mandate": "shared"
+          }
+        },
+        {
+          "id": "c10.after.12",
+          "speaker": "grove",
+          "when": {
+            "grove_mandate": "witness"
+          }
+        }
+      ],
+      "next": "first_measure"
+    },
+    "first_measure": {
+      "type": "dialogue",
+      "background": "scene_pump_open",
+      "lines": [
+        {
+          "id": "c10.first_measure.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c10.first_measure.02",
+          "speaker": "sang"
+        },
+        {
+          "id": "c10.first_measure.03",
+          "speaker": "mage"
+        },
+        {
+          "id": "c10.first_measure.04",
+          "speaker": "foreman"
+        },
+        {
+          "id": "c10.first_measure.05",
+          "speaker": "gate_captain"
+        },
+        {
+          "id": "c10.first_measure.06",
+          "speaker": "sang"
+        },
+        {
+          "id": "c10.first_measure.07",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c10.first_measure.08",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "repair"
+    },
+    "repair": {
+      "type": "dialogue",
+      "background": "scene_pump_open",
+      "lines": [
+        {
+          "id": "c10.repair.01",
+          "speaker": "court_delegate",
+          "when": {
+            "governance_plan": "joint"
+          }
+        },
+        {
+          "id": "c10.repair.02",
+          "speaker": "foreman",
+          "when": {
+            "governance_plan": "joint"
+          }
+        },
+        {
+          "id": "c10.repair.03",
+          "speaker": "pyromancer",
+          "when": {
+            "governance_plan": "split"
+          }
+        },
+        {
+          "id": "c10.repair.04",
+          "speaker": "forge_delegate",
+          "when": {
+            "governance_plan": "split"
+          }
+        },
+        {
+          "id": "c10.repair.05",
+          "speaker": "grove",
+          "when": {
+            "governance_plan": "hold"
+          }
+        },
+        {
+          "id": "c10.repair.06",
+          "speaker": "qin",
+          "when": {
+            "governance_plan": "hold"
+          }
+        },
+        {
+          "id": "c10.repair.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c10.repair.08",
+          "speaker": "healer"
+        },
+        {
+          "id": "c10.repair.09",
+          "speaker": "foreman",
+          "when": {
+            "foundry_terms": "sale"
+          }
+        },
+        {
+          "id": "c10.repair.10",
+          "speaker": "foreman",
+          "when": {
+            "foundry_terms": "lease"
+          }
+        }
+      ],
+      "next": "record"
+    },
+    "record": {
+      "type": "dialogue",
+      "background": "scene_waterpass",
+      "lines": [
+        {
+          "id": "c10.record.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c10.record.02",
+          "speaker": "gate_captain"
+        },
+        {
+          "id": "c10.record.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c10.record.04",
+          "speaker": "gate_captain"
+        },
+        {
+          "id": "c10.record.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c10.record.06",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c10.record.07",
+          "speaker": "warden"
+        },
+        {
+          "id": "c10.record.08",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c10.record.09",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "rest"
+    },
+    "rest": {
+      "type": "dialogue",
+      "background": "scene_sunspire_camp",
+      "lines": [
+        {
+          "id": "c10.rest.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c10.rest.02",
+          "speaker": "spear"
+        },
+        {
+          "id": "c10.rest.03",
+          "speaker": "sword"
+        },
+        {
+          "id": "c10.rest.04",
+          "speaker": "archer"
+        },
+        {
+          "id": "c10.rest.05",
+          "speaker": "mage"
+        },
+        {
+          "id": "c10.rest.06",
+          "speaker": "grove"
+        },
+        {
+          "id": "c10.rest.07",
+          "speaker": "qin"
+        },
+        {
+          "id": "c10.rest.08",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c10.rest.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c10.rest.10",
+          "speaker": "warden"
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end",
+      "background": "scene_sunspire_camp",
+      "ending": "outer_gate_taken",
+      "text": "c10.end"
+    }
+  },
+  "strings": {
+    "c10.before.01": "第二天还没敲晨钟，外台的桌上已摆出两页新水尺。昨夜多出的那次震动没有重来，数值却留在纸上。尹纾亲手画了一道短横线，工班长认得她的字，认不得她为何等到天亮才送来。",
+    "c10.before.02": "她夜里就报过一次。传信兵过桥时叫守军拦下了，说没有换班签字，不准把塔内记录带出来。我带人过去，不是去找他们吵，先把接班的人名给我。",
+    "c10.before.03": "秦婶，你和东街的人今天照原路去北井。外庭要清出两条运水车路，过了桥的地方暂时别走。等我们确认外阀能停住，我亲自来报。",
+    "c10.before.04": "我知道哪条路绕得开。你报的时候带上工班长，光说‘停住了’，水桶不会自己满。昨晚第六户的孩子发烧，想去诊室，人走到一半又给车挡回来。",
+    "c10.before.05": "他天亮时退了热。我把药留在借住那家，今天照看他的人是他姨母。别把一场病算成进塔的理由；要清路，我给你清。",
+    "c10.before.06": "艾琳沿石阶往下走时，看见洛恩已把两副挡车木架从窄口搬到侧巷。木架上还挂着昨夜的绳，下面没有战马。北井的第一辆水车绕过拐角，车夫朝他们举了举鞭梢，没停。",
+    "c10.before.07": "木架留在巷口，别拿去堵桥。芙蕾昨夜换的绷带还没干透，我让她走左桥，她说你先把哪座桥算左边讲清楚。",
+    "c10.before.08": "站在水车那头看是左边，站在塔门看又是另一边。请写格子。我守桥前先看艾琳画的路线；谁临时改口，我听不见。",
+    "c10.before.09": "外庭十四列十二行。左桥从南岸D7、E7过去，右桥从J7、K7过去。门前接应位是D9和K9，各留一队，连续守过两个己方回合开始的检查。",
+    "c10.before.10": "她说完仍在图上补了一道虚线：那是居民车掉头的位置。工班长看见后将尺子压在虚线上，问她若守军退到那里，谁先喊停。艾琳把自己的名字写在虚线旁。",
+    "c10.warrant.01": "塔门外的铁栏杆只卸开半扇。尹纾站在栏内，没有戴盔，胸前挂着交接簿的钥匙。她把一张边角起毛的旧令压在新签的纸旁，两张纸被晨风吹得一齐翘起来。",
+    "c10.warrant.02": "旧令在这里，十七年前第九日封门，没人来换。新纸我看过：三方同意水怎么分、谁先付工钱，写得比旧令明白。可门锁的那一栏空着。让我凭它开门，出事时先撤的是哪一班？",
+    "c10.warrant.03": "议庭昨夜补了临时解除封门的签押。我不能替你删掉旧令，只能和它并排放。你若要值守名册和交接时刻，我们带来的人就在这儿。",
+    "c10.warrant.04": "签押昨夜到我手上时，内门已经响了第二次。我没报成，外桥又让人拦住。现在接令就开门，里面若有人，得先走哪一条廊？你告诉我，我就敢把钥匙转半圈。",
+    "c10.warrant.05": "先走检修左廊，再从外台退。里面没有派工班；我没拿到内门尺，今天也不会派。你的人把昨夜读数压住，害我在表上多写一格‘未知’。",
+    "c10.warrant.06": "拦信是我的兵做的，名字在第四页。我今天给你翻。左廊的旧铰链，上周是谁测的？没有人说。我拿着钥匙，不能把一条没量过的廊当出口。",
+    "c10.warrant.07": "我只测到外阀两端。把昨夜那次响声说成池里有人，或说绝不可能有人，都不是读数。先把外阀握在能停机的人手上，左廊要我进去量，我进去。",
+    "c10.warrant.08": "把手轮和铰链分开。手轮有人管，左廊没人测。你不让我们接外阀，就只能继续隔着门猜。维洛站在这儿，欠的工钱不因为我会看图而少一分。",
+    "c10.warrant.09": "昨夜我也想把手轮递出去。你们在台上谈的时候，城里的兵还叫我按旧令守。他们早上不来接我的班，傍晚就会写是我自己擅离。",
+    "c10.warrant.10": "尹纾的食指停在旧令右下角，那里有她前任留下的墨点。艾琳没有去揭那角纸。她让轮值主持者把今天的停机命令读给门内两班守军，先问他们愿不愿在明白命令后退到门前。",
+    "c10.warrant.11": "上次隔压时留的止回签还在塔外，拆开它才能看见阀杆裂纹。谁若拿那次隔压说今天也能直接卸压，我先把签字的人找来对表。",
+    "c10.warrant.12": "上次缓冲槽替我们多留了一段听响的时间，昨夜这次却隔得更短。不要把‘还有余量’当成今日开门的许可。",
+    "c10.dispute.01": "临时命令：外阀停机权交本地当班水工；两桥与门前由双方公开点名交接。尹纾和她的兵可以留下做证，不能把旧令上的‘封门’变成继续压送的权利。",
+    "c10.dispute.02": "我听清了。你们来接桥，我不让人放箭；你们要抢钥匙，我会把人排在门口。士兵的撤回口令我说了算，不能让城里几个没到场的人替他们死。",
+    "c10.dispute.03": "那先按你说的分开。钥匙留在你身上。我们只接两处桥北的空位，工班拿到外阀；若你的人挡在接应位，我会让他们退。",
+    "c10.dispute.04": "你画的D9和K9不是空位。右边是医师撤伤的路，左边是昨夜拦信那队的岗位。你一放人上去，就等于我交出能不能碰门的决定。你还要说这不是夺门？",
+    "c10.dispute.05": "我先去跟左边那队说。谁肯放下枪，洛恩带他退到南岸。我们不用把水车道变成伤员队伍。谁还挡着工班，才算我们的对手。",
+    "c10.dispute.06": "我知道。有几个穿旧守机队的靴子，昨天阮衡倒下时他们也在。我先叫名字，不拿他们当新的一群陌生人。",
+    "c10.dispute.07": "左桥上的守军认得洛恩，仍把长枪压低。他喊了两遍，一个人向后退了半步；另一人低声问尹纾有没有换班令。门内响了一下，所有人都抬头，桥上的枪尖又齐齐落回原处。",
+    "c10.dispute.08": "先让水车走完。战斗伤员我收；工班有人要过桥，等我说能走再走。别为了赶一轮，把两个担架挤在同一道桥上。",
+    "c10.dispute.09": "最后一辆水车拐进北街，工班长在石阶上举起白布。尹纾也向桥头抬手，两队守军按她的旧口令归位。两边都有看得见的撤路，却都不肯先把门前让出来。",
+    "c10.muster.01": "艾琳把三方签押交给轮值主持者保管，自己取回轻盾。工班长只派两名熟悉外阀的人跟在她后面，其他人守在南岸等信。写在纸上的共同轮值，先要有人走过桥去。",
+    "c10.muster.02": "我带轻装队，两桥各走一路。见证者留在南岸，北岸两处稳住再过来；外阀需要水工，不需要他们替我挡第一下。",
+    "c10.muster.03": "分段旁路的第一车接头停在远巷。维洛把料单折好塞给工班长，只带护卫队往桥上走。材料车的车夫将绳结扣在十六轮的木牌上，数目不是给士兵看的，是给等工钱的人看的。",
+    "c10.muster.04": "我走左桥，右桥给芙蕾。工班别推车上去，门前没有地方倒车。哪条桥先打通，就先把料运到桥南，等另一边有接应再过。",
+    "c10.muster.05": "封池方案让城里腾出四辆水车，其中一辆还在后街装桶。赛菈让先到的三辆停在不遮诊室的巷子里，带混编队穿过外庭。她不能等到整整一季过去再取这把门钥匙。",
+    "c10.muster.06": "我带前队守两桥。水车不跟人冲门；哪一边伤了，先把人和桶一起撤到南岸。我们今天要的是停住池，不是比谁先把旗插到门上。",
+    "c10.muster.07": "桥下的水流带着新修支管的铁味。芙蕾最后检查了一次能否从右桥撤回，伊瑟在南岸放下水尺，等他们过桥后再取样。尹纾站在门下，看见两路人分开，终于把交接簿塞进了衣内。",
+    "c10.after.01": "两处桥北的接应位终于同时亮起浅色布条。尹纾的长刀被洛恩用盾沿压住，刀背落到石面，声音远比门内那一下轻。有人去扶她，她摆手先让军医看右桥受伤的兵。",
+    "c10.after.02": "钥匙在我身上，别扯那本簿。我答应移交外阀，不答应把守门的人从名单里抹掉。刚才右桥那名医师叫秦兰，谁送她去诊室，写给我。",
+    "c10.after.03": "我送。她的小腿被弹石划开，能自己回答名字。左桥两人有轻伤，我先带他们去水车道；你的人别再把木架摆回来。",
+    "c10.after.04": "没有摆。我认得的那个兵先放枪，现在跟芙蕾一起抬人。他要是愿意，当班记录里就写他自己退下的时刻。",
+    "c10.after.05": "艾琳没有把钥匙举给围观的人看。她请尹纾站起来，将交接簿摊在外台石沿。旧令仍夹在最后一页，新令放在前面，工班长在两页间贴了一条未写字的薄签，等测完阀再补。",
+    "c10.after.06": "门还关着。我们接的是桥和外阀，不是池里所有管线。尹纾，你报自己的伤兵，我报我的；等工班说能碰哪一格，再请你开对应的那扇。",
+    "c10.after.07": "我会报。昨夜拦信的兵也在上面，他没听见我后来叫人放行。你们想问他，等他把伤口包好。别把他的错写成我不知道的事。",
+    "c10.after.08": "三方见证者这时才过桥。赤曜勘料员看了看接头车，先问工班长把车停在哪里；林社代表跟着看上游尺，不问谁在刚才那一阵里喊得最大声。桥上空出来一条正好够担架走的宽度。",
+    "c10.after.09": "接头车抵达南岸时，维洛让车夫停在划出的虚线外。材料没有因为门打开就能立刻装上；工班长指给他看桥北的伤者撤路，他把原定第一车的卸货点往后挪了两格。",
+    "c10.after.10": "赛菈先把一辆水车拨去诊室，余下三辆照封池的旧路送桶。她知道这会让北井多等一轮，仍让车夫在东街路口停一停，问秦婶第六户那孩子醒了没有。",
+    "c10.after.11": "林社上回拿到的是共管席位，今天这张伤兵名册也要给他们看。共管若只在分水时有效，到了撤人时没人能替我们签。",
+    "c10.after.12": "林社上回只肯列席见证。我会让见证人看见伤兵去了哪里，不能替他们说已经同意接手门内这班。",
+    "c10.first_measure.01": "外阀手轮转过半圈，石墙里的震动短了一下，却没有全停。桑岚让人松开手轮，先听哪一边的管还在响。她把掌心贴在旧接头上，第一下没说话，第二下才点头让伊瑟记时。",
+    "c10.first_measure.02": "今早比昨晚隔得短。旧阀杆裂在里面，不在这只手轮上。你现在多拧一圈，旧接头会先受不住；留这半圈，我还能听出是哪一路。",
+    "c10.first_measure.03": "外端压差降了一格，内端没有跟着降。我在表上把两次响声分开记：昨夜那次来自塔内，刚才这次靠近旧阀杆。这个判断还要用下一班读数核。",
+    "c10.first_measure.04": "每班两个人，一人看表，一人摸阀。没有人单独留在里面。饮用支路照旧运转，谁再把这句话缩成‘全池可开’，我就让他自己去东街解释。",
+    "c10.first_measure.05": "我原来以为内门也能靠这只手轮止住，才守着不交。昨夜那声出来，我就知道不够了。那条左廊的铰链是我该催人测，不是拿旧令挡住问题。",
+    "c10.first_measure.06": "认错等下一班再说。先拆护板，看看裂纹是不是沿旧焊缝走。护板要两个人托，伊瑟让她那个量尺徒弟来；维洛的图拿在外头，别把纸伸到水里。",
+    "c10.first_measure.07": "我拿着。师父当年画的接头到这儿就断了，后加的旁通是我的人照着旧样补的。护板下来，你指给我看哪一笔画错了；修料和欠饷分两本账，不会再捏成一张。",
+    "c10.first_measure.08": "护板抬到地上时，水工在旧焊缝旁看见一道发白的细线。桑岚不让任何人用指尖去抠。她拿湿布擦了一遍，线仍在；艾琳从门口望见那道线，第一次明白为何尹纾听见响声后不肯转钥匙。",
+    "c10.repair.01": "共同轮值的停机顺序昨夜写在纸上，现在第一班就用到了。议庭的人今晚守外桥，不进内门；本地水工每班把两端的数贴到街口，我回城补后续材料的正式文书。",
+    "c10.repair.02": "我能签今天低流量试运，不能签明天一定会回到满水。三方若有人迟到，饮用支路按现班保持，主池不给它多一格。",
+    "c10.repair.03": "旁路第一段能先做尺寸复核，焊接停到护板内侧量清。北船坞那两批货已改期，今天派出工的人照名单付；材料车空等的时辰也记在我账上。",
+    "c10.repair.04": "我签的是出库意向，不是让你把没试压的新管接在这条裂缝上。第六日到料若晚，仓库付延时，别向东街再收一次借住房的钱。",
+    "c10.repair.05": "封池的木牌贴上了，从今天起算一季。主池不加流量，饮用支路照表；三处苗床今年少开一轮，我回去亲口告诉他们谁来补水车。",
+    "c10.repair.06": "我看到街口的新表了。昨天写八户，今天还是八户；第六户孩子睡醒，我带他去看那块深色的红线，不让他以为河道已经好了。",
+    "c10.repair.07": "轮值主持者把三张不同的成本表重新收回各自夹板。工班长叫人拿来旧护板，在背面画出下一班要量的三个点。旁边有人问今晚能不能庆祝，他说先把伤兵家属的去处报给诊室。",
+    "c10.repair.08": "秦兰想写信给她弟弟，纸我给了。别急着替她讲今天这仗，她的腿还疼，愿意说什么等她自己定。诊室夜里缺两个人搬水，想帮忙的先去那里。",
+    "c10.repair.09": "船坞那批材料已经售给赤曜，今天挪来塔门要另写借调单。别拿原来的收据说我可以随意拆箱。",
+    "c10.repair.10": "船坞那批材料当初只租给赤曜，今天调一段过来，押金和损耗得跟原账一起核。工人不等我们把两本账算完才吃饭。",
+    "c10.record.01": "桑岚找旧铰链图时，尹纾从交接簿后页抽出一张被水浸过的车次底单。不是新发现的密令；她说这张纸一直在门里，昨夜值守时才看懂其中一行压痕。",
+    "c10.record.02": "这行写的是十七年前第九日‘北岸接驳所’，不是‘北岸收殓所’。我小时候把那两个字认错，后来谁也没问。你父亲那辆救援车的号在边上，可人名这一角被水泡走了。",
+    "c10.record.03": "那时你还不是值守长。谁写的车次？如果这角没了，就先别在我面前把北岸说成终点。",
+    "c10.record.04": "车次是上一任抄的，原簿不在塔里。底单只证明车到过接驳所；上车的人、下车的人，它都没记全。我知道那里现在还有一名旧调车员，他叫罗明，住在堤外红瓦屋。",
+    "c10.record.05": "艾琳把‘罗明’两个字抄在掌心的便笺上，又看了一遍底单的日期。她没有问尹纾那人会不会记得父亲；先问红瓦屋现在归谁，往返要走多远，诊室能否托人带信。",
+    "c10.record.06": "我今晚有一趟北岸的空骑。红瓦屋在旧堤外第三条巷，门前有一棵半枯的梨树。先带信问他愿不愿见，你不用跟着马在夜里找门。",
+    "c10.record.07": "信写我姓名、那辆车的号和我想问的事，不写‘你一定知道’。若他不愿见，明天我自己去，不让你替我敲第二次。",
+    "c10.record.08": "好。返程我把他的原话带回来，不替他添一句安慰你的话。你要是还想让我留一匹马，我可以让它等到你起床；我自己也得睡一夜。",
+    "c10.record.09": "她们在一只倒扣的空桶旁写好信。洛恩往这边望了一眼，没走过来。艾琳以前会把纸塞回衣内，等所有事都完了再去问；这次封口时，她将蜡滴得很慢，滴完才把信交给莉希。",
+    "c10.rest.01": "午后，学堂真的开了课。孩子们沿北街走，经过外台时看见两张新表和三行住处安排。秦婶追着一个跑得太快的男孩，把他掉的木尺捡起来；他问门是不是打赢了，她说门有人看着，别往那边跑。",
+    "c10.rest.02": "我右肩还在疼。洛恩把左桥先让给我，不是因为我最能打，是因为那边撤路宽。下次他再说‘我替你’，我就让他搬一天水车试试。",
+    "c10.rest.03": "水车我搬。今天左桥那个放枪的兵认出我时，叫的是阮衡的旧队号。我以前没跟他们说过我已经换了命令，明天去诊室，我自己和他说。",
+    "c10.rest.04": "我在外庭数了两次响声的间隔，跟伊瑟记的一样。你们说得都太大声，我站远一点反而听得清。晚上要是还响，我带他去东墙再听一遍。",
+    "c10.rest.05": "可以。你吹笛时那口气还短，别为了让我听清水声又把自己冻在墙上。先把窗关好，我把数写完就来。",
+    "c10.rest.06": "上游的苗床少开一轮，不会因为我们守住门就多出水。我要把今天的数亲手带回去，走之前先问秦婶：住户那张纸，明天能不能贴第二份给林社来的人看？",
+    "c10.rest.07": "能贴。别只贴赔付数，把哪几户还没钥匙也写上。你们走的时候，学堂院里的床已经搬空；人没有凭空搬回去。",
+    "c10.rest.08": "明早我跟桑岚看护板。她让人量旧焊缝，没让我碰炉。我今天不去争，修完第一段再说。城里若催我的账，叫他们来这里找我。",
+    "c10.rest.09": "夜班交接时，尹纾把旧令留在档柜里，取走了自己那一页伤兵名册。新轮值表上有她的名字，后面写的是‘见证’，不是‘掌闸’。她看了片刻，拿笔把当班时辰补齐。",
+    "c10.rest.10": "明早我去北岸。今天这座门能由两个人一起看，我想试试把那个问题交给该回答的人。你们先守好各自的班，不用跟我赶第一趟路。",
+    "c10.end": "外阀前的震动终于有了两份相同的记录，内阀杆的白线还在。日陨城仍靠饮用支路和按班送来的水桶过夜，三张签过的方案要从明早的工钱、车次和读数开始执行。\n北岸接驳所的红瓦屋尚未回信。艾琳把写好的车号放在桌边，不再用父亲的旧钥匙去试一扇新门。"
+  }
+}

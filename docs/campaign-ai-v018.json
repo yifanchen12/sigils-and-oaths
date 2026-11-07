@@ -1,0 +1,169 @@
+{
+  "milestone": "0.18.0-dev",
+  "base_commit": "8caa9fdd981065b0ea5431d6515d13570031c965",
+  "source_hash_encoding": "UTF-8, LF normalized",
+  "policy_source_sha256": {
+    "scripts/opponent.gd": "6f1af5e863a92546abe6e9e36e305128b90da18c78b66a34ffe514985f5c7524",
+    "scripts/objective_ai.gd": "7253472fb4f50b78a04a1f201002f27fdc9424721ff09628af5d7b10e532698a",
+    "scripts/tactical_ai.gd": "5619c6bbe49a3ef3d26c0761e3d7669b74614985a705c653b2ca2135ffa3f72b",
+    "tests/fixtures/campaign_pilot.gd": "8e2a194d1d3f4bef5a74b81325871fa0fde489147a46f89b2044a4bda8c34431"
+  },
+  "groups": {
+    "production_selfplay": {
+      "coverage": "all_scenarios",
+      "policy": "production opponent on both sides",
+      "games": [
+        {
+          "actions": 327,
+          "decision_mean_ms": 73.00075229357799,
+          "decision_peak_ms": 305.607,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c01_road",
+          "seed": 1317.0,
+          "streak_resets": 0,
+          "turn": 49,
+          "winner": 1
+        },
+        {
+          "actions": 435,
+          "decision_mean_ms": 74.70436321839081,
+          "decision_peak_ms": 227.112,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c01_river",
+          "seed": 1318.0,
+          "streak_resets": 0,
+          "turn": 63,
+          "winner": 1
+        },
+        {
+          "actions": 451,
+          "decision_mean_ms": 67.0559800443459,
+          "decision_peak_ms": 204.782,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c01_bridge",
+          "seed": 1319.0,
+          "streak_resets": 0,
+          "turn": 61,
+          "winner": 1
+        },
+        {
+          "actions": 152,
+          "decision_mean_ms": 73.6807302631579,
+          "decision_peak_ms": 245.751,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "deadline",
+          "scenario": "c02_relief_bridge",
+          "seed": 2317.0,
+          "streak_resets": 0,
+          "turn": 25,
+          "winner": 1
+        },
+        {
+          "actions": 160,
+          "decision_mean_ms": 102.07318124999999,
+          "decision_peak_ms": 338.364,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "deadline",
+          "scenario": "c02_seed_bridge",
+          "seed": 2318.0,
+          "streak_resets": 0,
+          "turn": 25,
+          "winner": 1
+        },
+        {
+          "actions": 347,
+          "decision_mean_ms": 77.71134870317003,
+          "decision_peak_ms": 226.124,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c02_dispatch",
+          "seed": 2319.0,
+          "streak_resets": 0,
+          "turn": 50,
+          "winner": 1
+        },
+        {
+          "actions": 56,
+          "decision_mean_ms": 72.72607142857143,
+          "decision_peak_ms": 230.053,
+          "illegal_action": "",
+          "max_control_streak": 2,
+          "reason": "control",
+          "scenario": "c03_vent",
+          "seed": 3317.0,
+          "streak_resets": 0,
+          "turn": 13,
+          "winner": 0
+        },
+        {
+          "actions": 416,
+          "decision_mean_ms": 59.978235576923076,
+          "decision_peak_ms": 184.825,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c03_ridge",
+          "seed": 3318.0,
+          "streak_resets": 0,
+          "turn": 63,
+          "winner": 1
+        }
+      ]
+    },
+    "cautious_player": {
+      "coverage": "objective_scenarios",
+      "policy": "cautious diagnostic player against production opponent",
+      "games": [
+        {
+          "actions": 124,
+          "decision_mean_ms": 23.842354838709678,
+          "decision_peak_ms": 90.829,
+          "illegal_action": "",
+          "max_control_streak": 2,
+          "reason": "control",
+          "scenario": "c02_relief_bridge",
+          "seed": 2317.0,
+          "streak_resets": 0,
+          "turn": 21,
+          "winner": 0
+        },
+        {
+          "actions": 77,
+          "decision_mean_ms": 87.52877922077923,
+          "decision_peak_ms": 229.726,
+          "illegal_action": "",
+          "max_control_streak": 2,
+          "reason": "control",
+          "scenario": "c02_seed_bridge",
+          "seed": 2318.0,
+          "streak_resets": 0,
+          "turn": 15,
+          "winner": 0
+        },
+        {
+          "actions": 108,
+          "decision_mean_ms": 99.4300462962963,
+          "decision_peak_ms": 306.541,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "deadline",
+          "scenario": "c03_vent",
+          "seed": 3317.0,
+          "streak_resets": 0,
+          "turn": 21,
+          "winner": 1
+        }
+      ]
+    }
+  },
+  "limitations": "Fixed authored seeds and heuristic policies only. Production self-play has 1/8 player-side wins and longer ordinary encounters; cautious player has 2/3 objective wins. These groups are separate diagnostics, not human win rates, overall balance or continuous campaign completion."
+}

@@ -952,6 +952,1005 @@
       "processing": "Raw source preserved; native Godot texture placement, mipmapped import and dynamic terrain overlays",
       "status": "integrated; rule-grid visual audit reviewed",
       "parent_source_filename": "exec-776ccbc5-fd32-4463-9116-fcc75713e09e.png"
+    },
+    {
+      "id": "action_sword",
+      "path": "assets/art/actions/sword-v2.png",
+      "source_filename": "exec-5c6e81a8-7ff9-4d6a-ad09-0f2be36efcf6.png",
+      "parent_source_filename": "exec-2657dc45-d70c-4824-8b27-68f578f50a09.png",
+      "initial_reference": "assets/art/unit_sprites_cel_1.png",
+      "generated_on": "2026-10-26",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "c658d0741e367e9cc80cd7f6b4aa9944f65949542319da75fc10f324b27cdf26",
+      "frame_order": [
+        "anticipation",
+        "strike",
+        "recovery"
+      ],
+      "regions": [
+        [
+          0,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          836,
+          724
+        ],
+        [
+          1560,
+          0,
+          612,
+          724
+        ]
+      ],
+      "feet": [
+        [
+          324,
+          615
+        ],
+        [
+          352,
+          616
+        ],
+        [
+          334,
+          616
+        ]
+      ],
+      "runtime_scale": 1.5,
+      "prompt_files": [
+        "assets/art/prompt-action-sword-v1.txt",
+        "assets/art/prompt-action-sword-v2.txt"
+      ],
+      "role": "Normal attack, guard and retaliation key poses.",
+      "processing": "Raw PNG copied byte-for-byte. Native AtlasTexture regions follow inspected transparent gaps; shared per-character scale and measured foot pivots preserve aspect and baseline. No source pixel edits.",
+      "status": "Integrated; nine alpha/edge/pivot checks and native-scale gallery reviewed; 160 Windows action checks, 257 UI checks and 56 feedback checks passed."
+    },
+    {
+      "id": "action_spear",
+      "path": "assets/art/actions/spear-v2.png",
+      "source_filename": "exec-f936243d-5ff0-4aad-8314-0dcc4d84e86a.png",
+      "parent_source_filename": "exec-3df6c9af-cc5e-41fd-af9a-7cb3d3712762.png",
+      "initial_reference": "assets/art/unit_sprites_cel_1.png",
+      "generated_on": "2026-10-26",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "e8c66b0041ca30ef2c90702fa2536dcc621c391b1ac0e9bb8b67b9e1dfd76d3d",
+      "frame_order": [
+        "anticipation",
+        "strike",
+        "recovery"
+      ],
+      "regions": [
+        [
+          0,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          836,
+          724
+        ],
+        [
+          1560,
+          0,
+          612,
+          724
+        ]
+      ],
+      "feet": [
+        [
+          403,
+          677
+        ],
+        [
+          358,
+          683
+        ],
+        [
+          385,
+          684
+        ]
+      ],
+      "runtime_scale": 1.25,
+      "prompt_files": [
+        "assets/art/prompt-action-spear-v1.txt",
+        "assets/art/prompt-action-spear-v2.txt"
+      ],
+      "role": "Normal attack, guard and retaliation key poses.",
+      "processing": "Raw PNG copied byte-for-byte. Native AtlasTexture regions follow inspected transparent gaps; shared per-character scale and measured foot pivots preserve aspect and baseline. No source pixel edits.",
+      "status": "Integrated; nine alpha/edge/pivot checks and native-scale gallery reviewed; 160 Windows action checks, 257 UI checks and 56 feedback checks passed."
+    },
+    {
+      "id": "action_cavalry",
+      "path": "assets/art/actions/cavalry-v2.png",
+      "source_filename": "exec-05143c57-aa69-4bfc-9988-37034b31d94f.png",
+      "parent_source_filename": "exec-5facdbdc-e597-4c22-a444-2f6d77c4dfff.png",
+      "initial_reference": "assets/art/unit_sprites_cel_1.png",
+      "generated_on": "2026-10-26",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "0b233e5e6005cf2906d6c6bc23d8527a3e07ea467a670906a4e5e6eb0e97034f",
+      "frame_order": [
+        "anticipation",
+        "strike",
+        "recovery"
+      ],
+      "regions": [
+        [
+          0,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          836,
+          724
+        ],
+        [
+          1560,
+          0,
+          612,
+          724
+        ]
+      ],
+      "feet": [
+        [
+          470,
+          640
+        ],
+        [
+          472,
+          641
+        ],
+        [
+          388,
+          645
+        ]
+      ],
+      "runtime_scale": 1.45,
+      "prompt_files": [
+        "assets/art/prompt-action-cavalry-v1.txt",
+        "assets/art/prompt-action-cavalry-v2.txt"
+      ],
+      "role": "Normal attack, guard and retaliation key poses.",
+      "processing": "Raw PNG copied byte-for-byte. Native AtlasTexture regions follow inspected transparent gaps; shared per-character scale and measured foot pivots preserve aspect and baseline. No source pixel edits.",
+      "status": "Integrated; nine alpha/edge/pivot checks and native-scale gallery reviewed; 160 Windows action checks, 257 UI checks and 56 feedback checks passed."
+    },
+    {
+      "id": "action_archer",
+      "path": "assets/art/actions/archer-v2.png",
+      "source_filename": "exec-dc3d8c1a-122d-41ab-bfe9-0d2e5f007e1f.png",
+      "parent_source_filename": "exec-a951709f-2f30-41c8-8964-ffd0a4103e06.png",
+      "initial_reference": "assets/art/unit_sprites_cel_2.png",
+      "integrated_on": "2026-11-06",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "35801f103b8bb1b920d0804bed1fd4b39b2c96a065bfdf4ec8052086029a9d0d",
+      "frame_order": [
+        "anticipation",
+        "strike_or_cast",
+        "recovery"
+      ],
+      "regions": [
+        [
+          0,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          836,
+          724
+        ],
+        [
+          1560,
+          0,
+          612,
+          724
+        ]
+      ],
+      "feet": [
+        [
+          402,
+          670
+        ],
+        [
+          398,
+          669
+        ],
+        [
+          296,
+          674
+        ]
+      ],
+      "runtime_scale": 1.25,
+      "prompt_files": [
+        "assets/art/prompt-action-archer-v1.txt",
+        "assets/art/prompt-action-archer-v2.txt"
+      ],
+      "role": "Attack, retaliation and eligible unit/commander/card casting key poses.",
+      "processing": "Raw native image_gen PNG copied intact. Godot AtlasTexture regions, foot pivots and horizontal mirroring only; no pixel edits. No mipmaps.",
+      "status": "Integrated; transparent edges and pivots checked. 363 Windows cast-pose checks passed; native galleries inspected. Three key poses, not a full walk cycle."
+    },
+    {
+      "id": "action_mage",
+      "path": "assets/art/actions/mage-v2.png",
+      "source_filename": "exec-b225a7ca-959b-47d6-a3d2-b73687f0b85a.png",
+      "parent_source_filename": "exec-ad04bfc1-34c3-4c49-9f81-283833c3a24a.png",
+      "initial_reference": "assets/art/unit_sprites_cel_2.png",
+      "integrated_on": "2026-11-06",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "7b9a87cfc0731d66b867c96b7a9cc5f7449b55da83cb729c81e113b2954f4800",
+      "frame_order": [
+        "anticipation",
+        "strike_or_cast",
+        "recovery"
+      ],
+      "regions": [
+        [
+          0,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          836,
+          724
+        ],
+        [
+          1560,
+          0,
+          612,
+          724
+        ]
+      ],
+      "feet": [
+        [
+          366,
+          677
+        ],
+        [
+          326,
+          672
+        ],
+        [
+          284,
+          676
+        ]
+      ],
+      "runtime_scale": 1.2,
+      "prompt_files": [
+        "assets/art/prompt-action-mage-v1.txt",
+        "assets/art/prompt-action-mage-v2.txt"
+      ],
+      "role": "Attack, retaliation and eligible unit/commander/card casting key poses.",
+      "processing": "Raw native image_gen PNG copied intact. Godot AtlasTexture regions, foot pivots and horizontal mirroring only; no pixel edits. No mipmaps.",
+      "status": "Integrated; transparent edges and pivots checked. 363 Windows cast-pose checks passed; native galleries inspected. Three key poses, not a full walk cycle."
+    },
+    {
+      "id": "action_healer",
+      "path": "assets/art/actions/healer-v2.png",
+      "source_filename": "exec-9a0a5505-9b87-47f7-9d92-961533aa4078.png",
+      "parent_source_filename": "exec-b2984848-2548-4b06-abfb-c6606a57d7d9.png",
+      "initial_reference": "assets/art/unit_sprites_cel_2.png",
+      "integrated_on": "2026-11-06",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "5e5aa4b4986b8faaf127c87614d0013bad651d123dba4e4154ef4ec233cfe2ab",
+      "frame_order": [
+        "anticipation",
+        "strike_or_cast",
+        "recovery"
+      ],
+      "regions": [
+        [
+          0,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          836,
+          724
+        ],
+        [
+          1560,
+          0,
+          612,
+          724
+        ]
+      ],
+      "feet": [
+        [
+          370,
+          675
+        ],
+        [
+          375,
+          672
+        ],
+        [
+          296,
+          670
+        ]
+      ],
+      "runtime_scale": 1.15,
+      "prompt_files": [
+        "assets/art/prompt-action-healer-v1.txt",
+        "assets/art/prompt-action-healer-v2.txt"
+      ],
+      "role": "Attack, retaliation and eligible unit/commander/card casting key poses.",
+      "processing": "Raw native image_gen PNG copied intact. Godot AtlasTexture regions, foot pivots and horizontal mirroring only; no pixel edits. No mipmaps.",
+      "status": "Integrated; transparent edges and pivots checked. 363 Windows cast-pose checks passed; native galleries inspected. Three key poses, not a full walk cycle."
+    },
+    {
+      "id": "action_warden",
+      "path": "assets/art/actions/warden-v2.png",
+      "source_filename": "exec-ae2e450c-8875-490c-9e26-644b5a524595.png",
+      "parent_source_filename": "exec-d5843057-e0d8-4140-b205-929f80e5bed4.png",
+      "initial_reference": "assets/art/hero_sprites_cel.png",
+      "integrated_on": "2026-11-06",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "ac21527a350fbed4be30cb0c81baab7f3a9852e41ae8b5757ff0ad62a96fcf17",
+      "frame_order": [
+        "anticipation",
+        "strike_or_cast",
+        "recovery"
+      ],
+      "regions": [
+        [
+          0,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          836,
+          724
+        ],
+        [
+          1560,
+          0,
+          612,
+          724
+        ]
+      ],
+      "feet": [
+        [
+          427,
+          632
+        ],
+        [
+          337,
+          626
+        ],
+        [
+          288,
+          635
+        ]
+      ],
+      "runtime_scale": 1.35,
+      "prompt_files": [
+        "assets/art/prompt-action-warden-v1.txt",
+        "assets/art/prompt-action-warden-v2.txt"
+      ],
+      "role": "Attack, retaliation and eligible unit/commander/card casting key poses.",
+      "processing": "Raw native image_gen PNG copied intact. Godot AtlasTexture regions, foot pivots and horizontal mirroring only; no pixel edits. No mipmaps.",
+      "status": "Integrated; transparent edges and pivots checked. 363 Windows cast-pose checks passed; native galleries inspected. Three key poses, not a full walk cycle."
+    },
+    {
+      "id": "action_pyromancer",
+      "path": "assets/art/actions/pyromancer-v2.png",
+      "source_filename": "exec-fb2ec0c3-d63b-48a6-aaa4-882f8b513984.png",
+      "parent_source_filename": "exec-900733a7-016d-4c6a-ade5-5673389703ac.png",
+      "initial_reference": "assets/art/hero_sprites_cel.png",
+      "integrated_on": "2026-11-06",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "03c5ee888a0d8338ff273588fe7e3de55cba8248cd00ae3d239b902657c07b2e",
+      "frame_order": [
+        "anticipation",
+        "strike_or_cast",
+        "recovery"
+      ],
+      "regions": [
+        [
+          0,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          836,
+          724
+        ],
+        [
+          1560,
+          0,
+          612,
+          724
+        ]
+      ],
+      "feet": [
+        [
+          443,
+          662
+        ],
+        [
+          449,
+          662
+        ],
+        [
+          270,
+          663
+        ]
+      ],
+      "runtime_scale": 1.35,
+      "prompt_files": [
+        "assets/art/prompt-action-pyromancer-v1.txt",
+        "assets/art/prompt-action-pyromancer-v2.txt"
+      ],
+      "role": "Attack, retaliation and eligible unit/commander/card casting key poses.",
+      "processing": "Raw native image_gen PNG copied intact. Godot AtlasTexture regions, foot pivots and horizontal mirroring only; no pixel edits. No mipmaps.",
+      "status": "Integrated; transparent edges and pivots checked. 363 Windows cast-pose checks passed; native galleries inspected. Three key poses, not a full walk cycle."
+    },
+    {
+      "id": "action_grove",
+      "path": "assets/art/actions/grove-v2.png",
+      "source_filename": "exec-ef025587-35f5-47bf-b032-ed39cbbfbc25.png",
+      "parent_source_filename": "exec-f520f34b-094f-4dfe-8cc1-6982c8ded942.png",
+      "initial_reference": "assets/art/hero_sprites_cel.png",
+      "integrated_on": "2026-11-06",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "64d06242501c16f51efb4fbb0b6f3f1e3f1675f01925886dd0164e8e544dc8f0",
+      "frame_order": [
+        "anticipation",
+        "strike_or_cast",
+        "recovery"
+      ],
+      "regions": [
+        [
+          0,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          836,
+          724
+        ],
+        [
+          1560,
+          0,
+          612,
+          724
+        ]
+      ],
+      "feet": [
+        [
+          380,
+          653
+        ],
+        [
+          404,
+          653
+        ],
+        [
+          273,
+          652
+        ]
+      ],
+      "runtime_scale": 1.2,
+      "prompt_files": [
+        "assets/art/prompt-action-grove-v1.txt",
+        "assets/art/prompt-action-grove-v2.txt"
+      ],
+      "role": "Attack, retaliation and eligible unit/commander/card casting key poses.",
+      "processing": "Raw native image_gen PNG copied intact. Godot AtlasTexture regions, foot pivots and horizontal mirroring only; no pixel edits. No mipmaps.",
+      "status": "Integrated; transparent edges and pivots checked. 363 Windows cast-pose checks passed; native galleries inspected. Three key poses, not a full walk cycle."
+    },
+    {
+      "id": "scene_harbor_locked",
+      "path": "assets/art/narrative/harbor-locked-v1.png",
+      "source_filename": "exec-399c6d58-c331-4383-8166-9a7b479a9d63.png",
+      "reference_source_filename": "exec-fa9dbb56-644b-472b-9a0b-f736106e0224.png",
+      "prompt_key": "harbor_locked_correction",
+      "prompt_file": "assets/art/narrative/prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "4fc2d7df4b5fa6672a8710a858b955eda049d649e6d84fb7489d3538b2f6a60b",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative background; no gameplay or collision data.",
+      "processing": "Original PNG copied intact. Cover cropping, mild tint and text are rendered by Godot; no pixel edits.",
+      "status": "production; source and native screenshots visually reviewed in 0.20.0-dev",
+      "validation": "docs/narrative-art-v020.md"
+    },
+    {
+      "id": "scene_harbor_open",
+      "path": "assets/art/narrative/harbor-open-v1.png",
+      "source_filename": "exec-72cb3b3c-9238-40ab-9913-8448893b5279.png",
+      "reference_source_filename": "exec-399c6d58-c331-4383-8166-9a7b479a9d63.png",
+      "prompt_key": "harbor_open",
+      "prompt_file": "assets/art/narrative/prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "4e36cb355f15955ce03bec6f54d62d82bf76641e2f631a5242eed3108c11b1a5",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative background; no gameplay or collision data.",
+      "processing": "Original PNG copied intact. Cover cropping, mild tint and text are rendered by Godot; no pixel edits.",
+      "status": "production; source and native screenshots visually reviewed in 0.20.0-dev",
+      "validation": "docs/narrative-art-v020.md"
+    },
+    {
+      "id": "scene_clinic_day",
+      "path": "assets/art/narrative/clinic-day-v1.png",
+      "source_filename": "exec-64fbd36b-41c6-4b22-9d1c-d95f4aa972a4.png",
+      "reference_source_filename": "exec-399c6d58-c331-4383-8166-9a7b479a9d63.png",
+      "prompt_key": "clinic",
+      "prompt_file": "assets/art/narrative/prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "acd2419d62c3a2cdb1941893fd4d4156d51aad031d077793839742ed8c8abbc8",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative background; no gameplay or collision data.",
+      "processing": "Original PNG copied intact. Cover cropping, mild tint and text are rendered by Godot; no pixel edits.",
+      "status": "production; source and native screenshots visually reviewed in 0.20.0-dev",
+      "validation": "docs/narrative-art-v020.md"
+    },
+    {
+      "id": "scene_clinic_night",
+      "path": "assets/art/narrative/clinic-night-v1.png",
+      "source_filename": "exec-bc5f779c-265a-4623-a9f7-35d0a794961e.png",
+      "reference_source_filename": "exec-64fbd36b-41c6-4b22-9d1c-d95f4aa972a4.png",
+      "prompt_key": "clinic_night",
+      "prompt_file": "assets/art/narrative/prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "222586e6be0459551b0447cbdd7f1958dbecfb086b06eb4f30191c9e2b0f22c6",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative background; no gameplay or collision data.",
+      "processing": "Original PNG copied intact. Cover cropping, mild tint and text are rendered by Godot; no pixel edits.",
+      "status": "production; source and native screenshots visually reviewed in 0.20.0-dev",
+      "validation": "docs/narrative-art-v020.md"
+    },
+    {
+      "id": "scene_foundry",
+      "path": "assets/art/narrative/foundry-night-v1.png",
+      "source_filename": "exec-12d0ce78-a4ed-4142-965e-1532b5ae0ce7.png",
+      "reference_source_filename": "exec-399c6d58-c331-4383-8166-9a7b479a9d63.png",
+      "prompt_key": "foundry",
+      "prompt_file": "assets/art/narrative/prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "a4c0ea53d665f65a23c0e2f4406a771dde13f47303e8a46ab73c05e03328c222",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative background; no gameplay or collision data.",
+      "processing": "Original PNG copied intact. Cover cropping, mild tint and text are rendered by Godot; no pixel edits.",
+      "status": "production; source and native screenshots visually reviewed in 0.20.0-dev",
+      "validation": "docs/narrative-art-v020.md"
+    },
+    {
+      "id": "scene_pump_closed",
+      "path": "assets/art/narrative/pump-closed-v1.png",
+      "source_filename": "exec-9bfd3ece-c003-4fcf-985c-0155499d1bb8.png",
+      "reference_source_filename": "exec-3a4e9b0b-60c1-475a-9cf0-2202965c4429.png",
+      "prompt_key": "pump_closed",
+      "prompt_file": "assets/art/narrative/prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "ea1a5eb71e9a9c3ca9ac850be1c47cc1fd247c49b9d903943f967af5fafcee97",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative background; no gameplay or collision data.",
+      "processing": "Original PNG copied intact. Cover cropping, mild tint and text are rendered by Godot; no pixel edits.",
+      "status": "production; source and native screenshots visually reviewed in 0.20.0-dev",
+      "validation": "docs/narrative-art-v020.md"
+    },
+    {
+      "id": "scene_pump_open",
+      "path": "assets/art/narrative/pump-open-v1.png",
+      "source_filename": "exec-3a4e9b0b-60c1-475a-9cf0-2202965c4429.png",
+      "reference_source_filename": "exec-399c6d58-c331-4383-8166-9a7b479a9d63.png",
+      "prompt_key": "pump",
+      "prompt_file": "assets/art/narrative/prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "e093a7c466155388548cbc229644d06acc020c25169f6d4845b7279bcc4e7242",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative background; no gameplay or collision data.",
+      "processing": "Original PNG copied intact. Cover cropping, mild tint and text are rendered by Godot; no pixel edits.",
+      "status": "production; source and native screenshots visually reviewed in 0.20.0-dev",
+      "validation": "docs/narrative-art-v020.md"
+    },
+    {
+      "id": "narrative_warden",
+      "path": "assets/art/narrative/warden-dialogue-v1.png",
+      "milestone": "0.22.0-dev",
+      "tool": "native image_gen",
+      "model": "not exposed by runtime",
+      "source_filename": "exec-3d74081a-cad1-4765-9c3c-6b9795acc96e.png",
+      "reference_source_filename": "exec-f03ebd4e-b197-415a-84b3-75f39d4cbb9a.png",
+      "identity_reference": "assets/art/hero_sprites_cel.png",
+      "prompt_file": "assets/art/narrative/warden-dialogue-prompts.json",
+      "sha256": "5812ae3dd23e264946a299a68aa2fb8d9c31b2080134af0a756238571cac2eea",
+      "source_bytes_preserved": true,
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "fully_transparent_pixels": 933736,
+      "role": "Default Eileen dialogue portrait; restrained expression and sheathed weapon. Battle and card sprites retain their existing assets.",
+      "processing": "Original generated PNG copied intact. Godot lossless import, alpha-border fix, mipmaps and native aspect-preserving display; no pixel edits.",
+      "status": "source and final Windows narrative screenshots visually reviewed",
+      "rights_note": "Original AI-generated project character, referenced only from existing original project art. Included in pre-generated-content disclosure inventory."
+    },
+    {
+      "id": "scene_eaststreet",
+      "path": "assets/art/narrative/eaststreet-day-v1.png",
+      "source_filename": "exec-c3379b98-db06-4c74-8526-73d7cb9fd4f8.png",
+      "reference_source_filename": null,
+      "prompt_key": "eaststreet_day",
+      "prompt_file": "assets/art/narrative/chapter07-prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "fc22a6299e488690f586353f79d4dd8f5e4116f9f9e7392c9ff8c21cb56afa4d",
+      "source_bytes_preserved": true,
+      "role": "Eye-level dialogue background, no gameplay or collision geometry.",
+      "processing": "Original PNG copied intact. Native Godot cover crop, tint and overlays only.",
+      "status": "production; source and native screenshots visually reviewed in 0.24.0-dev",
+      "validation": "docs/narrative/chapter-07-review.md"
+    },
+    {
+      "id": "scene_sunspire_camp",
+      "path": "assets/art/narrative/school-night-v1.png",
+      "source_filename": "exec-18906861-eee1-41d7-a2ea-e53c8d857ca4.png",
+      "reference_source_filename": "exec-c3d69727-214e-462e-9644-b8c8bca55b59.png",
+      "prompt_key": "school_night_correction",
+      "prompt_file": "assets/art/narrative/chapter07-prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "a1b4cc295edee64a5ac8b77dc98f70a8d57bdcf15055ca43180af499700328f1",
+      "source_bytes_preserved": true,
+      "role": "Eye-level dialogue background, no gameplay or collision geometry.",
+      "processing": "Original PNG copied intact. Native Godot cover crop, tint and overlays only.",
+      "status": "production; source and native screenshots visually reviewed in 0.24.0-dev",
+      "validation": "docs/narrative/chapter-07-review.md"
+    },
+    {
+      "id": "scene_school_day",
+      "path": "assets/art/narrative/school-day-v1.png",
+      "source_filename": "exec-ce19d38a-7b44-46fe-a3da-d97f5008b0ab.png",
+      "reference_source_filename": "exec-18906861-eee1-41d7-a2ea-e53c8d857ca4.png",
+      "prompt_key": "school_day",
+      "prompt_file": "assets/art/narrative/chapter07-prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "44d9618f252ad4e2ab4dffc8e2351cfd1a89cc9a2c25071962f163387becec72",
+      "source_bytes_preserved": true,
+      "role": "Eye-level dialogue background, no gameplay or collision geometry.",
+      "processing": "Original PNG copied intact. Native Godot cover crop, tint and overlays only.",
+      "status": "production; source and native screenshots visually reviewed in 0.24.0-dev",
+      "validation": "docs/narrative/chapter-07-review.md"
+    },
+    {
+      "id": "scene_school_ward",
+      "path": "assets/art/narrative/school-ward-night-v1.png",
+      "source_filename": "exec-4bf602b3-0022-40aa-bf80-139eac87c52e.png",
+      "reference_source_filename": "exec-18906861-eee1-41d7-a2ea-e53c8d857ca4.png",
+      "prompt_key": "school_ward",
+      "prompt_file": "assets/art/narrative/chapter07-prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "7e12bde6cdf40be535b2c950f04d98f1ea93939272e558f2e3f011570e1e7a70",
+      "source_bytes_preserved": true,
+      "role": "Eye-level dialogue background, no gameplay or collision geometry.",
+      "processing": "Original PNG copied intact. Native Godot cover crop, tint and overlays only.",
+      "status": "production; source and native screenshots visually reviewed in 0.24.0-dev",
+      "validation": "docs/narrative/chapter-07-review.md"
+    },
+    {
+      "id": "scene_waterpass",
+      "path": "assets/art/narrative/waterpass-day-v1.png",
+      "source_filename": "exec-3b960511-0571-40ba-8d7f-0661bf1c2ddb.png",
+      "reference_source_filename": "exec-c3379b98-db06-4c74-8526-73d7cb9fd4f8.png",
+      "prompt_key": "passage",
+      "prompt_file": "assets/art/narrative/chapter08-prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "6b5a64e3c77de1992d3d1db6a3d0436c2e1d82e92911906792d5b0575eeda8a2",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative backdrop; not simulated geometry.",
+      "processing": "Intact original PNG; native crop and overlay only.",
+      "status": "source and native screenshots visually reviewed; original bytes verified; chapter UI passed",
+      "validation": "docs/narrative/chapter-08-review.md"
+    },
+    {
+      "id": "scene_oldfurnace",
+      "path": "assets/art/narrative/oldfurnace-day-v1.png",
+      "source_filename": "exec-8fbbe33b-0960-400f-9eb7-a4c1533f7745.png",
+      "reference_source_filename": "exec-d1c791d9-e22f-4872-b609-b099e0fe6700.png",
+      "prompt_key": "furnace_correction",
+      "prompt_file": "assets/art/narrative/chapter08-prompts.json",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "74b0b814b006639a5371da727c8b419c48a6c894498f34b68f557e6f67d350db",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative backdrop; not simulated geometry.",
+      "processing": "Intact original PNG; native crop and overlay only.",
+      "status": "source and native screenshots visually reviewed; original bytes verified; chapter UI passed",
+      "validation": "docs/narrative/chapter-08-review.md"
+    },
+    {
+      "id": "battlefield_towergate",
+      "path": "assets/art/battlefields/towergate-v2.png",
+      "source_filename": "exec-53cd5fc2-973c-48e0-b660-2469cc12ec8d.png",
+      "reference_path": "assets/art/battlefields/sunspire-v2.png",
+      "prompt_file": "assets/art/battlefields/towergate-source.md",
+      "size": [1354, 1161],
+      "mode": "RGB",
+      "sha256": "e11e19b927847342199c165613ba39243643ce01a91f22aa3898532139936dd4",
+      "source_bytes_preserved": true,
+      "role": "Fourteen by twelve campaign gate battlefield with two bridge crossings; terrain rules live in data/maps.tres.",
+      "processing": "Original PNG copied intact. Godot overlays the rule grid, units, weather and objective markers.",
+      "status": "Original source and native map screenshot visually reviewed; 45 map and compatibility checks passed.",
+      "validation": "docs/narrative/chapter-10-review.md"
+    },
+    {
+      "id": "scene_redroof",
+      "path": "assets/art/narrative/redroof-day-v1.png",
+      "source_filename": "exec-28d1805a-f724-4376-9ba1-599ad9492314.png",
+      "reference_path": "assets/art/narrative/school-day-v1.png",
+      "prompt_key": "redroof",
+      "prompt_file": "assets/art/narrative/chapter11-prompts.json",
+      "size": [1672, 941],
+      "mode": "RGB",
+      "sha256": "d9ba5ce281670bd58097f9854648f3c09f607a0f4ba0bd89363c2f34f8c06370",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative backdrop; not simulated geometry.",
+      "processing": "Intact original PNG; native crop and overlay only.",
+      "status": "source image visually reviewed; native chapter UI pending",
+      "validation": "docs/narrative/chapter-11-design.md"
+    },
+    {
+      "id": "scene_northbank_memorial",
+      "path": "assets/art/narrative/northbank-memorial-v1.png",
+      "source_filename": "exec-f630df4d-710e-44af-ac2c-db734420b801.png",
+      "reference_path": "assets/art/narrative/redroof-day-v1.png",
+      "prompt_key": "memorial",
+      "prompt_file": "assets/art/narrative/chapter11-prompts.json",
+      "size": [1672, 941],
+      "mode": "RGB",
+      "sha256": "f812ba56636daa6470ac4afc998a6b6a80c08ba9dc9dd311fe9c19b13f8dee0e",
+      "source_bytes_preserved": true,
+      "role": "Eye-level narrative backdrop; not simulated geometry.",
+      "processing": "Intact original PNG; native crop and overlay only.",
+      "status": "source image visually reviewed; native chapter UI pending",
+      "validation": "docs/narrative/chapter-11-design.md"
+    },
+    {
+      "id": "battlefield_northbank",
+      "path": "assets/art/battlefields/northbank-v2.png",
+      "source_filename": "exec-81e9e5fd-97b9-43a8-83bd-07c004ecc1d9.png",
+      "reference_path": "assets/art/battlefields/towergate-v2.png",
+      "rule_reference": "data/maps.tres / northbank.rows",
+      "prompt_file": "assets/art/battlefields/northbank-source.md",
+      "size": [1448, 1086],
+      "mode": "RGB",
+      "sha256": "d2fa663ef5cef0ffd1622e8532bf83b5c3b4cee36c08eecff2f558d7133fa58a",
+      "source_bytes_preserved": true,
+      "role": "Sixteen by twelve north-bank depot battlefield with three ridge approaches; terrain rules are data-driven.",
+      "processing": "Original PNG copied intact. Godot overlays grid, units and objectives.",
+      "status": "source visually reviewed; native board alignment and click hit tests passed",
+      "validation": "docs/narrative/chapter-12-design.md"
+    },
+    {
+      "id": "scene_northbank_mill",
+      "path": "assets/art/narrative/northbank-mill-v1.png",
+      "source_filename": "exec-5de056c9-cbfe-4ce6-b320-99683e3e3602.png",
+      "prompt_file": "assets/art/narrative/chapter13-source.md",
+      "size": [1536, 1024],
+      "mode": "RGB",
+      "sha256": "c1b58ac847322690894d3929bff972c76d56f705eba9fbdc391d1b618aa17be8",
+      "source_bytes_preserved": true,
+      "role": "Northbank mill dawn narrative backdrop; river wheel and flour queue make custody consequences visible.",
+      "processing": "Intact original PNG; native crop and overlay only.",
+      "status": "source visually reviewed; native chapter UI checked",
+      "validation": "docs/narrative/chapter-13-review.md"
+    },
+    {
+      "id": "battlefield_spillway",
+      "path": "assets/art/battlefields/spillway-v2.png",
+      "source_filename": "exec-6f3827ec-a337-4a68-b951-57565f0e859f.png",
+      "reference_path": "assets/art/battlefields/northbank-v2.png",
+      "rule_reference": "data/maps.tres / spillway.rows",
+      "prompt_file": "assets/art/battlefields/spillway-source.md",
+      "size": [1448, 1086],
+      "mode": "RGB",
+      "sha256": "cf5818b693c4f26a6e6a0daf6db5def8adbbc5a30a6ccaba9b64c82d4517fc94",
+      "source_bytes_preserved": true,
+      "role": "Sixteen by twelve two-bridge waterworks battlefield, south measuring site, north gate site and card-built central crossing.",
+      "processing": "Original PNG copied intact; Godot overlays rule grid, units, objectives and dynamic bridges.",
+      "status": "source and native board visually reviewed; 51 map and pointer checks passed",
+      "validation": "docs/narrative/chapter-14-review.md"
+    },
+    {
+      "id": "span_kit",
+      "path": "assets/art/expansion/span-kit-v1.png",
+      "source_filename": "exec-ee9c4092-be46-4992-b24a-f0e15df15481.png",
+      "prompt_file": "assets/art/expansion/channel-card-source.md",
+      "size": [1536, 1024],
+      "mode": "RGB",
+      "sha256": "6b9d29fa4f729dab16ec6552d4f697a4c0a4e4324a8e26910a22290e0daaa0b5",
+      "source_bytes_preserved": true,
+      "role": "Hand-played temporary bridge construction card painting.",
+      "processing": "Original PNG copied intact; card frame and text rendered by Godot.",
+      "status": "source and native card rendering visually reviewed",
+      "validation": "tests/test_channel_cards.gd"
+    },
+    {
+      "id": "countercurrent_ward",
+      "path": "assets/art/expansion/countercurrent-ward-v1.png",
+      "source_filename": "exec-17cf4aa1-9b0d-40b4-971d-36846988f7b0.png",
+      "prompt_file": "assets/art/expansion/channel-card-source.md",
+      "size": [1536, 1024],
+      "mode": "RGB",
+      "sha256": "2d49983190106407fe49a7f321d3a3d081636df668138f6317172e718da5222d",
+      "source_bytes_preserved": true,
+      "role": "Hand-played hidden spell-counter ward card painting.",
+      "processing": "Original PNG copied intact; card frame and text rendered by Godot.",
+      "status": "source and native card rendering visually reviewed",
+      "validation": "tests/test_channel_cards.gd"
+    },
+    {
+      "id": "scene_northbank_mill_morning",
+      "path": "assets/art/narrative/northbank-mill-morning-v1.png",
+      "source_filename": "exec-d6748205-1286-48e4-8dc0-4015b15810f9.png",
+      "prompt_file": "assets/art/narrative/chapter15-source.md",
+      "size": [1672, 941],
+      "mode": "RGB",
+      "sha256": "813f8c3b94a1b01283b6b00891e284f3043601098eda76bf1bee64c0ce115379",
+      "source_bytes_preserved": true,
+      "role": "Chapter fifteen's next-morning mill and water allocation scene.",
+      "processing": "Original generated PNG copied intact; UI crop and dark overlay in Godot.",
+      "status": "source and native chapter UI visually reviewed",
+      "validation": "tests/test_chapter_fifteen_catalog_ui.gd"
+    },
+    {
+      "id": "scene_tower_valve",
+      "path": "assets/art/narrative/tower-valve-v1.png",
+      "source_filename": "exec-ef99cd26-da2f-404e-8606-66692d18a6c9.png",
+      "prompt_file": "assets/art/narrative/chapter15-source.md",
+      "size": [1536, 1024],
+      "mode": "RGB",
+      "sha256": "f8e78b1971900085dc1cfbe6336d52c26168c712381066bbe3adab7ff0f2f159",
+      "source_bytes_preserved": true,
+      "role": "Chapter fifteen's inner valve hall and safe evacuation route.",
+      "processing": "Original generated PNG copied intact; UI crop and dark overlay in Godot.",
+      "status": "source and native chapter UI visually reviewed",
+      "validation": "tests/test_chapter_fifteen_catalog_ui.gd"
     }
   ]
 }
