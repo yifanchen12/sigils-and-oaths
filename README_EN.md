@@ -53,6 +53,8 @@ After the eighth night, residents first account for housing, wages and water rea
 
 Nine chapters plus the archive contain **69,452 distinct authored Chinese body-text characters**. All 158 chapter-nine conditional body paragraphs rendered in Godot StoryView with 1,442 checks passing. A copy of the separately verified actual ten-win save entered each of the three plans, reached the chapter-nine end page and resumed in an independent process. The fixed ten-battle model route reached the current chapter-nine end after 924 dialogue IDs, 16 choices and 2,287 legal battle actions; it reads about 49,401 Chinese characters. Three encounters use declared public-information diagnostic player policies. Human full-playthrough and other battle-path win rates remain unverified. [Chapter-nine design and evidence](docs/narrative/chapter-09-review.md).
 
+[Download the 0.33 Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.33.0-dev). The anonymous public download is 199,831,800 bytes and matches the local build from source commit `f0a18ea`; SHA-256: `414a0c7c5d6aad51a2ea0081ce34e1af5aa8485f7adc4ce59b2bc8caf0c0cd06`.
+
 ![The three chapter-nine plans at the minimum supported width](docs/screenshots/v033-governance-small.png)
 
 ## 0.32: One continuous route through the then-current eight chapters
