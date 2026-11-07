@@ -61,6 +61,8 @@ Three saves earned by actual depot victories each continue through both night as
 
 The thirteen chapters and archive now contain **90,046 distinct Chinese body-text characters**, still 9,954 short of the aggregate target. A single route is shorter.
 
+[Download the 0.37 Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.37.0-dev). The anonymous public download is 212,509,505 bytes, SHA-256 `3c4599d4c46882d9be6305dc81cf74ca43a67804f79f99223e070aa85417c169`, and matches the local build from source commit `18245e0`. ZIP CRC, 289 PCK entries and standalone startup were checked.
+
 ## 0.36: Who holds the spare shaft
 
 Chapter twelve adds an original 16×12 north-bank depot map. Hold the F9 measuring slab and K9 loading apron across two player-turn checks, or drive off the opposing commander, before the crew can open the crate. Measurement finds a usable but unfinished spare that still needs a sleeve and pressure testing. After the battle, choose whether to borrow the shaft for the city with food, replacement and return obligations to three villages, or leave it at the depot and cast a new one for the city. The three governance plans change commander, deck and deadline; the defender pays for traps from its hand.
