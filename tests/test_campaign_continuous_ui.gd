@@ -117,7 +117,7 @@ func reader() -> void:
 	await click(resume.get_global_rect().get_center())
 	check(game.story_view.visible and portable_progress() == handoff.progress, "continue reloads the exact real terminal progress without duplicate attempts or rewards")
 	if handoff.stop == "authored_end":
-		check(game.campaign_session.encounter == null and game.campaign_session.current().type == "end" and game.campaign_session.campaign.next_chapter().is_empty(), "fresh process resumes the actual final page without replaying the last victory")
+		check(game.campaign_session.encounter == null and game.campaign_session.current().type == "end" and game.campaign_session.campaign.next_chapter().is_empty() and game.campaign_session.campaign.story.graph.id == continuous_report.chapters_entered.back(), "fresh process resumes the actual final page without replaying the last victory")
 		await capture(capture_prefix + "-continuous-resumed-ending")
 		print("NATIVE CONTINUOUS READER: %d CHECKS | FAILURES: %d | ENDING: %s" % [checks, failures, game.campaign_session.campaign.story.graph.id])
 		return

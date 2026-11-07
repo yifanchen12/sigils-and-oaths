@@ -58,7 +58,7 @@ func walk(campaign: RefCounted) -> void:
 				for key: String in r.graph.inherits: check(r.state.flags[key] == campaign.completed.back().story.flags[key], "old fact retained " + key)
 				var copy: RefCounted = Campaign.new()
 				check(copy.restore(JSON.parse_string(JSON.stringify(campaign.snapshot()))).ok and copy.snapshot() == campaign.snapshot(), "all eight histories roundtrip")
-				check(campaign.next_chapter().is_empty(), "unwritten ninth chapter is not offered")
+				check(campaign.next_chapter().get("id") == "chapter_09", "completed eighth chapter offers installed ninth")
 				return
 	check(false, "chapter eight terminates")
 func sessions() -> void:

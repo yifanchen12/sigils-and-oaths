@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "milestone": "0.33.0-dev",
+  "date": "2026-11-07",
+  "passed": true,
+  "chapter_sha256": {
+    "chapter_09": "009cff692b862cbb926f56c1dd70ef90d428d78d177c7a1cfb2dd1a4ab94a500"
+  },
+  "catalogue_test": "tests/test_chapter_nine_catalog_ui.gd",
+  "catalogue_checks": 1442,
+  "catalogue_paragraphs": 158,
+  "catalogue_scope": "Every conditional chapter-nine body paragraph and its backdrop rendered in Godot StoryView at desktop size; all three governance options checked at 1008x700. The catalogued earlier battle wins are fixtures for paragraph reachability, not actual combat results.",
+  "actual_save_test": "tests/test_chapter_nine_ui.gd",
+  "actual_save_source": "A copy of the separately verified 0.32 native campaign save after ten actual consecutive wins",
+  "actual_save_plans": ["joint", "split", "hold"],
+  "actual_save_writer_checks": 418,
+  "actual_save_reader_checks": 18,
+  "actual_save_scope": "Each governance plan entered from the actual chapter-eight ending in the native UI, reached chapter-nine end, saved and resumed in an independent Godot process. Prior battle wins were not replayed in this test.",
+  "model_routes": 24,
+  "model_checks": 4887,
+  "model_test": "tests/test_chapter_nine.gd",
+  "limitations": "No chapter-nine battle exists yet. These checks do not establish human enjoyment, complete branching battle balance, or a finished story."
+}

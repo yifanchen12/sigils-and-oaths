@@ -91,8 +91,13 @@
     {
       "id": "chapter_09",
       "title": "谁来签字",
-      "status": "outline",
-      "nativeValidated": false
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "revision": "0.33.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 8749,
+      "wordCountPass": true
     },
     {
       "id": "chapter_10",

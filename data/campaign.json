@@ -40,6 +40,11 @@
       "id": "chapter_08",
       "title": "第八章 · 长昼的第八夜",
       "path": "res://data/narrative/chapters/chapter_08.json"
+    },
+    {
+      "id": "chapter_09",
+      "title": "第九章 · 谁来签字",
+      "path": "res://data/narrative/chapters/chapter_09.json"
     }
   ],
   "scenarios": {

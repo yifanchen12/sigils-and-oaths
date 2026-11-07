@@ -1,5 +1,5 @@
 {
-  "scope": "Codex accessibility verified in 0.13.0. Registered chapters carry actual prior endings. Native source hashes identify rendered pages; fixture victories do not establish ordinary playthrough accessibility.",
+  "scope": "Codex accessibility verified in 0.13.0. Registered chapter graphs carry preceding ending facts. Native source hashes identify rendered page catalogues; one ten-battle route has separate native evidence.",
   "counting_method": "Distinct body paragraphs; Chinese Han characters only; excludes punctuation, summaries, headings, UI, plans and prompts.",
   "entries": 18,
   "paragraphs": 52,
@@ -24,7 +24,7 @@
       "longest_route_characters": 4197,
       "nodes": 20,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.26.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. One later ten-battle route has separate native evidence."
     },
     {
       "id": "chapter_02",
@@ -38,7 +38,7 @@
       "longest_route_characters": 3559,
       "nodes": 15,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.26.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. One later ten-battle route has separate native evidence."
     },
     {
       "id": "chapter_03",
@@ -52,7 +52,7 @@
       "longest_route_characters": 4851,
       "nodes": 17,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.26.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. One later ten-battle route has separate native evidence."
     },
     {
       "id": "chapter_04",
@@ -66,7 +66,7 @@
       "longest_route_characters": 5258,
       "nodes": 17,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.26.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. One later ten-battle route has separate native evidence."
     },
     {
       "id": "chapter_05",
@@ -80,7 +80,7 @@
       "longest_route_characters": 5839,
       "nodes": 16,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.26.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. One later ten-battle route has separate native evidence."
     },
     {
       "id": "chapter_06",
@@ -94,7 +94,7 @@
       "longest_route_characters": 6048,
       "nodes": 16,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.26.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. One later ten-battle route has separate native evidence."
     },
     {
       "id": "chapter_07",
@@ -108,7 +108,7 @@
       "longest_route_characters": 7181,
       "nodes": 14,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.26.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. One later ten-battle route has separate native evidence."
     },
     {
       "id": "chapter_08",
@@ -122,13 +122,27 @@
       "longest_route_characters": 7144,
       "nodes": 16,
       "native_rendered_source_matches": true,
-      "status": "Native page rendering checked in 0.26.0-dev; chapter access uses victory fixtures. Normal-difficulty playthrough still pending."
+      "status": "Native page rendering checked in 0.26.0-dev; fixture victories provide all-page access. One later ten-battle route has separate native evidence."
+    },
+    {
+      "id": "chapter_09",
+      "body_paragraphs": 158,
+      "all_string_entries": 162,
+      "authored_unique_characters": 8749,
+      "graph_reachable_unique_characters": 8749,
+      "route_count": 147456,
+      "shortest_route_characters": 6892,
+      "incoming_fact_combinations": 49152,
+      "longest_route_characters": 6994,
+      "nodes": 14,
+      "native_rendered_source_matches": true,
+      "status": "Every conditional page rendered in Godot. A ten-battle route reached this chapter; other battle paths and human play remain unchecked."
     }
   ],
-  "authored_total_characters": 60703,
-  "native_rendered_chapter_characters": 55145,
+  "authored_total_characters": 69452,
+  "native_rendered_chapter_characters": 63894,
   "pending_ui_verification_characters": 0,
-  "pending_playthrough_verification_characters": 55145,
-  "limitations": "Exact-repeat audit only. Chapter paths assume battle victories and are not normal-difficulty playthroughs. Headings, choice prompts and option labels are excluded. Candidate chapter prose is not added to the verified delivery total until native access and ordinary playthrough checks pass; editorial quality and balance need separate review.",
+  "pending_playthrough_verification_characters": 63894,
+  "limitations": "Exact-repeat audit only. Graph enumeration assumes battle victories; it does not prove every complete route can win. One fixed ten-battle route has native win evidence, using declared diagnostic player policies in three encounters. Headings, choice prompts and option labels are excluded. Reaching 100,000 characters along a single playable route, human editorial review and balance remain separate requirements.",
   "errors": []
 }

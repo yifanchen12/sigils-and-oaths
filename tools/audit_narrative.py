@@ -14,7 +14,12 @@ def chapter_audit(ids, text_seen, errors):
     index = json.loads((ROOT / "data/campaign.json").read_text(encoding="utf-8"))
     evidence_path = ROOT / "docs/narrative-native-ui.json"
     evidence = json.loads(evidence_path.read_text(encoding="utf-8")) if evidence_path.exists() else {}
-    rendered_sources = evidence.get("chapter_sha256", {}) if evidence.get("passed") is True else {}
+    rendered_sources = evidence.get("chapter_sha256", {}).copy() if evidence.get("passed") is True else {}
+    ninth_evidence_path = ROOT / "docs/narrative-native-ui-v033.json"
+    if ninth_evidence_path.exists():
+        ninth_evidence = json.loads(ninth_evidence_path.read_text(encoding="utf-8"))
+        if ninth_evidence.get("passed") is True:
+            rendered_sources.update(ninth_evidence.get("chapter_sha256", {}))
     reports = []
     previous_endings = [{}]
     for entry in index["chapters"]:
@@ -94,7 +99,7 @@ def chapter_audit(ids, text_seen, errors):
             "incoming_fact_combinations": len(incoming),
             "longest_route_characters": max(routes), "nodes": len(nodes),
             "native_rendered_source_matches": native_rendered,
-            "status": f"Native page rendering checked in {evidence.get('milestone', 'unknown')}; chapter access uses victory fixtures. Normal-difficulty playthrough still pending." if native_rendered else "Source differs from native rendering evidence or has not been rendered; native UI and ordinary playthrough checks pending.",
+            "status": "Every conditional page rendered in Godot. A ten-battle route reached this chapter; other battle paths and human play remain unchecked." if native_rendered and entry["id"] == "chapter_09" else (f"Native page rendering checked in {evidence.get('milestone', 'unknown')}; fixture victories provide all-page access. One later ten-battle route has separate native evidence." if native_rendered else "Source differs from native rendering evidence or has not been rendered; native UI check pending."),
         })
     return reports
 
@@ -141,7 +146,7 @@ def audit():
     candidate = sum(chapter["graph_reachable_unique_characters"] for chapter in chapters)
     rendered = sum(chapter["graph_reachable_unique_characters"] for chapter in chapters if chapter["native_rendered_source_matches"])
     return {
-        "scope": "Codex accessibility verified in 0.13.0. Registered chapters carry actual prior endings. Native source hashes identify rendered pages; fixture victories do not establish ordinary playthrough accessibility.",
+        "scope": "Codex accessibility verified in 0.13.0. Registered chapter graphs carry preceding ending facts. Native source hashes identify rendered page catalogues; one ten-battle route has separate native evidence.",
         "counting_method": "Distinct body paragraphs; Chinese Han characters only; excludes punctuation, summaries, headings, UI, plans and prompts.",
         "entries": len(entries), "paragraphs": paragraphs,
         "unique_chinese_characters": count, "by_category": by_category,
@@ -151,7 +156,7 @@ def audit():
         "native_rendered_chapter_characters": rendered,
         "pending_ui_verification_characters": candidate - rendered,
         "pending_playthrough_verification_characters": candidate,
-        "limitations": "Exact-repeat audit only. Chapter paths assume battle victories and are not normal-difficulty playthroughs. Headings, choice prompts and option labels are excluded. Candidate chapter prose is not added to the verified delivery total until native access and ordinary playthrough checks pass; editorial quality and balance need separate review.",
+        "limitations": "Exact-repeat audit only. Graph enumeration assumes battle victories; it does not prove every complete route can win. One fixed ten-battle route has native win evidence, using declared diagnostic player policies in three encounters. Headings, choice prompts and option labels are excluded. Reaching 100,000 characters along a single playable route, human editorial review and balance remain separate requirements.",
         "errors": errors,
     }
 

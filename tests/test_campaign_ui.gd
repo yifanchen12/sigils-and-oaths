@@ -148,7 +148,7 @@ func run() -> void:
 		check((game.battle.objective.get("cells") == [[4, 4], [7, 5]] and game.battle.objective.round_limit == 12) if plan == "isolate" else game.battle.objective.is_empty(), "native route objective " + plan)
 		await capture("v025-" + plan + "-opening")
 	await restore_page("chapter_08.end")
-	check(find_button(view.actions, "进入") == null, "unwritten ninth chapter has no native entry button")
+	check(find_button(view.actions, "进入") != null, "ninth chapter is offered after eighth ending")
 	await restore_page("c07.arrival.01")
 	await capture("v024-eaststreet")
 	await restore_page("c07.father.16")
