@@ -164,6 +164,17 @@
       "playthroughValidated": false,
       "wordCount": 6885,
       "wordCountPass": false
+    },
+    {
+      "id": "chapter_16",
+      "title": "桥上空桶",
+      "status": "draft_pending_reader_feedback_and_complete_story",
+      "nativeValidated": false,
+      "revision": "0.40.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 2456,
+      "wordCountPass": false
     }
   ]
 }

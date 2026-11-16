@@ -1897,6 +1897,22 @@
       "validation": "docs/narrative/chapter-14-review.md"
     },
     {
+      "id": "battlefield_eastbridge",
+      "path": "assets/art/battlefields/eastbridge-v2.png",
+      "source_filename": "exec-6835b15e-4a93-4a58-994b-21783107851d.png",
+      "reference_path": "assets/art/battlefields/spillway-v2.png",
+      "rule_reference": "data/maps.tres / eastbridge.rows",
+      "prompt_file": "assets/art/battlefields/eastbridge-source.md",
+      "size": [1456, 1092],
+      "mode": "RGB",
+      "sha256": "2b635bbaf263d981fc15187b39450d0652a009e785549d300820a8db9abb7402",
+      "source_bytes_preserved": true,
+      "role": "East bridge convoy battlefield, sixteen by twelve cells with two stone crossings.",
+      "processing": "Original PNG copied intact; Godot overlays rule grid, units and effects.",
+      "status": "source visually reviewed; native board check pending",
+      "validation": "tests/test_chapter_sixteen.gd"
+    },
+    {
       "id": "span_kit",
       "path": "assets/art/expansion/span-kit-v1.png",
       "source_filename": "exec-ee9c4092-be46-4992-b24a-f0e15df15481.png",

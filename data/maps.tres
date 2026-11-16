@@ -35,6 +35,11 @@ maps = Array[Dictionary]([{
 "rows": ["mm...rrrrrr...mm", "mm..trrrrrrt..mm", "....frrrrrrf....", "...rrrrrrrrrr...", "wwwbwwwwwwwwbwww", "wwwbwwwwwwwwbwww", "...rr..rr..rr...", "...rr..rr..rr...", "...frrrrrrrrf...", "...frrrrrrrrf...", ".....rrrrrr.....", "......rrrr......"],
 "spawns": [Vector2i(7, 11), Vector2i(8, 0)], "ruins": []
 }, {
+"id": "eastbridge", "name": "东桥水车道", "subtitle": "双桥争路 · 护送水车", "theme": "river", "selectable": false, "campaign_only": true,
+"description": "十六列十二行的城东水车道。两道石桥连通南岸桶车集结地与北岸检查路；中央河段不可徒步。左右桥面能分兵，但北岸护运队据守栅门。",
+"rows": ["mm....rrrr....mm", "m..t..rrrr..t..m", "...rrrrrrrrrr...", "...rrrrrrrrrr...", "wwwbbwwwwwbbwwww", "wwwbbwwwwwbbwwww", "...rr....rr.....", "...rr....rr.....", ".f.rr....rr.f...", "...rrrrrrrrrr...", "...rrrrrrrrrr...", "......rrrr......"],
+"spawns": [Vector2i(7, 11), Vector2i(8, 0)], "ruins": []
+}, {
 "id": "ridgepass", "name": "断脊隘口", "subtitle": "隘口卡位 · 分兵绕后", "theme": "forest",
 "description": "两道断脊山带分割推进路线；中场开阔地连接隘口，分兵、击退和前线增援可以改变通路归属。",
 "rows": ["...f..r.....", ".rrr.hrr.f..", ".rmm..fm.r..", "mm..m..m...m", "..r.rh..rr..", "..rr..hr.r..", "m...m..m..mm", "..r.mf..mmr.", "..f.rrh.rrr.", ".....r..f..."],

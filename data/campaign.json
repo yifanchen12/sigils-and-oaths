@@ -75,6 +75,11 @@
       "id": "chapter_15",
       "title": "第十五章 · 阀下水痕",
       "path": "res://data/narrative/chapters/chapter_15.json"
+    },
+    {
+      "id": "chapter_16",
+      "title": "第十六章 · 桥上空桶",
+      "path": "res://data/narrative/chapters/chapter_16.json"
     }
   ],
   "scenarios": {
@@ -406,6 +411,13 @@
       "map": "spillway", "hero": "grove", "enemy_class": "warden", "deck": "channel", "enemy_deck": "bastion", "seed": 14032,
       "enemy_name": "暗渠守闸长孟绫", "enemy_portrait": "terrain_fort", "bonus_card": "countercurrent_ward",
       "control": {"cells": [[5, 6], [10, 3]], "required": 2, "round_limit": 22}
+    },
+    "c16_bridge": {
+      "title": "东桥护车 · 解开封路",
+      "brief": "城东水车与北岸替件被押在南岸。护运队越过约定的查验线，扣住两座桥的北端。艾琳从南岸推进，借友军前线部署，控制桥头后击退护运队指挥官；受伤车夫已由米芮撤至战场外。",
+      "objective": "击败护运队指挥官，解除两桥封锁；己方指挥官倒下则败。桥面狭窄，枪兵援护与地格陷阱可保护推进路线。战胜只取得通行与查验机会，不能视为水塔验收。",
+      "map": "eastbridge", "hero": "warden", "enemy_class": "warden", "deck": "ambush", "enemy_deck": "bastion", "seed": 16031,
+      "enemy_name": "护运队长白祁", "enemy_portrait": "terrain_fort"
     }
   }
 }

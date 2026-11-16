@@ -1,0 +1,458 @@
+{
+  "version": 1,
+  "id": "chapter_16",
+  "title": "第十六章 · 桥上空桶",
+  "start": "queue",
+  "inherits": [
+    "route",
+    "witness_present",
+    "seal_copy",
+    "relief",
+    "public_ledger",
+    "priority",
+    "receipt_method",
+    "dispatch_receipts",
+    "clerk_safe",
+    "letter_reply",
+    "letter_delivered",
+    "pass_route",
+    "supply_route",
+    "mine_cargo",
+    "harbor_shelter",
+    "foundry_terms",
+    "crew_safe",
+    "harbor_pump",
+    "pump_route_known",
+    "water_plan",
+    "water_released",
+    "grove_mandate",
+    "charter_copy",
+    "evidence_council",
+    "court_access",
+    "father_trail",
+    "letter_company",
+    "camp_company",
+    "pressure_plan",
+    "sunspire_stable",
+    "governance_plan",
+    "tower_gate_secured",
+    "northbank_access",
+    "shaft_custody",
+    "night_watch",
+    "channel_secured",
+    "channel_order",
+    "repair_plan"
+  ],
+  "defaults": {
+    "route": "none",
+    "witness_present": false,
+    "seal_copy": false,
+    "relief": "none",
+    "public_ledger": false,
+    "priority": "none",
+    "receipt_method": "none",
+    "dispatch_receipts": false,
+    "clerk_safe": false,
+    "letter_reply": "none",
+    "letter_delivered": false,
+    "pass_route": "none",
+    "supply_route": "none",
+    "mine_cargo": false,
+    "harbor_shelter": "none",
+    "foundry_terms": "none",
+    "crew_safe": false,
+    "harbor_pump": false,
+    "pump_route_known": false,
+    "water_plan": "none",
+    "water_released": false,
+    "grove_mandate": "none",
+    "charter_copy": false,
+    "evidence_council": "none",
+    "court_access": false,
+    "father_trail": false,
+    "letter_company": "none",
+    "camp_company": "none",
+    "pressure_plan": "none",
+    "sunspire_stable": false,
+    "governance_plan": "none",
+    "tower_gate_secured": false,
+    "northbank_access": false,
+    "shaft_custody": "none",
+    "night_watch": "none",
+    "channel_secured": false,
+    "channel_order": "none",
+    "repair_plan": "none",
+    "escort_terms": "none",
+    "bridge_open": false
+  },
+  "speakers": {
+    "narrator": "旁白",
+    "warden": "艾琳",
+    "pyromancer": "维洛",
+    "grove": "赛菈",
+    "sword": "洛恩",
+    "spear": "芙蕾",
+    "cavalry": "莉希",
+    "archer": "希弥",
+    "mage": "伊瑟",
+    "healer": "米芮",
+    "clerk": "赫姆",
+    "qin": "秦婶",
+    "yubai": "余白",
+    "tangsui": "唐穗",
+    "foreman": "工班长",
+    "sang": "桑岚",
+    "ruan": "阮衡",
+    "chair": "轮值主持者",
+    "court_delegate": "议庭代表",
+    "forge_delegate": "赤曜勘料员",
+    "forest_delegate": "林社代表",
+    "porter": "旧担架手",
+    "gate_captain": "尹纾",
+    "luoming": "罗明",
+    "mengling": "守闸长孟绫",
+    "runner": "北岸信使",
+    "captain_north": "鲁苇",
+    "miller": "磨坊管事祁栎",
+    "cart_driver": "车夫阿起",
+    "apprentice": "学徒阿澄",
+    "baiqi": "护运队长白祁"
+  },
+  "nodes": {
+    "queue": {
+      "type": "dialogue",
+      "background": "scene_eaststreet",
+      "lines": [
+        {
+          "id": "c16.queue.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c16.queue.02",
+          "speaker": "cart_driver"
+        },
+        {
+          "id": "c16.queue.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c16.queue.04",
+          "speaker": "cart_driver"
+        },
+        {
+          "id": "c16.queue.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c16.queue.06",
+          "speaker": "healer"
+        },
+        {
+          "id": "c16.queue.07",
+          "speaker": "qin"
+        },
+        {
+          "id": "c16.queue.08",
+          "speaker": "warden"
+        },
+        {
+          "id": "c16.queue.09",
+          "speaker": "pyromancer",
+          "when": {
+            "repair_plan": "recast"
+          }
+        },
+        {
+          "id": "c16.queue.10",
+          "speaker": "pyromancer",
+          "when": {
+            "repair_plan": "sleeve"
+          }
+        },
+        {
+          "id": "c16.queue.11",
+          "speaker": "grove"
+        },
+        {
+          "id": "c16.queue.12",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "claim"
+    },
+    "claim": {
+      "type": "dialogue",
+      "background": "scene_eaststreet",
+      "lines": [
+        {
+          "id": "c16.claim.01",
+          "speaker": "baiqi"
+        },
+        {
+          "id": "c16.claim.02",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c16.claim.03",
+          "speaker": "baiqi"
+        },
+        {
+          "id": "c16.claim.04",
+          "speaker": "pyromancer",
+          "when": {
+            "foundry_terms": "sale"
+          }
+        },
+        {
+          "id": "c16.claim.05",
+          "speaker": "pyromancer",
+          "when": {
+            "foundry_terms": "lease"
+          }
+        },
+        {
+          "id": "c16.claim.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c16.claim.07",
+          "speaker": "spear"
+        },
+        {
+          "id": "c16.claim.08",
+          "speaker": "baiqi"
+        },
+        {
+          "id": "c16.claim.09",
+          "speaker": "warden"
+        },
+        {
+          "id": "c16.claim.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c16.claim.11",
+          "speaker": "baiqi"
+        },
+        {
+          "id": "c16.claim.12",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c16.claim.13",
+          "speaker": "warden"
+        }
+      ],
+      "next": "bridge_battle"
+    },
+    "bridge_battle": {
+      "type": "battle",
+      "background": "scene_eaststreet",
+      "scenario": "c16_bridge",
+      "win": "after",
+      "win_set": {
+        "bridge_open": true
+      }
+    },
+    "after": {
+      "type": "dialogue",
+      "background": "scene_eaststreet",
+      "lines": [
+        {
+          "id": "c16.after.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c16.after.02",
+          "speaker": "healer"
+        },
+        {
+          "id": "c16.after.03",
+          "speaker": "baiqi"
+        },
+        {
+          "id": "c16.after.04",
+          "speaker": "warden"
+        },
+        {
+          "id": "c16.after.05",
+          "speaker": "pyromancer",
+          "when": {
+            "foundry_terms": "lease"
+          }
+        },
+        {
+          "id": "c16.after.06",
+          "speaker": "pyromancer",
+          "when": {
+            "foundry_terms": "sale"
+          }
+        },
+        {
+          "id": "c16.after.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c16.after.08",
+          "speaker": "sang",
+          "when": {
+            "repair_plan": "recast"
+          }
+        },
+        {
+          "id": "c16.after.09",
+          "speaker": "sang",
+          "when": {
+            "repair_plan": "sleeve"
+          }
+        },
+        {
+          "id": "c16.after.10",
+          "speaker": "grove"
+        },
+        {
+          "id": "c16.after.11",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c16.after.12",
+          "speaker": "grove"
+        }
+      ],
+      "next": "escort_choice"
+    },
+    "escort_choice": {
+      "type": "choice",
+      "background": "scene_eaststreet",
+      "prompt": "c16.escort_choice.prompt",
+      "options": [
+        {
+          "id": "hearing",
+          "text": "c16.escort_choice.hearing",
+          "set": {
+            "escort_terms": "hearing"
+          },
+          "next": "hearing_after"
+        },
+        {
+          "id": "service",
+          "text": "c16.escort_choice.service",
+          "set": {
+            "escort_terms": "service"
+          },
+          "next": "service_after"
+        }
+      ]
+    },
+    "hearing_after": {
+      "type": "dialogue",
+      "background": "scene_eaststreet",
+      "lines": [
+        {
+          "id": "c16.hearing_after.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c16.hearing_after.02",
+          "speaker": "baiqi"
+        },
+        {
+          "id": "c16.hearing_after.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c16.hearing_after.04",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "hearing_end"
+    },
+    "service_after": {
+      "type": "dialogue",
+      "background": "scene_eaststreet",
+      "lines": [
+        {
+          "id": "c16.service_after.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c16.service_after.02",
+          "speaker": "baiqi"
+        },
+        {
+          "id": "c16.service_after.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c16.service_after.04",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "service_end"
+    },
+    "hearing_end": {
+      "type": "end",
+      "background": "scene_eaststreet",
+      "ending": "bridge_hearing",
+      "text": "c16.hearing_end"
+    },
+    "service_end": {
+      "type": "end",
+      "background": "scene_eaststreet",
+      "ending": "bridge_service",
+      "text": "c16.service_end"
+    }
+  },
+  "strings": {
+    "c16.queue.01": "东桥的两条水车道在日出前堵成了一条。空桶比满桶多，车夫们把桶倒扣在路边，免得等候的人听见水声就围上来。阿起的马仍套着车，辕木却被一根横绳拴在桥桩上。北岸的粮车也停了，车轮后有人把一小袋已磨的面抱在怀里，怕潮气从地上往上爬。",
+    "c16.queue.02": "昨晚说好的第二车不是没装，是过不来。那边说先验铜件，再验水，验完还要问这车算塔里的还是东街的。我说它是给人喝的，守桥的笑我不会写账。",
+    "c16.queue.03": "谁下的验车令？把原话给我。",
+    "c16.queue.04": "护运队长白祁。他的人把两边桥头都占了。我没敢冲，第一辆车的后轮已经被他们卸掉一颗销。",
+    "c16.queue.05": "米芮从车底钻出来，掌心托着那颗带泥的铁销。销不是断的，末端有新磨出的亮边。她把它放进艾琳手里，指了指阿起右脚踝上肿起的一圈。阿起说下车时踩空；她没有替他把这句话说成护运队伤人。",
+    "c16.queue.06": "人先坐下。你的脚今天不能踩车踏板。谁拔的销，等你看清再认；我不会让你带着伤去追那个人。",
+    "c16.queue.07": "城东巷口的第二排桶还在等。孩子们早上问我，是不是塔昨夜又坏了一次。我说塔本来就没修好，他们不信；他们只记得有人说了一个‘明天’。",
+    "c16.queue.08": "我昨天说的是复测，不是开塔。把今天的桶车从东桥送过去；修阀的车另列，不许用同一辆车在两张表上算两次。",
+    "c16.queue.09": "新坯报废，重铸要两日。铜料是城工班的新采购，不在我的旧炉坊保单里。白祁若说旧债能扣这车，让他拿着原保单来找我。",
+    "c16.queue.10": "短套的木样还在桑岚手上，替北岸做的那件也晚了一夜。我欠祁栎一车面，这是我认的；白祁若把水车一起扣住，那个缺口不能算在我账上。",
+    "c16.queue.11": "北岸那袋面是今早磨出的，昨晚没磨出的还在祁栎簿子里。别让桥上任何人把一袋面说成三村已经收齐。",
+    "c16.queue.12": "莉希从桥栏后回来，斗篷下摆被河雾浸湿。她没有再把马催上桥；桥北有人拿长枪横在石栏之间，另一人站在高处，弓弦还没上箭。她说守桥的不是昨夜孟绫的人，臂章上缝着承包社的旧黑线。",
+    "c16.claim.01": "维洛，先把人叫到桥上。我只扣带铜的车，不碰桶车。你们自己把两种车排在一起，还怪我看不清？",
+    "c16.claim.02": "你的人拔了阿起的车销。桶车排在南边，从你面前走不到铜料车。你是看不清，还是怕只扣一辆车，我还敢绕路？",
+    "c16.claim.03": "我手下三个人到今天还没拿齐钱。曲汀拿合同说，炉坊的货过桥先押一晚。你昨年把账分给别人，没分走我的兵要吃饭这件事。",
+    "c16.claim.04": "售出的炉线那一批欠饷我当场结清。你手里的保单若还写着那批人，便是曲汀拿旧纸骗你；回头给我看，我认得那些签名。",
+    "c16.claim.05": "租息那条路的欠饷只付了一半，剩下的确是我欠。但你守的是工坊货，不是城里的水车。把我的人扣下谈钱，别碰不认识你的人。",
+    "c16.claim.06": "白祁把卷起的保单往袖里塞，没回答维洛。他身后有人说今早曲汀没到，今夜营地又要买粮。桥南一个桶车夫听见‘扣’，把缰绳往回拉；另一辆车堵在他后面，马蹄踏上了湿滑的石沿。",
+    "c16.claim.07": "先松横绳，后面那辆马没地方退。你们要查铜，我把有铜的车单独推到空地。谁都别站在桥心谈价。",
+    "c16.claim.08": "你推过去，北边就有人接走。我拿什么去要钱？",
+    "c16.claim.09": "拿人证、保单和路口的车号。桥上的桶车不是你的抵押物。白祁，退到北端，让车夫先过。你的人若没拿到钱，我留下维洛和我的名字，不用他们的水作押。",
+    "c16.claim.10": "白祁看了一眼南岸排开的空桶，又看向身后的弓手。他没有抬手放行。弓弦在河雾里响了一声，箭钉进最前辆车的空木轮，离车夫的膝盖只有半掌。阿起本能地站起来，伤脚一落地便坐了回去。",
+    "c16.claim.11": "谁让你射的？放弓！",
+    "c16.claim.12": "弓手把箭囊掩到背后，没有松开第二支箭。白祁吼完，仍站在桥北没有让路。艾琳看出他此刻既怕手下散掉，也怕放了车后再没人替他们要钱；可这不能让箭从木轮上消失。",
+    "c16.claim.13": "米芮带车夫退到石墙后。芙蕾守左桥，莉希从右桥绕，所有人只击退持械者。白祁，你可以现在下令收兵；再迟，桥上的位置我会自己拿。",
+    "c16.after.01": "两座桥都安静下来时，车辕仍停在原处。白祁交出佩刀，先去看被钉穿的木轮；弓手已被芙蕾押到桥南，不同他站在一起。艾琳没有立即放行所有车。莉希先牵一匹空马走过右桥，等北端石板上的水流尽，才让第一辆水车跟上。",
+    "c16.after.02": "阿起的脚没断，今天别驾车。刚才落水的那个护卫也要换干衣服，我给他留了毯子；受伤不替他免掉拔销这件事。",
+    "c16.after.03": "射轮的命令不是我下的。拔销我知道。我以为只拖你们一刻钟，等曲汀来就有人给我们写个数。现在人没来，轮也裂了。",
+    "c16.after.04": "你知道销被拔，就要对这段路负责。弓手单独问，指使与否由见证人核；你的人要钱，也得把谁欠、欠多少写清。我的军仓不会替曲汀的合同消账。",
+    "c16.after.05": "我欠的那半数今天拿给你看，按人头付，不经曲汀的手。你把合同原件带去城里核；若有人在上面添了‘扣水车’，我不会替那笔字背名。",
+    "c16.after.06": "我把付清的签收带来。若你还有新欠的工钱，找写那笔工钱的人；别让已经拿过钱的名字又替曲汀堵一次桥。",
+    "c16.after.07": "东街第一辆桶车过桥时，秦婶没叫人鼓掌。她和两个孩子一起数桶，到了巷口又重数了一遍。塔顶没有亮新的灯，孩子问是不是以后都要靠车送；她说今天要靠车，明天的事得等修阀的人真把手从阀上拿开。",
+    "c16.after.08": "重铸件还在炉里，两日的试件都得重新打。桥开了，只能说明煤和铜能进城，不代表阀已经能承高压。",
+    "c16.after.09": "短套下午可以装木样，低压复试若漏，马上拆；北岸的替件不能拿这次过桥当作已经送达。",
+    "c16.after.10": "三村的水数要在明早同刻再量。城里今天多到一车水，不等于上游今天少的那一车能从账上抹掉。我回去说，白祁的人也听得见。",
+    "c16.after.11": "白祁的三个护卫坐在桥边，把欠饷按各自记得的月份写在木板上。一个只记得去年雨季，一个说有一笔已经由别人代领。维洛想替他们把日期补齐，被赛菈按住手腕；这回他没有抢笔。",
+    "c16.after.12": "让他们自己写。你可以把你付过的拿来对，但别替每个人记住他什么时候饿过。",
+    "c16.escort_choice.prompt": "桥已通、弓手另行看押。白祁其余护卫怎样处理今夜的水车班？",
+    "c16.escort_choice.hearing": "暂不派回桥上；由城里登记欠饷与拔销责任，另找车夫送完今夜的水。",
+    "c16.escort_choice.service": "允许自愿解除武装者在车夫带领下搬桶，按实到车次付工钱；责任调查照办。",
+    "c16.hearing_after.01": "艾琳把白祁与弓手分开交给城中见证席。她在守桥簿上写明拔销、射轮与扣车三件事，故意空出‘主使’一栏。白祁看见空栏，先像松了一口气，随后又盯着它看了很久。",
+    "c16.hearing_after.02": "我没有让那支箭射出去。但那颗销，我确实看见他拔了。等曲汀来，不会比等你们这张簿更快。",
+    "c16.hearing_after.03": "今晚不让你的人再守桥。欠的钱我派人对，错的人也要找。你若有原保单，明早带来，不要等别人替你背着它。",
+    "c16.hearing_after.04": "临时接班的车夫从北街赶来，比平日少一人，东街最后一辆水车晚到了半个时辰。秦婶照实把到门时刻写在墙上，没有把这一夜的迟到归给一个已经站不在桥上的护卫。",
+    "c16.service_after.01": "三名护卫只留下一个愿意搬桶。他卸下刀，先被车夫教了一遍怎样把满桶固定在木架上。白祁站在见证席外，不能带队，也不能替那人领工钱。艾琳在簿上写下他的姓名和每趟到门时刻。",
+    "c16.service_after.02": "他以前替我守过三个雨夜。今天若拿得到钱，让他自己收，别再过我的手。",
+    "c16.service_after.03": "按车次给，不能拿今天的工抵过去欠的。你那份旧合同明早还要核，拔销的责任也没因这一趟桶车消掉。",
+    "c16.service_after.04": "东街最后一车比平日早到一刻。秦婶付了搬桶工钱，却没有请那名护卫进屋喝酒；他把空桶搬回车上，走过先前那只钉穿的木轮时绕开了它。没人要求秦婶把这当作和解。",
+    "c16.hearing_end": "东桥已通，护运队退出守桥；拔销、射轮与欠饷分项调查。城东继续送桶，水塔未高压验收。第十六章结束。",
+    "c16.service_end": "东桥已通，一名解除武装的护卫自愿搬桶并按车次领钱；旧欠饷与拔销、射轮责任继续调查。水塔未高压验收。第十六章结束。"
+  }
+}

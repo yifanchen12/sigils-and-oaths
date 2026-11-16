@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "milestone": "0.40.0-dev",
+  "date": "2026-11-16",
+  "passed": true,
+  "chapter_sha256": {
+    "chapter_16": "b4dd7b874b8d0dafb38d64549782c2516790bbadfd26e9e746cb352eef0175fa"
+  },
+  "catalogue_test": "tests/test_chapter_sixteen_catalog_ui.gd",
+  "catalogue_checks": 474,
+  "catalogue_body_pages": 47,
+  "catalogue_scope": "All 45 dialogue paragraphs and two ending pages rendered in native Godot StoryView, including both foundry-contract and repair-plan conditional texts. Small 1008x700 layout and the opening screenshot were checked. Story catalogue supplies a structural battle win to reach postbattle pages.",
+  "continuation_test": "tests/test_chapter_sixteen.gd",
+  "continuation_checks": 576,
+  "continuation_scope": "Two previously earned chapter-fifteen endings entered the sixteenth chapter. Four route/escort-choice continuations checked inherited facts, battle configuration, save and reload, and distinct chapter endings. The battle win in this test is structural; legal-action wins are recorded separately.",
+  "earned_test": "tests/test_chapter_sixteen_earned.gd",
+  "earned_checks": 1038,
+  "earned_games": 2,
+  "earned_scope": "Two previously earned chapter-fifteen endings each won the new battle with 472 legal timed actions against production AI, reloaded a midbattle save and reached a different chapter ending. These are specific AI policy diagnostics, not a human playtest or a continuous sixteen-chapter win.",
+  "map_test": "tests/test_eastbridge_ui.gd",
+  "map_checks": 7,
+  "map_scope": "Original 16x12 East Bridge painting rendered at 1440x1000 and 1008x700; three rule-cell pointer mappings and local screenshots checked.",
+  "limitations": "Human prose review and balance are pending; all-branch narrative count is distinct from a single route."
+}

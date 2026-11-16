@@ -5,17 +5,21 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.39.0-dev" src="https://img.shields.io/badge/version-0.39.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.40.0-dev" src="https://img.shields.io/badge/version-0.40.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone, concealed card play and counterplay from Duel Links, and terrain, unit counters and commanders from Langrisser. Characters, card effects, illustrations and map layouts are made for this project, with no assets from those games. Current source is **0.39.0-dev**, with fifteen chapters, branching encounters and cross-chapter saves. One fixed New Campaign model route won eleven consecutive battles and reached chapter eleven. Three separate earned chapter-eleven saves won the depot battle in chapter twelve and continued into chapter thirteen. Two chapter-thirteen ending saves then won the chapter-fourteen channel battle and each continued through chapter fifteen. These are separate verification routes. The story conclusion, human balance and the 100,000-character target on a single playable route remain unfinished. The interface is Chinese; this README does not imply an English localization.
+The design studies card resource pacing from Hearthstone, concealed card play and counterplay from Duel Links, and terrain, unit counters and commanders from Langrisser. Characters, card effects, illustrations and map layouts are made for this project, with no assets from those games. Current source is **0.40.0-dev**, with sixteen chapters, branching encounters and cross-chapter saves. One fixed New Campaign model route won eleven consecutive battles and reached chapter eleven. Separate earned saves won chapter twelve; two later earned routes won chapter fourteen, completed chapter fifteen and then won chapter sixteen. These are separate verification routes. The story conclusion, human balance and the 100,000-character target on a single playable route remain unfinished. The interface is Chinese; this README does not imply an English localization.
 
 ## In-game screenshots
 
-The new mill-morning scene is from 0.39.0-dev. The 16×12 spillway battlefield is from 0.38.0-dev; the north-bank depot is from 0.36.0-dev. Later captures are from earlier milestones.
+The East Bridge battlefield and chapter-sixteen story view are from 0.40.0-dev. Later captures are from earlier milestones.
+
+![Original chapter-sixteen East Bridge battlefield](docs/screenshots/v040-eastbridge-map.png)
+
+![Chapter-sixteen water-cart scene at a small window size](docs/screenshots/v040-bridge-queue-small.png)
 
 ![Original chapter-fifteen mill-morning StoryView](docs/screenshots/v039-mill-morning-small.png)
 
@@ -56,10 +60,18 @@ The new mill-morning scene is from 0.39.0-dev. The 16×12 spillway battlefield i
 | Set traps and counter them | Movement snares, mines, attack wards and spell wards are paid for from hand; each side has two trap slots, enemies see only the count, and a search spell can reveal and remove traps |
 | Cover different unit roles | Infantry beats spears, spears beat cavalry, cavalry beats infantry; archers, mages and healers have distinct ranges and roles |
 | Use active unit skills | Six one-mana abilities: shielding, interception, extra movement, a precise shot, fire damage and healing; once per unit per turn |
-| Contest useful ground | Six selectable 12×10 maps, a 14×12 gate and two 16×12 campaign maps; build a local bridge across water, use forests, hills and forts for defense |
+| Contest useful ground | Six selectable 12×10 maps, a 14×12 gate and three 16×12 campaign maps; build a local bridge across water, use forests, hills and forts for defense |
 | Lead with a commander | Ailin protects the front, Velo strengthens fire, and Sera supports healing and woodland recovery; each has active and passive abilities |
 | Change the next exchange | Rain, fog, sun and snow affect both sides; replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
+
+## 0.40: Empty buckets on the bridge
+
+Chapter sixteen follows the recast or removable-sleeve decision. Water carts and repair supplies are stopped at East Bridge under an old escort contract. A new original 16×12 battlefield hosts the convoy fight. Victory clears passage, while responsibility for a removed wheel pin, an arrow and unpaid wages remains subject to separate inquiry. After the battle, dismiss the armed escort from bridge duty or allow one unarmed volunteer to carry buckets for pay. Neither outcome certifies the water tower; carts continue on both routes.
+
+Two previously earned chapter-fifteen endings each won the encounter through 472 legal timed actions and a midbattle save/reload, reaching different endings. The earned matches passed 1,038 checks, chapter continuation 576, native story pages 474, and map UI 7. [Chapter-sixteen review](docs/narrative/chapter-16-review.md) · [match results](docs/chapter16-earned-results.json). Sixteen chapters plus the archive contain **102,769 distinct reachable Han characters across all branches**. Summing the shortest route of each chapter gives about 78,098; a complete ending and a 100,000-character single route remain unfinished.
+
+The Windows x64 development preview is being checked. A public download and checksum will be added here after release verification; a directly launchable EXE and PCK are kept locally.
 
 ## 0.39: Water beneath the valve
 

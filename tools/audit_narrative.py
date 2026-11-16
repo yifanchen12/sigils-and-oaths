@@ -15,14 +15,25 @@ def chapter_audit(ids, text_seen, errors):
     evidence_path = ROOT / "docs/narrative-native-ui.json"
     evidence = json.loads(evidence_path.read_text(encoding="utf-8")) if evidence_path.exists() else {}
     rendered_sources = evidence.get("chapter_sha256", {}).copy() if evidence.get("passed") is True else {}
-    for milestone in ("v033", "v034", "v035", "v036", "v037", "v038", "v039"):
+    for milestone in ("v033", "v034", "v035", "v036", "v037", "v038", "v039", "v040"):
         later_path = ROOT / f"docs/narrative-native-ui-{milestone}.json"
         if later_path.exists():
             later = json.loads(later_path.read_text(encoding="utf-8"))
             if later.get("passed") is True:
                 rendered_sources.update(later.get("chapter_sha256", {}))
     reports = []
-    previous_endings = [{}]
+    # Keep multiplicity while merging histories that no remaining chapter can
+    # distinguish. A late chapter otherwise expands millions of equivalent
+    # earlier combinations before checking its handful of conditional facts.
+    future_conditions = []
+    for entry in index["chapters"]:
+        source = json.loads((ROOT / entry["path"].removeprefix("res://")).read_text(encoding="utf-8"))
+        future_conditions.append({key for node in source["nodes"].values()
+                                  for row in node.get("lines", []) + node.get("options", [])
+                                  for key in row.get("when", {})})
+    for position in range(len(future_conditions) - 2, -1, -1):
+        future_conditions[position] |= future_conditions[position + 1]
+    previous_endings = [({}, 1)]
     for chapter_index, entry in enumerate(index["chapters"]):
         path = (ROOT / entry["path"].removeprefix("res://")).resolve()
         if not path.is_relative_to(ROOT):
@@ -48,13 +59,11 @@ def chapter_audit(ids, text_seen, errors):
                 weights[line_id] = len(normalized)
         routes, reached, read_lines = [], set(), set()
         endings = []
-        final_chapter = chapter_index + 1 == len(index["chapters"])
-        current_weight = 1
 
         def matches(when, flags):
             return all(flags[key] == value for key, value in when.items())
 
-        def walk(node_id, flags, lines, chain):
+        def walk(node_id, flags, lines, chain, weight):
             if node_id in chain:
                 raise ValueError(f"Chapter cycle: {node_id}")
             reached.add(node_id)
@@ -64,49 +73,47 @@ def chapter_audit(ids, text_seen, errors):
             if kind == "dialogue":
                 visible = {line["id"] for line in node["lines"] if matches(line.get("when", {}), flags)}
                 read_lines.update(visible)
-                walk(node["next"], flags, lines | visible, chain)
+                walk(node["next"], flags, lines | visible, chain, weight)
             elif kind == "choice":
                 available = [o for o in node["options"] if matches(o.get("when", {}), flags)]
                 if not available:
                     raise ValueError(f"No available choice: {node_id}")
                 for option in available:
-                    walk(option["next"], flags | option.get("set", {}), lines, chain)
+                    walk(option["next"], flags | option.get("set", {}), lines, chain, weight)
             elif kind == "battle":
-                walk(node["win"], flags | node.get("win_set", {}), lines, chain)
+                walk(node["win"], flags | node.get("win_set", {}), lines, chain, weight)
             elif kind == "end":
                 read_lines.add(node["text"])
-                routes.append((sum(weights[line] for line in lines | {node["text"]}), current_weight))
+                routes.append((sum(weights[line] for line in lines | {node["text"]}), weight))
                 if chapter_index + 1 < len(index["chapters"]):
-                    endings.append(flags.copy())
+                    endings.append((flags.copy(), weight))
             else:
                 raise ValueError(f"Unknown chapter node: {node_id}")
 
         incoming = set()
-        conditional_keys = {key for node in nodes.values() for row in node.get("lines", []) + node.get("options", []) for key in row.get("when", {})}
-        final_groups = {}
-        for previous in previous_endings:
+        relevant_keys = future_conditions[chapter_index]
+        groups = {}
+        for previous, multiplicity in previous_endings:
             inherited = {}
             for key in graph.get("inherits", []):
                 if key not in previous or type(previous[key]) is not type(graph["defaults"][key]):
                     raise ValueError(f"Missing or mistyped inherited fact: {entry['id']} / {key}")
                 inherited[key] = previous[key]
-            incoming.add(json.dumps(inherited, sort_keys=True))
-            if final_chapter:
-                relevant = {key: inherited[key] for key in conditional_keys if key in inherited}
-                signature = json.dumps(relevant, sort_keys=True)
-                if signature not in final_groups: final_groups[signature] = [inherited, 0]
-                final_groups[signature][1] += 1
-            else:
-                walk(graph["start"], graph["defaults"] | inherited, set(), set())
-        if final_chapter:
-            for inherited, current_weight in final_groups.values():
-                walk(graph["start"], graph["defaults"] | inherited, set(), set())
+            relevant = {key: inherited[key] for key in relevant_keys if key in inherited}
+            signature = json.dumps(relevant, sort_keys=True)
+            incoming.add(signature)
+            if signature not in groups: groups[signature] = [inherited, 0]
+            groups[signature][1] += multiplicity
+        for inherited, multiplicity in groups.values():
+            walk(graph["start"], graph["defaults"] | inherited, set(), set(), multiplicity)
         previous_endings = endings
         if read_lines != body:
             errors.append(f"Unreachable chapter body: {sorted(body - read_lines)}")
         if reached != nodes.keys():
             errors.append(f"Unreachable chapter nodes: {sorted(nodes.keys() - reached)}")
-        if native_rendered and entry["id"] == "chapter_15":
+        if native_rendered and entry["id"] == "chapter_16":
+            status = "All authored pages rendered in native Godot, and two earned prior endings entered this chapter. The new battle has a separate legal-action AI diagnostic; full sixteen-chapter continuous play and human review remain open."
+        elif native_rendered and entry["id"] == "chapter_15":
             status = "All authored pages rendered in native Godot. Twelve structural inherited outcomes and two separately earned channel-win endings read and saved both repair choices. No new battle, full campaign route, human editorial acceptance or balance proof."
         elif native_rendered and entry["id"] == "chapter_14":
             status = "All authored pages rendered in native Godot. Two separate earned night-watch saves won the channel battle through legal actions and resumed after a midbattle reload. Human difficulty and broad branch win rates remain unchecked."
@@ -179,8 +186,8 @@ def audit():
     candidate = sum(chapter["graph_reachable_unique_characters"] for chapter in chapters)
     rendered = sum(chapter["graph_reachable_unique_characters"] for chapter in chapters if chapter["native_rendered_source_matches"])
     return {
-        "scope": "Codex accessibility verified in 0.13.0. Registered chapter graphs carry preceding ending facts. Native source hashes identify rendered page catalogues; a continuous eleven-battle route, three earned depot continuations, six chapter-thirteen readings, two earned channel victories and their separate chapter-fifteen readings have evidence.",
-        "counting_method": "Distinct body paragraphs; Chinese Han characters only; excludes punctuation, summaries, headings, UI, plans and prompts.",
+        "scope": "Codex accessibility verified in 0.13.0. Registered chapter graphs carry preceding ending facts. Native source hashes identify rendered page catalogues; a continuous eleven-battle route, three earned depot continuations, two earned channel victories, and two earned East Bridge victories have evidence.",
+        "counting_method": "Distinct body paragraphs; Chinese Han characters only; excludes punctuation, summaries, headings, UI, plans and prompts. Route counts preserve multiplicity when histories share every conditional fact used by the remaining chapters; incoming_fact_combinations counts those relevant conditional signatures, not all raw inherited flag combinations.",
         "entries": len(entries), "paragraphs": paragraphs,
         "unique_chinese_characters": count, "by_category": by_category,
         "release_target": 100000, "remaining_to_target": max(0, 100000 - count - candidate),
@@ -189,7 +196,7 @@ def audit():
         "native_rendered_chapter_characters": rendered,
         "pending_ui_verification_characters": candidate - rendered,
         "pending_playthrough_verification_characters": candidate,
-        "limitations": "Exact-repeat audit only. Graph enumeration assumes battle victories; it does not prove every complete route can win. One fixed eleven-battle route has native win evidence; three earned chapter-eleven saves separately won chapter twelve and entered chapter thirteen; two earned chapter-thirteen endings separately won chapter fourteen using declared diagnostic policies, then those two endings separately entered chapter fifteen. This is not one continuous fifteen-chapter proof. Headings, choice prompts and option labels are excluded. Reaching 100,000 characters along a single playable route, human editorial review and balance remain separate requirements.",
+        "limitations": "Exact-repeat audit only. Graph enumeration assumes battle victories; it does not prove every complete route can win. One fixed eleven-battle route has native win evidence; later earned saves separately won chapter twelve, chapter fourteen and chapter sixteen. This is not one continuous sixteen-chapter proof. Headings, choice prompts and option labels are excluded. Reaching 100,000 characters along a single playable route, a complete ending, human editorial review and balance remain separate requirements.",
         "errors": errors,
     }
 
