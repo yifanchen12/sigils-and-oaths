@@ -72,7 +72,7 @@
 
 两份此前实际赢下暗渠战的第十五章结局存档，各以472次合法行动打赢东桥战，并在战中读档后到达不同终页；共1038项检查零失败。剧情继承576项、原生正文页面474项、地图呈现7项检查零失败。[第十六章编辑与验收](docs/narrative/chapter-16-review.md) · [两局结果](docs/chapter16-earned-results.json)。十六章加档案合计**102,769个去重可达正文汉字**；逐章最短路线相加约78,098字，单路线十万字和完整结局仍未完成。
 
-Windows x64 开发预览包正在核对，完成后将在本节填入公开下载及SHA-256；本机保留可直接双击的EXE与PCK。
+[下载0.40 Windows x64开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.40.0-dev)。匿名公开下载224,590,114字节，SHA-256 `048ab98369bf5ea839a7b5fdd90c28ff74dd649bbb8fedcf91b8170cf54762cf`，与源码提交`f048460`的本机构建一致；ZIP CRC、304项PCK资源与独立程序启动已核对。解压后将EXE与PCK留在同一目录，双击EXE启动。本机也保留完整目录供验收。
 
 ## 0.39：阀下水痕
 
@@ -316,7 +316,7 @@ git clone https://github.com/yifanchen12/sigils-and-oaths.git
 cd sigils-and-oaths
 ```
 
-只想试玩可下载 [Windows x64 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.31.0-dev)，解压后运行 `SigilsAndOaths.exe`。从源码运行则按以下步骤：
+只想试玩可下载 [最新 Windows x64 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.40.0-dev)，解压后运行 `SigilsAndOaths.exe`。从源码运行则按以下步骤：
 
 1. 从 [Godot 官方下载页](https://godotengine.org/download/windows/)获取引擎；当前工程验证版本及官方归档地址见 [`docs/engine-download.json`](docs/engine-download.json)。
 2. 在 Godot 项目管理器中导入根目录的 `project.godot`，等待资源导入完成。

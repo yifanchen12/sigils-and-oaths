@@ -71,7 +71,7 @@ Chapter sixteen follows the recast or removable-sleeve decision. Water carts and
 
 Two previously earned chapter-fifteen endings each won the encounter through 472 legal timed actions and a midbattle save/reload, reaching different endings. The earned matches passed 1,038 checks, chapter continuation 576, native story pages 474, and map UI 7. [Chapter-sixteen review](docs/narrative/chapter-16-review.md) · [match results](docs/chapter16-earned-results.json). Sixteen chapters plus the archive contain **102,769 distinct reachable Han characters across all branches**. Summing the shortest route of each chapter gives about 78,098; a complete ending and a 100,000-character single route remain unfinished.
 
-The Windows x64 development preview is being checked. A public download and checksum will be added here after release verification; a directly launchable EXE and PCK are kept locally.
+[Download the 0.40 Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.40.0-dev). The anonymous public download is 224,590,114 bytes, SHA-256 `048ab98369bf5ea839a7b5fdd90c28ff74dd649bbb8fedcf91b8170cf54762cf`, matching the local build from source commit `f048460`. ZIP CRC, 304 PCK entries and standalone startup passed. Keep the EXE and PCK in the same extracted directory; a directly launchable copy is also kept locally.
 
 ## 0.39: Water beneath the valve
 
@@ -422,7 +422,7 @@ UI, forecast, map-art and skill-window checks require a graphical window. Earlie
 
 ## Current limits and artwork
 
-- Single-player development build with a [Windows x64 preview ZIP](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.31.0-dev); no multiplayer or touch adaptation. macOS and Linux have not been validated.
+- Single-player development build with a [Windows x64 preview ZIP](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.40.0-dev); no multiplayer or touch adaptation. macOS and Linux have not been validated.
 - Ranged attacks and spells currently do not check line of sight. AI diagnostics are not a substitute for competitive human playtesting.
 - One custom deck is saved locally at Godot's `user://custom_deck.json`; player data is not included in this repository.
 - One campaign autosave and a last-good backup use `user://campaign_autosave.json`. Starting over asks for in-game confirmation before replacing progress; these files are not published.
