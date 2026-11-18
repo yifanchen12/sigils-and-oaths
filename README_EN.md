@@ -15,7 +15,7 @@ The design studies Hearthstone's mana curve and card pacing, Duel Links' conceal
 
 ## In-game screenshots
 
-The first four screenshots show 0.41.0-dev. The rest come from earlier builds.
+The first four screenshots show 0.41.0-dev. The second uses a test position to show the ten-mana spell footprint. The rest come from earlier builds.
 
 ![The Warfront filter and the rules for Last Hearth](docs/screenshots/v041-warfront-library.png)
 
@@ -86,7 +86,7 @@ Evacuate the flooded streets via three checkpoints, starting with either a movem
 
 Both relay openings have wins using legal actions. The checks cover a deadline loss and retry, battle saves, and reaching and reloading all three endings. The campaign and archive contain **113,485 distinct reachable Han characters**. A complete route contains **85,599–86,721** characters, plus 5,558 in the separately readable archive. The verified Shared Lantern route contains 85,866 characters. [Validation notes and screenshots](docs/narrative/finale-review.md)
 
-The Windows x64 preview is undergoing release verification. Keep the EXE and PCK together in the extracted directory and open the EXE.
+The 234,471,935-byte Windows x64 preview was built from commit `1aeed08`. ZIP CRC, all 316 packaged resources and standalone startup were checked. The anonymous download matches the local build. Keep the EXE and PCK together in the extracted directory and open the EXE. SHA-256 is `84c212841eedca0d860514527ca8f37c25a5a639efe36ae0ac9767c8dcf03722`. [Download the 0.41 Windows development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.41.0-dev)
 
 ## 0.40: Empty buckets on the bridge
 

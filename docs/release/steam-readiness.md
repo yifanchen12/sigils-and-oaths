@@ -6,6 +6,8 @@
 
 前线扩牌增加 24 张 1–10 费原创牌与三套预组。新卡专项 148 项、原生界面回归 296 项检查通过。36 场 AI 对局完成 7,705 个合法行动，24 张新卡均打出，10 费牌打出 19 次。断阵重术对四种预组合计 22 胜 2 负，真人手感和平衡仍要继续实测。[对局记录](../warfront-matchups-v041.json)
 
+0.41 已公开为 Windows x64 开发预览版。标签解析到源码提交 `1aeed08f7082ede02ba73e074140a1c5d2062c2c`，ZIP CRC、316 项 PCK 资源和独立程序启动已通过。本机保留 EXE 和 PCK，匿名下载的 ZIP 与本机构建一致。发行包为 234,471,935 字节，SHA-256 为 `84c212841eedca0d860514527ca8f37c25a5a639efe36ae0ac9767c8dcf03722`。[发行页面](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.41.0-dev)
+
 0.40新增第十六章、原创16×12东桥战场与护车战。两份第十五章实际结局存档各以472次合法行动胜出，均在战中存读，1038项检查零失败；剧情继承576项、原生页面474项、地图呈现7项检查零失败。十六章与档案合计102,769个去重可达正文汉字，逐章最短路线相加78,098；单路线十万、完整结局、真人审读和平衡未完成。[第十六章验收](../narrative/chapter-16-review.md) · [战局结果](../chapter16-earned-results.json)。
 
 [0.40 Windows x64开发预览包](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.40.0-dev)已公开。标签解析到源码提交`f048460b1b462e40d076b6efbc10bfb01d8a32cf`；Godot 4.7.2官方模板、304项PCK资源、独立程序启动和ZIP CRC通过。匿名下载224,590,114字节，SHA-256 `048ab98369bf5ea839a7b5fdd90c28ff74dd649bbb8fedcf91b8170cf54762cf`，与本机构建一致。本机保留EXE与PCK供直接验收。

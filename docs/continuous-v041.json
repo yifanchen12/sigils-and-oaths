@@ -15,6 +15,7 @@
   "native_reader_checks": 8,
   "failures": 0,
   "native_writer_replay_sha256": "5197c722d525db5d6256a5db370b8704767fc72688d8dc6413ac3ef8ca402a2d",
+  "released_warfront_model_replay": "Repeated after the new cards and final damage tuning. All 3,406 actions, 15 terminal battle states apart from the updated rules signature, and all story choices and pages matched the recorded native route.",
   "battles": [
     {
       "scenario": "c01_road",
