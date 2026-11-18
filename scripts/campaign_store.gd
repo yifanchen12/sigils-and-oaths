@@ -4,7 +4,7 @@ extends RefCounted
 const Campaign = preload("res://scripts/campaign.gd")
 const Story = preload("res://scripts/story_runner.gd")
 const Snapshot = preload("res://scripts/battle_snapshot.gd")
-const VERSION: int = 4
+const VERSION: int = 5
 const MAX_BYTES: int = 1048576
 var path: String
 
@@ -30,6 +30,10 @@ func _read_path(source: String) -> Dictionary:
 	var progress: Variant = data.get("progress")
 	if int(data.version) < 4 and progress is Dictionary and progress.has("requisition"):
 		return {"ok": false, "message": "旧版战役档不能包含战前军需。"}
+	if int(data.version) < 5 and progress is Dictionary:
+		var records: Variant = progress.get("completed")
+		if progress.has("armory") or (records is Array and records.any(func(record: Variant) -> bool: return record is Dictionary and record.has("armory"))):
+			return {"ok": false, "message": "旧版战役档不能包含战役军备。"}
 	var validated: Dictionary = _validate(progress, {} if int(data.version) == 1 else data.get("encounter"))
 	if validated.ok and int(data.version) < VERSION: validated["migrated"] = true
 	return validated
@@ -58,7 +62,11 @@ func _validate(progress: Variant, encounter: Variant) -> Dictionary:
 		var old_encounter: bool = setup.enemy_deck == "balanced" and battle.deck(1).id == previous_enemy_deck
 		var old_dispatch_deck: bool = page.scenario == "c02_dispatch" and setup.deck == "bastion" and battle.deck(0).id == "assault"
 		var correct_deck: bool = battle.deck(0).id == setup.deck or old_dispatch_deck
-		if not campaign.requisition.is_empty():
+		if not campaign.armory.is_empty():
+			var expected: Dictionary = Campaign.Armory.prepare(setup, campaign.requisition, campaign.armory)
+			if not expected.ok: return expected
+			correct_deck = battle.deck(0).id == "custom" and battle.deck(0).cards == expected.battle.deck(0).cards
+		elif not campaign.requisition.is_empty():
 			correct_deck = battle.deck(0).id == "custom" and battle.deck(0).cards == Campaign.Requisition.counts_for(setup, campaign.requisition)
 		if battle.players[0].hero_id != setup.hero or battle.players[1].hero_id != setup.enemy_class or not correct_deck or (battle.deck(1).id != setup.enemy_deck and not old_encounter):
 			return {"ok": false, "message": "战斗军势与关卡不一致。"}

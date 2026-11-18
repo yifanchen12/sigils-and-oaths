@@ -61,7 +61,11 @@ func test_store_and_retry() -> void:
 	var prior = Session.new(LEGACY)
 	if not check(legacy.version == 3 and prior.load_campaign().ok, "restore actual v0.47 court encounter with old save envelope"): return
 	var old: Dictionary = JSON.parse_string(JSON.stringify(Snapshot.capture(prior.encounter), "", true, true))
-	check(old == legacy.encounter.battle and prior.campaign.requisition.is_empty(), "original deck, exact clock, identity and board restored without a swap")
+	var expected: Dictionary = legacy.encounter.battle.duplicate(true)
+	check(expected.rules == Snapshot.v048_rules_signature(), "fixture keeps the published battle signature")
+	expected.version = float(Snapshot.VERSION)
+	expected.rules = Snapshot.rules_signature()
+	check(old == expected and prior.campaign.requisition.is_empty(), "original deck, exact clock, identity and board restored without a swap")
 	var model := Store.new(SLOT)
 	if not check(model.save_progress(legacy.progress).ok, "restore the earned briefing to a per-test slot"): return
 	var session = Session.new(SLOT)

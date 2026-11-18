@@ -3,7 +3,6 @@ extends RefCounted
 
 const Campaign = preload("res://scripts/campaign.gd")
 const Store = preload("res://scripts/campaign_store.gd")
-const BattleModel = preload("res://scripts/battle.gd")
 const Snapshot = preload("res://scripts/battle_snapshot.gd")
 const AUTOSAVE_INTERVAL: float = 5.0
 var campaign: RefCounted = Campaign.new()
@@ -129,12 +128,36 @@ func choose_requisition(card_id: String, expected: Dictionary) -> Dictionary:
 		return {"ok": false, "message": "当前关卡没有这项军需。"}
 	var previous: String = campaign.requisition
 	if card_id == previous: return {"ok": true}
+	if not campaign.armory.is_empty():
+		var prepared: Dictionary = Campaign.Armory.prepare(setup, card_id, campaign.armory)
+		if not prepared.ok: return prepared
 	campaign.requisition = card_id
 	result = save()
 	if not result.ok:
 		campaign.requisition = previous
 		return result
 	epoch += 1
+	return result
+
+func configure_armory(picks: Dictionary, expected: Dictionary) -> Dictionary:
+	var result: Dictionary = _guard(expected)
+	if not result.ok: return result
+	if current().type != "battle": return {"ok": false, "message": "请在出征前编成军备。"}
+	var issue: String = Campaign.Armory.validate(picks, campaign.completed.size())
+	if not issue.is_empty(): return {"ok": false, "message": issue}
+	if picks == campaign.armory: return {"ok": true}
+	var prepared: Dictionary = Campaign.Armory.prepare(campaign.scenario(), campaign.requisition, picks)
+	if not prepared.ok: return prepared
+	var progress: Dictionary = campaign.snapshot()
+	if picks.is_empty(): progress.erase("armory")
+	else: progress["armory"] = picks.duplicate()
+	result = store.save_progress(progress)
+	if not result.ok: return result
+	campaign.armory = picks.duplicate()
+	epoch += 1
+	notice = "军备已保存，之后的战斗会按这份编成准备牌库。"
+	unsaved = false
+	autosave_elapsed = 0.0
 	return result
 
 func retreat(expected: Dictionary) -> Dictionary:
@@ -161,6 +184,10 @@ func next_chapter(expected: Dictionary) -> Dictionary:
 	epoch += 1
 	unsaved = false
 	notice = "上一章的选择已保留，新章起点已保存。"
+	for slot: Dictionary in Campaign.Armory.SLOTS:
+		if campaign.completed.size() == int(slot.unlock_after):
+			notice = "已开放「%s」。可在出征简报底部打开战役军备。" % slot.name
+			break
 	return {"ok": true}
 
 func begin_battle(expected: Dictionary) -> Dictionary:
@@ -170,7 +197,7 @@ func begin_battle(expected: Dictionary) -> Dictionary:
 	result = save()
 	if not result.ok: return result
 	var setup: Dictionary = campaign.scenario()
-	result = create_encounter(setup, campaign.requisition)
+	result = create_encounter(setup, campaign.requisition, campaign.armory)
 	if not result.ok: return result
 	encounter = result.battle
 	encounter_revision = int(current().revision)
@@ -182,10 +209,10 @@ func begin_battle(expected: Dictionary) -> Dictionary:
 		return result
 	return {"ok": true, "battle": encounter, "scenario": setup}
 
-static func create_encounter(setup: Dictionary, requisition: String = "") -> Dictionary:
-	var battle := BattleModel.new(int(setup.seed), setup.map, setup.hero, setup.enemy_class, setup.deck, setup.enemy_deck, 90)
-	var result: Dictionary = Campaign.Requisition.apply(battle, setup, requisition)
+static func create_encounter(setup: Dictionary, requisition: String = "", armory: Dictionary = {}) -> Dictionary:
+	var result: Dictionary = Campaign.Armory.prepare(setup, requisition, armory)
 	if not result.ok: return result
+	var battle: Battle = result.battle
 	battle.set_commander_identity(1, setup.enemy_name, setup.enemy_portrait)
 	if setup.has("commander_shield"): battle.commander(0).shield = int(setup.commander_shield)
 	if setup.has("bonus_card") and not battle.add_generated_card(0, str(setup.bonus_card)):

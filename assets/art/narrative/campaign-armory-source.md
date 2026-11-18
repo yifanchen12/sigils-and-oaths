@@ -1,0 +1,7 @@
+# 战役军备库背景
+
+本版使用 Codex 原生图像生成工具制作这张军备库背景，保存原始 PNG，由 Godot 按窗口比例裁切显示。 [原始图](campaign-armory-v1.png)
+
+## 生成提示
+
+Create one 1536×1024 landscape full-bleed background for the campaign armory of the original 2D Japanese-style tactical card game Sigils & Oaths. A working late-medieval harbor storehouse in a slate embankment, seen at blue hour shortly before a departure. Worn but well-maintained place, painted deep slate blue and desaturated teal. On the left edge a dim copper hanging light and tilted racks of indigo canvas, spearheads and a rolled patrol flag. On the right edge low stacked brass-bound supply cases, folded linen and slate tablets beside an arched view of wet blue quays and reed waterways. A few tiny warm amber lamps. In the central 72% keep a coherent quiet dark blue-gray horizontal plane of flagstone, even detail and low contrast for an interactive game menu to be placed later. Aim for the same restrained color values and readable clean contour lines as hand-drawn Japanese fantasy animation: matte two-tone cel shadows and a hand-painted coastal environment. Slightly high viewpoint, convincing scale and room to walk. Original heraldry of reeds and dovetail joints, no identifiable franchise, no blood, no modern technology, no people in foreground, no typography, no UI frames or labels, no watermark. Make a finished production game illustration with confident drawn shapes, avoid glossy 3D, photorealism and texture noise.

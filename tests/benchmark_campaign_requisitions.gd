@@ -19,16 +19,28 @@ func pilot_for(scenario_id: String) -> Script:
 		"c14_upstream_channel", "c14_tower_channel": return ChannelPilot
 	return AI
 
-func run_match(scenario_id: String, setup: Dictionary, choice: String) -> Dictionary:
-	var result: Dictionary = Session.create_encounter(setup, choice)
+func run_match(scenario_id: String, setup: Dictionary, choice: String, armory: Dictionary = {}) -> Dictionary:
+	var result: Dictionary = Session.create_encounter(setup, choice, armory)
 	var row: Dictionary = {"scenario": scenario_id, "card": choice, "seed": setup.seed, "winner": -1, "actions": 0, "turn": 1,
 		"play_turn": 0, "play_mana": 0, "error": ""}
 	if not result.ok:
 		row.error = result.message
 		return row
 	var battle: Battle = result.battle
+	var gear_uids: Dictionary = {}
+	var gear_seen: Dictionary = {}
+	var gear_played: Dictionary = {}
+	if not armory.is_empty():
+		var pile: Array = battle.players[0].deck
+		for slot: Dictionary in Campaign.Armory.SLOTS:
+			if armory.has(slot.id):
+				var instance: Dictionary = pile[-int(slot.draw)]
+				gear_uids[instance.uid] = instance.card_id
 	var pilot: Script = pilot_for(scenario_id)
 	while battle.winner == -1 and row.actions < ACTION_CAP:
+		if not gear_uids.is_empty():
+			for instance: Dictionary in battle.players[0].hand:
+				if gear_uids.has(instance.uid): gear_seen[instance.card_id] = true
 		var side: int = battle.active_side
 		var action: Dictionary = (AI if side == 1 else pilot).choose(battle)
 		var played: String = battle.hand_card(side, action.card_uid).get("card_id", "") if action.type == "play" else ""
@@ -40,10 +52,16 @@ func run_match(scenario_id: String, setup: Dictionary, choice: String) -> Dictio
 		if side == 0 and not choice.is_empty() and played == choice and row.play_turn == 0:
 			row.play_turn = battle.turn
 			row.play_mana = before_mana
+		if side == 0 and action.type == "play" and gear_uids.has(action.card_uid):
+			gear_played[played] = int(gear_played.get(played, 0)) + 1
 		row.actions += 1
 	row.winner = battle.winner
 	row.turn = battle.turn
 	row.finish = battle.log_lines.back()
+	if not armory.is_empty():
+		row["armory"] = armory
+		row["armory_seen"] = gear_seen.keys()
+		row["armory_plays"] = gear_played
 	if row.error.is_empty() and battle.winner == -1: row.error = "action limit"
 	var validity: Dictionary = Snapshot.validate(Snapshot.capture(battle))
 	if not validity.ok: row.error = validity.message

@@ -11,6 +11,7 @@ const Effects = preload("res://scripts/effect_forecast.gd")
 const LoreBook = preload("res://scripts/lore_book.gd")
 const CampaignSession = preload("res://scripts/campaign_session.gd")
 const ChapterReplay = preload("res://scripts/chapter_replay_view.gd")
+const ArmoryView = preload("res://scripts/campaign_armory_view.gd")
 const StoryView = preload("res://scripts/story_view.gd")
 const SettingsStore = preload("res://scripts/settings_store.gd")
 const SettingsDialog = preload("res://scripts/settings_dialog.gd")
@@ -62,6 +63,7 @@ var parked_main_campaign: RefCounted
 var campaign_active: bool = false
 var story_view: Control
 var replay_view: Control
+var armory_view: Control
 var replay_confirmation: ConfirmationDialog
 var pending_replay_chapter: String = ""
 var campaign_confirmation: ConfirmationDialog
@@ -200,6 +202,7 @@ func _ready() -> void:
 	story_view.choice_requested.connect(_choose_story)
 	story_view.battle_requested.connect(_begin_campaign_battle)
 	story_view.requisition_requested.connect(_choose_requisition)
+	story_view.armory_requested.connect(_open_armory)
 	story_view.retreat_requested.connect(_retreat_from_campaign_battle)
 	story_view.next_chapter_requested.connect(_next_story_chapter)
 	story_view.replay_requested.connect(_replay_from_ending)
@@ -212,6 +215,11 @@ func _ready() -> void:
 	replay_view.start_requested.connect(_request_replay_branch)
 	replay_view.continue_requested.connect(_continue_replay_branch)
 	replay_view.close_requested.connect(_close_chapter_replay)
+	armory_view = ArmoryView.new()
+	armory_view.theme = theme
+	add_child(armory_view)
+	armory_view.submitted.connect(_save_armory)
+	armory_view.cancelled.connect(_close_armory)
 	audio = AudioDirector.new()
 	add_child(audio)
 	options = SettingsDialog.new()
@@ -320,6 +328,7 @@ func _open_council(save_active: bool = true) -> void:
 		if save_active: campaign_session.save()
 		council.campaign_notice.text = ("分支 · " if parked_main_campaign != null else "") + campaign_session.notice
 	story_view.hide()
+	armory_view.hide()
 	council.open(current_map, current_hero, has_started and battle.winner == -1, current_deck, current_opponent)
 	_refresh()
 
@@ -357,10 +366,10 @@ func _start_from_council(map_id: String, hero_id: String, deck_id: String, oppon
 	board.grab_focus()
 
 func _modal_open() -> bool:
-	return council.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible or lore_book.visible or story_view.visible or options.visible or replay_view.visible
+	return council.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible or lore_book.visible or story_view.visible or options.visible or replay_view.visible or armory_view.visible
 
 func _open_settings() -> void:
-	if options == null or options.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible or lore_book.visible or replay_view.visible or campaign_confirmation.visible or quit_confirmation.visible: return
+	if options == null or options.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible or lore_book.visible or replay_view.visible or armory_view.visible or campaign_confirmation.visible or quit_confirmation.visible: return
 	settings_focus = get_viewport().gui_get_focus_owner()
 	options.open_preferences(settings.values, settings.notice, settings.writable)
 
@@ -587,12 +596,33 @@ func _show_story(focus_requisition: bool = false) -> void:
 	%ResultOverlay.hide()
 	council.hide()
 	var setup: Dictionary = campaign_session.campaign.scenario()
-	if not setup.is_empty(): setup["selected_requisition"] = campaign_session.campaign.requisition
+	if not setup.is_empty():
+		setup["selected_requisition"] = campaign_session.campaign.requisition
+		setup["armory_slots"] = CampaignSession.Campaign.Armory.unlocked_count(campaign_session.campaign.completed.size())
+		setup["armory_equipped"] = campaign_session.campaign.armory.size()
 	var page: Dictionary = campaign_session.current()
 	if parked_main_campaign != null: page["chapter"] = "分支 · " + str(page.get("chapter", "战役"))
 	story_view.open(page, campaign_session.token(), setup, campaign_session.backlog(), campaign_session.notice, campaign_session.unsaved)
 	if focus_requisition and story_view.requisition_panel.visible: story_view.requisition_choice.grab_focus()
 	_refresh()
+
+func _open_armory(expected: Dictionary) -> void:
+	if not story_view.armory_button.is_visible_in_tree() or expected != campaign_session.token(): return
+	var campaign: RefCounted = campaign_session.campaign
+	story_view.hide()
+	armory_view.open(campaign.scenario(), campaign.requisition, campaign.armory, campaign.completed.size(), expected, settings.values.reading_size)
+	_refresh()
+
+func _save_armory(picks: Dictionary, expected: Dictionary) -> void:
+	if not armory_view.visible: return
+	var result: Dictionary = campaign_session.configure_armory(picks, expected)
+	if result.ok: _close_armory()
+	else: armory_view.set_status(result.message, true)
+
+func _close_armory() -> void:
+	armory_view.hide()
+	_show_story()
+	if story_view.armory_button.visible: story_view.armory_button.grab_focus()
 
 func _choose_requisition(card_id: String, expected: Dictionary) -> void:
 	var result: Dictionary = campaign_session.choose_requisition(card_id, expected)
@@ -667,6 +697,8 @@ func _mount_campaign_encounter(result: Dictionary) -> void:
 	has_started = true
 	_new_match(int(result.scenario.seed), result.battle)
 	message = result.scenario.title + " · " + result.scenario.objective
+	var equipped_count: int = campaign_session.campaign.armory.size()
+	if equipped_count > 0: message = "携带军备 %d 张 · %s" % [equipped_count, message]
 	if not campaign_session.campaign.requisition.is_empty():
 		message = "战前军需 · 「%s」随军出征。 %s" % [battle.definition(campaign_session.campaign.requisition).name, message]
 	if not expanded_battlefield: _toggle_battlefield()

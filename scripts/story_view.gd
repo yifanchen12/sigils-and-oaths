@@ -5,6 +5,7 @@ signal advance_requested(expected: Dictionary)
 signal choice_requested(option_id: String, expected: Dictionary)
 signal battle_requested(expected: Dictionary)
 signal requisition_requested(card_id: String, expected: Dictionary)
+signal armory_requested(expected: Dictionary)
 signal retreat_requested(expected: Dictionary)
 signal next_chapter_requested(expected: Dictionary)
 signal replay_requested
@@ -30,6 +31,7 @@ var requisition_panel: PanelContainer
 var requisition_choice: OptionButton
 var requisition_art: TextureRect
 var requisition_text: RichTextLabel
+var armory_button: Button
 var background_id: String = "menu"
 var page: Dictionary = {}
 var setup: Dictionary = {}
@@ -144,6 +146,9 @@ func _build() -> void:
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	footer.add_child(status)
+	armory_button = _button("战役军备", func() -> void: armory_requested.emit(view_token.duplicate()), false)
+	armory_button.hide()
+	footer.add_child(armory_button)
 	footer.add_child(_button("保存进度", func() -> void: save_requested.emit(), false))
 
 func _build_requisition(parent: Control) -> void:
@@ -250,6 +255,8 @@ func _render_page() -> void:
 	# Battle objectives and retry details must not be pushed below a decorative
 	# stage in a small window. Dialogue still keeps its portrait/background space.
 	var briefing: bool = page.get("type", "") == "battle"
+	armory_button.visible = briefing and not showing_history and int(setup.get("armory_slots", 0)) > 0
+	if armory_button.visible: armory_button.text = "战役军备  %d/%d" % [setup.get("armory_equipped", 0), setup.armory_slots]
 	render_requisition()
 	text_body.custom_minimum_size.y = 118 if requisition_panel.visible else 160
 	stage.visible = not showing_history and not briefing

@@ -13,6 +13,7 @@ const NARRATIVE_SCENES: Dictionary = {
 	"scene_school_day": "school-day-v1", "scene_school_ward": "school-ward-night-v1",
 	"scene_saltlane_yard": "saltlane-yard-v1",
 	"requisition_desk": "quartermaster-desk-v1",
+	"campaign_armory": "campaign-armory-v1",
 	"chapter_replay_archive": "chapter-replay-archive-v1",
 	"scene_waterpass": "waterpass-day-v1", "scene_oldfurnace": "oldfurnace-day-v1",
 	"scene_council_terrace": "council-terrace-day-v1",

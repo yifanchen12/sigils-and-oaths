@@ -18,6 +18,8 @@ var court_focus: bool = false
 var late_route_focus: bool = false
 var saltlane: String = "skip"
 var requisitions: Dictionary = {}
+var armory_plan: Dictionary = {}
+var armory_overrides: Dictionary = {}
 var decisions: Dictionary = {}
 var requisition_report: String = ""
 var save_path: String = SAVE
@@ -44,10 +46,26 @@ func fight() -> bool:
 	var scenario: String = session.current().scenario
 	var recruited: String = requisitions.get(scenario, "")
 	if not recruited.is_empty() and not check(session.choose_requisition(recruited, session.token()).ok, "select an offered campaign requisition"): return false
+	var picks: Dictionary = {}
+	for slot: Dictionary in Session.Campaign.Armory.SLOTS:
+		if session.campaign.completed.size() >= int(slot.unlock_after) and armory_plan.has(slot.id):
+			picks[slot.id] = armory_plan[slot.id]
+	if armory_overrides.has(scenario): picks = armory_overrides[scenario]
+	if (not armory_plan.is_empty() or not armory_overrides.is_empty()) and not check(session.configure_armory(picks, session.token()).ok, "equip the declared unlocked campaign cards"): return false
 	var before: Dictionary = session.campaign.snapshot()
 	if not check(session.begin_battle(session.token()).ok, "begin actual encountered battle " + scenario): return false
 	var row: Dictionary = {"scenario": scenario, "story_before": before, "trace": [], "reload_at_action": -1}
 	var played_requisition: bool = false
+	var gear_uids: Dictionary = {}
+	if not picks.is_empty():
+		var pile: Array = session.encounter.players[0].deck
+		for slot: Dictionary in Session.Campaign.Armory.SLOTS:
+			if not picks.has(slot.id): continue
+			var instance: Dictionary = pile[-int(slot.draw)]
+			if not check(instance.card_id == picks[slot.id], "chosen card occupies the promised draw slot"): return false
+			gear_uids[instance.uid] = instance.card_id
+	var seen_gear: Array[String] = []
+	var played_gear: Dictionary = {}
 	var restored: bool = false
 	while session.encounter.winner == -1 and row.trace.size() < 1000:
 		var b: Battle = session.encounter
@@ -59,6 +77,12 @@ func fight() -> bool:
 		if side == 0 and late_route_focus and scenario == "c12_depot": actor = FocusPilot
 		if side == 0 and late_route_focus and scenario == "c14_channel": actor = ChannelPilot
 		var action: Dictionary = actor.choose(b)
+		for instance: Dictionary in b.players[0].hand:
+			if gear_uids.has(instance.uid) and not seen_gear.has(instance.card_id):
+				seen_gear.append(instance.card_id)
+		if side == 0 and action.type == "play" and gear_uids.has(action.card_uid):
+			var played_id: String = gear_uids[action.card_uid]
+			played_gear[played_id] = int(played_gear.get(played_id, 0)) + 1
 		if not recruited.is_empty() and side == 0 and action.type == "play" and b.hand_card(side, action.card_uid).card_id == recruited:
 			played_requisition = true
 		b.advance_clock(0.35)
@@ -82,6 +106,11 @@ func fight() -> bool:
 		row["requisition"] = recruited
 		row["played_requisition"] = played_requisition
 		if row.winner == 0 and not check(session.campaign.requisition.is_empty(), "winning resets the preparation for later missions"): return false
+	if not picks.is_empty():
+		row["armory"] = picks
+		row["armory_seen"] = seen_gear
+		row["armory_plays"] = played_gear
+		if not check(session.campaign.armory == picks, "battle outcome preserves permanent equipment"): return false
 	report.games.append(row)
 	if not reload_exact(): return false
 	print("CONTINUOUS %s | WINNER %d | TURN %d | ACTIONS %d" % [scenario, row.winner, row.turn, row.actions])
@@ -111,6 +140,18 @@ func run() -> void:
 				if not check(choice is String, "plan uses card identifiers"): quit(1); return
 			requisitions = selection
 		if arg.begins_with("--requisition-report="): requisition_report = arg.trim_prefix("--requisition-report=")
+		if arg.begins_with("--armory="):
+			var path: String = arg.trim_prefix("--armory=")
+			var equipped: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+			if not check(Session.Campaign.Armory.validate(equipped, 18).is_empty(), "armory plan contains valid slot-to-card selections"): quit(1); return
+			armory_plan = equipped
+		if arg.begins_with("--armory-overrides="):
+			var path: String = arg.trim_prefix("--armory-overrides=")
+			var configured: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+			if not check(configured is Dictionary, "armory overrides map encounter IDs to loadouts"): quit(1); return
+			for override: Variant in configured.values():
+				if not check(Session.Campaign.Armory.validate(override, 18).is_empty(), "valid override loadout"): quit(1); return
+			armory_overrides = configured
 		if arg.begins_with("--decisions="):
 			var path: String = arg.trim_prefix("--decisions=")
 			var configured: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))

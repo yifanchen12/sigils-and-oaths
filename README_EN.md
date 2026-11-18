@@ -5,15 +5,19 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.49.0-dev" src="https://img.shields.io/badge/version-0.49.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.50.0-dev" src="https://img.shields.io/badge/version-0.50.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 164 collectible cards, and sixteen skirmish presets. **0.49.0-dev** adds 24 Mooring Oaths cards, covering line spells, terrain-dependent deployment, and discard recovery. Completed chapters can now be replayed in a separate save. [Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.49.0-dev)
+The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 164 collectible cards, and sixteen skirmish presets. **0.50.0-dev** brings all 24 Mooring Oaths cards to the campaign. Unlock three armory slots as you advance and preview each replacement before battle. [Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.50.0-dev)
 
 ## In-game screenshots
+
+![Three chosen armory cards in the chapter-eight briefing at the minimum window width](docs/screenshots/v050-campaign-armory-small.png)
+
+![An armory trap set from hand after the second ordinary draw](docs/screenshots/v050-campaign-armory-trap.png)
 
 ![The game library shows the three ten-mana Mooring Oaths cards](docs/screenshots/v049-moorings-ten-mana.png)
 
@@ -98,6 +102,10 @@ The gold frame marks the stretcher crew. The teal square marks the kiln evacuati
 | Change the next exchange | Rain, fog, sun, snow, tailwind and lantern weather affect both sides. Replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
 | Learn and adjust | Four untimed drills. F10 opens display, reading size, motion, music and effects settings |
+
+## 0.50 · Campaign armory
+
+Finish chapters two, four, and seven to unlock slots for 1–3, 4–6, and 7–10 mana. Equip one card in each unlocked slot before battle. The chosen cards enter the thirty-card deck at the second, fifth, and eighth ordinary draw after the opening hand. The campaign keeps your choices between battles. Opening requisitions and rewards can be used alongside armory cards. [Rules, native screenshots and match data](docs/release/v050.md)
 
 ## 0.49 · Mooring Oaths and chapter replay
 
@@ -522,7 +530,7 @@ UI, forecast, map-art and skill-window checks require a graphical window. Earlie
 
 ## Current limits and artwork
 
-- Single-player development build for Windows x64. Keep the EXE and PCK together after extraction. [Download the development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.49.0-dev)
+- Single-player development build for Windows x64. Keep the EXE and PCK together after extraction. [Download the development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.50.0-dev)
 - Ranged attacks and spells currently do not check line of sight. AI diagnostics are not a substitute for competitive human playtesting.
 - One custom deck is saved locally at Godot's `user://custom_deck.json`; player data is not included in this repository.
 - One campaign autosave and a last-good backup use `user://campaign_autosave.json`. Starting over asks for in-game confirmation before replacing progress; these files are not published.

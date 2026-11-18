@@ -117,6 +117,7 @@ func _initialize() -> void:
         "res://assets/art/battlefields/saltlane-v2.png", "res://assets/art/narrative/saltlane-yard-v1.png",
         "res://assets/art/narrative/quartermaster-desk-v1.png", "res://scripts/campaign_requisition.gd",
         "res://assets/art/narrative/chapter-replay-archive-v1.png", "res://scripts/chapter_replay_view.gd",
+        "res://assets/art/narrative/campaign-armory-v1.png", "res://scripts/campaign_armory.gd", "res://scripts/campaign_armory_view.gd",
         "res://scripts/settings_dialog.gd", "res://scripts/training.gd", "res://scripts/game_audio.gd", "res://assets/audio/council.ogg",
         "res://assets/audio/battle.ogg", "res://assets/audio/trap.wav", "res://assets/audio/victory.wav"]
     for path in required_resources:
@@ -128,6 +129,9 @@ func _initialize() -> void:
         problems.append("expansion card data unavailable")
     if decks == null or decks.decks.size() != 16 or decks.find("breakwater_line").get("cards", {}).get("sunken_weir_breach") != 1 or decks.find("ember_quarter").get("cards", {}).get("unbroken_ember_line") != 1:
         problems.append("expansion preset data unavailable")
+    var armory = load("res://scripts/campaign_armory.gd")
+    if armory == null or armory.unlocked_count(7) != 3 or not armory.validate({"reserve": "sunken_weir_breach"}, 7).is_empty():
+        problems.append("campaign armory unavailable")
     var report = FileAccess.open(OS.get_cmdline_user_args()[0], FileAccess.WRITE)
     report.store_string(JSON.stringify({"count": entries.size(), "entries": entries, "problems": problems, "ok": problems.is_empty()}, "\t"))
     report.close()

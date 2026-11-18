@@ -4,6 +4,7 @@ extends RefCounted
 const Story = preload("res://scripts/story_runner.gd")
 const BattleModel = preload("res://scripts/battle.gd")
 const Requisition = preload("res://scripts/campaign_requisition.gd")
+const Armory = preload("res://scripts/campaign_armory.gd")
 const INDEX_PATH: String = "res://data/campaign.json"
 const GATE_VARIANTS: Dictionary = {"joint": "c10_joint_gate", "split": "c10_split_gate", "hold": "c10_hold_gate"}
 const DEPOT_VARIANTS: Dictionary = {"joint": "c12_joint_depot", "split": "c12_split_depot", "hold": "c12_hold_depot"}
@@ -12,6 +13,7 @@ var index: Dictionary = {}
 var story: RefCounted
 var completed: Array[Dictionary] = []
 var requisition: String = ""
+var armory: Dictionary = {}
 var error_message: String = ""
 
 func _init() -> void:
@@ -68,6 +70,7 @@ func start(chapter_id: String = "chapter_01") -> Dictionary:
 	story = Story.new(loaded.source)
 	completed.clear()
 	requisition = ""
+	armory.clear()
 	return {"ok": true}
 
 func next_chapter() -> Dictionary:
@@ -97,7 +100,9 @@ func advance_chapter() -> Dictionary:
 	if not problem.is_empty(): return {"ok": false, "message": problem}
 	# Re-seek from the authored start after facts have been inherited.
 	candidate._enter(candidate.graph.start)
-	completed.append({"chapter_id": story.graph.id, "story": story.snapshot()})
+	var record: Dictionary = {"chapter_id": story.graph.id, "story": story.snapshot()}
+	if not armory.is_empty(): record["armory"] = armory.duplicate()
+	completed.append(record)
 	story = candidate
 	requisition = ""
 	return {"ok": true}
@@ -125,7 +130,9 @@ func replay_from(chapter_id: String) -> Dictionary:
 		var opened: Dictionary = copy.start()
 		return {"ok": true, "campaign": copy} if opened.ok else opened
 	var previous: Dictionary = completed[target - 1]
-	var restored: Dictionary = copy.restore({"chapter_id": previous.chapter_id, "story": previous.story, "completed": completed.slice(0, target - 1)})
+	var progress: Dictionary = {"chapter_id": previous.chapter_id, "story": previous.story, "completed": completed.slice(0, target - 1)}
+	if previous.has("armory"): progress["armory"] = previous.armory
+	var restored: Dictionary = copy.restore(progress)
 	if not restored.ok: return restored
 	restored = copy.advance_chapter()
 	return {"ok": true, "campaign": copy} if restored.ok else restored
@@ -154,6 +161,7 @@ func snapshot() -> Dictionary:
 	if story == null: return {}
 	var progress: Dictionary = {"chapter_id": story.graph.id, "story": story.snapshot(), "completed": completed.duplicate(true)}
 	if not requisition.is_empty(): progress["requisition"] = requisition
+	if not armory.is_empty(): progress["armory"] = armory.duplicate()
 	return progress
 
 func restore(payload: Variant) -> Dictionary:
@@ -175,7 +183,12 @@ func restore(payload: Variant) -> Dictionary:
 		if old_story.current().type != "end": return {"ok": false, "message": "前一章尚未完成。"}
 		var issue: String = _inherit(old_story, previous, true)
 		if not issue.is_empty(): return {"ok": false, "message": issue}
-		restored_records.append({"chapter_id": record.chapter_id, "story": old_story.snapshot()})
+		var previous_armory: Variant = record.get("armory", {})
+		issue = Armory.validate(previous_armory, position)
+		if not issue.is_empty(): return {"ok": false, "message": issue}
+		var restored_record: Dictionary = {"chapter_id": record.chapter_id, "story": old_story.snapshot()}
+		if not previous_armory.is_empty(): restored_record["armory"] = previous_armory.duplicate()
+		restored_records.append(restored_record)
 		previous = old_story
 	if payload.chapter_id != index.chapters[records.size()].id: return {"ok": false, "message": "当前章节未承接已完成章节。"}
 	var loaded: Dictionary = _source(payload.chapter_id)
@@ -190,9 +203,13 @@ func restore(payload: Variant) -> Dictionary:
 	var choice: Variant = payload.get("requisition", "")
 	if not choice is String or not Requisition.allows(_scenario_at(candidate), choice):
 		return {"ok": false, "message": "保存的战前军需与当前关卡不一致。"}
+	var picked_armory: Variant = payload.get("armory", {})
+	problem = Armory.validate(picked_armory, records.size())
+	if not problem.is_empty(): return {"ok": false, "message": problem}
 	story = candidate
 	completed = restored_records
 	requisition = choice
+	armory = picked_armory.duplicate()
 	return {"ok": true}
 
 func backlog() -> Array[Dictionary]:

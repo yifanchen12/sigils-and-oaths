@@ -1,0 +1,1435 @@
+{
+  "version": "0.50.0-dev",
+  "method": "Fixed authored battle seeds and four declared loadouts. At the first two eligible sample encounters all seven low-cost choices are tried. The production opponent plays red. Five known mission types use visible-state player policies. Static scenarios do not include inherited story bonuses.",
+  "original": {
+    "games": 11,
+    "winners": {
+      "0": 11
+    },
+    "actions": 1880,
+    "median_action_turn": 21,
+    "max_action_turn": 64
+  },
+  "equipped": {
+    "games": 50,
+    "winners": {
+      "0": 29,
+      "1": 21
+    },
+    "actions": 8552,
+    "median_action_turn": 25.0,
+    "max_action_turn": 66
+  },
+  "by_scenario_equipped": {
+    "c03_vent": {
+      "0": 7
+    },
+    "c07_saltlane_school": {
+      "0": 4
+    },
+    "c14_upstream_channel": {
+      "1": 3,
+      "0": 1
+    },
+    "c04_pump": {
+      "1": 3,
+      "0": 4
+    },
+    "c08_isolate": {
+      "1": 2,
+      "0": 2
+    },
+    "c16_bridge": {
+      "1": 3,
+      "0": 1
+    },
+    "c05_nursery": {
+      "0": 2,
+      "1": 2
+    },
+    "c10_split_gate": {
+      "0": 3,
+      "1": 1
+    },
+    "c17_screen": {
+      "0": 2,
+      "1": 2
+    },
+    "c06_court": {
+      "0": 1,
+      "1": 3
+    },
+    "c12_split_depot": {
+      "0": 2,
+      "1": 2
+    }
+  },
+  "cards_seen": {
+    "saltfield_runner": 11,
+    "wayfinder_writ": 2,
+    "bank_pikeman": 11,
+    "quiet_net": 11,
+    "seam_shot": 11,
+    "bastion_driller": 2,
+    "ledger_patch": 2,
+    "shoal_arbalest": 8,
+    "copper_boltline": 6,
+    "levee_echo": 8,
+    "unbroken_ember_line": 6,
+    "sluice_flags": 8,
+    "sunken_weir_breach": 5,
+    "cress_ribbon": 8,
+    "crownless_vanguard": 5
+  },
+  "cards_played": {
+    "saltfield_runner": 11,
+    "bank_pikeman": 11,
+    "quiet_net": 10,
+    "seam_shot": 15,
+    "bastion_driller": 2,
+    "copper_boltline": 6,
+    "shoal_arbalest": 8,
+    "levee_echo": 8,
+    "sluice_flags": 7,
+    "sunken_weir_breach": 5,
+    "cress_ribbon": 7,
+    "wayfinder_writ": 1,
+    "unbroken_ember_line": 2,
+    "crownless_vanguard": 4
+  },
+  "matches": [
+    {
+      "actions": 55,
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 7/7",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c03_vent",
+      "seed": 3317.0,
+      "turn": 13,
+      "winner": 0
+    },
+    {
+      "actions": 85,
+      "armory": {
+        "vanguard": "saltfield_runner"
+      },
+      "armory_plays": {
+        "saltfield_runner": 1
+      },
+      "armory_seen": [
+        "saltfield_runner"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 9/9",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c03_vent",
+      "seed": 3317.0,
+      "turn": 17,
+      "winner": 0
+    },
+    {
+      "actions": 86,
+      "armory": {
+        "vanguard": "wayfinder_writ"
+      },
+      "armory_plays": {},
+      "armory_seen": [
+        "wayfinder_writ"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 9/9",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c03_vent",
+      "seed": 3317.0,
+      "turn": 17,
+      "winner": 0
+    },
+    {
+      "actions": 59,
+      "armory": {
+        "vanguard": "bank_pikeman"
+      },
+      "armory_plays": {
+        "bank_pikeman": 1
+      },
+      "armory_seen": [
+        "bank_pikeman"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 7/7",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c03_vent",
+      "seed": 3317.0,
+      "turn": 13,
+      "winner": 0
+    },
+    {
+      "actions": 87,
+      "armory": {
+        "vanguard": "quiet_net"
+      },
+      "armory_plays": {
+        "quiet_net": 1
+      },
+      "armory_seen": [
+        "quiet_net"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 9/9",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c03_vent",
+      "seed": 3317.0,
+      "turn": 17,
+      "winner": 0
+    },
+    {
+      "actions": 85,
+      "armory": {
+        "vanguard": "seam_shot"
+      },
+      "armory_plays": {
+        "seam_shot": 1
+      },
+      "armory_seen": [
+        "seam_shot"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 9/9",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c03_vent",
+      "seed": 3317.0,
+      "turn": 17,
+      "winner": 0
+    },
+    {
+      "actions": 99,
+      "armory": {
+        "vanguard": "bastion_driller"
+      },
+      "armory_plays": {
+        "bastion_driller": 1
+      },
+      "armory_seen": [
+        "bastion_driller"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c03_vent",
+      "seed": 3317.0,
+      "turn": 19,
+      "winner": 0
+    },
+    {
+      "actions": 86,
+      "armory": {
+        "vanguard": "ledger_patch"
+      },
+      "armory_plays": {},
+      "armory_seen": [
+        "ledger_patch"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 9/9",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c03_vent",
+      "seed": 3317.0,
+      "turn": 17,
+      "winner": 0
+    },
+    {
+      "actions": 27,
+      "card": "",
+      "error": "",
+      "finish": "担架队已抵达安全出口，本次护送完成。",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c07_saltlane_school",
+      "seed": 7401.0,
+      "turn": 7,
+      "winner": 0
+    },
+    {
+      "actions": 27,
+      "armory": {
+        "company": "shoal_arbalest",
+        "vanguard": "quiet_net"
+      },
+      "armory_plays": {},
+      "armory_seen": [
+        "quiet_net"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "担架队已抵达安全出口，本次护送完成。",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c07_saltlane_school",
+      "seed": 7401.0,
+      "turn": 7,
+      "winner": 0
+    },
+    {
+      "actions": 27,
+      "armory": {
+        "company": "levee_echo",
+        "vanguard": "seam_shot"
+      },
+      "armory_plays": {},
+      "armory_seen": [
+        "seam_shot"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "担架队已抵达安全出口，本次护送完成。",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c07_saltlane_school",
+      "seed": 7401.0,
+      "turn": 7,
+      "winner": 0
+    },
+    {
+      "actions": 27,
+      "armory": {
+        "company": "sluice_flags",
+        "vanguard": "bank_pikeman"
+      },
+      "armory_plays": {
+        "bank_pikeman": 1
+      },
+      "armory_seen": [
+        "bank_pikeman"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "担架队已抵达安全出口，本次护送完成。",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c07_saltlane_school",
+      "seed": 7401.0,
+      "turn": 7,
+      "winner": 0
+    },
+    {
+      "actions": 28,
+      "armory": {
+        "company": "cress_ribbon",
+        "vanguard": "saltfield_runner"
+      },
+      "armory_plays": {
+        "saltfield_runner": 1
+      },
+      "armory_seen": [
+        "saltfield_runner"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "担架队已抵达安全出口，本次护送完成。",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c07_saltlane_school",
+      "seed": 7401.0,
+      "turn": 7,
+      "winner": 0
+    },
+    {
+      "actions": 240,
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c14_upstream_channel",
+      "seed": 14031.0,
+      "turn": 37,
+      "winner": 0
+    },
+    {
+      "actions": 293,
+      "armory": {
+        "company": "shoal_arbalest",
+        "reserve": "copper_boltline",
+        "vanguard": "quiet_net"
+      },
+      "armory_plays": {
+        "copper_boltline": 1,
+        "quiet_net": 1,
+        "shoal_arbalest": 1
+      },
+      "armory_seen": [
+        "quiet_net",
+        "shoal_arbalest",
+        "copper_boltline"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c14_upstream_channel",
+      "seed": 14031.0,
+      "turn": 45,
+      "winner": 1
+    },
+    {
+      "actions": 302,
+      "armory": {
+        "company": "levee_echo",
+        "reserve": "unbroken_ember_line",
+        "vanguard": "seam_shot"
+      },
+      "armory_plays": {
+        "levee_echo": 1,
+        "seam_shot": 1
+      },
+      "armory_seen": [
+        "seam_shot",
+        "levee_echo",
+        "unbroken_ember_line"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c14_upstream_channel",
+      "seed": 14031.0,
+      "turn": 45,
+      "winner": 1
+    },
+    {
+      "actions": 279,
+      "armory": {
+        "company": "sluice_flags",
+        "reserve": "sunken_weir_breach",
+        "vanguard": "bank_pikeman"
+      },
+      "armory_plays": {
+        "bank_pikeman": 1,
+        "sluice_flags": 1,
+        "sunken_weir_breach": 1
+      },
+      "armory_seen": [
+        "bank_pikeman",
+        "sluice_flags",
+        "sunken_weir_breach"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c14_upstream_channel",
+      "seed": 14031.0,
+      "turn": 45,
+      "winner": 1
+    },
+    {
+      "actions": 99,
+      "armory": {
+        "company": "cress_ribbon",
+        "reserve": "crownless_vanguard",
+        "vanguard": "saltfield_runner"
+      },
+      "armory_plays": {
+        "cress_ribbon": 1,
+        "saltfield_runner": 1
+      },
+      "armory_seen": [
+        "saltfield_runner",
+        "cress_ribbon",
+        "crownless_vanguard"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c14_upstream_channel",
+      "seed": 14031.0,
+      "turn": 19,
+      "winner": 0
+    },
+    {
+      "actions": 90,
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团取得胜利！",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c04_pump",
+      "seed": 4318.0,
+      "turn": 17,
+      "winner": 0
+    },
+    {
+      "actions": 389,
+      "armory": {
+        "vanguard": "saltfield_runner"
+      },
+      "armory_plays": {
+        "saltfield_runner": 1
+      },
+      "armory_seen": [
+        "saltfield_runner"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "泵房守机队长所部取得胜利！",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c04_pump",
+      "seed": 4318.0,
+      "turn": 55,
+      "winner": 1
+    },
+    {
+      "actions": 193,
+      "armory": {
+        "vanguard": "wayfinder_writ"
+      },
+      "armory_plays": {
+        "wayfinder_writ": 1
+      },
+      "armory_seen": [
+        "wayfinder_writ"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团取得胜利！",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c04_pump",
+      "seed": 4318.0,
+      "turn": 31,
+      "winner": 0
+    },
+    {
+      "actions": 375,
+      "armory": {
+        "vanguard": "bank_pikeman"
+      },
+      "armory_plays": {
+        "bank_pikeman": 1
+      },
+      "armory_seen": [
+        "bank_pikeman"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c04_pump",
+      "seed": 4318.0,
+      "turn": 57,
+      "winner": 1
+    },
+    {
+      "actions": 190,
+      "armory": {
+        "vanguard": "quiet_net"
+      },
+      "armory_plays": {
+        "quiet_net": 1
+      },
+      "armory_seen": [
+        "quiet_net"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团取得胜利！",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c04_pump",
+      "seed": 4318.0,
+      "turn": 31,
+      "winner": 0
+    },
+    {
+      "actions": 175,
+      "armory": {
+        "vanguard": "seam_shot"
+      },
+      "armory_plays": {
+        "seam_shot": 1
+      },
+      "armory_seen": [
+        "seam_shot"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团取得胜利！",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c04_pump",
+      "seed": 4318.0,
+      "turn": 29,
+      "winner": 0
+    },
+    {
+      "actions": 255,
+      "armory": {
+        "vanguard": "bastion_driller"
+      },
+      "armory_plays": {
+        "bastion_driller": 1
+      },
+      "armory_seen": [
+        "bastion_driller"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "泵房守机队长所部取得胜利！",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c04_pump",
+      "seed": 4318.0,
+      "turn": 42,
+      "winner": 1
+    },
+    {
+      "actions": 192,
+      "armory": {
+        "vanguard": "ledger_patch"
+      },
+      "armory_plays": {},
+      "armory_seen": [
+        "ledger_patch"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团取得胜利！",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c04_pump",
+      "seed": 4318.0,
+      "turn": 31,
+      "winner": 0
+    },
+    {
+      "actions": 115,
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c08_isolate",
+      "seed": 8317.0,
+      "turn": 21,
+      "winner": 0
+    },
+    {
+      "actions": 135,
+      "armory": {
+        "company": "shoal_arbalest",
+        "reserve": "copper_boltline",
+        "vanguard": "quiet_net"
+      },
+      "armory_plays": {
+        "copper_boltline": 1,
+        "quiet_net": 1,
+        "shoal_arbalest": 1
+      },
+      "armory_seen": [
+        "quiet_net",
+        "shoal_arbalest",
+        "copper_boltline"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c08_isolate",
+      "seed": 8317.0,
+      "turn": 25,
+      "winner": 1
+    },
+    {
+      "actions": 129,
+      "armory": {
+        "company": "levee_echo",
+        "reserve": "unbroken_ember_line",
+        "vanguard": "seam_shot"
+      },
+      "armory_plays": {
+        "levee_echo": 1,
+        "seam_shot": 1
+      },
+      "armory_seen": [
+        "seam_shot",
+        "levee_echo",
+        "unbroken_ember_line"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c08_isolate",
+      "seed": 8317.0,
+      "turn": 25,
+      "winner": 1
+    },
+    {
+      "actions": 138,
+      "armory": {
+        "company": "sluice_flags",
+        "reserve": "sunken_weir_breach",
+        "vanguard": "bank_pikeman"
+      },
+      "armory_plays": {
+        "bank_pikeman": 1,
+        "sluice_flags": 1,
+        "sunken_weir_breach": 1
+      },
+      "armory_seen": [
+        "bank_pikeman",
+        "sluice_flags",
+        "sunken_weir_breach"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c08_isolate",
+      "seed": 8317.0,
+      "turn": 25,
+      "winner": 0
+    },
+    {
+      "actions": 51,
+      "armory": {
+        "company": "cress_ribbon",
+        "reserve": "crownless_vanguard",
+        "vanguard": "saltfield_runner"
+      },
+      "armory_plays": {
+        "saltfield_runner": 1
+      },
+      "armory_seen": [
+        "saltfield_runner",
+        "cress_ribbon"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 7/7",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c08_isolate",
+      "seed": 8317.0,
+      "turn": 13,
+      "winner": 0
+    },
+    {
+      "actions": 472,
+      "card": "",
+      "error": "",
+      "finish": "护运队长白祁所部回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c16_bridge",
+      "seed": 16031.0,
+      "turn": 64,
+      "winner": 0
+    },
+    {
+      "actions": 190,
+      "armory": {
+        "company": "shoal_arbalest",
+        "reserve": "copper_boltline",
+        "vanguard": "quiet_net"
+      },
+      "armory_plays": {
+        "copper_boltline": 1,
+        "quiet_net": 1,
+        "shoal_arbalest": 1
+      },
+      "armory_seen": [
+        "quiet_net",
+        "shoal_arbalest",
+        "copper_boltline"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "护运队长白祁所部取得胜利！",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c16_bridge",
+      "seed": 16031.0,
+      "turn": 30,
+      "winner": 1
+    },
+    {
+      "actions": 492,
+      "armory": {
+        "company": "levee_echo",
+        "reserve": "unbroken_ember_line",
+        "vanguard": "seam_shot"
+      },
+      "armory_plays": {
+        "levee_echo": 1,
+        "seam_shot": 2,
+        "unbroken_ember_line": 1
+      },
+      "armory_seen": [
+        "seam_shot",
+        "levee_echo",
+        "unbroken_ember_line"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "护运队长白祁所部回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c16_bridge",
+      "seed": 16031.0,
+      "turn": 66,
+      "winner": 0
+    },
+    {
+      "actions": 285,
+      "armory": {
+        "company": "sluice_flags",
+        "reserve": "sunken_weir_breach",
+        "vanguard": "bank_pikeman"
+      },
+      "armory_plays": {
+        "bank_pikeman": 1,
+        "sluice_flags": 1,
+        "sunken_weir_breach": 1
+      },
+      "armory_seen": [
+        "bank_pikeman",
+        "sluice_flags",
+        "sunken_weir_breach"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "护运队长白祁所部取得胜利！",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c16_bridge",
+      "seed": 16031.0,
+      "turn": 44,
+      "winner": 1
+    },
+    {
+      "actions": 276,
+      "armory": {
+        "company": "cress_ribbon",
+        "reserve": "crownless_vanguard",
+        "vanguard": "saltfield_runner"
+      },
+      "armory_plays": {
+        "cress_ribbon": 1,
+        "crownless_vanguard": 1,
+        "saltfield_runner": 1
+      },
+      "armory_seen": [
+        "saltfield_runner",
+        "cress_ribbon",
+        "crownless_vanguard"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "护运队长白祁所部取得胜利！",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c16_bridge",
+      "seed": 16031.0,
+      "turn": 36,
+      "winner": 1
+    },
+    {
+      "actions": 132,
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c05_nursery",
+      "seed": 5317.0,
+      "turn": 25,
+      "winner": 0
+    },
+    {
+      "actions": 127,
+      "armory": {
+        "company": "shoal_arbalest",
+        "vanguard": "quiet_net"
+      },
+      "armory_plays": {
+        "quiet_net": 1,
+        "shoal_arbalest": 1
+      },
+      "armory_seen": [
+        "quiet_net",
+        "shoal_arbalest"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c05_nursery",
+      "seed": 5317.0,
+      "turn": 25,
+      "winner": 0
+    },
+    {
+      "actions": 130,
+      "armory": {
+        "company": "levee_echo",
+        "vanguard": "seam_shot"
+      },
+      "armory_plays": {
+        "levee_echo": 1,
+        "seam_shot": 2
+      },
+      "armory_seen": [
+        "seam_shot",
+        "levee_echo"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c05_nursery",
+      "seed": 5317.0,
+      "turn": 25,
+      "winner": 0
+    },
+    {
+      "actions": 138,
+      "armory": {
+        "company": "sluice_flags",
+        "vanguard": "bank_pikeman"
+      },
+      "armory_plays": {
+        "bank_pikeman": 1,
+        "sluice_flags": 1
+      },
+      "armory_seen": [
+        "bank_pikeman",
+        "sluice_flags"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c05_nursery",
+      "seed": 5317.0,
+      "turn": 25,
+      "winner": 1
+    },
+    {
+      "actions": 139,
+      "armory": {
+        "company": "cress_ribbon",
+        "vanguard": "saltfield_runner"
+      },
+      "armory_plays": {
+        "cress_ribbon": 1,
+        "saltfield_runner": 1
+      },
+      "armory_seen": [
+        "saltfield_runner",
+        "cress_ribbon"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c05_nursery",
+      "seed": 5317.0,
+      "turn": 25,
+      "winner": 1
+    },
+    {
+      "actions": 98,
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c10_split_gate",
+      "seed": 10342.0,
+      "turn": 19,
+      "winner": 0
+    },
+    {
+      "actions": 114,
+      "armory": {
+        "company": "shoal_arbalest",
+        "reserve": "copper_boltline",
+        "vanguard": "quiet_net"
+      },
+      "armory_plays": {
+        "copper_boltline": 1,
+        "quiet_net": 1,
+        "shoal_arbalest": 1
+      },
+      "armory_seen": [
+        "quiet_net",
+        "shoal_arbalest",
+        "copper_boltline"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c10_split_gate",
+      "seed": 10342.0,
+      "turn": 21,
+      "winner": 0
+    },
+    {
+      "actions": 108,
+      "armory": {
+        "company": "levee_echo",
+        "reserve": "unbroken_ember_line",
+        "vanguard": "seam_shot"
+      },
+      "armory_plays": {
+        "levee_echo": 1,
+        "seam_shot": 2
+      },
+      "armory_seen": [
+        "seam_shot",
+        "levee_echo",
+        "unbroken_ember_line"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c10_split_gate",
+      "seed": 10342.0,
+      "turn": 21,
+      "winner": 0
+    },
+    {
+      "actions": 196,
+      "armory": {
+        "company": "sluice_flags",
+        "reserve": "sunken_weir_breach",
+        "vanguard": "bank_pikeman"
+      },
+      "armory_plays": {
+        "bank_pikeman": 1,
+        "sluice_flags": 1,
+        "sunken_weir_breach": 1
+      },
+      "armory_seen": [
+        "bank_pikeman",
+        "sluice_flags",
+        "sunken_weir_breach"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c10_split_gate",
+      "seed": 10342.0,
+      "turn": 33,
+      "winner": 1
+    },
+    {
+      "actions": 133,
+      "armory": {
+        "company": "cress_ribbon",
+        "reserve": "crownless_vanguard",
+        "vanguard": "saltfield_runner"
+      },
+      "armory_plays": {
+        "cress_ribbon": 1,
+        "crownless_vanguard": 1,
+        "saltfield_runner": 1
+      },
+      "armory_seen": [
+        "saltfield_runner",
+        "cress_ribbon",
+        "crownless_vanguard"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c10_split_gate",
+      "seed": 10342.0,
+      "turn": 23,
+      "winner": 0
+    },
+    {
+      "actions": 97,
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c17_screen",
+      "seed": 17031.0,
+      "turn": 19,
+      "winner": 0
+    },
+    {
+      "actions": 142,
+      "armory": {
+        "company": "shoal_arbalest",
+        "reserve": "copper_boltline",
+        "vanguard": "quiet_net"
+      },
+      "armory_plays": {
+        "copper_boltline": 1,
+        "quiet_net": 1,
+        "shoal_arbalest": 1
+      },
+      "armory_seen": [
+        "quiet_net",
+        "shoal_arbalest",
+        "copper_boltline"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c17_screen",
+      "seed": 17031.0,
+      "turn": 29,
+      "winner": 0
+    },
+    {
+      "actions": 202,
+      "armory": {
+        "company": "levee_echo",
+        "reserve": "unbroken_ember_line",
+        "vanguard": "seam_shot"
+      },
+      "armory_plays": {
+        "levee_echo": 1,
+        "seam_shot": 2,
+        "unbroken_ember_line": 1
+      },
+      "armory_seen": [
+        "seam_shot",
+        "levee_echo",
+        "unbroken_ember_line"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c17_screen",
+      "seed": 17031.0,
+      "turn": 33,
+      "winner": 1
+    },
+    {
+      "actions": 55,
+      "armory": {
+        "company": "sluice_flags",
+        "reserve": "sunken_weir_breach",
+        "vanguard": "bank_pikeman"
+      },
+      "armory_plays": {
+        "bank_pikeman": 1
+      },
+      "armory_seen": [
+        "bank_pikeman",
+        "sluice_flags"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 7/7",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c17_screen",
+      "seed": 17031.0,
+      "turn": 13,
+      "winner": 0
+    },
+    {
+      "actions": 172,
+      "armory": {
+        "company": "cress_ribbon",
+        "reserve": "crownless_vanguard",
+        "vanguard": "saltfield_runner"
+      },
+      "armory_plays": {
+        "cress_ribbon": 1,
+        "crownless_vanguard": 1,
+        "saltfield_runner": 1
+      },
+      "armory_seen": [
+        "saltfield_runner",
+        "cress_ribbon",
+        "crownless_vanguard"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c17_screen",
+      "seed": 17031.0,
+      "turn": 33,
+      "winner": 1
+    },
+    {
+      "actions": 445,
+      "card": "",
+      "error": "",
+      "finish": "留守队长陶因所部回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c06_court",
+      "seed": 6317.0,
+      "turn": 62,
+      "winner": 0
+    },
+    {
+      "actions": 411,
+      "armory": {
+        "company": "shoal_arbalest",
+        "vanguard": "quiet_net"
+      },
+      "armory_plays": {
+        "quiet_net": 1,
+        "shoal_arbalest": 1
+      },
+      "armory_seen": [
+        "quiet_net",
+        "shoal_arbalest"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "留守队长陶因所部回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c06_court",
+      "seed": 6317.0,
+      "turn": 60,
+      "winner": 0
+    },
+    {
+      "actions": 430,
+      "armory": {
+        "company": "levee_echo",
+        "vanguard": "seam_shot"
+      },
+      "armory_plays": {
+        "levee_echo": 1,
+        "seam_shot": 1
+      },
+      "armory_seen": [
+        "seam_shot",
+        "levee_echo"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c06_court",
+      "seed": 6317.0,
+      "turn": 61,
+      "winner": 1
+    },
+    {
+      "actions": 86,
+      "armory": {
+        "company": "sluice_flags",
+        "vanguard": "bank_pikeman"
+      },
+      "armory_plays": {
+        "bank_pikeman": 1,
+        "sluice_flags": 1
+      },
+      "armory_seen": [
+        "bank_pikeman",
+        "sluice_flags"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "留守队长陶因所部取得胜利！",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c06_court",
+      "seed": 6317.0,
+      "turn": 18,
+      "winner": 1
+    },
+    {
+      "actions": 240,
+      "armory": {
+        "company": "cress_ribbon",
+        "vanguard": "saltfield_runner"
+      },
+      "armory_plays": {
+        "cress_ribbon": 1,
+        "saltfield_runner": 1
+      },
+      "armory_seen": [
+        "saltfield_runner",
+        "cress_ribbon"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "留守队长陶因所部取得胜利！",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c06_court",
+      "seed": 6317.0,
+      "turn": 36,
+      "winner": 1
+    },
+    {
+      "actions": 109,
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c12_split_depot",
+      "seed": 12032.0,
+      "turn": 23,
+      "winner": 0
+    },
+    {
+      "actions": 157,
+      "armory": {
+        "company": "shoal_arbalest",
+        "reserve": "copper_boltline",
+        "vanguard": "quiet_net"
+      },
+      "armory_plays": {
+        "copper_boltline": 1,
+        "quiet_net": 1,
+        "shoal_arbalest": 1
+      },
+      "armory_seen": [
+        "quiet_net",
+        "shoal_arbalest",
+        "copper_boltline"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团取得胜利！",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c12_split_depot",
+      "seed": 12032.0,
+      "turn": 31,
+      "winner": 0
+    },
+    {
+      "actions": 116,
+      "armory": {
+        "company": "levee_echo",
+        "reserve": "unbroken_ember_line",
+        "vanguard": "seam_shot"
+      },
+      "armory_plays": {
+        "levee_echo": 1,
+        "seam_shot": 2
+      },
+      "armory_seen": [
+        "seam_shot",
+        "levee_echo",
+        "unbroken_ember_line"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团取得胜利！",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c12_split_depot",
+      "seed": 12032.0,
+      "turn": 23,
+      "winner": 0
+    },
+    {
+      "actions": 129,
+      "armory": {
+        "company": "sluice_flags",
+        "reserve": "sunken_weir_breach",
+        "vanguard": "bank_pikeman"
+      },
+      "armory_plays": {
+        "bank_pikeman": 1,
+        "sluice_flags": 1,
+        "sunken_weir_breach": 1
+      },
+      "armory_seen": [
+        "bank_pikeman",
+        "sluice_flags",
+        "sunken_weir_breach"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "北岸联防队长鲁苇所部取得胜利！",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c12_split_depot",
+      "seed": 12032.0,
+      "turn": 24,
+      "winner": 1
+    },
+    {
+      "actions": 193,
+      "armory": {
+        "company": "cress_ribbon",
+        "reserve": "crownless_vanguard",
+        "vanguard": "saltfield_runner"
+      },
+      "armory_plays": {
+        "cress_ribbon": 1,
+        "crownless_vanguard": 1,
+        "saltfield_runner": 1
+      },
+      "armory_seen": [
+        "saltfield_runner",
+        "cress_ribbon",
+        "crownless_vanguard"
+      ],
+      "card": "",
+      "error": "",
+      "finish": "苍蓝军团回合 · 法力 10/10",
+      "play_mana": 0,
+      "play_turn": 0,
+      "scenario": "c12_split_depot",
+      "seed": 12032.0,
+      "turn": 37,
+      "winner": 1
+    }
+  ]
+}
