@@ -2012,6 +2012,45 @@
       "validation": "tests/test_warfront_cards.gd and tests/test_ui.gd"
     },
     {
+      "id": "afterglow_units",
+      "path": "assets/art/expansion/afterglow-units-v1.png",
+      "source_filename": "exec-a0329ad2-41e0-49a3-96fd-0d2a001f58cb.png",
+      "prompt_file": "assets/art/expansion/afterglow-source.md",
+      "size": [1448, 1086],
+      "mode": "RGB",
+      "sha256": "86a115838ce1a29273649c8ef57bc04a033766850ee45389cecfdd7a6e106067",
+      "source_bytes_preserved": true,
+      "role": "Twelve original adult troop card illustrations.",
+      "processing": "Native atlas with four columns and three rows. Each card excludes two pixels per cell edge.",
+      "validation": "tests/test_afterglow_cards.gd and tests/test_ui.gd"
+    },
+    {
+      "id": "afterglow_spells",
+      "path": "assets/art/expansion/afterglow-spells-v1.png",
+      "source_filename": "exec-7d514343-f07f-4ac6-a3d3-462b73765d8f.png",
+      "prompt_file": "assets/art/expansion/afterglow-source.md",
+      "size": [1536, 1024],
+      "mode": "RGB",
+      "sha256": "2fd5ef5e7e5bc3d5adf41b4d2b37c49813c48b6d2c15785873b12f42be97136d",
+      "source_bytes_preserved": true,
+      "role": "Ten original spell card illustrations.",
+      "processing": "Native atlas with five columns and two rows. Each card excludes two pixels per cell edge.",
+      "validation": "tests/test_afterglow_cards.gd and tests/test_ui.gd"
+    },
+    {
+      "id": "afterglow_traps_weather",
+      "path": "assets/art/expansion/afterglow-traps-weather-v1.png",
+      "source_filename": "exec-a27d1a1a-7810-4eef-8e37-c473fa9e55b5.png",
+      "prompt_file": "assets/art/expansion/afterglow-source.md",
+      "size": [1536, 1024],
+      "mode": "RGB",
+      "sha256": "59ea0103638cc4da99065dce2ccd7c700ab654689c84e4aa87926b6626cf6723",
+      "source_bytes_preserved": true,
+      "role": "Four original trap illustrations and two original weather illustrations.",
+      "processing": "Native atlas with three columns and two rows. Each card excludes two pixels per cell edge.",
+      "validation": "tests/test_afterglow_cards.gd and tests/test_ui.gd"
+    },
+    {
       "id": "scene_tower_valve",
       "path": "assets/art/narrative/tower-valve-v1.png",
       "source_filename": "exec-ef99cd26-da2f-404e-8606-66692d18a6c9.png",

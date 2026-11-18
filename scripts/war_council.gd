@@ -1,7 +1,7 @@
 class_name WarCouncil
 extends Control
 
-signal start_requested(map_id: String, hero_id: String, deck_id: String)
+signal start_requested(map_id: String, hero_id: String, deck_id: String, opponent_id: String)
 signal resume_requested
 signal library_requested
 signal deck_editor_requested
@@ -20,6 +20,7 @@ const MUTED := Color("a5b8af")
 var selected_map: String = "greenwood"
 var selected_hero: String = "warden"
 var selected_deck: String = "balanced"
+var selected_opponent: String = ""
 var map_buttons: Array[Button] = []
 var hero_buttons: Array[Button] = []
 var start_button: Button
@@ -31,6 +32,7 @@ var campaign_notice: Label
 var training_button: Button
 var settings_button: Button
 var deck_choice: OptionButton
+var opponent_choice: OptionButton
 var background: Texture2D
 var map_options: Array[Dictionary] = []
 var custom_definition: Dictionary = {}
@@ -261,13 +263,28 @@ func _build() -> void:
 	editor_button.text = "编辑军势"
 	editor_button.pressed.connect(func() -> void: deck_editor_requested.emit())
 	deck_row.add_child(editor_button)
-	layout.add_child(_label("邻接友军即可增援  ·  地形制胜  ·  每回合90秒", 13, Color("a9bdc9")))
+	var opponent_row := HBoxContainer.new()
+	opponent_row.add_theme_constant_override("separation", 10)
+	layout.add_child(opponent_row)
+	opponent_row.add_child(_label("对手预组", 15, GOLD))
+	opponent_choice = OptionButton.new()
+	opponent_choice.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	opponent_choice.custom_minimum_size.y = 34
+	opponent_choice.add_item("自动匹配")
+	opponent_choice.set_item_metadata(0, "")
+	for deck: Dictionary in BattleModel.DECKS.decks:
+		opponent_choice.add_item(deck.name)
+		opponent_choice.set_item_metadata(opponent_choice.item_count - 1, deck.id)
+	opponent_choice.item_selected.connect(func(index: int) -> void:
+		selected_opponent = opponent_choice.get_item_metadata(index)
+		_update_opponent_description())
+	opponent_row.add_child(opponent_choice)
 	start_button = Button.new()
 	start_button.custom_minimum_size = Vector2(0, 64)
 	start_button.text = "自 由 对 战     →"
 	start_button.add_theme_font_size_override("font_size", 24)
 	start_button.add_theme_stylebox_override("normal", _style(Color("365a71"), GOLD))
-	start_button.pressed.connect(func() -> void: start_requested.emit(selected_map, selected_hero, selected_deck))
+	start_button.pressed.connect(func() -> void: start_requested.emit(selected_map, selected_hero, selected_deck, selected_opponent))
 	layout.add_child(start_button)
 	resume_button = Button.new()
 	resume_button.custom_minimum_size.y = 38
@@ -275,12 +292,16 @@ func _build() -> void:
 	resume_button.pressed.connect(func() -> void: resume_requested.emit())
 	layout.add_child(resume_button)
 
-func open(map_id: String, hero_id: String, can_resume: bool, deck_id: String = "balanced") -> void:
+func open(map_id: String, hero_id: String, can_resume: bool, deck_id: String = "balanced", opponent_id: String = "") -> void:
 	selected_map = map_id
 	selected_hero = hero_id
 	selected_deck = deck_id
 	for index: int in range(deck_choice.item_count):
 		if deck_choice.get_item_metadata(index) == deck_id: deck_choice.select(index)
+	selected_opponent = opponent_id
+	for index: int in range(opponent_choice.item_count):
+		if opponent_choice.get_item_metadata(index) == opponent_id: opponent_choice.select(index)
+	_update_opponent_description()
 	deck_choice.tooltip_text = _deck_description()
 	resume_button.visible = can_resume
 	_refresh_selection()
@@ -289,6 +310,9 @@ func open(map_id: String, hero_id: String, can_resume: bool, deck_id: String = "
 
 func _deck_description() -> String:
 	return custom_definition.description if selected_deck == "custom" and not custom_definition.is_empty() else BattleModel.DECKS.find(selected_deck).description
+
+func _update_opponent_description() -> void:
+	opponent_choice.tooltip_text = "使用与玩家相同的预组。玩家使用自定义军势时，对手使用均衡军势。" if selected_opponent.is_empty() else BattleModel.DECKS.find(selected_opponent).description
 
 func set_custom_deck(definition: Dictionary, choose: bool = false) -> void:
 	custom_definition = definition.duplicate(true)

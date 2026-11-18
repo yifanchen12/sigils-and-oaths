@@ -5,17 +5,19 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.42.0-dev" src="https://img.shields.io/badge/version-0.42.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.43.0-dev" src="https://img.shields.io/badge/version-0.43.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法研究参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局和八套自由对战预组。**0.42.0-dev** 加入三节不限时实战教程、可保存的游戏设置和原创配乐音效。
+玩法研究参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局和十套自由对战预组。**0.43.0-dev** 新增「余烬回声」，可构筑牌增至 86 张。 [Windows x64 开发预览](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.43.0-dev)
 
 ## 实机画面
 
-首图来自 0.42.0-dev 的援护教程，其余图为相应历史版本的游戏画面。
+首图来自 0.43.0-dev 的「余烬回声」图鉴，其余图展示当前与历史版本的实际游戏画面。
+
+![余烬回声新卡与系列和费用筛选](docs/screenshots/v043-afterglow-library.png)
 
 ![实战教程选中回誓屏障并标出被保护枪卫](docs/release/steam/gameplay/04-guard-drill.png)
 
@@ -67,7 +69,7 @@
 
 | 战场上的选择 | 当前实现 |
 | --- | --- |
-| 用卡牌向前增援 | 58 种可组牌、1 种对局生成牌、八套 30 张预组和本地自定义牌组。友军身旁部署，新兵也能延伸阵线 |
+| 用卡牌向前增援 | 86 种可组牌、1 种对局生成牌、十套 30 张预组和本地自定义牌组。友军身旁部署，新兵也能延伸阵线 |
 | 用手牌伏设与反制 | 地格缚足、地雷、受击补给和术击护印。支付法力伏设，每方最多 2 张，敌方只见数量。可用寻痕灯或高台破雾弩拆除 |
 | 让兵种互相掩护 | 步兵克枪兵、枪兵克骑兵、骑兵克步兵；弓手、法师、医师各有射程与功能 |
 | 发动部队主动技能 | 六兵种各有1费主动：护盾、援护、再机动、精准射击、星火、急救；每单位每回合一次 |
@@ -77,6 +79,16 @@
 | 改变下一轮战局 | 暴雨、浓雾、烈日、寒潮、疾风和灯夜影响双方。可替换或驱散天气，也可铺路、筑垒、击退、定身与换位 |
 | 在有限时间内决策 | 每个行动回合90秒；定向法术限定在友军3格内、法师4格内，天气影响全场 |
 | 熟悉操作和调整体验 | 三节不限时实战教程。F10 调整全屏、剧情字号、战斗动效、音乐和音效 |
+
+## 0.43 · 余烬回声
+
+新增 12 张部队、10 张法术、4 张手牌陷阱、2 张环境牌。1–10 费每档至少有两张新牌。低费可回收部队、拆陷阱或截走敌人本轮剩余法力。中费可利用阵亡支援、护盾条件与军道封锁。后期「层台换哨」为局部阵线恢复行动，「再鸣铜钟」在同一范围内为友军加盾并定身存活的普通敌军。
+
+「回灯前哨」靠侦察、轮换和再部署抢位置，「余火公议」靠阵亡补给、反制和群疗维持阵线。自由对战可分别选择己方和对手预组。点击图鉴或编辑军势，按系列和费用查卡。
+
+72 场三地图、先后手互换的 AI 对局共结算 20,115 次合法行动，28 张新牌均从正常手牌打出，两张十费新牌共打出 67 次。对均衡军势，回灯前哨 7 胜 5 负，余火公议 5 胜 7 负。灯曜守队和断阵重术仍明显占优。 [逐场结果](docs/afterglow-playtest-v043.json)
+
+[实机玩法短片](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.43.0-dev/SigilsAndOaths-0.43.0-dev-Gameplay.mp4) · [十费铜钟的施法预估](docs/screenshots/v043-afterglow-bell.png)
 
 ## 0.42 · 战前操练
 

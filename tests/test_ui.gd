@@ -51,7 +51,8 @@ func screenshots_enabled() -> bool:
 
 func capture(filename: String, viewport: Viewport = null) -> void:
 	var warfront_only: bool = filename.begins_with("v041-warfront-") and OS.get_cmdline_user_args().has("--warfront-screens") and DisplayServer.get_name() != "headless"
-	if not screenshots_enabled() and not warfront_only: return
+	var afterglow_only: bool = filename.begins_with("v043-afterglow-") and OS.get_cmdline_user_args().has("--afterglow-screens") and DisplayServer.get_name() != "headless"
+	if not screenshots_enabled() and not warfront_only and not afterglow_only: return
 	await RenderingServer.frame_post_draw
 	var directory: String = ProjectSettings.globalize_path("res://docs/screenshots")
 	DirAccess.make_dir_recursive_absolute(directory)
@@ -206,6 +207,7 @@ func run() -> void:
 	await test_turn_clock_ui()
 	await test_custom_deck_ui()
 	await test_warfront_cast()
+	await test_selected_opponent()
 	# Same logical layout must fit a smaller desktop window and a wide screen.
 	for window_size: Vector2i in [Vector2i(1008, 700), Vector2i(1920, 1080)]:
 		root.size = window_size
@@ -232,10 +234,10 @@ func test_custom_deck_ui() -> void:
 	var visible_cards: int = 0
 	for row: Dictionary in editor.rows.values():
 		if row.cell.visible: visible_cards += 1
-	check(visible_cards == 14, "deck workshop troop filter shows six original and eight new unit cards")
+	check(visible_cards == 26, "deck workshop troop filter shows all twenty-six unit cards")
 	await click(Vector2(editor.position) + editor.filter_buttons.all.get_global_rect().get_center())
 	check(editor.rows.values().all(func(row: Dictionary) -> bool: return row.cell.visible), "all filter restores collectible catalog")
-	check(editor.rows.size() == 58 and not editor.rows.has("initiative"), "editor exposes 58 cards and excludes generated initiative")
+	check(editor.rows.size() == 86 and not editor.rows.has("initiative"), "editor exposes 86 cards and excludes generated initiative")
 	check(not editor.get_ok_button().disabled and editor._total() == 30, "valid preset starts as editable 30-card draft")
 	# Dialog controls live in their own Window viewport, so inject there.
 	await click_window(editor, editor.rows.sword.minus.get_global_rect().get_center())
@@ -269,6 +271,16 @@ func test_custom_deck_ui() -> void:
 		check(editor.draft.get("last_hearth", 0) == 1 and editor._total() == 30, "copy heavy preset brings in the ten-cost card")
 		check(editor.cost_curve.counts.size() == 11 and editor.cost_curve.counts[10] == 1 and editor.cost_curve.counts[8] == 1, "deck curve distinguishes eight and ten mana")
 		await capture("v041-warfront-curve.png", editor)
+	editor.source_choice.select(option_index(editor.source_choice, "hearth_compact"))
+	await click_window(editor, editor.copy_button.get_global_rect().get_center())
+	check(editor._total() == 30 and editor.cost_curve.counts[9] == 2 and editor.draft.get("last_bell") == 1, "new precon can be copied and shows its late curve")
+	var set_index: int = option_index(editor.set_choice, "afterglow")
+	editor.set_choice.select(set_index)
+	editor.set_choice.item_selected.emit(set_index)
+	editor.cost_choice.select(editor.cost_choice.get_item_index(10))
+	editor.cost_choice.item_selected.emit(editor.cost_choice.selected)
+	check(editor.rows.last_bell.cell.visible and editor.rows.copper_gate_requiem.cell.visible and not editor.rows.last_hearth.cell.visible and not editor.rows.quay_lantern.cell.visible,
+		"deck editor combines cost and set filters")
 	await click_window(editor, editor.get_cancel_button().get_global_rect().get_center())
 	loaded = Store.new(DECK_TEST_PATH).load_deck()
 	check(loaded.ok and loaded.definition.cards.sword == 2, "cancel discards unsaved draft changes")
@@ -303,6 +315,26 @@ func option_index(choice: OptionButton, id: String) -> int:
 	for index: int in range(choice.item_count):
 		if choice.get_item_metadata(index) == id: return index
 	return -1
+
+func test_selected_opponent() -> void:
+	game._open_council()
+	await settle()
+	var player: OptionButton = game.council.deck_choice
+	var opponent: OptionButton = game.council.opponent_choice
+	player.select(option_index(player, "relay_watch"))
+	player.item_selected.emit(player.selected)
+	opponent.select(option_index(opponent, "hearth_compact"))
+	opponent.item_selected.emit(opponent.selected)
+	await click(game.council.start_button.get_global_rect().get_center())
+	check(game.battle.deck(0).id == "relay_watch" and game.battle.deck(1).id == "hearth_compact", "new presets selected independently at actual match start")
+	await capture("v043-afterglow-match.png")
+	game._open_council()
+	await settle()
+	check(game.council.selected_opponent == "hearth_compact", "reopening council keeps the selected opponent")
+	opponent.select(0)
+	opponent.item_selected.emit(0)
+	await click(game.council.resume_button.get_global_rect().get_center())
+	check(game.battle.deck(1).id == "hearth_compact", "resuming preserves the suspended battle's opponent")
 
 func test_warfront_cast() -> void:
 	game.current_map = "greenwood"
@@ -532,8 +564,8 @@ func test_decks_and_library() -> void:
 	game.council.deck_choice.item_selected.emit(1)
 	await click(game.council.library_button.get_global_rect().get_center())
 	check(game.get_node("%CardsDialog").visible, "menu library button opens compendium")
-	check(game.get_node("%CardGrid").get_child_count() == 59, "compendium lists 58 collectible cards and initiative")
-	check(game.get_node("%LibraryIntro").text.contains("58 种可组牌"), "visible catalog count includes all collectible expansions")
+	check(game.get_node("%CardGrid").get_child_count() == 87, "compendium lists 86 collectible cards and initiative")
+	check(game.get_node("%LibraryIntro").text.contains("86 种可组牌"), "visible catalog count includes all collectible expansions")
 	for view: CardView in game.get_node("%CardGrid").get_children():
 		check(view.illustration != null, "native illustration mapped for " + view.card.id)
 	check(game.get_node("%LibraryIntro").text.contains("锋线突袭"), "library shows selected deck context")
@@ -541,10 +573,13 @@ func test_decks_and_library() -> void:
 	game.get_node("%CardGrid").get_child(3).pressed.emit()
 	check(game.get_node("%LibraryDetails").text.contains("暮林游侠"), "card selection updates detailed rules")
 	var dialog: Window = game.get_node("%CardsDialog")
-	var expansion_filter: CheckButton = game.get_node("%LibraryWarfront")
-	await click_window(dialog, expansion_filter.get_global_rect().get_center())
+	var expansion_filter: OptionButton = game.get_node("%LibrarySet")
+	var cost_filter: OptionButton = game.get_node("%LibraryCost")
+	expansion_filter.select(option_index(expansion_filter, "warfront"))
+	expansion_filter.item_selected.emit(expansion_filter.selected)
+	await settle()
 	var grid: GridContainer = game.get_node("%CardGrid")
-	check(grid.get_child_count() == 24 and game.get_node("%LibraryIntro").text.contains("24 张前线新卡"), "real library filter shows only the twenty-four additions")
+	check(grid.get_child_count() == 24 and game.get_node("%LibraryIntro").text.contains("前线扩牌 · 24 张"), "real library filter shows the previous expansion")
 	var capstone: CardView
 	for card: CardView in grid.get_children():
 		if card.card.id == "last_hearth": capstone = card; break
@@ -556,8 +591,20 @@ func test_decks_and_library() -> void:
 		await click_window(dialog, capstone.get_global_rect().get_center())
 		check(game.get_node("%LibraryDetails").text.contains("天炉坠火") and game.get_node("%LibraryDetails").text.contains("10 费"), "click opens the actual ten-mana definition")
 		await capture("v041-warfront-library.png", dialog)
-	await click_window(dialog, expansion_filter.get_global_rect().get_center())
-	check(grid.get_child_count() == 59, "turning off the filter restores the full library")
+	expansion_filter.select(option_index(expansion_filter, "afterglow"))
+	expansion_filter.item_selected.emit(expansion_filter.selected)
+	await settle()
+	check(grid.get_child_count() == 28, "Afterglow library shows twenty-eight cards")
+	await capture("v043-afterglow-library.png", dialog)
+	cost_filter.select(cost_filter.get_item_index(11))
+	cost_filter.item_selected.emit(cost_filter.selected)
+	await settle()
+	check(grid.get_child_count() == 2 and grid.get_child(0).card.id == "copper_gate_requiem" and grid.get_child(1).card.id == "last_bell", "only the two new ten-cost cards match")
+	await capture("v043-afterglow-ten-mana.png", dialog)
+	expansion_filter.select(0)
+	cost_filter.select(0)
+	cost_filter.item_selected.emit(0)
+	check(grid.get_child_count() == 87, "resetting both filters restores the full library")
 	check(before == var_to_str([game.battle.players, game.battle.units, game.battle.turn]), "browsing cards cannot mutate battle")
 	await settle()
 	if screenshots_enabled():

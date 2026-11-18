@@ -17,6 +17,9 @@ var details: Label
 var selected_list: RichTextLabel
 var grid: GridContainer
 var filter_buttons: Dictionary = {}
+var set_choice: OptionButton
+var cost_choice: OptionButton
+var selected_kind: String = "all"
 var cost_curve: CostCurve
 
 class CostCurve extends Control:
@@ -96,6 +99,18 @@ func _build() -> void:
 		filter.pressed.connect(_filter.bind(kind))
 		filters.add_child(filter)
 		filter_buttons[kind] = filter
+	set_choice = OptionButton.new()
+	set_choice.add_item("全部来源")
+	for set_id: String in CATALOG.SET_NAMES:
+		set_choice.add_item(CATALOG.SET_NAMES[set_id])
+		set_choice.set_item_metadata(set_choice.item_count - 1, set_id)
+	set_choice.item_selected.connect(_apply_filters.unbind(1))
+	filters.add_child(set_choice)
+	cost_choice = OptionButton.new()
+	cost_choice.add_item("全部费用", 0)
+	for cost: int in range(1, 11): cost_choice.add_item("%d 费" % cost, cost)
+	cost_choice.item_selected.connect(_apply_filters.unbind(1))
+	filters.add_child(cost_choice)
 	var columns := HBoxContainer.new()
 	columns.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	columns.add_theme_constant_override("separation", 18)
@@ -135,7 +150,7 @@ func _build() -> void:
 		plus.custom_minimum_size.x = 42
 		plus.pressed.connect(_change.bind(String(card.id), 1))
 		controls.add_child(plus)
-		rows[card.id] = {"cell": cell, "type": card.type, "minus": minus, "plus": plus, "count": count, "view": view}
+		rows[card.id] = {"cell": cell, "card": card, "minus": minus, "plus": plus, "count": count, "view": view}
 	var sidebar := PanelContainer.new()
 	sidebar.custom_minimum_size.x = 280
 	var skin := StyleBoxFlat.new()
@@ -164,7 +179,7 @@ func _build() -> void:
 	selected_list.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	selected_list.custom_minimum_size.y = 180
 	side.add_child(selected_list)
-	var note := _label("保存后在战前菜单选用。\n当前战斗保持原套牌；自定义对阵均衡AI。", 13)
+	var note := _label("保存后在战前菜单选用，可以自选对手预组。", 13)
 	note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	side.add_child(note)
 	status = _label("", 14)
@@ -172,13 +187,24 @@ func _build() -> void:
 	content.add_child(status)
 
 func _filter(kind: String) -> void:
-	for row: Dictionary in rows.values(): row.cell.visible = kind == "all" or row.type == kind
+	selected_kind = kind
+	_apply_filters()
+
+func _apply_filters() -> void:
+	var set_id: String = "" if set_choice.selected == 0 else str(set_choice.get_selected_metadata())
+	var cost: int = cost_choice.get_selected_id()
+	for row: Dictionary in rows.values():
+		row.cell.visible = ((selected_kind == "all" or row.card.type == selected_kind)
+			and (set_id.is_empty() or row.card.get("set_id", "") == set_id)
+			and (cost == 0 or row.card.cost == cost))
 
 func _adjust_columns() -> void:
 	if grid != null: grid.columns = 4 if size.x >= 1060 else 3
 
 func open_deck(starting: Dictionary, notice: String = "") -> void:
 	draft = starting.cards.duplicate(true)
+	set_choice.select(0)
+	cost_choice.select(0)
 	_filter("all")
 	filter_buttons.all.button_pressed = true
 	for index: int in range(source_choice.item_count):

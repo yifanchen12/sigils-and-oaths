@@ -65,21 +65,28 @@ const EXPANSION_ATLASES: Dictionary = {
 const CHANNEL_CARD_ART: Dictionary = {
 	"span_kit": "span-kit-v1", "countercurrent_ward": "countercurrent-ward-v1"
 }
-const WARFRONT_ATLASES: Dictionary = {
-	"warfront-units-v1": {"rows": 2, "ids": ["reed_scout", "gate_veteran", "ridge_courier", "ridge_archer",
+const CARD_ATLASES: Dictionary = {
+	"warfront-units-v1": {"columns": 4, "rows": 2, "ids": ["reed_scout", "gate_veteran", "ridge_courier", "ridge_archer",
 		"shore_medic", "scribe_warden", "breakwater_guard", "bronze_watch"]},
-	"warfront-effects-v1": {"rows": 4, "ids": ["field_signals", "detach_line", "dispatch_bundle", "mist_spike",
+	"warfront-effects-v1": {"columns": 4, "rows": 4, "ids": ["field_signals", "detach_line", "dispatch_bundle", "mist_spike",
 		"kiln_lance", "warder_hymn", "hammer_sweep", "second_watch", "signal_torrent", "last_hearth", "silt_snare",
-		"fallback_horn", "tidal_oath", "open_wind", "night_muster", "reed_roads"]}
+		"fallback_horn", "tidal_oath", "open_wind", "night_muster", "reed_roads"]},
+	"afterglow-units-v1": {"columns": 4, "rows": 3, "ids": ["quay_lantern", "lantern_bearer", "mink_watcher", "ferry_pikeman",
+		"willow_outlook", "quartermaster", "moth_cavalry", "ash_notary",
+		"kiln_wardens", "carriage_cloak", "last_bridge_clinic", "copper_gate_requiem"]},
+	"afterglow-spells-v1": {"columns": 5, "rows": 2, "ids": ["recall_writ", "triage_writ", "split_sentence", "ford_lock", "return_manifest",
+		"dew_wall", "valley_reckoner", "terrace_relay", "oath_deliberation", "last_bell"]},
+	"afterglow-traps-weather-v1": {"columns": 3, "rows": 2, "ids": ["drawwire", "quiet_veil", "salt_marker",
+		"mirror_anchor", "coast_drizzle", "lamplight_shift"]}
 }
 
 static func get_texture(asset_id: String) -> Texture2D:
 	if textures.has(asset_id): return textures[asset_id]
-	for sheet: String in WARFRONT_ATLASES:
-		var atlas: Dictionary = WARFRONT_ATLASES[sheet]
+	for sheet: String in CARD_ATLASES:
+		var atlas: Dictionary = CARD_ATLASES[sheet]
 		var index: int = atlas.ids.find(asset_id)
 		if index >= 0:
-			var tile: AtlasTexture = _atlas("res://assets/art/expansion/%s.png" % sheet, index, 4, int(atlas.rows)) as AtlasTexture
+			var tile: AtlasTexture = _atlas("res://assets/art/expansion/%s.png" % sheet, index, int(atlas.columns), int(atlas.rows)) as AtlasTexture
 			if tile != null:
 				tile.region = tile.region.grow(-2)
 				textures[asset_id] = tile

@@ -209,7 +209,9 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 				death_cell = path.back()
 				delay = minf(0.42, 0.14 + path.size() * 0.04)
 				motion_ghost = old.duplicate(true)
-			_effect("burst", death_cell, "击破", RED, 0.8, delay)
+			if action.get("spell_effect", "") == "recall" and action.target == old.pos:
+				_effect("spawn", old.pos, "返回手牌", BLUE, 0.8, delay)
+			else: _effect("burst", death_cell, "击破", RED, 0.8, delay)
 			continue
 		var hp_delta: int = int(current.hp) - int(old.hp)
 		var shield_delta: int = int(current.shield) - int(old.shield)

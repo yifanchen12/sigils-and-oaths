@@ -39,6 +39,7 @@ var using_hero: bool = false
 var current_map: String = "greenwood"
 var current_hero: String = "warden"
 var current_deck: String = "balanced"
+var current_opponent: String = ""
 var has_started: bool = false
 var expanded_battlefield: bool = false
 var message: String = "选择部队牌，再点击己方部队身旁的青色格部署。"
@@ -262,7 +263,14 @@ func _ready() -> void:
 		_restart())
 	_sync_custom_options()
 	%CardLibrary.pressed.connect(_open_library)
-	%LibraryWarfront.toggled.connect(_show_library_cards)
+	%LibrarySet.add_item("全部来源")
+	for set_id: String in BattleModel.CATALOG.SET_NAMES:
+		%LibrarySet.add_item(BattleModel.CATALOG.SET_NAMES[set_id])
+		%LibrarySet.set_item_metadata(%LibrarySet.item_count - 1, set_id)
+	%LibraryCost.add_item("全部费用", 0)
+	for cost: int in range(11): %LibraryCost.add_item("%d 费" % cost, cost + 1)
+	%LibrarySet.item_selected.connect(_show_library_cards.unbind(1))
+	%LibraryCost.item_selected.connect(_show_library_cards.unbind(1))
 	%CardsDialog.visibility_changed.connect(_refresh)
 	%CardsDialog.size_changed.connect(_size_library_grid)
 	%RulesDialog.visibility_changed.connect(_refresh)
@@ -276,7 +284,7 @@ func _ready() -> void:
 	council.training_requested.connect(_start_training)
 	council.settings_requested.connect(_open_settings)
 	_new_match(1)
-	council.open(current_map, current_hero, false, current_deck)
+	council.open(current_map, current_hero, false, current_deck, current_opponent)
 
 func _open_council() -> void:
 	if training != null:
@@ -286,7 +294,7 @@ func _open_council() -> void:
 		campaign_session.save()
 		council.campaign_notice.text = campaign_session.notice
 	story_view.hide()
-	council.open(current_map, current_hero, has_started and battle.winner == -1, current_deck)
+	council.open(current_map, current_hero, has_started and battle.winner == -1, current_deck, current_opponent)
 	_refresh()
 
 func _resume_battle() -> void:
@@ -294,7 +302,7 @@ func _resume_battle() -> void:
 	_refresh()
 	board.grab_focus()
 
-func _start_from_council(map_id: String, hero_id: String, deck_id: String) -> void:
+func _start_from_council(map_id: String, hero_id: String, deck_id: String, opponent_id: String = "") -> void:
 	if deck_id == "custom" and (custom_deck.is_empty() or not BattleModel.DECKS.validate_counts(custom_deck.get("cards"), BattleModel.CATALOG.cards).is_empty()):
 		_open_deck_editor()
 		deck_editor.status.text = "请先保存30张合法的自定义套牌。"
@@ -308,6 +316,7 @@ func _start_from_council(map_id: String, hero_id: String, deck_id: String) -> vo
 	current_map = map_id
 	current_hero = hero_id
 	current_deck = deck_id
+	current_opponent = opponent_id
 	for index: int in range(%MapChoice.item_count):
 		if %MapChoice.get_item_metadata(index) == map_id: %MapChoice.select(index)
 	for index: int in range(%HeroChoice.item_count):
@@ -383,7 +392,7 @@ func _leave_training() -> void:
 	has_started = previous.started
 	campaign_active = previous.campaign
 	var restored: Battle = previous.battle
-	council.open(current_map, current_hero, has_started and restored.winner == -1, current_deck)
+	council.open(current_map, current_hero, has_started and restored.winner == -1, current_deck, current_opponent)
 	_new_match(restored.match_seed, restored)
 	if expanded_battlefield != previous.expanded: _toggle_battlefield()
 	if has_started and battle.winner == -1 and battle.active_side == 1:
@@ -497,8 +506,9 @@ func _mount_campaign_encounter(result: Dictionary) -> void:
 		_run_ai(generation)
 
 func _open_library() -> void:
-	%LibraryWarfront.set_pressed_no_signal(false)
-	_show_library_cards(false)
+	%LibrarySet.select(0)
+	%LibraryCost.select(0)
+	_show_library_cards()
 	var available: Vector2 = get_viewport_rect().size - Vector2(40, 40)
 	%CardsDialog.popup_centered(Vector2i(minf(1100, available.x), minf(820, available.y)))
 	_size_library_grid()
@@ -507,9 +517,11 @@ func _size_library_grid() -> void:
 	# 158 px cards, a 10 px gap and space for the vertical scrollbar.
 	%CardGrid.columns = clampi(int((%CardsDialog.size.x - 46) / 168.0), 1, 6)
 
-func _show_library_cards(only_warfront: bool) -> void:
+func _show_library_cards() -> void:
 	var deck_id: String = council.selected_deck if council.visible else current_deck
 	var selected: Dictionary = _deck_definition(deck_id)
+	var set_id: String = "" if %LibrarySet.selected == 0 else str(%LibrarySet.get_selected_metadata())
+	var cost: int = %LibraryCost.get_selected_id() - 1
 	for child: Node in %CardGrid.get_children():
 		%CardGrid.remove_child(child)
 		child.queue_free()
@@ -517,7 +529,8 @@ func _show_library_cards(only_warfront: bool) -> void:
 	var first: Dictionary = {}
 	for card: Dictionary in BattleModel.CATALOG.cards:
 		if not card.get("generated_only", false): collectible_count += 1
-		if only_warfront and card.get("set_id", "") != "warfront": continue
+		if not set_id.is_empty() and card.get("set_id", "") != set_id: continue
+		if cost >= 0 and card.cost != cost: continue
 		if first.is_empty(): first = card
 		var copies: int = int(selected.cards.get(card.id, 0))
 		var view: CardView = CardControl.new()
@@ -527,10 +540,16 @@ func _show_library_cards(only_warfront: bool) -> void:
 		view.pressed.connect(_library_details.bind(card, copies))
 		view.mouse_entered.connect(_library_details.bind(card, copies))
 		%CardGrid.add_child(view)
-	var scope: String = "%d 张前线新卡" % %CardGrid.get_child_count() if only_warfront else "%d 种可组牌 · %d 种对局生成牌" % [collectible_count, BattleModel.CATALOG.cards.size() - collectible_count]
+	var scope: String = "%d 种可组牌 · %d 种对局生成牌" % [collectible_count, BattleModel.CATALOG.cards.size() - collectible_count]
+	if cost >= 0 or not set_id.is_empty():
+		var group: String = str(BattleModel.CATALOG.SET_NAMES.get(set_id, "全部来源"))
+		scope = "%s · %d 张" % [group, %CardGrid.get_child_count()]
 	%LibraryIntro.text = "%s  /  %s · %d 张  /  牌角为套牌内张数" % [scope, selected.name, BattleModel.DECKS.DECK_SIZE]
 	%Scroll.set_deferred("scroll_vertical", 0)
 	if not first.is_empty(): _library_details(first, int(selected.cards.get(first.id, 0)))
+	else:
+		%LibraryPortrait.hide()
+		%LibraryDetails.text = "当前筛选没有卡牌。"
 
 func _deck_definition(deck_id: String) -> Dictionary:
 	return custom_deck if deck_id == "custom" and not custom_deck.is_empty() else BattleModel.DECKS.find(deck_id)
@@ -637,6 +656,7 @@ func _new_match(seed_value: int, prepared: Battle = null) -> void:
 		if BattleModel.HEROES.heroes[index].id == current_hero: hero_index = index
 	var enemy_id: String = BattleModel.HEROES.heroes[(hero_index + 1) % BattleModel.HEROES.heroes.size()].id
 	var enemy_deck: String = "balanced" if current_deck == "custom" else current_deck
+	if not current_opponent.is_empty(): enemy_deck = current_opponent
 	battle = prepared if prepared != null else BattleModel.new(seed_value, current_map, current_hero, enemy_id, current_deck, enemy_deck, 90, custom_deck)
 	battle.changed.connect(_on_battle_changed)
 	board.battle = battle
@@ -699,6 +719,7 @@ func _refresh() -> void:
 		portrait.texture = Art.get_texture(battle.hero(side).portrait)
 		portrait.visible = portrait.texture != null
 	%EnemyHand.text = "敌方手牌 %d 张    牌库 %d 张" % [enemy.hand.size(), enemy.deck.size()]
+	%EnemyHand.tooltip_text = "对手预组 · " + str(battle.deck(1).name)
 	%HandTitle.text = "你的手牌  %d/8     /     选择卡牌查看详情" % player.hand.size()
 	%DeckInfo.text = "牌库 %d   ·   弃牌 %d   ·   疲劳 %d" % [player.deck.size(), player.discard.size(), player.fatigue]
 	var log_text: String = ""
@@ -961,6 +982,7 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 		var instance: Dictionary = battle.hand_card(battle.active_side, int(action.get("card_uid", -1)))
 		if not instance.is_empty():
 			var definition: Dictionary = battle.definition(instance.card_id)
+			var entry: Dictionary = definition.get("entry", {})
 			visual_action["card_type"] = definition.type
 			visual_action["spell_effect"] = definition.get("effect", "")
 			visual_action["effect_kind"] = visual_action.spell_effect
@@ -973,6 +995,13 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 			elif visual_action.spell_effect == "roadwork":
 				visual_action["affected_cells"] = battle.roadwork_cells(action.target)
 				visual_action.effect_kind = "shield"
+			elif visual_action.spell_effect in ["verdict", "recall"]:
+				visual_action.effect_kind = "damage" if visual_action.spell_effect == "verdict" else "shield"
+				visual_action["cast_color"] = Color("9ad6f5")
+			elif int(entry.get("damage", 0)) > 0:
+				visual_action["affected_cells"] = battle.Formation.footprint(battle, action.target, int(entry.get("radius", 1)))
+				visual_action.effect_kind = "area"
+				visual_action["cast_color"] = Color("9ad6f5")
 			var origin: Dictionary = {}
 			if definition.get("effect", "") not in ["weather", "clear_weather"] and battle.inside(action.target):
 				for caster: Dictionary in battle.units:
@@ -1203,7 +1232,8 @@ func _update_battle_peek() -> void:
 		var weather_text: String = battle.WEATHER[battle.weather].name + (" · 剩余%d回合" % battle.weather_remaining if battle.weather_remaining > 0 else "")
 		var body: String = "生命%d/%d  护盾%d\n法力%d/%d  部队%d/6\n手牌%d张  牌库%d张\n\n%s\n%s\n\n%s：%d费 · %s\n%s\n\n%s\n%s" % [enemy.hp, enemy.max_hp, enemy.shield, enemy_player.mana, enemy_player.max_mana, battle.army_count(1), enemy_player.hand.size(), enemy_player.deck.size(), weather_text, battle.WEATHER[battle.weather].description, enemy_hero.skill, enemy_hero.cost, "就绪" if enemy_player.skill_cooldown == 0 else "冷却%d" % enemy_player.skill_cooldown, enemy_hero.skill_text, enemy_hero.passive, enemy_hero.passive_text]
 		if not battle.objective.is_empty(): body = battle.objective_status() + "\n\n" + body
-		battle_brief.present(Art.get_texture(enemy_hero.portrait), enemy.name, "敌方指挥官 · 公开战况", body, RED)
+		var opponent_label: String = "对手预组 · " + str(battle.deck(1).name) if training == null else "演练守军"
+		battle_brief.present(Art.get_texture(enemy_hero.portrait), enemy.name, opponent_label, body, RED)
 	_position_battle_peek()
 
 func _portrait_for(unit: Dictionary) -> String:

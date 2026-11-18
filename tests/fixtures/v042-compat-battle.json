@@ -1,0 +1,591 @@
+{
+  "active_side": 0,
+  "deck_size": 30,
+  "log": [
+    "苍蓝军团回合 · 法力 1/1",
+    "战斗开始：推进部队，即可向前延伸部署范围。"
+  ],
+  "map_id": "lamplanding",
+  "match_seed": 42043,
+  "next_id": 64,
+  "objective": {},
+  "players": [
+    {
+      "card_total": 30,
+      "deck": [
+        {
+          "card_id": "tidal_oath",
+          "uid": 30
+        },
+        {
+          "card_id": "signal_torrent",
+          "uid": 28
+        },
+        {
+          "card_id": "mage",
+          "uid": 10
+        },
+        {
+          "card_id": "breakwater_guard",
+          "uid": 20
+        },
+        {
+          "card_id": "warder_hymn",
+          "uid": 25
+        },
+        {
+          "card_id": "cavalry",
+          "uid": 6
+        },
+        {
+          "card_id": "clear_skies",
+          "uid": 14
+        },
+        {
+          "card_id": "shore_medic",
+          "uid": 18
+        },
+        {
+          "card_id": "sword",
+          "uid": 2
+        },
+        {
+          "card_id": "frostbind",
+          "uid": 13
+        },
+        {
+          "card_id": "scribe_warden",
+          "uid": 19
+        },
+        {
+          "card_id": "mist_spike",
+          "uid": 22
+        },
+        {
+          "card_id": "mage",
+          "uid": 9
+        },
+        {
+          "card_id": "fog",
+          "uid": 12
+        },
+        {
+          "card_id": "sword",
+          "uid": 1
+        },
+        {
+          "card_id": "sword",
+          "uid": 3
+        },
+        {
+          "card_id": "last_hearth",
+          "uid": 29
+        },
+        {
+          "card_id": "hammer_sweep",
+          "uid": 26
+        },
+        {
+          "card_id": "spear",
+          "uid": 5
+        },
+        {
+          "card_id": "ridge_archer",
+          "uid": 17
+        },
+        {
+          "card_id": "dispatch_bundle",
+          "uid": 21
+        },
+        {
+          "card_id": "archer",
+          "uid": 7
+        },
+        {
+          "card_id": "mist_spike",
+          "uid": 23
+        },
+        {
+          "card_id": "spear",
+          "uid": 4
+        },
+        {
+          "card_id": "archer",
+          "uid": 8
+        }
+      ],
+      "deck_counts": {
+        "archer": 2,
+        "breakwater_guard": 1,
+        "cavalry": 1,
+        "clear_skies": 1,
+        "dispatch_bundle": 1,
+        "fog": 1,
+        "frostbind": 1,
+        "hammer_sweep": 1,
+        "kiln_lance": 1,
+        "last_hearth": 1,
+        "mage": 2,
+        "mist_spike": 2,
+        "reed_scout": 2,
+        "ridge_archer": 1,
+        "scribe_warden": 1,
+        "second_watch": 1,
+        "shore_medic": 1,
+        "signal_torrent": 1,
+        "spear": 2,
+        "sword": 3,
+        "tidal_oath": 1,
+        "ward": 1,
+        "warder_hymn": 1
+      },
+      "deck_id": "frost_engine",
+      "discard": [],
+      "fatigue": 0,
+      "hand": [
+        {
+          "card_id": "reed_scout",
+          "uid": 15
+        },
+        {
+          "card_id": "ward",
+          "uid": 11
+        },
+        {
+          "card_id": "kiln_lance",
+          "uid": 24
+        },
+        {
+          "card_id": "second_watch",
+          "uid": 27
+        },
+        {
+          "card_id": "reed_scout",
+          "uid": 16
+        }
+      ],
+      "hero_id": "warden",
+      "identity": {},
+      "mana": 1,
+      "max_mana": 1,
+      "skill_cooldown": 0,
+      "spell_boost_used": false
+    },
+    {
+      "card_total": 31,
+      "deck": [
+        {
+          "card_id": "warder_hymn",
+          "uid": 52
+        },
+        {
+          "card_id": "silt_snare",
+          "uid": 55
+        },
+        {
+          "card_id": "breakwater_guard",
+          "uid": 47
+        },
+        {
+          "card_id": "shore_medic",
+          "uid": 43
+        },
+        {
+          "card_id": "archer",
+          "uid": 34
+        },
+        {
+          "card_id": "healer",
+          "uid": 39
+        },
+        {
+          "card_id": "archer",
+          "uid": 35
+        },
+        {
+          "card_id": "reed_roads",
+          "uid": 61
+        },
+        {
+          "card_id": "fallback_horn",
+          "uid": 57
+        },
+        {
+          "card_id": "warder_hymn",
+          "uid": 53
+        },
+        {
+          "card_id": "sword",
+          "uid": 32
+        },
+        {
+          "card_id": "healer",
+          "uid": 38
+        },
+        {
+          "card_id": "night_muster",
+          "uid": 59
+        },
+        {
+          "card_id": "shore_medic",
+          "uid": 44
+        },
+        {
+          "card_id": "night_muster",
+          "uid": 60
+        },
+        {
+          "card_id": "fallback_horn",
+          "uid": 56
+        },
+        {
+          "card_id": "shore_medic",
+          "uid": 45
+        },
+        {
+          "card_id": "mage",
+          "uid": 36
+        },
+        {
+          "card_id": "gate_veteran",
+          "uid": 40
+        },
+        {
+          "card_id": "detach_line",
+          "uid": 51
+        },
+        {
+          "card_id": "tidal_oath",
+          "uid": 58
+        },
+        {
+          "card_id": "sword",
+          "uid": 33
+        },
+        {
+          "card_id": "breakwater_guard",
+          "uid": 46
+        },
+        {
+          "card_id": "field_signals",
+          "uid": 49
+        },
+        {
+          "card_id": "bronze_watch",
+          "uid": 48
+        }
+      ],
+      "deck_counts": {
+        "archer": 2,
+        "breakwater_guard": 2,
+        "bronze_watch": 1,
+        "detach_line": 1,
+        "fallback_horn": 2,
+        "field_signals": 2,
+        "gate_veteran": 3,
+        "hammer_sweep": 1,
+        "healer": 2,
+        "mage": 2,
+        "night_muster": 2,
+        "reed_roads": 1,
+        "shore_medic": 3,
+        "silt_snare": 1,
+        "sword": 2,
+        "tidal_oath": 1,
+        "warder_hymn": 2
+      },
+      "deck_id": "lantern_convoy",
+      "discard": [],
+      "fatigue": 0,
+      "hand": [
+        {
+          "card_id": "mage",
+          "uid": 37
+        },
+        {
+          "card_id": "gate_veteran",
+          "uid": 42
+        },
+        {
+          "card_id": "gate_veteran",
+          "uid": 41
+        },
+        {
+          "card_id": "hammer_sweep",
+          "uid": 54
+        },
+        {
+          "card_id": "field_signals",
+          "uid": 50
+        },
+        {
+          "card_id": "initiative",
+          "uid": 63
+        }
+      ],
+      "hero_id": "pyromancer",
+      "identity": {},
+      "mana": 0,
+      "max_mana": 0,
+      "skill_cooldown": 0,
+      "spell_boost_used": false
+    }
+  ],
+  "rng_seed": "42043",
+  "rng_state": "-791626806400749405",
+  "rules": "44f98db873b141915332028c8a344eec8e7eec9e08fa11ecaa13ec9071a0fc93",
+  "terrain": [
+    "mountain",
+    "mountain",
+    "plain",
+    "plain",
+    "plain",
+    "hill",
+    "plain",
+    "water",
+    "water",
+    "plain",
+    "plain",
+    "plain",
+    "mountain",
+    "mountain",
+    "mountain",
+    "mountain",
+    "mountain",
+    "plain",
+    "plain",
+    "forest",
+    "plain",
+    "plain",
+    "plain",
+    "water",
+    "water",
+    "plain",
+    "plain",
+    "road",
+    "road",
+    "road",
+    "plain",
+    "mountain",
+    "plain",
+    "plain",
+    "forest",
+    "plain",
+    "road",
+    "road",
+    "road",
+    "bridge",
+    "bridge",
+    "road",
+    "road",
+    "road",
+    "road",
+    "fort",
+    "plain",
+    "mountain",
+    "plain",
+    "plain",
+    "plain",
+    "road",
+    "road",
+    "hill",
+    "plain",
+    "water",
+    "water",
+    "plain",
+    "road",
+    "road",
+    "road",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "fort",
+    "road",
+    "road",
+    "road",
+    "plain",
+    "water",
+    "water",
+    "plain",
+    "road",
+    "road",
+    "road",
+    "hill",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "road",
+    "road",
+    "road",
+    "road",
+    "road",
+    "bridge",
+    "bridge",
+    "road",
+    "road",
+    "road",
+    "road",
+    "road",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "road",
+    "road",
+    "road",
+    "road",
+    "bridge",
+    "bridge",
+    "road",
+    "road",
+    "road",
+    "road",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "forest",
+    "road",
+    "road",
+    "plain",
+    "plain",
+    "water",
+    "water",
+    "plain",
+    "plain",
+    "road",
+    "road",
+    "forest",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "road",
+    "road",
+    "fort",
+    "plain",
+    "water",
+    "water",
+    "plain",
+    "road",
+    "road",
+    "forest",
+    "forest",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "road",
+    "road",
+    "road",
+    "plain",
+    "plain",
+    "water",
+    "water",
+    "plain",
+    "plain",
+    "road",
+    "forest",
+    "plain",
+    "plain",
+    "plain",
+    "mountain",
+    "plain",
+    "road",
+    "road",
+    "road",
+    "road",
+    "plain",
+    "water",
+    "water",
+    "plain",
+    "plain",
+    "plain",
+    "forest",
+    "plain",
+    "plain",
+    "mountain",
+    "mountain",
+    "mountain",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "water",
+    "water",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "mountain",
+    "mountain"
+  ],
+  "time_remaining": 90.0,
+  "traps": [],
+  "turn": 1,
+  "turn_time_limit": 90.0,
+  "units": [
+    {
+      "atk": 3,
+      "attacked": false,
+      "defense": 1,
+      "guarding": false,
+      "hp": 20,
+      "id": 31,
+      "kind": "commander",
+      "last_move_distance": 0,
+      "max_hp": 20,
+      "move": 0,
+      "moved": false,
+      "name": "艾琳 · 破晓",
+      "pos": [
+        3,
+        10
+      ],
+      "range": 1,
+      "rooted_turns": 0,
+      "shield": 0,
+      "short": "誓",
+      "side": 0,
+      "skill_used": false,
+      "summoning": false
+    },
+    {
+      "atk": 2,
+      "attacked": false,
+      "defense": 0,
+      "guarding": false,
+      "hp": 20,
+      "id": 62,
+      "kind": "commander",
+      "last_move_distance": 0,
+      "max_hp": 20,
+      "move": 0,
+      "moved": false,
+      "name": "维洛 · 赤烬",
+      "pos": [
+        12,
+        2
+      ],
+      "range": 2,
+      "rooted_turns": 0,
+      "shield": 0,
+      "short": "烬",
+      "side": 1,
+      "skill_used": false,
+      "summoning": false
+    }
+  ],
+  "version": 4,
+  "weather": "clear",
+  "weather_remaining": 0,
+  "winner": -1
+}

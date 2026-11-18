@@ -551,10 +551,15 @@ theme_override_font_sizes/font_size = 16
 clip_text = true
 text = "悬停或点击卡牌查看规则"
 
-[node name="LibraryWarfront" type="CheckButton" parent="CardsDialog/Content/Header"]
+[node name="LibrarySet" type="OptionButton" parent="CardsDialog/Content/Header"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
-text = "仅看前线新卡"
+
+[node name="LibraryCost" type="OptionButton" parent="CardsDialog/Content/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(105, 0)
+layout_mode = 2
 
 [node name="Scroll" type="ScrollContainer" parent="CardsDialog/Content"]
 unique_name_in_owner = true

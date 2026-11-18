@@ -27,14 +27,23 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 			if card.cost > battle.players[side].mana or not battle.card_targets(instance.uid, side).has(cell): return {}
 			title = card.name
 			effect = str(card.get("effect", ""))
+			var entry: Dictionary = card.get("entry", {})
+			if entry.get("target_side", "") == "enemy": return _formation_preview(battle, card, entry, cell, side)
 			if effect == "formation":
-				return {"title": title, "effect": effect, "art": card.id, "amount": battle.Formation.damage(battle, card, side), "target_id": target.get("id", -1),
-					"changes": battle.Formation.changes(battle, card, cell, side), "cells": battle.Formation.footprint(battle, cell, int(card.get("radius", 1))),
-					"commander_amount": battle.Formation.damage(battle, card, side, true),
-					"note": "预估按公开战况计算，实际结算可能触发隐藏陷阱。"}
+				return _formation_preview(battle, card, card, cell, side)
 			if effect == "roadwork":
 				return {"title": title, "effect": effect, "art": card.id, "amount": 0, "target_id": -1, "changes": [],
 					"cells": battle.roadwork_cells(cell), "note": "标出的格子将成为军道，桥梁和不可通行地形保留。"}
+			if effect == "recall":
+				return {"title": title, "effect": effect, "art": card.id, "amount": 0, "target_id": target.id, "changes": [],
+					"note": "%s将返回手牌，附着伏设随之移除。" % target.name}
+			if effect == "verdict":
+				amount = battle.verdict_damage(card, target)
+				var change: Dictionary = _change(target, "shatter_bolt" if card.get("shatter", false) else "damage", amount)
+				var note: String = "预估按公开战况计算，隐藏陷阱可能改写结果。"
+				if card.get("shatter", false) and target.shield > 0: note = "先清除当前护盾。\n" + note
+				if card.has("kill_draw") and change.hp_after == 0 and not battle.players[side].deck.is_empty(): note = "若击破目标，抽1张。\n" + note
+				return {"title": title, "effect": effect, "amount": amount, "target_id": target.id, "changes": [change], "note": note}
 			if effect not in ["damage", "area", "heal", "shield", "dispel", "repulse", "shatter_bolt", "rally_heal", "cleanse_root"]: return {}
 			if effect in ["damage", "area", "shatter_bolt"]: amount = battle.spell_damage(card, side)
 			elif effect == "repulse": amount = int(card.amount) + (1 if battle.repulse_destination(target, side) == cell else 0)
@@ -74,6 +83,15 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 	if str(action.get("type", "")) == "unit_skill": note += "\n消耗1法力，结束施术部队的行动。"
 	return {"title": title, "effect": effect, "amount": amount, "target_id": target.get("id", -1), "changes": changes, "note": note}
 
+static func _formation_preview(battle: Battle, card: Dictionary, spec: Dictionary, cell: Vector2i, side: int) -> Dictionary:
+	var note: String = "预估按公开战况计算，实际结算可能触发隐藏陷阱。"
+	if spec.has("grounds"): note = "只影响军道或桥梁上的普通敌军。"
+	if spec.has("draw"):
+		note += "\n随后将从牌库抽最多%d张。" % mini(int(spec.draw), battle.players[side].deck.size())
+	return {"title": card.name, "effect": "formation", "art": card.id, "amount": battle.Formation.damage(battle, spec, side), "target_id": -1,
+		"changes": battle.Formation.changes(battle, spec, cell, side), "cells": battle.Formation.footprint(battle, cell, int(spec.get("radius", 1))),
+		"commander_amount": battle.Formation.damage(battle, spec, side, true), "note": note}
+
 static func _change(unit: Dictionary, effect: String, amount: int) -> Dictionary:
 	var hp: int = unit.hp
 	var shield: int = unit.shield
@@ -95,9 +113,13 @@ static func describe(forecast: Dictionary, battle: Battle, compact: bool = false
 	var lines := PackedStringArray()
 	if forecast.effect == "formation" and forecast.amount > 0:
 		var group: String = "部队 %d 伤害 · 指挥官 %d 伤害" % [forecast.amount, forecast.commander_amount] if forecast.amount != forecast.commander_amount else "每名敌军 %d 点伤害" % forecast.amount
-		lines.append("%s · 影响 %d 名\n" % [group, forecast.changes.size()])
+		var hostile: int = 0
+		for change: Dictionary in forecast.changes:
+			if not change.friendly: hostile += 1
+		lines.append("%s · 命中敌军 %d 名\n" % [group, hostile])
 	if forecast.effect == "roadwork": lines.append("铺设 %d 格军道\n" % forecast.cells.size())
 	if forecast.effect in ["damage", "area", "shatter_bolt"]: lines.append("本次火焰伤害 %d\n" % forecast.amount)
+	if forecast.effect == "verdict": lines.append("本次法术伤害 %d\n" % forecast.amount)
 	if forecast.effect == "area": lines.append("范围命中 %d 名敌军\n" % forecast.changes.size())
 	for change: Dictionary in forecast.changes:
 		var label: String = "%s · %s" % [battle.cell_name(change.position_before), change.name]
@@ -116,6 +138,7 @@ static func describe(forecast: Dictionary, battle: Battle, compact: bool = false
 
 static func hint(forecast: Dictionary) -> String:
 	if forecast.effect == "roadwork": return "%s预估 · 铺设%d格军道 · 点击确认，右键取消。" % [forecast.title, forecast.cells.size()]
+	if forecast.effect == "recall": return "%s · 点击确认回收，右键取消。" % forecast.title
 	var loss: int = 0
 	var healing: int = 0
 	var shield: int = 0

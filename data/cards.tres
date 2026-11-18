@@ -201,4 +201,100 @@ cards = Array[Dictionary]([{
 }, {
 "id": "reed_roads", "name": "铺槛开道", "short": "路", "type": "environment", "effect": "roadwork", "cost": 5, "set_id": "warfront",
 "text": "将目标格与相邻四格内可通行的陆地改为军道。\n桥梁保留。施法中心须在友军范围内。", "tag": "地形 · 成片铺路"
+}, {
+"id": "quay_lantern", "name": "堤灯侍医", "short": "医", "type": "unit", "kind": "healer", "cost": 1, "set_id": "afterglow",
+"hp": 2, "atk": 1, "defense": 0, "move": 2, "range": 1, "fall": {"healing": 1},
+"text": "阵亡时为相邻友军恢复1生命。\n保留医师的回合治疗。", "tag": "医师 · 退场治疗"
+}, {
+"id": "recall_writ", "name": "折回哨令", "short": "回", "type": "spell", "effect": "recall", "cost": 1, "set_id": "afterglow",
+"text": "将一支友方普通部队收回手牌。\n解除其伏设，再部署需支付原费用。\n收回不会触发阵亡效果。", "tag": "法术 · 回收部队"
+}, {
+"id": "drawwire", "name": "割流暗线", "short": "线", "type": "trap", "effect": "trap", "trigger": "step", "amount": 0, "drain": 2, "cost": 1, "set_id": "afterglow",
+"text": "伏设空格。敌军主动踏入时，\n失去最多2点本回合剩余法力。\n不打断移动。", "tag": "陷阱 · 地格耗法"
+}, {
+"id": "lantern_bearer", "name": "遗灯步卒", "short": "步", "type": "unit", "kind": "sword", "cost": 2, "set_id": "afterglow",
+"hp": 5, "atk": 2, "defense": 0, "move": 2, "range": 1, "fall": {"draw": 1},
+"text": "阵亡时抽1张牌，牌库为空则跳过。", "tag": "步兵 · 退场补给"
+}, {
+"id": "mink_watcher", "name": "芦汊巡弓", "short": "弓", "type": "unit", "kind": "archer", "cost": 2, "set_id": "afterglow",
+"hp": 3, "atk": 2, "defense": 0, "move": 3, "range": 2, "entry": {"reveal": true},
+"text": "部署时拆除落点和相邻四格的敌方陷阱。\n射程较短，可用高地补足。", "tag": "弓手 · 进场探路"
+}, {
+"id": "triage_writ", "name": "河口急救签", "short": "救", "type": "spell", "effect": "formation", "target_side": "ally", "radius": 1, "healing": 1, "cleanse": true, "cost": 2, "set_id": "afterglow",
+"text": "为目标格和相邻四格友军恢复1生命，\n解除定身。已用掉的行动保持原状。", "tag": "法术 · 群体解缚"
+}, {
+"id": "quiet_veil", "name": "湿帷潜护", "short": "帷", "type": "trap", "effect": "trap", "trigger": "spell", "amount": 1, "healing": 2, "cost": 2, "set_id": "afterglow",
+"text": "伏设于友军。下次受敌方伤害法术或技能前，\n先恢复2生命，再获得1护盾，上限5。", "tag": "陷阱 · 术前急救"
+}, {
+"id": "ferry_pikeman", "name": "撑渡枪夫", "short": "枪", "type": "unit", "kind": "spear", "cost": 3, "set_id": "afterglow",
+"hp": 5, "atk": 2, "defense": 2, "move": 2, "range": 1, "entry": {"guard": true}, "fall": {"shield": 1},
+"text": "部署时援护相邻友军，至下个己方回合。\n阵亡时相邻友军各获得1护盾，上限5。", "tag": "枪兵 · 援护留盾"
+}, {
+"id": "split_sentence", "name": "裂签判罚", "short": "判", "type": "spell", "effect": "verdict", "amount": 2, "bonus": 2, "when": "wounded", "kill_draw": 1, "cost": 3, "set_id": "afterglow",
+"text": "对一支敌方普通部队造成2伤害，目标已受伤时改为4。\n若因此消灭目标且牌库有牌，抽1张。", "tag": "法术 · 收割补牌"
+}, {
+"id": "salt_marker", "name": "盐封盾囊", "short": "囊", "type": "trap", "effect": "trap", "trigger": "attack", "amount": 2, "healing": 2, "cost": 3, "set_id": "afterglow",
+"text": "伏设于友军。下次实际承受普攻前，\n先恢复2生命，再获得2护盾，上限5。", "tag": "陷阱 · 受击救援"
+}, {
+"id": "coast_drizzle", "name": "潮市斜雨", "short": "雨", "type": "environment", "effect": "weather", "weather": "rain", "duration": 3, "draw": 1, "cost": 3, "set_id": "afterglow",
+"text": "全场进入暴雨，持续3个行动回合。\n双方火伤降低1，骑兵在军道外移动费用增加1。\n牌库有牌时抽1张。", "tag": "天气 · 暴雨补给"
+}, {
+"id": "willow_outlook", "name": "柳梢望手", "short": "弓", "type": "unit", "kind": "archer", "cost": 4, "set_id": "afterglow",
+"hp": 5, "atk": 3, "defense": 0, "move": 2, "range": 3, "fall": {"draw": 1, "shield": 1},
+"text": "阵亡时给相邻友军各1护盾，上限5。\n牌库有牌时抽1张。", "tag": "弓手 · 退场护阵"
+}, {
+"id": "ford_lock", "name": "沉链封渡", "short": "链", "type": "spell", "effect": "formation", "target_side": "enemy", "radius": 2, "root": true, "grounds": ["road", "bridge"], "cost": 4, "set_id": "afterglow",
+"text": "距目标格2格内，站在军道或桥梁上的敌方普通部队\n下个己方回合无法移动。", "tag": "法术 · 路桥封锁"
+}, {
+"id": "mirror_anchor", "name": "镜锚回响", "short": "锚", "type": "trap", "effect": "trap", "trigger": "spell", "amount": 4, "draw": 1, "cost": 4, "set_id": "afterglow",
+"text": "伏设于友军。下次受敌方伤害法术或技能前，\n获得4护盾，上限5，你抽1张。", "tag": "陷阱 · 反术补给"
+}, {
+"id": "quartermaster", "name": "潮册掌令", "short": "法", "type": "unit", "kind": "mage", "cost": 5, "set_id": "afterglow",
+"hp": 6, "atk": 3, "defense": 0, "move": 2, "range": 2, "entry": {"draw": 1, "cleanse": true, "refresh_move": true},
+"text": "部署时抽1张牌，解除相邻友军定身。\n已走未打、已就绪的相邻普通部队可再走。", "tag": "法师 · 补给换步"
+}, {
+"id": "return_manifest", "name": "归仓复籍", "short": "籍", "type": "spell", "effect": "recall", "draw": 2, "cost": 5, "set_id": "afterglow",
+"text": "将一支友方普通部队收回手牌，解除其伏设。\n然后抽最多2张库中牌，手牌满则照常弃置。", "tag": "法术 · 回收补给"
+}, {
+"id": "lamplight_shift", "name": "三巡接灯", "short": "灯", "type": "environment", "effect": "weather", "weather": "lanterns", "duration": 4, "rally": {"healing": 2}, "cost": 5, "set_id": "afterglow",
+"text": "全场灯夜持续4个行动回合，双方新兵各获1护盾。\n立即为己方指挥官及相邻友军恢复2生命。", "tag": "天气 · 灯夜救援"
+}, {
+"id": "moth_cavalry", "name": "灰蛾骑从", "short": "骑", "type": "unit", "kind": "cavalry", "cost": 6, "set_id": "afterglow",
+"hp": 6, "atk": 5, "defense": 0, "move": 4, "range": 1, "entry": {"target_side": "enemy", "root": true},
+"text": "部署时定身相邻敌方普通部队，\n使其下个己方回合无法移动。", "tag": "骑兵 · 进场留敌"
+}, {
+"id": "dew_wall", "name": "露槛排障", "short": "槛", "type": "spell", "effect": "formation", "target_side": "ally", "radius": 2, "healing": 2, "shield": 1, "cleanse": true, "cost": 6, "set_id": "afterglow",
+"text": "距目标格2格内，友军恢复2生命、获得1护盾，\n并解除定身。护盾上限5。", "tag": "法术 · 恢复阵线"
+}, {
+"id": "ash_notary", "name": "灰烬见证人", "short": "法", "type": "unit", "kind": "mage", "cost": 6, "set_id": "afterglow",
+"hp": 6, "atk": 4, "defense": 0, "move": 2, "range": 3, "fall": {"healing": 2, "draw": 1},
+"text": "阵亡时为相邻友军恢复2生命。\n牌库有牌时抽1张。", "tag": "法师 · 退场支援"
+}, {
+"id": "valley_reckoner", "name": "断铠清算", "short": "衡", "type": "spell", "effect": "verdict", "amount": 5, "bonus": 2, "when": "shielded", "shatter": true, "cost": 7, "set_id": "afterglow",
+"text": "对一支敌方普通部队造成5伤害。\n若其有护盾，则先移除已有护盾，随后改为7伤害。", "tag": "法术 · 重甲破除"
+}, {
+"id": "kiln_wardens", "name": "赤窑护队", "short": "枪", "type": "unit", "kind": "spear", "cost": 7, "set_id": "afterglow",
+"hp": 8, "atk": 4, "defense": 2, "move": 2, "range": 1, "entry": {"guard": true, "healing": 2, "shield": 1},
+"text": "部署时援护相邻友军至下个己方回合。\n自身与相邻友军恢复2生命并获得1护盾，上限5。", "tag": "枪兵 · 进场稳阵"
+}, {
+"id": "terrace_relay", "name": "层台换哨", "short": "哨", "type": "spell", "effect": "formation", "target_side": "ally", "radius": 2, "refresh_move": true, "refresh_attack": true, "cost": 8, "set_id": "afterglow",
+"text": "距目标格2格内，已攻击部队恢复攻击机会，已走未打且未定身的部队恢复移动。\n指挥官和新兵除外，不恢复技能次数。", "tag": "法术 · 阵线再动"
+}, {
+"id": "carriage_cloak", "name": "载灯铁骑", "short": "骑", "type": "unit", "kind": "cavalry", "cost": 8, "set_id": "afterglow",
+"hp": 8, "atk": 6, "defense": 1, "move": 4, "range": 1, "entry": {"shield": 2, "refresh_move": true},
+"text": "部署时为自身与相邻友军各加2护盾，上限5。\n已走未打、可行动的相邻普通部队可再走。", "tag": "骑兵 · 进场开路"
+}, {
+"id": "last_bridge_clinic", "name": "长桥总医官", "short": "医", "type": "unit", "kind": "healer", "cost": 9, "set_id": "afterglow",
+"hp": 8, "atk": 3, "defense": 1, "move": 2, "range": 2, "entry": {"radius": 2, "healing": 3, "cleanse": true}, "fall": {"shield": 2},
+"text": "部署时为2格内友军恢复3生命并解开定身。\n阵亡时相邻友军各获2护盾，上限5。", "tag": "医师 · 救援与殿后"
+}, {
+"id": "oath_deliberation", "name": "两灯合议", "short": "议", "type": "spell", "effect": "formation", "target_side": "ally", "radius": 2, "healing": 4, "draw": 2, "cost": 9, "set_id": "afterglow",
+"text": "距目标格2格内所有友军恢复4生命，\n然后抽最多2张库中牌。范围内须有受伤友军。", "tag": "法术 · 广域救援"
+}, {
+"id": "copper_gate_requiem", "name": "铜闸送行官", "short": "法", "type": "unit", "kind": "mage", "cost": 10, "set_id": "afterglow",
+"hp": 6, "atk": 4, "defense": 0, "move": 2, "range": 3, "entry": {"target_side": "enemy", "damage": 4, "commander_damage": 2, "root": true}, "fall": {"draw": 1},
+"text": "部署时对相邻敌军造成4伤害，指挥官受2伤害；存活普通部队定身至其下个回合结束。\n阵亡时若牌库有牌，抽1张。", "tag": "法师 · 进场截阵"
+}, {
+"id": "last_bell", "name": "再鸣铜钟", "short": "钟", "type": "spell", "effect": "formation", "target_side": "enemy", "radius": 2, "damage": 3, "commander_damage": 1, "root": true, "rally_shield": 2, "cost": 10, "set_id": "afterglow",
+"text": "距目标格2格内，敌军受3伤害，指挥官受1伤害，存活普通部队下个己方回合定身。\n同一区域友军各加2护盾，上限5。", "tag": "法术 · 双向压轴"
 }])

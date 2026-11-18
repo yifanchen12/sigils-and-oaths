@@ -1,0 +1,753 @@
+{
+  "version": "0.43.0-dev",
+  "method": "Production AI on both seats, equal Warden commanders, normal openings and mana, two seed repetitions on each of three maps, with seats reversed. No simulated actions are manually injected.",
+  "maps": [
+    "greenwood",
+    "rivergate",
+    "ridgepass"
+  ],
+  "seeds": [
+    4307,
+    4386,
+    4465,
+    4544,
+    4623,
+    4702
+  ],
+  "comparisons": [
+    {
+      "preset": "relay_watch",
+      "opponent": "balanced",
+      "draws": 0,
+      "losses": 5,
+      "wins": 7,
+      "actions": 2894,
+      "ten_mana_casts": {
+        "copper_gate_requiem": 10
+      },
+      "matches": [
+        {
+          "seed": 4307,
+          "map": "greenwood",
+          "expansion_side": 0,
+          "winner": 0,
+          "turn": 37,
+          "actions": 265
+        },
+        {
+          "seed": 4307,
+          "map": "greenwood",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 15,
+          "actions": 80
+        },
+        {
+          "seed": 4386,
+          "map": "rivergate",
+          "expansion_side": 0,
+          "winner": 0,
+          "turn": 41,
+          "actions": 289
+        },
+        {
+          "seed": 4386,
+          "map": "rivergate",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 17,
+          "actions": 87
+        },
+        {
+          "seed": 4465,
+          "map": "ridgepass",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 24,
+          "actions": 158
+        },
+        {
+          "seed": 4465,
+          "map": "ridgepass",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 54,
+          "actions": 357
+        },
+        {
+          "seed": 4544,
+          "map": "greenwood",
+          "expansion_side": 0,
+          "winner": 0,
+          "turn": 41,
+          "actions": 292
+        },
+        {
+          "seed": 4544,
+          "map": "greenwood",
+          "expansion_side": 1,
+          "winner": 1,
+          "turn": 34,
+          "actions": 221
+        },
+        {
+          "seed": 4623,
+          "map": "rivergate",
+          "expansion_side": 0,
+          "winner": 0,
+          "turn": 39,
+          "actions": 254
+        },
+        {
+          "seed": 4623,
+          "map": "rivergate",
+          "expansion_side": 1,
+          "winner": 1,
+          "turn": 48,
+          "actions": 301
+        },
+        {
+          "seed": 4702,
+          "map": "ridgepass",
+          "expansion_side": 0,
+          "winner": 0,
+          "turn": 39,
+          "actions": 263
+        },
+        {
+          "seed": 4702,
+          "map": "ridgepass",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 46,
+          "actions": 327
+        }
+      ]
+    },
+    {
+      "preset": "relay_watch",
+      "opponent": "frost_engine",
+      "draws": 0,
+      "losses": 11,
+      "wins": 1,
+      "actions": 2705,
+      "ten_mana_casts": {
+        "copper_gate_requiem": 11
+      },
+      "matches": [
+        {
+          "seed": 4307,
+          "map": "greenwood",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 20,
+          "actions": 116
+        },
+        {
+          "seed": 4307,
+          "map": "greenwood",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 19,
+          "actions": 106
+        },
+        {
+          "seed": 4386,
+          "map": "rivergate",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 55,
+          "actions": 353
+        },
+        {
+          "seed": 4386,
+          "map": "rivergate",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 52,
+          "actions": 349
+        },
+        {
+          "seed": 4465,
+          "map": "ridgepass",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 38,
+          "actions": 282
+        },
+        {
+          "seed": 4465,
+          "map": "ridgepass",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 27,
+          "actions": 165
+        },
+        {
+          "seed": 4544,
+          "map": "greenwood",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 45,
+          "actions": 316
+        },
+        {
+          "seed": 4544,
+          "map": "greenwood",
+          "expansion_side": 1,
+          "winner": 1,
+          "turn": 36,
+          "actions": 252
+        },
+        {
+          "seed": 4623,
+          "map": "rivergate",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 28,
+          "actions": 160
+        },
+        {
+          "seed": 4623,
+          "map": "rivergate",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 29,
+          "actions": 187
+        },
+        {
+          "seed": 4702,
+          "map": "ridgepass",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 30,
+          "actions": 201
+        },
+        {
+          "seed": 4702,
+          "map": "ridgepass",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 31,
+          "actions": 218
+        }
+      ]
+    },
+    {
+      "preset": "relay_watch",
+      "opponent": "lantern_convoy",
+      "draws": 0,
+      "losses": 11,
+      "wins": 1,
+      "actions": 4142,
+      "ten_mana_casts": {
+        "copper_gate_requiem": 12
+      },
+      "matches": [
+        {
+          "seed": 4307,
+          "map": "greenwood",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 49,
+          "actions": 346
+        },
+        {
+          "seed": 4307,
+          "map": "greenwood",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 43,
+          "actions": 321
+        },
+        {
+          "seed": 4386,
+          "map": "rivergate",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 44,
+          "actions": 336
+        },
+        {
+          "seed": 4386,
+          "map": "rivergate",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 41,
+          "actions": 292
+        },
+        {
+          "seed": 4465,
+          "map": "ridgepass",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 53,
+          "actions": 410
+        },
+        {
+          "seed": 4465,
+          "map": "ridgepass",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 52,
+          "actions": 396
+        },
+        {
+          "seed": 4544,
+          "map": "greenwood",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 46,
+          "actions": 358
+        },
+        {
+          "seed": 4544,
+          "map": "greenwood",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 42,
+          "actions": 308
+        },
+        {
+          "seed": 4623,
+          "map": "rivergate",
+          "expansion_side": 0,
+          "winner": 0,
+          "turn": 41,
+          "actions": 297
+        },
+        {
+          "seed": 4623,
+          "map": "rivergate",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 50,
+          "actions": 367
+        },
+        {
+          "seed": 4702,
+          "map": "ridgepass",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 53,
+          "actions": 372
+        },
+        {
+          "seed": 4702,
+          "map": "ridgepass",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 45,
+          "actions": 339
+        }
+      ]
+    },
+    {
+      "preset": "hearth_compact",
+      "opponent": "balanced",
+      "draws": 0,
+      "losses": 7,
+      "wins": 5,
+      "actions": 3493,
+      "ten_mana_casts": {
+        "last_bell": 11
+      },
+      "matches": [
+        {
+          "seed": 4307,
+          "map": "greenwood",
+          "expansion_side": 0,
+          "winner": 0,
+          "turn": 55,
+          "actions": 383
+        },
+        {
+          "seed": 4307,
+          "map": "greenwood",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 15,
+          "actions": 74
+        },
+        {
+          "seed": 4386,
+          "map": "rivergate",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 25,
+          "actions": 135
+        },
+        {
+          "seed": 4386,
+          "map": "rivergate",
+          "expansion_side": 1,
+          "winner": 1,
+          "turn": 53,
+          "actions": 328
+        },
+        {
+          "seed": 4465,
+          "map": "ridgepass",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 38,
+          "actions": 270
+        },
+        {
+          "seed": 4465,
+          "map": "ridgepass",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 56,
+          "actions": 374
+        },
+        {
+          "seed": 4544,
+          "map": "greenwood",
+          "expansion_side": 0,
+          "winner": 0,
+          "turn": 45,
+          "actions": 301
+        },
+        {
+          "seed": 4544,
+          "map": "greenwood",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 52,
+          "actions": 353
+        },
+        {
+          "seed": 4623,
+          "map": "rivergate",
+          "expansion_side": 0,
+          "winner": 0,
+          "turn": 41,
+          "actions": 259
+        },
+        {
+          "seed": 4623,
+          "map": "rivergate",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 52,
+          "actions": 336
+        },
+        {
+          "seed": 4702,
+          "map": "ridgepass",
+          "expansion_side": 0,
+          "winner": 0,
+          "turn": 49,
+          "actions": 329
+        },
+        {
+          "seed": 4702,
+          "map": "ridgepass",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 56,
+          "actions": 351
+        }
+      ]
+    },
+    {
+      "preset": "hearth_compact",
+      "opponent": "frost_engine",
+      "draws": 0,
+      "losses": 12,
+      "wins": 0,
+      "actions": 2614,
+      "ten_mana_casts": {
+        "last_bell": 11
+      },
+      "matches": [
+        {
+          "seed": 4307,
+          "map": "greenwood",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 50,
+          "actions": 324
+        },
+        {
+          "seed": 4307,
+          "map": "greenwood",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 29,
+          "actions": 171
+        },
+        {
+          "seed": 4386,
+          "map": "rivergate",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 30,
+          "actions": 162
+        },
+        {
+          "seed": 4386,
+          "map": "rivergate",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 37,
+          "actions": 233
+        },
+        {
+          "seed": 4465,
+          "map": "ridgepass",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 48,
+          "actions": 336
+        },
+        {
+          "seed": 4465,
+          "map": "ridgepass",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 27,
+          "actions": 155
+        },
+        {
+          "seed": 4544,
+          "map": "greenwood",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 18,
+          "actions": 96
+        },
+        {
+          "seed": 4544,
+          "map": "greenwood",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 47,
+          "actions": 311
+        },
+        {
+          "seed": 4623,
+          "map": "rivergate",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 32,
+          "actions": 186
+        },
+        {
+          "seed": 4623,
+          "map": "rivergate",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 35,
+          "actions": 238
+        },
+        {
+          "seed": 4702,
+          "map": "ridgepass",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 32,
+          "actions": 215
+        },
+        {
+          "seed": 4702,
+          "map": "ridgepass",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 29,
+          "actions": 187
+        }
+      ]
+    },
+    {
+      "preset": "hearth_compact",
+      "opponent": "lantern_convoy",
+      "draws": 0,
+      "losses": 10,
+      "wins": 2,
+      "actions": 4267,
+      "ten_mana_casts": {
+        "last_bell": 12
+      },
+      "matches": [
+        {
+          "seed": 4307,
+          "map": "greenwood",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 42,
+          "actions": 292
+        },
+        {
+          "seed": 4307,
+          "map": "greenwood",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 29,
+          "actions": 195
+        },
+        {
+          "seed": 4386,
+          "map": "rivergate",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 55,
+          "actions": 399
+        },
+        {
+          "seed": 4386,
+          "map": "rivergate",
+          "expansion_side": 1,
+          "winner": 1,
+          "turn": 48,
+          "actions": 332
+        },
+        {
+          "seed": 4465,
+          "map": "ridgepass",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 55,
+          "actions": 409
+        },
+        {
+          "seed": 4465,
+          "map": "ridgepass",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 56,
+          "actions": 414
+        },
+        {
+          "seed": 4544,
+          "map": "greenwood",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 45,
+          "actions": 340
+        },
+        {
+          "seed": 4544,
+          "map": "greenwood",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 54,
+          "actions": 398
+        },
+        {
+          "seed": 4623,
+          "map": "rivergate",
+          "expansion_side": 0,
+          "winner": 1,
+          "turn": 57,
+          "actions": 381
+        },
+        {
+          "seed": 4623,
+          "map": "rivergate",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 50,
+          "actions": 358
+        },
+        {
+          "seed": 4702,
+          "map": "ridgepass",
+          "expansion_side": 0,
+          "winner": 0,
+          "turn": 49,
+          "actions": 323
+        },
+        {
+          "seed": 4702,
+          "map": "ridgepass",
+          "expansion_side": 1,
+          "winner": 0,
+          "turn": 58,
+          "actions": 426
+        }
+      ]
+    }
+  ],
+  "games": 72,
+  "legal_actions": 20115,
+  "ten_mana_plays": 67,
+  "cards_played": {
+    "ash_notary": 65,
+    "carriage_cloak": 41,
+    "coast_drizzle": 24,
+    "copper_gate_requiem": 33,
+    "dew_wall": 31,
+    "drawwire": 34,
+    "ferry_pikeman": 159,
+    "ford_lock": 28,
+    "kiln_wardens": 42,
+    "lamplight_shift": 27,
+    "lantern_bearer": 156,
+    "last_bell": 34,
+    "last_bridge_clinic": 36,
+    "mink_watcher": 63,
+    "mirror_anchor": 28,
+    "moth_cavalry": 37,
+    "oath_deliberation": 30,
+    "quartermaster": 62,
+    "quay_lantern": 92,
+    "quiet_veil": 66,
+    "recall_writ": 59,
+    "return_manifest": 31,
+    "salt_marker": 67,
+    "split_sentence": 66,
+    "terrace_relay": 30,
+    "triage_writ": 30,
+    "valley_reckoner": 29,
+    "willow_outlook": 60
+  },
+  "formation_counterplay": {
+    "method": "Same 48 matched openings using the unchanged Warfront presets before Afterglow. Old runs use the 0.42 release PCK, new runs enable area exposure on the board. The statistics are per-group hits of at least 3 enemies by Frost Engine.",
+    "release_042": {
+      "balanced": {
+        "matches": 12,
+        "wins": 12,
+        "three_or_more_targets": 25
+      },
+      "assault": {
+        "matches": 12,
+        "wins": 12,
+        "three_or_more_targets": 18
+      },
+      "bastion": {
+        "matches": 12,
+        "wins": 11,
+        "three_or_more_targets": 28
+      },
+      "lantern_convoy": {
+        "matches": 12,
+        "wins": 10,
+        "three_or_more_targets": 24
+      }
+    },
+    "formation_awareness": {
+      "balanced": {
+        "matches": 12,
+        "wins": 12,
+        "three_or_more_targets": 12
+      },
+      "assault": {
+        "matches": 12,
+        "wins": 12,
+        "three_or_more_targets": 9
+      },
+      "bastion": {
+        "matches": 12,
+        "wins": 11,
+        "three_or_more_targets": 12
+      },
+      "lantern_convoy": {
+        "matches": 12,
+        "wins": 9,
+        "three_or_more_targets": 21
+      }
+    }
+  }
+}

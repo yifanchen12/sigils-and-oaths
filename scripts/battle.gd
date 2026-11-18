@@ -469,6 +469,8 @@ func spell_cells(card: Dictionary, side: int) -> Array[Vector2i]:
 			"dispel": valid = not friendly and target.shield > 0
 			"exchange": valid = friendly and target.kind != "commander" and distance(commander(side).pos, target.pos) <= 3
 			"onslaught": valid = friendly and target.kind != "commander" and target.attacked and not target.summoning
+			"recall": valid = friendly and target.kind != "commander" and target.has("card")
+			"verdict": valid = not friendly and target.kind != "commander"
 		if valid and can_cast_at(target.pos, side):
 			result.append(target.pos)
 	return result
@@ -520,6 +522,10 @@ func fire_damage(amount: int) -> int:
 func spell_damage(card: Dictionary, side: int) -> int:
 	var bonus: int = 1 if hero(side).id == "pyromancer" and not players[side].spell_boost_used else 0
 	return fire_damage(int(card.amount) + bonus)
+
+func verdict_damage(card: Dictionary, target: Dictionary) -> int:
+	var granted: bool = (card.when == "wounded" and target.hp < target.max_hp) or (card.when == "shielded" and target.shield > 0)
+	return int(card.amount) + (int(card.bonus) if granted else 0)
 
 func hero_targets(side: int) -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
@@ -686,6 +692,9 @@ func _draw(side: int, amount: int) -> void:
 		else:
 			player.hand.append(card)
 
+func _draw_reserves(side: int, amount: int) -> void:
+	_draw(side, mini(amount, players[side].deck.size()))
+
 func _spawn(card: Dictionary, cell: Vector2i, side: int) -> int:
 	var unit_id: int = _id()
 	units.append({"id": unit_id, "side": side, "name": card.name, "kind": card.kind,
@@ -702,14 +711,28 @@ func _resolve_entry(card: Dictionary, unit: Dictionary) -> void:
 	if effects.get("guard", false): unit.guarding = true
 	unit.shield = mini(5, int(unit.shield) + int(effects.get("self_shield", 0)))
 	if effects.get("reveal", false): Traps.reveal(self, unit.pos, active_side)
-	Formation.resolve(self, effects, unit.pos)
+	Formation.resolve(self, effects, unit.pos, active_side)
 	var draws: int = int(effects.get("draw", 0))
 	if draws > 0: _draw(active_side, draws)
 
 func _resolve_spell(card: Dictionary, cell: Vector2i) -> void:
 	var target: Dictionary = unit_at(cell)
 	match String(card.effect):
-		"formation": Formation.resolve(self, card, cell)
+		"formation":
+			Formation.resolve(self, card, cell, active_side)
+			_draw_reserves(active_side, int(card.get("draw", 0)))
+		"recall":
+			var instance: Dictionary = target.card
+			instance.erase("unit_id")
+			units.erase(target)
+			players[active_side].hand.append(instance)
+			_record("%s返回手牌。" % target.name)
+			_draw_reserves(active_side, int(card.get("draw", 0)))
+		"verdict":
+			var damage: int = verdict_damage(card, target)
+			if card.get("shatter", false): target.shield = 0
+			_spell_hit(target, damage)
+			if target.hp <= 0: _draw_reserves(active_side, int(card.get("kill_draw", 0)))
 		"roadwork":
 			for road: Vector2i in roadwork_cells(cell):
 				terrain[road] = "road"
@@ -738,6 +761,8 @@ func _resolve_spell(card: Dictionary, cell: Vector2i) -> void:
 			weather = card.weather
 			weather_remaining = int(card.duration)
 			_record("环境变为%s，持续 %d 个行动回合（双方回合都计时）。" % [WEATHER[weather].name, weather_remaining])
+			if card.has("rally"): Formation.resolve(self, card.rally, commander(active_side).pos, active_side)
+			_draw_reserves(active_side, int(card.get("draw", 0)))
 		"terrain":
 			terrain[cell] = card.terrain
 			_record("%s变为%s。" % [cell_name(cell), TERRAIN[String(card.terrain)].name])
@@ -783,13 +808,22 @@ func _hurt(target: Dictionary, amount: int) -> void:
 	target.hp -= amount - absorbed
 
 func _cleanup() -> void:
+	var fallen: Array[Dictionary] = []
 	for index: int in range(units.size() - 1, -1, -1):
 		var unit: Dictionary = units[index]
 		if unit.hp <= 0:
-			if unit.has("card"): players[unit.side].discard.append(unit.card)
+			if unit.has("card"):
+				players[unit.side].discard.append(unit.card)
+				if definition(unit.card.card_id).has("fall"): fallen.append(unit)
 			_record("%s倒下了。" % unit.name)
 			units.remove_at(index)
 	Traps.cleanup(self)
+	# Remove all casualties before any support trigger can affect a survivor.
+	for unit: Dictionary in fallen:
+		var effect: Dictionary = definition(unit.card.card_id).fall
+		_record("%s结算阵亡效果。" % unit.name)
+		Formation.resolve(self, effect, unit.pos, unit.side)
+		_draw_reserves(unit.side, int(effect.get("draw", 0)))
 
 func _check_winner() -> void:
 	var blue_alive: bool = not commander(0).is_empty()

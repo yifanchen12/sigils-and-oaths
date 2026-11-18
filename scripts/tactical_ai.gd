@@ -2,6 +2,8 @@ extends RefCounted
 ## Public-board risk heuristic, not a full simulation of the enemy's next turn.
 ## Future cards and random draws are deliberately unknown to this evaluator.
 
+const FormationRisk = preload("res://scripts/formation_risk.gd")
+
 static func prepare(battle: Battle, movement_weight: float = 0.45) -> Dictionary:
 	var threats: Array[Dictionary] = []
 	for unit: Dictionary in battle.units:
@@ -13,7 +15,8 @@ static func prepare(battle: Battle, movement_weight: float = 0.45) -> Dictionary
 		var origins: Array[Vector2i] = [ready.pos]
 		origins.append_array(battle.movement_cells(ready))
 		threats.append({"unit": ready, "origins": origins})
-	return {"enemies": threats, "layouts": {}, "cache": {}, "movement_weight": movement_weight}
+	return {"enemies": threats, "layouts": {}, "cache": {}, "movement_weight": movement_weight,
+		"formations": FormationRisk.prepare(battle, threats)}
 
 static func exposure(battle: Battle, unit: Dictionary, context: Dictionary) -> float:
 	var source: Dictionary = battle.get_unit(int(unit.get("id", -1)))
@@ -61,17 +64,18 @@ static func exposure(battle: Battle, unit: Dictionary, context: Dictionary) -> f
 	return score
 
 static func value(battle: Battle, action: Dictionary, context: Dictionary) -> float:
+	var area_value: float = FormationRisk.value(battle, action, context.formations)
 	if action.type == "play":
 		var card: Dictionary = battle.definition(battle.hand_card(battle.active_side, action.card_uid).card_id)
 		if card.type != "unit": return 0.0
 		var unit: Dictionary = card.duplicate(true)
 		unit.merge({"id": -1, "side": battle.active_side, "pos": action.target, "shield": 0, "last_move_distance": 0})
-		return -exposure(battle, unit, context)
+		return area_value - exposure(battle, unit, context)
 	if action.type == "move":
 		var unit: Dictionary = battle.get_unit(action.unit_id)
 		var candidate: Dictionary = unit.duplicate()
 		candidate.pos = action.target; candidate.last_move_distance = battle.distance(unit.pos, action.target)
-		return (exposure(battle, unit, context) - exposure(battle, candidate, context)) * 0.6
+		return area_value + (exposure(battle, unit, context) - exposure(battle, candidate, context)) * 0.6
 	return 0.0
 
 static func _future_attack_damage(battle: Battle, attacker: Dictionary, origin: Vector2i, defender: Dictionary) -> int:

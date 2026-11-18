@@ -5,17 +5,19 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.42.0-dev" src="https://img.shields.io/badge/version-0.42.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.43.0-dev" src="https://img.shields.io/badge/version-0.43.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings and eight skirmish presets. **0.42.0-dev** adds three untimed drills, saved preferences, original music and battle sounds.
+The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings and ten skirmish presets. **0.43.0-dev** adds Afterglow and brings the collectible card pool to 86. [Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.43.0-dev)
 
 ## In-game screenshots
 
-The first screenshot shows the 0.42.0-dev interception drill. Other images come from earlier builds.
+The first screenshot shows the Afterglow card collection in 0.43.0-dev. Other images show earlier releases.
+
+![The new Afterglow cards alongside set and mana filters](docs/screenshots/v043-afterglow-library.png)
 
 ![The interception drill shows a hand trap and its intended ally](docs/release/steam/gameplay/04-guard-drill.png)
 
@@ -66,7 +68,7 @@ The first screenshot shows the 0.42.0-dev interception drill. Other images come 
 
 | Tactical choice | Implemented |
 | --- | --- |
-| Reinforce from cards | 58 collectible cards, one generated card, eight 30-card presets, and a saved custom deck. Adjacent deployment can extend from newly summoned units |
+| Reinforce from cards | 86 collectible cards, one generated card, ten 30-card presets, and a saved custom deck. Adjacent deployment can extend from newly summoned units |
 | Set traps and counter them | Set snares, mines, attack traps and spell wards from hand. Each side has two slots, enemies see only the count, and reconnaissance can remove concealed traps |
 | Cover different unit roles | Infantry beats spears, spears beat cavalry, cavalry beats infantry; archers, mages and healers have distinct ranges and roles |
 | Use active unit skills | Six one-mana abilities: shielding, interception, extra movement, a precise shot, fire damage and healing; once per unit per turn |
@@ -76,6 +78,16 @@ The first screenshot shows the 0.42.0-dev interception drill. Other images come 
 | Change the next exchange | Rain, fog, sun, snow, tailwind and lantern weather affect both sides. Replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
 | Learn and adjust | Three untimed drills. F10 opens display, reading size, motion, music and effects settings |
+
+## 0.43 · Afterglow
+
+Afterglow adds twelve units, ten spells, four hand-played traps and two environment cards, with at least two additions at every cost from one to ten. Low-cost cards recall allies, clear traps or catch enemy units on a mana-draining wire. Mid-cost cards pay off when troops fall, exploit existing shields or immobilize troops on crossings. The ten-mana Bell damages and roots enemies while shielding allies in the same area.
+
+Relay Watch advances through scouts and redeployment. Hearth Compact uses fallen units, defensive traps and group recovery to hold position. Choose each side's preset in the War Council and filter cards by set and mana cost in the compendium and Deck Workshop.
+
+Across 72 mirrored AI matches on three maps, all 28 additions were played in 20,115 legal actions. The two new ten-mana cards were played 67 times. Relay Watch went 7–5 and Hearth Compact 5–7 against the Balanced Host. Lantern Convoy and Frost Engine retained a clear advantage. [Match records](docs/afterglow-playtest-v043.json)
+
+[Gameplay trailer](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.43.0-dev/SigilsAndOaths-0.43.0-dev-Gameplay.mp4) · [Ten-mana Bell targeting preview](docs/screenshots/v043-afterglow-bell.png)
 
 ## 0.42 · War Council drills
 

@@ -1,5 +1,11 @@
 # Steam 发行准备状态
 
+0.43.0-dev 加入 28 张「余烬回声」原创牌、两套预组、对手选择和费用筛选。专项、原生 Windows 界面和十八章固定路线自动重放通过。后者的 15 场战斗、3,406 步操作和 23 次剧情选择与已验收路线一致。0.42 发行包生成的旧战斗存档可读回。 [对局样本](../afterglow-playtest-v043.json) · [0.43 更新说明](v043.md)
+
+玩法短片约 29 秒，直接录制 1920×1080 游戏画面并保留界面。内容包含桥头普攻、从手牌伏设后触发援护、正常对局中施放十费「再鸣铜钟」，以及首章剧情。MP4 为 H.264 30 FPS、约 7.15 Mbps，AAC 48 kHz 立体声。Steam 转码、安装、发行方权利核对与内容调查仍待验证。 [玩法短片](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.43.0-dev/SigilsAndOaths-0.43.0-dev-Gameplay.mp4) · [Steamworks 视频规格](https://partner.steamgames.com/doc/store/trailer)
+
+旧断阵重术预组按相同地图、种子和座次重跑 48 场。加入范围威胁判断后，断阵重术一次打中至少三人的施法由 95 次降至 54 次，胜场由 45 场变为 44 场。新预组样本也显示其优势明显。 [逐场对局与对照](../afterglow-playtest-v043.json)
+
 0.42.0-dev 增加三节不限时教程、可保存的显示和阅读设置、简化动效、独立音量及原创配乐音效。Windows 原生验证走通独立练习后恢复同一对局，另确认战役存档逐字节不变。已生成商店和库用图片、图标、五张 1920×1080 实机画面及中英文简介与内容披露底稿。预告片、发行方逐项权利核对、Steam 客户端安装和内容调查提交仍待完成。 [Steam 素材候选包](steam/README.md)
 
 0.42 Windows x64 公开包为 235,484,635 字节，标签指向源码 `390b1e7518ded9250f2cf1010374dae830333201`。从 ZIP 解压后在独立目录原生启动，352 项运行资源审计通过。匿名下载文件及校验文件均与本机一致。 [发行页面](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.42.0-dev)

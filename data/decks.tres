@@ -41,4 +41,16 @@ decks = Array[Dictionary]([{
 "id": "lantern_convoy", "name": "灯曜守队", "set_id": "warfront", "description": "围绕重装枪兵布置援护和受击补给。群疗、灯夜和重印维持阵线，铺路时考虑双方都能使用。",
 "cards": {"sword": 2, "gate_veteran": 3, "healer": 2, "shore_medic": 3, "breakwater_guard": 2, "bronze_watch": 1, "mage": 2, "archer": 2,
 "field_signals": 2, "warder_hymn": 2, "fallback_horn": 2, "tidal_oath": 1, "night_muster": 2, "reed_roads": 1, "detach_line": 1, "silt_snare": 1, "hammer_sweep": 1}
+}, {
+"id": "relay_watch", "name": "回灯前哨", "set_id": "afterglow", "description": "前哨、巡弓和枪夫抢桥。以折回哨令重复进场效果，靠沉链封渡和层台换哨争取夹击。",
+"cards": {"sword": 2, "reed_scout": 2, "lantern_bearer": 3, "mink_watcher": 2, "ferry_pikeman": 3, "cavalry": 2,
+"quartermaster": 2, "moth_cavalry": 1, "carriage_cloak": 1, "copper_gate_requiem": 1,
+"recall_writ": 2, "drawwire": 1, "triage_writ": 1, "split_sentence": 2, "ford_lock": 1, "open_wind": 1,
+"terrace_relay": 1, "bolt": 1, "salt_marker": 1}
+}, {
+"id": "hearth_compact", "name": "余火公议", "set_id": "afterglow", "description": "以退场补给和受击反制消耗对手。轮换军医扛住中场，靠两灯合议续战、再鸣铜钟保护反攻。",
+"cards": {"sword": 2, "quay_lantern": 3, "lantern_bearer": 2, "ferry_pikeman": 2, "willow_outlook": 2, "ash_notary": 2,
+"kiln_wardens": 1, "last_bridge_clinic": 1, "mage": 1, "gate_veteran": 1,
+"quiet_veil": 2, "salt_marker": 1, "mirror_anchor": 1, "dew_wall": 1, "lamplight_shift": 1, "coast_drizzle": 1,
+"last_bell": 1, "oath_deliberation": 1, "valley_reckoner": 1, "return_manifest": 1, "bolt": 2}
 }])

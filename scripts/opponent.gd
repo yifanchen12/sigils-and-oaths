@@ -83,19 +83,23 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 			if card.type == "unit":
 				var score: float = 50.0 + int(card.cost) * 2.0 - battle.distance(action.target, enemy_leader.pos) * 1.5 + (2.0 if battle.ground(action.target) == "forest" else 0.0)
 				if card.has("entry"): score += _entry_score(battle, card.entry, action.target)
+				if card.has("fall"):
+					score += _reserve_value(battle, side, int(card.fall.get("draw", 0))) * 0.5
+					score += _formation_score(battle, card.fall, action.target) * 0.2
 				return score
 			if card.type == "trap":
 				var draw_bonus: float = _trap_supply_value(battle, card, side)
 				if threats.is_empty(): threats = TacticalAI.prepare(battle)
 				if card.trigger in ["attack", "spell"]:
 					var guarded: Dictionary = battle.unit_at(action.target)
+					var healing: float = mini(int(card.get("healing", 0)), int(guarded.max_hp) - int(guarded.hp)) * 5.0
 					if card.trigger == "spell":
 						var pressure: float = 0.0
 						for enemy: Dictionary in battle.units:
 							if enemy.side != side and enemy.kind == "mage" and battle.distance(enemy.pos, guarded.pos) <= 2: pressure = 15.0
 						if battle.hero(1 - side).effect == "firestrike" and battle.distance(battle.commander(1 - side).pos, guarded.pos) <= battle.hero_cast_range(1 - side): pressure = maxf(pressure, 12.0)
-						return 11.0 + pressure + draw_bonus + (8.0 if int(guarded.hp) <= 3 else 0.0) - mini(3, int(guarded.shield)) * 2.0
-					return minf(42.0, TacticalAI.exposure(battle, guarded, threats)) + 6.0 + draw_bonus - mini(3, int(guarded.shield)) * 2.0
+						return 11.0 + pressure + draw_bonus + healing + (8.0 if int(guarded.hp) <= 3 else 0.0) - mini(3, int(guarded.shield)) * 2.0
+					return minf(42.0, TacticalAI.exposure(battle, guarded, threats)) + 6.0 + draw_bonus + healing - mini(3, int(guarded.shield)) * 2.0
 				var value: float = -1.0
 				for entry: Dictionary in threats.enemies:
 					if not entry.origins.has(action.target): continue
@@ -106,7 +110,17 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 				return value + draw_bonus if value >= 0.0 else value
 			var target: Dictionary = battle.unit_at(action.target)
 			match String(card.effect):
-				"formation": return _formation_score(battle, card, action.target)
+				"formation": return _formation_score(battle, card, action.target) + _reserve_value(battle, side, int(card.get("draw", 0)))
+				"recall": return _recall_value(battle, target, card, threats)
+				"verdict":
+					var damage: int = battle.verdict_damage(card, target)
+					var shield: int = int(target.shield)
+					var removed: int = shield if card.get("shatter", false) else 0
+					var loss: int = mini(int(target.hp), maxi(0, damage - shield + removed))
+					var bonus: float = 0.0
+					if loss >= int(target.hp):
+						bonus = 43.0 + _reserve_value(battle, side, int(card.get("kill_draw", 0)))
+					return loss * 9.0 + (removed + mini(damage, shield - removed)) * 4.0 + bonus - 6.0
 				"roadwork":
 					var benefit: float = -3.0
 					for cell: Vector2i in battle.roadwork_cells(action.target):
@@ -175,7 +189,10 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 						if target.side != side: return battle.terrain_defense(target) * 8.0
 						if target.kind == "cavalry" and not target.moved: return 15.0
 					return -1.0
-				"weather": return _weather_score(battle, side, card.weather)
+				"weather":
+					var value: float = _weather_score(battle, side, card.weather) + _reserve_value(battle, side, int(card.get("draw", 0)))
+					if card.has("rally"): value += _formation_score(battle, card.rally, battle.commander(side).pos)
+					return value
 				"clear_weather":
 					# Score the current weather without the duplicate-weather rejection.
 					var opposite_value: float = _weather_score_for(battle, side, battle.weather)
@@ -244,6 +261,28 @@ static func _draw_fatigue(battle: Battle, side: int, amount: int) -> int:
 	var result: int = 0
 	for index: int in range(missing): result += int(battle.players[side].fatigue) + index + 1
 	return result
+
+static func _reserve_value(battle: Battle, side: int, draws: int, room_for_play: int = 1) -> float:
+	var player: Dictionary = battle.players[side]
+	var capacity: int = Battle.HAND_LIMIT - player.hand.size() + room_for_play
+	return mini(draws, mini(player.deck.size(), capacity)) * 9.0
+
+static func _recall_value(battle: Battle, target: Dictionary, card: Dictionary, threats: Dictionary) -> float:
+	var side: int = battle.active_side
+	var definition: Dictionary = battle.definition(target.card.card_id)
+	var player: Dictionary = battle.players[side]
+	var replay_now: bool = int(definition.cost) + int(card.cost) <= int(player.mana)
+	var replay_later: bool = int(definition.cost) <= int(player.max_mana) + 1
+	if not replay_now and not replay_later: return -1.0
+	var lost_hp: int = int(target.max_hp) - int(target.hp)
+	var score: float = lost_hp * 4.5 + (9.0 if int(target.rooted_turns) > 0 else 0.0)
+	if not target.attacked and not target.summoning: score -= 13.0
+	score -= int(target.shield) * 3.0 + 12.0
+	if replay_now and definition.has("entry"): score += minf(22.0, _entry_score(battle, definition.entry, target.pos))
+	if lost_hp > 0:
+		var context: Dictionary = threats if not threats.is_empty() else TacticalAI.prepare(battle)
+		score += minf(22.0, TacticalAI.exposure(battle, target, context) * 0.17)
+	return score + _reserve_value(battle, side, int(card.get("draw", 0)), 0)
 
 static func _formation_score(battle: Battle, card: Dictionary, center: Vector2i) -> float:
 	var score: float = 0.0

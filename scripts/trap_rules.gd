@@ -51,24 +51,27 @@ static func stepped(battle: RefCounted, unit: Dictionary) -> void:
 		var card: Dictionary = battle.definition(trap.card.card_id)
 		consume(battle, trap, "触发")
 		battle._hurt(unit, battle.fire_damage(int(card.amount)) if card.get("fire", false) else int(card.amount))
+		var player: Dictionary = battle.players[unit.side]
+		var drain: int = mini(int(player.mana), int(card.get("drain", 0)))
+		if drain > 0:
+			player.mana -= drain
+			battle._record("%s失去%d点本回合法力。" % [battle.side_name(unit.side), drain])
 		if card.get("root", false): unit.rooted_turns = maxi(1, int(unit.rooted_turns))
 		if int(card.get("draw", 0)) > 0: battle._draw(trap.side, int(card.draw))
 
 static func attacked(battle: RefCounted, defender: Dictionary) -> void:
+	_protect(battle, defender, "attack")
+
+static func spelled(battle: RefCounted, defender: Dictionary) -> void:
+	if defender.side != battle.active_side: _protect(battle, defender, "spell")
+
+static func _protect(battle: RefCounted, defender: Dictionary, trigger: String) -> void:
 	for trap: Dictionary in battle.traps.duplicate():
 		if trap.unit_id != defender.id: continue
 		var card: Dictionary = battle.definition(trap.card.card_id)
-		if card.trigger != "attack": continue
+		if card.trigger != trigger: continue
 		consume(battle, trap, "触发")
-		defender.shield = mini(5, int(defender.shield) + int(card.amount))
-		if int(card.get("draw", 0)) > 0: battle._draw(trap.side, int(card.draw))
-
-static func spelled(battle: RefCounted, defender: Dictionary) -> void:
-	for trap: Dictionary in battle.traps.duplicate():
-		if trap.unit_id != defender.id or trap.side == battle.active_side: continue
-		var card: Dictionary = battle.definition(trap.card.card_id)
-		if card.trigger != "spell": continue
-		consume(battle, trap, "触发")
+		defender.hp = mini(int(defender.max_hp), int(defender.hp) + int(card.get("healing", 0)))
 		defender.shield = mini(5, int(defender.shield) + int(card.amount))
 		if int(card.get("draw", 0)) > 0: battle._draw(trap.side, int(card.draw))
 

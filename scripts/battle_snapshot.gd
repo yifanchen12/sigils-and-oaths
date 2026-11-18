@@ -2,7 +2,7 @@ extends RefCounted
 ## Plain-data snapshots. No object deserialization, rendering or turn-start effects.
 
 const Model = preload("res://scripts/battle.gd")
-const VERSION: int = 4
+const VERSION: int = 5
 const EXPANSION_CARDS: Array[String] = ["shatter_bolt", "rally_heal", "cleanse_root", "reveal_traps", "seedwood", "anchor_snare", "ember_mine", "oath_ward"]
 const CHANNEL_CARDS: Array[String] = ["span_kit", "countercurrent_ward"]
 const SCALARS: Array[String] = ["active_side", "turn", "winner", "next_id", "match_seed", "deck_size", "weather", "weather_remaining", "turn_time_limit", "time_remaining"]
@@ -14,16 +14,21 @@ const UNIT_TEXT: Array[String] = ["name", "kind", "short"]
 static func rules_signature() -> String:
 	return JSON.stringify([Model.CATALOG.cards, Model.HEROES.heroes, Model.DECKS.decks, Model.MAPS.maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE, "relay_v1"]).sha256_text()
 
+static func pre_afterglow_signature() -> String:
+	var cards: Array[Dictionary] = Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") != "afterglow")
+	var decks: Array[Dictionary] = Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") != "afterglow")
+	return JSON.stringify([cards, Model.HEROES.heroes, decks, Model.MAPS.maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE, "relay_v1"]).sha256_text()
+
 static func cards_before_channel() -> Array[Dictionary]:
 	var cards: Array[Dictionary] = []
 	for card: Dictionary in Model.CATALOG.cards:
-		if card.id not in CHANNEL_CARDS and card.get("set_id", "") != "warfront": cards.append(card)
+		if card.id not in CHANNEL_CARDS and card.get("set_id", "") not in ["warfront", "afterglow"]: cards.append(card)
 	return cards
 
 static func decks_before_channel() -> Array[Dictionary]:
 	var decks: Array[Dictionary] = []
 	for deck: Dictionary in Model.DECKS.decks:
-		if deck.id != "channel" and deck.get("set_id", "") != "warfront": decks.append(deck)
+		if deck.id != "channel" and deck.get("set_id", "") not in ["warfront", "afterglow"]: decks.append(deck)
 	return decks
 
 static func maps_without(excluded: Array) -> Array[Dictionary]:
@@ -42,8 +47,8 @@ static func pre_relay_signature() -> String:
 	return _signature_before_warfront(["lamplanding"])
 
 static func _signature_before_warfront(excluded_maps: Array) -> String:
-	var cards: Array[Dictionary] = Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") != "warfront")
-	var decks: Array[Dictionary] = Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") != "warfront")
+	var cards: Array[Dictionary] = Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") not in ["warfront", "afterglow"])
+	var decks: Array[Dictionary] = Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") not in ["warfront", "afterglow"])
 	return JSON.stringify([cards, Model.HEROES.heroes, decks, maps_without(excluded_maps), Model.TERRAIN, weather_before_warfront(), Model.ADVANTAGE]).sha256_text()
 
 static func weather_before_warfront() -> Dictionary:
@@ -158,6 +163,7 @@ static func validate(data: Variant) -> Dictionary:
 	return {"ok": true} if problem.is_empty() else {"ok": false, "message": problem}
 
 static func _legacy_rules_match(data: Dictionary) -> bool:
+	if int(data.version) == 4: return data.rules == pre_afterglow_signature()
 	var map: Variant = data.get("map_id")
 	if map == "lamplanding": return false
 	if data.rules == pre_relay_signature(): return true
