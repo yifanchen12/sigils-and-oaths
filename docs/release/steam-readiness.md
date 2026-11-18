@@ -1,5 +1,9 @@
 # Steam 发行准备状态
 
+0.44.0-dev 增加不限时散阵练习、调整断阵重术和灯曜守队。264 场同条件对照完成 66,421 次合法行动，断阵重术由 56/72 胜变为 32/72 胜，灯曜守队仍在部分地形和指挥官组合中领先。实战教程、0.43 战中档迁移、原生退出与十八章固定路线通过检查。 [逐场对照](../balance-v044.json) · [0.44 更新说明](v044.md)
+
+Windows SteamPipe 内容目录已有可重复的本地生成脚本，应用构建模板的文件映射经离线检查。Windows 启动项为 SigilsAndOaths.exe。账号侧 App ID、Depot ID、Steam 客户端下载安装、真人试玩和 Valve 审核仍待验证。 [Windows 内容目录](steam/windows-depot.md)
+
 0.43.0-dev 加入 28 张「余烬回声」原创牌、两套预组、对手选择和费用筛选。专项、原生 Windows 界面和十八章固定路线自动重放通过。后者的 15 场战斗、3,406 步操作和 23 次剧情选择与已验收路线一致。0.42 发行包生成的旧战斗存档可读回。 [对局样本](../afterglow-playtest-v043.json) · [0.43 更新说明](v043.md)
 
 玩法短片约 29 秒，直接录制 1920×1080 游戏画面并保留界面。内容包含桥头普攻、从手牌伏设后触发援护、正常对局中施放十费「再鸣铜钟」，以及首章剧情。MP4 为 H.264 30 FPS、约 7.15 Mbps，AAC 48 kHz 立体声。Steam 转码、安装、发行方权利核对与内容调查仍待验证。 [玩法短片](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.43.0-dev/SigilsAndOaths-0.43.0-dev-Gameplay.mp4) · [Steamworks 视频规格](https://partner.steamgames.com/doc/store/trailer)

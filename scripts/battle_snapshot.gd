@@ -2,7 +2,7 @@ extends RefCounted
 ## Plain-data snapshots. No object deserialization, rendering or turn-start effects.
 
 const Model = preload("res://scripts/battle.gd")
-const VERSION: int = 5
+const VERSION: int = 6
 const EXPANSION_CARDS: Array[String] = ["shatter_bolt", "rally_heal", "cleanse_root", "reveal_traps", "seedwood", "anchor_snare", "ember_mine", "oath_ward"]
 const CHANNEL_CARDS: Array[String] = ["span_kit", "countercurrent_ward"]
 const SCALARS: Array[String] = ["active_side", "turn", "winner", "next_id", "match_seed", "deck_size", "weather", "weather_remaining", "turn_time_limit", "time_remaining"]
@@ -10,14 +10,37 @@ const PLAYER_FIELDS: Array[String] = ["hero_id", "deck_id", "mana", "max_mana", 
 const UNIT_INTS: Array[String] = ["id", "side", "hp", "max_hp", "atk", "defense", "move", "range", "shield", "last_move_distance", "rooted_turns"]
 const UNIT_FLAGS: Array[String] = ["moved", "attacked", "summoning", "skill_used", "guarding"]
 const UNIT_TEXT: Array[String] = ["name", "kind", "short"]
+const WARFRONT_PRESETS_V043: Dictionary = {
+	"frost_engine": {
+		"description": "中场用雾棘锁阵和崩纹破盾，保持法师阵线，用八费澜潮或十费坠火处理敌人集群。",
+		"cards": {"sword": 3, "spear": 2, "archer": 2, "mage": 2, "reed_scout": 2, "scribe_warden": 1, "ridge_archer": 1, "shore_medic": 1, "cavalry": 1, "breakwater_guard": 1,
+			"mist_spike": 2, "kiln_lance": 1, "dispatch_bundle": 1, "warder_hymn": 1, "hammer_sweep": 1, "signal_torrent": 1, "last_hearth": 1, "frostbind": 1, "clear_skies": 1, "tidal_oath": 1, "fog": 1, "ward": 1, "second_watch": 1}},
+	"lantern_convoy": {
+		"description": "围绕重装枪兵布置援护和受击补给。群疗、灯夜和重印维持阵线，铺路时考虑双方都能使用。",
+		"cards": {"sword": 2, "gate_veteran": 3, "healer": 2, "shore_medic": 3, "breakwater_guard": 2, "bronze_watch": 1, "mage": 2, "archer": 2,
+			"field_signals": 2, "warder_hymn": 2, "fallback_horn": 2, "tidal_oath": 1, "night_muster": 2, "reed_roads": 1, "detach_line": 1, "silt_snare": 1, "hammer_sweep": 1}},
+}
 
 static func rules_signature() -> String:
-	return JSON.stringify([Model.CATALOG.cards, Model.HEROES.heroes, Model.DECKS.decks, Model.MAPS.maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE, "relay_v1"]).sha256_text()
+	return _relay_signature(Model.CATALOG.cards, Model.DECKS.decks)
+
+static func _relay_signature(cards: Array[Dictionary], decks: Array[Dictionary]) -> String:
+	return JSON.stringify([cards, Model.HEROES.heroes, decks, Model.MAPS.maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE, "relay_v1"]).sha256_text()
+
+static func _presets_through_v043() -> Array[Dictionary]:
+	var decks: Array[Dictionary] = []
+	for preset: Dictionary in Model.DECKS.decks:
+		var previous: Dictionary = WARFRONT_PRESETS_V043.get(preset.id, {})
+		decks.append(preset if previous.is_empty() else preset.merged(previous, true))
+	return decks
+
+static func v043_rules_signature() -> String:
+	return _relay_signature(Model.CATALOG.cards, _presets_through_v043())
 
 static func pre_afterglow_signature() -> String:
 	var cards: Array[Dictionary] = Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") != "afterglow")
-	var decks: Array[Dictionary] = Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") != "afterglow")
-	return JSON.stringify([cards, Model.HEROES.heroes, decks, Model.MAPS.maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE, "relay_v1"]).sha256_text()
+	var decks: Array[Dictionary] = _presets_through_v043().filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") != "afterglow")
+	return _relay_signature(cards, decks)
 
 static func cards_before_channel() -> Array[Dictionary]:
 	var cards: Array[Dictionary] = []
@@ -163,6 +186,7 @@ static func validate(data: Variant) -> Dictionary:
 	return {"ok": true} if problem.is_empty() else {"ok": false, "message": problem}
 
 static func _legacy_rules_match(data: Dictionary) -> bool:
+	if int(data.version) == 5: return data.rules == v043_rules_signature()
 	if int(data.version) == 4: return data.rules == pre_afterglow_signature()
 	var map: Variant = data.get("map_id")
 	if map == "lamplanding": return false
@@ -263,7 +287,10 @@ static func _validate(data: Dictionary) -> String:
 		if preset.is_empty() and player.get("deck_id") != "custom": return "套牌编号不存在。"
 		var issue: String = Model.DECKS.validate_counts(player.get("deck_counts"), Model.CATALOG.cards)
 		if not issue.is_empty(): return issue
-		if not preset.is_empty() and Model.DECKS.canonical_counts(player.deck_counts, Model.CATALOG.cards) != Model.DECKS.canonical_counts(preset.cards, Model.CATALOG.cards): return "预组套牌与当前定义不一致。"
+		if not preset.is_empty():
+			var counts: Dictionary = Model.DECKS.canonical_counts(player.deck_counts, Model.CATALOG.cards)
+			var old_counts: Dictionary = WARFRONT_PRESETS_V043.get(preset.id, {}).get("cards", {})
+			if counts != preset.cards and counts != old_counts: return "预组套牌与已发行牌表不一致。"
 		for key: String in ["mana", "max_mana", "fatigue", "skill_cooldown", "card_total"]:
 			if not _whole(player.get(key)): return "玩家数值无效：" + key
 		if player.mana > 10 or player.max_mana > 10 or player.card_total > 1024 or not player.get("spell_boost_used") is bool: return "玩家资源状态无效。"
@@ -300,7 +327,13 @@ static func restore(data: Variant) -> Dictionary:
 		var player: Dictionary = {}
 		for key: String in PLAYER_FIELDS: player[key] = raw[key] if key in ["hero_id", "deck_id", "spell_boost_used"] else int(raw[key])
 		var counts: Dictionary = Model.DECKS.canonical_counts(raw.deck_counts, Model.CATALOG.cards)
-		player["deck_definition"] = {"id": "custom", "name": "自定义军势", "description": "本地自定义套牌。", "cards": counts} if raw.deck_id == "custom" else Model.DECKS.find(raw.deck_id).duplicate(true)
+		if raw.deck_id == "custom":
+			player["deck_definition"] = {"id": "custom", "name": "自定义军势", "description": "本地自定义套牌。", "cards": counts}
+		else:
+			var preset: Dictionary = Model.DECKS.find(raw.deck_id).duplicate(true)
+			if counts != preset.cards: preset.merge(WARFRONT_PRESETS_V043[raw.deck_id], true)
+			preset["cards"] = counts
+			player["deck_definition"] = preset
 		for zone: String in ["deck", "hand", "discard"]:
 			player[zone] = []
 			for card: Dictionary in raw[zone]: player[zone].append(_decode_card(card))

@@ -34,13 +34,15 @@ decks = Array[Dictionary]([{
 "cards": {"reed_scout": 3, "gate_veteran": 3, "ridge_courier": 3, "ridge_archer": 2, "shore_medic": 2, "breakwater_guard": 2, "bronze_watch": 1, "sword": 2,
 "field_signals": 2, "detach_line": 2, "dispatch_bundle": 1, "march": 2, "second_watch": 1, "open_wind": 1, "reed_roads": 1, "silt_snare": 1, "bolt": 1}
 }, {
-"id": "frost_engine", "name": "断阵重术", "set_id": "warfront", "description": "中场用雾棘锁阵和崩纹破盾，保持法师阵线，用八费澜潮或十费坠火处理敌人集群。",
-"cards": {"sword": 3, "spear": 2, "archer": 2, "mage": 2, "reed_scout": 2, "scribe_warden": 1, "ridge_archer": 1, "shore_medic": 1, "cavalry": 1, "breakwater_guard": 1,
-"mist_spike": 2, "kiln_lance": 1, "dispatch_bundle": 1, "warder_hymn": 1, "hammer_sweep": 1, "signal_torrent": 1, "last_hearth": 1, "frostbind": 1, "clear_skies": 1, "tidal_oath": 1, "fog": 1, "ward": 1, "second_watch": 1}
+"id": "frost_engine", "name": "断阵重术", "set_id": "warfront", "description": "用巡弓清出落脚点，以临桥木架接续施法线。预留法力给崩纹破盾、八费澜潮或十费坠火。",
+"cards": {"sword": 1, "spear": 2, "archer": 2, "mage": 2, "reed_scout": 2, "cavalry": 1, "quay_lantern": 2, "mink_watcher": 3,
+"mist_spike": 1, "warder_hymn": 1, "hammer_sweep": 1, "signal_torrent": 1, "last_hearth": 1, "frostbind": 2, "clear_skies": 1, "fog": 1, "ward": 1, "second_watch": 1,
+"open_wind": 1, "span_kit": 1, "split_sentence": 1, "shatter_bolt": 1}
 }, {
-"id": "lantern_convoy", "name": "灯曜守队", "set_id": "warfront", "description": "围绕重装枪兵布置援护和受击补给。群疗、灯夜和重印维持阵线，铺路时考虑双方都能使用。",
-"cards": {"sword": 2, "gate_veteran": 3, "healer": 2, "shore_medic": 3, "breakwater_guard": 2, "bronze_watch": 1, "mage": 2, "archer": 2,
-"field_signals": 2, "warder_hymn": 2, "fallback_horn": 2, "tidal_oath": 1, "night_muster": 2, "reed_roads": 1, "detach_line": 1, "silt_snare": 1, "hammer_sweep": 1}
+"id": "lantern_convoy", "name": "灯曜守队", "set_id": "warfront", "description": "用枪兵援护和术击伏设稳住阵线。临时桥梁可打开另一条进路，三巡接灯为指挥官身旁的伤兵争取恢复时间。",
+"cards": {"sword": 2, "gate_veteran": 2, "healer": 2, "shore_medic": 2, "breakwater_guard": 2, "bronze_watch": 1, "mage": 2, "archer": 2, "quay_lantern": 1, "spear": 1,
+"field_signals": 2, "warder_hymn": 1, "fallback_horn": 2, "tidal_oath": 1, "night_muster": 1, "reed_roads": 1, "detach_line": 1, "silt_snare": 1, "hammer_sweep": 1,
+"lamplight_shift": 1, "span_kit": 1}
 }, {
 "id": "relay_watch", "name": "回灯前哨", "set_id": "afterglow", "description": "前哨、巡弓和枪夫抢桥。以折回哨令重复进场效果，靠沉链封渡和层台换哨争取夹击。",
 "cards": {"sword": 2, "reed_scout": 2, "lantern_bearer": 3, "mink_watcher": 2, "ferry_pikeman": 3, "cavalry": 2,

@@ -61,6 +61,7 @@ var campaign_active: bool = false
 var story_view: Control
 var campaign_confirmation: ConfirmationDialog
 var quit_confirmation: ConfirmationDialog
+var exiting: bool = false
 var settings_store: RefCounted = SettingsStore.new()
 var settings: Dictionary
 var options: ConfirmationDialog
@@ -216,7 +217,7 @@ func _ready() -> void:
 	quit_confirmation.title = "战役进度尚未保存"
 	quit_confirmation.ok_button_text = "仍然退出"
 	quit_confirmation.cancel_button_text = "返回游戏"
-	quit_confirmation.confirmed.connect(func() -> void: get_tree().quit())
+	quit_confirmation.confirmed.connect(_quit_game)
 	add_child(quit_confirmation)
 	var loaded: Dictionary = deck_store.load_deck()
 	if loaded.ok: custom_deck = loaded.definition
@@ -467,19 +468,30 @@ func _save_campaign() -> void:
 	story_view.set_status(campaign_session.notice, campaign_session.unsaved)
 
 func _request_exit() -> void:
+	if exiting: return
 	if campaign_session.campaign.story == null:
-		get_tree().quit()
+		_quit_game()
 		return
 	var saved: Dictionary = campaign_session.save()
 	if saved.ok:
-		get_tree().quit()
+		_quit_game()
 		return
 	_open_council()
 	if not campaign_session.unsaved:
-		get_tree().quit()
+		_quit_game()
 		return
 	quit_confirmation.dialog_text = campaign_session.notice + "\n本次退出已取消。返回游戏可重试；仍然退出可能丢失未保存的进度。"
 	quit_confirmation.popup_centered()
+
+func _quit_game() -> void:
+	if exiting: return
+	exiting = true
+	generation += 1
+	set_process(false)
+	audio.stop_playback()
+	# The audio server releases stopped playback after a short mixer fade.
+	await get_tree().create_timer(0.12, true, false, true).timeout
+	get_tree().quit()
 
 func _begin_campaign_battle(expected: Dictionary) -> void:
 	var result: Dictionary = campaign_session.begin_battle(expected)
@@ -808,7 +820,7 @@ func _refresh_compact_hand() -> void:
 		%CompactHand.add_child(button)
 
 func _player_can_act() -> bool:
-	return battle != null and battle.active_side == 0 and battle.winner == -1 and not ai_running and not _modal_open() and (training == null or not training.complete())
+	return not exiting and battle != null and battle.active_side == 0 and battle.winner == -1 and not ai_running and not _modal_open() and (training == null or not training.complete())
 
 func _update_board() -> void:
 	var step: Dictionary = training.current() if training != null else {}
@@ -842,6 +854,10 @@ func _update_board() -> void:
 			if not unit.is_empty() and unit.side == 0:
 				board.moves = battle.movement_cells(unit)
 				board.attacks = battle.attack_targets(unit)
+		if step.get("outside_blast", false):
+			var safe := func(cell: Vector2i) -> bool: return training.outside_blast(battle, cell)
+			board.moves = board.moves.filter(safe)
+			board.deploy = board.deploy.filter(safe)
 	_update_attack_overlay()
 
 func _select_card(uid: int) -> void:
@@ -1066,10 +1082,14 @@ func _update_attack_overlay() -> void:
 	board.predicted_losses.clear()
 	board.predicted_gains.clear()
 	board.predicted_area.clear()
+	if training != null:
+		board.predicted_area.assign(training.warning_cells(battle))
+		board.predicted_area_color = Color("ff9792")
 	var effect: Dictionary = _effect_context()
 	if not effect.is_empty():
-		board.predicted_area.assign(effect.get("cells", []))
-		board.predicted_area_color = Color("ffc39b") if effect.amount > 0 else Color("9ae1d4")
+		if effect.has("cells"):
+			board.predicted_area.assign(effect.cells)
+			board.predicted_area_color = Color("ffc39b") if effect.amount > 0 else Color("9ae1d4")
 		for change: Dictionary in effect.changes:
 			if change.hp_loss > 0: board.predicted_losses[change.unit_id] = change.hp_loss
 			if change.healing > 0 or change.shield_delta != 0: board.predicted_gains[change.unit_id] = {"heal": change.healing, "shield": change.shield_delta}

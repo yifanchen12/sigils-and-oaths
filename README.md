@@ -5,17 +5,19 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.43.0-dev" src="https://img.shields.io/badge/version-0.43.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.44.0-dev" src="https://img.shields.io/badge/version-0.44.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法研究参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局和十套自由对战预组。**0.43.0-dev** 新增「余烬回声」，可构筑牌增至 86 张。 [Windows x64 开发预览](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.43.0-dev)
+玩法研究参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局、86 张可构筑牌和十套自由对战预组。**0.44.0-dev** 新增散阵与术击反制练习，并调整战斗预组。 [Windows x64 开发预览](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.44.0-dev)
 
 ## 实机画面
 
-首图来自 0.43.0-dev 的「余烬回声」图鉴，其余图展示当前与历史版本的实际游戏画面。
+首图来自 0.44.0-dev 的散阵练习。下方有「余烬回声」图鉴及各版本实机画面。
+
+![第四节实战教程标出十费法术溅射和游侠的撤离格](docs/screenshots/v044-counterplay-drill.png)
 
 ![余烬回声新卡与系列和费用筛选](docs/screenshots/v043-afterglow-library.png)
 
@@ -78,7 +80,15 @@
 | 选一个指挥官带队 | 艾琳保护阵线，维洛强化火焰，赛菈治疗与林地恢复；各有主动技能和被动能力 |
 | 改变下一轮战局 | 暴雨、浓雾、烈日、寒潮、疾风和灯夜影响双方。可替换或驱散天气，也可铺路、筑垒、击退、定身与换位 |
 | 在有限时间内决策 | 每个行动回合90秒；定向法术限定在友军3格内、法师4格内，天气影响全场 |
-| 熟悉操作和调整体验 | 三节不限时实战教程。F10 调整全屏、剧情字号、战斗动效、音乐和音效 |
+| 熟悉操作和调整体验 | 四节不限时实战教程。F10 调整全屏、剧情字号、战斗动效、音乐和音效 |
+
+## 0.44 · 散阵与反制
+
+第四节练习让你先伏设「湿帷潜护」，再选一条路线把游侠撤出溅射范围。守军打出十费「天炉坠火」后，可以用「折回哨令」收回受伤枪卫并重部署。战前菜单可直接选练习，也可从任一课退出回到原进度。
+
+断阵重术的八费和十费法术仍是后期选择，铺桥与探路提供新的施法阵地。灯曜守队以临桥和灯夜组合轮换受伤部队，调整了重复治疗张数。0.43 战中存档按原牌序恢复。 [对局记录与变化](docs/balance-v044.json)
+
+264 场自动对照共结算 66,421 次合法行动。断阵重术在同条件下由 56/72 胜变为 32/72 胜，新牌表仍施放八费澜潮和十费坠火合计 114 次。灯曜守队在样本中拿到 35/60 胜，对回灯前哨仍占优。 [逐场种子与结果](docs/balance-v044.json)
 
 ## 0.43 · 余烬回声
 

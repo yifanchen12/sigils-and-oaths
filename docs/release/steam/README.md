@@ -1,6 +1,6 @@
 # 《纹章与誓约》Steam 商店素材候选包
 
-当前 Windows 预览为 0.43.0-dev。界面和剧情为简体中文，以下中英文文案供商店语言版本使用。本目录保留高分辨率游戏画面、商店及库用图片和内容披露底稿。
+当前 Windows 预览为 0.44.0-dev。界面和剧情为简体中文，以下中英文文案供商店语言版本使用。本目录保留高分辨率游戏画面、商店及库用图片和内容披露底稿。
 
 ## 中文简介
 
@@ -13,7 +13,7 @@
 - 在 86 种可组牌中选择部队、法术、手牌陷阱与地形天气牌。用十套预组开局，或编辑自己的 30 张牌组。
 - 攻下桥头、护送水车或按序接应撤离处。六种兵种各有主动技能，指挥官也有独立的主动与被动。
 - 在河门来信开始十八章单人战役。故事记录关于救济、修渠和同伴去留的选择，通向三个结局。
-- 从三节不限时教程入门。自由对战使用 90 秒行动回合。战役支持中途保存，并提供剧情回看和可调阅读字号。
+- 从四节不限时教程入门。自由对战使用 90 秒行动回合。战役支持中途保存，并提供剧情回看和可调阅读字号。
 
 ## English store copy
 
@@ -26,7 +26,7 @@ In *Sigils & Oaths*, the ground determines what your hand can do. Every ally can
 - Build a thirty-card deck from 86 collectible cards or start with one of ten presets. Deploy troops, cast spells, set traps from hand, and change terrain and weather.
 - Fight over crossings, escort water carts, and reach evacuation points in order. Six unit roles have their own active abilities, and each commander has active and passive powers.
 - Begin with a letter from Rivergate and finish one of three endings in the eighteen-chapter solo campaign. Your choices affect relief, repairs, and the future of the company.
-- Practice in three untimed drills. Skirmishes use ninety-second turns. Campaign progress can be saved mid-battle. Read previous dialogue and adjust story text size.
+- Practice in four untimed drills. Skirmishes use ninety-second turns. Campaign progress can be saved mid-battle. Read previous dialogue and adjust story text size.
 
 Game interface and story text are in Simplified Chinese.
 
@@ -49,3 +49,7 @@ Game interface and story text are in Simplified Chinese.
 0.43.0-dev 约 29 秒的实机录像包含桥头交战、手牌伏设与援护、十费铜钟和首章剧情。游戏保留了战斗界面与原声。视频为 1920×1080、30 FPS、H.264 约 7.15 Mbps 及 AAC 48 kHz 立体声。 [下载 MP4](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.43.0-dev/SigilsAndOaths-0.43.0-dev-Gameplay.mp4) · [Steamworks 视频规格](https://partner.steamgames.com/doc/store/trailer)
 
 [内容披露与授权底稿](content-disclosure.md) · [主视觉来源](key-art-source.md)
+
+## Windows 构建入库
+
+已提供从验收过的 Windows 包建立 SteamPipe 目录的脚本。内容目录及启动项使用同一份可运行文件，实际 App ID、Depot ID、Steam 客户端下载安装与提交归发行账号流程。 [Windows 入库目录与预览方式](windows-depot.md)

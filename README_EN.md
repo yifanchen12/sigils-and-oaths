@@ -5,17 +5,19 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.43.0-dev" src="https://img.shields.io/badge/version-0.43.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.44.0-dev" src="https://img.shields.io/badge/version-0.44.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings and ten skirmish presets. **0.43.0-dev** adds Afterglow and brings the collectible card pool to 86. [Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.43.0-dev)
+The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 86 collectible cards and ten skirmish presets. **0.44.0-dev** adds a drill for spreading out and countering spells, along with preset adjustments. [Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.44.0-dev)
 
 ## In-game screenshots
 
-The first screenshot shows the Afterglow card collection in 0.43.0-dev. Other images show earlier releases.
+The first screenshot shows the fourth drill in 0.44.0-dev. Further down are the Afterglow card collection and earlier gameplay captures.
+
+![The fourth drill outlines the splash from a ten-mana spell and the archer's escape tiles](docs/screenshots/v044-counterplay-drill.png)
 
 ![The new Afterglow cards alongside set and mana filters](docs/screenshots/v043-afterglow-library.png)
 
@@ -77,7 +79,15 @@ The first screenshot shows the Afterglow card collection in 0.43.0-dev. Other im
 | Lead with a commander | Ailin protects the front, Velo strengthens fire, and Sera supports healing and woodland recovery; each has active and passive abilities |
 | Change the next exchange | Rain, fog, sun, snow, tailwind and lantern weather affect both sides. Replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
-| Learn and adjust | Three untimed drills. F10 opens display, reading size, motion, music and effects settings |
+| Learn and adjust | Four untimed drills. F10 opens display, reading size, motion, music and effects settings |
+
+## 0.44 · Counterplay and positioning
+
+In the fourth drill, set a spell ward, move the archer out of splash range, and watch the opposing caster play Last Hearth. Recall the surviving spearman and redeploy him in a safe position. Pick any drill in the War Council and leave when you want to resume your game.
+
+Frost Engine still has both an eight-mana and a ten-mana spell. Scouting and bridge construction open new routes for its casters. Lantern Convoy now balances healing with another crossing and closer support for troops around its commander. Ongoing 0.43 battles restore the decklists and card order recorded at the time. [Match records](docs/balance-v044.json)
+
+The comparison recorded 66,421 legal actions across 264 automated games. Frost Engine went from 56 wins in 72 games to 32 in the same match conditions. Its eight- and ten-mana spells were played 114 times with the new list. Lantern Convoy won 35 of 60 games and still has an edge against Relay Watch in the sample. [Seeds and results](docs/balance-v044.json)
 
 ## 0.43 · Afterglow
 

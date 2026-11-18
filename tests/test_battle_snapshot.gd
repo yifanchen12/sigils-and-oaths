@@ -159,8 +159,32 @@ func test_spells_and_heroes() -> bool:
 		check(loaded.ok and Snapshot.capture(loaded.battle) == Snapshot.capture(game), "hero cooldown, heal and draw preserved " + hero)
 	return true
 
+func test_preset_revision() -> bool:
+	var raw: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://tests/fixtures/v043-pretuning-battle.json"))
+	check(raw.version == 5 and raw.rules == Snapshot.v043_rules_signature(), "real 0.43 version and exact original signature")
+	var migrated: Dictionary = Snapshot.restore(raw)
+	check(migrated.ok, "mid-battle 0.43 Frost versus Lantern restores")
+	if not migrated.ok: return false
+	var battle: Battle = migrated.battle
+	var updated: Dictionary = Snapshot.capture(battle)
+	var normalized: Dictionary = JSON.parse_string(JSON.stringify(updated))
+	raw.rules = normalized.rules
+	raw.version = normalized.version
+	check(raw == normalized, "just the schema and signature change for a real old battle")
+	check(battle.deck(0).cards.sword == 3 and battle.deck(1).cards.shore_medic == 3, "old public preset compositions survive migration")
+	var new_battle := Model.new(43161, "rivergate", "warden", "warden", "frost_engine", "lantern_convoy")
+	check(new_battle.deck(0).cards.sword == 1 and new_battle.deck(1).cards.shore_medic == 2, "new battles use revised presets")
+	var again: Dictionary = Snapshot.restore(normalized)
+	check(again.ok and Snapshot.capture(again.battle) == updated, "resaving a migrated old battle keeps its exact card zones and counts")
+	var changed: Dictionary = updated.duplicate(true)
+	changed.players[0].deck_counts.sword -= 1
+	changed.players[0].deck_counts.cavalry += 1
+	check(Model.DECKS.validate_counts(changed.players[0].deck_counts, Model.CATALOG.cards).is_empty(), "mismatched fixture deck is otherwise a legal 30-card deck")
+	invalid(changed, "neither released preset revision is allowed to drift")
+	return true
+
 func run() -> void:
-	for method: String in ["test_roundtrip", "test_skills_and_special_states", "test_invalid", "test_spells_and_heroes"]:
+	for method: String in ["test_roundtrip", "test_skills_and_special_states", "test_invalid", "test_spells_and_heroes", "test_preset_revision"]:
 		check(call(method) == true, method + " completed without runtime interruption")
 	print("BATTLE SNAPSHOT CHECKS: %d | FAILURES: %d | DISPLAY: %s" % [checks, failures, DisplayServer.get_name()])
 	quit(0 if failures == 0 else 1)

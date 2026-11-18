@@ -18,6 +18,7 @@ var music_players: Array[AudioStreamPlayer] = []
 var sfx: Node
 var scene_index: int = -1
 var fade: Tween
+var stopping: bool = false
 
 func _ready() -> void:
 	for bus_name: String in ["Music", "SFX"]:
@@ -35,6 +36,20 @@ func _ready() -> void:
 	sfx = Node.new()
 	add_child(sfx)
 
+func _exit_tree() -> void:
+	stop_playback()
+
+func stop_playback() -> void:
+	if stopping: return
+	stopping = true
+	if fade != null:
+		fade.kill()
+		fade = null
+	for player: AudioStreamPlayer in music_players:
+		player.stop()
+	for player: AudioStreamPlayer in sfx.get_children():
+		player.stop()
+
 func set_levels(music_level: int, effects_level: int) -> void:
 	_apply_bus("Music", music_level)
 	_apply_bus("SFX", effects_level)
@@ -45,6 +60,7 @@ func _apply_bus(bus_name: String, percent: int) -> void:
 	AudioServer.set_bus_volume_db(bus, linear_to_db(maxf(0.0001, pow(percent / 100.0, 1.55))))
 
 func set_battle_music(in_battle: bool) -> void:
+	if stopping: return
 	var next: int = int(in_battle)
 	if next == scene_index: return
 	scene_index = next
@@ -85,7 +101,7 @@ func feedback(action: Dictionary, battle: Battle, acting_side: int) -> void:
 	if battle.winner != -1: _play("victory" if battle.winner == 0 else "defeat")
 
 func _play(cue: String) -> void:
-	if DisplayServer.get_name() == "headless" or AudioServer.is_bus_mute(AudioServer.get_bus_index("SFX")): return
+	if stopping or DisplayServer.get_name() == "headless" or AudioServer.is_bus_mute(AudioServer.get_bus_index("SFX")): return
 	if sfx.get_child_count() >= 8: return
 	var player := AudioStreamPlayer.new()
 	player.bus = &"SFX"

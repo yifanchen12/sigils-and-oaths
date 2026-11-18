@@ -52,7 +52,8 @@ func screenshots_enabled() -> bool:
 func capture(filename: String, viewport: Viewport = null) -> void:
 	var warfront_only: bool = filename.begins_with("v041-warfront-") and OS.get_cmdline_user_args().has("--warfront-screens") and DisplayServer.get_name() != "headless"
 	var afterglow_only: bool = filename.begins_with("v043-afterglow-") and OS.get_cmdline_user_args().has("--afterglow-screens") and DisplayServer.get_name() != "headless"
-	if not screenshots_enabled() and not warfront_only and not afterglow_only: return
+	var counterplay_only: bool = filename == "v044-counterplay-drill.png" and OS.get_cmdline_user_args().has("--counterplay-screen") and DisplayServer.get_name() != "headless"
+	if not screenshots_enabled() and not warfront_only and not afterglow_only and not counterplay_only: return
 	await RenderingServer.frame_post_draw
 	var directory: String = ProjectSettings.globalize_path("res://docs/screenshots")
 	DirAccess.make_dir_recursive_absolute(directory)

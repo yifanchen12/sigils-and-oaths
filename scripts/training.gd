@@ -13,6 +13,10 @@ const MAGE_FINISH := Vector2i(6, 7)
 const FIRE_CENTER := Vector2i(6, 3)
 const FIRE_EDGE := Vector2i(7, 4)
 const FIRE_SAFE := Vector2i(8, 4)
+const COUNTER_CENTER := Vector2i(6, 6)
+const COUNTER_ARCHER := Vector2i(7, 5)
+const COUNTER_MAGE := Vector2i(6, 2)
+const COUNTER_SPELL: String = "last_hearth"
 const LESSONS: Array[Dictionary] = [
 	{"name": "部署、移动与克制", "steps": [
 		{"type": "play", "card": "spear", "target": DEPLOY, "text": "选中手牌「铁壁枪卫」，部署到指挥官前方标出的空格。新部队必须贴着友军部署。"},
@@ -29,16 +33,26 @@ const LESSONS: Array[Dictionary] = [
 		{"type": "move", "from": MAGE_START, "target": MAGE_FINISH, "text": "选中己方法师，前进一步。普通友军提供 3 格施法范围，法师提供 4 格。下方手牌已为练习备好 10 点法力。"},
 		{"type": "play", "card": "last_hearth", "target": FIRE_CENTER, "text": "选中「天炉坠火」，悬停标出的中心检查扩散范围，再点击施法。超出中心两格的枪卫不会受伤。"},
 	], "done": "火焰同时打中中心和边缘的敌军，最外侧枪卫安全。正式对局每个己方回合增加 1 点法力上限，最多 10 点。"},
+	{"name": "散阵与术击反制", "steps": [
+		{"type": "play", "card": "quiet_veil", "target": COUNTER_CENTER, "show_blast": true, "text": "守军法师要向红框中心施放「天炉坠火」。把「湿帷潜护」从手牌伏设到中心的受伤枪卫身上。"},
+		{"type": "move", "from": COUNTER_ARCHER, "outside_blast": true, "text": "选中高地旁的暮林游侠，走到红框外任意一个青色可移动格。距离中心超过两格就能躲开这次溅射。"},
+		{"type": "end_turn", "target_hint": COUNTER_CENTER, "show_blast": true, "text": "结束回合。观察伏设如何在术击前救护枪卫，以及游侠离开范围后的生命。"},
+		{"type": "play", "card": "recall_writ", "target": COUNTER_CENTER, "text": "枪卫撑过了这次攻击。用「折回哨令」把他收回手牌，给下一次部署腾出位置。"},
+		{"type": "play", "card": "spear", "outside_blast": true, "text": "用手中刚收回的铁壁枪卫，选红框外任意合法增援格重新部署。"},
+	], "done": "游侠避开了溅射，枪卫重新部署时恢复满生命，到下次己方回合才能行动。对手有重术时，可以提前分散与保护关键部队。"},
 ]
 
 var lesson: int = 0
 var step_index: int = 0
+var scripted_spell_uid: int = -1
 
 func prepare(index: int) -> Battle:
 	lesson = clampi(index, 0, LESSONS.size() - 1)
 	step_index = 0
-	var battle := Model.new(4211 + lesson, "greenwood")
-	battle.set_commander_identity(1, "演练守军", "pyromancer")
+	scripted_spell_uid = -1
+	var defender: String = "warden" if lesson == 3 else "pyromancer"
+	var battle := Model.new(4211 + lesson, "greenwood", "warden", defender)
+	battle.set_commander_identity(1, "演练守军", defender)
 	battle.players[0].discard.append_array(battle.players[0].hand)
 	battle.players[0].hand.clear()
 	match lesson:
@@ -59,6 +73,15 @@ func prepare(index: int) -> Battle:
 			_place(battle, "breakwater_guard", FIRE_EDGE, 1)
 			_place(battle, "spear", FIRE_SAFE, 1)
 			_set_mana(battle, 10)
+		3:
+			_supply(battle, "quiet_veil", 0)
+			_supply(battle, "recall_writ", 0)
+			_place(battle, "spear", COUNTER_CENTER, 0).hp = 4
+			_place(battle, "archer", COUNTER_ARCHER, 0)
+			_place(battle, "mage", COUNTER_MAGE, 1)
+			scripted_spell_uid = _supply(battle, COUNTER_SPELL, 1).uid
+			battle.players[1].max_mana = 9
+			_set_mana(battle, 4)
 	return battle
 
 func current() -> Dictionary:
@@ -71,6 +94,9 @@ func allows(battle: Battle, action: Dictionary) -> bool:
 	var step: Dictionary = current()
 	if step.is_empty() or action.type != step.type: return false
 	if step.has("target") and action.get("target") != step.target: return false
+	if step.get("outside_blast", false):
+		var cell: Variant = action.get("target")
+		if not cell is Vector2i or not outside_blast(battle, cell): return false
 	if step.has("card"):
 		var card: Dictionary = battle.hand_card(0, int(action.get("card_uid", -1)))
 		return card.get("card_id", "") == step.card
@@ -79,9 +105,19 @@ func allows(battle: Battle, action: Dictionary) -> bool:
 		return unit.get("pos") == step.from
 	return true
 
+func outside_blast(battle: Battle, cell: Vector2i) -> bool:
+	return battle.inside(cell) and battle.distance(cell, COUNTER_CENTER) > int(battle.definition(COUNTER_SPELL).radius)
+
+func warning_cells(battle: Battle) -> Array[Vector2i]:
+	var step: Dictionary = current()
+	if not (step.get("show_blast", false) or step.get("outside_blast", false)): return []
+	return battle.Formation.footprint(battle, COUNTER_CENTER, int(battle.definition(COUNTER_SPELL).radius))
+
 func enemy_response(battle: Battle) -> Dictionary:
-	if lesson != 1: return {}
-	return {"type": "attack", "unit_id": battle.unit_at(ENEMY_ARCHER).id, "target": PROTECTED}
+	match lesson:
+		1: return {"type": "attack", "unit_id": battle.unit_at(ENEMY_ARCHER).id, "target": PROTECTED}
+		3: return {"type": "play", "card_uid": scripted_spell_uid, "target": COUNTER_CENTER}
+	return {}
 
 func _set_mana(battle: Battle, amount: int) -> void:
 	battle.players[0].mana = amount
