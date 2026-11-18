@@ -11,6 +11,11 @@ const Effects = preload("res://scripts/effect_forecast.gd")
 const LoreBook = preload("res://scripts/lore_book.gd")
 const CampaignSession = preload("res://scripts/campaign_session.gd")
 const StoryView = preload("res://scripts/story_view.gd")
+const SettingsStore = preload("res://scripts/settings_store.gd")
+const SettingsDialog = preload("res://scripts/settings_dialog.gd")
+const AudioDirector = preload("res://scripts/game_audio.gd")
+const Training = preload("res://scripts/training.gd")
+const TrainingPanel = preload("res://scripts/training_panel.gd")
 const TEAL := Color("70d3ba")
 const GOLD := Color("d0b579")
 const RED := Color("f08b76")
@@ -55,12 +60,20 @@ var campaign_active: bool = false
 var story_view: Control
 var campaign_confirmation: ConfirmationDialog
 var quit_confirmation: ConfirmationDialog
+var settings_store: RefCounted = SettingsStore.new()
+var settings: Dictionary
+var options: ConfirmationDialog
+var settings_focus: Control
+var audio: Node
+var training: RefCounted
+var training_panel: PanelContainer
+var training_return: Dictionary = {}
 
 func _process(delta: float) -> void:
 	if battle == null: return
 	_position_battle_peek()
 	var paused: bool = not has_started or _modal_open()
-	if paused or battle.winner != -1:
+	if paused or battle.winner != -1 or training != null:
 		if paused and board.is_presenting(): board.reset_effects()
 		if battle.winner != -1 and not paused and not board.is_presenting() and not %ResultOverlay.visible: _refresh()
 		_update_clock_ui(paused)
@@ -77,6 +90,7 @@ func _process(delta: float) -> void:
 		using_unit_skill = false
 	if battle.advance_clock(delta):
 		board.present_action(before, {"type": "end_turn"}, [])
+		audio.feedback({"type": "end_turn"}, battle, old_side)
 		ai_running = battle.active_side == 1 and battle.winner == -1
 		message = "你的回合时间已用尽，%s开始行动。" % battle.side_name(1) if old_side == 0 else "敌方回合超时，轮到你行动。"
 		error_message = false
@@ -88,6 +102,10 @@ func _process(delta: float) -> void:
 	_update_clock_ui(false)
 
 func _update_clock_ui(paused: bool = false) -> void:
+	if training != null:
+		%TurnClock.text = "练习不限时"
+		%TurnClock.add_theme_color_override("font_color", TEAL)
+		return
 	var seconds: int = maxi(0, ceili(battle.time_remaining))
 	%TurnClock.text = ("暂停 " if paused else "回合 ") + "%02d:%02d" % [seconds / 60, seconds % 60]
 	%TurnClock.add_theme_color_override("font_color", RED if seconds <= 15 else (GOLD if seconds <= 30 else TEAL))
@@ -120,6 +138,12 @@ func _ready() -> void:
 	grid_button.toggled.connect(func(value: bool) -> void: board.grid_visible = value; board.queue_redraw())
 	%ViewEnd.get_parent().add_child(grid_button)
 	%ViewEnd.get_parent().move_child(grid_button, 7)
+	var settings_button := Button.new()
+	settings_button.text = "设置"
+	settings_button.tooltip_text = "显示、阅读、战斗动效和音量 · F10"
+	settings_button.pressed.connect(_open_settings)
+	%ViewEnd.get_parent().add_child(settings_button)
+	%ViewEnd.get_parent().move_child(settings_button, 2)
 	var unit_actions := HBoxContainer.new()
 	unit_actions.add_theme_constant_override("separation", 12)
 	board.get_parent().add_child(unit_actions)
@@ -135,6 +159,14 @@ func _ready() -> void:
 	unit_skill_button.custom_minimum_size = Vector2(178, 34)
 	unit_skill_button.pressed.connect(_select_unit_skill)
 	unit_actions.add_child(unit_skill_button)
+	training_panel = TrainingPanel.new()
+	training_panel.add_theme_stylebox_override("panel", _box(Color("203749"), GOLD, 5, 8))
+	board.get_parent().add_child(training_panel)
+	board.get_parent().move_child(training_panel, unit_actions.get_index())
+	training_panel.lesson_requested.connect(_load_training_lesson)
+	training_panel.reset_requested.connect(func() -> void: _load_training_lesson(training.lesson))
+	training_panel.next_requested.connect(_next_training_lesson)
+	training_panel.exit_requested.connect(_leave_training)
 	%CompactHandPanel.add_theme_stylebox_override("panel", _box(Color("182a40"), Color("a28a5a"), 3, 8))
 	%ViewEnd.add_theme_stylebox_override("normal", _box(Color("446377"), GOLD, 3, 12))
 	%Header.hide()
@@ -162,6 +194,16 @@ func _ready() -> void:
 	story_view.next_chapter_requested.connect(_next_story_chapter)
 	story_view.menu_requested.connect(_open_council)
 	story_view.save_requested.connect(_save_campaign)
+	story_view.settings_requested.connect(_open_settings)
+	audio = AudioDirector.new()
+	add_child(audio)
+	options = SettingsDialog.new()
+	options.theme = theme
+	add_child(options)
+	options.save_requested.connect(_save_settings)
+	options.visibility_changed.connect(_settings_visibility_changed)
+	settings = settings_store.load_preferences()
+	_apply_settings()
 	campaign_confirmation = ConfirmationDialog.new()
 	campaign_confirmation.title = "重新开始战役"
 	campaign_confirmation.dialog_text = "将从第一章开头重新开始，并替换当前战役进度。"
@@ -231,10 +273,15 @@ func _ready() -> void:
 	council.lore_requested.connect(func() -> void: lore_book.open(council.selected_hero))
 	council.new_campaign_requested.connect(_request_new_campaign)
 	council.continue_campaign_requested.connect(_continue_campaign)
+	council.training_requested.connect(_start_training)
+	council.settings_requested.connect(_open_settings)
 	_new_match(1)
 	council.open(current_map, current_hero, false, current_deck)
 
 func _open_council() -> void:
+	if training != null:
+		_leave_training()
+		return
 	if campaign_session.campaign.story != null:
 		campaign_session.save()
 		council.campaign_notice.text = campaign_session.notice
@@ -271,10 +318,89 @@ func _start_from_council(map_id: String, hero_id: String, deck_id: String) -> vo
 	_new_match(1 if not has_started else session_rng.randi_range(1, 999999))
 	has_started = true
 	if not expanded_battlefield: _toggle_battlefield()
+	else: _refresh()
 	board.grab_focus()
 
 func _modal_open() -> bool:
-	return council.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible or lore_book.visible or story_view.visible
+	return council.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible or lore_book.visible or story_view.visible or options.visible
+
+func _open_settings() -> void:
+	if options == null or options.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible or lore_book.visible or campaign_confirmation.visible or quit_confirmation.visible: return
+	settings_focus = get_viewport().gui_get_focus_owner()
+	options.open_preferences(settings.values, settings.notice, settings.writable)
+
+func _save_settings(values: Dictionary) -> void:
+	var result: Dictionary = settings_store.save_preferences(values)
+	if not result.ok:
+		options.set_status(result.message, true)
+		return
+	settings = {"values": result.values, "notice": "", "writable": true}
+	options.hide()
+	_apply_settings()
+
+func _apply_settings() -> void:
+	var values: Dictionary = settings.values
+	if DisplayServer.get_name() != "headless":
+		if values.fullscreen: get_window().mode = Window.MODE_FULLSCREEN
+		elif get_window().mode in [Window.MODE_FULLSCREEN, Window.MODE_EXCLUSIVE_FULLSCREEN]: get_window().mode = Window.MODE_WINDOWED
+	story_view.set_reading_size(values.reading_size)
+	board.set_reduced_motion(values.reduce_motion)
+	audio.set_levels(values.music, values.effects)
+
+func _settings_visibility_changed() -> void:
+	story_view.set_process_unhandled_key_input(not options.visible)
+	_refresh()
+	if not options.visible and is_instance_valid(settings_focus) and settings_focus.is_visible_in_tree():
+		settings_focus.grab_focus.call_deferred()
+
+func _start_training() -> void:
+	if training != null: return
+	training_return = {"battle": battle, "started": has_started, "campaign": campaign_active,
+		"expanded": expanded_battlefield}
+	campaign_active = false
+	has_started = true
+	training = Training.new()
+	council.hide()
+	_load_training_lesson(0)
+
+func _load_training_lesson(index: int) -> void:
+	if training == null: return
+	var prepared: Battle = training.prepare(index)
+	_new_match(prepared.match_seed, prepared)
+	if not expanded_battlefield: _toggle_battlefield()
+	board.grab_focus()
+
+func _next_training_lesson() -> void:
+	if training == null or not training.complete(): return
+	if training.lesson + 1 < Training.LESSONS.size(): _load_training_lesson(training.lesson + 1)
+	else: _leave_training()
+
+func _leave_training() -> void:
+	if training == null: return
+	var previous: Dictionary = training_return
+	training_return = {}
+	training = null
+	has_started = previous.started
+	campaign_active = previous.campaign
+	var restored: Battle = previous.battle
+	council.open(current_map, current_hero, has_started and restored.winner == -1, current_deck)
+	_new_match(restored.match_seed, restored)
+	if expanded_battlefield != previous.expanded: _toggle_battlefield()
+	if has_started and battle.winner == -1 and battle.active_side == 1:
+		ai_running = true
+		_run_ai(generation)
+
+func _finish_training_step(action: Dictionary) -> void:
+	if action.type == "end_turn":
+		var response: Dictionary = training.enemy_response(battle)
+		if not response.is_empty():
+			var result: Dictionary = _apply_with_feedback(response)
+			if not result.ok:
+				message = "练习局面已失效，请选择「重练本节」。"
+				error_message = true
+				return
+		battle.end_turn()
+	training.step_index += 1
 
 func _request_new_campaign() -> void:
 	if campaign_session.campaign.story != null or FileAccess.file_exists(campaign_session.store.path) or FileAccess.file_exists(campaign_session.store.path + ".bak"):
@@ -486,6 +612,9 @@ func _box(fill: Color, border: Color, radius: int, padding: int) -> StyleBoxFlat
 	return box
 
 func _restart() -> void:
+	if training != null:
+		_load_training_lesson(training.lesson)
+		return
 	if campaign_active:
 		if battle.winner != -1: _show_story()
 		else: _open_council()
@@ -528,6 +657,8 @@ func _on_battle_changed() -> void:
 
 func _refresh() -> void:
 	if battle == null: return
+	training_panel.update_step(training, battle)
+	audio.set_battle_music(has_started and not council.visible and not story_view.visible)
 	if campaign_active and battle.winner != -1 and campaign_session.encounter == battle:
 		var resolved: Dictionary = campaign_session.finish_battle(battle)
 		if not resolved.ok: campaign_session.notice = resolved.message
@@ -656,9 +787,11 @@ func _refresh_compact_hand() -> void:
 		%CompactHand.add_child(button)
 
 func _player_can_act() -> bool:
-	return battle != null and battle.active_side == 0 and battle.winner == -1 and not ai_running and not _modal_open()
+	return battle != null and battle.active_side == 0 and battle.winner == -1 and not ai_running and not _modal_open() and (training == null or not training.complete())
 
 func _update_board() -> void:
+	var step: Dictionary = training.current() if training != null else {}
+	board.training_target = step.get("target_hint", step.get("target", Vector2i(-1, -1)))
 	board.predicted_losses.clear()
 	board.selected_unit = selected_unit
 	board.moves.clear()
@@ -790,6 +923,9 @@ func _on_cell_clicked(cell: Vector2i, button: int) -> void:
 		_update_info()
 
 func _commit(action: Dictionary) -> void:
+	if training != null and not training.allows(battle, action):
+		_show_hint("请先完成上方标出的练习步骤。", true)
+		return
 	var result: Dictionary = _apply_with_feedback(action)
 	error_message = not result.ok
 	message = str(result.message)
@@ -800,6 +936,7 @@ func _commit(action: Dictionary) -> void:
 		if action.has("target") and battle.inside(action.target):
 			board.last_cell = battle.last_movement_path.back() if not battle.last_movement_path.is_empty() else action.target
 			board.flash(board.last_cell)
+		if training != null: _finish_training_step(action)
 	_refresh()
 
 func _apply_with_feedback(action: Dictionary) -> Dictionary:
@@ -856,6 +993,7 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 			visual_action["target"] = Vector2i(-1, -1)
 			visual_action.erase("visual_caster_id"); visual_action.erase("visual_origin")
 		board.present_action(before, visual_action, path)
+		audio.feedback(visual_action, battle, side)
 		if battle.winner != -1: _refresh()
 	return result
 
@@ -1090,6 +1228,9 @@ func _show_hint(value: String, is_error: bool) -> void:
 func _end_turn() -> void:
 	using_unit_skill = false
 	if not _player_can_act(): return
+	if training != null:
+		_commit({"type": "end_turn"})
+		return
 	selected_card = -1
 	selected_unit = -1
 	inspected_card = -1
@@ -1129,6 +1270,10 @@ func _run_ai(token: int) -> void:
 
 func _input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo: return
+	if event.keycode == KEY_F10:
+		_open_settings()
+		get_viewport().set_input_as_handled()
+		return
 	if council == null or _modal_open(): return
 	if event.keycode == KEY_TAB:
 		_toggle_battlefield()

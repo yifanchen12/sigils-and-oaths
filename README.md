@@ -5,17 +5,19 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.41.0-dev" src="https://img.shields.io/badge/version-0.41.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.42.0-dev" src="https://img.shields.io/badge/version-0.42.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法研究参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。**0.41.0-dev** 面向 Windows 单人对战 AI，新增 24 张原创牌和三套预组，战役接入十八章、三个结局和跨章存档。一条从首章出发的路线连续打完十五场，抵达「共掌一灯」。真人数值、单路线十万汉字和 Steam 发行验收仍待完成。
+玩法研究参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局和八套自由对战预组。**0.42.0-dev** 加入三节不限时实战教程、可保存的游戏设置和原创配乐音效。
 
 ## 实机画面
 
-前四张来自 0.41.0-dev，其中第二张为 10 费法术的范围验收局面。其余画面来自此前开发版本。
+首图来自 0.42.0-dev 的援护教程，其余图为相应历史版本的游戏画面。
+
+![实战教程选中回誓屏障并标出被保护枪卫](docs/release/steam/gameplay/04-guard-drill.png)
 
 ![牌库筛选前线新卡与天炉坠火规则](docs/screenshots/v041-warfront-library.png)
 
@@ -74,6 +76,15 @@
 | 选一个指挥官带队 | 艾琳保护阵线，维洛强化火焰，赛菈治疗与林地恢复；各有主动技能和被动能力 |
 | 改变下一轮战局 | 暴雨、浓雾、烈日、寒潮、疾风和灯夜影响双方。可替换或驱散天气，也可铺路、筑垒、击退、定身与换位 |
 | 在有限时间内决策 | 每个行动回合90秒；定向法术限定在友军3格内、法师4格内，天气影响全场 |
+| 熟悉操作和调整体验 | 三节不限时实战教程。F10 调整全屏、剧情字号、战斗动效、音乐和音效 |
+
+## 0.42 · 战前操练
+
+战前菜单的「实战教程」共三节，覆盖邻接部署、移动克制、援护与手牌伏设、局部施法与溅射。可以重练任一节，退出后返回原来的对局。设置能在战前、战斗或剧情中打开，支持 100%、115%、130% 剧情字号和简化战斗动效。游戏有两首原创音乐与九个事件音效，背景音乐和战斗音效分别可调。
+
+原生 Windows 完成三课、全屏切换、音效播放与设置读回。练习前后的对局快照和战役存档一致。商店候选包包含四张商店图、四张库图、两个图标、五张 1920×1080 游戏截图和中英文说明。断阵重术的人类对战验收与 Steam 提审仍待完成。[Steam 素材与披露底稿](docs/release/steam/README.md)
+
+Windows x64 预览包正在校验。
 
 ## 0.41 · 前线扩牌与三盏灯
 

@@ -1,0 +1,188 @@
+{
+  "version": "0.42.0-dev",
+  "images": [
+    {
+      "path": "key-art-v1.png",
+      "pixels": [
+        1672,
+        941
+      ],
+      "format": "PNG",
+      "mode": "RGB",
+      "bytes": 2559185,
+      "sha256": "8b6aaef4a3d45b1ad7e229fe618c06d061f0584e54a532b193ae86e6f1f44ca1"
+    },
+    {
+      "path": "graphics/store-header.jpg",
+      "pixels": [
+        920,
+        430
+      ],
+      "format": "JPEG",
+      "mode": "RGB",
+      "bytes": 203804,
+      "sha256": "11172a5475cc51cec5c7769f624e4f7d5720ddb615ee239160b596ee985742be"
+    },
+    {
+      "path": "graphics/store-small.jpg",
+      "pixels": [
+        462,
+        174
+      ],
+      "format": "JPEG",
+      "mode": "RGB",
+      "bytes": 48464,
+      "sha256": "0882686c88ae3c173f8bd49bd7ec3dd9bbd23a0628380b4b2a4e4762a6c893e7"
+    },
+    {
+      "path": "graphics/store-main.jpg",
+      "pixels": [
+        1232,
+        706
+      ],
+      "format": "JPEG",
+      "mode": "RGB",
+      "bytes": 403267,
+      "sha256": "28e064298d7adee0552eb859b013a45250eb79b3b7782a9816299e9b9ddbd5a7"
+    },
+    {
+      "path": "graphics/store-vertical.jpg",
+      "pixels": [
+        748,
+        896
+      ],
+      "format": "JPEG",
+      "mode": "RGB",
+      "bytes": 329743,
+      "sha256": "936ebcd3fb510e549506a2e20e89a2530d0060eefce2f58cd024be6bb85c3918"
+    },
+    {
+      "path": "graphics/library-capsule.jpg",
+      "pixels": [
+        600,
+        900
+      ],
+      "format": "JPEG",
+      "mode": "RGB",
+      "bytes": 275274,
+      "sha256": "6720c8005b2b694ec7671424363d8be5776a7a77a3d427dbb05dce4317b04ea6"
+    },
+    {
+      "path": "graphics/library-header.jpg",
+      "pixels": [
+        920,
+        430
+      ],
+      "format": "JPEG",
+      "mode": "RGB",
+      "bytes": 203804,
+      "sha256": "11172a5475cc51cec5c7769f624e4f7d5720ddb615ee239160b596ee985742be"
+    },
+    {
+      "path": "graphics/library-hero.jpg",
+      "pixels": [
+        3840,
+        1240
+      ],
+      "format": "JPEG",
+      "mode": "RGB",
+      "bytes": 1142380,
+      "sha256": "42a167abfeeebe034fdb2ee1bdbaaedebf03545cd1b2158f9525b4dd6d7ea6ad"
+    },
+    {
+      "path": "graphics/library-logo.png",
+      "pixels": [
+        1280,
+        390
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 99033,
+      "sha256": "2046111346e4073134fdbb383aa78a84222789bc117e1a9e46957537e5eea184"
+    },
+    {
+      "path": "graphics/app-icon.jpg",
+      "pixels": [
+        184,
+        184
+      ],
+      "format": "JPEG",
+      "mode": "RGB",
+      "bytes": 18121,
+      "sha256": "41abd2987d2c9134b24520b48ef97aaca6725c7dfaeab00d5b466bb2ff8e969c"
+    },
+    {
+      "path": "graphics/shortcut-icon.png",
+      "pixels": [
+        512,
+        512
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 46114,
+      "sha256": "99747e3a0247e74364813e1188e966d1b98b6b658e701d89cad115728a351c7e"
+    },
+    {
+      "path": "gameplay/01-local-spell.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1645490,
+      "sha256": "b2a90badd44fbcc2ac8e5b84c9245ccf0a799a8cf1cdc0301884cda5ff8dc09e",
+      "capture": "Normal Frost Engine vs Balanced Host skirmish, Greenwood seed 4107, before a legal ten-mana cast on side turn 23."
+    },
+    {
+      "path": "gameplay/02-bridge-engagement.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1639435,
+      "sha256": "16782c6dac4d3456fced1eca5eb21d4e12be174c0ad98d6c4d121ce9caa3c528",
+      "capture": "Normal Reed Legion vs Balanced Host skirmish, Rivergate seed 4186, attack preview on side turn 13."
+    },
+    {
+      "path": "gameplay/03-rivergate-story.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 2641206,
+      "sha256": "eb004ab7d7a4e8143810767c723619e459aa18ce34a1afc3fa763a99c983bbea",
+      "capture": "The opening chapter's actual c01.a03 dialogue page reached by reading from New Campaign."
+    },
+    {
+      "path": "gameplay/04-guard-drill.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1112071,
+      "sha256": "1903e070bc019204e4a05004bd2fa6362db82ef4269f34bd7a5bb55b8ca5324d",
+      "capture": "The playable second tutorial, with the hand trap selected on the actual training board."
+    },
+    {
+      "path": "gameplay/05-three-lamps-mission.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1659113,
+      "sha256": "884cda437f67b598a3750dbf568cd693498aeb38697848409e9fee3c45fadde2",
+      "capture": "The authored c17_runner objective and opening cards loaded in the production battlefield scene."
+    }
+  ],
+  "viewport_screenshots": 5,
+  "store_and_library_graphics_including_icons": 10
+}

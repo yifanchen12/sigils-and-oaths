@@ -8,6 +8,8 @@ signal deck_editor_requested
 signal lore_requested
 signal new_campaign_requested
 signal continue_campaign_requested
+signal training_requested
+signal settings_requested
 
 const BattleModel = preload("res://scripts/battle.gd")
 const Art = preload("res://scripts/art_library.gd")
@@ -26,6 +28,8 @@ var library_button: Button
 var editor_button: Button
 var lore_button: Button
 var campaign_notice: Label
+var training_button: Button
+var settings_button: Button
 var deck_choice: OptionButton
 var background: Texture2D
 var map_options: Array[Dictionary] = []
@@ -147,8 +151,22 @@ func _build() -> void:
 	continue_campaign.custom_minimum_size.y = 44
 	continue_campaign.pressed.connect(func() -> void: continue_campaign_requested.emit())
 	campaign_row.add_child(continue_campaign)
-	campaign_notice = _label("前三章主线 · 剧情选择与战斗进度保存", 13, MUTED, true)
+	campaign_notice = _label("十八章战役 · 剧情选择与战斗进度自动保存", 13, MUTED, true)
 	left.add_child(campaign_notice)
+	var practice_row := HBoxContainer.new()
+	practice_row.add_theme_constant_override("separation", 10)
+	left.add_child(practice_row)
+	training_button = Button.new()
+	training_button.text = "实战教程"
+	training_button.tooltip_text = "三节不限时练习，可随时退出并返回原来的进度。"
+	training_button.custom_minimum_size.y = 39
+	training_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	training_button.pressed.connect(training_requested.emit)
+	practice_row.add_child(training_button)
+	settings_button = Button.new()
+	settings_button.text = "设置 F10"
+	settings_button.pressed.connect(settings_requested.emit)
+	practice_row.add_child(settings_button)
 	var heroes_row := HBoxContainer.new()
 	heroes_row.add_theme_constant_override("separation", 10)
 	left.add_child(heroes_row)

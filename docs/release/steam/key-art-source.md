@@ -1,0 +1,11 @@
+# 三灯商店主视觉源文件
+
+2026-11-18 使用会话内可用的原生图像生成工具绘制。原始文件为 `exec-5c9a43c3-f77f-4e20-a118-b77dc5492c39.png`，终稿保持原字节，尺寸 1672 × 941 RGB。
+
+- SHA-256 `8b6aaef4a3d45b1ad7e229fe618c06d061f0584e54a532b193ae86e6f1f44ca1`。
+- 构图以本作指挥官、书信、城桥和纸灯为原型。文字由排版脚本精确叠加，库英雄图保留无字画面。
+- 字标使用本机 Noto Serif SC，素材只包含成像文字。灯笼应用图标由同一排版脚本绘制。 [Noto Serif SC 字体来源](https://github.com/google/fonts/tree/main/ofl/notoserifsc)
+
+## 原始提示词
+
+> Create new ORIGINAL key art for Sigils and Oaths (纹章与誓约), an indie Chinese-language, hand-painted cel-shaded 2D card tactics game; 16:9 panoramic illustration, a Japanese strategy-game illustration sensibility with crisp linework, flat painted tones and coherent features, deeply original designs. At twilight after rain, an East Asian fantasy stone canal town called Sunfall, slate slate rooftops, cypress hills, a straight canal and an old three-arch stone bridge. On the near bridge stand two fully clothed adult rivals in hand-drawn cel illustration, clearly original: central-right circa x=53% and y=46% a blonde adult female commander with a short asymmetrical off-white cloak, deep blue layers and finely detailed ivory lamellar armor, a slim sword lowered and small teal paper lantern up at face level, no pin-up posing; circa x=64% and y=47% a black-haired adult male commander with a narrow red coat under burnished bronze lamellar, holding a tied packet of dispatch cards, alert profile and one hand on stone. A few fluttering rectangular papers with an abstract pale gold seal, no legible writing. Both faces and the lantern are near the center of the image and separated. Title placement will be done later, so preserve the left 38 percent as calm dark teal air and subdued roof contours with no bright contrast and leave the lower-middle slate bridge open. A line of lanterns recedes into the medium distance; horizon mist and moonlit canals, soft reflected amber. Strong, readable hand-painted silhouette, color hierarchy deep navy, teal, antique gold, cream, dusty crimson. High production illustration with confidence and restraint, not photoreal, not 3D, no spray magic filler, no text or lettering at all, no border, no logo, no watermarks, no media from any existing franchise. Landscape key art, all edges filled.

@@ -7,6 +7,7 @@ signal battle_requested(expected: Dictionary)
 signal next_chapter_requested(expected: Dictionary)
 signal menu_requested
 signal save_requested
+signal settings_requested
 
 const Art = preload("res://scripts/art_library.gd")
 const GOLD := Color("d0b579")
@@ -20,6 +21,7 @@ var illustration: TextureRect
 var stage: Control
 var dialogue_panel: PanelContainer
 var backlog_button: Button
+var settings_button: Button
 var background_id: String = "menu"
 var page: Dictionary = {}
 var setup: Dictionary = {}
@@ -79,6 +81,8 @@ func _build() -> void:
 	header.add_child(heading)
 	backlog_button = _button("已读回看", _toggle_history, false)
 	header.add_child(backlog_button)
+	settings_button = _button("设置", settings_requested.emit, false)
+	header.add_child(settings_button)
 	header.add_child(_button("返回战前页  Esc", func() -> void: menu_requested.emit(), false))
 	stage = Control.new()
 	stage.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -150,6 +154,10 @@ func open(current_page: Dictionary, expected: Dictionary, scenario: Dictionary, 
 func set_status(message: String, failed: bool = false) -> void:
 	status.text = message
 	status.add_theme_color_override("font_color", Color("f08b76") if failed else Color("b7c7ce"))
+
+func set_reading_size(percent: int) -> void:
+	text_body.add_theme_font_size_override("normal_font_size", roundi(22.0 * percent / 100.0))
+	text_body.add_theme_constant_override("line_separation", roundi(14.0 * percent / 100.0))
 
 func _clear_actions() -> void:
 	for child: Node in actions.get_children():

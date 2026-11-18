@@ -101,7 +101,9 @@ func _initialize() -> void:
     var required_resources = ["res://scenes/main.tscn", "res://data/cards.tres", "res://data/decks.tres",
         "res://assets/art/expansion/spells-v1.png", "res://assets/art/expansion/traps-forest-v1.png",
         "res://assets/art/expansion/warfront-units-v1.png", "res://assets/art/expansion/warfront-effects-v1.png",
-        "res://assets/art/battlefields/lamplanding-v2.png", "res://assets/art/narrative/return-morning-v1.png"]
+        "res://assets/art/battlefields/lamplanding-v2.png", "res://assets/art/narrative/return-morning-v1.png",
+        "res://scripts/settings_dialog.gd", "res://scripts/training.gd", "res://scripts/game_audio.gd", "res://assets/audio/council.ogg",
+        "res://assets/audio/battle.ogg", "res://assets/audio/trap.wav", "res://assets/audio/victory.wav"]
     for path in required_resources:
         if not ResourceLoader.exists(path):
             problems.append("missing runtime resource: " + path)

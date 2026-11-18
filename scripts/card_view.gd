@@ -24,8 +24,8 @@ var hover_blend: float = 0.0
 var hover_tween: Tween
 
 func _ready() -> void:
-	custom_minimum_size = Vector2(118, 104) if compact else Vector2(158, 168)
-	size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	custom_minimum_size = Vector2(158, 104) if compact else Vector2(158, 168)
+	size_flags_horizontal = Control.SIZE_SHRINK_CENTER if compact else Control.SIZE_EXPAND_FILL
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	font = get_theme_default_font()
 	flat = true

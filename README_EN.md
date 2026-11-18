@@ -5,17 +5,19 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.41.0-dev" src="https://img.shields.io/badge/version-0.41.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.42.0-dev" src="https://img.shields.io/badge/version-0.42.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. **0.41.0-dev** adds 24 original cards and three presets to this Chinese-language, single-player Windows game. Its eighteen-chapter campaign has three endings and persistent saves. One automated route cleared fifteen battles from New Campaign to the Shared Lantern ending. Human playtesting, the 100,000-character single route and Steam release verification are pending.
+The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings and eight skirmish presets. **0.42.0-dev** adds three untimed drills, saved preferences, original music and battle sounds.
 
 ## In-game screenshots
 
-The first four screenshots show 0.41.0-dev. The second uses a test position to show the ten-mana spell footprint. The rest come from earlier builds.
+The first screenshot shows the 0.42.0-dev interception drill. Other images come from earlier builds.
+
+![The interception drill shows a hand trap and its intended ally](docs/release/steam/gameplay/04-guard-drill.png)
 
 ![The Warfront filter and the rules for Last Hearth](docs/screenshots/v041-warfront-library.png)
 
@@ -73,6 +75,15 @@ The first four screenshots show 0.41.0-dev. The second uses a test position to s
 | Lead with a commander | Ailin protects the front, Velo strengthens fire, and Sera supports healing and woodland recovery; each has active and passive abilities |
 | Change the next exchange | Rain, fog, sun, snow, tailwind and lantern weather affect both sides. Replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
+| Learn and adjust | Three untimed drills. F10 opens display, reading size, motion, music and effects settings |
+
+## 0.42 · War Council drills
+
+The War Council offers three guided exercises for deployment, class counters, interception, setting traps from hand and local splash spells. Replaying or leaving a drill keeps the suspended battle. Settings are available from the menu, battle or story. They include windowed and fullscreen mode, 100%, 115% and 130% story text, reduced battle motion, and independent volume for two original music loops and nine event sounds.
+
+The native Windows run completed the drills and verified fullscreen, audio playback, settings reload and preservation of the prior battle and campaign save. Four store images, four library images, two icons, five 1920×1080 game captures and disclosure copy are prepared for review. Human balance and Steam review are pending. [Steam materials](docs/release/steam/README.md)
+
+The Windows x64 preview is undergoing release verification.
 
 ## 0.41 · Warfront cards and Three Lamps
 
