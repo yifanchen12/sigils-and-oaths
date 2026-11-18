@@ -103,6 +103,10 @@ func _initialize() -> void:
             if setup.has("requisition"): requisitions += 1
         if requisitions != 20 or not campaign.scenarios.get("c06_court", {}).get("requisition", {}).get("offers", []).has("dawn_weir"):
             problems.append("campaign requisition data unavailable")
+        var bridge = campaign.scenarios.get("c01_bridge", {}).get("story_control", {})
+        var channel = campaign.scenarios.get("c14_upstream_channel", {}).get("story_control", {})
+        if bridge.get("cells", []).size() != 2 or bridge.get("round_limit", -1) != 0 or channel.get("round_limit", 0) != 25:
+            problems.append("campaign difficulty data unavailable")
     var required_resources = ["res://scenes/main.tscn", "res://data/cards.tres", "res://data/decks.tres",
         "res://assets/art/expansion/spells-v1.png", "res://assets/art/expansion/traps-forest-v1.png",
         "res://assets/art/expansion/warfront-units-v1.png", "res://assets/art/expansion/warfront-effects-v1.png",
@@ -120,6 +124,7 @@ func _initialize() -> void:
         "res://assets/art/narrative/quartermaster-desk-v1.png", "res://scripts/campaign_requisition.gd",
         "res://assets/art/narrative/chapter-replay-archive-v1.png", "res://scripts/chapter_replay_view.gd",
         "res://assets/art/narrative/campaign-armory-v1.png", "res://scripts/campaign_armory.gd", "res://scripts/campaign_armory_view.gd",
+        "res://scripts/campaign_difficulty.gd",
         "res://scripts/settings_dialog.gd", "res://scripts/training.gd", "res://scripts/game_audio.gd", "res://assets/audio/council.ogg",
         "res://assets/audio/battle.ogg", "res://assets/audio/trap.wav", "res://assets/audio/victory.wav"]
     for path in required_resources:

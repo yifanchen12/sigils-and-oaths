@@ -4,6 +4,7 @@ extends RefCounted
 const Campaign = preload("res://scripts/campaign.gd")
 const Store = preload("res://scripts/campaign_store.gd")
 const Snapshot = preload("res://scripts/battle_snapshot.gd")
+const Difficulty = preload("res://scripts/campaign_difficulty.gd")
 const AUTOSAVE_INTERVAL: float = 5.0
 var campaign: RefCounted = Campaign.new()
 var store: RefCounted
@@ -91,7 +92,9 @@ func load_campaign() -> Dictionary:
 
 func save() -> Dictionary:
 	var saved_encounter: Dictionary = {}
-	if encounter != null: saved_encounter = {"scenario": current().get("scenario", ""), "revision": encounter_revision, "battle": Snapshot.capture(encounter)}
+	if encounter != null:
+		saved_encounter = {"scenario": current().get("scenario", ""), "revision": encounter_revision, "battle": Snapshot.capture(encounter)}
+		if campaign.difficulty != Difficulty.STANDARD: saved_encounter["difficulty"] = campaign.difficulty
 	var result: Dictionary = store.save_progress(campaign.snapshot(), saved_encounter)
 	unsaved = not result.ok
 	autosave_elapsed = 0.0
@@ -137,6 +140,24 @@ func choose_requisition(card_id: String, expected: Dictionary) -> Dictionary:
 		campaign.requisition = previous
 		return result
 	epoch += 1
+	return result
+
+func choose_difficulty(mode: String, expected: Dictionary) -> Dictionary:
+	var result: Dictionary = _guard(expected)
+	if not result.ok: return result
+	if current().type != "battle" or not Difficulty.is_valid(mode):
+		return {"ok": false, "message": "请在出征简报中选择标准或剧情难度。"}
+	if mode == campaign.difficulty: return {"ok": true}
+	var progress: Dictionary = campaign.snapshot()
+	if mode == Difficulty.STANDARD: progress.erase("difficulty")
+	else: progress["difficulty"] = mode
+	result = store.save_progress(progress)
+	if not result.ok: return result
+	campaign.difficulty = mode
+	epoch += 1
+	unsaved = false
+	autosave_elapsed = 0.0
+	notice = "已保存剧情难度。" if mode == Difficulty.STORY else "已保存标准难度。"
 	return result
 
 func configure_armory(picks: Dictionary, expected: Dictionary) -> Dictionary:
@@ -197,7 +218,7 @@ func begin_battle(expected: Dictionary) -> Dictionary:
 	result = save()
 	if not result.ok: return result
 	var setup: Dictionary = campaign.scenario()
-	result = create_encounter(setup, campaign.requisition, campaign.armory)
+	result = create_encounter(setup, campaign.requisition, campaign.armory, campaign.difficulty)
 	if not result.ok: return result
 	encounter = result.battle
 	encounter_revision = int(current().revision)
@@ -209,7 +230,8 @@ func begin_battle(expected: Dictionary) -> Dictionary:
 		return result
 	return {"ok": true, "battle": encounter, "scenario": setup}
 
-static func create_encounter(setup: Dictionary, requisition: String = "", armory: Dictionary = {}) -> Dictionary:
+static func create_encounter(setup: Dictionary, requisition: String = "", armory: Dictionary = {}, mode: String = Difficulty.STANDARD) -> Dictionary:
+	if not Difficulty.is_valid(mode): return {"ok": false, "message": "战役难度无效。"}
 	var result: Dictionary = Campaign.Armory.prepare(setup, requisition, armory)
 	if not result.ok: return result
 	var battle: Battle = result.battle
@@ -217,7 +239,8 @@ static func create_encounter(setup: Dictionary, requisition: String = "", armory
 	if setup.has("commander_shield"): battle.commander(0).shield = int(setup.commander_shield)
 	if setup.has("bonus_card") and not battle.add_generated_card(0, str(setup.bonus_card)):
 		return {"ok": false, "message": "关卡增援牌无法加入手牌。"}
-	result = battle.configure_objective(setup.get("control", {}))
+	if mode == Difficulty.STORY: Difficulty.support(battle)
+	result = battle.configure_objective(Difficulty.control_for(setup, mode))
 	return {"ok": true, "battle": battle} if result.ok else result
 
 func finish_battle(completed: RefCounted) -> Dictionary:

@@ -5,6 +5,7 @@ const Story = preload("res://scripts/story_runner.gd")
 const BattleModel = preload("res://scripts/battle.gd")
 const Requisition = preload("res://scripts/campaign_requisition.gd")
 const Armory = preload("res://scripts/campaign_armory.gd")
+const Difficulty = preload("res://scripts/campaign_difficulty.gd")
 const INDEX_PATH: String = "res://data/campaign.json"
 const GATE_VARIANTS: Dictionary = {"joint": "c10_joint_gate", "split": "c10_split_gate", "hold": "c10_hold_gate"}
 const DEPOT_VARIANTS: Dictionary = {"joint": "c12_joint_depot", "split": "c12_split_depot", "hold": "c12_hold_depot"}
@@ -14,6 +15,7 @@ var story: RefCounted
 var completed: Array[Dictionary] = []
 var requisition: String = ""
 var armory: Dictionary = {}
+var difficulty: String = Difficulty.STANDARD
 var error_message: String = ""
 
 func _init() -> void:
@@ -57,8 +59,15 @@ static func validate_scenario(value: Variant) -> String:
 	if not decks.has(value.deck) or not decks.has(value.enemy_deck): return "关卡预组套牌不存在。"
 	if value.has("bonus_card") and BattleModel.CATALOG.find(str(value.bonus_card)).is_empty(): return "关卡增援牌不存在。"
 	if value.has("commander_shield") and not Story._whole(value.commander_shield, 1, 5): return "开场指挥官护盾无效。"
-	var problem: String = BattleModel.ControlObjective.validate_config(value.get("control", {}), BattleModel.MAPS.find(value.map))
+	var map: Dictionary = BattleModel.MAPS.find(value.map)
+	var problem: String = BattleModel.ControlObjective.validate_config(value.get("control", {}), map)
 	if not problem.is_empty(): return problem
+	if value.has("story_control"):
+		problem = BattleModel.ControlObjective.validate_config(value.story_control, map)
+		if not problem.is_empty(): return problem
+		if value.story_control.is_empty(): return "剧情难度需要有效的关卡目标。"
+	if value.has("story_brief") and (not value.story_brief is String or value.story_brief.is_empty()):
+		return "剧情难度简报无效。"
 	return Requisition.validate_setup(value)
 
 func start(chapter_id: String = "chapter_01") -> Dictionary:
@@ -71,6 +80,7 @@ func start(chapter_id: String = "chapter_01") -> Dictionary:
 	completed.clear()
 	requisition = ""
 	armory.clear()
+	difficulty = Difficulty.STANDARD
 	return {"ok": true}
 
 func next_chapter() -> Dictionary:
@@ -102,6 +112,7 @@ func advance_chapter() -> Dictionary:
 	candidate._enter(candidate.graph.start)
 	var record: Dictionary = {"chapter_id": story.graph.id, "story": story.snapshot()}
 	if not armory.is_empty(): record["armory"] = armory.duplicate()
+	if difficulty != Difficulty.STANDARD: record["difficulty"] = difficulty
 	completed.append(record)
 	story = candidate
 	requisition = ""
@@ -132,6 +143,7 @@ func replay_from(chapter_id: String) -> Dictionary:
 	var previous: Dictionary = completed[target - 1]
 	var progress: Dictionary = {"chapter_id": previous.chapter_id, "story": previous.story, "completed": completed.slice(0, target - 1)}
 	if previous.has("armory"): progress["armory"] = previous.armory
+	if previous.has("difficulty"): progress["difficulty"] = previous.difficulty
 	var restored: Dictionary = copy.restore(progress)
 	if not restored.ok: return restored
 	restored = copy.advance_chapter()
@@ -148,13 +160,16 @@ func _scenario_at(cursor: RefCounted) -> Dictionary:
 	if scenario_id == "c14_channel": scenario_id = CHANNEL_VARIANTS.get(str(cursor.state.flags.get("night_watch", "")), "")
 	var setup: Dictionary = index.scenarios.get(scenario_id, {}).duplicate(true)
 	if scenario_id in ["c08_isolate", "c08_buffer"]:
+		var aid_text: String = ""
 		match String(cursor.state.flags.get("saltlane_result", "none")):
 			"school":
 				setup["bonus_card"] = "lantern_stretcher"
-				setup.brief += "\n\n学堂援助 · 初始手牌加入「红灯担架」。"
+				aid_text = "\n\n学堂援助 · 初始手牌加入「红灯担架」。"
 			"kiln":
 				setup["commander_shield"] = 3
-				setup.brief += "\n\n窑场援助 · 己方指挥官开场获得 3 护盾。"
+				aid_text = "\n\n窑场援助 · 己方指挥官开场获得 3 护盾。"
+		setup.brief += aid_text
+		if setup.has("story_brief"): setup.story_brief += aid_text
 	return setup
 
 func snapshot() -> Dictionary:
@@ -162,6 +177,7 @@ func snapshot() -> Dictionary:
 	var progress: Dictionary = {"chapter_id": story.graph.id, "story": story.snapshot(), "completed": completed.duplicate(true)}
 	if not requisition.is_empty(): progress["requisition"] = requisition
 	if not armory.is_empty(): progress["armory"] = armory.duplicate()
+	if difficulty != Difficulty.STANDARD: progress["difficulty"] = difficulty
 	return progress
 
 func restore(payload: Variant) -> Dictionary:
@@ -186,8 +202,11 @@ func restore(payload: Variant) -> Dictionary:
 		var previous_armory: Variant = record.get("armory", {})
 		issue = Armory.validate(previous_armory, position)
 		if not issue.is_empty(): return {"ok": false, "message": issue}
+		var previous_difficulty: Variant = record.get("difficulty", Difficulty.STANDARD)
+		if not Difficulty.is_valid(previous_difficulty): return {"ok": false, "message": "已完成章节的难度无效。"}
 		var restored_record: Dictionary = {"chapter_id": record.chapter_id, "story": old_story.snapshot()}
 		if not previous_armory.is_empty(): restored_record["armory"] = previous_armory.duplicate()
+		if previous_difficulty != Difficulty.STANDARD: restored_record["difficulty"] = previous_difficulty
 		restored_records.append(restored_record)
 		previous = old_story
 	if payload.chapter_id != index.chapters[records.size()].id: return {"ok": false, "message": "当前章节未承接已完成章节。"}
@@ -206,10 +225,13 @@ func restore(payload: Variant) -> Dictionary:
 	var picked_armory: Variant = payload.get("armory", {})
 	problem = Armory.validate(picked_armory, records.size())
 	if not problem.is_empty(): return {"ok": false, "message": problem}
+	var selected_difficulty: Variant = payload.get("difficulty", Difficulty.STANDARD)
+	if not Difficulty.is_valid(selected_difficulty): return {"ok": false, "message": "保存的战役难度无效。"}
 	story = candidate
 	completed = restored_records
 	requisition = choice
 	armory = picked_armory.duplicate()
+	difficulty = selected_difficulty
 	return {"ok": true}
 
 func backlog() -> Array[Dictionary]:

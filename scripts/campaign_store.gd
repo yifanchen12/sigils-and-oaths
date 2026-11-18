@@ -4,7 +4,8 @@ extends RefCounted
 const Campaign = preload("res://scripts/campaign.gd")
 const Story = preload("res://scripts/story_runner.gd")
 const Snapshot = preload("res://scripts/battle_snapshot.gd")
-const VERSION: int = 5
+const Difficulty = preload("res://scripts/campaign_difficulty.gd")
+const VERSION: int = 6
 const MAX_BYTES: int = 1048576
 var path: String
 
@@ -28,15 +29,21 @@ func _read_path(source: String) -> Dictionary:
 		return {"ok": false, "message": "战役存档版本无效。"}
 	if data.version > VERSION: return {"ok": false, "future": true, "message": "存档来自较新版本，当前版本不会覆盖。"}
 	var progress: Variant = data.get("progress")
+	var encounter: Variant = {} if int(version) == 1 else data.get("encounter")
 	if int(data.version) < 4 and progress is Dictionary and progress.has("requisition"):
 		return {"ok": false, "message": "旧版战役档不能包含战前军需。"}
-	if int(data.version) < 5 and progress is Dictionary:
-		var records: Variant = progress.get("completed")
-		if progress.has("armory") or (records is Array and records.any(func(record: Variant) -> bool: return record is Dictionary and record.has("armory"))):
-			return {"ok": false, "message": "旧版战役档不能包含战役军备。"}
-	var validated: Dictionary = _validate(progress, {} if int(data.version) == 1 else data.get("encounter"))
+	if int(data.version) < 5 and _has_progress_field(progress, "armory"):
+		return {"ok": false, "message": "旧版战役档不能包含战役军备。"}
+	if int(version) < 6 and (_has_progress_field(progress, "difficulty") or (encounter is Dictionary and encounter.has("difficulty"))):
+		return {"ok": false, "message": "旧版战役档不能包含战役难度。"}
+	var validated: Dictionary = _validate(progress, encounter)
 	if validated.ok and int(data.version) < VERSION: validated["migrated"] = true
 	return validated
+
+static func _has_progress_field(progress: Variant, key: String) -> bool:
+	if not progress is Dictionary: return false
+	var records: Variant = progress.get("completed")
+	return progress.has(key) or (records is Array and records.any(func(record: Variant) -> bool: return record is Dictionary and record.has(key)))
 
 func _validate(progress: Variant, encounter: Variant) -> Dictionary:
 	var campaign: RefCounted = Campaign.new()
@@ -48,11 +55,14 @@ func _validate(progress: Variant, encounter: Variant) -> Dictionary:
 		var page: Dictionary = campaign.story.current()
 		if page.type != "battle" or encounter.get("scenario") != page.scenario or not Story._whole(encounter.get("revision")) or encounter.revision != page.revision:
 			return {"ok": false, "message": "战斗与当前剧情进度不一致。"}
+		if encounter.get("difficulty", Difficulty.STANDARD) != campaign.difficulty:
+			return {"ok": false, "message": "当前战斗难度与战前选择不一致。"}
 		restored = Snapshot.restore(encounter.get("battle"))
 		if not restored.ok: return restored
 		var battle: RefCounted = restored.battle
 		var setup: Dictionary = campaign.scenario()
-		if battle.ControlObjective.config(battle.objective) != battle.ControlObjective.config(setup.get("control", {})):
+		var control: Dictionary = Difficulty.control_for(setup, campaign.difficulty)
+		if battle.ControlObjective.config(battle.objective) != battle.ControlObjective.config(control):
 			return {"ok": false, "message": "战斗目标与关卡不一致。"}
 		if battle.map_definition.id != setup.map or battle.match_seed != int(setup.seed) or battle.turn_time_limit != 90:
 			return {"ok": false, "message": "战斗地图、种子或时限与关卡不一致。"}
@@ -73,6 +83,7 @@ func _validate(progress: Variant, encounter: Variant) -> Dictionary:
 		if battle.players[0].has("hero_display") or battle.hero(1).name != setup.enemy_name or battle.hero(1).portrait != setup.enemy_portrait:
 			return {"ok": false, "message": "战斗指挥官身份与关卡不一致。"}
 		saved_encounter = {"scenario": page.scenario, "revision": page.revision, "battle": Snapshot.capture(battle)}
+		if campaign.difficulty != Difficulty.STANDARD: saved_encounter["difficulty"] = campaign.difficulty
 	return {"ok": true, "progress": campaign.snapshot(), "encounter": saved_encounter}
 
 func load_progress() -> Dictionary:

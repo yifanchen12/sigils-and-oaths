@@ -19,8 +19,8 @@ func pilot_for(scenario_id: String) -> Script:
 		"c14_upstream_channel", "c14_tower_channel": return ChannelPilot
 	return AI
 
-func run_match(scenario_id: String, setup: Dictionary, choice: String, armory: Dictionary = {}) -> Dictionary:
-	var result: Dictionary = Session.create_encounter(setup, choice, armory)
+func run_match(scenario_id: String, setup: Dictionary, choice: String, armory: Dictionary = {}, mode: String = Session.Difficulty.STANDARD, use_focus: bool = true) -> Dictionary:
+	var result: Dictionary = Session.create_encounter(setup, choice, armory, mode)
 	var row: Dictionary = {"scenario": scenario_id, "card": choice, "seed": setup.seed, "winner": -1, "actions": 0, "turn": 1,
 		"play_turn": 0, "play_mana": 0, "error": ""}
 	if not result.ok:
@@ -36,7 +36,7 @@ func run_match(scenario_id: String, setup: Dictionary, choice: String, armory: D
 			if armory.has(slot.id):
 				var instance: Dictionary = pile[-int(slot.draw)]
 				gear_uids[instance.uid] = instance.card_id
-	var pilot: Script = pilot_for(scenario_id)
+	var pilot: Script = pilot_for(scenario_id) if use_focus else AI
 	while battle.winner == -1 and row.actions < ACTION_CAP:
 		if not gear_uids.is_empty():
 			for instance: Dictionary in battle.players[0].hand:
@@ -58,6 +58,7 @@ func run_match(scenario_id: String, setup: Dictionary, choice: String, armory: D
 	row.winner = battle.winner
 	row.turn = battle.turn
 	row.finish = battle.log_lines.back()
+	row["objective_complete"] = not battle.objective.is_empty() and battle.objective.streak >= battle.objective.required
 	if not armory.is_empty():
 		row["armory"] = armory
 		row["armory_seen"] = gear_seen.keys()

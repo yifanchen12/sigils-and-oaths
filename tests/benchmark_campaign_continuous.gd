@@ -17,6 +17,7 @@ var nursery_focus: bool = false
 var court_focus: bool = false
 var late_route_focus: bool = false
 var saltlane: String = "skip"
+var difficulty: String = Session.Difficulty.STANDARD
 var requisitions: Dictionary = {}
 var armory_plan: Dictionary = {}
 var armory_overrides: Dictionary = {}
@@ -44,6 +45,7 @@ func reload_exact() -> bool:
 
 func fight() -> bool:
 	var scenario: String = session.current().scenario
+	if session.campaign.difficulty != difficulty and not check(session.choose_difficulty(difficulty, session.token()).ok, "choose the declared campaign difficulty at its briefing"): return false
 	var recruited: String = requisitions.get(scenario, "")
 	if not recruited.is_empty() and not check(session.choose_requisition(recruited, session.token()).ok, "select an offered campaign requisition"): return false
 	var picks: Dictionary = {}
@@ -128,6 +130,7 @@ func run() -> void:
 		if arg.begins_with("--route="): report.route = arg.trim_prefix("--route=")
 		if arg.begins_with("--priority="): report.priority = arg.trim_prefix("--priority=")
 		if arg.begins_with("--saltlane="): saltlane = arg.trim_prefix("--saltlane=")
+		if arg.begins_with("--difficulty="): difficulty = arg.trim_prefix("--difficulty=")
 		if arg == "--pump-focus": pump_focus = true
 		if arg == "--nursery-focus": nursery_focus = true
 		if arg == "--court-focus": court_focus = true
@@ -168,6 +171,8 @@ func run() -> void:
 	if not check(report.route in ["road", "river"], "opening route is explicit and recognized"): quit(1); return
 	if not check(report.priority in ["relief", "seed"], "chapter-two priority is explicit and recognized"): quit(1); return
 	if not check(saltlane in ["school", "kiln", "skip"], "optional escort route is recognized"): quit(1); return
+	if not check(Session.Difficulty.is_valid(difficulty), "campaign difficulty is recognized"): quit(1); return
+	report["difficulty"] = difficulty
 	report["saltlane"] = saltlane
 	if saltlane != "skip": save_path = "res://.tools/continuous_diagnostic_saltlane_" + saltlane + ".json"
 	if not requisition_report.is_empty(): save_path = requisition_report + ".save"

@@ -5,6 +5,7 @@ const Art = preload("res://scripts/art_library.gd")
 var battle: Battle
 var hud_visible: bool = false
 var replay_active: bool = false
+var story_difficulty: bool = false
 var last_second: int = -1
 
 func _ready() -> void:
@@ -22,6 +23,7 @@ func _process(_delta: float) -> void:
 func subtitle_text() -> String:
 	if battle == null: return ""
 	var value: String = "%s  /  %s" % [battle.map_definition.name, battle.WEATHER[battle.weather].name]
+	if story_difficulty: value = "剧情 · " + value
 	if replay_active: value = "分支 · " + value
 	var goal: Dictionary = battle.objective
 	if goal.is_empty(): return value
@@ -36,7 +38,7 @@ func subtitle_text() -> String:
 			value += "  ·  下一站 " + battle.cell_name(Vector2i(int(next[0]), int(next[1])))
 		value += "  ·  余 %d 轮" % maxi(0, int(goal.round_limit) - completed_rounds)
 	else:
-		value += "  ·  驻守 %d/%d  ·  已过 %d/%d 轮" % [goal.streak, goal.required, completed_rounds, goal.round_limit]
+		value += "  ·  驻守 %d/%d  ·  %s" % [goal.streak, goal.required, battle.ControlObjective.elapsed_text(goal, battle.turn)]
 	return value
 
 func _draw() -> void:
@@ -72,7 +74,9 @@ func _draw() -> void:
 	var subtitle: String = subtitle_text()
 	var subtitle_size: int = 14 if not battle.objective.is_empty() else 12
 	text_width = font.get_string_size(subtitle, HORIZONTAL_ALIGNMENT_LEFT, -1, subtitle_size).x
-	draw_string(font, Vector2(center_x - text_width / 2, 51), subtitle, HORIZONTAL_ALIGNMENT_LEFT, -1, subtitle_size, Color("eddbac") if not battle.objective.is_empty() else Color("a8bdcd"))
+	var center_width: float = maxf(1.0, size.x - 2.0 * width - 14.0)
+	if text_width > center_width: subtitle_size = maxi(10, floori(float(subtitle_size) * center_width / text_width))
+	draw_string(font, Vector2(center_x - center_width / 2, 51), subtitle, HORIZONTAL_ALIGNMENT_CENTER, center_width, subtitle_size, Color("eddbac") if not battle.objective.is_empty() else Color("a8bdcd"))
 	var clock_width: float = minf(220, size.x * 0.26)
 	var clock := Rect2(Vector2(center_x - clock_width / 2, 61), Vector2(clock_width, 3))
 	draw_rect(clock, Color("314359"))

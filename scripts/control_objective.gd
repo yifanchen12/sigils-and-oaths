@@ -18,11 +18,23 @@ static func position(cell: Array) -> Vector2i:
 static func whole(value: Variant, low: int, high: int) -> bool:
 	return typeof(value) in [TYPE_INT, TYPE_FLOAT] and is_finite(float(value)) and float(value) == floorf(float(value)) and value >= low and value <= high
 
+static func has_deadline(value: Dictionary) -> bool:
+	return int(value.get("round_limit", 0)) > 0
+
+static func elapsed_text(value: Dictionary, turn: int) -> String:
+	var rounds: int = (turn - 1) / 2
+	return "已过 %d/%d 轮" % [rounds, value.round_limit] if has_deadline(value) else "已过 %d 轮" % rounds
+
+static func _deadline_passed(value: Dictionary, turn: int) -> bool:
+	return has_deadline(value) and (turn - 1) / 2 >= int(value.round_limit)
+
 static func validate_config(value: Variant, map: Dictionary) -> String:
 	if not value is Dictionary: return "驻守目标必须是对象。"
 	if value.is_empty(): return ""
 	if value.has("mode") and not is_relay(value) and not is_escort(value): return "战役目标模式不存在。"
-	if not whole(value.get("required"), 1, 20) or not whole(value.get("round_limit"), 1, 100) or value.required > value.round_limit: return "驻守次数或期限无效。"
+	if not whole(value.get("required"), 1, 20) or not whole(value.get("round_limit"), 0, 100): return "驻守次数或期限无效。"
+	if has_deadline(value) and value.required > value.round_limit: return "驻守次数超过期限。"
+	if not has_deadline(value) and value.has("mode"): return "护送与接力任务需要有效期限。"
 	if not value.get("cells") is Array: return "战役目标缺少据点。"
 	if is_relay(value):
 		if value.cells.size() < 2 or value.cells.size() != int(value.required): return "接力点数量须与接应次数一致。"
@@ -75,7 +87,7 @@ static func check_turn(battle: RefCounted) -> void:
 	if goal.is_empty() or battle.winner != -1 or battle.active_side != 0 or battle.turn <= 1 or goal.last_check == battle.turn: return
 	goal.last_check = battle.turn
 	if is_escort(goal):
-		if (battle.turn - 1) / 2 >= goal.round_limit:
+		if _deadline_passed(goal, battle.turn):
 			battle.winner = 1
 			battle._record(result_text(goal, false))
 		else:
@@ -92,13 +104,13 @@ static func check_turn(battle: RefCounted) -> void:
 	if goal.streak >= goal.required:
 		battle.winner = 0
 		battle._record(result_text(goal, true))
-	elif (battle.turn - 1) / 2 >= goal.round_limit:
+	elif _deadline_passed(goal, battle.turn):
 		battle.winner = 1
 		battle._record(result_text(goal, false))
 	elif relay:
 		var next: Array = goal.cells[int(goal.streak)]
 		battle._record("已接应 %d/%d 处 · 下一站 %s · 已过 %d/%d 轮。" % [goal.streak, goal.required, battle.cell_name(Vector2i(int(next[0]), int(next[1]))), (battle.turn - 1) / 2, goal.round_limit])
-	else: battle._record("据点连续驻守 %d/%d · 已过 %d/%d 轮。" % [goal.streak, goal.required, (battle.turn - 1) / 2, goal.round_limit])
+	else: battle._record("据点连续驻守 %d/%d · %s。" % [goal.streak, goal.required, elapsed_text(goal, battle.turn)])
 
 static func result_text(goal: Dictionary, won: bool, escort_lost: bool = false) -> String:
 	if is_escort(goal):
@@ -119,7 +131,7 @@ static func validate_state(value: Variant, data: Dictionary, map: Dictionary) ->
 	elif (last > 0 and value.streak > (last - 1) / 2) or (last == 0 and value.streak != 0): return "驻守次数早于结算回合。"
 	if data.winner == -1:
 		var expected: int = int(data.turn) if int(data.turn) % 2 == 1 else int(data.turn) - 1
-		if last != (0 if expected == 1 else expected) or value.streak >= value.required or (data.turn - 1) / 2 >= value.round_limit: return "未结束战斗的驻守进度不一致。"
+		if last != (0 if expected == 1 else expected) or value.streak >= value.required or _deadline_passed(value, int(data.turn)): return "未结束战斗的驻守进度不一致。"
 	return ""
 
 static func objective_winner(value: Dictionary, data: Dictionary) -> int:
@@ -129,7 +141,7 @@ static func objective_winner(value: Dictionary, data: Dictionary) -> int:
 		for unit: Dictionary in data.units:
 			if unit.id != value.escort_id: continue
 			if position(unit.pos) == exit_cell: return 0
-			return 1 if data.active_side == 0 and value.last_check == data.turn and (data.turn - 1) / 2 >= value.round_limit else -1
+			return 1 if data.active_side == 0 and value.last_check == data.turn and _deadline_passed(value, int(data.turn)) else -1
 		return 1
 	if data.active_side != 0 or value.last_check != data.turn: return -1
 	if value.streak >= value.required:
@@ -140,4 +152,4 @@ static func objective_winner(value: Dictionary, data: Dictionary) -> int:
 				if unit.side == 0 and int(unit.pos[0]) == int(cell[0]) and int(unit.pos[1]) == int(cell[1]): found = true
 			if not found: return -1
 		return 0
-	return 1 if (data.turn - 1) / 2 >= value.round_limit else -1
+	return 1 if _deadline_passed(value, int(data.turn)) else -1

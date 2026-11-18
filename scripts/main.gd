@@ -202,6 +202,7 @@ func _ready() -> void:
 	story_view.choice_requested.connect(_choose_story)
 	story_view.battle_requested.connect(_begin_campaign_battle)
 	story_view.requisition_requested.connect(_choose_requisition)
+	story_view.difficulty_requested.connect(_choose_difficulty)
 	story_view.armory_requested.connect(_open_armory)
 	story_view.retreat_requested.connect(_retreat_from_campaign_battle)
 	story_view.next_chapter_requested.connect(_next_story_chapter)
@@ -598,6 +599,7 @@ func _show_story(focus_requisition: bool = false) -> void:
 	var setup: Dictionary = campaign_session.campaign.scenario()
 	if not setup.is_empty():
 		setup["selected_requisition"] = campaign_session.campaign.requisition
+		setup["difficulty"] = campaign_session.campaign.difficulty
 		setup["armory_slots"] = CampaignSession.Campaign.Armory.unlocked_count(campaign_session.campaign.completed.size())
 		setup["armory_equipped"] = campaign_session.campaign.armory.size()
 	var page: Dictionary = campaign_session.current()
@@ -629,6 +631,15 @@ func _choose_requisition(card_id: String, expected: Dictionary) -> void:
 	if result.ok: _show_story(true)
 	else:
 		story_view.render_requisition()
+		story_view.set_status(result.message, true)
+
+func _choose_difficulty(mode: String, expected: Dictionary) -> void:
+	var result: Dictionary = campaign_session.choose_difficulty(mode, expected)
+	if result.ok:
+		_show_story()
+		story_view.difficulty_choice.grab_focus()
+	else:
+		story_view.render_difficulty()
 		story_view.set_status(result.message, true)
 
 func _next_story_chapter(expected: Dictionary) -> void:
@@ -894,6 +905,8 @@ func _refresh() -> void:
 	var enemy: Dictionary = battle.players[1]
 	%MapName.get_parent().battle = battle
 	%MapName.get_parent().replay_active = campaign_active and parked_main_campaign != null
+	var story_difficulty: bool = campaign_active and campaign_session.encounter == battle and campaign_session.campaign.difficulty == CampaignSession.Difficulty.STORY
+	%MapName.get_parent().story_difficulty = story_difficulty
 	%MapName.get_parent().queue_redraw()
 	var blue: Dictionary = battle.commander(0)
 	var red: Dictionary = battle.commander(1)
@@ -910,11 +923,12 @@ func _refresh() -> void:
 	%MapName.tooltip_text = battle.map_definition.description
 	if not battle.objective.is_empty():
 		var objective_label: String = "接应" if battle.ControlObjective.is_relay(battle.objective) else "驻守"
-		%MapName.text = "%s / %s %d/%d · 已过 %d/%d 轮" % [battle.map_definition.name, objective_label, battle.objective.streak, battle.objective.required, (battle.turn - 1) / 2, battle.objective.round_limit]
+		%MapName.text = "%s / %s %d/%d · %s" % [battle.map_definition.name, objective_label, battle.objective.streak, battle.objective.required, battle.ControlObjective.elapsed_text(battle.objective, battle.turn)]
 		if battle.ControlObjective.is_escort(battle.objective):
 			var exit_cell: Vector2i = battle.ControlObjective.position(battle.objective.cells[0])
 			%MapName.text = "%s / 护送至 %s · %d/%d 轮" % [battle.map_definition.name, battle.cell_name(exit_cell), (battle.turn - 1) / 2, battle.objective.round_limit]
 		%MapName.tooltip_text = battle.objective_status()
+	if story_difficulty: %MapName.text = "剧情 · " + %MapName.text
 	if campaign_active and parked_main_campaign != null: %MapName.text = "分支 · " + %MapName.text
 	%WeatherStatus.text = battle.WEATHER[battle.weather].name + (" · 剩余 %d 行动回合" % battle.weather_remaining if battle.weather_remaining > 0 else " · 无环境修正")
 	%WeatherStatus.tooltip_text = battle.WEATHER[battle.weather].description

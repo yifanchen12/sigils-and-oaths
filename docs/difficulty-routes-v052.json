@@ -1,0 +1,1345 @@
+{
+  "version": "0.52.0-dev",
+  "method": "Starts a fresh campaign through the real save coordinator. A legal battle result is required before readable pages are visited. Reopens battle and story saves along the way. Automated evidence with fixed choices and declared policies.",
+  "narrative_metric": "Unique Han characters in dialogue pages and ending pages actually reached. Normalized texts are deduplicated. No archives, headings, interface strings, rule descriptions, or unvisited variants.",
+  "combined_observed_unique_story_han": 107728,
+  "routes": [
+    {
+      "id": "standard_split",
+      "difficulty": "standard",
+      "opening_branch": "road",
+      "cargo_branch": "relief",
+      "escort_branch": "school",
+      "policy": "production on both sides except c04_pump harbor focus player, c05_nursery wounded/support focus player, c06_court central-formation focus player, c12_depot formation focus and c14_channel bridge focus player",
+      "chapters": 18,
+      "ending_node": "split_end",
+      "choices": [
+        {
+          "chapter": "chapter_01",
+          "node": "route",
+          "option": "road"
+        },
+        {
+          "chapter": "chapter_01",
+          "node": "supplies",
+          "option": "open"
+        },
+        {
+          "chapter": "chapter_01",
+          "node": "publication",
+          "option": "copy"
+        },
+        {
+          "chapter": "chapter_02",
+          "node": "priority",
+          "option": "relief"
+        },
+        {
+          "chapter": "chapter_02",
+          "node": "inspection",
+          "option": "open"
+        },
+        {
+          "chapter": "chapter_03",
+          "node": "letter",
+          "option": "return"
+        },
+        {
+          "chapter": "chapter_03",
+          "node": "route",
+          "option": "vent"
+        },
+        {
+          "chapter": "chapter_04",
+          "node": "shelter",
+          "option": "warehouse"
+        },
+        {
+          "chapter": "chapter_04",
+          "node": "terms",
+          "option": "sale"
+        },
+        {
+          "chapter": "chapter_05",
+          "node": "water",
+          "option": "nursery"
+        },
+        {
+          "chapter": "chapter_05",
+          "node": "mandate",
+          "option": "shared"
+        },
+        {
+          "chapter": "chapter_06",
+          "node": "disclosure",
+          "option": "open"
+        },
+        {
+          "chapter": "chapter_06",
+          "node": "letter_choice",
+          "option": "alone"
+        },
+        {
+          "chapter": "chapter_07",
+          "node": "camp",
+          "option": "bridge"
+        },
+        {
+          "chapter": "chapter_07",
+          "node": "saltlane_call",
+          "option": "answer_call"
+        },
+        {
+          "chapter": "chapter_07",
+          "node": "saltlane_route",
+          "option": "school"
+        },
+        {
+          "chapter": "chapter_08",
+          "node": "pressure",
+          "option": "isolate"
+        },
+        {
+          "chapter": "chapter_09",
+          "node": "governance",
+          "option": "split"
+        },
+        {
+          "chapter": "chapter_12",
+          "node": "custody",
+          "option": "loaned"
+        },
+        {
+          "chapter": "chapter_13",
+          "node": "night_watch",
+          "option": "upstream"
+        },
+        {
+          "chapter": "chapter_14",
+          "node": "water_order",
+          "option": "seal"
+        },
+        {
+          "chapter": "chapter_15",
+          "node": "repair_choice",
+          "option": "recast"
+        },
+        {
+          "chapter": "chapter_16",
+          "node": "escort_choice",
+          "option": "hearing"
+        },
+        {
+          "chapter": "chapter_17",
+          "node": "kit",
+          "option": "screen"
+        },
+        {
+          "chapter": "chapter_18",
+          "node": "covenant",
+          "option": "split"
+        }
+      ],
+      "battle_actions": 3331,
+      "checks": 5178,
+      "observed_unique_story_han": 87346,
+      "encounters": [
+        {
+          "scenario": "c01_road",
+          "winner": 0,
+          "turn": 25,
+          "actions": 151,
+          "midbattle_reload_at_action": 27,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c01_bridge",
+          "winner": 0,
+          "turn": 62,
+          "actions": 448,
+          "midbattle_reload_at_action": 25,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c02_relief_bridge",
+          "winner": 0,
+          "turn": 21,
+          "actions": 128,
+          "midbattle_reload_at_action": 21,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c02_dispatch",
+          "winner": 0,
+          "turn": 62,
+          "actions": 454,
+          "midbattle_reload_at_action": 21,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c03_vent",
+          "winner": 0,
+          "turn": 13,
+          "actions": 55,
+          "midbattle_reload_at_action": 28,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c04_dock",
+          "winner": 0,
+          "turn": 43,
+          "actions": 269,
+          "midbattle_reload_at_action": 25,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c04_pump",
+          "winner": 0,
+          "turn": 17,
+          "actions": 90,
+          "midbattle_reload_at_action": 16,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c05_nursery",
+          "winner": 0,
+          "turn": 25,
+          "actions": 132,
+          "midbattle_reload_at_action": 21,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c06_court",
+          "winner": 0,
+          "turn": 62,
+          "actions": 445,
+          "midbattle_reload_at_action": 26,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c07_saltlane_school",
+          "winner": 0,
+          "turn": 7,
+          "actions": 27,
+          "midbattle_reload_at_action": 8,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c08_isolate",
+          "winner": 0,
+          "turn": 21,
+          "actions": 116,
+          "midbattle_reload_at_action": 23,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c10_gate",
+          "winner": 0,
+          "turn": 19,
+          "actions": 98,
+          "midbattle_reload_at_action": 27,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c12_depot",
+          "winner": 0,
+          "turn": 23,
+          "actions": 109,
+          "midbattle_reload_at_action": 20,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c14_channel",
+          "winner": 0,
+          "turn": 37,
+          "actions": 240,
+          "midbattle_reload_at_action": 21,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c16_bridge",
+          "winner": 0,
+          "turn": 64,
+          "actions": 472,
+          "midbattle_reload_at_action": 21,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c17_screen",
+          "winner": 0,
+          "turn": 19,
+          "actions": 97,
+          "midbattle_reload_at_action": 20,
+          "objective_victory": true
+        }
+      ]
+    },
+    {
+      "id": "story_split",
+      "difficulty": "story",
+      "opening_branch": "road",
+      "cargo_branch": "relief",
+      "escort_branch": "school",
+      "policy": "production on both sides except c04_pump harbor focus player, c05_nursery wounded/support focus player, c06_court central-formation focus player, c12_depot formation focus and c14_channel bridge focus player",
+      "chapters": 18,
+      "ending_node": "split_end",
+      "choices": [
+        {
+          "chapter": "chapter_01",
+          "node": "route",
+          "option": "road"
+        },
+        {
+          "chapter": "chapter_01",
+          "node": "supplies",
+          "option": "open"
+        },
+        {
+          "chapter": "chapter_01",
+          "node": "publication",
+          "option": "copy"
+        },
+        {
+          "chapter": "chapter_02",
+          "node": "priority",
+          "option": "relief"
+        },
+        {
+          "chapter": "chapter_02",
+          "node": "inspection",
+          "option": "open"
+        },
+        {
+          "chapter": "chapter_03",
+          "node": "letter",
+          "option": "return"
+        },
+        {
+          "chapter": "chapter_03",
+          "node": "route",
+          "option": "vent"
+        },
+        {
+          "chapter": "chapter_04",
+          "node": "shelter",
+          "option": "warehouse"
+        },
+        {
+          "chapter": "chapter_04",
+          "node": "terms",
+          "option": "sale"
+        },
+        {
+          "chapter": "chapter_05",
+          "node": "water",
+          "option": "nursery"
+        },
+        {
+          "chapter": "chapter_05",
+          "node": "mandate",
+          "option": "shared"
+        },
+        {
+          "chapter": "chapter_06",
+          "node": "disclosure",
+          "option": "open"
+        },
+        {
+          "chapter": "chapter_06",
+          "node": "letter_choice",
+          "option": "alone"
+        },
+        {
+          "chapter": "chapter_07",
+          "node": "camp",
+          "option": "bridge"
+        },
+        {
+          "chapter": "chapter_07",
+          "node": "saltlane_call",
+          "option": "answer_call"
+        },
+        {
+          "chapter": "chapter_07",
+          "node": "saltlane_route",
+          "option": "school"
+        },
+        {
+          "chapter": "chapter_08",
+          "node": "pressure",
+          "option": "isolate"
+        },
+        {
+          "chapter": "chapter_09",
+          "node": "governance",
+          "option": "split"
+        },
+        {
+          "chapter": "chapter_12",
+          "node": "custody",
+          "option": "loaned"
+        },
+        {
+          "chapter": "chapter_13",
+          "node": "night_watch",
+          "option": "upstream"
+        },
+        {
+          "chapter": "chapter_14",
+          "node": "water_order",
+          "option": "seal"
+        },
+        {
+          "chapter": "chapter_15",
+          "node": "repair_choice",
+          "option": "recast"
+        },
+        {
+          "chapter": "chapter_16",
+          "node": "escort_choice",
+          "option": "hearing"
+        },
+        {
+          "chapter": "chapter_17",
+          "node": "kit",
+          "option": "screen"
+        },
+        {
+          "chapter": "chapter_18",
+          "node": "covenant",
+          "option": "split"
+        }
+      ],
+      "battle_actions": 1483,
+      "checks": 3327,
+      "observed_unique_story_han": 87346,
+      "encounters": [
+        {
+          "scenario": "c01_road",
+          "winner": 0,
+          "turn": 11,
+          "actions": 50,
+          "midbattle_reload_at_action": 35,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c01_bridge",
+          "winner": 0,
+          "turn": 9,
+          "actions": 36,
+          "midbattle_reload_at_action": 29,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c02_relief_bridge",
+          "winner": 0,
+          "turn": 19,
+          "actions": 111,
+          "midbattle_reload_at_action": 26,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c02_dispatch",
+          "winner": 0,
+          "turn": 31,
+          "actions": 176,
+          "midbattle_reload_at_action": 30,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c03_vent",
+          "winner": 0,
+          "turn": 13,
+          "actions": 63,
+          "midbattle_reload_at_action": 31,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c04_dock",
+          "winner": 0,
+          "turn": 5,
+          "actions": 13,
+          "midbattle_reload_at_action": -1,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c04_pump",
+          "winner": 0,
+          "turn": 13,
+          "actions": 62,
+          "midbattle_reload_at_action": 28,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c05_nursery",
+          "winner": 0,
+          "turn": 13,
+          "actions": 57,
+          "midbattle_reload_at_action": 28,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c06_court",
+          "winner": 0,
+          "turn": 51,
+          "actions": 376,
+          "midbattle_reload_at_action": 28,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c07_saltlane_school",
+          "winner": 0,
+          "turn": 7,
+          "actions": 32,
+          "midbattle_reload_at_action": 9,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c08_isolate",
+          "winner": 0,
+          "turn": 17,
+          "actions": 91,
+          "midbattle_reload_at_action": 26,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c10_gate",
+          "winner": 0,
+          "turn": 31,
+          "actions": 167,
+          "midbattle_reload_at_action": 33,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c12_depot",
+          "winner": 0,
+          "turn": 11,
+          "actions": 39,
+          "midbattle_reload_at_action": 29,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c14_channel",
+          "winner": 0,
+          "turn": 9,
+          "actions": 33,
+          "midbattle_reload_at_action": 28,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c16_bridge",
+          "winner": 0,
+          "turn": 23,
+          "actions": 145,
+          "midbattle_reload_at_action": 31,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c17_screen",
+          "winner": 0,
+          "turn": 9,
+          "actions": 32,
+          "midbattle_reload_at_action": 26,
+          "objective_victory": true
+        }
+      ]
+    },
+    {
+      "id": "story_hold",
+      "difficulty": "story",
+      "opening_branch": "river",
+      "cargo_branch": "seed",
+      "escort_branch": "kiln",
+      "policy": "production on both sides except c04_pump harbor focus player, c05_nursery wounded/support focus player, c06_court central-formation focus player, c12_depot formation focus and c14_channel bridge focus player",
+      "chapters": 18,
+      "ending_node": "hold_end",
+      "choices": [
+        {
+          "chapter": "chapter_01",
+          "node": "route",
+          "option": "river"
+        },
+        {
+          "chapter": "chapter_01",
+          "node": "supplies",
+          "option": "open"
+        },
+        {
+          "chapter": "chapter_01",
+          "node": "publication",
+          "option": "witness"
+        },
+        {
+          "chapter": "chapter_02",
+          "node": "priority",
+          "option": "seed"
+        },
+        {
+          "chapter": "chapter_02",
+          "node": "inspection",
+          "option": "open"
+        },
+        {
+          "chapter": "chapter_03",
+          "node": "letter",
+          "option": "return"
+        },
+        {
+          "chapter": "chapter_03",
+          "node": "route",
+          "option": "ridge"
+        },
+        {
+          "chapter": "chapter_04",
+          "node": "shelter",
+          "option": "warehouse"
+        },
+        {
+          "chapter": "chapter_04",
+          "node": "terms",
+          "option": "sale"
+        },
+        {
+          "chapter": "chapter_05",
+          "node": "water",
+          "option": "channel"
+        },
+        {
+          "chapter": "chapter_05",
+          "node": "mandate",
+          "option": "shared"
+        },
+        {
+          "chapter": "chapter_06",
+          "node": "disclosure",
+          "option": "open"
+        },
+        {
+          "chapter": "chapter_06",
+          "node": "letter_choice",
+          "option": "alone"
+        },
+        {
+          "chapter": "chapter_07",
+          "node": "camp",
+          "option": "bridge"
+        },
+        {
+          "chapter": "chapter_07",
+          "node": "saltlane_call",
+          "option": "answer_call"
+        },
+        {
+          "chapter": "chapter_07",
+          "node": "saltlane_route",
+          "option": "kiln"
+        },
+        {
+          "chapter": "chapter_08",
+          "node": "pressure",
+          "option": "buffer"
+        },
+        {
+          "chapter": "chapter_09",
+          "node": "governance",
+          "option": "hold"
+        },
+        {
+          "chapter": "chapter_12",
+          "node": "custody",
+          "option": "loaned"
+        },
+        {
+          "chapter": "chapter_13",
+          "node": "night_watch",
+          "option": "tower"
+        },
+        {
+          "chapter": "chapter_14",
+          "node": "water_order",
+          "option": "seal"
+        },
+        {
+          "chapter": "chapter_15",
+          "node": "repair_choice",
+          "option": "recast"
+        },
+        {
+          "chapter": "chapter_16",
+          "node": "escort_choice",
+          "option": "hearing"
+        },
+        {
+          "chapter": "chapter_17",
+          "node": "kit",
+          "option": "runner"
+        },
+        {
+          "chapter": "chapter_18",
+          "node": "covenant",
+          "option": "hold"
+        }
+      ],
+      "battle_actions": 1914,
+      "checks": 3759,
+      "observed_unique_story_han": 87481,
+      "encounters": [
+        {
+          "scenario": "c01_river",
+          "winner": 0,
+          "turn": 23,
+          "actions": 140,
+          "midbattle_reload_at_action": 32,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c01_bridge",
+          "winner": 0,
+          "turn": 9,
+          "actions": 36,
+          "midbattle_reload_at_action": 29,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c02_seed_bridge",
+          "winner": 0,
+          "turn": 11,
+          "actions": 47,
+          "midbattle_reload_at_action": 30,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c02_dispatch",
+          "winner": 0,
+          "turn": 31,
+          "actions": 176,
+          "midbattle_reload_at_action": 30,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c03_ridge",
+          "winner": 0,
+          "turn": 60,
+          "actions": 370,
+          "midbattle_reload_at_action": 32,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c04_dock",
+          "winner": 0,
+          "turn": 5,
+          "actions": 13,
+          "midbattle_reload_at_action": -1,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c04_pump",
+          "winner": 0,
+          "turn": 13,
+          "actions": 62,
+          "midbattle_reload_at_action": 28,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c05_channel",
+          "winner": 0,
+          "turn": 7,
+          "actions": 22,
+          "midbattle_reload_at_action": -1,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c06_court",
+          "winner": 0,
+          "turn": 51,
+          "actions": 376,
+          "midbattle_reload_at_action": 28,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c07_saltlane_kiln",
+          "winner": 0,
+          "turn": 7,
+          "actions": 29,
+          "midbattle_reload_at_action": 7,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c08_buffer",
+          "winner": 0,
+          "turn": 13,
+          "actions": 64,
+          "midbattle_reload_at_action": 31,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c10_gate",
+          "winner": 0,
+          "turn": 15,
+          "actions": 86,
+          "midbattle_reload_at_action": 28,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c12_depot",
+          "winner": 0,
+          "turn": 29,
+          "actions": 164,
+          "midbattle_reload_at_action": 31,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c14_channel",
+          "winner": 0,
+          "turn": 23,
+          "actions": 152,
+          "midbattle_reload_at_action": 29,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c16_bridge",
+          "winner": 0,
+          "turn": 23,
+          "actions": 145,
+          "midbattle_reload_at_action": 31,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c17_runner",
+          "winner": 0,
+          "turn": 9,
+          "actions": 32,
+          "midbattle_reload_at_action": 26,
+          "objective_victory": true
+        }
+      ]
+    },
+    {
+      "id": "story_joint",
+      "difficulty": "story",
+      "opening_branch": "road",
+      "cargo_branch": "relief",
+      "escort_branch": "skip",
+      "policy": "production opponent on both sides",
+      "chapters": 18,
+      "ending_node": "joint_end",
+      "choices": [
+        {
+          "chapter": "chapter_01",
+          "node": "route",
+          "option": "road"
+        },
+        {
+          "chapter": "chapter_01",
+          "node": "supplies",
+          "option": "open"
+        },
+        {
+          "chapter": "chapter_01",
+          "node": "publication",
+          "option": "copy"
+        },
+        {
+          "chapter": "chapter_02",
+          "node": "priority",
+          "option": "relief"
+        },
+        {
+          "chapter": "chapter_02",
+          "node": "inspection",
+          "option": "open"
+        },
+        {
+          "chapter": "chapter_03",
+          "node": "letter",
+          "option": "return"
+        },
+        {
+          "chapter": "chapter_03",
+          "node": "route",
+          "option": "vent"
+        },
+        {
+          "chapter": "chapter_04",
+          "node": "shelter",
+          "option": "warehouse"
+        },
+        {
+          "chapter": "chapter_04",
+          "node": "terms",
+          "option": "sale"
+        },
+        {
+          "chapter": "chapter_05",
+          "node": "water",
+          "option": "nursery"
+        },
+        {
+          "chapter": "chapter_05",
+          "node": "mandate",
+          "option": "shared"
+        },
+        {
+          "chapter": "chapter_06",
+          "node": "disclosure",
+          "option": "open"
+        },
+        {
+          "chapter": "chapter_06",
+          "node": "letter_choice",
+          "option": "alone"
+        },
+        {
+          "chapter": "chapter_07",
+          "node": "camp",
+          "option": "bridge"
+        },
+        {
+          "chapter": "chapter_07",
+          "node": "saltlane_call",
+          "option": "main_road"
+        },
+        {
+          "chapter": "chapter_08",
+          "node": "pressure",
+          "option": "isolate"
+        },
+        {
+          "chapter": "chapter_09",
+          "node": "governance",
+          "option": "joint"
+        },
+        {
+          "chapter": "chapter_12",
+          "node": "custody",
+          "option": "loaned"
+        },
+        {
+          "chapter": "chapter_13",
+          "node": "night_watch",
+          "option": "upstream"
+        },
+        {
+          "chapter": "chapter_14",
+          "node": "water_order",
+          "option": "seal"
+        },
+        {
+          "chapter": "chapter_15",
+          "node": "repair_choice",
+          "option": "recast"
+        },
+        {
+          "chapter": "chapter_16",
+          "node": "escort_choice",
+          "option": "hearing"
+        },
+        {
+          "chapter": "chapter_17",
+          "node": "kit",
+          "option": "runner"
+        },
+        {
+          "chapter": "chapter_18",
+          "node": "covenant",
+          "option": "joint"
+        }
+      ],
+      "battle_actions": 1470,
+      "checks": 3274,
+      "observed_unique_story_han": 85947,
+      "encounters": [
+        {
+          "scenario": "c01_road",
+          "winner": 0,
+          "turn": 11,
+          "actions": 50,
+          "midbattle_reload_at_action": 35,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c01_bridge",
+          "winner": 0,
+          "turn": 9,
+          "actions": 36,
+          "midbattle_reload_at_action": 29,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c02_relief_bridge",
+          "winner": 0,
+          "turn": 19,
+          "actions": 111,
+          "midbattle_reload_at_action": 26,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c02_dispatch",
+          "winner": 0,
+          "turn": 31,
+          "actions": 176,
+          "midbattle_reload_at_action": 30,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c03_vent",
+          "winner": 0,
+          "turn": 13,
+          "actions": 63,
+          "midbattle_reload_at_action": 31,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c04_dock",
+          "winner": 0,
+          "turn": 5,
+          "actions": 13,
+          "midbattle_reload_at_action": -1,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c04_pump",
+          "winner": 0,
+          "turn": 13,
+          "actions": 58,
+          "midbattle_reload_at_action": 28,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c05_nursery",
+          "winner": 0,
+          "turn": 13,
+          "actions": 57,
+          "midbattle_reload_at_action": 27,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c06_court",
+          "winner": 0,
+          "turn": 45,
+          "actions": 343,
+          "midbattle_reload_at_action": 29,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c08_isolate",
+          "winner": 0,
+          "turn": 17,
+          "actions": 88,
+          "midbattle_reload_at_action": 26,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c10_gate",
+          "winner": 0,
+          "turn": 39,
+          "actions": 231,
+          "midbattle_reload_at_action": 30,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c12_depot",
+          "winner": 0,
+          "turn": 9,
+          "actions": 34,
+          "midbattle_reload_at_action": 30,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c14_channel",
+          "winner": 0,
+          "turn": 9,
+          "actions": 33,
+          "midbattle_reload_at_action": 28,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c16_bridge",
+          "winner": 0,
+          "turn": 23,
+          "actions": 145,
+          "midbattle_reload_at_action": 31,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c17_runner",
+          "winner": 0,
+          "turn": 9,
+          "actions": 32,
+          "midbattle_reload_at_action": 26,
+          "objective_victory": true
+        }
+      ]
+    },
+    {
+      "id": "story_alternate",
+      "difficulty": "story",
+      "opening_branch": "river",
+      "cargo_branch": "relief",
+      "escort_branch": "school",
+      "policy": "production opponent on both sides",
+      "chapters": 18,
+      "ending_node": "split_end",
+      "choices": [
+        {
+          "chapter": "chapter_01",
+          "node": "route",
+          "option": "river"
+        },
+        {
+          "chapter": "chapter_01",
+          "node": "supplies",
+          "option": "ration"
+        },
+        {
+          "chapter": "chapter_01",
+          "node": "publication",
+          "option": "hold"
+        },
+        {
+          "chapter": "chapter_02",
+          "node": "priority",
+          "option": "relief"
+        },
+        {
+          "chapter": "chapter_02",
+          "node": "inspection",
+          "option": "sealed"
+        },
+        {
+          "chapter": "chapter_03",
+          "node": "letter",
+          "option": "unscheduled"
+        },
+        {
+          "chapter": "chapter_03",
+          "node": "route",
+          "option": "vent"
+        },
+        {
+          "chapter": "chapter_04",
+          "node": "shelter",
+          "option": "households"
+        },
+        {
+          "chapter": "chapter_04",
+          "node": "terms",
+          "option": "lease"
+        },
+        {
+          "chapter": "chapter_05",
+          "node": "water",
+          "option": "nursery"
+        },
+        {
+          "chapter": "chapter_05",
+          "node": "mandate",
+          "option": "witness"
+        },
+        {
+          "chapter": "chapter_06",
+          "node": "disclosure",
+          "option": "witnessed"
+        },
+        {
+          "chapter": "chapter_06",
+          "node": "letter_choice",
+          "option": "companions"
+        },
+        {
+          "chapter": "chapter_07",
+          "node": "camp",
+          "option": "clinic"
+        },
+        {
+          "chapter": "chapter_07",
+          "node": "saltlane_call",
+          "option": "answer_call"
+        },
+        {
+          "chapter": "chapter_07",
+          "node": "saltlane_route",
+          "option": "school"
+        },
+        {
+          "chapter": "chapter_08",
+          "node": "pressure",
+          "option": "isolate"
+        },
+        {
+          "chapter": "chapter_09",
+          "node": "governance",
+          "option": "split"
+        },
+        {
+          "chapter": "chapter_12",
+          "node": "custody",
+          "option": "northbank"
+        },
+        {
+          "chapter": "chapter_13",
+          "node": "night_watch",
+          "option": "upstream"
+        },
+        {
+          "chapter": "chapter_14",
+          "node": "water_order",
+          "option": "metered"
+        },
+        {
+          "chapter": "chapter_15",
+          "node": "repair_choice",
+          "option": "sleeve"
+        },
+        {
+          "chapter": "chapter_16",
+          "node": "escort_choice",
+          "option": "service"
+        },
+        {
+          "chapter": "chapter_17",
+          "node": "kit",
+          "option": "screen"
+        },
+        {
+          "chapter": "chapter_18",
+          "node": "covenant",
+          "option": "split"
+        }
+      ],
+      "battle_actions": 1579,
+      "checks": 3448,
+      "observed_unique_story_han": 87994,
+      "encounters": [
+        {
+          "scenario": "c01_river",
+          "winner": 0,
+          "turn": 23,
+          "actions": 140,
+          "midbattle_reload_at_action": 32,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c01_bridge",
+          "winner": 0,
+          "turn": 9,
+          "actions": 36,
+          "midbattle_reload_at_action": 29,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c02_relief_bridge",
+          "winner": 0,
+          "turn": 19,
+          "actions": 111,
+          "midbattle_reload_at_action": 26,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c02_dispatch",
+          "winner": 0,
+          "turn": 31,
+          "actions": 176,
+          "midbattle_reload_at_action": 30,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c03_vent",
+          "winner": 0,
+          "turn": 13,
+          "actions": 63,
+          "midbattle_reload_at_action": 31,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c04_dock",
+          "winner": 0,
+          "turn": 5,
+          "actions": 13,
+          "midbattle_reload_at_action": -1,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c04_pump",
+          "winner": 0,
+          "turn": 13,
+          "actions": 58,
+          "midbattle_reload_at_action": 28,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c05_nursery",
+          "winner": 0,
+          "turn": 13,
+          "actions": 57,
+          "midbattle_reload_at_action": 27,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c06_court",
+          "winner": 0,
+          "turn": 45,
+          "actions": 343,
+          "midbattle_reload_at_action": 29,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c07_saltlane_school",
+          "winner": 0,
+          "turn": 7,
+          "actions": 32,
+          "midbattle_reload_at_action": 9,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c08_isolate",
+          "winner": 0,
+          "turn": 17,
+          "actions": 91,
+          "midbattle_reload_at_action": 26,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c10_gate",
+          "winner": 0,
+          "turn": 31,
+          "actions": 167,
+          "midbattle_reload_at_action": 33,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c12_depot",
+          "winner": 0,
+          "turn": 17,
+          "actions": 82,
+          "midbattle_reload_at_action": 29,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c14_channel",
+          "winner": 0,
+          "turn": 9,
+          "actions": 33,
+          "midbattle_reload_at_action": 28,
+          "objective_victory": true
+        },
+        {
+          "scenario": "c16_bridge",
+          "winner": 0,
+          "turn": 23,
+          "actions": 145,
+          "midbattle_reload_at_action": 31,
+          "objective_victory": false
+        },
+        {
+          "scenario": "c17_screen",
+          "winner": 0,
+          "turn": 9,
+          "actions": 32,
+          "midbattle_reload_at_action": 26,
+          "objective_victory": true
+        }
+      ]
+    }
+  ]
+}

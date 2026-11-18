@@ -134,7 +134,7 @@ func objective_status() -> String:
 	if ControlObjective.is_relay(objective):
 		var next: String = cells[int(objective.streak)] if objective.streak < objective.required else "已完成"
 		return "接力路线 %s\n已接应 %d/%d 处 · 下一站 %s · 已过 %d/%d 轮。己方回合开始时，当前接力点有友军即记一处，已接应的位置可离开。击败敌指挥官也可获胜。" % [" → ".join(cells), objective.streak, objective.required, next, (turn - 1) / 2, objective.round_limit]
-	return "守住 %s\n己方回合开始时两格均有友军，连续 %d/%d 次；已过 %d/%d 轮。击败敌指挥官也可获胜。" % ["、".join(cells), objective.streak, objective.required, (turn - 1) / 2, objective.round_limit]
+	return "守住 %s\n己方回合开始时两格均有友军，连续 %d/%d 次；%s。击败敌指挥官也可获胜。" % ["、".join(cells), objective.streak, objective.required, ControlObjective.elapsed_text(objective, turn)]
 
 func _init(seed_value: int = 42, map_id: String = "greenwood", blue_hero: String = "warden", red_hero: String = "pyromancer", blue_deck: String = "balanced", red_deck: String = "balanced", seconds_per_turn: float = 90.0, blue_custom: Dictionary = {}) -> void:
 	match_seed = seed_value

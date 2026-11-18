@@ -5,6 +5,7 @@ signal advance_requested(expected: Dictionary)
 signal choice_requested(option_id: String, expected: Dictionary)
 signal battle_requested(expected: Dictionary)
 signal requisition_requested(card_id: String, expected: Dictionary)
+signal difficulty_requested(mode: String, expected: Dictionary)
 signal armory_requested(expected: Dictionary)
 signal retreat_requested(expected: Dictionary)
 signal next_chapter_requested(expected: Dictionary)
@@ -15,6 +16,7 @@ signal settings_requested
 
 const Art = preload("res://scripts/art_library.gd")
 const Cards = preload("res://data/cards.tres")
+const Difficulty = preload("res://scripts/campaign_difficulty.gd")
 const GOLD := Color("d0b579")
 const INK := Color("eee8db")
 var heading: Label
@@ -31,6 +33,7 @@ var requisition_panel: PanelContainer
 var requisition_choice: OptionButton
 var requisition_art: TextureRect
 var requisition_text: RichTextLabel
+var difficulty_choice: OptionButton
 var armory_button: Button
 var background_id: String = "menu"
 var page: Dictionary = {}
@@ -146,6 +149,19 @@ func _build() -> void:
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	footer.add_child(status)
+	difficulty_choice = OptionButton.new()
+	difficulty_choice.custom_minimum_size.y = 48
+	difficulty_choice.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	difficulty_choice.add_theme_font_size_override("font_size", 17)
+	difficulty_choice.add_item("难度 · 标准")
+	difficulty_choice.set_item_metadata(0, Difficulty.STANDARD)
+	difficulty_choice.add_item("难度 · 剧情")
+	difficulty_choice.set_item_metadata(1, Difficulty.STORY)
+	difficulty_choice.tooltip_text = "每次出征前都可以切换难度。\n" + Difficulty.support_text()
+	difficulty_choice.item_selected.connect(func(index: int) -> void:
+		difficulty_requested.emit(str(difficulty_choice.get_item_metadata(index)), view_token.duplicate()))
+	difficulty_choice.hide()
+	footer.add_child(difficulty_choice)
 	armory_button = _button("战役军备", func() -> void: armory_requested.emit(view_token.duplicate()), false)
 	armory_button.hide()
 	footer.add_child(armory_button)
@@ -248,6 +264,10 @@ func _clear_actions() -> void:
 		actions.remove_child(child)
 		child.queue_free()
 
+func render_difficulty() -> void:
+	difficulty_choice.visible = page.get("type", "") == "battle" and not showing_history
+	difficulty_choice.select(int(setup.get("difficulty", Difficulty.STANDARD) == Difficulty.STORY))
+
 func _render_page() -> void:
 	_clear_actions()
 	backlog_button.text = "返回当前对白" if showing_history else "已读回看"
@@ -257,6 +277,7 @@ func _render_page() -> void:
 	var briefing: bool = page.get("type", "") == "battle"
 	armory_button.visible = briefing and not showing_history and int(setup.get("armory_slots", 0)) > 0
 	if armory_button.visible: armory_button.text = "战役军备  %d/%d" % [setup.get("armory_equipped", 0), setup.armory_slots]
+	render_difficulty()
 	render_requisition()
 	text_body.custom_minimum_size.y = 118 if requisition_panel.visible else 160
 	stage.visible = not showing_history and not briefing
@@ -287,8 +308,10 @@ func _render_page() -> void:
 		"battle":
 			speaker.text = setup.get("title", "战前军议")
 			var retry: String = ""
-			if page.last_outcome != "": retry = "\n\n上一战" + ("失利" if page.last_outcome == "defeat" else "平局") + "，剧情停在此处。重新出征将重建同一战场。"
-			text_body.text = "作战目标\n%s\n\n%s\n\n敌方指挥：%s\n每回合 90 秒。战斗自动保存，退出后可继续当前局面。%s" % [setup.get("objective", ""), setup.get("brief", ""), setup.get("enemy_name", ""), retry]
+			if page.last_outcome != "": retry = "\n\n上一战" + ("失利" if page.last_outcome == "defeat" else "平局") + "，剧情停在此处。可调整难度再出征。"
+			var mode: String = setup.get("difficulty", Difficulty.STANDARD)
+			var support: String = "\n\n" + Difficulty.support_text() if mode == Difficulty.STORY else ""
+			text_body.text = "作战目标\n%s%s\n\n%s\n\n敌方指挥：%s\n每回合 90 秒。战斗自动保存，退出后可继续当前局面。%s" % [Difficulty.objective_for(setup, mode), support, Difficulty.brief_for(setup, mode), setup.get("enemy_name", ""), retry]
 			actions.add_child(_button("重新出征" if page.attempts > 0 else "率军出征", _battle.bind(view_token.duplicate())))
 			if page.get("can_retreat", false):
 				actions.add_child(_button("撤出任务 · 回到主线", retreat_requested.emit.bind(view_token.duplicate())))
