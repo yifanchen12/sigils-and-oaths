@@ -16,7 +16,7 @@ static func prepare(battle: Battle, enemies: Array[Dictionary]) -> Array[Diction
 		var card: Dictionary = battle.definition(id)
 		if card.get("effect") != "formation" or card.get("target_side") != "enemy" or int(card.get("damage", 0)) <= 0: continue
 		if int(card.cost) > next_mana or (public_preset and int(card_counts[id]) <= int(spent.get(id, 0))): continue
-		models.append({"id": id, "radius": int(card.get("radius", 1)),
+		models.append({"id": id, "radius": int(card.get("radius", 1)), "shape": str(card.get("shape", "")),
 			"troop_damage": _next_damage(battle, card, source, false), "leader_damage": _next_damage(battle, card, source, true),
 			"clear_shield": card.get("clear_shield", false), "root": card.get("root", false),
 			"confidence": 1.0 if public_preset else 0.63, "centers": {}})
@@ -33,7 +33,7 @@ static func prepare(battle: Battle, enemies: Array[Dictionary]) -> Array[Diction
 		for ally: Dictionary in battle.units:
 			if ally.side != battle.active_side: continue
 			var loss: float = _impact(model, ally)
-			for center: Vector2i in battle.Formation.footprint(battle, ally.pos, model.radius):
+			for center: Vector2i in battle.Formation.footprint(battle, ally.pos, model.radius, model.shape):
 				if reach.has(center): model.centers[center] = float(model.centers.get(center, 0.0)) + loss
 	return models
 
@@ -58,10 +58,10 @@ static func exposure(battle: Battle, unit: Dictionary, destination: Vector2i, mo
 	var on_board: bool = battle.inside(previous)
 	for model: Dictionary in models:
 		var loss: float = _impact(model, unit)
-		for center: Vector2i in battle.Formation.footprint(battle, destination, model.radius):
+		for center: Vector2i in battle.Formation.footprint(battle, destination, model.radius, model.shape):
 			if not model.reach.has(center): continue
 			var allies: float = float(model.centers.get(center, 0.0))
-			if on_board and battle.distance(previous, center) <= model.radius: allies -= loss
+			if on_board and battle.Formation.covers(previous, center, model.radius, model.shape): allies -= loss
 			if allies <= 0.0: continue
 			# Price sharing a cast center with a vulnerable ally. Opposing
 			# spells can use only one center even when several overlap.

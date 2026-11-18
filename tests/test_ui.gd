@@ -237,10 +237,10 @@ func test_custom_deck_ui() -> void:
 	var visible_cards: int = 0
 	for row: Dictionary in editor.rows.values():
 		if row.cell.visible: visible_cards += 1
-	check(visible_cards == 46, "deck workshop troop filter shows all forty-six unit cards")
+	check(visible_cards == 56, "deck workshop troop filter shows all fifty-six unit cards")
 	await click(Vector2(editor.position) + editor.filter_buttons.all.get_global_rect().get_center())
 	check(editor.rows.values().all(func(row: Dictionary) -> bool: return row.cell.visible), "all filter restores collectible catalog")
-	check(editor.rows.size() == 140 and not editor.rows.has("initiative"), "editor exposes 140 cards and excludes generated initiative")
+	check(editor.rows.size() == 164 and not editor.rows.has("initiative"), "editor exposes 164 cards and excludes generated initiative")
 	check(not editor.get_ok_button().disabled and editor._total() == 30, "valid preset starts as editable 30-card draft")
 	# Dialog controls live in their own Window viewport, so inject there.
 	await click_window(editor, editor.rows.sword.minus.get_global_rect().get_center())
@@ -610,8 +610,8 @@ func test_decks_and_library() -> void:
 	game.council.deck_choice.item_selected.emit(1)
 	await click(game.council.library_button.get_global_rect().get_center())
 	check(game.get_node("%CardsDialog").visible, "menu library button opens compendium")
-	check(game.get_node("%CardGrid").get_child_count() == 141, "compendium lists 140 collectible cards and initiative")
-	check(game.get_node("%LibraryIntro").text.contains("140 种可组牌"), "visible catalog count includes all collectible expansions")
+	check(game.get_node("%CardGrid").get_child_count() == 165, "compendium lists 164 collectible cards and initiative")
+	check(game.get_node("%LibraryIntro").text.contains("164 种可组牌"), "visible catalog count includes all collectible expansions")
 	for view: CardView in game.get_node("%CardGrid").get_children():
 		check(view.illustration != null, "native illustration mapped for " + view.card.id)
 	check(game.get_node("%LibraryIntro").text.contains("锋线突袭"), "library shows selected deck context")
@@ -657,7 +657,7 @@ func test_decks_and_library() -> void:
 	expansion_filter.select(0)
 	cost_filter.select(0)
 	cost_filter.item_selected.emit(0)
-	check(grid.get_child_count() == 141, "resetting both filters restores the full library")
+	check(grid.get_child_count() == 165, "resetting both filters restores the full library")
 	check(before == var_to_str([game.battle.players, game.battle.units, game.battle.turn]), "browsing cards cannot mutate battle")
 	await settle()
 	if screenshots_enabled():

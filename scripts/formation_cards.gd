@@ -1,22 +1,34 @@
 extends RefCounted
 ## Local effects share recipients and projections with the card preview and AI.
 
-static func footprint(battle: RefCounted, center: Vector2i, radius: int) -> Array[Vector2i]:
+static func _axes_match(delta: Vector2i, shape: String) -> bool:
+	match shape:
+		"row": return delta.y == 0
+		"column": return delta.x == 0
+		"cross": return delta.x == 0 or delta.y == 0
+	return true
+
+static func covers(center: Vector2i, cell: Vector2i, radius: int, shape: String = "") -> bool:
+	var delta: Vector2i = cell - center
+	return absi(delta.x) + absi(delta.y) <= radius and _axes_match(delta, shape)
+
+static func footprint(battle: RefCounted, center: Vector2i, radius: int, shape: String = "") -> Array[Vector2i]:
 	var cells: Array[Vector2i] = []
 	for dy: int in range(-radius, radius + 1):
 		var reach: int = radius - absi(dy)
 		for dx: int in range(-reach, reach + 1):
 			var cell: Vector2i = center + Vector2i(dx, dy)
-			if battle.inside(cell): cells.append(cell)
+			if battle.inside(cell) and (shape.is_empty() or _axes_match(Vector2i(dx, dy), shape)): cells.append(cell)
 	return cells
 
 static func recipients(battle: RefCounted, card: Dictionary, center: Vector2i, side: int) -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 	var ally: bool = card.get("target_side", "ally") == "ally"
 	var radius: int = int(card.get("radius", 1))
+	var shape: String = str(card.get("shape", ""))
 	var grounds: Array = card.get("grounds", [])
 	for unit: Dictionary in battle.units:
-		if unit.hp <= 0 or battle.distance(unit.pos, center) > radius: continue
+		if unit.hp <= 0 or not covers(center, unit.pos, radius, shape): continue
 		if unit.side == side:
 			if ally and not _helps(card, unit): continue
 			if not ally and (int(card.get("rally_shield", 0)) == 0 or unit.shield >= 5): continue

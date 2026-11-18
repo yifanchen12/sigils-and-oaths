@@ -73,4 +73,14 @@ decks = Array[Dictionary]([{
 "id": "levee_relief", "name": "护堤轮班", "set_id": "levee", "description": "以工事、援护和双灯救援接住压力。靠阵亡补给和灯夜调入后续部队。",
 "cards": {"lamp_patrol": 2, "slate_quartermaster": 2, "bell_winch": 3, "rising_oath_watch": 1, "lantern_surgeon": 1, "spear": 2, "reed_watch": 2, "mink_watcher": 2, "quay_salver": 2,
 "stretcher_signal": 2, "dike_flagstones": 1, "reed_toll": 1, "dike_lights": 1, "ward": 2, "bolt": 2, "rally_heal": 1, "reveal_traps": 1, "troop_receipt": 1, "severed_pullcord": 1}
+}, {
+"id": "breakwater_line", "name": "横潮截线", "set_id": "moorings", "description": "低费斥候插进树林和遗迹，桥头巡枪接应。用横射和纵列破据点逼敌人错开站位，最后标记十字洪线。",
+"cards": {"saltfield_runner": 2, "bank_pikeman": 2, "bastion_driller": 1, "shrike_saddler": 2, "shoal_arbalest": 2, "undertow_knight": 1, "crownless_vanguard": 1,
+"reed_scout": 2, "ridge_pioneer": 1, "ridge_archer": 1, "mage": 2, "wayfinder_writ": 1, "seam_shot": 2, "scour_the_rakes": 1, "sluice_flags": 1, "quiet_net": 1, "ridge_marking": 1,
+"copper_boltline": 1, "sunken_weir_breach": 1, "bolt": 2, "span_kit": 1, "cress_ribbon": 1}
+}, {
+"id": "ember_quarter", "name": "续阵军备", "set_id": "moorings", "description": "枪卫、巡医和受击陷阱负责守线。让用过的军资从弃牌堆回到手里，靠九费疾风或十费三路回收补足后续行动。",
+"cards": {"saltfield_runner": 2, "bank_pikeman": 2, "bastion_driller": 1, "reed_watch": 1, "sill_physician": 2, "oathroad_mender": 1, "undertow_knight": 1, "claywatch_sage": 1,
+"gate_veteran": 1, "ridge_pioneer": 2, "mage": 2, "healer": 1, "wayfinder_writ": 1, "ledger_patch": 1, "sluice_flags": 1, "cress_ribbon": 2, "levee_echo": 1,
+"narrow_ford_calendar": 1, "driftglass_standing": 1, "unbroken_ember_line": 1, "quiet_net": 1, "bolt": 2, "copper_boltline": 1}
 }])

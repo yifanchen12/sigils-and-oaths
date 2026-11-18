@@ -19,7 +19,7 @@ static func place(battle: RefCounted, instance: Dictionary, card: Dictionary, ce
 
 static func footprint(battle: RefCounted, order: Dictionary) -> Array[Vector2i]:
 	var card: Dictionary = battle.definition(order.card.card_id)
-	return battle.Formation.footprint(battle, order.pos, int(card.radius))
+	return battle.Formation.footprint(battle, order.pos, int(card.radius), str(card.get("shape", "")))
 
 static func resolve(battle: RefCounted) -> bool:
 	var order: Dictionary = for_side(battle, battle.active_side)
@@ -36,5 +36,5 @@ static func incoming(battle: RefCounted, unit: Dictionary) -> int:
 	var order: Dictionary = for_side(battle, 1 - unit.side)
 	if order.is_empty(): return 0
 	var card: Dictionary = battle.definition(order.card.card_id)
-	if card.target_side != "enemy" or battle.distance(order.pos, unit.pos) > int(card.radius): return 0
+	if card.target_side != "enemy" or not battle.Formation.covers(order.pos, unit.pos, int(card.radius), str(card.get("shape", ""))): return 0
 	return battle.Formation.damage(battle, card, order.side, unit.kind == "commander")

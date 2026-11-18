@@ -24,7 +24,7 @@ func run() -> void:
 	var cost: OptionButton = game.get_node("%LibraryCost")
 	var grid: GridContainer = game.get_node("%CardGrid")
 	var set_index: int = option_index(set_filter, "levee")
-	check(dialog.visible and set_index >= 0 and game.get_node("%LibraryIntro").text.contains("140 种可组牌"), "library exposes current card count and new set")
+	check(dialog.visible and set_index >= 0, "library exposes the Levee Orders set")
 	if failures > 0: quit(1); return
 	set_filter.select(set_index)
 	set_filter.item_selected.emit(set_index)

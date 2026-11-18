@@ -16,7 +16,7 @@ var width: int = 8
 var height: int = 6
 const HAND_LIMIT: int = 8
 const UNIT_LIMIT: int = 6
-const GLOBAL_EFFECTS: Array[String] = ["draw", "mana", "weather", "clear_weather", "recall_fallen", "supply"]
+const GLOBAL_EFFECTS: Array[String] = ["draw", "mana", "weather", "clear_weather", "recall_fallen", "supply", "reclaim"]
 const DIRECTIONS: Array[Vector2i] = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
 const ADVANTAGE: Dictionary = {"sword": "spear", "spear": "cavalry", "cavalry": "sword"}
 const TERRAIN: Dictionary = {
@@ -481,12 +481,13 @@ func spell_cells(card: Dictionary, side: int) -> Array[Vector2i]:
 	if card.type == "trap": return Traps.targets(self, card, side)
 	if card.effect == "scheduled": return Orders.targets(self, side)
 	if card.effect == "supply": return [Vector2i(-1, -1)] if not supply_cards(side, card.supply).is_empty() else []
+	if card.effect == "reclaim": return [Vector2i(-1, -1)] if not reclaim_cards(side, card.reclaim).is_empty() else []
 	if card.effect == "reveal_traps": return casting_cells(side)
 	if card.effect == "recall_fallen": return [Vector2i(-1, -1)] if not fallen_cards(card, side).is_empty() else []
 	if card.effect == "redeploy": return deployment_cells(side) if not fallen_cards(card, side).is_empty() else []
 	if card.effect == "formation" or card.effect == "roadwork":
 		for cell: Vector2i in casting_cells(side):
-			var useful: bool = not Formation.recipients(self, card, cell, side).is_empty() if card.effect == "formation" else passable(cell) and not roadwork_cells(cell, card.get("terrain", "road")).is_empty()
+			var useful: bool = not Formation.recipients(self, card, cell, side).is_empty() if card.effect == "formation" else passable(cell) and not roadwork_cells(cell, card).is_empty()
 			if useful: result.append(cell)
 		return result
 	if card.effect == "rally_heal":
@@ -540,10 +541,14 @@ func spell_cells(card: Dictionary, side: int) -> Array[Vector2i]:
 			result.append(target.pos)
 	return result
 
-func roadwork_cells(center: Vector2i, new_ground: String = "road") -> Array[Vector2i]:
+func roadwork_cells(center: Vector2i, spec: Dictionary) -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
+	var new_ground: String = spec.get("terrain", "road")
+	# Earlier cards listed the chosen tile first, followed by its four neighbors.
 	var footprint: Array[Vector2i] = [center]
-	for direction: Vector2i in DIRECTIONS: footprint.append(center + direction)
+	if spec.has("shape"): footprint = Formation.footprint(self, center, int(spec.radius), str(spec.shape))
+	else:
+		for direction: Vector2i in DIRECTIONS: footprint.append(center + direction)
 	for cell: Vector2i in footprint:
 		if passable(cell) and ground(cell) not in [new_ground, "bridge"]: result.append(cell)
 	return result
@@ -697,6 +702,7 @@ func apply_action(action: Dictionary) -> Dictionary:
 				if card.get("effect", "") == "recall_fallen": return _error("弃牌堆中没有符合条件的阵亡部队。")
 				if card.get("effect", "") == "redeploy": return _error("返场需要符合条件的阵亡部队、一处相邻空地和空余部队位。")
 				if card.get("effect", "") == "supply": return _error("牌库里没有符合条件的补给牌。")
+				if card.get("effect", "") == "reclaim": return _error("弃牌堆没有符合条件、可回收的牌。")
 				if card.get("effect", "") == "scheduled" and not Orders.for_side(self, active_side).is_empty(): return _error("己方已有一条待结算的地格军令。")
 				return _error("部署需紧邻己方部队的空地（上下左右），最多 6 支部队。" if card.type == "unit" else "目标需在友军3格内（法师4格），且满足卡牌条件；换位限指挥官3格。")
 			# All validation happens before resource payment or zone mutation.
@@ -805,14 +811,20 @@ func _draw_reserves(side: int, amount: int) -> void:
 	_draw(side, mini(amount, players[side].deck.size()))
 
 func supply_cards(side: int, requests: Array) -> Array[Dictionary]:
+	return _match_reserves(players[side].deck, requests)
+
+func reclaim_cards(side: int, requests: Array) -> Array[Dictionary]:
+	return _match_reserves(players[side].discard, requests, true)
+
+func _match_reserves(zone: Array, requests: Array, reclaiming: bool = false) -> Array[Dictionary]:
 	var matches: Array[Dictionary] = []
-	var deck: Array = players[side].deck
 	for request: Dictionary in requests:
-		for index: int in range(deck.size() - 1, -1, -1):
-			var instance: Dictionary = deck[index]
+		for index: int in range(zone.size() - 1, -1, -1):
+			var instance: Dictionary = zone[index]
 			if matches.has(instance): continue
 			var card: Dictionary = definition(instance.card_id)
 			if card.type != request.type or int(card.cost) < int(request.get("min", 0)) or int(card.cost) > int(request.get("max", 10)): continue
+			if reclaiming and (card.type == "unit" or card.has("reclaim")): continue
 			matches.append(instance)
 			break
 	return matches
@@ -827,6 +839,15 @@ func draw_supply(side: int, requests: Array) -> void:
 		player.hand.append(instance)
 		received += 1
 	if received > 0: _record("%s定向补给 %d 张牌。" % [side_name(side), received])
+
+func recover_reserves(side: int, requests: Array) -> void:
+	if requests.is_empty(): return
+	var player: Dictionary = players[side]
+	for instance: Dictionary in reclaim_cards(side, requests):
+		if player.hand.size() >= HAND_LIMIT: break
+		player.discard.erase(instance)
+		player.hand.append(instance)
+		_record("%s从弃牌堆收回「%s」。" % [side_name(side), definition(instance.card_id).name])
 
 func _spawn(card: Dictionary, cell: Vector2i, side: int) -> int:
 	var unit_id: int = _id()
@@ -857,6 +878,7 @@ func _resolve_entry(card: Dictionary, unit: Dictionary) -> void:
 	var draws: int = int(effects.get("draw", 0))
 	if draws > 0: _draw(active_side, draws)
 	draw_supply(active_side, effects.get("supply", []))
+	recover_reserves(active_side, effects.get("reclaim", []))
 
 func entry_active(entry: Dictionary, cell: Vector2i) -> bool:
 	return not entry.has("on_ground") or entry.on_ground.has(ground(cell))
@@ -907,7 +929,7 @@ func _resolve_spell(card: Dictionary, cell: Vector2i) -> void:
 		"roadwork":
 			var new_ground: String = card.get("terrain", "road")
 			var reinforce: int = int(card.get("reinforce", 0))
-			for site: Vector2i in roadwork_cells(cell, new_ground):
+			for site: Vector2i in roadwork_cells(cell, card):
 				terrain[site] = new_ground
 				_record("%s变为%s。" % [cell_name(site), TERRAIN[new_ground].name])
 				if reinforce == 0: continue
@@ -962,6 +984,7 @@ func _resolve_spell(card: Dictionary, cell: Vector2i) -> void:
 			weather_remaining = 0
 			_record("天气被驱散，战场恢复晴朗。")
 	if card.effect in ["damage", "area", "shatter_bolt"] or card.get("fire", false): players[active_side].spell_boost_used = true
+	if card.has("reclaim"): recover_reserves(active_side, card.reclaim)
 
 func _resolve_hero(leader_hero: Dictionary, cell: Vector2i) -> void:
 	var target: Dictionary = unit_at(cell)
@@ -1002,6 +1025,7 @@ func _cleanup() -> void:
 		Formation.resolve(self, effect, unit.pos, unit.side)
 		_draw_reserves(unit.side, int(effect.get("draw", 0)))
 		draw_supply(unit.side, effect.get("supply", []))
+		recover_reserves(unit.side, effect.get("reclaim", []))
 
 func _check_winner() -> void:
 	var blue_alive: bool = not commander(0).is_empty()

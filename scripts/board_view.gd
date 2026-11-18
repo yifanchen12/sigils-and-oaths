@@ -378,12 +378,17 @@ func _draw() -> void:
 			if moves.has(cell):
 				draw_rect(rect.grow(-3), Color("#283f5888"))
 				draw_circle(rect.get_center(), 4, Color("81b6db"))
-			if attacks.has(cell) or spell_targets.has(cell):
+			var spell_center: bool = spell_targets.has(cell)
+			if attacks.has(cell) or (spell_center and predicted_area.is_empty()):
 				draw_rect(rect.grow(-3), Color(RED, 0.14))
 				draw_rect(rect.grow(-4), RED, false, 1.6)
+			elif spell_center and cell != hover_cell and not predicted_area.has(cell):
+				draw_circle(rect.get_center(), tile * 0.055, Color("d2e6e0"))
 			if predicted_area.has(cell):
 				draw_rect(rect.grow(-5), Color(predicted_area_color, 0.19))
 				draw_rect(rect.grow(-7), Color(predicted_area_color, 0.88), false, 2.2)
+			if spell_center and cell == hover_cell and not predicted_area.is_empty():
+				draw_rect(rect.grow(-2), GOLD, false, 2.0)
 			if cell == training_target:
 				draw_rect(rect.grow(-2), Color("181d24"), false, 5)
 				draw_rect(rect.grow(-2), Color("ffdf86"), false, 3)

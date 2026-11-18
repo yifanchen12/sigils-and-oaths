@@ -18,6 +18,7 @@ var court_focus: bool = false
 var late_route_focus: bool = false
 var saltlane: String = "skip"
 var requisitions: Dictionary = {}
+var decisions: Dictionary = {}
 var requisition_report: String = ""
 var save_path: String = SAVE
 var report: Dictionary = {"policy": "production opponent on both sides", "coverage": "continuous_campaign", "note": "New campaign, first visible choices (except the declared opening route and priority), real battle results and save/reload. Stops at first defeat. Automated diagnostic, not a human playthrough or balance verdict.", "route": "road", "priority": "relief", "choices": [], "chapters_entered": [], "dialogue_ids": [], "games": [], "reached_authored_end": false, "stop": ""}
@@ -110,6 +111,11 @@ func run() -> void:
 				if not check(choice is String, "plan uses card identifiers"): quit(1); return
 			requisitions = selection
 		if arg.begins_with("--requisition-report="): requisition_report = arg.trim_prefix("--requisition-report=")
+		if arg.begins_with("--decisions="):
+			var path: String = arg.trim_prefix("--decisions=")
+			var configured: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+			if not check(configured is Dictionary, "decision plan maps chapter and node to visible options"): quit(1); return
+			decisions = configured
 	if pump_focus or nursery_focus or court_focus or late_route_focus:
 		var selected_policies: Array[String] = []
 		if pump_focus: selected_policies.append("c04_pump harbor focus player")
@@ -142,6 +148,7 @@ func run() -> void:
 				var option: String = report.route if chapter == "chapter_01" and page.node == "route" else (report.priority if chapter == "chapter_02" and page.node == "priority" else page.options[0].id)
 				if page.node == "saltlane_call" and saltlane != "skip": option = "answer_call"
 				if page.node == "saltlane_route": option = saltlane
+				option = str(decisions.get(chapter + "." + page.node, option))
 				report.choices.append({"chapter": chapter, "node": page.node, "option": option})
 				check(session.choose(option, session.token()).ok, "choose a currently displayed option")
 			"battle":
@@ -151,6 +158,9 @@ func run() -> void:
 				check(session.next_chapter(session.token()).ok, "next chapter inherits the earned story outcome")
 				if not reload_exact(): break
 	check(pages < 5000, "continuous narrative finishes or stops without a graph loop")
+	if report.reached_authored_end:
+		for key: String in decisions:
+			check(report.choices.any(func(choice: Dictionary) -> bool: return choice.chapter + "." + choice.node == key and choice.option == decisions[key]), "declared choice was reached and applied: " + key)
 	if failures > 0: report.stop = "invalid"
 	report.progress = session.campaign.snapshot()
 	var destination: String = "res://.tools/continuous-campaign-" + report.route + ("-seed" if report.priority == "seed" else "") + ("-pump-focus" if pump_focus else "") + ("-nursery-focus" if nursery_focus else "") + ("-court-focus" if court_focus else "") + ("-late-route-focus" if late_route_focus else "") + ("-saltlane-" + saltlane if saltlane != "skip" else "") + ".json"

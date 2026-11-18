@@ -62,6 +62,7 @@ static func stepped(battle: RefCounted, unit: Dictionary) -> void:
 		if card.get("disarm", false) and not unit.attacked:
 			unit.attacked = true
 			battle._record("%s本回合失去攻击机会。" % unit.name)
+		if card.has("rally"): battle.Formation.resolve(battle, card.rally, unit.pos, trap.side)
 		if int(card.get("draw", 0)) > 0: battle._draw(trap.side, int(card.draw))
 
 static func attacked(battle: RefCounted, defender: Dictionary) -> int:
@@ -80,6 +81,7 @@ static func _protect(battle: RefCounted, defender: Dictionary, trigger: String) 
 		defender.shield = mini(5, int(defender.shield) + int(card.amount))
 		if int(card.get("draw", 0)) > 0: battle._draw(trap.side, int(card.draw))
 		battle.draw_supply(trap.side, card.get("supply", []))
+		if card.has("reclaim"): battle.recover_reserves(trap.side, card.reclaim)
 		return int(card.get("retort", 0))
 	return 0
 

@@ -102,6 +102,34 @@ func advance_chapter() -> Dictionary:
 	requisition = ""
 	return {"ok": true}
 
+func completed_chapter_count() -> int:
+	return completed.size() + int(story != null and story.current().type == "end")
+
+func replay_chapters() -> Array[Dictionary]:
+	var entries: Array[Dictionary] = []
+	var unlocked: int = completed_chapter_count()
+	for position: int in range(index.get("chapters", []).size()):
+		var chapter: Dictionary = index.chapters[position]
+		entries.append({"id": chapter.id, "title": chapter.title, "number": position + 1, "unlocked": position < unlocked})
+	return entries
+
+func replay_from(chapter_id: String) -> Dictionary:
+	var target: int = -1
+	for position: int in range(completed_chapter_count()):
+		if index.chapters[position].id == chapter_id:
+			target = position
+			break
+	if target < 0: return {"ok": false, "message": "主线完成这一章后，即可从这里重走。"}
+	var copy: RefCounted = get_script().new()
+	if target == 0:
+		var opened: Dictionary = copy.start()
+		return {"ok": true, "campaign": copy} if opened.ok else opened
+	var previous: Dictionary = completed[target - 1]
+	var restored: Dictionary = copy.restore({"chapter_id": previous.chapter_id, "story": previous.story, "completed": completed.slice(0, target - 1)})
+	if not restored.ok: return restored
+	restored = copy.advance_chapter()
+	return {"ok": true, "campaign": copy} if restored.ok else restored
+
 func scenario() -> Dictionary:
 	return _scenario_at(story)
 

@@ -8,6 +8,7 @@ signal deck_editor_requested
 signal lore_requested
 signal new_campaign_requested
 signal continue_campaign_requested
+signal chapter_replay_requested
 signal training_requested
 signal settings_requested
 
@@ -29,6 +30,7 @@ var library_button: Button
 var editor_button: Button
 var lore_button: Button
 var campaign_notice: Label
+var replay_button: Button
 var training_button: Button
 var settings_button: Button
 var deck_choice: OptionButton
@@ -153,6 +155,11 @@ func _build() -> void:
 	continue_campaign.custom_minimum_size.y = 44
 	continue_campaign.pressed.connect(func() -> void: continue_campaign_requested.emit())
 	campaign_row.add_child(continue_campaign)
+	replay_button = Button.new()
+	replay_button.text = "章节重走"
+	replay_button.custom_minimum_size.y = 44
+	replay_button.pressed.connect(chapter_replay_requested.emit)
+	campaign_row.add_child(replay_button)
 	campaign_notice = _label("十八章战役 · 剧情选择与战斗进度自动保存", 13, MUTED, true)
 	left.add_child(campaign_notice)
 	var practice_row := HBoxContainer.new()

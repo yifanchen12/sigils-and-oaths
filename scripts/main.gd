@@ -10,6 +10,7 @@ const DeckEditorControl = preload("res://scripts/deck_editor.gd")
 const Effects = preload("res://scripts/effect_forecast.gd")
 const LoreBook = preload("res://scripts/lore_book.gd")
 const CampaignSession = preload("res://scripts/campaign_session.gd")
+const ChapterReplay = preload("res://scripts/chapter_replay_view.gd")
 const StoryView = preload("res://scripts/story_view.gd")
 const SettingsStore = preload("res://scripts/settings_store.gd")
 const SettingsDialog = preload("res://scripts/settings_dialog.gd")
@@ -57,8 +58,12 @@ var unit_action_label: Label
 var using_unit_skill: bool = false
 var lore_book: Control
 var campaign_session: RefCounted = CampaignSession.new()
+var parked_main_campaign: RefCounted
 var campaign_active: bool = false
 var story_view: Control
+var replay_view: Control
+var replay_confirmation: ConfirmationDialog
+var pending_replay_chapter: String = ""
 var campaign_confirmation: ConfirmationDialog
 var quit_confirmation: ConfirmationDialog
 var exiting: bool = false
@@ -197,9 +202,16 @@ func _ready() -> void:
 	story_view.requisition_requested.connect(_choose_requisition)
 	story_view.retreat_requested.connect(_retreat_from_campaign_battle)
 	story_view.next_chapter_requested.connect(_next_story_chapter)
+	story_view.replay_requested.connect(_replay_from_ending)
 	story_view.menu_requested.connect(_open_council)
 	story_view.save_requested.connect(_save_campaign)
 	story_view.settings_requested.connect(_open_settings)
+	replay_view = ChapterReplay.new()
+	replay_view.theme = theme
+	add_child(replay_view)
+	replay_view.start_requested.connect(_request_replay_branch)
+	replay_view.continue_requested.connect(_continue_replay_branch)
+	replay_view.close_requested.connect(_close_chapter_replay)
 	audio = AudioDirector.new()
 	add_child(audio)
 	options = SettingsDialog.new()
@@ -211,11 +223,20 @@ func _ready() -> void:
 	_apply_settings()
 	campaign_confirmation = ConfirmationDialog.new()
 	campaign_confirmation.title = "重新开始战役"
-	campaign_confirmation.dialog_text = "将从第一章开头重新开始，并替换当前战役进度。"
+	campaign_confirmation.dialog_text = "将从第一章开头重新开始，并替换主线战役进度。"
 	campaign_confirmation.ok_button_text = "重新开始"
 	campaign_confirmation.cancel_button_text = "保留进度"
 	campaign_confirmation.confirmed.connect(_new_campaign)
 	add_child(campaign_confirmation)
+	replay_confirmation = ConfirmationDialog.new()
+	replay_confirmation.title = "更换分支进度"
+	replay_confirmation.ok_button_text = "开始新分支"
+	replay_confirmation.cancel_button_text = "保留当前分支"
+	replay_confirmation.confirmed.connect(_confirm_replay_branch)
+	replay_confirmation.canceled.connect(func() -> void:
+		pending_replay_chapter = ""
+		replay_view.start_button.grab_focus())
+	add_child(replay_confirmation)
 	quit_confirmation = ConfirmationDialog.new()
 	quit_confirmation.title = "战役进度尚未保存"
 	quit_confirmation.ok_button_text = "仍然退出"
@@ -285,18 +306,19 @@ func _ready() -> void:
 	council.lore_requested.connect(func() -> void: lore_book.open(council.selected_hero))
 	council.new_campaign_requested.connect(_request_new_campaign)
 	council.continue_campaign_requested.connect(_continue_campaign)
+	council.chapter_replay_requested.connect(_open_chapter_replay)
 	council.training_requested.connect(_start_training)
 	council.settings_requested.connect(_open_settings)
 	_new_match(1)
 	council.open(current_map, current_hero, false, current_deck, current_opponent)
 
-func _open_council() -> void:
+func _open_council(save_active: bool = true) -> void:
 	if training != null:
 		_leave_training()
 		return
 	if campaign_session.campaign.story != null:
-		campaign_session.save()
-		council.campaign_notice.text = campaign_session.notice
+		if save_active: campaign_session.save()
+		council.campaign_notice.text = ("分支 · " if parked_main_campaign != null else "") + campaign_session.notice
 	story_view.hide()
 	council.open(current_map, current_hero, has_started and battle.winner == -1, current_deck, current_opponent)
 	_refresh()
@@ -335,10 +357,10 @@ func _start_from_council(map_id: String, hero_id: String, deck_id: String, oppon
 	board.grab_focus()
 
 func _modal_open() -> bool:
-	return council.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible or lore_book.visible or story_view.visible or options.visible
+	return council.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible or lore_book.visible or story_view.visible or options.visible or replay_view.visible
 
 func _open_settings() -> void:
-	if options == null or options.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible or lore_book.visible or campaign_confirmation.visible or quit_confirmation.visible: return
+	if options == null or options.visible or %CardsDialog.visible or %RulesDialog.visible or deck_editor.visible or lore_book.visible or replay_view.visible or campaign_confirmation.visible or quit_confirmation.visible: return
 	settings_focus = get_viewport().gui_get_focus_owner()
 	options.open_preferences(settings.values, settings.notice, settings.writable)
 
@@ -416,20 +438,136 @@ func _finish_training_step(action: Dictionary) -> void:
 	training.step_index += 1
 
 func _request_new_campaign() -> void:
-	if campaign_session.campaign.story != null or FileAccess.file_exists(campaign_session.store.path) or FileAccess.file_exists(campaign_session.store.path + ".bak"):
+	var primary: RefCounted = _main_campaign_session()
+	if primary.campaign.story != null or _has_campaign_file(primary.store.path):
 		campaign_confirmation.popup_centered()
 	else: _new_campaign()
 
 func _new_campaign() -> void:
-	var result: Dictionary = campaign_session.new_campaign()
+	if parked_main_campaign != null and not _flush_campaign_for_switch(): return
+	var primary: RefCounted = _main_campaign_session()
+	var result: Dictionary = primary.new_campaign()
 	if not result.ok:
 		council.campaign_notice.text = result.message
 		return
+	_activate_main_campaign(primary)
 	campaign_active = true
 	_show_story()
 
 func _continue_campaign() -> void:
-	if campaign_active and campaign_session.encounter == battle and battle.winner == -1:
+	if parked_main_campaign != null:
+		if not _flush_campaign_for_switch(): return
+		var primary: RefCounted = parked_main_campaign
+		if primary.campaign.story == null:
+			var result: Dictionary = primary.load_campaign()
+			if not result.ok:
+				council.campaign_notice.text = result.message
+				return
+		_activate_main_campaign(primary)
+	_open_active_campaign()
+
+func _activate_main_campaign(primary: RefCounted) -> void:
+	if campaign_session != primary: campaign_session.epoch += 1
+	campaign_session = primary
+	parked_main_campaign = null
+
+func _main_campaign_session() -> RefCounted:
+	return parked_main_campaign if parked_main_campaign != null else campaign_session
+
+func _has_campaign_file(path: String) -> bool:
+	return FileAccess.file_exists(path) or FileAccess.file_exists(path + ".bak")
+
+func _flush_campaign_for_switch() -> bool:
+	# Entering the council already saves and pauses the active campaign.
+	if not campaign_session.unsaved: return true
+	if campaign_session.save().ok: return true
+	council.campaign_notice.text = campaign_session.notice
+	if replay_view.visible: replay_view.set_status(campaign_session.notice, true)
+	return false
+
+func _replay_from_ending() -> void:
+	if not _flush_campaign_for_switch():
+		story_view.set_status(campaign_session.notice, true)
+		return
+	_open_council(false)
+	_open_chapter_replay()
+
+func _open_chapter_replay() -> void:
+	var primary: RefCounted = _main_campaign_session()
+	var saved: Dictionary = primary.store.load_progress()
+	var archive: RefCounted = CampaignSession.Campaign.new()
+	var source_notice: String = ""
+	if saved.ok:
+		var result: Dictionary = archive.restore(saved.progress)
+		if not result.ok: source_notice = result.message
+		elif saved.get("recovered", false): source_notice = saved.message
+	elif not saved.get("missing", false): source_notice = saved.message
+	var entries: Array[Dictionary] = archive.replay_chapters()
+	var path: String = CampaignSession.replay_path(primary.store.path)
+	var branch: Dictionary = CampaignSession.Store.new(path).load_progress()
+	var branch_label: String = "分支存档 · 尚未建立"
+	if branch.ok:
+		for entry: Dictionary in entries:
+			if entry.id != branch.progress.chapter_id: continue
+			branch_label = "分支存档 · " + entry.title
+			if not branch.encounter.is_empty(): branch_label += " · 战斗中"
+			break
+	elif not branch.get("missing", false): branch_label = "分支存档 · " + str(branch.message)
+	replay_view.open(entries, branch_label, branch.ok, source_notice)
+	_refresh()
+
+func _close_chapter_replay() -> void:
+	replay_view.hide()
+	council.replay_button.grab_focus()
+	_refresh()
+
+func _request_replay_branch(chapter_id: String) -> void:
+	if not replay_view.visible or chapter_id != replay_view.selected_chapter(): return
+	var path: String = CampaignSession.replay_path(_main_campaign_session().store.path)
+	if _has_campaign_file(path):
+		pending_replay_chapter = chapter_id
+		replay_confirmation.dialog_text = "将从「%s」开头另开分支，并替换当前的分支进度。" % replay_view.selected_title.text
+		replay_confirmation.popup_centered()
+	else: _start_replay_branch(chapter_id)
+
+func _confirm_replay_branch() -> void:
+	var chapter_id: String = pending_replay_chapter
+	pending_replay_chapter = ""
+	if replay_view.visible and not chapter_id.is_empty(): _start_replay_branch(chapter_id)
+
+func _start_replay_branch(chapter_id: String) -> void:
+	if not _flush_campaign_for_switch(): return
+	var primary: RefCounted = _main_campaign_session()
+	var branch := CampaignSession.new(CampaignSession.replay_path(primary.store.path))
+	var result: Dictionary = branch.start_replay_from(primary, chapter_id)
+	if not result.ok:
+		replay_view.set_status(result.message, true)
+		return
+	_activate_replay_branch(primary, branch)
+
+func _continue_replay_branch() -> void:
+	if not _flush_campaign_for_switch(): return
+	if parked_main_campaign != null:
+		replay_view.hide()
+		_open_active_campaign()
+		return
+	var primary: RefCounted = campaign_session
+	var branch := CampaignSession.new(CampaignSession.replay_path(primary.store.path))
+	var result: Dictionary = branch.load_campaign()
+	if not result.ok:
+		replay_view.set_status(result.message, true)
+		return
+	_activate_replay_branch(primary, branch)
+
+func _activate_replay_branch(primary: RefCounted, branch: RefCounted) -> void:
+	campaign_session.epoch += 1
+	parked_main_campaign = primary
+	campaign_session = branch
+	replay_view.hide()
+	_open_active_campaign()
+
+func _open_active_campaign() -> void:
+	if campaign_active and has_started and campaign_session.encounter == battle and battle.winner == -1:
 		_resume_battle()
 		return
 	if campaign_session.campaign.story == null:
@@ -450,7 +588,9 @@ func _show_story(focus_requisition: bool = false) -> void:
 	council.hide()
 	var setup: Dictionary = campaign_session.campaign.scenario()
 	if not setup.is_empty(): setup["selected_requisition"] = campaign_session.campaign.requisition
-	story_view.open(campaign_session.current(), campaign_session.token(), setup, campaign_session.backlog(), campaign_session.notice, campaign_session.unsaved)
+	var page: Dictionary = campaign_session.current()
+	if parked_main_campaign != null: page["chapter"] = "分支 · " + str(page.get("chapter", "战役"))
+	story_view.open(page, campaign_session.token(), setup, campaign_session.backlog(), campaign_session.notice, campaign_session.unsaved)
 	if focus_requisition and story_view.requisition_panel.visible: story_view.requisition_choice.grab_focus()
 	_refresh()
 
@@ -720,6 +860,7 @@ func _refresh() -> void:
 	var player: Dictionary = battle.players[0]
 	var enemy: Dictionary = battle.players[1]
 	%MapName.get_parent().battle = battle
+	%MapName.get_parent().replay_active = campaign_active and parked_main_campaign != null
 	%MapName.get_parent().queue_redraw()
 	var blue: Dictionary = battle.commander(0)
 	var red: Dictionary = battle.commander(1)
@@ -741,6 +882,7 @@ func _refresh() -> void:
 			var exit_cell: Vector2i = battle.ControlObjective.position(battle.objective.cells[0])
 			%MapName.text = "%s / 护送至 %s · %d/%d 轮" % [battle.map_definition.name, battle.cell_name(exit_cell), (battle.turn - 1) / 2, battle.objective.round_limit]
 		%MapName.tooltip_text = battle.objective_status()
+	if campaign_active and parked_main_campaign != null: %MapName.text = "分支 · " + %MapName.text
 	%WeatherStatus.text = battle.WEATHER[battle.weather].name + (" · 剩余 %d 行动回合" % battle.weather_remaining if battle.weather_remaining > 0 else " · 无环境修正")
 	%WeatherStatus.tooltip_text = battle.WEATHER[battle.weather].description
 	%WeatherStatus.text += " · 伏设 我%d / 敌%d" % [battle.Traps.count(battle, 0), battle.Traps.count(battle, 1)]
@@ -1036,13 +1178,13 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 			visual_action["spell_effect"] = definition.get("effect", "")
 			visual_action["effect_kind"] = visual_action.spell_effect
 			if visual_action.spell_effect == "formation":
-				visual_action["affected_cells"] = battle.Formation.footprint(battle, action.target, int(definition.get("radius", 1)))
+				visual_action["affected_cells"] = battle.Formation.footprint(battle, action.target, int(definition.get("radius", 1)), str(definition.get("shape", "")))
 				if int(definition.get("damage", 0)) > 0:
 					visual_action.effect_kind = "area"
 					if not definition.get("fire", false): visual_action["cast_color"] = Color("9ad6f5")
 				else: visual_action.effect_kind = "rally_heal" if int(definition.get("healing", 0)) > 0 else "shield"
 			elif visual_action.spell_effect == "roadwork":
-				visual_action["affected_cells"] = battle.roadwork_cells(action.target, definition.get("terrain", "road"))
+				visual_action["affected_cells"] = battle.roadwork_cells(action.target, definition)
 				visual_action.effect_kind = "shield"
 			elif visual_action.spell_effect in ["verdict", "commission", "recall"]:
 				visual_action.effect_kind = "shield" if visual_action.spell_effect == "recall" else "damage"
@@ -1051,10 +1193,12 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 			elif visual_action.spell_effect == "redeploy":
 				visual_action.effect_kind = "shield"
 				visual_action["cast_color"] = Color("9ad6f5")
-			elif int(entry.get("damage", 0)) > 0 and battle.entry_active(entry, action.target):
-				visual_action["affected_cells"] = battle.Formation.footprint(battle, action.target, int(entry.get("radius", 1)))
-				visual_action.effect_kind = "area"
-				visual_action["cast_color"] = Color("9ad6f5")
+			elif (int(entry.get("damage", 0)) > 0 or entry.has("shape")) and battle.entry_active(entry, action.target):
+				visual_action["affected_cells"] = battle.Formation.footprint(battle, action.target, int(entry.get("radius", 1)), str(entry.get("shape", "")))
+				if int(entry.get("damage", 0)) > 0:
+					visual_action.effect_kind = "area"
+					visual_action["cast_color"] = Color("9ad6f5")
+				else: visual_action.effect_kind = "rally_heal" if int(entry.get("healing", 0)) > 0 else "shield"
 			var origin: Dictionary = {}
 			if definition.get("effect", "") not in ["weather", "clear_weather"] and battle.inside(action.target):
 				for caster: Dictionary in battle.units:

@@ -4,6 +4,7 @@ extends HBoxContainer
 const Art = preload("res://scripts/art_library.gd")
 var battle: Battle
 var hud_visible: bool = false
+var replay_active: bool = false
 var last_second: int = -1
 
 func _ready() -> void:
@@ -21,6 +22,7 @@ func _process(_delta: float) -> void:
 func subtitle_text() -> String:
 	if battle == null: return ""
 	var value: String = "%s  /  %s" % [battle.map_definition.name, battle.WEATHER[battle.weather].name]
+	if replay_active: value = "分支 · " + value
 	var goal: Dictionary = battle.objective
 	if goal.is_empty(): return value
 	var completed_rounds: int = (battle.turn - 1) / 2

@@ -13,6 +13,7 @@ const NARRATIVE_SCENES: Dictionary = {
 	"scene_school_day": "school-day-v1", "scene_school_ward": "school-ward-night-v1",
 	"scene_saltlane_yard": "saltlane-yard-v1",
 	"requisition_desk": "quartermaster-desk-v1",
+	"chapter_replay_archive": "chapter-replay-archive-v1",
 	"scene_waterpass": "waterpass-day-v1", "scene_oldfurnace": "oldfurnace-day-v1",
 	"scene_council_terrace": "council-terrace-day-v1",
 	"scene_redroof": "redroof-day-v1", "scene_northbank_memorial": "northbank-memorial-v1",
@@ -92,7 +93,11 @@ const CARD_ATLASES: Dictionary = {
 	"levee-watch-v1": {"columns": 3, "rows": 3, "ids": ["lamp_patrol", "reed_watch", "slate_quartermaster",
 		"bell_winch", "rain_saddle", "levee_brothers", "rising_oath_watch", "lantern_surgeon", "chalk_route"]},
 	"levee-orders-v1": {"columns": 3, "rows": 3, "ids": ["severed_pullcord", "troop_receipt", "dike_flagstones",
-		"stretcher_signal", "floodline_warning", "reed_toll", "recommission_crew", "dike_lights", "dawn_weir"]}
+		"stretcher_signal", "floodline_warning", "reed_toll", "recommission_crew", "dike_lights", "dawn_weir"]},
+	"moorings-scouts-v1": {"columns": 3, "rows": 2, "ids": ["saltfield_runner", "bank_pikeman", "bastion_driller", "shrike_saddler", "sill_physician", "shoal_arbalest"]},
+	"moorings-veterans-v1": {"columns": 3, "rows": 2, "ids": ["oathroad_mender", "undertow_knight", "claywatch_sage", "crownless_vanguard", "wayfinder_writ", "seam_shot"]},
+	"moorings-works-v1": {"columns": 3, "rows": 2, "ids": ["ledger_patch", "scour_the_rakes", "sluice_flags", "cress_ribbon", "levee_echo", "ridge_marking"]},
+	"moorings-tides-v1": {"columns": 3, "rows": 2, "ids": ["narrow_ford_calendar", "copper_boltline", "driftglass_standing", "sunken_weir_breach", "unbroken_ember_line", "quiet_net"]}
 }
 
 static func get_texture(asset_id: String) -> Texture2D:

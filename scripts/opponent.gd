@@ -86,6 +86,7 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 				if card.has("fall"):
 					score += _reserve_value(battle, side, int(card.fall.get("draw", 0))) * 0.5
 					score += _supply_value(battle, side, card.fall) * 0.5
+					score += _reclaim_value(battle, side, card.fall, 0) * 0.5
 					score += _formation_score(battle, card.fall, action.target) * 0.2
 				return score
 			if card.type == "trap":
@@ -113,16 +114,19 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 					var shatter: float = int(entry.unit.shield) * 3.0 if card.get("clear_shield", false) else 0.0
 					var cutoff: float = 13.0 if card.get("disarm", false) and nearest <= battle.attack_range(entry.unit) + 1 else 0.0
 					value = maxf(value, 28.0 - nearest * 4.0 + shatter + cutoff + (6.0 if card.get("root", false) and entry.unit.kind == "cavalry" else 0.0))
-				return value + draw_bonus if value >= 0.0 else value
+				if value < 0.0: return value
+				if card.has("rally"): value += _formation_score(battle, card.rally, action.target) * 0.5
+				return value + draw_bonus
 			var target: Dictionary = battle.unit_at(action.target)
 			match String(card.effect):
 				"supply": return _supply_value(battle, side, card) - int(card.cost) * 1.5
+				"reclaim": return _reclaim_value(battle, side, card) - int(card.cost) * 1.5
 				"scheduled": return _scheduled_value(battle, card, action.target)
 				"commission":
 					var loss: int = mini(int(target.hp), maxi(0, int(card.amount) - int(target.shield)))
 					var followup: float = 43.0 + _supply_value(battle, side, card) if loss >= int(target.hp) else 0.0
 					return loss * 8.0 + mini(int(card.amount), int(target.shield)) * 4.0 + followup - 9.0
-				"formation": return _formation_score(battle, card, action.target) + _reserve_value(battle, side, int(card.get("draw", 0)))
+				"formation": return _formation_score(battle, card, action.target) + _reserve_value(battle, side, int(card.get("draw", 0))) + _reclaim_value(battle, side, card)
 				"recall": return _recall_value(battle, target, card, threats)
 				"recall_fallen":
 					var room: int = Battle.HAND_LIMIT - battle.players[side].hand.size() + 1
@@ -149,7 +153,7 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 				"roadwork":
 					var benefit: float = -3.0
 					var ground: String = card.get("terrain", "road")
-					for cell: Vector2i in battle.roadwork_cells(action.target, ground):
+					for cell: Vector2i in battle.roadwork_cells(action.target, card):
 						var occupant: Dictionary = battle.unit_at(cell)
 						if occupant.is_empty(): continue
 						if ground == "fort":
@@ -222,7 +226,7 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 				"weather":
 					var value: float = _weather_score(battle, side, card.weather) + _reserve_value(battle, side, int(card.get("draw", 0)))
 					if card.has("rally"): value += _formation_score(battle, card.rally, battle.commander(side).pos)
-					return value + _supply_value(battle, side, card)
+					return value + _supply_value(battle, side, card) + _reclaim_value(battle, side, card)
 				"clear_weather":
 					# Score the current weather without the duplicate-weather rejection.
 					var opposite_value: float = _weather_score_for(battle, side, battle.weather)
@@ -302,12 +306,21 @@ static func _supply_value(battle: Battle, side: int, source: Dictionary) -> floa
 	var room: int = Battle.HAND_LIMIT + 1 - battle.players[side].hand.size()
 	return mini(room, battle.supply_cards(side, source.supply).size()) * 13.0
 
+static func _reclaim_value(battle: Battle, side: int, source: Dictionary, room_for_play: int = 1) -> float:
+	if not source.has("reclaim"): return 0.0
+	var room: int = Battle.HAND_LIMIT - battle.players[side].hand.size() + room_for_play
+	var matches: Array[Dictionary] = battle.reclaim_cards(side, source.reclaim)
+	var value: float = 0.0
+	for index: int in range(mini(room, matches.size())):
+		value += 12.0 + int(battle.definition(matches[index].card_id).cost) * 1.5
+	return value
+
 static func _scheduled_value(battle: Battle, card: Dictionary, center: Vector2i) -> float:
 	var value: float = -7.0
 	for change: Dictionary in battle.Formation.changes(battle, card, center, battle.active_side):
 		var unit: Dictionary = battle.get_unit(change.unit_id)
 		if change.friendly:
-			value += int(change.healing) * 4.0 + int(change.shield_delta) * 3.0
+			value += int(change.healing) * 4.0 + int(change.shield_delta) * 3.0 + (5.0 if change.cleanse else 0.0)
 			continue
 		var impact: float = int(change.hp_loss) * 8.0 - int(change.shield_delta) * 3.0 + (9.0 if change.root else 0.0)
 		if change.hp_after == 0: impact += 100.0 if unit.kind == "commander" else 31.0
@@ -357,11 +370,11 @@ static func _entry_score(battle: Battle, entry: Dictionary, center: Vector2i) ->
 	if fatigue >= int(leader.hp) + int(leader.shield): return -3000.0
 	var cards: int = mini(int(entry.get("draw", 0)), battle.players[side].deck.size())
 	var advance: float = 5.0 if entry.get("vanguard", false) else 0.0
-	return _formation_score(battle, entry, center) + cards * 6.0 + int(entry.get("self_shield", 0)) * 3.0 + advance - fatigue * 7.0 + _supply_value(battle, side, entry)
+	return _formation_score(battle, entry, center) + cards * 6.0 + int(entry.get("self_shield", 0)) * 3.0 + advance - fatigue * 7.0 + _supply_value(battle, side, entry) + _reclaim_value(battle, side, entry)
 
 static func _trap_supply_value(battle: Battle, card: Dictionary, side: int) -> float:
 	var draws: int = int(card.get("draw", 0))
-	if draws == 0: return _supply_value(battle, side, card) * 0.65
+	if draws == 0: return (_supply_value(battle, side, card) + _reclaim_value(battle, side, card, 0)) * 0.65
 	var available: int = battle.players[side].deck.size()
 	return mini(draws, available) * 5.0 - (12.0 if available < draws else 0.0)
 

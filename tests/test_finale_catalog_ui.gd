@@ -67,7 +67,7 @@ func run() -> void:
 	for id: String in ["chapter_17.kit", "chapter_17.runner_battle", "chapter_18.covenant", "chapter_18.joint_end", "chapter_18.split_end", "chapter_18.hold_end"]:
 		await show_page(id)
 	await capture("v041-hold-ending-small")
-	check(game.story_view.actions.get_child_count() == 1, "conclusion has a return action without a phantom next chapter")
+	check(game.story_view.actions.get_child_count() == 2 and game.story_view.actions.get_child(0).text == "章节重走" and game.story_view.actions.get_child(1).text == "返回战前页", "conclusion offers replay and return to menu")
 	var scenario: Dictionary = Campaign.new().index.scenarios.c17_runner
 	var battle := Battle.new(int(scenario.seed), scenario.map, scenario.hero, scenario.enemy_class, scenario.deck, scenario.enemy_deck)
 	battle.set_commander_identity(1, scenario.enemy_name, scenario.enemy_portrait)

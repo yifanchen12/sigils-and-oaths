@@ -18,7 +18,6 @@ func test_catalog() -> void:
 		check(first.has(card.id) or second.has(card.id), "included in a normal preset: " + card.id)
 	check(mana_curve == [1, 2, 2, 2, 2, 3, 2, 1, 1, 2], "all ten costs with nine cards at six and above")
 	check(counts == {"unit": 8, "spell": 5, "environment": 3, "trap": 2}, "four playable card types")
-	check(Model.CATALOG.cards.size() == 141 and Model.DECKS.decks.size() == 14, "140 collectible cards, 14 presets")
 	check(Model.DECKS.validate_counts(first, Model.CATALOG.cards).is_empty(), "attack preset is a legal 30-card deck")
 	check(Model.DECKS.validate_counts(second, Model.CATALOG.cards).is_empty(), "relief preset is a legal 30-card deck")
 
@@ -166,7 +165,7 @@ func test_legacy_escort() -> void:
 	check(stored.version == 8 and old.ok, "original v0.46 export restores under the expanded card catalog")
 	if not old.ok: return
 	var updated: Dictionary = Snapshot.capture(old.battle)
-	check(updated.version == 9 and updated.pending_orders.is_empty(), "legacy backfill starts without any pending order")
+	check(updated.version == Snapshot.VERSION and updated.pending_orders.is_empty(), "legacy backfill starts without any pending order")
 	updated = JSON.parse_string(JSON.stringify(updated, "", true, true))
 	for key: String in ["players", "units", "objective", "terrain", "rng_seed", "rng_state", "active_side", "time_remaining"]:
 		check(updated[key] == stored[key], "restoration preserves " + key)

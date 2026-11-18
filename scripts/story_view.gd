@@ -7,6 +7,7 @@ signal battle_requested(expected: Dictionary)
 signal requisition_requested(card_id: String, expected: Dictionary)
 signal retreat_requested(expected: Dictionary)
 signal next_chapter_requested(expected: Dictionary)
+signal replay_requested
 signal menu_requested
 signal save_requested
 signal settings_requested
@@ -288,6 +289,8 @@ func _render_page() -> void:
 			speaker.text = page.get("ending_title", page.get("chapter", "本章") + " · 章末")
 			if not page.get("next_chapter", {}).is_empty():
 				actions.add_child(_button("进入" + page.next_chapter.title, _next_chapter.bind(view_token.duplicate())))
+			else:
+				actions.add_child(_button("章节重走", replay_requested.emit))
 			actions.add_child(_button("返回战前页", func() -> void: menu_requested.emit()))
 	if actions.get_child_count() > 0: actions.get_child(0).grab_focus()
 

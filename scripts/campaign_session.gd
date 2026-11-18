@@ -26,7 +26,7 @@ func current() -> Dictionary:
 	return page
 
 func token() -> Dictionary:
-	return {"epoch": epoch, "revision": current().get("revision", -1)}
+	return {"session": get_instance_id(), "epoch": epoch, "revision": current().get("revision", -1)}
 
 func _guard(expected: Dictionary) -> Dictionary:
 	if expected != token() or campaign.story == null: return {"ok": false, "message": "页面已更新，请按当前页面操作。"}
@@ -37,8 +37,26 @@ func new_campaign() -> Dictionary:
 	var candidate: RefCounted = Campaign.new()
 	var result: Dictionary = candidate.start()
 	if not result.ok: return result
+	return _start_saved_campaign(candidate, "新战役已保存。")
+
+static func replay_path(primary_path: String) -> String:
+	return primary_path.get_basename() + "_branch.json"
+
+func start_replay_from(primary: RefCounted, chapter_id: String) -> Dictionary:
+	if ProjectSettings.globalize_path(store.path).simplify_path().nocasecmp_to(ProjectSettings.globalize_path(primary.store.path).simplify_path()) == 0:
+		return {"ok": false, "message": "请为重走章节选择独立的分支存档。"}
+	var saved: Dictionary = primary.store.load_progress()
+	if not saved.ok: return saved
+	var original: RefCounted = Campaign.new()
+	var opened: Dictionary = original.restore(saved.progress)
+	if not opened.ok: return opened
+	var checkpoint: Dictionary = original.replay_from(chapter_id)
+	if not checkpoint.ok: return checkpoint
+	return _start_saved_campaign(checkpoint.campaign, "分支已保存。")
+
+func _start_saved_campaign(candidate: RefCounted, saved_notice: String) -> Dictionary:
 	# A failed/newer-version save must not replace the running campaign either.
-	result = store.save_progress(candidate.snapshot())
+	var result: Dictionary = store.save_progress(candidate.snapshot())
 	if not result.ok: return result
 	campaign = candidate
 	epoch += 1
@@ -46,7 +64,7 @@ func new_campaign() -> Dictionary:
 	encounter_revision = -1
 	suspended = false
 	autosave_elapsed = 0.0
-	notice = "新战役已保存。"
+	notice = saved_notice
 	unsaved = false
 	return {"ok": true}
 

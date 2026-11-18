@@ -28,13 +28,14 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 			title = card.name
 			effect = str(card.get("effect", ""))
 			var entry: Dictionary = card.get("entry", {})
-			if entry.get("target_side", "") == "enemy" and battle.entry_active(entry, cell): return _formation_preview(battle, card, entry, cell, side)
+			if (entry.get("target_side", "") == "enemy" or entry.has("shape")) and battle.entry_active(entry, cell):
+				return _formation_preview(battle, card, entry, cell, side)
 			if effect == "formation":
 				return _formation_preview(battle, card, card, cell, side)
 			if effect == "scheduled":
 				var note: String = "落点公开。对手有一个完整回合调整站位，军令在第 %d 回合开始时生效。\n%s" % [battle.turn + 2, card.text]
 				return {"title": title, "effect": effect, "art": card.id, "amount": int(card.get("damage", 0)), "target_id": -1, "changes": [],
-					"cells": battle.Formation.footprint(battle, cell, int(card.radius)), "note": note}
+					"cells": battle.Formation.footprint(battle, cell, int(card.radius), str(card.get("shape", ""))), "note": note}
 			if effect == "commission":
 				amount = int(card.amount)
 				var change: Dictionary = _change(target, "damage", amount)
@@ -42,7 +43,7 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 				return {"title": title, "effect": effect, "art": card.id, "amount": amount, "target_id": target.id, "changes": [change], "note": note}
 			if effect == "roadwork":
 				var ground: String = card.get("terrain", "road")
-				var sites: Array[Vector2i] = battle.roadwork_cells(cell, ground)
+				var sites: Array[Vector2i] = battle.roadwork_cells(cell, card)
 				var gains: Array[Dictionary] = []
 				var reinforce: int = int(card.get("reinforce", 0))
 				if reinforce > 0:
@@ -119,11 +120,17 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 
 static func _formation_preview(battle: Battle, card: Dictionary, spec: Dictionary, cell: Vector2i, side: int) -> Dictionary:
 	var note: String = "预估按公开战况计算，实际结算可能触发隐藏陷阱。"
-	if spec.has("grounds"): note = "只影响军道或桥梁上的普通敌军。"
+	if spec.has("grounds"):
+		var names := PackedStringArray()
+		for ground: String in spec.grounds: names.append(battle.TERRAIN[ground].name)
+		note = "只影响处在%s的敌军。" % "、".join(names)
 	if spec.has("draw"):
 		note += "\n随后将从牌库抽最多%d张。" % mini(int(spec.draw), battle.players[side].deck.size())
+	if spec.has("reclaim"):
+		var cards: Array[Dictionary] = battle.reclaim_cards(side, spec.reclaim)
+		if not cards.is_empty(): note += "\n可从弃牌堆收回%d张，受手牌上限约束。" % cards.size()
 	return {"title": card.name, "effect": "formation", "art": card.id, "amount": battle.Formation.damage(battle, spec, side), "target_id": -1,
-		"changes": battle.Formation.changes(battle, spec, cell, side), "cells": battle.Formation.footprint(battle, cell, int(spec.get("radius", 1))),
+		"changes": battle.Formation.changes(battle, spec, cell, side), "cells": battle.Formation.footprint(battle, cell, int(spec.get("radius", 1)), str(spec.get("shape", ""))),
 		"commander_amount": battle.Formation.damage(battle, spec, side, true), "note": note}
 
 static func _change(unit: Dictionary, effect: String, amount: int) -> Dictionary:
