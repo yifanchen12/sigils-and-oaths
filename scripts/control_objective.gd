@@ -1,5 +1,8 @@
 extends RefCounted
-## Two control cells, checked once per new player turn. Plain data only.
+## Control and relay objectives checked once per new player turn.
+
+static func is_relay(value: Dictionary) -> bool:
+	return value.get("mode", "") == "relay"
 
 static func whole(value: Variant, low: int, high: int) -> bool:
 	return typeof(value) in [TYPE_INT, TYPE_FLOAT] and is_finite(float(value)) and float(value) == floorf(float(value)) and value >= low and value <= high
@@ -7,8 +10,13 @@ static func whole(value: Variant, low: int, high: int) -> bool:
 static func validate_config(value: Variant, map: Dictionary) -> String:
 	if not value is Dictionary: return "驻守目标必须是对象。"
 	if value.is_empty(): return ""
+	if value.has("mode") and not is_relay(value): return "战役目标模式不存在。"
 	if not whole(value.get("required"), 1, 20) or not whole(value.get("round_limit"), 1, 100) or value.required > value.round_limit: return "驻守次数或期限无效。"
-	if not value.get("cells") is Array or value.cells.size() != 2: return "驻守目标需要两个据点格。"
+	if not value.get("cells") is Array: return "战役目标缺少据点。"
+	if is_relay(value):
+		if value.cells.size() < 2 or value.cells.size() != int(value.required): return "接力点数量须与接应次数一致。"
+	elif value.cells.size() != 2:
+		return "驻守目标需要两个据点格。"
 	var seen: Dictionary = {}
 	for cell: Variant in value.cells:
 		if not cell is Array or cell.size() != 2 or not whole(cell[0], 0, str(map.rows[0]).length() - 1) or not whole(cell[1], 0, map.rows.size() - 1): return "据点坐标越界。"
@@ -21,7 +29,9 @@ static func config(value: Dictionary) -> Dictionary:
 	if value.is_empty(): return {}
 	var cells: Array = []
 	for cell: Array in value.cells: cells.append([int(cell[0]), int(cell[1])])
-	return {"cells": cells, "required": int(value.required), "round_limit": int(value.round_limit)}
+	var result: Dictionary = {"cells": cells, "required": int(value.required), "round_limit": int(value.round_limit)}
+	if is_relay(value): result["mode"] = "relay"
+	return result
 
 static func initial(value: Dictionary) -> Dictionary:
 	var result: Dictionary = config(value)
@@ -32,18 +42,29 @@ static func check_turn(battle: RefCounted) -> void:
 	var goal: Dictionary = battle.objective
 	if goal.is_empty() or battle.winner != -1 or battle.active_side != 0 or battle.turn <= 1 or goal.last_check == battle.turn: return
 	goal.last_check = battle.turn
+	var relay: bool = is_relay(goal)
+	var cells: Array = [goal.cells[int(goal.streak)]] if relay else goal.cells
 	var occupied: bool = true
-	for cell: Array in goal.cells:
+	for cell: Array in cells:
 		var unit: Dictionary = battle.unit_at(Vector2i(int(cell[0]), int(cell[1])))
 		if unit.is_empty() or unit.side != 0: occupied = false
-	goal.streak = int(goal.streak) + 1 if occupied else 0
+	if occupied: goal.streak = int(goal.streak) + 1
+	elif not relay: goal.streak = 0
 	if goal.streak >= goal.required:
 		battle.winner = 0
-		battle._record("两处据点连续驻守达标，本次驻守任务完成。")
+		battle._record(result_text(goal, true))
 	elif (battle.turn - 1) / 2 >= goal.round_limit:
 		battle.winner = 1
-		battle._record("驻守期限已到，未能稳住两处据点，本次驻守任务失败。")
+		battle._record(result_text(goal, false))
+	elif relay:
+		var next: Array = goal.cells[int(goal.streak)]
+		battle._record("已接应 %d/%d 处 · 下一站 %s · 已过 %d/%d 轮。" % [goal.streak, goal.required, battle.cell_name(Vector2i(int(next[0]), int(next[1]))), (battle.turn - 1) / 2, goal.round_limit])
 	else: battle._record("据点连续驻守 %d/%d · 已过 %d/%d 轮。" % [goal.streak, goal.required, (battle.turn - 1) / 2, goal.round_limit])
+
+static func result_text(goal: Dictionary, won: bool) -> String:
+	if is_relay(goal):
+		return "所有接力点完成接应，撤离通道已经打通。" if won else "接应期限已到，未能打通撤离通道。"
+	return "两处据点连续驻守达标，本次驻守任务完成。" if won else "驻守期限已到，未能稳住两处据点，本次驻守任务失败。"
 
 static func validate_state(value: Variant, data: Dictionary, map: Dictionary) -> String:
 	var problem: String = validate_config(value, map)
@@ -60,7 +81,8 @@ static func validate_state(value: Variant, data: Dictionary, map: Dictionary) ->
 static func objective_winner(value: Dictionary, data: Dictionary) -> int:
 	if value.is_empty() or data.active_side != 0 or value.last_check != data.turn: return -1
 	if value.streak >= value.required:
-		for cell: Array in value.cells:
+		var cells: Array = [value.cells.back()] if is_relay(value) else value.cells
+		for cell: Array in cells:
 			var found: bool = false
 			for unit: Dictionary in data.units:
 				if unit.side == 0 and int(unit.pos[0]) == int(cell[0]) and int(unit.pos[1]) == int(cell[1]): found = true

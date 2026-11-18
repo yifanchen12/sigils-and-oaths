@@ -10,6 +10,7 @@ const HEROES = preload("res://data/heroes.tres")
 const DECKS = preload("res://data/decks.tres")
 const ControlObjective = preload("res://scripts/control_objective.gd")
 const Traps = preload("res://scripts/trap_rules.gd")
+const Formation = preload("res://scripts/formation_cards.gd")
 var width: int = 8
 var height: int = 6
 const HAND_LIMIT: int = 8
@@ -32,7 +33,9 @@ const WEATHER: Dictionary = {
 	"rain": {"name": "暴雨", "description": "骑兵在军道/桥梁外移动费用 +1；火焰法术伤害 -1。"},
 	"fog": {"name": "浓雾", "description": "双方单位的最终射程上限为 2。"},
 	"sun": {"name": "烈日", "description": "火焰法术伤害 +1，医师回合治疗 +1。"},
-	"snow": {"name": "寒潮", "description": "普通部队移动力 -1（至少 1）；森林再提供 1 防御。"}
+	"snow": {"name": "寒潮", "description": "普通部队移动力 -1（至少 1）；森林再提供 1 防御。"},
+	"tailwind": {"name": "疾风", "description": "双方普通部队移动力 +1。"},
+	"lanterns": {"name": "灯夜", "description": "双方新部署的普通部队获得 1 护盾。"}
 }
 
 var players: Array[Dictionary] = []
@@ -85,6 +88,9 @@ func objective_status() -> String:
 	if objective.is_empty(): return ""
 	var cells: PackedStringArray = []
 	for cell: Array in objective.cells: cells.append(cell_name(Vector2i(int(cell[0]), int(cell[1]))))
+	if ControlObjective.is_relay(objective):
+		var next: String = cells[int(objective.streak)] if objective.streak < objective.required else "已完成"
+		return "接力路线 %s\n已接应 %d/%d 处 · 下一站 %s · 已过 %d/%d 轮。己方回合开始时，当前接力点有友军即记一处，已接应的位置可离开。击败敌指挥官也可获胜。" % [" → ".join(cells), objective.streak, objective.required, next, (turn - 1) / 2, objective.round_limit]
 	return "守住 %s\n己方回合开始时两格均有友军，连续 %d/%d 次；已过 %d/%d 轮。击败敌指挥官也可获胜。" % ["、".join(cells), objective.streak, objective.required, (turn - 1) / 2, objective.round_limit]
 
 func _init(seed_value: int = 42, map_id: String = "greenwood", blue_hero: String = "warden", red_hero: String = "pyromancer", blue_deck: String = "balanced", red_deck: String = "balanced", seconds_per_turn: float = 90.0, blue_custom: Dictionary = {}) -> void:
@@ -180,6 +186,7 @@ func movement_allowance(unit: Dictionary) -> int:
 	var allowance: int = int(unit.move)
 	if unit.kind == "cavalry" and ground(unit.pos) in ["road", "bridge"]: allowance += 1
 	if weather == "snow": allowance -= 1
+	if weather == "tailwind": allowance += 1
 	return maxi(1, allowance)
 
 func movement_cost(unit: Dictionary, cell: Vector2i) -> int:
@@ -417,6 +424,11 @@ func spell_cells(card: Dictionary, side: int) -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
 	if card.type == "trap": return Traps.targets(self, card, side)
 	if card.effect == "reveal_traps": return casting_cells(side)
+	if card.effect == "formation" or card.effect == "roadwork":
+		for cell: Vector2i in casting_cells(side):
+			var useful: bool = not Formation.recipients(self, card, cell, side).is_empty() if card.effect == "formation" else passable(cell) and not roadwork_cells(cell).is_empty()
+			if useful: result.append(cell)
+		return result
 	if card.effect == "rally_heal":
 		for cell: Vector2i in casting_cells(side):
 			for ally: Dictionary in units:
@@ -459,6 +471,14 @@ func spell_cells(card: Dictionary, side: int) -> Array[Vector2i]:
 			"onslaught": valid = friendly and target.kind != "commander" and target.attacked and not target.summoning
 		if valid and can_cast_at(target.pos, side):
 			result.append(target.pos)
+	return result
+
+func roadwork_cells(center: Vector2i) -> Array[Vector2i]:
+	var result: Array[Vector2i] = []
+	var footprint: Array[Vector2i] = [center]
+	for direction: Vector2i in DIRECTIONS: footprint.append(center + direction)
+	for cell: Vector2i in footprint:
+		if passable(cell) and ground(cell) not in ["road", "bridge"]: result.append(cell)
 	return result
 
 func repulse_destination(target: Dictionary, side: int) -> Vector2i:
@@ -574,6 +594,7 @@ func apply_action(action: Dictionary) -> Dictionary:
 				var unit_id: int = _spawn(card, cell, active_side)
 				instance["unit_id"] = unit_id
 				units.back()["card"] = instance
+				_resolve_entry(card, units.back())
 			elif card.type == "trap": Traps.place(self, instance, card, cell)
 			else:
 				players[active_side].discard.append(instance)
@@ -673,9 +694,26 @@ func _spawn(card: Dictionary, cell: Vector2i, side: int) -> int:
 		"shield": 0, "pos": cell, "moved": true, "attacked": true, "summoning": true, "last_move_distance": 0, "rooted_turns": 0, "skill_used": false, "guarding": false})
 	return unit_id
 
+func _resolve_entry(card: Dictionary, unit: Dictionary) -> void:
+	if weather == "lanterns": unit.shield = mini(5, int(unit.shield) + 1)
+	var effects: Dictionary = card.get("entry", {})
+	if effects.is_empty(): return
+	_record("%s结算进场效果。" % unit.name)
+	if effects.get("guard", false): unit.guarding = true
+	unit.shield = mini(5, int(unit.shield) + int(effects.get("self_shield", 0)))
+	if effects.get("reveal", false): Traps.reveal(self, unit.pos, active_side)
+	Formation.resolve(self, effects, unit.pos)
+	var draws: int = int(effects.get("draw", 0))
+	if draws > 0: _draw(active_side, draws)
+
 func _resolve_spell(card: Dictionary, cell: Vector2i) -> void:
 	var target: Dictionary = unit_at(cell)
 	match String(card.effect):
+		"formation": Formation.resolve(self, card, cell)
+		"roadwork":
+			for road: Vector2i in roadwork_cells(cell):
+				terrain[road] = "road"
+				_record("%s变为军道。" % cell_name(road))
 		"shatter_bolt":
 			target.shield = 0
 			_spell_hit(target, spell_damage(card, active_side))
@@ -721,7 +759,7 @@ func _resolve_spell(card: Dictionary, cell: Vector2i) -> void:
 			weather = "clear"
 			weather_remaining = 0
 			_record("天气被驱散，战场恢复晴朗。")
-	if card.effect in ["damage", "area", "shatter_bolt"]: players[active_side].spell_boost_used = true
+	if card.effect in ["damage", "area", "shatter_bolt"] or card.get("fire", false): players[active_side].spell_boost_used = true
 
 func _resolve_hero(leader_hero: Dictionary, cell: Vector2i) -> void:
 	var target: Dictionary = unit_at(cell)

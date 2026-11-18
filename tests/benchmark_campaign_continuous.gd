@@ -5,6 +5,7 @@ const Session = preload("res://scripts/campaign_session.gd")
 const AI = preload("res://scripts/opponent.gd")
 const HarborPilot = preload("res://tests/fixtures/harbor_court_pilot.gd")
 const FocusPilot = preload("res://tests/fixtures/bridge_focus_pilot.gd")
+const ChannelPilot = preload("res://tests/fixtures/channel_push_pilot.gd")
 const Snapshot = preload("res://scripts/battle_snapshot.gd")
 const Replay = preload("res://tests/test_campaign_replays.gd")
 const SAVE: String = "res://.tools/continuous_diagnostic_save.json"
@@ -14,6 +15,7 @@ var session: RefCounted
 var pump_focus: bool = false
 var nursery_focus: bool = false
 var court_focus: bool = false
+var late_route_focus: bool = false
 var report: Dictionary = {"policy": "production opponent on both sides", "coverage": "continuous_campaign", "note": "New campaign, first visible choices (except the declared opening route and priority), real battle results and save/reload. Stops at first defeat. Automated diagnostic, not a human playthrough or balance verdict.", "route": "road", "priority": "relief", "choices": [], "chapters_entered": [], "dialogue_ids": [], "games": [], "reached_authored_end": false, "stop": ""}
 
 func _initialize() -> void: call_deferred("run")
@@ -46,6 +48,8 @@ func fight() -> bool:
 		if side == 0 and pump_focus and scenario == "c04_pump": actor = HarborPilot
 		if side == 0 and nursery_focus and scenario == "c05_nursery": actor = FocusPilot
 		if side == 0 and court_focus and scenario == "c06_court": actor = HarborPilot
+		if side == 0 and late_route_focus and scenario == "c12_depot": actor = FocusPilot
+		if side == 0 and late_route_focus and scenario == "c14_channel": actor = ChannelPilot
 		var action: Dictionary = actor.choose(b)
 		b.advance_clock(0.35)
 		if not check(side == b.active_side and b.apply_action(action).ok, "continuous battle action is legal and within the actual clock"): return false
@@ -82,11 +86,13 @@ func run() -> void:
 		if arg == "--pump-focus": pump_focus = true
 		if arg == "--nursery-focus": nursery_focus = true
 		if arg == "--court-focus": court_focus = true
-	if pump_focus or nursery_focus or court_focus:
+		if arg == "--late-route-focus": late_route_focus = true
+	if pump_focus or nursery_focus or court_focus or late_route_focus:
 		var selected_policies: Array[String] = []
 		if pump_focus: selected_policies.append("c04_pump harbor focus player")
 		if nursery_focus: selected_policies.append("c05_nursery wounded/support focus player")
 		if court_focus: selected_policies.append("c06_court central-formation focus player")
+		if late_route_focus: selected_policies.append("c12_depot formation focus and c14_channel bridge focus player")
 		report.policy = "production on both sides except " + ", ".join(selected_policies)
 		report.note = "Actual new campaign with real battle results. Focus policies use visible positions, health and terrain; no hidden cards, RNG peek, fixture victory or chapter jump. Stops at first defeat. Not human balance evidence."
 	if not check(report.route in ["road", "river"], "opening route is explicit and recognized"): quit(1); return
@@ -118,7 +124,7 @@ func run() -> void:
 	check(pages < 5000, "continuous narrative finishes or stops without a graph loop")
 	if failures > 0: report.stop = "invalid"
 	report.progress = session.campaign.snapshot()
-	var destination: String = "res://.tools/continuous-campaign-" + report.route + ("-seed" if report.priority == "seed" else "") + ("-pump-focus" if pump_focus else "") + ("-nursery-focus" if nursery_focus else "") + ("-court-focus" if court_focus else "") + ".json"
+	var destination: String = "res://.tools/continuous-campaign-" + report.route + ("-seed" if report.priority == "seed" else "") + ("-pump-focus" if pump_focus else "") + ("-nursery-focus" if nursery_focus else "") + ("-court-focus" if court_focus else "") + ("-late-route-focus" if late_route_focus else "") + ".json"
 	var file := FileAccess.open(destination, FileAccess.WRITE)
 	if not check(file != null, "write complete continuous diagnostic including defeat"): quit(1); return
 	report.checks = checks; report.failures = failures

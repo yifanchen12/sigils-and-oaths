@@ -98,9 +98,19 @@ func _initialize() -> void:
         for chapter in campaign.chapters:
             if not JSON.parse_string(FileAccess.get_file_as_string(chapter.path)) is Dictionary:
                 problems.append("missing chapter: " + chapter.path)
-    for path in ["res://scenes/main.tscn", "res://data/cards.tres", "res://data/decks.tres", "res://assets/art/expansion/spells-v1.png", "res://assets/art/expansion/traps-forest-v1.png"]:
+    var required_resources = ["res://scenes/main.tscn", "res://data/cards.tres", "res://data/decks.tres",
+        "res://assets/art/expansion/spells-v1.png", "res://assets/art/expansion/traps-forest-v1.png",
+        "res://assets/art/expansion/warfront-units-v1.png", "res://assets/art/expansion/warfront-effects-v1.png",
+        "res://assets/art/battlefields/lamplanding-v2.png", "res://assets/art/narrative/return-morning-v1.png"]
+    for path in required_resources:
         if not ResourceLoader.exists(path):
             problems.append("missing runtime resource: " + path)
+    var catalog = load("res://data/cards.tres")
+    var decks = load("res://data/decks.tres")
+    if catalog == null or catalog.cards.size() < 59 or catalog.find("last_hearth").get("cost") != 10:
+        problems.append("expansion card data unavailable")
+    if decks == null or decks.decks.size() < 8 or decks.find("frost_engine").get("cards", {}).get("last_hearth") != 1:
+        problems.append("expansion preset data unavailable")
     var report = FileAccess.open(OS.get_cmdline_user_args()[0], FileAccess.WRITE)
     report.store_string(JSON.stringify({"count": entries.size(), "entries": entries, "problems": problems, "ok": problems.is_empty()}, "\t"))
     report.close()

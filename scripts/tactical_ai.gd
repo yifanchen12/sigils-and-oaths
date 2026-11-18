@@ -65,7 +65,7 @@ static func value(battle: Battle, action: Dictionary, context: Dictionary) -> fl
 		var card: Dictionary = battle.definition(battle.hand_card(battle.active_side, action.card_uid).card_id)
 		if card.type != "unit": return 0.0
 		var unit: Dictionary = card.duplicate(true)
-		unit.merge({"id": -1, "kind": card.id, "side": battle.active_side, "pos": action.target, "shield": 0, "last_move_distance": 0})
+		unit.merge({"id": -1, "side": battle.active_side, "pos": action.target, "shield": 0, "last_move_distance": 0})
 		return -exposure(battle, unit, context)
 	if action.type == "move":
 		var unit: Dictionary = battle.get_unit(action.unit_id)

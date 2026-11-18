@@ -121,4 +121,84 @@ cards = Array[Dictionary]([{
 }, {
 "id": "countercurrent_ward", "name": "回流护印", "short": "护", "type": "trap", "effect": "trap", "trigger": "spell", "cost": 2, "amount": 3,
 "text": "从手牌伏设于友军。下次实际\n承受敌方伤害法术或技能前获得\n3护盾（上限5）；不防普攻。", "tag": "陷阱 · 术击反制"
+}, {
+"id": "reed_scout", "name": "芦滩前哨", "short": "步", "type": "unit", "kind": "sword", "cost": 2, "set_id": "warfront",
+"hp": 4, "atk": 2, "defense": 0, "move": 3, "range": 1, "entry": {"draw": 1},
+"text": "部署时抽1张牌。\n步兵，保留誓约坚守主动。", "tag": "步兵 · 进场抽牌"
+}, {
+"id": "gate_veteran", "name": "守桥老枪", "short": "枪", "type": "unit", "kind": "spear", "cost": 3, "set_id": "warfront",
+"hp": 6, "atk": 2, "defense": 1, "move": 2, "range": 1, "entry": {"guard": true, "self_shield": 1},
+"text": "部署时获得1护盾并立即援护\n相邻友军，持续到下个己方回合。", "tag": "枪兵 · 进场援护"
+}, {
+"id": "ridge_courier", "name": "高岭传令骑", "short": "骑", "type": "unit", "kind": "cavalry", "cost": 4, "set_id": "warfront",
+"hp": 6, "atk": 4, "defense": 0, "move": 4, "range": 1, "entry": {"refresh_move": true},
+"text": "部署时恢复正交相邻友军的移动。\n仅对已移动、未攻击、可行动的普通部队生效。", "tag": "骑兵 · 进场换步"
+}, {
+"id": "ridge_archer", "name": "高台破雾弩", "short": "弓", "type": "unit", "kind": "archer", "cost": 5, "set_id": "warfront",
+"hp": 5, "atk": 4, "defense": 0, "move": 2, "range": 3, "entry": {"reveal": true},
+"text": "部署时拆除落点及正交相邻格\n内的敌方陷阱。", "tag": "弓手 · 进场反伏设"
+}, {
+"id": "shore_medic", "name": "河岸随军医", "short": "医", "type": "unit", "kind": "healer", "cost": 5, "set_id": "warfront",
+"hp": 6, "atk": 2, "defense": 0, "move": 3, "range": 1, "entry": {"healing": 3, "cleanse": true},
+"text": "部署时为相邻友军恢复3生命\n并解除定身。", "tag": "医师 · 进场急救"
+}, {
+"id": "scribe_warden", "name": "星纹抄法师", "short": "法", "type": "unit", "kind": "mage", "cost": 6, "set_id": "warfront",
+"hp": 6, "atk": 4, "defense": 0, "move": 2, "range": 3, "entry": {"draw": 2},
+"text": "部署时抽2张牌。\n法师可将施法中心延伸到4格。", "tag": "法师 · 进场抽牌"
+}, {
+"id": "breakwater_guard", "name": "断浪卫长", "short": "步", "type": "unit", "kind": "sword", "cost": 7, "set_id": "warfront",
+"hp": 10, "atk": 5, "defense": 1, "move": 2, "range": 1, "entry": {"shield": 2},
+"text": "部署时给自身和正交相邻友军\n各增加2护盾，上限5。", "tag": "步兵 · 进场群盾"
+}, {
+"id": "bronze_watch", "name": "铜门誓卫", "short": "枪", "type": "unit", "kind": "spear", "cost": 9, "set_id": "warfront",
+"hp": 11, "atk": 5, "defense": 2, "move": 2, "range": 1, "entry": {"guard": true, "self_shield": 3},
+"text": "部署时获得3护盾并立即援护\n相邻友军，持续到下个己方回合。", "tag": "枪兵 · 重装援护"
+}, {
+"id": "field_signals", "name": "一线微光", "short": "芒", "type": "spell", "effect": "formation", "target_side": "ally", "radius": 1, "shield": 1, "cost": 1, "set_id": "warfront",
+"text": "目标格及相邻四格的友军\n各获得1护盾，上限5。", "tag": "法术 · 小范围护盾"
+}, {
+"id": "detach_line", "name": "解索轮替", "short": "解", "type": "spell", "effect": "formation", "target_side": "ally", "radius": 1, "cleanse": true, "refresh_move": true, "cost": 2, "set_id": "warfront",
+"text": "解除目标格及相邻四格友军的定身。\n已移动、未攻击且可行动的普通部队\n同时恢复移动。", "tag": "法术 · 解缚换步"
+}, {
+"id": "dispatch_bundle", "name": "前线三封信", "short": "札", "type": "spell", "effect": "draw", "amount": 3, "cost": 3, "set_id": "warfront",
+"text": "抽3张牌。\n手牌满会弃掉后续抽牌，空牌库仍有疲劳。", "tag": "法术 · 抽牌"
+}, {
+"id": "mist_spike", "name": "雾棘封径", "short": "棘", "type": "spell", "effect": "formation", "target_side": "enemy", "radius": 1, "damage": 2, "root": true, "cost": 4, "set_id": "warfront",
+"text": "目标格及相邻四格敌军受2伤害。\n存活的普通部队下个行动回合无法移动。", "tag": "法术 · 群体定身"
+}, {
+"id": "kiln_lance", "name": "开窑火矛", "short": "矛", "type": "spell", "effect": "damage", "amount": 7, "cost": 5, "set_id": "warfront",
+"text": "对范围内一名敌军造成7火焰伤害。\n受天气和赤烬首发加成影响。", "tag": "法术 · 单体爆发"
+}, {
+"id": "warder_hymn", "name": "众灯长明", "short": "颂", "type": "spell", "effect": "formation", "target_side": "ally", "radius": 1, "healing": 3, "shield": 2, "cost": 6, "set_id": "warfront",
+"text": "目标格及相邻四格友军\n恢复3生命并获得2护盾，上限5。", "tag": "法术 · 群疗加盾"
+}, {
+"id": "hammer_sweep", "name": "崩纹震击", "short": "震", "type": "spell", "effect": "formation", "target_side": "enemy", "radius": 1, "damage": 3, "clear_shield": true, "cost": 6, "set_id": "warfront",
+"text": "先清除目标格及相邻四格敌人的已有护盾，\n再分别造成3点伤害。", "tag": "法术 · 群体破盾"
+}, {
+"id": "second_watch", "name": "换班再击", "short": "击", "type": "spell", "effect": "formation", "target_side": "ally", "radius": 1, "refresh_attack": true, "cost": 7, "set_id": "warfront",
+"text": "目标格及相邻四格已攻击的已就绪部队\n恢复攻击机会。指挥官和新兵除外。\n保持原移动和主动技能状态。", "tag": "法术 · 范围再攻"
+}, {
+"id": "signal_torrent", "name": "澜潮冲阵", "short": "潮", "type": "spell", "effect": "formation", "target_side": "enemy", "radius": 2, "damage": 4, "commander_damage": 2, "cost": 8, "set_id": "warfront",
+"text": "对距目标格2格内的敌军造成4伤害。\n敌方指挥官承受2伤害。", "tag": "法术 · 大范围伤害"
+}, {
+"id": "last_hearth", "name": "天炉坠火", "short": "炉", "type": "spell", "effect": "formation", "target_side": "enemy", "radius": 2, "damage": 6, "commander_damage": 3, "fire": true, "cost": 10, "set_id": "warfront",
+"text": "对距目标格2格内的敌军造成6火焰伤害。\n指挥官承受3点基础伤害，均受天气与赤烬首发影响。", "tag": "法术 · 十费压轴"
+}, {
+"id": "silt_snare", "name": "泥索暗结", "short": "索", "type": "trap", "effect": "trap", "trigger": "step", "amount": 0, "root": true, "draw": 1, "cost": 2, "set_id": "warfront",
+"text": "伏设一空格。敌军主动踏入时\n截断移动并定身至本回合结束，你抽1张。", "tag": "陷阱 · 缚足抽牌"
+}, {
+"id": "fallback_horn", "name": "隐营回号", "short": "号", "type": "trap", "effect": "trap", "trigger": "attack", "amount": 2, "draw": 2, "cost": 4, "set_id": "warfront",
+"text": "伏设于友军。下次实际承受普攻前，\n其获得2护盾，你抽2张。", "tag": "陷阱 · 受击补给"
+}, {
+"id": "tidal_oath", "name": "拒潮重印", "short": "印", "type": "trap", "effect": "trap", "trigger": "spell", "amount": 5, "draw": 1, "cost": 5, "set_id": "warfront",
+"text": "伏设于友军。下次受敌方伤害法术或技能前，\n其获得5护盾，上限5，你抽1张。", "tag": "陷阱 · 重盾反术击"
+}, {
+"id": "open_wind", "name": "谷口穿风", "short": "风", "type": "environment", "effect": "weather", "weather": "tailwind", "duration": 4, "cost": 3, "set_id": "warfront",
+"text": "全场进入疾风，持续4个行动回合。\n双方普通部队移动力增加1。", "tag": "天气 · 强化机动"
+}, {
+"id": "night_muster", "name": "诸营守夜", "short": "夜", "type": "environment", "effect": "weather", "weather": "lanterns", "duration": 6, "cost": 5, "set_id": "warfront",
+"text": "全场进入灯夜，持续6个行动回合。\n双方新部署的普通部队额外获得1护盾。", "tag": "天气 · 入场护盾"
+}, {
+"id": "reed_roads", "name": "铺槛开道", "short": "路", "type": "environment", "effect": "roadwork", "cost": 5, "set_id": "warfront",
+"text": "将目标格与相邻四格内可通行的陆地改为军道。\n桥梁保留。施法中心须在友军范围内。", "tag": "地形 · 成片铺路"
 }])

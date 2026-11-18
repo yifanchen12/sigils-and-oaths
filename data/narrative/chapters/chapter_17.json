@@ -1,0 +1,579 @@
+{
+  "version": 1,
+  "id": "chapter_17",
+  "title": "第十七章 · 三盏灯",
+  "start": "first_bell",
+  "inherits": [
+    "route",
+    "witness_present",
+    "seal_copy",
+    "relief",
+    "public_ledger",
+    "priority",
+    "receipt_method",
+    "dispatch_receipts",
+    "clerk_safe",
+    "letter_reply",
+    "letter_delivered",
+    "pass_route",
+    "supply_route",
+    "mine_cargo",
+    "harbor_shelter",
+    "foundry_terms",
+    "crew_safe",
+    "harbor_pump",
+    "pump_route_known",
+    "water_plan",
+    "water_released",
+    "grove_mandate",
+    "charter_copy",
+    "evidence_council",
+    "court_access",
+    "father_trail",
+    "letter_company",
+    "camp_company",
+    "pressure_plan",
+    "sunspire_stable",
+    "governance_plan",
+    "tower_gate_secured",
+    "northbank_access",
+    "shaft_custody",
+    "night_watch",
+    "channel_secured",
+    "channel_order",
+    "repair_plan",
+    "escort_terms",
+    "bridge_open"
+  ],
+  "defaults": {
+    "route": "none",
+    "witness_present": false,
+    "seal_copy": false,
+    "relief": "none",
+    "public_ledger": false,
+    "priority": "none",
+    "receipt_method": "none",
+    "dispatch_receipts": false,
+    "clerk_safe": false,
+    "letter_reply": "none",
+    "letter_delivered": false,
+    "pass_route": "none",
+    "supply_route": "none",
+    "mine_cargo": false,
+    "harbor_shelter": "none",
+    "foundry_terms": "none",
+    "crew_safe": false,
+    "harbor_pump": false,
+    "pump_route_known": false,
+    "water_plan": "none",
+    "water_released": false,
+    "grove_mandate": "none",
+    "charter_copy": false,
+    "evidence_council": "none",
+    "court_access": false,
+    "father_trail": false,
+    "letter_company": "none",
+    "camp_company": "none",
+    "pressure_plan": "none",
+    "sunspire_stable": false,
+    "governance_plan": "none",
+    "tower_gate_secured": false,
+    "northbank_access": false,
+    "shaft_custody": "none",
+    "night_watch": "none",
+    "channel_secured": false,
+    "channel_order": "none",
+    "repair_plan": "none",
+    "escort_terms": "none",
+    "bridge_open": false,
+    "rescue_kit": "none",
+    "evacuation_complete": false
+  },
+  "speakers": {
+    "narrator": "旁白",
+    "warden": "艾琳",
+    "pyromancer": "维洛",
+    "grove": "赛菈",
+    "sword": "洛恩",
+    "spear": "芙蕾",
+    "cavalry": "莉希",
+    "archer": "希弥",
+    "mage": "伊瑟",
+    "healer": "米芮",
+    "clerk": "赫姆",
+    "qin": "秦婶",
+    "yubai": "余白",
+    "tangsui": "唐穗",
+    "foreman": "工班长",
+    "sang": "桑岚",
+    "ruan": "阮衡",
+    "chair": "轮值主持者",
+    "court_delegate": "议庭代表",
+    "forge_delegate": "赤曜勘料员",
+    "forest_delegate": "林社代表",
+    "porter": "旧担架手",
+    "gate_captain": "尹纾",
+    "luoming": "罗明",
+    "mengling": "守闸长孟绫",
+    "runner": "北岸信使",
+    "captain_north": "鲁苇",
+    "miller": "磨坊管事祁栎",
+    "cart_driver": "车夫阿起",
+    "apprentice": "学徒阿澄",
+    "baiqi": "护运队长白祁",
+    "pei": "城巡队长裴照",
+    "boy": "小舟",
+    "mother": "艾琳的母亲",
+    "senan": "瑟南",
+    "rosser": "罗瑟",
+    "qu": "曲汀",
+    "sister": "莉珊"
+  },
+  "nodes": {
+    "first_bell": {
+      "type": "dialogue",
+      "background": "scene_tower_valve",
+      "lines": [
+        {
+          "id": "c17.first_bell.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.first_bell.02",
+          "speaker": "sang"
+        },
+        {
+          "id": "c17.first_bell.03",
+          "speaker": "narrator",
+          "when": {
+            "repair_plan": "recast"
+          }
+        },
+        {
+          "id": "c17.first_bell.04",
+          "speaker": "narrator",
+          "when": {
+            "repair_plan": "sleeve"
+          }
+        },
+        {
+          "id": "c17.first_bell.05",
+          "speaker": "apprentice",
+          "when": {
+            "repair_plan": "recast"
+          }
+        },
+        {
+          "id": "c17.first_bell.06",
+          "speaker": "apprentice",
+          "when": {
+            "repair_plan": "sleeve"
+          }
+        },
+        {
+          "id": "c17.first_bell.07",
+          "speaker": "sang"
+        },
+        {
+          "id": "c17.first_bell.08",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.first_bell.09",
+          "speaker": "mage"
+        },
+        {
+          "id": "c17.first_bell.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.first_bell.11",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c17.first_bell.12",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.first_bell.13",
+          "speaker": "warden"
+        },
+        {
+          "id": "c17.first_bell.14",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "eaststreet"
+    },
+    "eaststreet": {
+      "type": "dialogue",
+      "background": "scene_eaststreet",
+      "lines": [
+        {
+          "id": "c17.eaststreet.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.eaststreet.02",
+          "speaker": "qin"
+        },
+        {
+          "id": "c17.eaststreet.03",
+          "speaker": "boy"
+        },
+        {
+          "id": "c17.eaststreet.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.eaststreet.05",
+          "speaker": "narrator",
+          "when": {
+            "escort_terms": "hearing"
+          }
+        },
+        {
+          "id": "c17.eaststreet.06",
+          "speaker": "narrator",
+          "when": {
+            "escort_terms": "service"
+          }
+        },
+        {
+          "id": "c17.eaststreet.07",
+          "speaker": "cart_driver"
+        },
+        {
+          "id": "c17.eaststreet.08",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.eaststreet.09",
+          "speaker": "healer"
+        },
+        {
+          "id": "c17.eaststreet.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.eaststreet.11",
+          "speaker": "sword"
+        },
+        {
+          "id": "c17.eaststreet.12",
+          "speaker": "spear"
+        },
+        {
+          "id": "c17.eaststreet.13",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "captain"
+    },
+    "captain": {
+      "type": "dialogue",
+      "background": "battlefield_lamplanding",
+      "lines": [
+        {
+          "id": "c17.captain.01",
+          "speaker": "pei"
+        },
+        {
+          "id": "c17.captain.02",
+          "speaker": "warden"
+        },
+        {
+          "id": "c17.captain.03",
+          "speaker": "pei"
+        },
+        {
+          "id": "c17.captain.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.captain.05",
+          "speaker": "archer"
+        },
+        {
+          "id": "c17.captain.06",
+          "speaker": "pei"
+        },
+        {
+          "id": "c17.captain.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.captain.08",
+          "speaker": "archer"
+        },
+        {
+          "id": "c17.captain.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.captain.10",
+          "speaker": "healer"
+        },
+        {
+          "id": "c17.captain.11",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.captain.12",
+          "speaker": "warden"
+        }
+      ],
+      "next": "kit"
+    },
+    "kit": {
+      "type": "choice",
+      "background": "battlefield_lamplanding",
+      "prompt": "c17.kit.prompt",
+      "options": [
+        {
+          "id": "runner",
+          "text": "c17.kit.runner",
+          "set": {
+            "rescue_kit": "runner"
+          },
+          "next": "runner_battle"
+        },
+        {
+          "id": "screen",
+          "text": "c17.kit.screen",
+          "set": {
+            "rescue_kit": "screen"
+          },
+          "next": "screen_battle"
+        }
+      ]
+    },
+    "runner_battle": {
+      "type": "battle",
+      "background": "battlefield_lamplanding",
+      "scenario": "c17_runner",
+      "win": "high_street",
+      "win_set": {
+        "evacuation_complete": true
+      }
+    },
+    "screen_battle": {
+      "type": "battle",
+      "background": "battlefield_lamplanding",
+      "scenario": "c17_screen",
+      "win": "high_street",
+      "win_set": {
+        "evacuation_complete": true
+      }
+    },
+    "high_street": {
+      "type": "dialogue",
+      "background": "battlefield_lamplanding",
+      "lines": [
+        {
+          "id": "c17.high_street.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.high_street.02",
+          "speaker": "narrator",
+          "when": {
+            "rescue_kit": "runner"
+          }
+        },
+        {
+          "id": "c17.high_street.03",
+          "speaker": "cavalry",
+          "when": {
+            "rescue_kit": "runner"
+          }
+        },
+        {
+          "id": "c17.high_street.04",
+          "speaker": "narrator",
+          "when": {
+            "rescue_kit": "screen"
+          }
+        },
+        {
+          "id": "c17.high_street.05",
+          "speaker": "spear",
+          "when": {
+            "rescue_kit": "screen"
+          }
+        },
+        {
+          "id": "c17.high_street.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.high_street.07",
+          "speaker": "pei"
+        },
+        {
+          "id": "c17.high_street.08",
+          "speaker": "healer"
+        },
+        {
+          "id": "c17.high_street.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.high_street.10",
+          "speaker": "warden"
+        },
+        {
+          "id": "c17.high_street.11",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.high_street.12",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c17.high_street.13",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "at_dawn"
+    },
+    "at_dawn": {
+      "type": "dialogue",
+      "background": "scene_return_morning",
+      "lines": [
+        {
+          "id": "c17.at_dawn.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.at_dawn.02",
+          "speaker": "qin"
+        },
+        {
+          "id": "c17.at_dawn.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.at_dawn.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c17.at_dawn.05",
+          "speaker": "miller",
+          "when": {
+            "repair_plan": "recast"
+          }
+        },
+        {
+          "id": "c17.at_dawn.06",
+          "speaker": "miller",
+          "when": {
+            "repair_plan": "sleeve"
+          }
+        },
+        {
+          "id": "c17.at_dawn.07",
+          "speaker": "grove"
+        },
+        {
+          "id": "c17.at_dawn.08",
+          "speaker": "narrator",
+          "when": {
+            "repair_plan": "recast"
+          }
+        },
+        {
+          "id": "c17.at_dawn.09",
+          "speaker": "narrator",
+          "when": {
+            "repair_plan": "sleeve"
+          }
+        },
+        {
+          "id": "c17.at_dawn.10",
+          "speaker": "mage"
+        },
+        {
+          "id": "c17.at_dawn.11",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end",
+      "background": "scene_return_morning",
+      "ending": "lamps_carried",
+      "text": "c17.end.text"
+    }
+  },
+  "strings": {
+    "c17.first_bell.01": "停工铃第一下没有响完。堂外有人从石梯上滑下来，双手护着怀里的灯，肩先撞上门框。他到最后一级才把灯放下，里面那一小点火居然还有。桑岚听他说完，只问了一遍水到哪儿。送信的人张了张手，指的是胸口。他的裤管却早已湿过了腰。",
+    "c17.first_bell.02": "内阀关紧。阿澄，跟我下桥。你先把那张纸放下，捡上你的鞋。",
+    "c17.first_bell.03": "炉里出来的第二件内阀在低压下稳稳撑了半班。桌上放着它的试样、两天的煤票和夜班给妻儿留的话。阿澄刚用布擦干最后一圈水印，想请师傅在纸上写下「通过」。铃响之后，他下意识去护那张纸，碰翻了盛油的浅盏。",
+    "c17.first_bell.04": "可拆短套在低压复试时从下沿渗水。昨夜，拆下它的阿澄蹲在井边半天，一直问自己何处量错。绳索后来送来了北岸替件和延期所欠的面粉。此刻替件还在高廊，试过的短套靠着台阶，上面新涂的黑粉印出一道模糊月牙。",
+    "c17.first_bell.05": "压着的那根表针还很稳。我可以留下抄数，停完再……师傅，我的鞋找到了。",
+    "c17.first_bell.06": "替件还没碰过水。城里上午有人来问能不能先拿短套顶一天，他手上有巡棚的红条。我跟他说了，我说漏了。",
+    "c17.first_bell.07": "听铃。门口的线往里收，试验照现在这个样子收尾。谁要找件，等雨停了来找我。",
+    "c17.first_bell.08": "伊瑟扑到窥窗边。平常从窗里只看见对岸半堵泥墙，今日墙上浮着一扇从别人家卸下来的门。井槽里却没有这样的急响。他把棉线在槽壁垂了一会儿，上面最后湿的那段比渠水低得多，才招手叫维洛来看。",
+    "c17.first_bell.09": "外渠在涨，塔里的表还在低处。西面的石路一会儿就没。米芮那屋门朝着西面。",
+    "c17.first_bell.10": "维洛走了两步又折回，把长凳底下的两只油瓶都拿起来。阿澄也来拿，维洛让出一只。两人同时发觉手中那点灯油烧不完半夜，也没有再返回楼上的库间。",
+    "c17.first_bell.11": "留一盏在转角。我在这种天踩空过，事后有人说找我找了一宿，结果他们看的是对岸。",
+    "c17.first_bell.12": "桑岚走前把停工钟的木槌交给阿澄。她自己去守那条还通着北井的支路，隔着白线留了一名工友。阿澄抓住木槌，等她走过拐角才发现她没留下要敲几下的话。东街方向有人敲碗，那里用的是另一种声音。",
+    "c17.first_bell.13": "敲到桥巷听见。伊瑟，去把原来的渠图带上。我上西街接人。",
+    "c17.first_bell.14": "艾琳转出大门，右手碰到衣内那封迟到了十七年的信。雨从脖领灌下去，她把信塞进刀鞘口的油布，手背从刀柄上滑过。先前站在院门外等复试的人已经涌进廊下，往外走很慢。她把剑鞘平着抬起来，让出一条能从肩膀之间看见的路。",
+    "c17.eaststreet.01": "秦婶的第一声吆喝是让人把桶放回去。巷口还排着一列空桶，前几天半夜起床排第一个的人今天仍占着最前面。水漫过他们的脚背，绕着桶底转。阿起把两匹马从水车上解下来，年轻那匹挣到墙边去，和一个往回抱账本的老人撞在一起。",
+    "c17.eaststreet.02": "小舟，把你姥姥的药壶拿来。家门不用锁，门上那点铁能留下就留下。你倒回去拿，我可追不上你。",
+    "c17.eaststreet.03": "我姥姥说门口那盆麦还在晒。我两只手端得动，壶可以挂在脖子上。",
+    "c17.eaststreet.04": "小舟说话时一直踩着一块在水里打转的门牌。秦婶伸手把他抱到阶上，没再问他姥姥有没有说过这句话。孩子从衣襟里摸出药壶，外面包了两层旧布。秦婶只脱了一层，换在他发抖的手上。",
+    "c17.eaststreet.05": "阿起的脚踝还肿着。他找见昨夜替班的两个车夫，只来了一个，另一个先回北街接家里的老人。水车的缰绳太长，阿起索性跨在车辕上，把缰绳照新手能握住的长度挽起来。",
+    "c17.eaststreet.06": "昨日搬桶的那名护卫在墙下等阿起。腰带上摘掉刀留下一个比别处干净的印。他问今天有没有活，问完脚已踏进水里。阿起把缰绳往他手上一搁，叫他别站在马的正前方。",
+    "c17.eaststreet.07": "这两匹马知道旧煤道。我拖椅子和拐杖，能走的人跟在马尾后头。担架叫米芮派人，车上颠得厉害。",
+    "c17.eaststreet.08": "米芮的诊屋还守着四副担架。最里面的老人把听诊用的厚毯一角压在下巴下，一见艾琳进来，先问她确信看清桥上的人没有。米芮已经把门帘扯了下来，两名帮手正用它包屋里那篮针线。有人把腰弯下去等她领头，她让开身边的位置，叫他用两手抬。",
+    "c17.eaststreet.09": "最后一张床太重，床留着。把褥子顺过来。艾琳，你从门口离开，过会儿你还得回来看自己挡了多宽的路。",
+    "c17.eaststreet.10": "艾琳让开，后面是牵着两根小木凳腿的洛恩。凳子上的老人只穿了一只鞋，抓着洛恩衣服的手松不开。芙蕾从另一边接住椅背。洛恩嘴一张，还是报了数，等她下巴一点才挪步，两人的脚踏上了不同一块石板。",
+    "c17.eaststreet.11": "两人，一把椅子。到灯棚我换肩。芙蕾，你这边还抬得动吗？",
+    "c17.eaststreet.12": "左手能用。你等我的数。上一步，停在我数二的时候。",
+    "c17.eaststreet.13": "高街就在渠对面，两排屋基露在水线之上。上去的正路却挂着城巡队的白旗，旗下面横了推来挡车的石臼。也有人从那边提灯试往外走，一见弩身就退回去。艾琳抬手，叫最先赶到桥边的兵停在棚下。一名抬担架的人并未听她口令，差半步就撞上横过来的枪。",
+    "c17.captain.01": "高街上十八个戴着湿毡帽的人在等车，我弟弟也在里头。空路给我留到车回来。你的人横着抬东西，车从哪儿下去？",
+    "c17.captain.02": "西街底下没有足够的干台阶。四副担架在我后面，能走的先靠左过去。你的人可以跟我的马走煤道接人。",
+    "c17.captain.03": "那道窄得马转不过去。上一个承诺接人的说拿走他的车轭，天亮前一定把车调回来。我那时在桥上等了两个时辰。",
+    "c17.captain.04": "裴照伸出手要艾琳看北面的坡。车轮印在坡转弯处叠成一层，车却一辆也看不到。他的头发贴在脸上，气息一下快一下慢，像刚从那个坡赶下来。艾琳望向他左手边，两名立在石臼后的人握弩的手都在往下走。",
+    "c17.captain.05": "北边窄桥的桥面还在。有一个轮子卡在左头，从下面看得到湿拖痕。靴子过得去，车轮过不去。这里再等两刻，两个方向都走不了车。",
+    "c17.captain.06": "我下去看过。你知道抬箩筐跟抬人哪一个更难转身？把路让给城巡，人会抬，我手下也有女人能扶着过桥。",
+    "c17.captain.07": "这时桥头对面忽然传来木头的炸响。裴照的小旗陡地向上一抖，是有人从另一面匆忙扯它。余白的船架被洪水顶起，半截骨架戳出渠口，磕掉了石沿的薄砖。两名躲在棚下的青年同时跳起来，要往来路去找它。",
+    "c17.captain.08": "余白到高街了。我看着他从布铺上楼。这舟架今天别管。",
+    "c17.captain.09": "只高出脚跟半掌的石槛上，秦婶把药壶塞回小舟怀里。小舟的姥姥在担架上听见她叫，抬起薄毯下的一块膝盖。后面又有一声哨响，守桥的人把石臼推到正当中，第一支弩矢擦过棚角，划掉了灯芯前一小段纸。",
+    "c17.captain.10": "灯给我。桥宽，四个人并排过不了，两个能过。我留一个人在棚下接手，先抬能耐冷的。艾琳，这里再站一炷香，最里头那个就得躺着往回抬。",
+    "c17.captain.11": "裴照回头冲自己的人喊了两句话。第一句被水声盖住，第二句是继续守。他自己站进弩手和艾琳之间，拔出短剑，指向渠上那截空路。艾琳的人并未跟着拔剑，前排盾沿却一齐往前走了一步。一名城巡的哨手放下哨子，连退两步，脚跟已经碰到水。",
+    "c17.captain.12": "灯棚接好人就往桥走，最后上高街。每到一处把灯交给下一个肯接的。只打拦路的部队，把出口留给走不动的人。",
+    "c17.kit.prompt": "两岸都在等担架。莉希可以先带路灯，芙蕾可以把首批护卫留下挡住桥头的弩。让谁先领第一队？",
+    "c17.kit.runner": "请莉希带灯先走，借路口空当快速换防。开局手牌加入「疾行军令」。",
+    "c17.kit.screen": "请芙蕾先护担架，在桥头给接应者留遮挡。开局手牌加入「回誓屏障」。",
+    "c17.high_street.01": "高街最后一盏灯亮起来时，提灯的人先把它放在地上，空出来的手按住了胸口。街上没有喊阵的人，只有一名城巡男孩反复去搬湿褥子。米芮轻轻推开他背上垂下来的头盔，让他低头，再告诉他褥子跟枕头放在同一个屋子。",
+    "c17.high_street.02": "莉希到齐人后才回来。她在裙甲下面摘出一片湿透的纸灯皮，顺手去合领上松掉的别针，试了三下还没合上。希弥替她把衣领理平，把那枚别针交回她手里。",
+    "c17.high_street.03": "上头有人朝我摇手。我真以为他叫我往前。隔了半条街才明白，他在提醒我马蹄垫的是块空砖。下回你先喊我名字，我能听得见。",
+    "c17.high_street.04": "芙蕾把前队的盾一面面靠上墙，其中一面护边上的带子松了。洛恩想伸手帮她重绑，她将盾递给他，自己握住抬担架时一度使不上力的左腕。",
+    "c17.high_street.05": "明天我跟阿起去找车。今夜还要抬的话，我在前面报数，米芮换一个人站下面。我这只手怕是要挨她一顿骂。",
+    "c17.high_street.06": "裴照坐在巡棚门槛上，用牙把护腕上的绳节一点点咬松。一名己方卫兵等他站起来接回指挥，等了片刻，自己过去和灯棚里的人一起抬了张桌子。那张桌子很宽，压根进不了诊屋门，众人又把它抬出去，翻过来顶在凹处扶人。",
+    "c17.high_street.07": "南边来的是十五个人，三个在开茶的棚里找到床。那个穿湿毡帽的是我弟弟，他把车推去拉一个脚伤的朋友，打算叫我到晚些时候再去接他。我不知道他已经走了。",
+    "c17.high_street.08": "去二楼找他，最里头的那张床。扶手滑，脚有力就用脚。沿楼梯坐一会儿再下来，楼上有码在柜顶的干袜子。",
+    "c17.high_street.09": "裴照抓着栏杆，登到第四级，忽然转过脸问桥上那支箭伤着谁。艾琳让小舟和他一起上去。小舟走得极慢，半晌只把手里卷起来的灯纸给裴照看，再指一指原来自己站的地方。裴照这才把解下来的护腕放在窗台上。",
+    "c17.high_street.10": "巡棚的钥匙交给孟绫和秦婶。今夜各派一名能走路的带道，我的人去看看石臼下面有没有还湿着的床脚。你明早回来指给见证人看，哪里是你让人守的位置。",
+    "c17.high_street.11": "桑岚在后半夜放掉停工层残留的试验水，北井住户全程还能打水。孟绫的人在下游看见水退过第一道石阶，喊话隔着渠传来像是在争吵。维洛早先拿来的灯油终于用完了。他把瓶倒过来，只有一滴落在门外，无声地溶进雨水。",
+    "c17.high_street.12": "阿澄，等你再长高一点，过来换我的那会儿，大约我也是这么一副衰样。你的手能拿杯子吗？把瓷的给我，用木碗。",
+    "c17.high_street.13": "阿澄捧着一只空杯睡着了。伊瑟让他靠到肩上，拿手慢慢把杯子旋下来。塔在对面暗着，一朵反光从一层旧瓦滑到下一层，最后停在仍开的那扇诊屋窗边。",
+    "c17.at_dawn.01": "天亮时有三户人先去摸原来的门。水刚退，砖缝还滴答响。秦婶把自己家门底的碎稻壳全扫进簸箕，在阖上门前想起另一个借宿的老妇还在外面，赶紧又把插销拉出来。她冲远处的阿起比了个手势，叫他有空来帮她挪走门槛，搬椅子时能少绊一下。",
+    "c17.at_dawn.02": "这几户暂且上高街。底下有间豆腐铺问能否先回去捡磨盘，磨盘你们随他，绳子得借一根细的给搬床的人。昨晚跨桥那个叫裴照的，人在哪里？",
+    "c17.at_dawn.03": "裴照卷起袖口，从第二排给大家看他被蚊子叮过的胳膊。秦婶把一把湿透的笤帚塞给他，叫他跟第一趟水车走，回来再把自己挡过路的那处地扫出来。裴照问何日能接回巡棚，秦婶说她自己都不知道何日能回屋底睡。",
+    "c17.at_dawn.04": "祁栎背着一小袋面，从前排抬头看赛菈。第三村的人把麦又挖出两只陶瓮，正在路上等他带一张当天的水量回去。赛菈接过他肩上的袋，没能在原地提住，掉下一只小桩子。祁栎弯腰捡起，又把自己的担子取了回去。",
+    "c17.at_dawn.05": "今早磨坊转不动，三村把没开封的麦又各分了一份给手磨。叫我再把份额挪一截，我今天头一回说我不要签。",
+    "c17.at_dawn.06": "昨天送来那车粉过了秤。我取了欠的那份，剩下的留给泡坏了被子的人换柴。今早磨坊转不动，你们再给我一车面，我也只能吃掉，明天拿什么？",
+    "c17.at_dawn.07": "你就在新屋门口等。我去找母亲和孟绫，她们若用旧数劝你，我把今早那张带到桌上去。",
+    "c17.at_dawn.08": "桑岚拿出重铸试件摆在窗洞上。它留在塔里供下一次低压复测，供水簿没有增加一栏，仓里两日煤钱和夜班工钱已经真花掉了。她抽去试验纸下垫着的硬板，让阿澄在那张仍有油印的纸上补记了停工时辰。",
+    "c17.at_dawn.09": "维洛把那件拆下来的短套从高廊搬走，当他回到塔门口，给北岸的替件过了最后一道验收。他让跑腿人拿着称过重的面袋签收去找祁栎，又请阿澄带走原先的短套木样，连渗白的那头一并留下。",
+    "c17.at_dawn.10": "今夜的水能退，明晚还会涨。塔上钥匙在谁手里，巡棚钥匙在谁手里，等到下一回下雨，真的能找到这些人吗？",
+    "c17.at_dawn.11": "艾琳看见屋檐下有三处滴水。母亲从远处带来的针脚在旧披肩口越湿越显眼，她一直把刀鞘压着那封信，没再把它拿出来。镇上的人已在楼上腾房，看着没坐满的长凳，她叫人搬下一张，放在外面路过时能坐的地方。今天谈的是未到的下一场雨。",
+    "c17.end.text": "三个接应点等来了最后一批担架。桑岚收走试验表，北井的桶还一只接一只。高街搬下来的那张凳留在晨光里，等今天第一个肯说自己缺多少水的人。"
+  }
+}

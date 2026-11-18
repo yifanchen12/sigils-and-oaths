@@ -81,8 +81,11 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 			var instance: Dictionary = battle.hand_card(side, action.card_uid)
 			var card: Dictionary = battle.definition(instance.card_id)
 			if card.type == "unit":
-				return 50.0 + int(card.cost) * 2.0 - battle.distance(action.target, enemy_leader.pos) * 1.5 + (2.0 if battle.ground(action.target) == "forest" else 0.0)
+				var score: float = 50.0 + int(card.cost) * 2.0 - battle.distance(action.target, enemy_leader.pos) * 1.5 + (2.0 if battle.ground(action.target) == "forest" else 0.0)
+				if card.has("entry"): score += _entry_score(battle, card.entry, action.target)
+				return score
 			if card.type == "trap":
+				var draw_bonus: float = _trap_supply_value(battle, card, side)
 				if threats.is_empty(): threats = TacticalAI.prepare(battle)
 				if card.trigger in ["attack", "spell"]:
 					var guarded: Dictionary = battle.unit_at(action.target)
@@ -91,8 +94,8 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 						for enemy: Dictionary in battle.units:
 							if enemy.side != side and enemy.kind == "mage" and battle.distance(enemy.pos, guarded.pos) <= 2: pressure = 15.0
 						if battle.hero(1 - side).effect == "firestrike" and battle.distance(battle.commander(1 - side).pos, guarded.pos) <= battle.hero_cast_range(1 - side): pressure = maxf(pressure, 12.0)
-						return 11.0 + pressure + (8.0 if int(guarded.hp) <= 3 else 0.0) - mini(3, int(guarded.shield)) * 2.0
-					return minf(42.0, TacticalAI.exposure(battle, guarded, threats)) + 6.0 - mini(3, int(guarded.shield)) * 2.0
+						return 11.0 + pressure + draw_bonus + (8.0 if int(guarded.hp) <= 3 else 0.0) - mini(3, int(guarded.shield)) * 2.0
+					return minf(42.0, TacticalAI.exposure(battle, guarded, threats)) + 6.0 + draw_bonus - mini(3, int(guarded.shield)) * 2.0
 				var value: float = -1.0
 				for entry: Dictionary in threats.enemies:
 					if not entry.origins.has(action.target): continue
@@ -100,9 +103,18 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 					for ally: Dictionary in battle.units:
 						if ally.side == side: nearest = mini(nearest, battle.distance(ally.pos, action.target))
 					value = maxf(value, 28.0 - nearest * 4.0 + (6.0 if card.get("root", false) and entry.unit.kind == "cavalry" else 0.0))
-				return value
+				return value + draw_bonus if value >= 0.0 else value
 			var target: Dictionary = battle.unit_at(action.target)
 			match String(card.effect):
+				"formation": return _formation_score(battle, card, action.target)
+				"roadwork":
+					var benefit: float = -3.0
+					for cell: Vector2i in battle.roadwork_cells(action.target):
+						var occupant: Dictionary = battle.unit_at(cell)
+						if occupant.is_empty(): continue
+						if occupant.side != side: benefit += battle.terrain_defense(occupant) * 8.0
+						elif occupant.kind == "cavalry" and not occupant.moved: benefit += 12.0 - battle.terrain_defense(occupant) * 5.0
+					return benefit
 				"shatter_bolt":
 					var damage: int = battle.spell_damage(card, side)
 					return 35.0 + damage * 5.0 + int(target.shield) * 6.0 + (3000.0 if target.kind == "commander" else 40.0) * float(damage >= int(target.hp))
@@ -233,6 +245,39 @@ static func _draw_fatigue(battle: Battle, side: int, amount: int) -> int:
 	for index: int in range(missing): result += int(battle.players[side].fatigue) + index + 1
 	return result
 
+static func _formation_score(battle: Battle, card: Dictionary, center: Vector2i) -> float:
+	var score: float = 0.0
+	var side: int = battle.active_side
+	for change: Dictionary in battle.Formation.changes(battle, card, center, side):
+		var unit: Dictionary = battle.get_unit(change.unit_id)
+		if unit.side != side:
+			score += int(change.hp_loss) * 9.0 - int(change.shield_delta) * 4.0
+			if change.hp_after == 0: score += 3000.0 if unit.kind == "commander" else 40.0
+			if change.root: score += 14.0 if unit.kind == "cavalry" else 8.0
+		else:
+			score += int(change.healing) * 7.0 + int(change.shield_delta) * 5.0
+			if change.cleanse: score += 12.0
+			if change.refresh_move: score += 12.0
+			if change.refresh_attack:
+				for enemy: Dictionary in battle.units:
+					if enemy.side != side and battle.distance(unit.pos, enemy.pos) <= battle.attack_range(unit):
+						score += 30.0; break
+	return score
+
+static func _entry_score(battle: Battle, entry: Dictionary, center: Vector2i) -> float:
+	var side: int = battle.active_side
+	var fatigue: int = _draw_fatigue(battle, side, int(entry.get("draw", 0)))
+	var leader: Dictionary = battle.commander(side)
+	if fatigue >= int(leader.hp) + int(leader.shield): return -3000.0
+	var cards: int = mini(int(entry.get("draw", 0)), battle.players[side].deck.size())
+	return _formation_score(battle, entry, center) + cards * 6.0 + int(entry.get("self_shield", 0)) * 3.0 - fatigue * 7.0
+
+static func _trap_supply_value(battle: Battle, card: Dictionary, side: int) -> float:
+	var draws: int = int(card.get("draw", 0))
+	if draws == 0: return 0.0
+	var available: int = battle.players[side].deck.size()
+	return mini(draws, available) * 5.0 - (12.0 if available < draws else 0.0)
+
 static func _firing_position(battle: Battle, candidate: Dictionary) -> float:
 	var best: float = -INF
 	for target: Dictionary in battle.units:
@@ -271,11 +316,17 @@ static func _weather_score_for(battle: Battle, side: int, weather: String) -> fl
 				if unit.side == side and battle.distance(unit.pos, battle.commander(side).pos) <= 2: score += 1.0
 			"sun":
 				if unit.kind == "healer": score -= sign_value * 5.0
+			"tailwind":
+				if unit.kind == "cavalry": score -= sign_value * 9.0
 	if weather == "sun":
 		for instance: Dictionary in battle.players[side].hand:
-			if battle.definition(instance.card_id).get("effect", "") in ["damage", "area"]: score += 12.0
+			var card: Dictionary = battle.definition(instance.card_id)
+			if card.get("effect", "") in ["damage", "area"] or (card.get("effect", "") == "formation" and card.get("fire", false)): score += 12.0
 		if battle.hero(side).id == "pyromancer": score += 6.0
 		if battle.hero(1 - side).id == "pyromancer": score -= 6.0
+	if weather == "lanterns":
+		for instance: Dictionary in battle.players[side].hand:
+			if battle.definition(instance.card_id).type == "unit": score += 5.0
 	return score
 
 static func _danger(battle: Battle, side: int, cell: Vector2i) -> float:

@@ -17,6 +17,8 @@ var battle: Battle
 var selected_unit: int = -1
 var predicted_losses: Dictionary = {}
 var predicted_gains: Dictionary = {}
+var predicted_area: Array[Vector2i] = []
+var predicted_area_color: Color = GOLD
 var deploy: Array[Vector2i] = []
 var moves: Array[Vector2i] = []
 var attacks: Array[Vector2i] = []
@@ -154,6 +156,7 @@ func reset_effects() -> void:
 	presentation_remaining = 0.0
 	predicted_losses.clear()
 	predicted_gains.clear()
+	predicted_area.clear()
 	motion_unit = -1
 	motion_ghost.clear()
 	motion_progress = 1.0
@@ -204,8 +207,12 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 		var shield_delta: int = int(current.shield) - int(old.shield)
 		if int(current.get("rooted_turns", 0)) > int(old.get("rooted_turns", 0)):
 			_effect("spawn", current.pos, "定身", Color("a5cfed"), 0.9)
-		if action.get("spell_effect", "") == "onslaught" and old.attacked and not current.attacked:
+		if action.get("spell_effect", "") in ["onslaught", "formation"] and old.attacked and not current.attacked:
 			_effect("spawn", current.pos, "追击", GOLD, 0.8)
+		if old.moved and not current.moved and (action.get("spell_effect", "") == "formation" or action.get("card_type", "") == "unit"):
+			_effect("spawn", current.pos, "恢复移动", BLUE, 0.8)
+		if current.rooted_turns == 0 and old.rooted_turns > 0 and (action.get("spell_effect", "") == "formation" or action.get("card_type", "") == "unit"):
+			_effect("spawn", current.pos, "解除定身", BLUE, 0.8)
 		if current.pos != old.pos and action.type != "move":
 			_effect("spawn", current.pos, "换位" if action.get("spell_effect", "") == "exchange" else "击退", BLUE, 0.7)
 		if hp_delta < 0: _effect("hit", current.pos, str(hp_delta), RED, 0.75, delay)
@@ -233,11 +240,12 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 	if casts:
 		var style: String = "heal_cast" if effect_kind in ["heal", "rally_heal", "cleanse_root"] else ("ward_cast" if effect_kind in ["shield", "blessing"] else ("fire_area" if effect_kind == "area" else "fire_cast"))
 		var color: Color = Color("8ef2c8") if style == "heal_cast" else (GOLD if style == "ward_cast" else Color("ffb47b"))
-		var cells: Array[Vector2i] = [action.target]
-		if effect_kind == "area":
+		var cells: Array[Vector2i] = []
+		cells.assign(action.get("affected_cells", [action.target]))
+		if effect_kind == "area" and not action.has("affected_cells"):
 			for direction: Vector2i in battle.DIRECTIONS:
 				if battle.inside(action.target + direction): cells.append(action.target + direction)
-		effects.append({"kind": style, "cell": action.target, "from": action.get("visual_origin", action.target), "cells": cells, "text": "", "color": color, "age": 0.0, "duration": 0.80})
+		effects.append({"kind": style, "cell": action.target, "from": action.get("visual_origin", action.target), "cells": cells, "text": "", "color": action.get("cast_color", color), "age": 0.0, "duration": 0.80})
 		action_duration = maxf(action_duration, 0.80)
 	if action.type == "unit_skill" and action.get("unit_kind", "") == "spear": _effect("shield", action.target, "援护展开", BLUE, 0.85)
 	if action.get("card_type", "") == "trap" and battle.inside(action.target): _effect("shield", action.target, "伏设", Color("b5a0ed"), 0.8)
@@ -329,15 +337,9 @@ func _draw() -> void:
 			var cell := Vector2i(x, y)
 			var rect := Rect2(grid.position + Vector2(x, y) * tile, Vector2.ONE * tile)
 			_draw_terrain(cell, rect, painted)
-			if not battle.objective.is_empty() and battle.objective.cells.has([x, y]):
-				var work_label: String = "守"
-				if battle.map_definition.id == "northbank": work_label = "量" if x == 5 else "装"
-				if battle.map_definition.id == "spillway": work_label = "量" if x == 5 else "闸"
-				draw_rect(rect.grow(-2), Color(0.98, 0.78, 0.36, 0.24))
-				draw_rect(rect.grow(-2), Color("172638"), false, 4)
-				draw_rect(rect.grow(-5), GOLD, false, 2)
-				draw_circle(rect.position + Vector2(tile * 0.5, 15), 13, Color("142337"))
-				_text(work_label, rect.position + Vector2(tile * 0.5, 20), 14, GOLD)
+			if not battle.objective.is_empty():
+				var index: int = battle.objective.cells.find([x, y])
+				if index >= 0: _draw_objective_cell(rect, cell, index)
 			if cast_reach.has(cell):
 				draw_rect(rect.grow(-1), Color(0.34, 0.61, 0.90, 0.12))
 			if deploy.has(cell):
@@ -352,6 +354,9 @@ func _draw() -> void:
 			if attacks.has(cell) or spell_targets.has(cell):
 				draw_rect(rect.grow(-3), Color(RED, 0.14))
 				draw_rect(rect.grow(-4), RED, false, 1.6)
+			if predicted_area.has(cell):
+				draw_rect(rect.grow(-5), Color(predicted_area_color, 0.19))
+				draw_rect(rect.grow(-7), Color(predicted_area_color, 0.88), false, 2.2)
 			if cell == last_cell:
 				draw_line(rect.position + Vector2(6, tile - 5), rect.position + Vector2(tile - 6, tile - 5), Color(GOLD, 0.65), 2)
 			if cell == flash_cell and flash_alpha > 0:
@@ -392,6 +397,23 @@ func _draw() -> void:
 		var rect := Rect2(grid.position + Vector2(keyboard_cell) * tile, Vector2.ONE * tile)
 		draw_rect(rect.grow(-6), GOLD, false, 2)
 
+func _draw_objective_cell(rect: Rect2, cell: Vector2i, index: int) -> void:
+	var label: String = "守"
+	var accent: Color = GOLD
+	var active: bool = true
+	if battle.ControlObjective.is_relay(battle.objective):
+		label = str(index + 1)
+		active = index == int(battle.objective.streak)
+		if index < battle.objective.streak: accent = Color("8cd1bd")
+		if index > battle.objective.streak: accent = Color("b3bed3")
+	elif battle.map_definition.id == "northbank": label = "量" if cell.x == 5 else "装"
+	elif battle.map_definition.id == "spillway": label = "量" if cell.x == 5 else "闸"
+	draw_rect(rect.grow(-2), Color(accent, 0.24 if active else 0.10))
+	draw_rect(rect.grow(-2), Color("172638"), false, 4)
+	draw_rect(rect.grow(-5), accent, false, 2)
+	draw_circle(rect.position + Vector2(rect.size.x * 0.5, 15), 13, Color("142337"))
+	_text(label, rect.position + Vector2(rect.size.x * 0.5, 20), 14, accent)
+
 func _draw_terrain(cell: Vector2i, rect: Rect2, painted: bool = false) -> void:
 	var ground_type: String = battle.ground(cell)
 	if not painted: Landscape.draw_prop(self, ground_type, rect, battle.map_definition.theme, battle.map_definition.id)
@@ -424,6 +446,17 @@ func _draw_weather(grid: Rect2) -> void:
 			for ray: int in range(4):
 				var start: Vector2 = grid.position + Vector2(grid.size.x * (0.45 + ray * 0.13), 0)
 				draw_colored_polygon(PackedVector2Array([start, start + Vector2(20, 0), start + Vector2(-120, grid.size.y), start + Vector2(-155, grid.size.y)]), Color(1, 0.83, 0.45, 0.035))
+		"tailwind":
+			for streak: int in range(16):
+				var x: float = fposmod(streak * 71.0 + visual_time * 128, maxf(1, grid.size.x - 38))
+				var y: float = grid.size.y * (streak + 0.5) / 16
+				var start: Vector2 = grid.position + Vector2(x, y)
+				draw_line(start, start + Vector2(30, -5), Color(0.66, 0.94, 0.89, 0.22), 1.4, true)
+		"lanterns":
+			draw_rect(grid, Color(0.06, 0.10, 0.21, 0.14))
+			for lamp: int in range(15):
+				var local := Vector2(fposmod(lamp * 101.5, grid.size.x), fposmod(lamp * 69.8 - visual_time * 6.0, grid.size.y))
+				draw_circle(grid.position + local, 2.2, Color(1.0, 0.75, 0.36, 0.34 + sin(visual_time + lamp) * 0.13))
 
 func _draw_effects(tile: float) -> void:
 	for effect: Dictionary in effects:
@@ -458,7 +491,7 @@ func _draw_cast_effect(effect: Dictionary, tile: float) -> void:
 		return
 	var progress: float = clampf((float(effect.age) - 0.32) / 0.48, 0, 1)
 	var fade: float = 1 - progress
-	if effect.kind == "fire_area":
+	if effect.cells.size() > 1:
 		for cell: Vector2i in effect.cells:
 			var rect := Rect2(cell_center(cell) - Vector2.ONE * tile * 0.47, Vector2.ONE * tile * 0.94)
 			draw_rect(rect, Color(color, fade * 0.14))

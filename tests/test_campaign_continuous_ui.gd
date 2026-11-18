@@ -21,6 +21,7 @@ func fight_current() -> bool:
 	shadow = Battle.new(int(game.campaign_session.campaign.scenario().seed), game.campaign_session.campaign.scenario().map, game.campaign_session.campaign.scenario().hero, game.campaign_session.campaign.scenario().enemy_class, game.campaign_session.campaign.scenario().deck, game.campaign_session.campaign.scenario().enemy_deck, 90)
 	var config: Dictionary = game.campaign_session.campaign.scenario()
 	shadow.set_commander_identity(1, config.enemy_name, config.enemy_portrait)
+	if config.has("bonus_card"): shadow.add_generated_card(0, str(config.bonus_card))
 	shadow.configure_objective(config.get("control", {}))
 	cursor = 0
 	await click(game.story_view.actions.get_child(0).get_global_rect().get_center())
@@ -126,6 +127,7 @@ func reader() -> void:
 	var config: Dictionary = game.campaign_session.campaign.scenario()
 	shadow = Battle.new(int(config.seed), config.map, config.hero, config.enemy_class, config.deck, config.enemy_deck, 90)
 	shadow.set_commander_identity(1, config.enemy_name, config.enemy_portrait); shadow.configure_objective(config.get("control", {}))
+	if config.has("bonus_card"): shadow.add_generated_card(0, str(config.bonus_card))
 	await click(game.story_view.actions.get_child(0).get_global_rect().get_center())
 	check(game.campaign_session.encounter == game.battle and game.battle.winner == -1 and Replay.state_without_clock(game.battle) == Replay.state_without_clock(shadow), "actual retry rebuilds the unchanged opening without free resources")
 	check(game.campaign_session.campaign.snapshot() == previous, "starting a retry preserves earlier earned choices and does not record an unplayed result")
@@ -133,11 +135,12 @@ func reader() -> void:
 	print("NATIVE CONTINUOUS READER: %d CHECKS | FAILURES: %d | RETRY: %s" % [checks, failures, game.campaign_session.current().scenario])
 
 func run() -> void:
-	create_timer(3600).timeout.connect(func() -> void: push_error("continuous native flow timeout"); quit(2))
+	create_timer(3600, true, false, true).timeout.connect(func() -> void: push_error("continuous native flow timeout"); quit(2))
 	capture_prefix = "v030"
 	for arg: String in OS.get_cmdline_user_args():
 		if arg.begins_with("--capture-prefix="): capture_prefix = arg.trim_prefix("--capture-prefix=")
 		if arg.begins_with("--report="): report_path = arg.trim_prefix("--report=")
+		if arg == "--accelerate": Engine.time_scale = 3.0
 	writing = OS.get_cmdline_user_args().has("--write")
 	check(writing or OS.get_cmdline_user_args().has("--read"), "choose writer then reader")
 	check(report_path.begins_with("res://.tools/continuous-campaign-") and report_path.ends_with(".json") and FileAccess.file_exists(report_path), "run the selected continuous headless diagnostic before native validation")

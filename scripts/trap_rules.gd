@@ -52,6 +52,7 @@ static func stepped(battle: RefCounted, unit: Dictionary) -> void:
 		consume(battle, trap, "触发")
 		battle._hurt(unit, battle.fire_damage(int(card.amount)) if card.get("fire", false) else int(card.amount))
 		if card.get("root", false): unit.rooted_turns = maxi(1, int(unit.rooted_turns))
+		if int(card.get("draw", 0)) > 0: battle._draw(trap.side, int(card.draw))
 
 static func attacked(battle: RefCounted, defender: Dictionary) -> void:
 	for trap: Dictionary in battle.traps.duplicate():
@@ -60,6 +61,7 @@ static func attacked(battle: RefCounted, defender: Dictionary) -> void:
 		if card.trigger != "attack": continue
 		consume(battle, trap, "触发")
 		defender.shield = mini(5, int(defender.shield) + int(card.amount))
+		if int(card.get("draw", 0)) > 0: battle._draw(trap.side, int(card.draw))
 
 static func spelled(battle: RefCounted, defender: Dictionary) -> void:
 	for trap: Dictionary in battle.traps.duplicate():
@@ -68,6 +70,7 @@ static func spelled(battle: RefCounted, defender: Dictionary) -> void:
 		if card.trigger != "spell": continue
 		consume(battle, trap, "触发")
 		defender.shield = mini(5, int(defender.shield) + int(card.amount))
+		if int(card.get("draw", 0)) > 0: battle._draw(trap.side, int(card.draw))
 
 static func reveal(battle: RefCounted, cell: Vector2i, side: int) -> void:
 	var found: int = 0

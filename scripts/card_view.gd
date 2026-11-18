@@ -8,6 +8,7 @@ const GOLD := Color("d0b579")
 const TEAL := Color("70d3ba")
 const CORAL := Color("f08b76")
 const Art = preload("res://scripts/art_library.gd")
+const Catalog = preload("res://data/cards.tres")
 
 var card: Dictionary = {}
 var card_uid: int = -1
@@ -46,7 +47,7 @@ func _set_hover_blend(value: float) -> void:
 
 func configure(definition: Dictionary, uid: int, mana: int, selected: bool, locked: bool) -> void:
 	card = definition
-	illustration = Art.get_texture(str(card.get("kind", card.id)))
+	illustration = Art.get_texture(str(card.id))
 	card_uid = uid
 	affordable = int(card.cost) <= mana
 	chosen = selected
@@ -54,7 +55,8 @@ func configure(definition: Dictionary, uid: int, mana: int, selected: bool, lock
 	tooltip_text = "%s · %d 费\n%s\n%s" % [card.name, card.cost, card.tag, card.text]
 	if card.type == "unit":
 		tooltip_text += "\n攻击 %d · 生命 %d · 防御 %d · 移动 %d · 射程 %d" % [card.atk, card.hp, card.defense, card.move, card.range]
-		if card.has("skill"): tooltip_text += "\n主动 · %s（1费，每回合一次）：%s" % [card.skill.name, card.skill.text]
+		var skill: Dictionary = Catalog.find(card.kind).get("skill", {})
+		if not skill.is_empty(): tooltip_text += "\n主动 · %s（1费，每回合一次）：%s" % [skill.name, skill.text]
 	elif card.effect not in ["draw", "mana", "weather", "clear_weather"]:
 		tooltip_text += "\n施法范围：友军3格、法师4格；换位另限指挥官3格。"
 	if card.type == "trap":

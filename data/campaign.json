@@ -80,6 +80,16 @@
       "id": "chapter_16",
       "title": "第十六章 · 桥上空桶",
       "path": "res://data/narrative/chapters/chapter_16.json"
+    },
+    {
+      "id": "chapter_17",
+      "title": "第十七章 · 三盏灯",
+      "path": "res://data/narrative/chapters/chapter_17.json"
+    },
+    {
+      "id": "chapter_18",
+      "title": "终章 · 水到门前",
+      "path": "res://data/narrative/chapters/chapter_18.json"
     }
   ],
   "scenarios": {
@@ -418,6 +428,22 @@
       "objective": "击败护运队指挥官，解除两桥封锁；己方指挥官倒下则败。桥面狭窄，枪兵援护与地格陷阱可保护推进路线。战胜只取得通行与查验机会，不能视为水塔验收。",
       "map": "eastbridge", "hero": "warden", "enemy_class": "warden", "deck": "ambush", "enemy_deck": "bastion", "seed": 16031,
       "enemy_name": "护运队长白祁", "enemy_portrait": "terrain_fort"
+    },
+    "c17_runner": {
+      "title": "三盏灯 · 先送灯手",
+      "brief": "先在西岸接应灯棚，再跨石桥到右岸高街。疾行军令已在手牌，可以用来迅速换防。每次接应成功后，这一格的部队可以离开。北侧窄桥可作侧路。",
+      "objective": "依次接应 E4 灯棚、I6 石桥、L8 高街。己方新回合开始时，当前点上有友军即可记一次，每回合只记一处。16 个完整轮次内通过三处即胜，击退敌指挥官也会解除封路。己方指挥官倒下或超时则败。",
+      "map": "lamplanding", "hero": "warden", "enemy_class": "warden", "deck": "assault", "enemy_deck": "balanced", "seed": 17031,
+      "enemy_name": "城巡队长裴照", "enemy_portrait": "terrain_fort", "bonus_card": "march",
+      "control": {"mode": "relay", "cells": [[4, 8], [8, 6], [11, 4]], "required": 3, "round_limit": 16}
+    },
+    "c17_screen": {
+      "title": "三盏灯 · 护住担架",
+      "brief": "先在西岸接应灯棚，再跨石桥到右岸高街。回誓屏障已在手牌，可以先伏设在驻守者身上，防备敌军普通攻击。每次接应成功后，这一格的部队可以离开。北侧窄桥可作侧路。",
+      "objective": "依次接应 E4 灯棚、I6 石桥、L8 高街。己方新回合开始时，当前点上有友军即可记一次，每回合只记一处。16 个完整轮次内通过三处即胜，击退敌指挥官也会解除封路。己方指挥官倒下或超时则败。",
+      "map": "lamplanding", "hero": "warden", "enemy_class": "warden", "deck": "assault", "enemy_deck": "balanced", "seed": 17031,
+      "enemy_name": "城巡队长裴照", "enemy_portrait": "terrain_fort", "bonus_card": "oath_ward",
+      "control": {"mode": "relay", "cells": [[4, 8], [8, 6], [11, 4]], "required": 3, "round_limit": 16}
     }
   }
 }

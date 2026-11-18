@@ -152,4 +152,7 @@ func backlog() -> Array[Dictionary]:
 	if story != null:
 		for id: String in story.state.history:
 			result.append({"id": id, "text": story.graph.strings[id], "chapter": story.graph.title})
+		var current: Dictionary = story.graph.nodes[story.state.node]
+		if current.type == "end":
+			result.append({"id": current.text, "text": story.graph.strings[current.text], "chapter": story.graph.title})
 	return result

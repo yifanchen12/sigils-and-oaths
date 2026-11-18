@@ -175,6 +175,28 @@
       "playthroughValidated": false,
       "wordCount": 2456,
       "wordCountPass": false
+    },
+    {
+      "id": "chapter_17",
+      "title": "三盏灯",
+      "status": "implemented_pending_external_reader_and_balance",
+      "nativeValidated": true,
+      "revision": "0.41.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": true,
+      "wordCount": 3973,
+      "wordCountPass": false
+    },
+    {
+      "id": "chapter_18",
+      "title": "水到门前",
+      "status": "three_endings_implemented_pending_external_reader",
+      "nativeValidated": true,
+      "revision": "0.41.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": true,
+      "wordCount": 6743,
+      "wordCountPass": false
     }
   ]
 }

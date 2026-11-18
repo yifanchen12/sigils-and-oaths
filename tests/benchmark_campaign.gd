@@ -47,6 +47,8 @@ func run() -> void:
 		if objectives_only and not config.has("control"): continue
 		var battle: Battle = Model.new(int(config.seed), config.map, config.hero, config.enemy_class, config.deck, config.enemy_deck, 90.0)
 		battle.set_commander_identity(1, config.enemy_name, config.enemy_portrait)
+		if config.has("bonus_card") and not battle.add_generated_card(0, str(config.bonus_card)):
+			push_error("starting campaign card could not be granted"); quit(1); return
 		battle.configure_objective(config.get("control", {}))
 		var trace: Array[Dictionary] = []
 		var elapsed_us: int = 0
@@ -74,7 +76,7 @@ func run() -> void:
 		var reason: String = "commander"
 		if battle.winner == -1: reason = "action_cap"; failed = true
 		elif not battle.objective.is_empty() and not battle.commander(0).is_empty() and not battle.commander(1).is_empty():
-			reason = "control" if battle.winner == 0 else "deadline"
+			reason = ("relay" if battle.ControlObjective.is_relay(battle.objective) else "control") if battle.winner == 0 else "deadline"
 		var row: Dictionary = {"scenario": id, "seed": config.seed, "winner": battle.winner, "reason": reason, "turn": battle.turn,
 			"actions": trace.size(), "max_control_streak": peak_control, "streak_resets": denial_count,
 			"decision_mean_ms": elapsed_us / maxf(1, trace.size()) / 1000.0, "decision_peak_ms": peak_us / 1000.0,

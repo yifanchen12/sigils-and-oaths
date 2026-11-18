@@ -21,8 +21,17 @@ func _process(_delta: float) -> void:
 func subtitle_text() -> String:
 	if battle == null: return ""
 	var value: String = "%s  /  %s" % [battle.map_definition.name, battle.WEATHER[battle.weather].name]
-	if not battle.objective.is_empty():
-		value += "  ·  驻守 %d/%d  ·  已过 %d/%d 轮" % [battle.objective.streak, battle.objective.required, (battle.turn - 1) / 2, battle.objective.round_limit]
+	var goal: Dictionary = battle.objective
+	if goal.is_empty(): return value
+	var completed_rounds: int = (battle.turn - 1) / 2
+	if battle.ControlObjective.is_relay(goal):
+		value += "  ·  接应 %d/%d" % [goal.streak, goal.required]
+		if goal.streak < goal.required:
+			var next: Array = goal.cells[int(goal.streak)]
+			value += "  ·  下一站 " + battle.cell_name(Vector2i(int(next[0]), int(next[1])))
+		value += "  ·  余 %d 轮" % maxi(0, int(goal.round_limit) - completed_rounds)
+	else:
+		value += "  ·  驻守 %d/%d  ·  已过 %d/%d 轮" % [goal.streak, goal.required, completed_rounds, goal.round_limit]
 	return value
 
 func _draw() -> void:

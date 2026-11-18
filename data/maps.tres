@@ -40,6 +40,11 @@ maps = Array[Dictionary]([{
 "rows": ["mm....rrrr....mm", "m..t..rrrr..t..m", "...rrrrrrrrrr...", "...rrrrrrrrrr...", "wwwbbwwwwwbbwwww", "wwwbbwwwwwbbwwww", "...rr....rr.....", "...rr....rr.....", ".f.rr....rr.f...", "...rrrrrrrrrr...", "...rrrrrrrrrr...", "......rrrr......"],
 "spawns": [Vector2i(7, 11), Vector2i(8, 0)], "ruins": []
 }, {
+"id": "lamplanding", "name": "三灯撤离道", "subtitle": "纵向深渠 · 连站接应", "theme": "river", "selectable": false, "campaign_only": true,
+"description": "左岸灯棚、渠心石桥和右岸高街排成接力线。中央桥面较宽，北面的窄道可以用来牵制守军。",
+"rows": ["mm...h.ww...mmmm", "m..f...ww..rrr.m", "..f.rrrbbrrrrt.m", "...rrh.ww.rrr...", "..trrr.ww.rrrh..", "..rrrrrbbrrrrr..", "...rrrrbbrrrr...", "..frr..ww..rrf..", "...rrt.ww.rrff..", "..rrr..ww..rf...", "m.rrrr.ww...f..m", "mm.....ww.....mm"],
+"spawns": [Vector2i(3, 10), Vector2i(12, 2)], "ruins": []
+}, {
 "id": "ridgepass", "name": "断脊隘口", "subtitle": "隘口卡位 · 分兵绕后", "theme": "forest",
 "description": "两道断脊山带分割推进路线；中场开阔地连接隘口，分兵、击退和前线增援可以改变通路归属。",
 "rows": ["...f..r.....", ".rrr.hrr.f..", ".rmm..fm.r..", "mm..m..m...m", "..r.rh..rr..", "..rr..hr.r..", "m...m..m..mm", "..r.mf..mmr.", "..f.rrh.rrr.", ".....r..f..."],

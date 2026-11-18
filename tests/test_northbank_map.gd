@@ -22,12 +22,15 @@ func run() -> void:
 	for x: int in [4, 7, 8, 11]: battle.terrain[Vector2i(x, 5)] = "mountain"
 	check(not reachable(battle, start, Vector2i(5, 3)) and not reachable(battle, start, Vector2i(10, 3)), "closed ridge blocks both work positions")
 	var old_gate: Dictionary = Snapshot.capture(Model.new(10341, "towergate"))
+	old_gate.version = 3
 	old_gate.rules = Snapshot.pre_northbank_signature()
 	check(Snapshot.restore(old_gate).ok, "0.35 running gate battle survives additive depot map")
 	var old_field: Dictionary = Snapshot.capture(Model.new(10341, "greenwood"))
+	old_field.version = 3
 	old_field.rules = Snapshot.pre_northbank_signature()
 	check(Snapshot.restore(old_field).ok, "0.35 running original battle survives additive depot map")
 	var forged: Dictionary = Snapshot.capture(Model.new(12031, "northbank"))
+	forged.version = 3
 	forged.rules = Snapshot.pre_northbank_signature()
 	check(not Snapshot.validate(forged).ok, "new depot cannot claim the older map signature")
 	if DisplayServer.get_name() != "headless":

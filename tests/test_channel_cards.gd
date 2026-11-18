@@ -50,6 +50,7 @@ func test_old_save() -> void:
 	check(restored.ok and Snapshot.capture(restored.battle).map_id == "northbank", "0.37 battle continues under additive 0.38 cards and deck")
 	if restored.ok: valid(restored.battle, "restored 0.37 battle")
 	var forged: Dictionary = Snapshot.capture(Model.new(14031, "spillway"))
+	forged.version = 3
 	forged.rules = Snapshot.pre_towergate_signature()
 	check(not Snapshot.validate(forged).ok, "new spillway cannot claim pre-gate rules")
 	forged.rules = Snapshot.pre_northbank_signature()

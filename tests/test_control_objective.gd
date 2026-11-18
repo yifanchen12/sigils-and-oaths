@@ -3,6 +3,7 @@ const Model = preload("res://scripts/battle.gd")
 const Snapshot = preload("res://scripts/battle_snapshot.gd")
 const Fixture = preload("res://tests/fixtures/saved_battle.gd")
 const CONFIG: Dictionary = {"cells": [[3, 5], [8, 5]], "required": 2, "round_limit": 12}
+const RELAY: Dictionary = {"mode": "relay", "cells": [[4, 8], [8, 6], [11, 4]], "required": 3, "round_limit": 5}
 var checks: int = 0
 var failures: int = 0
 func _initialize() -> void: call_deferred("run")
@@ -18,6 +19,43 @@ func occupy(battle: RefCounted) -> void:
 	Fixture.troop(battle, "sword", Vector2i(8, 5), 0)
 func full_round(battle: RefCounted) -> void:
 	battle.end_turn(); battle.end_turn()
+
+func test_relay() -> void:
+	var battle: Battle = Model.new(17031, "lamplanding")
+	check(battle.configure_objective(RELAY).ok and battle.objective_status().contains("E4 → I6 → L8"), "relay order matches the player-facing coordinates")
+	Fixture.troop(battle, "sword", Vector2i(8, 6), 0)
+	full_round(battle)
+	check(battle.objective.streak == 0, "occupation at a later station cannot skip the first")
+	Fixture.troop(battle, "spear", Vector2i(4, 8), 0)
+	full_round(battle)
+	check(battle.objective.streak == 1, "two occupied stations yield exactly one relay credit")
+	battle.unit_at(Vector2i(4, 8)).pos = Vector2i(4, 9)
+	battle.unit_at(Vector2i(8, 6)).pos = Vector2i(9, 6)
+	full_round(battle)
+	check(battle.objective.streak == 1 and battle.winner == -1, "leaving cleared stations preserves progress across an empty round")
+	var raw: Dictionary = Snapshot.capture(battle)
+	var saved: Dictionary = Snapshot.restore(JSON.parse_string(JSON.stringify(raw)))
+	check(saved.ok and Snapshot.capture(saved.battle) == raw, "relay order and progress survive a round trip")
+	if not saved.ok: return
+	battle = saved.battle
+	battle.unit_at(Vector2i(9, 6)).pos = Vector2i(8, 6)
+	full_round(battle)
+	battle.unit_at(Vector2i(8, 6)).pos = Vector2i(9, 6)
+	Fixture.troop(battle, "archer", Vector2i(11, 4), 0)
+	full_round(battle)
+	check(battle.winner == 0 and battle.objective.streak == 3 and battle.turn == 11, "completing just the final station on the deadline wins")
+	check(Snapshot.restore(Snapshot.capture(battle)).ok, "relay victory restores with both commanders alive")
+	var old_relay: Dictionary = raw.duplicate(true)
+	old_relay.version = 3
+	check(not Snapshot.validate(old_relay).ok, "a relay state cannot claim the pre-relay schema")
+	var invalid_relay: Dictionary = RELAY.duplicate(true)
+	invalid_relay.cells.pop_back()
+	check(not Model.ControlObjective.validate_config(invalid_relay, battle.map_definition).is_empty(), "relay requires one distinct cell per credit")
+	var prior: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://tests/fixtures/v040-compat-battle.json"))
+	var migrated: Dictionary = Snapshot.restore(prior)
+	check(migrated.ok and migrated.battle.map_definition.id == "eastbridge" and migrated.battle.turn == 2, "an authentic 0.40 eastbridge save can resume")
+	prior.rules = Snapshot.pre_eastbridge_signature()
+	check(not Snapshot.validate(prior).ok, "exact pre-eastbridge signature does not accept an eastbridge board")
 func run() -> void:
 	var battle: RefCounted = fresh()
 	check(battle.objective.streak == 0 and battle.objective.last_check == 0, "initial position gets no free control credit")
@@ -67,5 +105,6 @@ func run() -> void:
 	check(Snapshot.restore(legacy).ok and Snapshot.restore(legacy).battle.objective.is_empty(), "v1 skirmish snapshot migrates without inventing an objective")
 	legacy.version = 2
 	check(not Snapshot.restore(legacy).ok, "new snapshot requires objective field even for skirmish")
+	test_relay()
 	print("CONTROL OBJECTIVE CHECKS: %d | FAILURES: %d | DISPLAY: %s" % [checks, failures, DisplayServer.get_name()])
 	quit(0 if failures == 0 else 1)

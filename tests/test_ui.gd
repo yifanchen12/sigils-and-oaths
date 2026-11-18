@@ -4,6 +4,7 @@ extends SceneTree
 const MainScene = preload("res://scenes/main.tscn")
 const EnemyAI = preload("res://scripts/opponent.gd")
 const Store = preload("res://scripts/deck_store.gd")
+const Fixture = preload("res://tests/fixtures/saved_battle.gd")
 const DECK_TEST_PATH: String = "res://.tools/ui_custom_deck.json"
 var checks: int = 0
 var failures: int = 0
@@ -22,11 +23,14 @@ func check(condition: bool, message: String) -> void:
 func settle() -> void:
 	for frame: int in range(3): await process_frame
 
-func click(point: Vector2, button: int = MOUSE_BUTTON_LEFT) -> void:
+func hover(point: Vector2) -> void:
 	var motion := InputEventMouseMotion.new()
 	motion.position = point
 	motion.global_position = point
 	root.push_input(motion, true)
+
+func click(point: Vector2, button: int = MOUSE_BUTTON_LEFT) -> void:
+	hover(point)
 	var down := InputEventMouseButton.new()
 	down.position = point
 	down.global_position = point
@@ -42,12 +46,16 @@ func click(point: Vector2, button: int = MOUSE_BUTTON_LEFT) -> void:
 	root.push_input(up, true)
 	await settle()
 
-func capture(filename: String) -> void:
-	if DisplayServer.get_name() == "headless": return
+func screenshots_enabled() -> bool:
+	return DisplayServer.get_name() != "headless" and not OS.get_cmdline_user_args().has("--no-screenshots")
+
+func capture(filename: String, viewport: Viewport = null) -> void:
+	var warfront_only: bool = filename.begins_with("v041-warfront-") and OS.get_cmdline_user_args().has("--warfront-screens") and DisplayServer.get_name() != "headless"
+	if not screenshots_enabled() and not warfront_only: return
 	await RenderingServer.frame_post_draw
 	var directory: String = ProjectSettings.globalize_path("res://docs/screenshots")
 	DirAccess.make_dir_recursive_absolute(directory)
-	var image: Image = root.get_texture().get_image()
+	var image: Image = (root if viewport == null else viewport).get_texture().get_image()
 	check(image.save_png(directory.path_join(filename)) == OK, "screenshot " + filename)
 
 func check_layout() -> void:
@@ -197,6 +205,7 @@ func run() -> void:
 	await test_large_map_views()
 	await test_turn_clock_ui()
 	await test_custom_deck_ui()
+	await test_warfront_cast()
 	# Same logical layout must fit a smaller desktop window and a wide screen.
 	for window_size: Vector2i in [Vector2i(1008, 700), Vector2i(1920, 1080)]:
 		root.size = window_size
@@ -223,10 +232,10 @@ func test_custom_deck_ui() -> void:
 	var visible_cards: int = 0
 	for row: Dictionary in editor.rows.values():
 		if row.cell.visible: visible_cards += 1
-	check(visible_cards == 6, "deck workshop troop filter shows six unit cards")
+	check(visible_cards == 14, "deck workshop troop filter shows six original and eight new unit cards")
 	await click(Vector2(editor.position) + editor.filter_buttons.all.get_global_rect().get_center())
 	check(editor.rows.values().all(func(row: Dictionary) -> bool: return row.cell.visible), "all filter restores collectible catalog")
-	check(editor.rows.size() == 24 and not editor.rows.has("initiative"), "editor excludes generated initiative")
+	check(editor.rows.size() == 58 and not editor.rows.has("initiative"), "editor exposes 58 cards and excludes generated initiative")
 	check(not editor.get_ok_button().disabled and editor._total() == 30, "valid preset starts as editable 30-card draft")
 	# Dialog controls live in their own Window viewport, so inject there.
 	await click_window(editor, editor.rows.sword.minus.get_global_rect().get_center())
@@ -234,7 +243,7 @@ func test_custom_deck_ui() -> void:
 	await click_window(editor, editor.rows.mage.plus.get_global_rect().get_center())
 	check(editor._total() == 30 and editor.draft.mage == 4 and editor.rows.mage.plus.disabled, "adding replacement respects total and four-copy cap")
 	check(before == var_to_str([game.battle.players, game.battle.units, game.battle.turn]), "draft edits do not affect current battle")
-	if DisplayServer.get_name() != "headless":
+	if screenshots_enabled():
 		await RenderingServer.frame_post_draw
 		check(editor.get_texture().get_image().save_png(ProjectSettings.globalize_path("res://docs/screenshots/deck-editor.png")) == OK, "deck editor screenshot")
 	await click_window(editor, editor.get_ok_button().get_global_rect().get_center())
@@ -252,6 +261,14 @@ func test_custom_deck_ui() -> void:
 	editor.source_choice.select(1)
 	await click_window(editor, editor.copy_button.get_global_rect().get_center())
 	check(editor.draft == game.battle.DECKS.find("assault").cards and editor._total() == 30, "copy preset replaces only unsaved draft")
+	var frost_index: int = option_index(editor.source_choice, "frost_engine")
+	check(frost_index >= 0, "deck workshop offers new heavy-spell preset")
+	if frost_index >= 0:
+		editor.source_choice.select(frost_index)
+		await click_window(editor, editor.copy_button.get_global_rect().get_center())
+		check(editor.draft.get("last_hearth", 0) == 1 and editor._total() == 30, "copy heavy preset brings in the ten-cost card")
+		check(editor.cost_curve.counts.size() == 11 and editor.cost_curve.counts[10] == 1 and editor.cost_curve.counts[8] == 1, "deck curve distinguishes eight and ten mana")
+		await capture("v041-warfront-curve.png", editor)
 	await click_window(editor, editor.get_cancel_button().get_global_rect().get_center())
 	loaded = Store.new(DECK_TEST_PATH).load_deck()
 	check(loaded.ok and loaded.definition.cards.sword == 2, "cancel discards unsaved draft changes")
@@ -280,6 +297,55 @@ func click_window(window: Window, point: Vector2) -> void:
 	up.position = point
 	up.global_position = point
 	target.push_input(up, true)
+	await settle()
+
+func option_index(choice: OptionButton, id: String) -> int:
+	for index: int in range(choice.item_count):
+		if choice.get_item_metadata(index) == id: return index
+	return -1
+
+func test_warfront_cast() -> void:
+	game.current_map = "greenwood"
+	game.current_hero = "warden"
+	game._open_council()
+	await settle()
+	var deck_choice: OptionButton = game.council.deck_choice
+	var index: int = option_index(deck_choice, "frost_engine")
+	check(index >= 0, "council can select the heavy spell preset")
+	if index < 0: return
+	deck_choice.select(index)
+	deck_choice.item_selected.emit(index)
+	await click(game.council.start_button.get_global_rect().get_center())
+	check(game.battle.deck(0).id == "frost_engine", "council starts a match with all thirty selected cards")
+	if not game.expanded_battlefield: game._toggle_battlefield()
+	var center := Vector2i(5, 6)
+	var target: Dictionary = Fixture.troop(game.battle, "bronze_watch", center, 1)
+	var edge: Dictionary = Fixture.troop(game.battle, "breakwater_guard", Vector2i(6, 5), 1)
+	var safe: Dictionary = Fixture.troop(game.battle, "spear", Vector2i(7, 5), 1)
+	Fixture.troop(game.battle, "scribe_warden", Vector2i(6, 8), 0)
+	var instance: Dictionary = Fixture.give(game.battle, "last_hearth")
+	game.battle.players[0].mana = 10
+	game.battle.players[0].max_mana = 10
+	game._refresh()
+	await settle()
+	var selected: CardView
+	for card: CardView in game.get_node("%CompactHand").get_children():
+		if card.card_uid == instance.uid: selected = card; break
+	check(selected != null and selected.affordable and selected.illustration != null, "ten-cost card is visible and affordable in expanded hand")
+	if selected == null: return
+	await click(selected.get_global_rect().get_center())
+	var point: Vector2 = game.board.global_position + game.board.cell_center(center)
+	hover(point)
+	await settle()
+	check(game.selected_card == instance.uid and game.board.spell_targets.has(center), "mouse selects the actual card and reaches its legal center")
+	check(game.board.predicted_area.size() == 13 and game.board.predicted_losses.get(target.id, 0) == 6 and game.board.predicted_losses.get(edge.id, 0) == 6, "highlight covers thirteen cells and both expected targets")
+	check(not game.board.predicted_losses.has(safe.id) and game.battle_peek.heading.text == "天炉坠火", "hover panel gives the correct area card and excludes an out-of-range enemy")
+	await capture("v041-warfront-cast.png")
+	await click(point)
+	check(game.battle.players[0].mana == 0 and target.hp == target.max_hp - 6 and edge.hp == edge.max_hp - 6 and safe.hp == safe.max_hp, "click executes the real ten-cost group spell")
+	check(game.board.effects.any(func(effect: Dictionary) -> bool: return effect.kind == "fire_area" and effect.cells.size() == 13), "battle presentation uses the same area as the forecast")
+	check(game.selected_card == -1 and game.board.predicted_area.is_empty(), "resolution clears the selected card and stale hover area")
+	if game.expanded_battlefield: game._toggle_battlefield()
 	await settle()
 
 func test_evolution_ui() -> void:
@@ -336,11 +402,12 @@ func test_evolution_ui() -> void:
 	await settle()
 	check(game.battle.map_definition.id == "sunspire", "third map selector works")
 	await capture("sunspire.png")
-	for index: int in [3, 4, 5]:
+	var additional_maps: Array[String] = ["ridgepass", "citadel", "harbor"]
+	for index: int in range(3, 6):
 		map_choice.select(index)
 		map_choice.item_selected.emit(index)
 		await settle()
-		check(game.battle.map_definition.id == game.battle.MAPS.maps[index].id, "extra map selection applies terrain")
+		check(game.battle.map_definition.id == additional_maps[index - 3], "map selector skips campaign only maps")
 		await capture(game.battle.map_definition.id + ".png")
 		if index in [3, 4]:
 			await click(game.get_node("%ExpandBoard").get_global_rect().get_center())
@@ -465,16 +532,35 @@ func test_decks_and_library() -> void:
 	game.council.deck_choice.item_selected.emit(1)
 	await click(game.council.library_button.get_global_rect().get_center())
 	check(game.get_node("%CardsDialog").visible, "menu library button opens compendium")
-	check(game.get_node("%CardGrid").get_child_count() == 25, "compendium lists 24 collectible cards and initiative")
+	check(game.get_node("%CardGrid").get_child_count() == 59, "compendium lists 58 collectible cards and initiative")
+	check(game.get_node("%LibraryIntro").text.contains("58 种可组牌"), "visible catalog count includes all collectible expansions")
 	for view: CardView in game.get_node("%CardGrid").get_children():
 		check(view.illustration != null, "native illustration mapped for " + view.card.id)
 	check(game.get_node("%LibraryIntro").text.contains("锋线突袭"), "library shows selected deck context")
 	var before: String = var_to_str([game.battle.players, game.battle.units, game.battle.turn])
 	game.get_node("%CardGrid").get_child(3).pressed.emit()
 	check(game.get_node("%LibraryDetails").text.contains("暮林游侠"), "card selection updates detailed rules")
+	var dialog: Window = game.get_node("%CardsDialog")
+	var expansion_filter: CheckButton = game.get_node("%LibraryWarfront")
+	await click_window(dialog, expansion_filter.get_global_rect().get_center())
+	var grid: GridContainer = game.get_node("%CardGrid")
+	check(grid.get_child_count() == 24 and game.get_node("%LibraryIntro").text.contains("24 张前线新卡"), "real library filter shows only the twenty-four additions")
+	var capstone: CardView
+	for card: CardView in grid.get_children():
+		if card.card.id == "last_hearth": capstone = card; break
+	check(capstone != null, "ten-cost card discoverable in filtered library")
+	if capstone != null:
+		var scroll: ScrollContainer = grid.get_parent()
+		scroll.ensure_control_visible(capstone)
+		await settle()
+		await click_window(dialog, capstone.get_global_rect().get_center())
+		check(game.get_node("%LibraryDetails").text.contains("天炉坠火") and game.get_node("%LibraryDetails").text.contains("10 费"), "click opens the actual ten-mana definition")
+		await capture("v041-warfront-library.png", dialog)
+	await click_window(dialog, expansion_filter.get_global_rect().get_center())
+	check(grid.get_child_count() == 59, "turning off the filter restores the full library")
 	check(before == var_to_str([game.battle.players, game.battle.units, game.battle.turn]), "browsing cards cannot mutate battle")
 	await settle()
-	if DisplayServer.get_name() != "headless":
+	if screenshots_enabled():
 		await RenderingServer.frame_post_draw
 		var image: Image = game.get_node("%CardsDialog").get_texture().get_image()
 		check(image.save_png(ProjectSettings.globalize_path("res://docs/screenshots/card-library.png")) == OK, "compendium screenshot")

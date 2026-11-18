@@ -29,4 +29,16 @@ decks = Array[Dictionary]([{
 "cards": {"sword": 3, "spear": 3, "cavalry": 2, "archer": 4, "mage": 3, "healer": 3,
 "span_kit": 2, "countercurrent_ward": 2, "reveal_traps": 1, "anchor_snare": 1, "oath_ward": 1,
 "shatter_bolt": 1, "rally_heal": 1, "heal": 1, "fog": 1, "trail": 1}
+}, {
+"id": "reed_legion", "name": "逐岸先锋", "set_id": "warfront", "description": "低费前哨开路，枪卫进场援护。靠传令骑和疾风扩大部署，再用换班再击夺回节奏。",
+"cards": {"reed_scout": 3, "gate_veteran": 3, "ridge_courier": 3, "ridge_archer": 2, "shore_medic": 2, "breakwater_guard": 2, "bronze_watch": 1, "sword": 2,
+"field_signals": 2, "detach_line": 2, "dispatch_bundle": 1, "march": 2, "second_watch": 1, "open_wind": 1, "reed_roads": 1, "silt_snare": 1, "bolt": 1}
+}, {
+"id": "frost_engine", "name": "断阵重术", "set_id": "warfront", "description": "中场用雾棘锁阵和崩纹破盾，保持法师阵线，用八费澜潮或十费坠火处理敌人集群。",
+"cards": {"sword": 3, "spear": 2, "archer": 2, "mage": 2, "reed_scout": 2, "scribe_warden": 1, "ridge_archer": 1, "shore_medic": 1, "cavalry": 1, "breakwater_guard": 1,
+"mist_spike": 2, "kiln_lance": 1, "dispatch_bundle": 1, "warder_hymn": 1, "hammer_sweep": 1, "signal_torrent": 1, "last_hearth": 1, "frostbind": 1, "clear_skies": 1, "tidal_oath": 1, "fog": 1, "ward": 1, "second_watch": 1}
+}, {
+"id": "lantern_convoy", "name": "灯曜守队", "set_id": "warfront", "description": "围绕重装枪兵布置援护和受击补给。群疗、灯夜和重印维持阵线，铺路时考虑双方都能使用。",
+"cards": {"sword": 2, "gate_veteran": 3, "healer": 2, "shore_medic": 3, "breakwater_guard": 2, "bronze_watch": 1, "mage": 2, "archer": 2,
+"field_signals": 2, "warder_hymn": 2, "fallback_horn": 2, "tidal_oath": 1, "night_muster": 2, "reed_roads": 1, "detach_line": 1, "silt_snare": 1, "hammer_sweep": 1}
 }])

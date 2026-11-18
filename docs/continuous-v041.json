@@ -1,0 +1,126 @@
+{
+  "milestone": "0.41.0-dev",
+  "date": "2026-11-18",
+  "scope": "New Campaign through all 18 chapters and an earned ending. Actual UI actions and production enemy AI matched the headless action trace. Native UI writer used a 3x presentation clock for the automated replay.",
+  "player_policy": "production on both sides except c04_pump harbor focus player, c05_nursery wounded/support focus player, c06_court central-formation focus player, c12_depot formation focus and c14_channel bridge focus player",
+  "ending": "joint_end",
+  "chapter_count": 18,
+  "battle_count": 15,
+  "battle_actions": 3406,
+  "dialogue_pages": 1520,
+  "decision_count": 23,
+  "body_han": 85866,
+  "headless_checks": 5204,
+  "native_writer_checks": 8304,
+  "native_reader_checks": 8,
+  "failures": 0,
+  "native_writer_replay_sha256": "5197c722d525db5d6256a5db370b8704767fc72688d8dc6413ac3ef8ca402a2d",
+  "battles": [
+    {
+      "scenario": "c01_road",
+      "winner": 0,
+      "turn": 25,
+      "actions": 151,
+      "reloaded_at_action": 27
+    },
+    {
+      "scenario": "c01_bridge",
+      "winner": 0,
+      "turn": 62,
+      "actions": 448,
+      "reloaded_at_action": 25
+    },
+    {
+      "scenario": "c02_relief_bridge",
+      "winner": 0,
+      "turn": 21,
+      "actions": 128,
+      "reloaded_at_action": 21
+    },
+    {
+      "scenario": "c02_dispatch",
+      "winner": 0,
+      "turn": 62,
+      "actions": 454,
+      "reloaded_at_action": 21
+    },
+    {
+      "scenario": "c03_vent",
+      "winner": 0,
+      "turn": 13,
+      "actions": 55,
+      "reloaded_at_action": 28
+    },
+    {
+      "scenario": "c04_dock",
+      "winner": 0,
+      "turn": 43,
+      "actions": 269,
+      "reloaded_at_action": 25
+    },
+    {
+      "scenario": "c04_pump",
+      "winner": 0,
+      "turn": 17,
+      "actions": 90,
+      "reloaded_at_action": 16
+    },
+    {
+      "scenario": "c05_nursery",
+      "winner": 0,
+      "turn": 25,
+      "actions": 132,
+      "reloaded_at_action": 21
+    },
+    {
+      "scenario": "c06_court",
+      "winner": 0,
+      "turn": 62,
+      "actions": 445,
+      "reloaded_at_action": 26
+    },
+    {
+      "scenario": "c08_isolate",
+      "winner": 0,
+      "turn": 21,
+      "actions": 115,
+      "reloaded_at_action": 23
+    },
+    {
+      "scenario": "c10_gate",
+      "winner": 0,
+      "turn": 37,
+      "actions": 213,
+      "reloaded_at_action": 24
+    },
+    {
+      "scenario": "c12_depot",
+      "winner": 0,
+      "turn": 15,
+      "actions": 74,
+      "reloaded_at_action": 25
+    },
+    {
+      "scenario": "c14_channel",
+      "winner": 0,
+      "turn": 37,
+      "actions": 240,
+      "reloaded_at_action": 21
+    },
+    {
+      "scenario": "c16_bridge",
+      "winner": 0,
+      "turn": 64,
+      "actions": 472,
+      "reloaded_at_action": 21
+    },
+    {
+      "scenario": "c17_runner",
+      "winner": 0,
+      "turn": 21,
+      "actions": 120,
+      "reloaded_at_action": 20
+    }
+  ],
+  "limits": "One fixed gameplay route. The trace uses test player policies and production opponents. Human pacing, other full routes, and wider balance remain for playtesting."
+}

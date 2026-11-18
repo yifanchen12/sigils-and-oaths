@@ -97,6 +97,7 @@ static func validate(source: Variant) -> String:
 				links.append(node.get("win"))
 			"end":
 				if not strings.has(node.get("text")) or not node.get("ending") is String: return "章末信息缺失：" + id
+				if node.has("title") and (not node.title is String or node.title.strip_edges().is_empty()): return "结局标题无效：" + id
 				references[node.text] = true
 			_: return "未知剧情节点类型：" + id
 		for target: Variant in links:
@@ -170,6 +171,7 @@ func current() -> Dictionary:
 		"end":
 			result["text"] = graph.strings[node.text]
 			result["ending"] = node.ending
+			if node.has("title"): result["ending_title"] = node.title
 	return result
 
 func _guard(revision: int, kind: String) -> String:

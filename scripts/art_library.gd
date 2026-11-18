@@ -16,7 +16,8 @@ const NARRATIVE_SCENES: Dictionary = {
 	"scene_redroof": "redroof-day-v1", "scene_northbank_memorial": "northbank-memorial-v1",
 	"scene_northbank_mill": "northbank-mill-v1",
 	"scene_northbank_mill_morning": "northbank-mill-morning-v1",
-	"scene_tower_valve": "tower-valve-v1"
+	"scene_tower_valve": "tower-valve-v1",
+	"scene_return_morning": "return-morning-v1"
 }
 const ACTION_SHEETS: Dictionary = {
 	"sword": {"path": "res://assets/art/actions/sword-v2.png", "scale": 1.50,
@@ -64,9 +65,25 @@ const EXPANSION_ATLASES: Dictionary = {
 const CHANNEL_CARD_ART: Dictionary = {
 	"span_kit": "span-kit-v1", "countercurrent_ward": "countercurrent-ward-v1"
 }
+const WARFRONT_ATLASES: Dictionary = {
+	"warfront-units-v1": {"rows": 2, "ids": ["reed_scout", "gate_veteran", "ridge_courier", "ridge_archer",
+		"shore_medic", "scribe_warden", "breakwater_guard", "bronze_watch"]},
+	"warfront-effects-v1": {"rows": 4, "ids": ["field_signals", "detach_line", "dispatch_bundle", "mist_spike",
+		"kiln_lance", "warder_hymn", "hammer_sweep", "second_watch", "signal_torrent", "last_hearth", "silt_snare",
+		"fallback_horn", "tidal_oath", "open_wind", "night_muster", "reed_roads"]}
+}
 
 static func get_texture(asset_id: String) -> Texture2D:
 	if textures.has(asset_id): return textures[asset_id]
+	for sheet: String in WARFRONT_ATLASES:
+		var atlas: Dictionary = WARFRONT_ATLASES[sheet]
+		var index: int = atlas.ids.find(asset_id)
+		if index >= 0:
+			var tile: AtlasTexture = _atlas("res://assets/art/expansion/%s.png" % sheet, index, 4, int(atlas.rows)) as AtlasTexture
+			if tile != null:
+				tile.region = tile.region.grow(-2)
+				textures[asset_id] = tile
+			return tile
 	for sheet: String in EXPANSION_ATLASES:
 		var index: int = EXPANSION_ATLASES[sheet].find(asset_id)
 		if index >= 0:

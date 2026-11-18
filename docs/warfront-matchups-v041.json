@@ -1,0 +1,1881 @@
+{
+  "version": "0.41.0-dev",
+  "scope": "Production AI on both sides, standard mana and draw, equal wardens, mirrored decks, fixed seeds.",
+  "maps": [
+    "greenwood",
+    "rivergate",
+    "ridgepass"
+  ],
+  "match_count": 36,
+  "total_actions": 7705,
+  "distinct_warfront_cards_played": 24,
+  "high_cost_plays_by_mana": {
+    "7": 67,
+    "8": 23,
+    "9": 14,
+    "10": 19
+  },
+  "failures": 0,
+  "runs": [
+    {
+      "baseline": "balanced",
+      "basis": "Production AI on both sides, standard mana and draw, equal wardens, mirrored decks, fixed seeds.",
+      "by_deck": {
+        "frost_engine": {
+          "draws": 0,
+          "losses": 0,
+          "wins": 6
+        },
+        "lantern_convoy": {
+          "draws": 0,
+          "losses": 3,
+          "wins": 3
+        },
+        "reed_legion": {
+          "draws": 0,
+          "losses": 3,
+          "wins": 3
+        }
+      },
+      "cards_played": {
+        "breakwater_guard": 22,
+        "bronze_watch": 10,
+        "detach_line": 13,
+        "dispatch_bundle": 8,
+        "fallback_horn": 12,
+        "field_signals": 20,
+        "gate_veteran": 29,
+        "hammer_sweep": 11,
+        "kiln_lance": 5,
+        "last_hearth": 4,
+        "mist_spike": 10,
+        "night_muster": 7,
+        "open_wind": 1,
+        "reed_roads": 6,
+        "reed_scout": 15,
+        "ridge_archer": 12,
+        "ridge_courier": 7,
+        "scribe_warden": 3,
+        "second_watch": 9,
+        "shore_medic": 27,
+        "signal_torrent": 6,
+        "silt_snare": 10,
+        "tidal_oath": 6,
+        "warder_hymn": 14
+      },
+      "failures": 0,
+      "matches": [
+        {
+          "actions": 368,
+          "deck": "reed_legion",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 9,
+              "id": "bronze_watch",
+              "mana_before": 9,
+              "turn": 19
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 8,
+              "turn": 29
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 8,
+              "turn": 31
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 7,
+              "turn": 33
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "breakwater_guard": 2,
+            "bronze_watch": 1,
+            "detach_line": 2,
+            "dispatch_bundle": 1,
+            "field_signals": 2,
+            "gate_veteran": 3,
+            "reed_roads": 1,
+            "reed_scout": 3,
+            "ridge_archer": 2,
+            "ridge_courier": 3,
+            "second_watch": 1,
+            "shore_medic": 2,
+            "silt_snare": 1
+          },
+          "seed": 4107,
+          "turn": 53,
+          "winner": 1
+        },
+        {
+          "actions": 58,
+          "deck": "reed_legion",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [],
+          "map": "greenwood",
+          "new_cards_played": {
+            "gate_veteran": 3,
+            "shore_medic": 1
+          },
+          "seed": 4107,
+          "turn": 13,
+          "winner": 0
+        },
+        {
+          "actions": 280,
+          "deck": "reed_legion",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 9,
+              "id": "bronze_watch",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 7,
+              "turn": 31
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "breakwater_guard": 1,
+            "bronze_watch": 1,
+            "detach_line": 2,
+            "dispatch_bundle": 1,
+            "field_signals": 2,
+            "gate_veteran": 3,
+            "open_wind": 1,
+            "reed_scout": 3,
+            "ridge_archer": 2,
+            "ridge_courier": 3,
+            "second_watch": 1,
+            "shore_medic": 2,
+            "silt_snare": 1
+          },
+          "seed": 4186,
+          "turn": 37,
+          "winner": 0
+        },
+        {
+          "actions": 206,
+          "deck": "reed_legion",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 7,
+              "turn": 16
+            },
+            {
+              "cost": 9,
+              "id": "bronze_watch",
+              "mana_before": 9,
+              "turn": 20
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 7,
+              "turn": 24
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 10,
+              "turn": 28
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "breakwater_guard": 2,
+            "bronze_watch": 1,
+            "detach_line": 2,
+            "dispatch_bundle": 1,
+            "field_signals": 2,
+            "gate_veteran": 3,
+            "ridge_archer": 2,
+            "second_watch": 1,
+            "shore_medic": 1,
+            "silt_snare": 1
+          },
+          "seed": 4186,
+          "turn": 31,
+          "winner": 0
+        },
+        {
+          "actions": 230,
+          "deck": "reed_legion",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 7,
+              "turn": 13
+            },
+            {
+              "cost": 9,
+              "id": "bronze_watch",
+              "mana_before": 9,
+              "turn": 21
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 8,
+              "turn": 25
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 10,
+              "turn": 27
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "breakwater_guard": 2,
+            "bronze_watch": 1,
+            "detach_line": 2,
+            "dispatch_bundle": 1,
+            "field_signals": 2,
+            "reed_roads": 1,
+            "reed_scout": 1,
+            "ridge_archer": 2,
+            "ridge_courier": 1,
+            "second_watch": 1,
+            "shore_medic": 1,
+            "silt_snare": 1
+          },
+          "seed": 4265,
+          "turn": 41,
+          "winner": 0
+        },
+        {
+          "actions": 211,
+          "deck": "reed_legion",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 7,
+              "turn": 14
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 9,
+              "id": "bronze_watch",
+              "mana_before": 9,
+              "turn": 22
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 8,
+              "turn": 24
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "breakwater_guard": 2,
+            "bronze_watch": 1,
+            "detach_line": 1,
+            "dispatch_bundle": 1,
+            "field_signals": 2,
+            "gate_veteran": 2,
+            "reed_roads": 1,
+            "reed_scout": 1,
+            "ridge_archer": 1,
+            "second_watch": 1,
+            "shore_medic": 1,
+            "silt_snare": 1
+          },
+          "seed": 4265,
+          "turn": 32,
+          "winner": 1
+        },
+        {
+          "actions": 181,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 23
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "dispatch_bundle": 1,
+            "hammer_sweep": 1,
+            "kiln_lance": 1,
+            "last_hearth": 1,
+            "mist_spike": 2,
+            "reed_scout": 2,
+            "ridge_archer": 1,
+            "shore_medic": 1,
+            "signal_torrent": 1,
+            "warder_hymn": 1
+          },
+          "seed": 4107,
+          "turn": 29,
+          "winner": 0
+        },
+        {
+          "actions": 215,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 10,
+              "turn": 28
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 10,
+              "turn": 34
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "breakwater_guard": 1,
+            "dispatch_bundle": 1,
+            "hammer_sweep": 1,
+            "kiln_lance": 1,
+            "last_hearth": 1,
+            "mist_spike": 1,
+            "reed_scout": 1,
+            "second_watch": 1,
+            "shore_medic": 1,
+            "signal_torrent": 1,
+            "tidal_oath": 1,
+            "warder_hymn": 1
+          },
+          "seed": 4107,
+          "turn": 36,
+          "winner": 1
+        },
+        {
+          "actions": 117,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 9,
+              "turn": 21
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "hammer_sweep": 1,
+            "kiln_lance": 1,
+            "mist_spike": 1,
+            "scribe_warden": 1,
+            "second_watch": 1,
+            "shore_medic": 1,
+            "signal_torrent": 1
+          },
+          "seed": 4186,
+          "turn": 21,
+          "winner": 0
+        },
+        {
+          "actions": 119,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 7,
+              "turn": 14
+            },
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 8,
+              "turn": 16
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "breakwater_guard": 1,
+            "hammer_sweep": 1,
+            "kiln_lance": 1,
+            "mist_spike": 2,
+            "reed_scout": 1,
+            "signal_torrent": 1
+          },
+          "seed": 4186,
+          "turn": 22,
+          "winner": 1
+        },
+        {
+          "actions": 192,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 10,
+              "turn": 23
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 9,
+              "turn": 25
+            },
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 8,
+              "turn": 31
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "breakwater_guard": 1,
+            "dispatch_bundle": 1,
+            "hammer_sweep": 1,
+            "kiln_lance": 1,
+            "last_hearth": 1,
+            "mist_spike": 2,
+            "reed_scout": 2,
+            "ridge_archer": 1,
+            "scribe_warden": 1,
+            "second_watch": 1,
+            "shore_medic": 1,
+            "signal_torrent": 1,
+            "warder_hymn": 1
+          },
+          "seed": 4265,
+          "turn": 33,
+          "winner": 0
+        },
+        {
+          "actions": 178,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 9,
+              "turn": 18
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 24
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 9,
+              "turn": 28
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "breakwater_guard": 1,
+            "hammer_sweep": 1,
+            "last_hearth": 1,
+            "mist_spike": 2,
+            "reed_scout": 1,
+            "ridge_archer": 1,
+            "scribe_warden": 1,
+            "second_watch": 1,
+            "shore_medic": 1,
+            "signal_torrent": 1
+          },
+          "seed": 4265,
+          "turn": 30,
+          "winner": 1
+        },
+        {
+          "actions": 96,
+          "deck": "lantern_convoy",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [],
+          "map": "greenwood",
+          "new_cards_played": {
+            "fallback_horn": 2,
+            "gate_veteran": 1,
+            "hammer_sweep": 1,
+            "silt_snare": 1,
+            "tidal_oath": 1,
+            "warder_hymn": 1
+          },
+          "seed": 4107,
+          "turn": 19,
+          "winner": 1
+        },
+        {
+          "actions": 378,
+          "deck": "lantern_convoy",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 9,
+              "turn": 22
+            },
+            {
+              "cost": 9,
+              "id": "bronze_watch",
+              "mana_before": 10,
+              "turn": 26
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 8,
+              "turn": 28
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "breakwater_guard": 2,
+            "bronze_watch": 1,
+            "detach_line": 1,
+            "fallback_horn": 2,
+            "field_signals": 2,
+            "gate_veteran": 3,
+            "hammer_sweep": 1,
+            "night_muster": 2,
+            "reed_roads": 1,
+            "shore_medic": 3,
+            "silt_snare": 1,
+            "tidal_oath": 1,
+            "warder_hymn": 2
+          },
+          "seed": 4107,
+          "turn": 51,
+          "winner": 1
+        },
+        {
+          "actions": 297,
+          "deck": "lantern_convoy",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 9,
+              "turn": 29
+            },
+            {
+              "cost": 9,
+              "id": "bronze_watch",
+              "mana_before": 9,
+              "turn": 31
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 9,
+              "turn": 33
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "breakwater_guard": 2,
+            "bronze_watch": 1,
+            "fallback_horn": 2,
+            "field_signals": 2,
+            "gate_veteran": 3,
+            "hammer_sweep": 1,
+            "night_muster": 1,
+            "shore_medic": 3,
+            "silt_snare": 1,
+            "tidal_oath": 1,
+            "warder_hymn": 2
+          },
+          "seed": 4186,
+          "turn": 41,
+          "winner": 0
+        },
+        {
+          "actions": 396,
+          "deck": "lantern_convoy",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 7,
+              "turn": 14
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 9,
+              "id": "bronze_watch",
+              "mana_before": 9,
+              "turn": 44
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "breakwater_guard": 2,
+            "bronze_watch": 1,
+            "detach_line": 1,
+            "fallback_horn": 2,
+            "field_signals": 2,
+            "gate_veteran": 3,
+            "hammer_sweep": 1,
+            "night_muster": 2,
+            "reed_roads": 1,
+            "shore_medic": 3,
+            "silt_snare": 1,
+            "tidal_oath": 1,
+            "warder_hymn": 2
+          },
+          "seed": 4186,
+          "turn": 59,
+          "winner": 1
+        },
+        {
+          "actions": 409,
+          "deck": "lantern_convoy",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 7,
+              "turn": 13
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 9,
+              "id": "bronze_watch",
+              "mana_before": 9,
+              "turn": 19
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "breakwater_guard": 2,
+            "bronze_watch": 1,
+            "detach_line": 1,
+            "fallback_horn": 2,
+            "field_signals": 2,
+            "gate_veteran": 2,
+            "hammer_sweep": 1,
+            "night_muster": 2,
+            "reed_roads": 1,
+            "shore_medic": 3,
+            "silt_snare": 1,
+            "tidal_oath": 1,
+            "warder_hymn": 2
+          },
+          "seed": 4265,
+          "turn": 57,
+          "winner": 1
+        },
+        {
+          "actions": 205,
+          "deck": "lantern_convoy",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 7,
+              "turn": 18
+            },
+            {
+              "cost": 9,
+              "id": "bronze_watch",
+              "mana_before": 9,
+              "turn": 26
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "breakwater_guard": 1,
+            "bronze_watch": 1,
+            "detach_line": 1,
+            "fallback_horn": 2,
+            "field_signals": 2,
+            "gate_veteran": 3,
+            "shore_medic": 2,
+            "warder_hymn": 2
+          },
+          "seed": 4265,
+          "turn": 29,
+          "winner": 0
+        }
+      ],
+      "total_actions": 4136,
+      "version": "0.41.0-dev"
+    },
+    {
+      "baseline": "assault",
+      "basis": "Production AI on both sides, standard mana and draw, equal wardens, mirrored decks, fixed seeds.",
+      "by_deck": {
+        "frost_engine": {
+          "draws": 0,
+          "losses": 0,
+          "wins": 6
+        }
+      },
+      "cards_played": {
+        "breakwater_guard": 5,
+        "dispatch_bundle": 6,
+        "hammer_sweep": 5,
+        "kiln_lance": 6,
+        "last_hearth": 6,
+        "mist_spike": 11,
+        "reed_scout": 11,
+        "ridge_archer": 5,
+        "scribe_warden": 4,
+        "second_watch": 5,
+        "shore_medic": 6,
+        "signal_torrent": 6,
+        "tidal_oath": 5,
+        "warder_hymn": 6
+      },
+      "failures": 0,
+      "matches": [
+        {
+          "actions": 153,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 23
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 9,
+              "turn": 25
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "dispatch_bundle": 1,
+            "hammer_sweep": 1,
+            "kiln_lance": 1,
+            "last_hearth": 1,
+            "mist_spike": 2,
+            "reed_scout": 2,
+            "ridge_archer": 1,
+            "second_watch": 1,
+            "shore_medic": 1,
+            "signal_torrent": 1,
+            "warder_hymn": 1
+          },
+          "seed": 4107,
+          "turn": 29,
+          "winner": 0
+        },
+        {
+          "actions": 190,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 7,
+              "turn": 14
+            },
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 9,
+              "turn": 26
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 8,
+              "turn": 30
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "breakwater_guard": 1,
+            "dispatch_bundle": 1,
+            "kiln_lance": 1,
+            "last_hearth": 1,
+            "mist_spike": 2,
+            "reed_scout": 2,
+            "second_watch": 1,
+            "shore_medic": 1,
+            "signal_torrent": 1,
+            "tidal_oath": 1,
+            "warder_hymn": 1
+          },
+          "seed": 4107,
+          "turn": 32,
+          "winner": 1
+        },
+        {
+          "actions": 244,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 21
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 10,
+              "turn": 33
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 10,
+              "turn": 37
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "breakwater_guard": 1,
+            "dispatch_bundle": 1,
+            "hammer_sweep": 1,
+            "kiln_lance": 1,
+            "last_hearth": 1,
+            "mist_spike": 2,
+            "reed_scout": 2,
+            "ridge_archer": 1,
+            "scribe_warden": 1,
+            "second_watch": 1,
+            "shore_medic": 1,
+            "signal_torrent": 1,
+            "tidal_oath": 1,
+            "warder_hymn": 1
+          },
+          "seed": 4186,
+          "turn": 41,
+          "winner": 0
+        },
+        {
+          "actions": 235,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 7,
+              "turn": 14
+            },
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 9,
+              "turn": 26
+            },
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 32
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "breakwater_guard": 1,
+            "dispatch_bundle": 1,
+            "hammer_sweep": 1,
+            "kiln_lance": 1,
+            "last_hearth": 1,
+            "mist_spike": 2,
+            "reed_scout": 2,
+            "ridge_archer": 1,
+            "scribe_warden": 1,
+            "second_watch": 1,
+            "shore_medic": 1,
+            "signal_torrent": 1,
+            "tidal_oath": 1,
+            "warder_hymn": 1
+          },
+          "seed": 4186,
+          "turn": 40,
+          "winner": 1
+        },
+        {
+          "actions": 177,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 9,
+              "turn": 27
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "breakwater_guard": 1,
+            "dispatch_bundle": 1,
+            "hammer_sweep": 1,
+            "kiln_lance": 1,
+            "last_hearth": 1,
+            "mist_spike": 1,
+            "reed_scout": 2,
+            "ridge_archer": 1,
+            "scribe_warden": 1,
+            "shore_medic": 1,
+            "signal_torrent": 1,
+            "tidal_oath": 1,
+            "warder_hymn": 1
+          },
+          "seed": 4265,
+          "turn": 33,
+          "winner": 0
+        },
+        {
+          "actions": 189,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 9,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 24
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 9,
+              "turn": 32
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "breakwater_guard": 1,
+            "dispatch_bundle": 1,
+            "hammer_sweep": 1,
+            "kiln_lance": 1,
+            "last_hearth": 1,
+            "mist_spike": 2,
+            "reed_scout": 1,
+            "ridge_archer": 1,
+            "scribe_warden": 1,
+            "second_watch": 1,
+            "shore_medic": 1,
+            "signal_torrent": 1,
+            "tidal_oath": 1,
+            "warder_hymn": 1
+          },
+          "seed": 4265,
+          "turn": 34,
+          "winner": 1
+        }
+      ],
+      "total_actions": 1188,
+      "version": "0.41.0-dev"
+    },
+    {
+      "baseline": "bastion",
+      "basis": "Production AI on both sides, standard mana and draw, equal wardens, mirrored decks, fixed seeds.",
+      "by_deck": {
+        "frost_engine": {
+          "draws": 0,
+          "losses": 1,
+          "wins": 5
+        }
+      },
+      "cards_played": {
+        "breakwater_guard": 4,
+        "dispatch_bundle": 4,
+        "hammer_sweep": 5,
+        "kiln_lance": 6,
+        "last_hearth": 5,
+        "mist_spike": 9,
+        "reed_scout": 7,
+        "ridge_archer": 3,
+        "scribe_warden": 5,
+        "second_watch": 5,
+        "shore_medic": 6,
+        "signal_torrent": 5,
+        "tidal_oath": 4,
+        "warder_hymn": 5
+      },
+      "failures": 0,
+      "matches": [
+        {
+          "actions": 271,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 23
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 10,
+              "turn": 27
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 10,
+              "turn": 33
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "breakwater_guard": 1,
+            "dispatch_bundle": 1,
+            "hammer_sweep": 1,
+            "kiln_lance": 1,
+            "last_hearth": 1,
+            "mist_spike": 2,
+            "reed_scout": 2,
+            "ridge_archer": 1,
+            "scribe_warden": 1,
+            "second_watch": 1,
+            "shore_medic": 1,
+            "signal_torrent": 1,
+            "tidal_oath": 1,
+            "warder_hymn": 1
+          },
+          "seed": 4107,
+          "turn": 45,
+          "winner": 0
+        },
+        {
+          "actions": 112,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 20
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "breakwater_guard": 1,
+            "dispatch_bundle": 1,
+            "kiln_lance": 1,
+            "last_hearth": 1,
+            "shore_medic": 1
+          },
+          "seed": 4107,
+          "turn": 21,
+          "winner": 0
+        },
+        {
+          "actions": 144,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 9,
+              "turn": 21
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "hammer_sweep": 1,
+            "kiln_lance": 1,
+            "mist_spike": 1,
+            "scribe_warden": 1,
+            "second_watch": 1,
+            "shore_medic": 1,
+            "signal_torrent": 1,
+            "warder_hymn": 1
+          },
+          "seed": 4186,
+          "turn": 27,
+          "winner": 0
+        },
+        {
+          "actions": 202,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 9,
+              "turn": 18
+            },
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 32
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 9,
+              "turn": 36
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "breakwater_guard": 1,
+            "dispatch_bundle": 1,
+            "hammer_sweep": 1,
+            "kiln_lance": 1,
+            "last_hearth": 1,
+            "mist_spike": 2,
+            "reed_scout": 2,
+            "scribe_warden": 1,
+            "second_watch": 1,
+            "shore_medic": 1,
+            "signal_torrent": 1,
+            "tidal_oath": 1,
+            "warder_hymn": 1
+          },
+          "seed": 4186,
+          "turn": 37,
+          "winner": 1
+        },
+        {
+          "actions": 236,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 9,
+              "turn": 21
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 9,
+              "turn": 23
+            },
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 8,
+              "turn": 31
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "breakwater_guard": 1,
+            "dispatch_bundle": 1,
+            "hammer_sweep": 1,
+            "kiln_lance": 1,
+            "last_hearth": 1,
+            "mist_spike": 2,
+            "reed_scout": 2,
+            "ridge_archer": 1,
+            "scribe_warden": 1,
+            "second_watch": 1,
+            "shore_medic": 1,
+            "signal_torrent": 1,
+            "tidal_oath": 1,
+            "warder_hymn": 1
+          },
+          "seed": 4265,
+          "turn": 39,
+          "winner": 0
+        },
+        {
+          "actions": 217,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 8,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 22
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "hammer_sweep": 1,
+            "kiln_lance": 1,
+            "last_hearth": 1,
+            "mist_spike": 2,
+            "reed_scout": 1,
+            "ridge_archer": 1,
+            "scribe_warden": 1,
+            "second_watch": 1,
+            "shore_medic": 1,
+            "signal_torrent": 1,
+            "tidal_oath": 1,
+            "warder_hymn": 1
+          },
+          "seed": 4265,
+          "turn": 36,
+          "winner": 1
+        }
+      ],
+      "total_actions": 1182,
+      "version": "0.41.0-dev"
+    },
+    {
+      "baseline": "lantern_convoy",
+      "basis": "Production AI on both sides, standard mana and draw, equal wardens, mirrored decks, fixed seeds.",
+      "by_deck": {
+        "frost_engine": {
+          "draws": 0,
+          "losses": 1,
+          "wins": 5
+        }
+      },
+      "cards_played": {
+        "breakwater_guard": 12,
+        "bronze_watch": 4,
+        "detach_line": 5,
+        "dispatch_bundle": 4,
+        "fallback_horn": 10,
+        "field_signals": 10,
+        "gate_veteran": 15,
+        "hammer_sweep": 11,
+        "kiln_lance": 4,
+        "last_hearth": 4,
+        "mist_spike": 11,
+        "reed_roads": 3,
+        "reed_scout": 8,
+        "ridge_archer": 4,
+        "scribe_warden": 4,
+        "second_watch": 5,
+        "shore_medic": 17,
+        "signal_torrent": 6,
+        "silt_snare": 4,
+        "tidal_oath": 7,
+        "warder_hymn": 12
+      },
+      "failures": 0,
+      "matches": [
+        {
+          "actions": 104,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 9,
+              "turn": 19
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "fallback_horn": 1,
+            "field_signals": 1,
+            "gate_veteran": 3,
+            "hammer_sweep": 1,
+            "mist_spike": 2,
+            "reed_scout": 1,
+            "second_watch": 1,
+            "shore_medic": 2,
+            "signal_torrent": 1,
+            "warder_hymn": 1
+          },
+          "seed": 4107,
+          "turn": 19,
+          "winner": 0
+        },
+        {
+          "actions": 255,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 7,
+              "turn": 14
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 9,
+              "id": "bronze_watch",
+              "mana_before": 9,
+              "turn": 21
+            },
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 10,
+              "turn": 26
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 7,
+              "turn": 30
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "breakwater_guard": 3,
+            "bronze_watch": 1,
+            "detach_line": 1,
+            "dispatch_bundle": 1,
+            "fallback_horn": 2,
+            "field_signals": 2,
+            "gate_veteran": 2,
+            "hammer_sweep": 2,
+            "kiln_lance": 1,
+            "last_hearth": 1,
+            "mist_spike": 2,
+            "reed_roads": 1,
+            "reed_scout": 2,
+            "ridge_archer": 1,
+            "second_watch": 1,
+            "shore_medic": 4,
+            "signal_torrent": 1,
+            "silt_snare": 1,
+            "tidal_oath": 2,
+            "warder_hymn": 3
+          },
+          "seed": 4107,
+          "turn": 41,
+          "winner": 1
+        },
+        {
+          "actions": 107,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 8,
+              "turn": 16
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "breakwater_guard": 1,
+            "detach_line": 1,
+            "fallback_horn": 2,
+            "field_signals": 1,
+            "gate_veteran": 3,
+            "hammer_sweep": 2,
+            "kiln_lance": 1,
+            "mist_spike": 1,
+            "scribe_warden": 1,
+            "shore_medic": 1,
+            "signal_torrent": 1,
+            "silt_snare": 1
+          },
+          "seed": 4186,
+          "turn": 21,
+          "winner": 0
+        },
+        {
+          "actions": 319,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 9,
+              "turn": 18
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 10,
+              "turn": 24
+            },
+            {
+              "cost": 9,
+              "id": "bronze_watch",
+              "mana_before": 10,
+              "turn": 25
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 10,
+              "turn": 29
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 9,
+              "turn": 31
+            },
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 34
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "breakwater_guard": 3,
+            "bronze_watch": 1,
+            "detach_line": 1,
+            "dispatch_bundle": 1,
+            "fallback_horn": 2,
+            "field_signals": 2,
+            "gate_veteran": 3,
+            "hammer_sweep": 2,
+            "kiln_lance": 1,
+            "last_hearth": 1,
+            "mist_spike": 2,
+            "reed_scout": 2,
+            "ridge_archer": 1,
+            "scribe_warden": 1,
+            "second_watch": 1,
+            "shore_medic": 4,
+            "signal_torrent": 1,
+            "silt_snare": 1,
+            "tidal_oath": 2,
+            "warder_hymn": 3
+          },
+          "seed": 4186,
+          "turn": 52,
+          "winner": 0
+        },
+        {
+          "actions": 206,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 7,
+              "turn": 16
+            },
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 8,
+              "turn": 21
+            },
+            {
+              "cost": 9,
+              "id": "bronze_watch",
+              "mana_before": 10,
+              "turn": 26
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 7,
+              "turn": 27
+            },
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 10,
+              "turn": 29
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "breakwater_guard": 2,
+            "bronze_watch": 1,
+            "detach_line": 1,
+            "dispatch_bundle": 1,
+            "fallback_horn": 2,
+            "field_signals": 2,
+            "gate_veteran": 3,
+            "hammer_sweep": 2,
+            "last_hearth": 1,
+            "mist_spike": 2,
+            "reed_roads": 1,
+            "reed_scout": 2,
+            "ridge_archer": 1,
+            "scribe_warden": 1,
+            "second_watch": 1,
+            "shore_medic": 3,
+            "signal_torrent": 1,
+            "tidal_oath": 2,
+            "warder_hymn": 2
+          },
+          "seed": 4265,
+          "turn": 33,
+          "winner": 0
+        },
+        {
+          "actions": 208,
+          "deck": "frost_engine",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 7,
+              "turn": 13
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 7,
+              "turn": 15
+            },
+            {
+              "cost": 8,
+              "id": "signal_torrent",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 9,
+              "id": "bronze_watch",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 7,
+              "id": "breakwater_guard",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "last_hearth",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 7,
+              "id": "second_watch",
+              "mana_before": 7,
+              "turn": 26
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "breakwater_guard": 3,
+            "bronze_watch": 1,
+            "detach_line": 1,
+            "dispatch_bundle": 1,
+            "fallback_horn": 1,
+            "field_signals": 2,
+            "gate_veteran": 1,
+            "hammer_sweep": 2,
+            "kiln_lance": 1,
+            "last_hearth": 1,
+            "mist_spike": 2,
+            "reed_roads": 1,
+            "reed_scout": 1,
+            "ridge_archer": 1,
+            "scribe_warden": 1,
+            "second_watch": 1,
+            "shore_medic": 3,
+            "signal_torrent": 1,
+            "silt_snare": 1,
+            "tidal_oath": 1,
+            "warder_hymn": 3
+          },
+          "seed": 4265,
+          "turn": 35,
+          "winner": 1
+        }
+      ],
+      "total_actions": 1199,
+      "version": "0.41.0-dev"
+    }
+  ]
+}

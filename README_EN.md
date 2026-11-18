@@ -5,17 +5,25 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.40.0-dev" src="https://img.shields.io/badge/version-0.40.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.41.0-dev" src="https://img.shields.io/badge/version-0.41.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies card resource pacing from Hearthstone, concealed card play and counterplay from Duel Links, and terrain, unit counters and commanders from Langrisser. Characters, card effects, illustrations and map layouts are made for this project, with no assets from those games. Current source is **0.40.0-dev**, with sixteen chapters, branching encounters and cross-chapter saves. One fixed New Campaign model route won eleven consecutive battles and reached chapter eleven. Separate earned saves won chapter twelve; two later earned routes won chapter fourteen, completed chapter fifteen and then won chapter sixteen. These are separate verification routes. The story conclusion, human balance and the 100,000-character target on a single playable route remain unfinished. The interface is Chinese; this README does not imply an English localization.
+The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. **0.41.0-dev** adds 24 original cards and three presets to this Chinese-language, single-player Windows game. Its eighteen-chapter campaign has three endings and persistent saves. One automated route cleared fifteen battles from New Campaign to the Shared Lantern ending. Human playtesting, the 100,000-character single route and Steam release verification are pending.
 
 ## In-game screenshots
 
-The East Bridge battlefield and chapter-sixteen story view are from 0.40.0-dev. Later captures are from earlier milestones.
+The first four screenshots show 0.41.0-dev. The rest come from earlier builds.
+
+![The Warfront filter and the rules for Last Hearth](docs/screenshots/v041-warfront-library.png)
+
+![Hovering Last Hearth shows its thirteen-cell battlefield footprint](docs/screenshots/v041-warfront-cast.png)
+
+![Three Lamps relief battlefield and numbered checkpoints](docs/screenshots/v041-lamplanding.png)
+
+![The Quiet Reservoir ending at 1008x700](docs/screenshots/v041-hold-ending-small.png)
 
 ![Original chapter-sixteen East Bridge battlefield](docs/screenshots/v040-eastbridge-map.png)
 
@@ -56,14 +64,29 @@ The East Bridge battlefield and chapter-sixteen story view are from 0.40.0-dev. 
 
 | Tactical choice | Implemented |
 | --- | --- |
-| Reinforce from cards | 35 card types, five 30-card presets and one saved custom deck; adjacent deployment can extend from newly summoned units |
-| Set traps and counter them | Movement snares, mines, attack wards and spell wards are paid for from hand; each side has two trap slots, enemies see only the count, and a search spell can reveal and remove traps |
+| Reinforce from cards | 58 collectible cards, one generated card, eight 30-card presets, and a saved custom deck. Adjacent deployment can extend from newly summoned units |
+| Set traps and counter them | Set snares, mines, attack traps and spell wards from hand. Each side has two slots, enemies see only the count, and reconnaissance can remove concealed traps |
 | Cover different unit roles | Infantry beats spears, spears beat cavalry, cavalry beats infantry; archers, mages and healers have distinct ranges and roles |
 | Use active unit skills | Six one-mana abilities: shielding, interception, extra movement, a precise shot, fire damage and healing; once per unit per turn |
-| Contest useful ground | Six selectable 12×10 maps, a 14×12 gate and three 16×12 campaign maps; build a local bridge across water, use forests, hills and forts for defense |
+| Contest useful ground | Six selectable 12×10 maps, a 14×12 gate and four 16×12 campaign maps. Build crossings and use forests, hills and forts for defense |
+| Open an evacuation route | In chapter seventeen, reach the shelter, stone bridge and upper street in order. Each player turn can secure one checkpoint |
 | Lead with a commander | Ailin protects the front, Velo strengthens fire, and Sera supports healing and woodland recovery; each has active and passive abilities |
-| Change the next exchange | Rain, fog, sun and snow affect both sides; replace or dispel weather, build roads and forts, push, root or reposition units |
+| Change the next exchange | Rain, fog, sun, snow, tailwind and lantern weather affect both sides. Replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
+
+## 0.41 · Warfront cards and Three Lamps
+
+Warfront adds eight units, ten spells, three hand-played traps, and three environment cards across mana costs 1–10. Low-cost cards draw, set snares, or release rooted units. Mid-cost cards break shields, heal groups, or build roads. Seven-mana Second Watch refreshes local attacks, nine-mana Bronze Watch intercepts attacks on deployment, and ten-mana Last Hearth can hit enemies across thirteen cells. Commanders take reduced damage from Last Hearth. Friendly units still determine where targeted spells can be centered.
+
+Skirmish players can select Reed Legion, Frost Engine or Lantern Convoy in the war council. The compendium can filter to the 24 additions, and the Deck Workshop can copy any new preset to a custom deck. Hovering over the battlefield displays the footprint and predicted damage or shielding. [Native mana curve screenshot](docs/screenshots/v041-warfront-curve.png)
+
+Across 36 mirrored AI matches on three maps, all 24 additions were played in 7,705 legal actions. Last Hearth was cast 19 times. Reed Legion and Lantern Convoy each went 3–3 against the Balanced Host. Frost Engine went 22–2 across four opposing presets. Human balance and the strength of Frost Engine need further playtesting. [Match records](docs/warfront-matchups-v041.json)
+
+Evacuate the flooded streets via three checkpoints, starting with either a movement order or a ward. The relay allows sixteen complete rounds. The final choice determines who runs the waterworks, how repairs are paid for and who can return home. The two chapters add 163 story body pages and two original environment paintings.
+
+Both relay openings have wins using legal actions. The checks cover a deadline loss and retry, battle saves, and reaching and reloading all three endings. The campaign and archive contain **113,485 distinct reachable Han characters**. A complete route contains **85,599–86,721** characters, plus 5,558 in the separately readable archive. The verified Shared Lantern route contains 85,866 characters. [Validation notes and screenshots](docs/narrative/finale-review.md)
+
+The Windows x64 preview is undergoing release verification. Keep the EXE and PCK together in the extracted directory and open the EXE.
 
 ## 0.40: Empty buckets on the bridge
 

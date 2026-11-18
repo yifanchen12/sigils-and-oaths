@@ -20,7 +20,7 @@ var filter_buttons: Dictionary = {}
 var cost_curve: CostCurve
 
 class CostCurve extends Control:
-	var counts: Array[int] = [0, 0, 0, 0, 0, 0]
+	var counts: Array[int] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 	func _draw() -> void:
 		var font: Font = get_theme_default_font()
 		var width: float = size.x / counts.size()
@@ -30,7 +30,7 @@ class CostCurve extends Control:
 			var x: float = width * index + 5
 			draw_rect(Rect2(Vector2(x, 51 - height), Vector2(width - 10, height)), Color("70b8c9"))
 			draw_line(Vector2(x, 52), Vector2(x + width - 10, 52), Color("c3ad7e"), 1)
-			draw_string(font, Vector2(x + 5, 70), str(index) + ("+" if index == 5 else ""), HORIZONTAL_ALIGNMENT_LEFT, -1, 11, Color("b8ccd6"))
+			draw_string(font, Vector2(x, 70), str(index), HORIZONTAL_ALIGNMENT_LEFT, -1, 11, Color("b8ccd6"))
 			if counts[index] > 0: draw_string(font, Vector2(x + 3, 46 - height), str(counts[index]), HORIZONTAL_ALIGNMENT_LEFT, -1, 11, Color("e6d7b4"))
 
 
@@ -207,7 +207,7 @@ func _inspect(card: Dictionary) -> void:
 	details.text = "%s · %d费\n%s\n%s" % [card.name, card.cost, card.tag, card.text]
 
 func _refresh(notice: String) -> void:
-	cost_curve.counts = [0, 0, 0, 0, 0, 0]
+	cost_curve.counts.fill(0)
 	var total: int = _total()
 	var troops: int = 0
 	var selected: String = ""
@@ -215,7 +215,7 @@ func _refresh(notice: String) -> void:
 		if card.get("generated_only", false): continue
 		var count: int = int(draft.get(card.id, 0))
 		if card.type == "unit": troops += count
-		cost_curve.counts[mini(5, int(card.cost))] += count
+		cost_curve.counts[int(card.cost)] += count
 		rows[card.id].count.text = "%d / 4" % count
 		rows[card.id].minus.disabled = count == 0
 		rows[card.id].plus.disabled = count >= DECKS.COPY_LIMIT or total >= DECKS.DECK_SIZE

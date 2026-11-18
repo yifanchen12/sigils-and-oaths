@@ -2,7 +2,7 @@ extends RefCounted
 ## Plain-data snapshots. No object deserialization, rendering or turn-start effects.
 
 const Model = preload("res://scripts/battle.gd")
-const VERSION: int = 3
+const VERSION: int = 4
 const EXPANSION_CARDS: Array[String] = ["shatter_bolt", "rally_heal", "cleanse_root", "reveal_traps", "seedwood", "anchor_snare", "ember_mine", "oath_ward"]
 const CHANNEL_CARDS: Array[String] = ["span_kit", "countercurrent_ward"]
 const SCALARS: Array[String] = ["active_side", "turn", "winner", "next_id", "match_seed", "deck_size", "weather", "weather_remaining", "turn_time_limit", "time_remaining"]
@@ -12,28 +12,45 @@ const UNIT_FLAGS: Array[String] = ["moved", "attacked", "summoning", "skill_used
 const UNIT_TEXT: Array[String] = ["name", "kind", "short"]
 
 static func rules_signature() -> String:
-	return JSON.stringify([Model.CATALOG.cards, Model.HEROES.heroes, Model.DECKS.decks, Model.MAPS.maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
+	return JSON.stringify([Model.CATALOG.cards, Model.HEROES.heroes, Model.DECKS.decks, Model.MAPS.maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE, "relay_v1"]).sha256_text()
 
 static func cards_before_channel() -> Array[Dictionary]:
 	var cards: Array[Dictionary] = []
 	for card: Dictionary in Model.CATALOG.cards:
-		if card.id not in CHANNEL_CARDS: cards.append(card)
+		if card.id not in CHANNEL_CARDS and card.get("set_id", "") != "warfront": cards.append(card)
 	return cards
 
 static func decks_before_channel() -> Array[Dictionary]:
 	var decks: Array[Dictionary] = []
 	for deck: Dictionary in Model.DECKS.decks:
-		if deck.id != "channel": decks.append(deck)
+		if deck.id != "channel" and deck.get("set_id", "") != "warfront": decks.append(deck)
 	return decks
 
-static func maps_before_channel() -> Array[Dictionary]:
+static func maps_without(excluded: Array) -> Array[Dictionary]:
 	var maps: Array[Dictionary] = []
 	for map: Dictionary in Model.MAPS.maps:
-		if map.id != "spillway": maps.append(map)
+		if map.id not in excluded: maps.append(map)
 	return maps
 
 static func pre_v038_signature() -> String:
-	return JSON.stringify([cards_before_channel(), Model.HEROES.heroes, decks_before_channel(), maps_before_channel(), Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
+	return JSON.stringify([cards_before_channel(), Model.HEROES.heroes, decks_before_channel(), maps_without(["spillway", "eastbridge", "lamplanding"]), Model.TERRAIN, weather_before_warfront(), Model.ADVANTAGE]).sha256_text()
+
+static func pre_eastbridge_signature() -> String:
+	return _signature_before_warfront(["eastbridge", "lamplanding"])
+
+static func pre_relay_signature() -> String:
+	return _signature_before_warfront(["lamplanding"])
+
+static func _signature_before_warfront(excluded_maps: Array) -> String:
+	var cards: Array[Dictionary] = Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") != "warfront")
+	var decks: Array[Dictionary] = Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") != "warfront")
+	return JSON.stringify([cards, Model.HEROES.heroes, decks, maps_without(excluded_maps), Model.TERRAIN, weather_before_warfront(), Model.ADVANTAGE]).sha256_text()
+
+static func weather_before_warfront() -> Dictionary:
+	var conditions: Dictionary = Model.WEATHER.duplicate()
+	conditions.erase("tailwind")
+	conditions.erase("lanterns")
+	return conditions
 
 static func maps_before_towergate() -> Array[Dictionary]:
 	var maps: Array[Dictionary] = []
@@ -41,31 +58,25 @@ static func maps_before_towergate() -> Array[Dictionary]:
 		if not map.get("campaign_only", false): maps.append(map)
 	return maps
 
-static func maps_before_northbank() -> Array[Dictionary]:
-	var maps: Array[Dictionary] = []
-	for map: Dictionary in Model.MAPS.maps:
-		if map.id not in ["northbank", "spillway"]: maps.append(map)
-	return maps
-
 static func pre_northbank_signature() -> String:
 	# A new chapter-only map leaves already-started 0.35 battles intact.
-	return JSON.stringify([cards_before_channel(), Model.HEROES.heroes, decks_before_channel(), maps_before_northbank(), Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
+	return JSON.stringify([cards_before_channel(), Model.HEROES.heroes, decks_before_channel(), maps_without(["northbank", "spillway", "eastbridge", "lamplanding"]), Model.TERRAIN, weather_before_warfront(), Model.ADVANTAGE]).sha256_text()
 
 static func pre_towergate_signature() -> String:
 	# A chapter-only map must not invalidate a running battle on an unchanged
 	# original map. This is the exact 0.33 catalog, not a wildcard signature.
-	return JSON.stringify([cards_before_channel(), Model.HEROES.heroes, decks_before_channel(), maps_before_towergate(), Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
+	return JSON.stringify([cards_before_channel(), Model.HEROES.heroes, decks_before_channel(), maps_before_towergate(), Model.TERRAIN, weather_before_warfront(), Model.ADVANTAGE]).sha256_text()
 
 static func pre_expansion_signature() -> String:
 	# Additive card pool only: retain exact old cards/decks/maps in the hash.
 	# A future change to those definitions still invalidates old battle saves.
 	var cards: Array[Dictionary] = []
 	var decks: Array[Dictionary] = []
-	for card: Dictionary in Model.CATALOG.cards:
-		if card.id not in EXPANSION_CARDS and card.id not in CHANNEL_CARDS: cards.append(card)
-	for deck: Dictionary in Model.DECKS.decks:
-		if deck.id not in ["ambush", "channel"]: decks.append(deck)
-	return JSON.stringify([cards, Model.HEROES.heroes, decks, maps_before_towergate(), Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE]).sha256_text()
+	for card: Dictionary in cards_before_channel():
+		if card.id not in EXPANSION_CARDS: cards.append(card)
+	for deck: Dictionary in decks_before_channel():
+		if deck.id != "ambush": decks.append(deck)
+	return JSON.stringify([cards, Model.HEROES.heroes, decks, maps_before_towergate(), Model.TERRAIN, weather_before_warfront(), Model.ADVANTAGE]).sha256_text()
 
 static func normalize_legacy(data: Dictionary) -> Dictionary:
 	var result: Dictionary = data.duplicate(true)
@@ -88,7 +99,7 @@ static func _int64(value: Variant) -> bool:
 
 static func capture(battle: RefCounted) -> Dictionary:
 	var data: Dictionary = {"version": VERSION, "rules": rules_signature(), "map_id": battle.map_definition.id,
-		"rng_seed": str(battle.rng.seed), "rng_state": str(battle.rng.state), "players": [], "units": [], "terrain": [], "log": Array(battle.log_lines)}
+		"rng_seed": str(battle.rng.seed), "rng_state": str(battle.rng.state), "players": [], "units": [], "terrain": [], "log": battle.log_lines.duplicate()}
 	for key: String in SCALARS: data[key] = battle.get(key)
 	data["objective"] = battle.objective.duplicate(true)
 	data["traps"] = []
@@ -136,15 +147,28 @@ static func validate(data: Variant) -> Dictionary:
 	if data.version > VERSION:
 		return {"ok": false, "protected": true, "message": "战斗存档版本不兼容，原档保留。"}
 	if not data.get("rules") is String or data.rules.length() != 64: return {"ok": false, "message": "战斗规则签名缺失。"}
-	var old_map_ok: bool = data.get("map_id") not in ["towergate", "northbank", "spillway"] and data.get("rules") == pre_towergate_signature()
-	var old_cards_ok: bool = int(data.version) < 3 and data.get("map_id") not in ["towergate", "northbank", "spillway"] and data.get("rules") == pre_expansion_signature()
-	var old_northbank_ok: bool = data.get("map_id") not in ["northbank", "spillway"] and data.get("rules") == pre_northbank_signature()
-	var old_channel_ok: bool = data.get("map_id") != "spillway" and data.get("rules") == pre_v038_signature()
-	if data.get("rules") != rules_signature() and not old_map_ok and not old_cards_ok and not old_northbank_ok and not old_channel_ok: return {"ok": false, "protected": true, "message": "战斗存档与当前规则版本不同，原档保留。"}
+	if data.rules != rules_signature() and (int(version) >= VERSION or not _legacy_rules_match(data)):
+		return {"ok": false, "protected": true, "message": "战斗存档与当前规则版本不同，原档保留。"}
+	var goal: Variant = data.get("objective")
+	if int(version) < 4 and (data.get("map_id") == "lamplanding" or (goal is Dictionary and Model.ControlObjective.is_relay(goal))):
+		return {"ok": false, "message": "旧版战斗不支持接力任务。"}
 	if int(data.version) < 3 and data.get("traps", []) != []: return {"ok": false, "message": "旧版战斗不能包含伏设区。"}
 	data = normalize_legacy(data)
 	var problem: String = _validate(data)
 	return {"ok": true} if problem.is_empty() else {"ok": false, "message": problem}
+
+static func _legacy_rules_match(data: Dictionary) -> bool:
+	var map: Variant = data.get("map_id")
+	if map == "lamplanding": return false
+	if data.rules == pre_relay_signature(): return true
+	if map == "eastbridge": return false
+	if data.rules == pre_eastbridge_signature(): return true
+	if map == "spillway": return false
+	if data.rules == pre_v038_signature(): return true
+	if map == "northbank": return false
+	if data.rules == pre_northbank_signature(): return true
+	if map == "towergate": return false
+	return data.rules == pre_towergate_signature() or (int(data.version) < 3 and data.rules == pre_expansion_signature())
 
 static func _validate(data: Dictionary) -> String:
 	var map: Dictionary = _find(Model.MAPS.maps, data.get("map_id"))
@@ -195,11 +219,10 @@ static func _validate(data: Dictionary) -> String:
 			commanders[int(unit.side)] += 1
 			if unit.has("card"): return "指挥官不能关联部署牌。"
 		else:
-			var definition: Dictionary = Model.CATALOG.find(unit.kind)
-			if definition.is_empty() or definition.type != "unit": return "部队兵种不存在。"
 			var issue: String = _card(unit.get("card"), ids, int(data.next_id), int(unit.id))
 			if not issue.is_empty(): return issue
-			if unit.card.card_id != unit.kind: return "部署牌与兵种不一致。"
+			var definition: Dictionary = Model.CATALOG.find(unit.card.card_id)
+			if definition.type != "unit" or definition.kind != unit.kind: return "部署牌与兵种不一致。"
 			troops[int(unit.side)] += 1
 			cards[int(unit.side)] += 1
 	if not data.get("traps") is Array or data.traps.size() > Model.Traps.LIMIT * 2: return "伏设区无效。"

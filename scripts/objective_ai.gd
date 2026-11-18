@@ -1,16 +1,24 @@
 extends RefCounted
-## Utility for the public two-point objective. Never mutates Battle, inspects
+## Utility for public objectives. Never mutates Battle, inspects
 ## opposing cards, or treats a root/guarded hit as removal from a point.
 const Effects = preload("res://scripts/effect_forecast.gd")
 
 static func prepare(battle: Battle) -> Dictionary:
 	if battle.objective.is_empty() or battle.winner != -1: return {}
 	var cells: Array[Vector2i] = []
-	for raw: Array in battle.objective.cells: cells.append(Vector2i(int(raw[0]), int(raw[1])))
+	var relay: bool = battle.ControlObjective.is_relay(battle.objective)
+	var first: int = int(battle.objective.streak) if relay else 0
+	var limit: int = first + 1 if relay else battle.objective.cells.size()
+	for index: int in range(first, limit):
+		var raw: Array = battle.objective.cells[index]
+		cells.append(Vector2i(int(raw[0]), int(raw[1])))
 	var owners: Array[int] = ownership(battle.units, cells)
 	var goals: Array[Vector2i] = []
 	for i: int in range(cells.size()):
 		if owners[i] != battle.active_side: goals.append(cells[i])
+	if relay and battle.active_side == 0 and goals.is_empty() and limit < battle.objective.cells.size():
+		var next: Array = battle.objective.cells[limit]
+		goals.append(Vector2i(int(next[0]), int(next[1])))
 	var paths: Dictionary = {}
 	for unit: Dictionary in battle.units:
 		if unit.side != battle.active_side or unit.kind == "commander": continue
@@ -21,7 +29,7 @@ static func prepare(battle: Battle) -> Dictionary:
 		var card: Dictionary = battle.definition(instance.card_id)
 		if card.type != "unit" or card.cost > battle.players[battle.active_side].mana or deployment.has(card.id): continue
 		var unit: Dictionary = card.duplicate()
-		unit.merge({"id": -1, "kind": card.id, "side": battle.active_side}, true)
+		unit.merge({"id": -1, "side": battle.active_side}, true)
 		deployment[card.id] = field(battle, unit, goals)
 	return {"cells": cells, "owners": owners, "paths": paths, "deployment": deployment}
 
@@ -37,8 +45,9 @@ static func ownership(units: Array, cells: Array[Vector2i]) -> Array[int]:
 static func position_value(owners: Array[int], side: int, streak: int) -> float:
 	var blue: int = owners.count(0)
 	var red: int = owners.count(1)
-	if side == 0: return blue * 180.0 + (260.0 + streak * 90.0 if blue == 2 else 0.0)
-	return red * 140.0 + (130.0 if red > 0 else 0.0) - blue * 60.0 - (260.0 + streak * 180.0 if blue == 2 else 0.0)
+	var reaches: bool = blue == owners.size()
+	if side == 0: return blue * 180.0 + (260.0 + streak * 90.0 if reaches else 0.0)
+	return red * 140.0 + (130.0 if red > 0 else 0.0) - blue * 60.0 - (260.0 + streak * 180.0 if reaches else 0.0)
 
 static func value(battle: Battle, action: Dictionary, context: Dictionary) -> float:
 	if context.is_empty(): return 0.0
@@ -61,7 +70,7 @@ static func value(battle: Battle, action: Dictionary, context: Dictionary) -> fl
 	elif action.type == "play":
 		var card: Dictionary = battle.definition(battle.hand_card(side, action.card_uid).card_id)
 		if card.type == "unit":
-			projected.append({"id": -1, "kind": card.id, "hp": card.hp, "side": side, "pos": action.target})
+			projected.append({"id": -1, "kind": card.kind, "hp": card.hp, "side": side, "pos": action.target})
 			added = card.id
 		elif card.effect == "exchange":
 			var leader: Dictionary = battle.commander(side)
@@ -96,7 +105,7 @@ static func value(battle: Battle, action: Dictionary, context: Dictionary) -> fl
 	elif action.type == "unit_skill" and unit.kind == "spear":
 		for ally: Dictionary in battle.units:
 			if ally.side == side and cells.has(ally.pos) and battle.distance(ally.pos, unit.pos) == 1: score += 35.0
-	elif action.type == "end_turn" and side == 1 and after.count(0) == 2 and int(goal.streak) + 1 >= int(goal.required):
+	elif action.type == "end_turn" and side == 1 and after.count(0) == cells.size() and int(goal.streak) + 1 >= int(goal.required):
 		score -= 4000.0
 	return score
 
