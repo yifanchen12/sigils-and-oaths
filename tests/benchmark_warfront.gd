@@ -18,7 +18,7 @@ func play_match(deck: String, opponent_deck: String, map: String, seed_value: in
 	seats[expansion_side] = deck
 	var battle := Model.new(seed_value, map, commander_id, commander_id, seats[0], seats[1])
 	var result: Dictionary = {"deck": deck, "map": map, "seed": seed_value, "expansion_side": expansion_side,
-		"actions": 0, "winner": -1, "turn": 1, "new_cards_played": {}, "high_cost_plays": [], "area_casts": [], "error": ""}
+		"actions": 0, "winner": -1, "turn": 1, "new_cards_played": {}, "high_cost_plays": [], "area_casts": [], "resolved_orders": [], "error": ""}
 	var decision_time_total: int = 0
 	var longest_decision: int = 0
 	if profile_turns: result["turn_profile"] = []
@@ -45,6 +45,8 @@ func play_match(deck: String, opponent_deck: String, map: String, seed_value: in
 			result.error = applied.message
 			break
 		result.actions += 1
+		if not battle.last_order_event.is_empty():
+			result.resolved_orders.append({"id": battle.last_order_event.card_id, "side": battle.active_side, "turn": battle.turn})
 		if profile_turns:
 			row_profile["counts_after"] = [battle.army_count(0), battle.army_count(1)]
 			row_profile["mana_after"] = battle.players[side].mana

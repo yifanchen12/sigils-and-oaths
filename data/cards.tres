@@ -440,4 +440,78 @@ cards = Array[Dictionary]([{
 "id": "wind_banner", "name": "风旗开港", "short": "旗", "type": "environment", "effect": "weather", "cost": 10, "set_id": "tidegate", "weather": "tailwind",
 "duration": 6, "rally": {"radius": 3, "healing": 2, "shield": 2, "cleanse": true},
 "text": "全场疾风持续6个行动回合，双方普通部队移动力+1。\n为己方指挥官3格内友军恢复2生命、加2护盾并解除定身。", "tag": "天气 · 大军解围"
+}, {
+"id": "lamp_patrol", "name": "挑灯巡堤人", "short": "步", "type": "unit", "kind": "sword", "cost": 2, "set_id": "levee",
+"atk": 2, "hp": 4, "defense": 0, "move": 2, "range": 1, "entry": {"on_ground": ["fort", "hill"], "self_shield": 2},
+"text": "进场：部署在工事或高地时，自身获得2护盾。", "tag": "步兵 · 据高"
+}, {
+"id": "reed_watch", "name": "苇隙弓哨", "short": "弓", "type": "unit", "kind": "archer", "cost": 3, "set_id": "levee",
+"atk": 3, "hp": 4, "defense": 0, "move": 2, "range": 3, "entry": {"on_ground": ["road", "bridge"], "reveal": true, "radius": 1, "shield": 1},
+"text": "进场：部署在军道或桥梁时，拆除本格及相邻格的敌方陷阱，并为这一区域的友军各加1护盾。", "tag": "弓手 · 清障"
+}, {
+"id": "slate_quartermaster", "name": "铅板司仓", "short": "医", "type": "unit", "kind": "healer", "cost": 4, "set_id": "levee",
+"atk": 2, "hp": 4, "defense": 1, "move": 2, "range": 2, "fall": {"supply": [{"type": "spell", "min": 5}]},
+"text": "阵亡：从牌库上方找出第一张5费以上法术加入手牌。", "tag": "医师 · 接续"
+}, {
+"id": "bell_winch", "name": "绞铃枪卫", "short": "枪", "type": "unit", "kind": "spear", "cost": 5, "set_id": "levee",
+"atk": 3, "hp": 8, "defense": 2, "move": 2, "range": 1, "entry": {"on_ground": ["fort", "bridge"], "guard": true, "self_shield": 2},
+"text": "进场：部署在工事或桥梁时，自身获得2护盾并展开援护。", "tag": "枪兵 · 护渡"
+}, {
+"id": "rain_saddle", "name": "过雨旗骑", "short": "骑", "type": "unit", "kind": "cavalry", "cost": 6, "set_id": "levee",
+"atk": 5, "hp": 6, "defense": 1, "move": 4, "range": 1, "entry": {"on_ground": ["road", "bridge"], "vanguard": true, "supply": [{"type": "spell", "min": 5}]},
+"text": "进场：部署在军道或桥梁时可先遣移动，并从牌库上方找出第一张5费以上法术。先遣当回合只能移动。", "tag": "骑兵 · 军道先遣"
+}, {
+"id": "levee_brothers", "name": "并肩堤卫", "short": "步", "type": "unit", "kind": "sword", "cost": 7, "set_id": "levee",
+"atk": 4, "hp": 8, "defense": 1, "move": 2, "range": 1, "entry": {"on_ground": ["fort", "hill"], "radius": 2, "shield": 2},
+"text": "进场：部署在工事或高地时，为自身及2格内的友军各加2护盾。", "tag": "步兵 · 地势护阵"
+}, {
+"id": "rising_oath_watch", "name": "升旗执枪官", "short": "枪", "type": "unit", "kind": "spear", "cost": 8, "set_id": "levee",
+"atk": 5, "hp": 9, "defense": 2, "move": 2, "range": 1, "entry": {"guard": true},
+"fall": {"supply": [{"type": "unit", "min": 6}]},
+"text": "进场：立即援护相邻友军。\n阵亡：从牌库上方找出第一张6费以上部队加入手牌。", "tag": "枪兵 · 换防接任"
+}, {
+"id": "lantern_surgeon", "name": "堤灯主刀官", "short": "医", "type": "unit", "kind": "healer", "cost": 10, "set_id": "levee",
+"atk": 4, "hp": 9, "defense": 1, "move": 2, "range": 2, "entry": {"radius": 2, "healing": 4, "shield": 2, "cleanse": true},
+"text": "进场：自身及2格内的友军各恢复4生命、获得2护盾并解除定身。", "tag": "医师 · 阵地救治"
+}, {
+"id": "chalk_route", "name": "粉线行程", "short": "线", "type": "spell", "effect": "supply", "cost": 1, "set_id": "levee",
+"supply": [{"type": "unit", "max": 2}],
+"text": "从牌库上方找出第一张不超过2费的部队，加入手牌。", "tag": "法术 · 低费补给"
+}, {
+"id": "severed_pullcord", "name": "割索落坠", "short": "索", "type": "trap", "effect": "trap", "cost": 2, "set_id": "levee", "trigger": "step",
+"amount": 1, "disarm": true,
+"text": "伏设于空地。敌军踏入时受到1伤害，失去当前攻击机会。只要仍然存活，本次移动继续。", "tag": "陷阱 · 断攻"
+}, {
+"id": "troop_receipt", "name": "征调回单", "short": "单", "type": "spell", "effect": "supply", "cost": 3, "set_id": "levee",
+"supply": [{"type": "unit", "max": 4}, {"type": "trap"}],
+"text": "从牌库上方分别找出第一张不超过4费的部队和第一张陷阱。缺少一种时仍可取另一种。", "tag": "法术 · 军资轮换"
+}, {
+"id": "dike_flagstones", "name": "堤石压岸", "short": "石", "type": "environment", "effect": "roadwork", "cost": 4, "set_id": "levee",
+"terrain": "fort", "reinforce": 0,
+"text": "将目标格及相邻四格的合法陆地改成工事。工事防御+2，双方均可利用。桥梁保留。", "tag": "地理 · 工事铺设"
+}, {
+"id": "stretcher_signal", "name": "两灯待命", "short": "灯", "type": "environment", "effect": "scheduled", "cost": 5, "set_id": "levee",
+"target_side": "ally", "radius": 1, "healing": 4, "shield": 2,
+"text": "公开标记一片地格。己方下回合开始时，目标1格内的友军各恢复4生命并获得2护盾。每方同时只能保留一条军令。", "tag": "军令 · 延迟救援"
+}, {
+"id": "floodline_warning", "name": "洪线告旗", "short": "洪", "type": "spell", "effect": "scheduled", "cost": 6, "set_id": "levee",
+"target_side": "enemy", "radius": 1, "damage": 4, "commander_damage": 2, "root": true,
+"text": "公开标记一片地格。己方下回合开始时，目标1格内普通敌军受到4伤害并定身，敌方指挥官受到2伤害。", "tag": "军令 · 延迟定身"
+}, {
+"id": "reed_toll", "name": "苇钱备援", "short": "援", "type": "trap", "effect": "trap", "cost": 6, "set_id": "levee", "trigger": "either",
+"amount": 4, "healing": 2, "supply": [{"type": "unit", "max": 4}],
+"text": "伏设于友军。承受下一次普攻或术击前，恢复该友军2生命并加4护盾，再从牌库上方找出第一张不超过4费的部队。", "tag": "陷阱 · 护军补给"
+}, {
+"id": "recommission_crew", "name": "夺械募队", "short": "募", "type": "spell", "effect": "commission", "cost": 7, "set_id": "levee",
+"amount": 6, "supply": [{"type": "unit", "min": 6}],
+"text": "对一支普通敌军造成6伤害。若实际击破目标，从牌库上方找出第一张6费以上部队。", "tag": "法术 · 击破招募"
+}, {
+"id": "dike_lights", "name": "沿堤万盏", "short": "亮", "type": "environment", "effect": "weather", "cost": 9, "set_id": "levee",
+"weather": "lanterns", "duration": 6, "rally": {"radius": 2, "shield": 2},
+"supply": [{"type": "unit", "min": 5}, {"type": "unit", "min": 5}],
+"text": "全场灯夜持续6个行动回合，双方新兵各加1护盾。己方指挥官2格内友军各加2护盾，再从牌库上方找出最多两张5费以上部队。", "tag": "天气 · 重兵轮换"
+}, {
+"id": "dawn_weir", "name": "破晓启洪闸", "short": "闸", "type": "spell", "effect": "scheduled", "cost": 10, "set_id": "levee",
+"target_side": "enemy", "radius": 2, "damage": 7, "commander_damage": 3,
+"text": "公开标记一片地格。己方下回合开始时，目标2格内普通敌军受到7伤害，敌方指挥官受到3伤害。", "tag": "军令 · 大范围压阵"
 }])

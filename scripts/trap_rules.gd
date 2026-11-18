@@ -59,6 +59,9 @@ static func stepped(battle: RefCounted, unit: Dictionary) -> void:
 			player.mana -= drain
 			battle._record("%s失去%d点本回合法力。" % [battle.side_name(unit.side), drain])
 		if card.get("root", false): unit.rooted_turns = maxi(1, int(unit.rooted_turns))
+		if card.get("disarm", false) and not unit.attacked:
+			unit.attacked = true
+			battle._record("%s本回合失去攻击机会。" % unit.name)
 		if int(card.get("draw", 0)) > 0: battle._draw(trap.side, int(card.draw))
 
 static func attacked(battle: RefCounted, defender: Dictionary) -> int:
@@ -76,6 +79,7 @@ static func _protect(battle: RefCounted, defender: Dictionary, trigger: String) 
 		defender.hp = mini(int(defender.max_hp), int(defender.hp) + int(card.get("healing", 0)))
 		defender.shield = mini(5, int(defender.shield) + int(card.amount))
 		if int(card.get("draw", 0)) > 0: battle._draw(trap.side, int(card.draw))
+		battle.draw_supply(trap.side, card.get("supply", []))
 		return int(card.get("retort", 0))
 	return 0
 

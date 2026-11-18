@@ -82,9 +82,10 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 			var card: Dictionary = battle.definition(instance.card_id)
 			if card.type == "unit":
 				var score: float = 50.0 + int(card.cost) * 2.0 - battle.distance(action.target, enemy_leader.pos) * 1.5 + (2.0 if battle.ground(action.target) == "forest" else 0.0)
-				if card.has("entry"): score += _entry_score(battle, card.entry, action.target)
+				if card.has("entry") and battle.entry_active(card.entry, action.target): score += _entry_score(battle, card.entry, action.target)
 				if card.has("fall"):
 					score += _reserve_value(battle, side, int(card.fall.get("draw", 0))) * 0.5
+					score += _supply_value(battle, side, card.fall) * 0.5
 					score += _formation_score(battle, card.fall, action.target) * 0.2
 				return score
 			if card.type == "trap":
@@ -110,10 +111,17 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 					for ally: Dictionary in battle.units:
 						if ally.side == side: nearest = mini(nearest, battle.distance(ally.pos, action.target))
 					var shatter: float = int(entry.unit.shield) * 3.0 if card.get("clear_shield", false) else 0.0
-					value = maxf(value, 28.0 - nearest * 4.0 + shatter + (6.0 if card.get("root", false) and entry.unit.kind == "cavalry" else 0.0))
+					var cutoff: float = 13.0 if card.get("disarm", false) and nearest <= battle.attack_range(entry.unit) + 1 else 0.0
+					value = maxf(value, 28.0 - nearest * 4.0 + shatter + cutoff + (6.0 if card.get("root", false) and entry.unit.kind == "cavalry" else 0.0))
 				return value + draw_bonus if value >= 0.0 else value
 			var target: Dictionary = battle.unit_at(action.target)
 			match String(card.effect):
+				"supply": return _supply_value(battle, side, card) - int(card.cost) * 1.5
+				"scheduled": return _scheduled_value(battle, card, action.target)
+				"commission":
+					var loss: int = mini(int(target.hp), maxi(0, int(card.amount) - int(target.shield)))
+					var followup: float = 43.0 + _supply_value(battle, side, card) if loss >= int(target.hp) else 0.0
+					return loss * 8.0 + mini(int(card.amount), int(target.shield)) * 4.0 + followup - 9.0
 				"formation": return _formation_score(battle, card, action.target) + _reserve_value(battle, side, int(card.get("draw", 0)))
 				"recall": return _recall_value(battle, target, card, threats)
 				"recall_fallen":
@@ -214,7 +222,7 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 				"weather":
 					var value: float = _weather_score(battle, side, card.weather) + _reserve_value(battle, side, int(card.get("draw", 0)))
 					if card.has("rally"): value += _formation_score(battle, card.rally, battle.commander(side).pos)
-					return value
+					return value + _supply_value(battle, side, card)
 				"clear_weather":
 					# Score the current weather without the duplicate-weather rejection.
 					var opposite_value: float = _weather_score_for(battle, side, battle.weather)
@@ -289,6 +297,23 @@ static func _reserve_value(battle: Battle, side: int, draws: int, room_for_play:
 	var capacity: int = Battle.HAND_LIMIT - player.hand.size() + room_for_play
 	return mini(draws, mini(player.deck.size(), capacity)) * 9.0
 
+static func _supply_value(battle: Battle, side: int, source: Dictionary) -> float:
+	if not source.has("supply"): return 0.0
+	var room: int = Battle.HAND_LIMIT + 1 - battle.players[side].hand.size()
+	return mini(room, battle.supply_cards(side, source.supply).size()) * 13.0
+
+static func _scheduled_value(battle: Battle, card: Dictionary, center: Vector2i) -> float:
+	var value: float = -7.0
+	for change: Dictionary in battle.Formation.changes(battle, card, center, battle.active_side):
+		var unit: Dictionary = battle.get_unit(change.unit_id)
+		if change.friendly:
+			value += int(change.healing) * 4.0 + int(change.shield_delta) * 3.0
+			continue
+		var impact: float = int(change.hp_loss) * 8.0 - int(change.shield_delta) * 3.0 + (9.0 if change.root else 0.0)
+		if change.hp_after == 0: impact += 100.0 if unit.kind == "commander" else 31.0
+		value += impact * (0.85 if unit.move == 0 or unit.rooted_turns > 1 else 0.54)
+	return value
+
 static func _recall_value(battle: Battle, target: Dictionary, card: Dictionary, threats: Dictionary) -> float:
 	var side: int = battle.active_side
 	var definition: Dictionary = battle.definition(target.card.card_id)
@@ -300,7 +325,7 @@ static func _recall_value(battle: Battle, target: Dictionary, card: Dictionary, 
 	var score: float = lost_hp * 4.5 + (9.0 if int(target.rooted_turns) > 0 else 0.0)
 	if not target.attacked and not target.summoning: score -= 13.0
 	score -= int(target.shield) * 3.0 + 12.0
-	if replay_now and definition.has("entry"): score += minf(22.0, _entry_score(battle, definition.entry, target.pos))
+	if replay_now and definition.has("entry") and battle.entry_active(definition.entry, target.pos): score += minf(22.0, _entry_score(battle, definition.entry, target.pos))
 	if lost_hp > 0:
 		var context: Dictionary = threats if not threats.is_empty() else TacticalAI.prepare(battle)
 		score += minf(22.0, TacticalAI.exposure(battle, target, context) * 0.17)
@@ -332,11 +357,11 @@ static func _entry_score(battle: Battle, entry: Dictionary, center: Vector2i) ->
 	if fatigue >= int(leader.hp) + int(leader.shield): return -3000.0
 	var cards: int = mini(int(entry.get("draw", 0)), battle.players[side].deck.size())
 	var advance: float = 5.0 if entry.get("vanguard", false) else 0.0
-	return _formation_score(battle, entry, center) + cards * 6.0 + int(entry.get("self_shield", 0)) * 3.0 + advance - fatigue * 7.0
+	return _formation_score(battle, entry, center) + cards * 6.0 + int(entry.get("self_shield", 0)) * 3.0 + advance - fatigue * 7.0 + _supply_value(battle, side, entry)
 
 static func _trap_supply_value(battle: Battle, card: Dictionary, side: int) -> float:
 	var draws: int = int(card.get("draw", 0))
-	if draws == 0: return 0.0
+	if draws == 0: return _supply_value(battle, side, card) * 0.65
 	var available: int = battle.players[side].deck.size()
 	return mini(draws, available) * 5.0 - (12.0 if available < draws else 0.0)
 

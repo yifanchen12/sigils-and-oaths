@@ -2128,6 +2128,32 @@
       "role": "Dyeworks courtyard story scene used before and after the Saltcloth Lane evacuation.",
       "processing": "Original generated PNG copied intact. Godot overlays game UI and the authored tactical grid.",
       "validation": "tests/test_saltlane_native_ui.gd and tests/test_saltlane_story_layout.gd"
+    },
+    {
+      "id": "levee_watch",
+      "path": "assets/art/expansion/levee-watch-v1.png",
+      "source_filename": "exec-2833ae89-0d93-40a7-8c35-59a89e4402dc.png",
+      "prompt_file": "assets/art/expansion/levee-source.md",
+      "size": [1254, 1254],
+      "mode": "RGB",
+      "sha256": "a85c3f7856e33cae60d2215914993722cfe0cf97c4308bb85aa69389910d72f6",
+      "source_bytes_preserved": true,
+      "role": "Eight troop illustrations and the Chalk Route supply spell.",
+      "processing": "Original generated PNG. Godot uses nine square regions with a two-pixel inset.",
+      "validation": "tests/test_levee_cards.gd and tests/test_levee_native_ui.gd"
+    },
+    {
+      "id": "levee_orders",
+      "path": "assets/art/expansion/levee-orders-v1.png",
+      "source_filename": "exec-6eff480f-581c-46ea-9a57-81ef26fa57db.png",
+      "prompt_file": "assets/art/expansion/levee-source.md",
+      "size": [1254, 1254],
+      "mode": "RGB",
+      "sha256": "31ef22dd11cdc330c2219c06b13fe8ccd3bdde56cdd516953eb912537151ff7f",
+      "source_bytes_preserved": true,
+      "role": "Public orders, traps, reinforcements and terrain card illustrations.",
+      "processing": "Original generated PNG. Godot uses nine square regions with a two-pixel inset.",
+      "validation": "tests/test_levee_cards.gd and tests/test_levee_native_ui.gd"
     }
   ]
 }

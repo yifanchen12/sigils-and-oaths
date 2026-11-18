@@ -95,6 +95,7 @@ func _process(delta: float) -> void:
 		audio.feedback({"type": "end_turn"}, battle, old_side)
 		ai_running = battle.active_side == 1 and battle.winner == -1
 		message = "你的回合时间已用尽，%s开始行动。" % battle.side_name(1) if old_side == 0 else "敌方回合超时，轮到你行动。"
+		if battle.winner != -1: message = battle.log_lines.back()
 		error_message = false
 		_refresh()
 		if ai_running: _run_ai(generation)
@@ -1030,14 +1031,14 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 			elif visual_action.spell_effect == "roadwork":
 				visual_action["affected_cells"] = battle.roadwork_cells(action.target, definition.get("terrain", "road"))
 				visual_action.effect_kind = "shield"
-			elif visual_action.spell_effect in ["verdict", "recall"]:
-				visual_action.effect_kind = "damage" if visual_action.spell_effect == "verdict" else "shield"
+			elif visual_action.spell_effect in ["verdict", "commission", "recall"]:
+				visual_action.effect_kind = "shield" if visual_action.spell_effect == "recall" else "damage"
 			elif visual_action.spell_effect == "pullback":
 				visual_action.effect_kind = "heal"
 			elif visual_action.spell_effect == "redeploy":
 				visual_action.effect_kind = "shield"
 				visual_action["cast_color"] = Color("9ad6f5")
-			elif int(entry.get("damage", 0)) > 0:
+			elif int(entry.get("damage", 0)) > 0 and battle.entry_active(entry, action.target):
 				visual_action["affected_cells"] = battle.Formation.footprint(battle, action.target, int(entry.get("radius", 1)))
 				visual_action.effect_kind = "area"
 				visual_action["cast_color"] = Color("9ad6f5")
@@ -1157,10 +1158,13 @@ func _on_cell_hovered(cell: Vector2i) -> void:
 	var target: Dictionary = battle.unit_at(cell)
 	var context: Dictionary = _attack_context()
 	var effect: Dictionary = _effect_context()
+	var orders: String = _orders_at(cell)
 	if not effect.is_empty():
 		_show_hint(Effects.hint(effect), false)
 	elif not context.is_empty():
 		_show_hint(_attack_hint(context), false)
+	elif not orders.is_empty():
+		_show_hint(orders, false)
 	elif battle.inside(cell) and target.is_empty():
 		var terrain_name: String = battle.TERRAIN[battle.ground(cell)].name
 		var terrain_text: String = battle.TERRAIN[battle.ground(cell)].description
@@ -1171,6 +1175,14 @@ func _on_cell_hovered(cell: Vector2i) -> void:
 		_show_hint("%s · %s：%s" % [battle.cell_name(cell), terrain_name, terrain_text], false)
 	else:
 		_show_hint(message, error_message)
+
+func _orders_at(cell: Vector2i) -> String:
+	var labels := PackedStringArray()
+	for order: Dictionary in battle.pending_orders:
+		if not battle.Orders.footprint(battle, order).has(cell): continue
+		var card: Dictionary = battle.definition(order.card.card_id)
+		labels.append("%s · %s · 第%d回合结算" % ["己方" if order.side == 0 else "敌方", card.name, order.due_turn])
+	return " / ".join(labels)
 
 func _update_info() -> void:
 	_update_battle_peek()
@@ -1191,7 +1203,8 @@ func _update_info() -> void:
 		info_title.text = card.name
 		info_body.text = "[color=#d0b579]%s  /  %d 法力[/color]\n\n%s\n\n" % [card.tag, card.cost, card.text]
 		if card.type == "unit":
-			info_body.text += "攻击 [b]%d[/b]     生命 [b]%d[/b]\n防御 %d       移动 %d\n射程 %d\n\n[color=#70d3ba]部署在友军上下左右的空地。新兵本回合无法行动。[/color]" % [card.atk, card.hp, card.defense, card.move, card.range]
+			var ready_tip: String = "达成卡面条件，便可在部署当回合先遣移动一次。" if card.get("entry", {}).get("vanguard", false) else "部队下个己方回合可行动。"
+			info_body.text += "攻击 [b]%d[/b]     生命 [b]%d[/b]\n防御 %d       移动 %d\n射程 %d\n\n[color=#70d3ba]部署在友军上下左右的空地。%s[/color]" % [card.atk, card.hp, card.defense, card.move, card.range, ready_tip]
 			if card.has("skill"): info_body.text += "\n\n主动 · %s（1费）\n%s" % [card.skill.name, card.skill.text]
 		else:
 			var target_tip: String = "施法目标须在友军3格内，法师可延伸至4格。淡蓝为覆盖，赤框为合法目标。"
@@ -1275,6 +1288,12 @@ func _update_battle_peek() -> void:
 		else:
 			var asset: String = _portrait_for(target)
 			battle_peek.present(Art.get_texture(asset), effect.title, "效果预估 · " + str(target.name), Effects.describe(effect, battle, true), TEAL if target.side == 0 else RED)
+	elif uid == -1 and not using_hero and context.is_empty():
+		for order: Dictionary in battle.pending_orders:
+			if order.pos != hovered_cell: continue
+			var card: Dictionary = battle.definition(order.card.card_id)
+			battle_peek.present(Art.get_texture(card.id), card.name, _orders_at(hovered_cell), card.text, TEAL if order.side == 0 else RED)
+			break
 	var enemy: Dictionary = battle.commander(1)
 	if not enemy.is_empty():
 		var enemy_hero: Dictionary = battle.hero(1)
@@ -1324,10 +1343,11 @@ func _end_turn() -> void:
 	ai_running = true
 	using_hero = false
 	_apply_with_feedback({"type": "end_turn"})
-	message = "%s正在行动…" % battle.side_name(1)
+	ai_running = battle.winner == -1
+	message = "%s正在行动…" % battle.side_name(1) if ai_running else battle.log_lines.back()
 	error_message = false
 	_refresh()
-	_run_ai(generation)
+	if ai_running: _run_ai(generation)
 
 func _run_ai(token: int) -> void:
 	await get_tree().create_timer(0.35).timeout
@@ -1341,7 +1361,7 @@ func _run_ai(token: int) -> void:
 		var result: Dictionary = _apply_with_feedback(action)
 		if not result.ok:
 			push_error("AI action rejected: " + str(result.message))
-			battle.end_turn()
+			_apply_with_feedback({"type": "end_turn"})
 			break
 		if not hidden_placement and action.has("target") and battle.inside(action.target):
 			board.last_cell = battle.last_movement_path.back() if not battle.last_movement_path.is_empty() else action.target
@@ -1350,9 +1370,9 @@ func _run_ai(token: int) -> void:
 		if battle.winner != -1 or battle.active_side != 1: break
 		await get_tree().create_timer(maxf(board.action_duration, 0.45 if action.type == "move" else 0.32)).timeout
 	if token != generation: return
-	if battle.winner == -1 and battle.active_side == 1: battle.end_turn()
+	if battle.winner == -1 and battle.active_side == 1: _apply_with_feedback({"type": "end_turn"})
 	ai_running = false
-	message = "你的回合：法力已恢复，选择卡牌或部队开始行动。"
+	message = "你的回合：法力已恢复，选择卡牌或部队开始行动。" if battle.winner == -1 else battle.log_lines.back()
 	_refresh()
 
 func _input(event: InputEvent) -> void:

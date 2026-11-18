@@ -65,4 +65,12 @@ decks = Array[Dictionary]([{
 "cards": {"spear": 2, "mage": 1, "quay_salver": 2, "byway_guard": 2, "sandbar_physician": 1, "night_surveyor": 1, "levee_marshal": 1, "indigo_gate_mage": 1, "sword": 2, "archer": 1, "cavalry": 1,
 "sealed_roll": 1, "field_muster": 1, "remember_the_company": 1, "slate_grid": 1, "last_rollcall": 1, "split_sentence": 1, "first_wake": 1, "lantern_stretcher": 1, "ward": 1,
 "rain_cloak": 1, "iron_undertow": 1, "watchtower_cage": 1, "camp_screen": 1, "rain_break": 1, "winter_watch": 1}
+}, {
+"id": "weir_breakers", "name": "决水军列", "set_id": "levee", "description": "沿军道抢占施法位。伏索截掉攻击机会，再用洪线和高费军令封退路。",
+"cards": {"lamp_patrol": 2, "reed_watch": 3, "rain_saddle": 2, "levee_brothers": 2, "cinder_runner": 2, "mink_watcher": 2, "bell_winch": 1, "archer": 2, "sword": 1,
+"chalk_route": 1, "troop_receipt": 1, "recommission_crew": 2, "floodline_warning": 2, "dawn_weir": 1, "severed_pullcord": 2, "bolt": 2, "march": 1, "first_wake": 1}
+}, {
+"id": "levee_relief", "name": "护堤轮班", "set_id": "levee", "description": "以工事、援护和双灯救援接住压力。靠阵亡补给和灯夜调入后续部队。",
+"cards": {"lamp_patrol": 2, "slate_quartermaster": 2, "bell_winch": 3, "rising_oath_watch": 1, "lantern_surgeon": 1, "spear": 2, "reed_watch": 2, "mink_watcher": 2, "quay_salver": 2,
+"stretcher_signal": 2, "dike_flagstones": 1, "reed_toll": 1, "dike_lights": 1, "ward": 2, "bolt": 2, "rally_heal": 1, "reveal_traps": 1, "troop_receipt": 1, "severed_pullcord": 1}
 }])

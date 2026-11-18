@@ -28,9 +28,18 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 			title = card.name
 			effect = str(card.get("effect", ""))
 			var entry: Dictionary = card.get("entry", {})
-			if entry.get("target_side", "") == "enemy": return _formation_preview(battle, card, entry, cell, side)
+			if entry.get("target_side", "") == "enemy" and battle.entry_active(entry, cell): return _formation_preview(battle, card, entry, cell, side)
 			if effect == "formation":
 				return _formation_preview(battle, card, card, cell, side)
+			if effect == "scheduled":
+				var note: String = "落点公开。对手有一个完整回合调整站位，军令在第 %d 回合开始时生效。\n%s" % [battle.turn + 2, card.text]
+				return {"title": title, "effect": effect, "art": card.id, "amount": int(card.get("damage", 0)), "target_id": -1, "changes": [],
+					"cells": battle.Formation.footprint(battle, cell, int(card.radius)), "note": note}
+			if effect == "commission":
+				amount = int(card.amount)
+				var change: Dictionary = _change(target, "damage", amount)
+				var note: String = "按实际击破结算补给。隐藏的术击反制可改变结果。"
+				return {"title": title, "effect": effect, "art": card.id, "amount": amount, "target_id": target.id, "changes": [change], "note": note}
 			if effect == "roadwork":
 				var ground: String = card.get("terrain", "road")
 				var sites: Array[Vector2i] = battle.roadwork_cells(cell, ground)
@@ -145,6 +154,7 @@ static func describe(forecast: Dictionary, battle: Battle, compact: bool = false
 	if forecast.effect == "roadwork": lines.append("将 %d 格改为%s\n" % [forecast.cells.size(), forecast.ground_name])
 	if forecast.effect in ["damage", "area", "shatter_bolt"]: lines.append("本次火焰伤害 %d\n" % forecast.amount)
 	if forecast.effect == "verdict": lines.append("本次法术伤害 %d\n" % forecast.amount)
+	if forecast.effect == "commission": lines.append("术击伤害 %d\n" % forecast.amount)
 	if forecast.effect == "area": lines.append("范围命中 %d 名敌军\n" % forecast.changes.size())
 	for change: Dictionary in forecast.changes:
 		var label: String = "%s · %s" % [battle.cell_name(change.position_before), change.name]
@@ -162,6 +172,7 @@ static func describe(forecast: Dictionary, battle: Battle, compact: bool = false
 	return "\n".join(lines)
 
 static func hint(forecast: Dictionary) -> String:
+	if forecast.effect == "scheduled": return "%s · 标记 %d 格 · 下个己方回合结算 · 点击设置，右键取消。" % [forecast.title, forecast.cells.size()]
 	if forecast.effect == "roadwork": return "%s预估 · %d格改为%s · 点击确认，右键取消。" % [forecast.title, forecast.cells.size(), forecast.ground_name]
 	if forecast.effect == "recall": return "%s · 点击确认回收，右键取消。" % forecast.title
 	if forecast.effect == "redeploy": return "%s · %s" % [forecast.title, forecast.note]

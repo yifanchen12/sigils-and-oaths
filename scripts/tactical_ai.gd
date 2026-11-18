@@ -71,13 +71,18 @@ static func value(battle: Battle, action: Dictionary, context: Dictionary) -> fl
 		if card.type != "unit": return 0.0
 		var unit: Dictionary = card.duplicate(true)
 		unit.merge({"id": -1, "side": battle.active_side, "pos": action.target, "shield": 0, "last_move_distance": 0})
-		return area_value - exposure(battle, unit, context)
+		return area_value - exposure(battle, unit, context) - _order_risk(battle, unit)
 	if action.type == "move":
 		var unit: Dictionary = battle.get_unit(action.unit_id)
 		var candidate: Dictionary = unit.duplicate()
 		candidate.pos = action.target; candidate.last_move_distance = battle.distance(unit.pos, action.target)
-		return area_value + (exposure(battle, unit, context) - exposure(battle, candidate, context)) * 0.6
+		return area_value + (exposure(battle, unit, context) - exposure(battle, candidate, context)) * 0.6 + _order_risk(battle, unit) - _order_risk(battle, candidate)
 	return 0.0
+
+static func _order_risk(battle: Battle, unit: Dictionary) -> float:
+	var damage: int = battle.Orders.incoming(battle, unit)
+	if damage == 0: return 0.0
+	return _loss_value(battle, unit, damage) + mini(damage, int(unit.shield)) * 3.0
 
 static func _future_attack_damage(battle: Battle, attacker: Dictionary, origin: Vector2i, defender: Dictionary) -> int:
 	var candidate: Dictionary = attacker.duplicate()

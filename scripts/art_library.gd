@@ -87,7 +87,11 @@ const CARD_ATLASES: Dictionary = {
 		"slate_grid", "open_the_ranks", "last_rollcall", "tidewall_verdict"]},
 	"tidegate-traps-weather-v1": {"columns": 4, "rows": 3, "ids": ["chalk_spike", "copper_buckle", "mud_sluice", "rain_cloak",
 		"seagate_sting", "iron_undertow", "watchtower_cage", "turning_bastion",
-		"camp_screen", "rain_break", "winter_watch", "wind_banner"]}
+		"camp_screen", "rain_break", "winter_watch", "wind_banner"]},
+	"levee-watch-v1": {"columns": 3, "rows": 3, "ids": ["lamp_patrol", "reed_watch", "slate_quartermaster",
+		"bell_winch", "rain_saddle", "levee_brothers", "rising_oath_watch", "lantern_surgeon", "chalk_route"]},
+	"levee-orders-v1": {"columns": 3, "rows": 3, "ids": ["severed_pullcord", "troop_receipt", "dike_flagstones",
+		"stretcher_signal", "floodline_warning", "reed_toll", "recommission_crew", "dike_lights", "dawn_weir"]}
 }
 
 static func get_texture(asset_id: String) -> Texture2D:

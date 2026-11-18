@@ -170,7 +170,9 @@ func test_preset_revision() -> bool:
 	var normalized: Dictionary = JSON.parse_string(JSON.stringify(updated))
 	raw.rules = normalized.rules
 	raw.version = normalized.version
-	check(raw == normalized, "just the schema and signature change for a real old battle")
+	check(normalized.pending_orders.is_empty(), "no pending order is introduced in a real old battle")
+	raw["pending_orders"] = []
+	check(raw == normalized, "legacy migration copies all existing state")
 	check(battle.deck(0).cards.sword == 3 and battle.deck(1).cards.shore_medic == 3, "old public preset compositions survive migration")
 	var new_battle := Model.new(43161, "rivergate", "warden", "warden", "frost_engine", "lantern_convoy")
 	check(new_battle.deck(0).cards.sword == 1 and new_battle.deck(1).cards.shore_medic == 2, "new battles use revised presets")

@@ -148,6 +148,8 @@ func test_conditions_and_legacy() -> void:
 		var migrated: Dictionary = Snapshot.capture(decoded.battle)
 		migrated.erase("version")
 		migrated.erase("rules")
+		check(migrated.pending_orders.is_empty(), "legacy battle has no pending orders")
+		migrated.erase("pending_orders")
 		raw.erase("version")
 		raw.erase("rules")
 		check(JSON.parse_string(JSON.stringify(migrated, "", true, true)) == raw, "migration preserves prior zones, positions, presets and RNG")

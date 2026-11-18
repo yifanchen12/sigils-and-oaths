@@ -266,6 +266,14 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 	if action.type == "unit_skill" and action.get("unit_kind", "") == "spear": _effect("shield", action.target, "援护展开", BLUE, 0.85)
 	if action.get("card_type", "") == "trap" and battle.inside(action.target): _effect("shield", action.target, "伏设", Color("b5a0ed"), 0.8)
 	if action.get("spell_effect", "") == "reveal_traps": _effect("shield", action.target, "寻痕", Color("b5a0ed"), 0.8)
+	if action.get("spell_effect", "") == "scheduled": _effect("shield", action.target, "军令已标记", GOLD, 0.85)
+	if not battle.last_order_event.is_empty():
+		var order: Dictionary = battle.last_order_event
+		var order_color: Color = BLUE if order.support else Color("f9b36a")
+		_effect("burst", order.pos, str(order.name), order_color, 1.15)
+		if not reduced_motion:
+			effects.append({"kind": "heal_cast" if order.support else "fire_area", "cell": order.pos,
+				"from": order.pos, "cells": order.cells, "text": "", "color": order_color, "age": 0.0, "duration": 0.8})
 	for event: Dictionary in battle.last_trap_events:
 		if battle.inside(event.cell): _effect("burst", event.cell, event.name + " · " + event.reason, Color("c6a6ff"), 1.05)
 	presentation_remaining = action_duration
@@ -383,6 +391,12 @@ func _draw() -> void:
 				draw_line(rect.position + Vector2(6, tile - 5), rect.position + Vector2(tile - 6, tile - 5), Color(GOLD, 0.65), 2)
 			if cell == flash_cell and flash_alpha > 0:
 				draw_rect(rect.grow(-2), Color(GOLD, flash_alpha))
+	for order: Dictionary in battle.pending_orders:
+		var order_color: Color = BLUE if order.side == 0 else RED
+		for covered: Vector2i in battle.Orders.footprint(battle, order):
+			var area := Rect2(grid.position + Vector2(covered) * tile, Vector2.ONE * tile)
+			draw_rect(area.grow(-4.0 - float(order.side) * 3.0), Color(order_color, 0.14))
+			draw_rect(area.grow(-5.0 - float(order.side) * 3.0), Color(order_color, 0.88), false, 2.0)
 	if selected_unit != -1 and moves.has(hover_cell):
 		var selected: Dictionary = battle.get_unit(selected_unit)
 		if not selected.is_empty():
@@ -403,6 +417,13 @@ func _draw() -> void:
 			var segment: int = mini(motion_path.size() - 2, int(progress))
 			at = cell_center(motion_path[segment]).lerp(cell_center(motion_path[segment + 1]), progress - segment)
 		_draw_unit(unit, at, tile, 1.0, cast_pose(unit.id), float(casting_pose.get("facing", 1.0)))
+	for order: Dictionary in battle.pending_orders:
+		var order_color: Color = BLUE if order.side == 0 else RED
+		var badge: Vector2 = cell_center(order.pos) + Vector2(tile * (-0.29 if order.side == 0 else 0.29), tile * 0.29)
+		draw_circle(badge, 10, Color("182128"))
+		draw_arc(badge, 10, 0, TAU, 24, order_color, 1.8, true)
+		var support: bool = battle.definition(order.card.card_id).target_side == "ally"
+		_text("援" if support else "击", badge + Vector2(0, 4), 12, order_color)
 	if not motion_ghost.is_empty() and motion_progress < 1.0 and motion_path.size() > 1:
 		var progress: float = motion_progress * (motion_path.size() - 1)
 		var segment: int = mini(motion_path.size() - 2, int(progress))

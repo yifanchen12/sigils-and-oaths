@@ -2,10 +2,10 @@ extends RefCounted
 ## Plain-data snapshots. No object deserialization, rendering or turn-start effects.
 
 const Model = preload("res://scripts/battle.gd")
-const VERSION: int = 8
+const VERSION: int = 9
 const EXPANSION_CARDS: Array[String] = ["shatter_bolt", "rally_heal", "cleanse_root", "reveal_traps", "seedwood", "anchor_snare", "ember_mine", "oath_ward"]
 const CHANNEL_CARDS: Array[String] = ["span_kit", "countercurrent_ward"]
-const LATER_SETS: Array[String] = ["warfront", "afterglow", "tidegate"]
+const LATER_SETS: Array[String] = ["warfront", "afterglow", "tidegate", "levee"]
 const SCALARS: Array[String] = ["active_side", "turn", "winner", "next_id", "match_seed", "deck_size", "weather", "weather_remaining", "turn_time_limit", "time_remaining"]
 const PLAYER_FIELDS: Array[String] = ["hero_id", "deck_id", "mana", "max_mana", "fatigue", "skill_cooldown", "spell_boost_used", "card_total"]
 const UNIT_INTS: Array[String] = ["id", "side", "hp", "max_hp", "atk", "defense", "move", "range", "shield", "last_move_distance", "rooted_turns"]
@@ -28,14 +28,23 @@ static func rules_signature() -> String:
 static func _relay_signature(cards: Array[Dictionary], decks: Array[Dictionary], maps: Array[Dictionary]) -> String:
 	return JSON.stringify([cards, Model.HEROES.heroes, decks, maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE, "relay_v1"]).sha256_text()
 
+static func _cards_through_v046() -> Array[Dictionary]:
+	return Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") != "levee")
+
+static func _presets_through_v046() -> Array[Dictionary]:
+	return Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") != "levee")
+
+static func v046_rules_signature() -> String:
+	return _relay_signature(_cards_through_v046(), _presets_through_v046(), Model.MAPS.maps)
+
 static func v045_rules_signature() -> String:
-	return _relay_signature(Model.CATALOG.cards, Model.DECKS.decks, maps_without([]))
+	return _relay_signature(_cards_through_v046(), _presets_through_v046(), maps_without([]))
 
 static func _cards_through_v044() -> Array[Dictionary]:
-	return Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") != "tidegate")
+	return _cards_through_v046().filter(func(card: Dictionary) -> bool: return card.get("set_id", "") != "tidegate")
 
 static func _presets_through_v044() -> Array[Dictionary]:
-	return Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") != "tidegate")
+	return _presets_through_v046().filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") != "tidegate")
 
 static func v044_rules_signature() -> String:
 	return _relay_signature(_cards_through_v044(), _presets_through_v044(), maps_without([]))
@@ -124,6 +133,7 @@ static func normalize_legacy(data: Dictionary) -> Dictionary:
 	var result: Dictionary = data.duplicate(true)
 	if int(result.version) == 1: result["objective"] = {}
 	if int(result.version) < 3: result["traps"] = []
+	if int(result.version) < 9: result["pending_orders"] = []
 	return result
 
 static func _whole(value: Variant, minimum: int = 0, maximum: int = 1000000) -> bool:
@@ -147,6 +157,9 @@ static func capture(battle: RefCounted) -> Dictionary:
 	data["traps"] = []
 	for trap: Dictionary in battle.traps:
 		data.traps.append({"side": trap.side, "unit_id": trap.unit_id, "pos": [trap.pos.x, trap.pos.y], "card": trap.card.duplicate(true)})
+	data["pending_orders"] = []
+	for order: Dictionary in battle.pending_orders:
+		data.pending_orders.append({"side": order.side, "pos": [order.pos.x, order.pos.y], "due_turn": order.due_turn, "card": order.card.duplicate(true)})
 	for side: int in range(2):
 		var source: Dictionary = battle.players[side]
 		var player: Dictionary = {}
@@ -197,11 +210,13 @@ static func validate(data: Variant) -> Dictionary:
 	if int(version) < 4 and (data.get("map_id") == "lamplanding" or (goal is Dictionary and Model.ControlObjective.is_relay(goal))):
 		return {"ok": false, "message": "旧版战斗不支持接力任务。"}
 	if int(data.version) < 3 and data.get("traps", []) != []: return {"ok": false, "message": "旧版战斗不能包含伏设区。"}
+	if int(data.version) < 9 and data.get("pending_orders", []) != []: return {"ok": false, "message": "旧版战斗不能包含待结算军令。"}
 	data = normalize_legacy(data)
 	var problem: String = _validate(data)
 	return {"ok": true} if problem.is_empty() else {"ok": false, "message": problem}
 
 static func _legacy_rules_match(data: Dictionary) -> bool:
+	if int(data.version) == 8: return data.rules == v046_rules_signature()
 	if int(data.version) == 7: return data.rules == v045_rules_signature()
 	if int(data.version) == 6: return data.rules == v044_rules_signature()
 	if int(data.version) == 5: return data.rules == v043_rules_signature()
@@ -297,6 +312,22 @@ static func _validate(data: Dictionary) -> String:
 		trap_counts[int(trap.side)] += 1
 		cards[int(trap.side)] += 1
 		if trap_counts[int(trap.side)] > Model.Traps.LIMIT: return "伏设数量超过上限。"
+	if not data.get("pending_orders") is Array or data.pending_orders.size() > 2: return "待结算军令数量无效。"
+	var issuing_sides: Array[int] = []
+	for order: Variant in data.pending_orders:
+		if not order is Dictionary or not _whole(order.get("side"), 0, 1): return "待结算军令归属无效。"
+		var issuer: int = int(order.side)
+		if issuing_sides.has(issuer): return "每方只能保留一条待结算军令。"
+		issuing_sides.append(issuer)
+		var due: int = int(data.turn) + (2 if issuer == int(data.active_side) else 1)
+		if not _whole(order.get("due_turn"), due, due): return "待结算军令期限无效。"
+		var pos: Variant = order.get("pos")
+		if not pos is Array or pos.size() != 2 or not _whole(pos[0], 0, width - 1) or not _whole(pos[1], 0, height - 1): return "军令位置无效。"
+		if data.terrain[int(pos[1]) * width + int(pos[0])] in ["water", "mountain"]: return "军令中心必须位于可通行地格。"
+		var order_issue: String = _card(order.get("card"), ids, int(data.next_id))
+		if not order_issue.is_empty(): return order_issue
+		if order.card.has("unit_id") or Model.CATALOG.find(order.card.card_id).get("effect", "") != "scheduled": return "军令区卡牌种类无效。"
+		cards[issuer] += 1
 	for side: int in range(2):
 		if commanders[side] > 1 or troops[side] > Model.UNIT_LIMIT: return "指挥官或普通部队数量超限。"
 		var player: Variant = data.players[side]
@@ -378,6 +409,9 @@ static func restore(data: Variant) -> Dictionary:
 	battle.traps.clear()
 	for raw: Dictionary in data.traps:
 		battle.traps.append({"side": int(raw.side), "unit_id": int(raw.unit_id), "pos": Vector2i(int(raw.pos[0]), int(raw.pos[1])), "card": _decode_card(raw.card)})
+	for raw: Dictionary in data.pending_orders:
+		battle.pending_orders.append({"side": int(raw.side), "pos": Vector2i(int(raw.pos[0]), int(raw.pos[1])),
+			"due_turn": int(raw.due_turn), "card": _decode_card(raw.card)})
 	for raw: Dictionary in data.units:
 		var unit: Dictionary = {}
 		for key: String in UNIT_INTS: unit[key] = int(raw[key])
