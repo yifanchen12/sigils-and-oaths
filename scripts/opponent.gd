@@ -7,8 +7,8 @@ const TacticalAI = preload("res://scripts/tactical_ai.gd")
 static func choose(battle: Battle) -> Dictionary:
 	var best: Dictionary = {"type": "end_turn"}
 	var fields: Dictionary = {}
-	var objective: Dictionary = ObjectiveAI.prepare(battle)
 	var threats: Dictionary = TacticalAI.prepare(battle)
+	var objective: Dictionary = ObjectiveAI.prepare(battle, threats)
 	# Keep end-turn as the tie winner. In a control emergency its value can be
 	# negative, but ordinary zero-value actions still must not replace waiting.
 	var best_score: float = evaluate(battle, best, fields, objective, threats)
@@ -22,7 +22,7 @@ static func choose(battle: Battle) -> Dictionary:
 	return best
 
 static func evaluate(battle: Battle, action: Dictionary, fields: Dictionary = {}, objective: Dictionary = {}, threats: Dictionary = {}) -> float:
-	if not battle.objective.is_empty() and objective.is_empty(): objective = ObjectiveAI.prepare(battle)
+	if not battle.objective.is_empty() and objective.is_empty(): objective = ObjectiveAI.prepare(battle, threats)
 	return _combat_value(battle, action, fields, threats) + ObjectiveAI.value(battle, action, objective)
 
 static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary = {}, threats: Dictionary = {}) -> float:
@@ -258,7 +258,7 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 			candidate.pos = action.target
 			candidate.moved = true
 			candidate.last_move_distance = battle.distance(unit.pos, action.target)
-			if not unit.attacked and not unit.summoning:
+			if not unit.attacked and not unit.summoning and not battle.is_escort_unit(unit.id):
 				var shot: float = _firing_position(battle, candidate)
 				if shot > -INF: score += 40.0 + shot
 			score += battle.terrain_defense(candidate) * 1.5

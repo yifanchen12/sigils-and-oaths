@@ -93,6 +93,51 @@
     }
   ],
   "scenarios": {
+    "c07_saltlane_school": {
+      "title": "盐布巷 · 低桥送担架",
+      "brief": "渠北金框的「担」是担架队。沿渠向西过低桥，再进南岸低廊。北晒场已有弩手，起手「一线微光」可给担架队与护卫加盾。",
+      "objective": "把担架队送到 C3 低廊，抵达立即获胜。8 个完整轮次内完成。担架队或我方指挥官倒下即败，担架队存活时击破对方指挥官也能获胜。",
+      "map": "saltlane",
+      "hero": "warden",
+      "enemy_class": "warden",
+      "deck": "lantern_convoy",
+      "enemy_deck": "balanced",
+      "seed": 7401,
+      "enemy_name": "晒场管事石简",
+      "enemy_portrait": "terrain_fort",
+      "bonus_card": "field_signals",
+      "control": {
+        "mode": "escort",
+        "cells": [[2, 9]],
+        "required": 1,
+        "round_limit": 8,
+        "escort_start": [7, 3],
+        "sentry_start": [8, 4]
+      }
+    },
+    "c07_saltlane_kiln": {
+      "title": "盐布巷 · 窑场接应",
+      "brief": "担架队位于渠北，要穿过东桥去窑场石阶。起手有「磐石护盾」。提防弩手和手牌伏设，必要时用临桥木架另找落脚点。",
+      "objective": "把担架队送到 N3 石阶，抵达立即获胜。9 个完整轮次内完成。担架队或我方指挥官倒下即败，担架队存活时击破对方指挥官也能获胜。",
+      "map": "saltlane",
+      "hero": "warden",
+      "enemy_class": "warden",
+      "deck": "channel",
+      "enemy_deck": "ambush",
+      "seed": 7402,
+      "enemy_name": "晒场管事石简",
+      "enemy_portrait": "terrain_fort",
+      "bonus_card": "ward",
+      "control": {
+        "mode": "escort",
+        "cells": [[13, 9]],
+        "required": 1,
+        "round_limit": 9,
+        "escort_start": [9, 3],
+        "sentry_start": [8, 4],
+        "sentry_card": "mink_watcher"
+      }
+    },
     "c01_road": {
       "title": "军道扣车",
       "brief": "沿军道抵达封锁哨，迫使扣车队停止向粮车推进。",

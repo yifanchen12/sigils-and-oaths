@@ -60,7 +60,8 @@
     "court_access": false,
     "father_trail": false,
     "letter_company": "none",
-    "camp_company": "none"
+    "camp_company": "none",
+    "saltlane_result": "none"
   },
   "speakers": {
     "narrator": "旁白",
@@ -77,7 +78,10 @@
     "qin": "秦婶",
     "yubai": "余白",
     "tangsui": "唐穗",
-    "foreman": "工班长"
+    "foreman": "工班长",
+    "porter": "沈芦",
+    "dyer": "蒋釉",
+    "rackmaster": "石简"
   },
   "nodes": {
     "arrival": {
@@ -1101,7 +1105,7 @@
           "speaker": "warden"
         }
       ],
-      "next": "eastward"
+      "next": "saltlane_call"
     },
     "eastward": {
       "type": "dialogue",
@@ -1151,6 +1155,310 @@
       "text": "c07.end",
       "ending": "names_answered",
       "background": "scene_eaststreet"
+    },
+    "saltlane_call": {
+      "type": "choice",
+      "background": "scene_school_day",
+      "prompt": "c07.saltcall.prompt",
+      "options": [
+        {
+          "id": "main_road",
+          "text": "c07.saltcall.main",
+          "next": "saltlane_skip"
+        },
+        {
+          "id": "answer_call",
+          "text": "c07.saltcall.answer",
+          "next": "saltlane_yard"
+        }
+      ]
+    },
+    "saltlane_skip": {
+      "type": "dialogue",
+      "background": "scene_school_day",
+      "next": "eastward",
+      "lines": [
+        {
+          "id": "c07.saltskip.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.saltskip.02",
+          "speaker": "healer"
+        }
+      ]
+    },
+    "saltlane_yard": {
+      "type": "dialogue",
+      "background": "scene_saltlane_yard",
+      "next": "saltlane_route",
+      "lines": [
+        {
+          "id": "c07.saltyard.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.saltyard.02",
+          "speaker": "porter"
+        },
+        {
+          "id": "c07.saltyard.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.saltyard.04",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.saltyard.05",
+          "speaker": "dyer"
+        },
+        {
+          "id": "c07.saltyard.06",
+          "speaker": "porter"
+        },
+        {
+          "id": "c07.saltyard.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.saltyard.08",
+          "speaker": "mage"
+        },
+        {
+          "id": "c07.saltyard.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.saltyard.10",
+          "speaker": "rackmaster"
+        },
+        {
+          "id": "c07.saltyard.11",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.saltyard.12",
+          "speaker": "rackmaster"
+        },
+        {
+          "id": "c07.saltyard.13",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.saltyard.14",
+          "speaker": "mage"
+        },
+        {
+          "id": "c07.saltyard.15",
+          "speaker": "porter"
+        },
+        {
+          "id": "c07.saltyard.16",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.saltyard.17",
+          "speaker": "dyer"
+        },
+        {
+          "id": "c07.saltyard.18",
+          "speaker": "healer"
+        }
+      ]
+    },
+    "saltlane_route": {
+      "type": "choice",
+      "background": "scene_saltlane_yard",
+      "prompt": "c07.saltroute.prompt",
+      "options": [
+        {
+          "id": "school",
+          "text": "c07.saltroute.school",
+          "next": "saltlane_school_before"
+        },
+        {
+          "id": "kiln",
+          "text": "c07.saltroute.kiln",
+          "next": "saltlane_kiln_before"
+        }
+      ]
+    },
+    "saltlane_school_before": {
+      "type": "dialogue",
+      "background": "scene_saltlane_yard",
+      "next": "saltlane_school_battle",
+      "lines": [
+        {
+          "id": "c07.saltschoolbefore.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.saltschoolbefore.02",
+          "speaker": "mage"
+        },
+        {
+          "id": "c07.saltschoolbefore.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.saltschoolbefore.04",
+          "speaker": "warden"
+        }
+      ]
+    },
+    "saltlane_kiln_before": {
+      "type": "dialogue",
+      "background": "scene_saltlane_yard",
+      "next": "saltlane_kiln_battle",
+      "lines": [
+        {
+          "id": "c07.saltkilnbefore.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.saltkilnbefore.02",
+          "speaker": "mage"
+        },
+        {
+          "id": "c07.saltkilnbefore.03",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.saltkilnbefore.04",
+          "speaker": "narrator"
+        }
+      ]
+    },
+    "saltlane_school_battle": {
+      "type": "battle",
+      "scenario": "c07_saltlane_school",
+      "background": "battlefield_saltlane",
+      "win": "saltlane_school_after",
+      "win_set": {
+        "saltlane_result": "school"
+      },
+      "retreat": "saltlane_retreat",
+      "retreat_set": {
+        "saltlane_result": "withdrawn"
+      }
+    },
+    "saltlane_kiln_battle": {
+      "type": "battle",
+      "scenario": "c07_saltlane_kiln",
+      "background": "battlefield_saltlane",
+      "win": "saltlane_kiln_after",
+      "win_set": {
+        "saltlane_result": "kiln"
+      },
+      "retreat": "saltlane_retreat",
+      "retreat_set": {
+        "saltlane_result": "withdrawn"
+      }
+    },
+    "saltlane_school_after": {
+      "type": "dialogue",
+      "background": "scene_school_ward",
+      "next": "eastward",
+      "lines": [
+        {
+          "id": "c07.saltschoolafter.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.saltschoolafter.02",
+          "speaker": "dyer"
+        },
+        {
+          "id": "c07.saltschoolafter.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.saltschoolafter.04",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.saltschoolafter.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.saltschoolafter.06",
+          "speaker": "mage"
+        },
+        {
+          "id": "c07.saltschoolafter.07",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.saltschoolafter.08",
+          "speaker": "narrator",
+          "when": {
+            "camp_company": "clinic"
+          }
+        }
+      ]
+    },
+    "saltlane_kiln_after": {
+      "type": "dialogue",
+      "background": "scene_saltlane_yard",
+      "next": "eastward",
+      "lines": [
+        {
+          "id": "c07.saltkilnafter.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.saltkilnafter.02",
+          "speaker": "dyer"
+        },
+        {
+          "id": "c07.saltkilnafter.03",
+          "speaker": "porter"
+        },
+        {
+          "id": "c07.saltkilnafter.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.saltkilnafter.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.saltkilnafter.06",
+          "speaker": "mage"
+        },
+        {
+          "id": "c07.saltkilnafter.07",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.saltkilnafter.08",
+          "speaker": "narrator"
+        }
+      ]
+    },
+    "saltlane_retreat": {
+      "type": "dialogue",
+      "background": "scene_school_day",
+      "next": "eastward",
+      "lines": [
+        {
+          "id": "c07.saltretreat.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.saltretreat.02",
+          "speaker": "healer"
+        },
+        {
+          "id": "c07.saltretreat.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c07.saltretreat.04",
+          "speaker": "warden"
+        }
+      ]
     }
   },
   "strings": {
@@ -1382,6 +1690,60 @@
     "c07.eastward.07": "工班长把听杆压在地上，叫说话的人安静。过了一会儿，所有人都听见石板底下那阵沉闷的回响，先近后远，又从远处折回来。伊瑟将原始副本的折角展开，手指停在那个被新档削平的位置。",
     "c07.eastward.08": "先把来路留好。北街的人还要回来，我们也要回来。",
     "c07.eastward.09": "芙蕾让后队停在拱外，洛恩把接应位置报给她。余白指向过水廊入口，一道矮门半埋在旧台阶下面。艾琳摸了摸装着家书的内袋，回头确认来路上的队员仍看得见旗，等工班把测绳送下去，再向前走。",
-    "c07.end": "余白在入口外指完旧路，转身去修船。北街还等着午前的消息，艾琳让骑手记下第一趟该报的平安，留接应旗在拱外。\n测绳忽然擦着石沿移动。伊瑟俯身看去，水面越过红色刻线，又缓缓落回；廊内没有风，下面一盏提灯却灭了。维洛扶住正要下去的工人，让他先退上来。\n“再量一遍。”伊瑟把旧观测副本压在膝上，“从它刚才升起来的地方量。”"
+    "c07.end": "余白在入口外指完旧路，转身去修船。北街还等着午前的消息，艾琳让骑手记下第一趟该报的平安，留接应旗在拱外。\n测绳忽然擦着石沿移动。伊瑟俯身看去，水面越过红色刻线，又缓缓落回；廊内没有风，下面一盏提灯却灭了。维洛扶住正要下去的工人，让他先退上来。\n“再量一遍。”伊瑟把旧观测副本压在膝上，“从它刚才升起来的地方量。”",
+    "c07.saltcall.prompt": "盐布巷的沈芦从校门挤进来，赤着右脚。涨水撞倒了染坊的布架，蒋釉还压在北晒场，过巷的桥也快被装车的护工堵死。余白已经在门外等着带队去过水廊。米芮把药篮放下，问艾琳能借她几个人。",
+    "c07.saltcall.main": "按约去过水廊，请秦婶找街口值守的人接应盐布巷。",
+    "c07.saltcall.answer": "随米芮去盐布巷，先接出受伤的染工。",
+    "c07.saltskip.01": "艾琳留下一名传令兵去敲街口值房的门。秦婶从门后拖出一双旧鞋塞给沈芦，追到台阶才问她穿多大。沈芦顾不上试鞋，拎着它沿墙根折回去。",
+    "c07.saltskip.02": "跟她说，叫到人先来告诉我一声。北街有地方，能来我就接。",
+    "c07.saltyard.01": "秦婶借出学堂唯一一副空担架，又从门后翻出一双旧鞋给沈芦。帮手抬着担架走在前头，沈芦提着鞋沿棚下引路。绕过第一排布架时，她捞起一截折断的竹夹，才认出泡在水里的那只鞋确实是自己的。",
+    "c07.saltyard.02": "他在里头。刚才还叫我别走正门，说人一急就会踩空。",
+    "c07.saltyard.03": "蒋釉坐在布架底下，后背贴着染缸，鞋底朝向巷口。洛恩和一名染工合力把斜靠的木档抬起。他们没法再举高，米芮就伏下身，跟着沈芦的手挪进去。挡路的布总算让开时，蒋釉先把两手摊在胸口，怕湿布沾上他指甲里的颜色。",
+    "c07.saltyard.04": "蒋师傅，看我。头撞过没有？能感觉到我碰的是哪只脚吗？",
+    "c07.saltyard.05": "左脚。刚才还疼，现在脚跟像垫了块厚毡。沈芦，你把边上那匹布摸一摸，最里头湿透了吗？",
+    "c07.saltyard.06": "我去找人，回来你还问这匹布。我赔你一匹行不行？",
+    "c07.saltyard.07": "蒋釉向她偏过脸，看清她手里的鞋，没再追问。米芮让两名帮手在他旁边放稳担架，自己留下扶住腿。伊瑟从门槛下捡起一枚掉落的铜销，朝外面的水沟走了两步。",
+    "c07.saltyard.08": "我去看低桥。东端的架脚移开这么多，也许只要……那辆车先别抬。",
+    "c07.saltyard.09": "巷口的人抬起一辆载了铁架的车。前轮搭上石坎，后轮却向侧面滑了一寸。贴墙躲的人被车辕逼进水里，石简顺手将他拽了回来，腾出来的一只手仍紧紧抓着车栏。",
+    "c07.saltyard.10": "把空地方留住。铁架是我从北井借的，回声一来就涨水。我先送它过桥，回来帮你们抬人。",
+    "c07.saltyard.11": "把车退半丈，我们经过就够。你那两个人在轮子边已经站不稳了。",
+    "c07.saltyard.12": "前轮掉下去，他们还得下水捞。桥上先留给我的人。沈芦从学堂叫来的是医师，墙根那个怎么还带着弓？",
+    "c07.saltyard.13": "希弥把弓横在身前，让开受伤染工望过来的视线。石简身后已有人抬起弩臂。伊瑟将铜销交还给那名扶车的人，试着从车旁挤过去，手背被压来的车辕擦了一下。他放掉所有正在讲的数，退到米芮看得见的地方。",
+    "c07.saltyard.14": "低桥没塌。棚下垂着整匹布，要剪掉才能连人抬过去。高桥通上窑场，石阶有栏，绕行时看得见对面的人。",
+    "c07.saltyard.15": "窑场周嫂收人，我抬过她家的米。得有人先去说一声，台阶那头没有空门。低桥近得多，挂的全是蒋师傅刚印好的花布。",
+    "c07.saltyard.16": "蒋釉抬了抬下巴，像从停在晾杆上的布里辨认自己的那几匹。半晌，他用那只沾蓝的手抓紧担架木杆。",
+    "c07.saltyard.17": "走学堂就剪。真走高桥，过阶的时候告诉我一声。我怕突然往下掉，抓你们的手会坏事。",
+    "c07.saltyard.18": "你会听见我们说。艾琳，帮手跟我从晒场内侧出发。你带接应的守住南岸，免得石简的人从桥头绕到后面。",
+    "c07.saltroute.prompt": "石简已经派人去看两座桥口。低桥离学堂近，担架过去要剪开染布。高桥能送进窑场，得绕一段石阶，还要提防巷道里的埋伏。先把担架送到哪边？",
+    "c07.saltroute.school": "剪开染布，走西边低桥，把蒋釉送进北街学堂。",
+    "c07.saltroute.kiln": "绕东边高桥，把蒋釉送进窑场，由沈芦先去敲门。",
+    "c07.saltschoolbefore.01": "沈芦把布剪开第一道，湿布坠下来，水从新印的花边上一滴滴落。她把剪刀递给伊瑟，自己拢住划开的布口，最后一手捞住的还是蒋釉先前惦记的那段内衬。",
+    "c07.saltschoolbefore.02": "这边够宽了。慢着，桥头还有人。看我的灯，晃两下再抬。",
+    "c07.saltschoolbefore.03": "低廊对面，石简的护工将车头横转，前轮卡死在路中央。他们方才还只顾着给车让地方，这时已有一人跳下车辕，推开上前牵车的染工。艾琳在南院看见那人拔刀，让芙蕾把接应旗挪到低桥一侧。",
+    "c07.saltschoolbefore.04": "留住低廊入口。见到带担架的队伍，先让他们落脚，再把交手的人带开。",
+    "c07.saltkilnbefore.01": "沈芦从围栏的缺口钻出去通知周嫂。手上提的两只旧鞋撞得啪啪响，她跑到第二根石柱才想起来该穿，扶着墙把左脚上那只湿鞋踢掉，鞋底磕了一声，她没有回去捡。",
+    "c07.saltkilnbefore.02": "我本来想自己上去报。你就说，哪一段要我留在旁边？",
+    "c07.saltkilnbefore.03": "在上头等我。看不见我，也别往回挤，把栏杆空出来。我会叫你。",
+    "c07.saltkilnbefore.04": "帮手先把担架抬到晒场东边。米芮解下担架尾端的灯钩塞给伊瑟，免得哪根晾绳挂住它。南岸响起两下木盾敲石声，芙蕾已到了接应处。石简的人听见了，把木栓拖到高桥入口。",
+    "c07.saltschoolafter.01": "学堂用来吃饭的长凳换到了墙下。蒋釉躺在临时拼的铺位上，仍能隔门听见外面扫水。秦婶把落在门隙的一块染布捡回来，洗过泥，折一折放到他够得着的地方。布边已齐，只有手指一绕就摸得出印花断在哪里。",
+    "c07.saltschoolafter.02": "别把它压在腿上。能做围裙，拿去给沈芦。她围裙右边总漏一把铜钱，我没空替她补。",
+    "c07.saltschoolafter.03": "沈芦守了半天才解开一直握着的拳。她把还缠在掌心的半截布夹放到凳上，按蒋釉说的把料卷起。攒下的账仍得算，她等帮手都进来，才靠到墙上换上秦婶借的鞋。",
+    "c07.saltschoolafter.04": "这两天有人问你能不能回去开缸，你叫他找我。等你今晚吃得下东西，我再来问一次。",
+    "c07.saltschoolafter.05": "借来的担架已空。秦婶从讲台底下翻出一只灯钩，给担架挂上擦干的红灯。她认得昨天谁在学堂搬过床，点了两位稳当的帮手去东拱候值，托莉希告诉艾琳有担架可用。",
+    "c07.saltschoolafter.06": "刚才我说了两遍快。回头才看见，你等的是后面那个人把手托稳。",
+    "c07.saltschoolafter.07": "下次你站到尾端，跟他说慢一点。别隔着半座桥喊我。",
+    "c07.saltschoolafter.08": "米芮回手拎药篮时碰到了木船的桅，便把它放到长凳上，借学堂的旧习字布包好。伊瑟想把露出来的船尾往里收，刚伸手，见她已拿沈芦留下的半截布夹把布口夹稳，又把船放回篮里。",
+    "c07.saltkilnafter.01": "周嫂把窑场侧门推到头，门轴底下积的湿灰一起退开。担架送到棚里，她让徒弟先收掉两捆窑柴，把背风的角落让出来。沈芦在台阶上一直伸着双手，等知道里面已经接稳才去捡夹在门下的那块脚垫。",
+    "c07.saltkilnafter.02": "快去看布吧，我在这里有人答应我。别在楼梯上来回跑。",
+    "c07.saltkilnafter.03": "你还想去看布，我知道。等把水推干了，我拿一角给你看。你别站起来试腿。",
+    "c07.saltkilnafter.04": "从侧门能望见高桥外沿。吊在北岸最后一排的染布有两匹还在，被翻下的横杆压住。伊瑟没把这个数报给病人，先叫同来的染工留在栏边看住，等身后有人接班再下去清点。",
+    "c07.saltkilnafter.05": "周嫂从窑墙干夹层里挑出一块耐热的石芯，给米芮看看侧边已经坏了的铜柄。伊瑟认得这类石芯能蓄一小片护盾，便用布绕住它，托东拱接应的人带走。周嫂只交代别扔回窑火里，还得给她带回来。",
+    "c07.saltkilnafter.06": "我在桥口听见你叫我。其实只隔了几级台阶，我掌心还是一阵凉。",
+    "c07.saltkilnafter.07": "我一叫你，你就把那边空开了。灯钩还在你手里？给我吧，你手上都是汗。",
+    "c07.saltkilnafter.08": "伊瑟把手心摊开，才发现那枚旧钩还在指间。米芮揭掉钩尖粘上的一段布线，把另一端搭到药篮柄上，让他替自己提一会儿。",
+    "c07.saltretreat.01": "两名先退出窄巷的帮手坐在校门内侧，雨衣里的水流了一地。有人说北晒场退路被截，有人只看到担架的一根木杆。米芮挨个问他们最后站在哪儿。问到沈芦时，两个人都指向北面的围栏，说她还在向当地窗户敲门。",
+    "c07.saltretreat.02": "把看见的写下来。学堂继续空一条长凳，等街守叫到人我还要去。现在先别往那边送第二副担架。",
+    "c07.saltretreat.03": "伊瑟在纸上照原话写了北围栏，又拿口袋里的铜钩压住纸角。他本来还想把两个人报的位置合成一个，笔尖在湿纸上停住，最后仍留了两条，让街守按各自的路去找。",
+    "c07.saltretreat.04": "等他们有回话，让人到过水廊找我们。眼下不能让另外一条水路也空着。"
   }
 }

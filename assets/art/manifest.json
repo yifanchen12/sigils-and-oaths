@@ -2102,6 +2102,32 @@
       "role": "Eight original trap illustrations and four weather illustrations.",
       "processing": "Original generated PNG. Godot uses a four-by-three atlas with a two-pixel inset.",
       "validation": "tests/test_tidegate_cards.gd and tests/test_ui.gd"
+    },
+    {
+      "id": "battlefield_saltlane",
+      "path": "assets/art/battlefields/saltlane-v2.png",
+      "source_filename": "exec-6ee67477-2305-4c63-b68a-4b3f38c935be.png",
+      "prompt_file": "assets/art/narrative/saltlane-source.md",
+      "size": [1448, 1086],
+      "mode": "RGB",
+      "sha256": "3c5427e25d148420445bd483b98ee2ae674e80358b02c6cf4e559dec94066abb",
+      "source_bytes_preserved": true,
+      "role": "Painted 16×12 Saltcloth Lane battlefield with west and east stone crossings.",
+      "processing": "Original generated PNG copied intact. Godot overlays game UI and the authored tactical grid.",
+      "validation": "tests/test_saltlane_native_ui.gd and tests/test_saltlane_story_layout.gd"
+    },
+    {
+      "id": "scene_saltlane_yard",
+      "path": "assets/art/narrative/saltlane-yard-v1.png",
+      "source_filename": "exec-75778ff4-8169-449b-a916-c66802971b13.png",
+      "prompt_file": "assets/art/narrative/saltlane-source.md",
+      "size": [1672, 941],
+      "mode": "RGB",
+      "sha256": "ca125c5dd5b182deacd8ec60bb7a927f04e69e7cd0e3825aace81251741dabe9",
+      "source_bytes_preserved": true,
+      "role": "Dyeworks courtyard story scene used before and after the Saltcloth Lane evacuation.",
+      "processing": "Original generated PNG copied intact. Godot overlays game UI and the authored tactical grid.",
+      "validation": "tests/test_saltlane_native_ui.gd and tests/test_saltlane_story_layout.gd"
     }
   ]
 }

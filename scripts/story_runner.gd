@@ -42,9 +42,10 @@ static func validate(source: Variant) -> String:
 	for key: Variant in defaults:
 		if not key is String or not _flag_value(defaults[key]): return "剧情标志无效。"
 	var inherited: Variant = source.get("inherits", [])
-	if not inherited is Array: return "继承事实必须是列表。"
+	var optional: Variant = source.get("optional_inherits", [])
+	if not inherited is Array or not optional is Array: return "继承事实必须是列表。"
 	var inherited_keys: Dictionary = {}
-	for key: Variant in inherited:
+	for key: Variant in inherited + optional:
 		if not key is String or not defaults.has(key) or inherited_keys.has(key): return "继承事实重复或未声明。"
 		inherited_keys[key] = true
 	for key: Variant in strings:
@@ -91,10 +92,13 @@ static func validate(source: Variant) -> String:
 				if not unconditional: return "选择至少需要一个无条件出口：" + id
 			"battle":
 				if not node.get("scenario") is String or node.scenario.is_empty(): return "战斗缺少关卡编号：" + id
-				if not _flag_map(node.get("win_set", {}), defaults): return "战果标志无效：" + id
-				for key: String in node.get("win_set", {}):
-					if inherited_keys.has(key): return "上一章的事实不能被本章战果改写。"
+				for field: String in ["win_set", "retreat_set"]:
+					if not _flag_map(node.get(field, {}), defaults): return "战果标志无效：" + id
+					for key: String in node.get(field, {}):
+						if inherited_keys.has(key): return "上一章的事实不能被本章战果改写。"
 				links.append(node.get("win"))
+				if node.has("retreat"): links.append(node.retreat)
+				elif node.has("retreat_set"): return "退却缺少后续节点：" + id
 			"end":
 				if not strings.has(node.get("text")) or not node.get("ending") is String: return "章末信息缺失：" + id
 				if node.has("title") and (not node.title is String or node.title.strip_edges().is_empty()): return "结局标题无效：" + id
@@ -168,6 +172,7 @@ func current() -> Dictionary:
 			result["scenario"] = node.scenario
 			result["attempts"] = int(state.attempts.get(state.node, 0))
 			result["last_outcome"] = state.last_outcome
+			result["can_retreat"] = node.has("retreat") and state.last_outcome != ""
 		"end":
 			result["text"] = graph.strings[node.text]
 			result["ending"] = node.ending
@@ -228,6 +233,16 @@ func resolve_battle(outcome: int, revision: int) -> Dictionary:
 		for key: String in node.get("win_set", {}): state.flags[key] = node.win_set[key]
 		_enter(node.win)
 	else: state.last_outcome = "defeat" if outcome == 1 else "draw"
+	state.revision += 1
+	return {"ok": true}
+
+func retreat(revision: int) -> Dictionary:
+	var problem: String = _guard(revision, "battle")
+	if not problem.is_empty(): return _failure(problem)
+	var node: Dictionary = graph.nodes[state.node]
+	if not node.has("retreat") or state.last_outcome == "": return _failure("当前战斗不能撤出。")
+	for key: String in node.get("retreat_set", {}): state.flags[key] = node.retreat_set[key]
+	_enter(node.retreat)
 	state.revision += 1
 	return {"ok": true}
 

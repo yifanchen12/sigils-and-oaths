@@ -428,6 +428,9 @@ func _draw_objective_cell(rect: Rect2, cell: Vector2i, index: int) -> void:
 		active = index == int(battle.objective.streak)
 		if index < battle.objective.streak: accent = Color("8cd1bd")
 		if index > battle.objective.streak: accent = Color("b3bed3")
+	elif battle.ControlObjective.is_escort(battle.objective):
+		label = "撤"
+		accent = Color("98e3ce")
 	elif battle.map_definition.id == "northbank": label = "量" if cell.x == 5 else "装"
 	elif battle.map_definition.id == "spillway": label = "量" if cell.x == 5 else "闸"
 	draw_rect(rect.grow(-2), Color(accent, 0.24 if active else 0.10))
@@ -645,6 +648,9 @@ func _draw_unit(unit: Dictionary, at: Vector2, tile: float, opacity: float = 1.0
 	var center: Vector2 = at - Vector2(0, 3)
 	var marker := Rect2(at - Vector2(tile * 0.41, tile * 0.40), Vector2(tile * 0.82, tile * 0.78))
 	draw_rect(marker, Color(color, 0.09))
+	if battle.is_escort_unit(unit.id):
+		draw_rect(marker.grow(2), Color("16283b"), false, 4)
+		draw_rect(marker.grow(2), GOLD, false, 2)
 	for side: int in [-1, 1]:
 		var corner: Vector2 = at + Vector2(side * tile * 0.39, tile * 0.36)
 		draw_line(corner, corner + Vector2(-side * 9, 0), color, 2, true)

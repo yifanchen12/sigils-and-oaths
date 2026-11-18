@@ -103,6 +103,11 @@ func choose(option_id: String, expected: Dictionary) -> Dictionary:
 	if not result.ok: return result
 	return _after_action(campaign.story.choose(option_id, int(expected.revision)))
 
+func retreat(expected: Dictionary) -> Dictionary:
+	var result: Dictionary = _guard(expected)
+	if not result.ok: return result
+	return _after_action(campaign.story.retreat(int(expected.revision)))
+
 func next_chapter(expected: Dictionary) -> Dictionary:
 	var result: Dictionary = _guard(expected)
 	if not result.ok: return result
@@ -131,6 +136,7 @@ func begin_battle(expected: Dictionary) -> Dictionary:
 	var setup: Dictionary = campaign.scenario()
 	encounter = BattleModel.new(int(setup.seed), setup.map, setup.hero, setup.enemy_class, setup.deck, setup.enemy_deck, 90)
 	encounter.set_commander_identity(1, setup.enemy_name, setup.enemy_portrait)
+	if setup.has("commander_shield"): encounter.commander(0).shield = int(setup.commander_shield)
 	if setup.has("bonus_card") and not encounter.add_generated_card(0, str(setup.bonus_card)):
 		encounter = null
 		return {"ok": false, "message": "关卡增援牌无法加入手牌。"}

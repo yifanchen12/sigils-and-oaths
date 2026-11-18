@@ -16,6 +16,8 @@ var pump_focus: bool = false
 var nursery_focus: bool = false
 var court_focus: bool = false
 var late_route_focus: bool = false
+var saltlane: String = "skip"
+var save_path: String = SAVE
 var report: Dictionary = {"policy": "production opponent on both sides", "coverage": "continuous_campaign", "note": "New campaign, first visible choices (except the declared opening route and priority), real battle results and save/reload. Stops at first defeat. Automated diagnostic, not a human playthrough or balance verdict.", "route": "road", "priority": "relief", "choices": [], "chapters_entered": [], "dialogue_ids": [], "games": [], "reached_authored_end": false, "stop": ""}
 
 func _initialize() -> void: call_deferred("run")
@@ -28,7 +30,7 @@ func reload_exact() -> bool:
 	var progress: Dictionary = session.campaign.snapshot()
 	var encounter: Dictionary = Snapshot.capture(session.encounter) if session.encounter != null else {}
 	if not check(session.save().ok, "continuous route saves through the real coordinator"): return false
-	var fresh: RefCounted = Session.new(SAVE)
+	var fresh: RefCounted = Session.new(save_path)
 	if not check(fresh.load_campaign().ok, "fresh session reads the same disk save"): return false
 	if not check(fresh.campaign.snapshot() == progress, "all story flags, choices, history, attempts and cursors survive reload"): return false
 	if not check((Snapshot.capture(fresh.encounter) if fresh.encounter != null else {}) == encounter, "battle including cards, RNG and precise clock survives reload"): return false
@@ -56,7 +58,8 @@ func fight() -> bool:
 		var portable: Dictionary = action.duplicate(true)
 		if portable.get("target") is Vector2i: portable.target = [portable.target.x, portable.target.y]
 		row.trace.append({"side": side, "turn_after": b.turn, "elapsed": 0.35, "action": portable})
-		if not restored and b.turn >= 8 and b.winner == -1:
+		var reload_turn: int = 3 if b.ControlObjective.is_escort(b.objective) else 8
+		if not restored and b.turn >= reload_turn and b.winner == -1:
 			row.reload_at_action = row.trace.size()
 			if not reload_exact(): return false
 			restored = true
@@ -83,6 +86,7 @@ func run() -> void:
 	for arg: String in OS.get_cmdline_user_args():
 		if arg.begins_with("--route="): report.route = arg.trim_prefix("--route=")
 		if arg.begins_with("--priority="): report.priority = arg.trim_prefix("--priority=")
+		if arg.begins_with("--saltlane="): saltlane = arg.trim_prefix("--saltlane=")
 		if arg == "--pump-focus": pump_focus = true
 		if arg == "--nursery-focus": nursery_focus = true
 		if arg == "--court-focus": court_focus = true
@@ -97,9 +101,12 @@ func run() -> void:
 		report.note = "Actual new campaign with real battle results. Focus policies use visible positions, health and terrain; no hidden cards, RNG peek, fixture victory or chapter jump. Stops at first defeat. Not human balance evidence."
 	if not check(report.route in ["road", "river"], "opening route is explicit and recognized"): quit(1); return
 	if not check(report.priority in ["relief", "seed"], "chapter-two priority is explicit and recognized"): quit(1); return
+	if not check(saltlane in ["school", "kiln", "skip"], "optional escort route is recognized"): quit(1); return
+	report["saltlane"] = saltlane
+	if saltlane != "skip": save_path = "res://.tools/continuous_diagnostic_saltlane_" + saltlane + ".json"
 	for suffix: String in ["", ".bak", ".tmp"]:
-		if FileAccess.file_exists(SAVE + suffix): DirAccess.remove_absolute(SAVE + suffix)
-	session = Session.new(SAVE)
+		if FileAccess.file_exists(save_path + suffix): DirAccess.remove_absolute(save_path + suffix)
+	session = Session.new(save_path)
 	if not check(session.new_campaign().ok, "start a genuine new campaign"): quit(1); return
 	var pages: int = 0
 	while failures == 0 and pages < 5000:
@@ -113,6 +120,8 @@ func run() -> void:
 				check(session.advance(session.token()).ok, "advance one actual dialogue page")
 			"choice":
 				var option: String = report.route if chapter == "chapter_01" and page.node == "route" else (report.priority if chapter == "chapter_02" and page.node == "priority" else page.options[0].id)
+				if page.node == "saltlane_call" and saltlane != "skip": option = "answer_call"
+				if page.node == "saltlane_route": option = saltlane
 				report.choices.append({"chapter": chapter, "node": page.node, "option": option})
 				check(session.choose(option, session.token()).ok, "choose a currently displayed option")
 			"battle":
@@ -124,7 +133,7 @@ func run() -> void:
 	check(pages < 5000, "continuous narrative finishes or stops without a graph loop")
 	if failures > 0: report.stop = "invalid"
 	report.progress = session.campaign.snapshot()
-	var destination: String = "res://.tools/continuous-campaign-" + report.route + ("-seed" if report.priority == "seed" else "") + ("-pump-focus" if pump_focus else "") + ("-nursery-focus" if nursery_focus else "") + ("-court-focus" if court_focus else "") + ("-late-route-focus" if late_route_focus else "") + ".json"
+	var destination: String = "res://.tools/continuous-campaign-" + report.route + ("-seed" if report.priority == "seed" else "") + ("-pump-focus" if pump_focus else "") + ("-nursery-focus" if nursery_focus else "") + ("-court-focus" if court_focus else "") + ("-late-route-focus" if late_route_focus else "") + ("-saltlane-" + saltlane if saltlane != "skip" else "") + ".json"
 	var file := FileAccess.open(destination, FileAccess.WRITE)
 	if not check(file != null, "write complete continuous diagnostic including defeat"): quit(1); return
 	report.checks = checks; report.failures = failures

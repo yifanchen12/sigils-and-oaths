@@ -80,6 +80,8 @@ def chapter_audit(ids, text_seen, errors):
                     walk(option["next"], flags | option.get("set", {}), lines, chain, weight, prefix_shortest, prefix_longest)
             elif kind == "battle":
                 walk(node["win"], flags | node.get("win_set", {}), lines, chain, weight, prefix_shortest, prefix_longest)
+                if "retreat" in node:
+                    walk(node["retreat"], flags | node.get("retreat_set", {}), lines, chain, weight, prefix_shortest, prefix_longest)
             elif kind == "end":
                 read_lines.add(node["text"])
                 length = sum(weights[line] for line in lines | {node["text"]})
@@ -97,6 +99,11 @@ def chapter_audit(ids, text_seen, errors):
                 if key not in previous or type(previous[key]) is not type(graph["defaults"][key]):
                     raise ValueError(f"Missing or mistyped inherited fact: {entry['id']} / {key}")
                 inherited[key] = previous[key]
+            for key in graph.get("optional_inherits", []):
+                previous_value = previous.get(key, graph["defaults"][key])
+                if type(previous_value) is not type(graph["defaults"][key]):
+                    raise ValueError(f"Mistyped optional inherited fact: {entry['id']} / {key}")
+                inherited[key] = previous_value
             relevant = {key: inherited[key] for key in relevant_keys if key in inherited}
             signature = json.dumps(relevant, sort_keys=True)
             incoming.add(signature)
@@ -130,6 +137,8 @@ def chapter_audit(ids, text_seen, errors):
             status = "Every conditional page rendered in Godot. A native battle from actual prior ten-win saves reached this chapter end on three plans; other openings and human play remain unchecked."
         elif native_rendered and entry["id"] == "chapter_09":
             status = "Every conditional page rendered in Godot. A ten-battle route reached this chapter; other battle paths and human play remain unchecked."
+        elif native_rendered and entry["id"] in ("chapter_07", "chapter_08"):
+            status = "Every body page rendered at 1008 by 700 and 130% reading size. Separate runs reached the campaign ending with each escort route and with the mission skipped."
         elif native_rendered:
             status = f"Native page rendering checked in {evidence.get('milestone', 'unknown')}; fixture victories provide all-page access. A later eleven-battle route has separate native evidence."
         else:
@@ -203,7 +212,7 @@ def audit():
         "authored_total_characters": count + candidate,
         "native_rendered_chapter_characters": rendered,
         "pending_ui_verification_characters": candidate - rendered,
-        "limitations": "Graph enumeration assumes victories and models only authored choices. A separate 0.41 playthrough uses legal actions to earn one complete campaign ending. Human editorial review, difficulty and the 100,000-character target on a single route remain open.",
+        "limitations": "Graph enumeration counts authored text after choices, victories, and allowed withdrawals. Separate runtime playthroughs use legal actions to earn campaign endings. Human editorial review, difficulty, and a single route with 100,000 Han characters remain open.",
         "errors": errors,
     }
 

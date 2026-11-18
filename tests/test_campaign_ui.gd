@@ -49,6 +49,12 @@ func collect(campaign: RefCounted, entering: bool = false) -> void:
 					chosen.story.choose(option.id, page.revision)
 					pending.append({"campaign": chosen, "entering": false})
 			"battle":
+				if runner.graph.nodes[page.node].has("retreat"):
+					var withdrawn: RefCounted = Campaign.new()
+					withdrawn.restore(branch.snapshot())
+					withdrawn.story.resolve_battle(1, page.revision)
+					withdrawn.story.retreat(withdrawn.story.current().revision)
+					pending.append({"campaign": withdrawn, "entering": false})
 				runner.resolve_battle(0, page.revision)
 				pending.append({"campaign": branch, "entering": false})
 			"end":

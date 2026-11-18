@@ -52,6 +52,7 @@ static func validate_scenario(value: Variant) -> String:
 	for deck: Dictionary in BattleModel.DECKS.decks: decks.append(deck.id)
 	if not decks.has(value.deck) or not decks.has(value.enemy_deck): return "关卡预组套牌不存在。"
 	if value.has("bonus_card") and BattleModel.CATALOG.find(str(value.bonus_card)).is_empty(): return "关卡增援牌不存在。"
+	if value.has("commander_shield") and not Story._whole(value.commander_shield, 1, 5): return "开场指挥官护盾无效。"
 	var problem: String = BattleModel.ControlObjective.validate_config(value.get("control", {}), BattleModel.MAPS.find(value.map))
 	if not problem.is_empty(): return problem
 	return ""
@@ -61,7 +62,7 @@ func start(chapter_id: String = "chapter_01") -> Dictionary:
 		return {"ok": false, "message": "新战役必须从首章开始；后续章节承接已完成的选择。"}
 	var loaded: Dictionary = _source(chapter_id)
 	if not loaded.ok: return loaded
-	if not loaded.source.get("inherits", []).is_empty(): return {"ok": false, "message": "首章不能依赖上一章事实。"}
+	if not loaded.source.get("inherits", []).is_empty() or not loaded.source.get("optional_inherits", []).is_empty(): return {"ok": false, "message": "首章不能依赖上一章事实。"}
 	story = Story.new(loaded.source)
 	completed.clear()
 	return {"ok": true}
@@ -73,10 +74,14 @@ func next_chapter() -> Dictionary:
 	return index.chapters[next_index].duplicate(true)
 
 static func _inherit(target: RefCounted, previous: RefCounted, verify: bool) -> String:
-	for key: String in target.graph.get("inherits", []):
-		if previous == null or not previous.state.flags.has(key) or not Story._same_type(previous.state.flags[key], target.graph.defaults[key]): return "上一章缺少有效的继承事实：" + key
-		if verify and target.state.flags[key] != previous.state.flags[key]: return "跨章继承事实与上一章结局不一致：" + key
-		if not verify: target.state.flags[key] = previous.state.flags[key]
+	var optional: Array = target.graph.get("optional_inherits", [])
+	for key: String in target.graph.get("inherits", []) + optional:
+		if previous == null: return "继承事实缺少上一章：" + key
+		if not previous.state.flags.has(key) and key not in optional: return "上一章缺少有效的继承事实：" + key
+		var fact: Variant = previous.state.flags.get(key, target.graph.defaults[key])
+		if not Story._same_type(fact, target.graph.defaults[key]): return "上一章缺少有效的继承事实：" + key
+		if verify and target.state.flags[key] != fact: return "跨章继承事实与上一章结局不一致：" + key
+		if not verify: target.state.flags[key] = fact
 	return ""
 
 func advance_chapter() -> Dictionary:
@@ -99,7 +104,16 @@ func scenario() -> Dictionary:
 	if scenario_id == "c10_gate": scenario_id = GATE_VARIANTS.get(str(story.state.flags.get("governance_plan", "")), "")
 	if scenario_id == "c12_depot": scenario_id = DEPOT_VARIANTS.get(str(story.state.flags.get("governance_plan", "")), "")
 	if scenario_id == "c14_channel": scenario_id = CHANNEL_VARIANTS.get(str(story.state.flags.get("night_watch", "")), "")
-	return index.scenarios.get(scenario_id, {}).duplicate(true)
+	var setup: Dictionary = index.scenarios.get(scenario_id, {}).duplicate(true)
+	if scenario_id in ["c08_isolate", "c08_buffer"]:
+		match String(story.state.flags.get("saltlane_result", "none")):
+			"school":
+				setup["bonus_card"] = "lantern_stretcher"
+				setup.brief += "\n\n学堂援助 · 初始手牌加入「红灯担架」。"
+			"kiln":
+				setup["commander_shield"] = 3
+				setup.brief += "\n\n窑场援助 · 己方指挥官开场获得 3 护盾。"
+	return setup
 
 func snapshot() -> Dictionary:
 	if story == null: return {}

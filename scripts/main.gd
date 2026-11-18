@@ -193,6 +193,7 @@ func _ready() -> void:
 	story_view.advance_requested.connect(_advance_story)
 	story_view.choice_requested.connect(_choose_story)
 	story_view.battle_requested.connect(_begin_campaign_battle)
+	story_view.retreat_requested.connect(_retreat_from_campaign_battle)
 	story_view.next_chapter_requested.connect(_next_story_chapter)
 	story_view.menu_requested.connect(_open_council)
 	story_view.save_requested.connect(_save_campaign)
@@ -463,6 +464,11 @@ func _choose_story(option_id: String, expected: Dictionary) -> void:
 	if result.ok: _show_story()
 	else: story_view.set_status(result.message, true)
 
+func _retreat_from_campaign_battle(expected: Dictionary) -> void:
+	var result: Dictionary = campaign_session.retreat(expected)
+	if result.ok: _show_story()
+	else: story_view.set_status(result.message, true)
+
 func _save_campaign() -> void:
 	campaign_session.save()
 	story_view.set_status(campaign_session.notice, campaign_session.unsaved)
@@ -717,6 +723,9 @@ func _refresh() -> void:
 	if not battle.objective.is_empty():
 		var objective_label: String = "接应" if battle.ControlObjective.is_relay(battle.objective) else "驻守"
 		%MapName.text = "%s / %s %d/%d · 已过 %d/%d 轮" % [battle.map_definition.name, objective_label, battle.objective.streak, battle.objective.required, (battle.turn - 1) / 2, battle.objective.round_limit]
+		if battle.ControlObjective.is_escort(battle.objective):
+			var exit_cell: Vector2i = battle.ControlObjective.position(battle.objective.cells[0])
+			%MapName.text = "%s / 护送至 %s · %d/%d 轮" % [battle.map_definition.name, battle.cell_name(exit_cell), (battle.turn - 1) / 2, battle.objective.round_limit]
 		%MapName.tooltip_text = battle.objective_status()
 	%WeatherStatus.text = battle.WEATHER[battle.weather].name + (" · 剩余 %d 行动回合" % battle.weather_remaining if battle.weather_remaining > 0 else " · 无环境修正")
 	%WeatherStatus.tooltip_text = battle.WEATHER[battle.weather].description
@@ -777,7 +786,9 @@ func _refresh() -> void:
 		%ResultTitle.text = "苍蓝旗帜，仍在飘扬" if battle.winner == 0 else ("战场归于寂静" if battle.winner == 2 else "此役失利，再整旗鼓")
 		%ResultDetail.text = "%s\n共 %d 轮 · 种子 %d" % ["你取得了胜利！" if battle.winner == 0 else ("双方指挥官同时倒下，平局。" if battle.winner == 2 else "%s赢得本次战斗。" % battle.side_name(1)), ceili(float(battle.turn) / 2), battle.match_seed]
 		if not battle.objective.is_empty() and not blue.is_empty() and not red.is_empty():
-			%ResultDetail.text = "%s\n经过 %d 个完整轮次 · 种子 %d" % [battle.ControlObjective.result_text(battle.objective, battle.winner == 0), (battle.turn - 1) / 2, battle.match_seed]
+			%ResultDetail.text = "%s\n经过 %d 个完整轮次 · 种子 %d" % [battle.ControlObjective.result_text(battle.objective, battle.winner == 0, battle.escort_unit().is_empty()), (battle.turn - 1) / 2, battle.match_seed]
+		elif battle.ControlObjective.is_escort(battle.objective) and battle.escort_unit().is_empty():
+			%ResultDetail.text = battle.ControlObjective.result_text(battle.objective, false, true)
 		%PlayAgain.text = ("继续剧情" if battle.winner == 0 else "返回战前 · 重新部署") if campaign_active else "再来一局"
 		if campaign_active: %ResultDetail.text += "\n" + campaign_session.notice
 		if not already_visible: %PlayAgain.grab_focus()
@@ -1197,6 +1208,9 @@ func _update_info() -> void:
 	if unit.is_empty(): unit = battle.unit_at(hovered_cell)
 	if not unit.is_empty():
 		info_title.text = unit.name
+		if battle.is_escort_unit(unit.id):
+			info_body.text = _escort_profile(unit)
+			return
 		var faction: String = "#70d3ba" if unit.side == 0 else "#f08b76"
 		info_body.text = "[color=%s]%s / %s[/color]\n\n生命 [b]%d / %d[/b]   护盾 %d\n攻击 %d   基础防御 %d\n移动 %d   最终射程 %d\n\n%s\n\n[color=#d0b579]%s：地形防御 +%d[/color]\n光环防御 +%d\n[color=#8eaaa4]%s[/color]" % [faction, battle.side_name(unit.side), battle.cell_name(unit.pos), unit.hp, unit.max_hp, unit.shield, unit.atk, unit.defense, battle.movement_allowance(unit), battle.attack_range(unit), _unit_status(unit), battle.TERRAIN[battle.ground(unit.pos)].name, battle.terrain_defense(unit), battle.aura_defense(unit), battle.TERRAIN[battle.ground(unit.pos)].description]
 		if not battle.unit_skill(unit).is_empty(): info_body.text += "\n\n主动 · %s（1费）\n%s" % [battle.unit_skill(unit).name, battle.unit_skill(unit).text]
@@ -1243,7 +1257,8 @@ func _update_battle_peek() -> void:
 		if not unit.is_empty():
 			var asset_id: String = _portrait_for(unit)
 			var body: String = "生命%d/%d  护盾%d\n攻击%d  防御%d+地形%d\n移动%d  射程%d  施法%d\n\n%s" % [unit.hp, unit.max_hp, unit.shield, unit.atk, unit.defense, battle.terrain_defense(unit), battle.movement_allowance(unit), battle.attack_range(unit), battle.unit_cast_range(unit), _unit_status(unit)]
-			if unit.kind == "commander": body += "\n\n" + str(battle.hero(unit.side).passive_text)
+			if battle.is_escort_unit(unit.id): body = _escort_profile(unit)
+			elif unit.kind == "commander": body += "\n\n" + str(battle.hero(unit.side).passive_text)
 			elif not battle.unit_skill(unit).is_empty(): body += "\n\n主动 · %s（1费）\n%s" % [battle.unit_skill(unit).name, battle.unit_skill(unit).text]
 			battle_peek.present(Art.get_texture(asset_id), unit.name, "%s · %s" % [battle.side_name(unit.side), battle.cell_name(unit.pos)], body, TEAL if unit.side == 0 else RED)
 	var context: Dictionary = _attack_context()
@@ -1275,7 +1290,13 @@ func _portrait_for(unit: Dictionary) -> String:
 	if unit.kind == "commander": return battle.hero(unit.side).portrait
 	return str(unit.get("card", {}).get("card_id", unit.kind))
 
+func _escort_profile(unit: Dictionary) -> String:
+	var defense: int = int(unit.defense) + battle.terrain_defense(unit) + battle.aura_defense(unit)
+	return "生命 %d/%d · 护盾 %d\n移动 %d · 防御 %d\n\n%s\n\n战地急救 · 1 法力\n为自身 2 格内一名友军恢复 3 生命，随后结束行动。" % [unit.hp, unit.max_hp, unit.shield, battle.movement_allowance(unit), defense, _unit_status(unit)]
+
 func _unit_status(unit: Dictionary) -> String:
+	if battle.is_escort_unit(unit.id):
+		return "担架队只能移动和急救。抵达出口即胜，倒下则本战失败。"
 	if unit.get("guarding", false): return "援护中：保护上下左右相邻友军的普通攻击；定身时无法接应。" if int(unit.get("rooted_turns", 0)) == 0 else "援护受阻：定身中，无法接应。"
 	if battle.can_vanguard_move(unit): return "先遣：部署当回合可走一次，攻击和技能下个回合开放。"
 	if unit.summoning: return "新兵待命：下个己方回合恢复行动。"

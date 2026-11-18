@@ -53,7 +53,9 @@ func walk_seven(campaign: RefCounted) -> void:
 				else: runner.advance(page.revision)
 			"choice":
 				seen[runner.graph.nodes[page.node].prompt] = true
-				check(page.node == "camp" and page.options.size() == 3 and runner.state.flags.camp_company == "none", "one three-way camp choice, still undecided")
+				if page.node == "camp":
+					check(page.options.size() == 3 and runner.state.flags.camp_company == "none", "one three-way camp choice, still undecided")
+				else: check(page.node in ["saltlane_call", "saltlane_route"] and page.options.size() == 2, "optional escort has a sign-up and a choice of passages")
 				for option: Dictionary in page.options:
 					for authored: Dictionary in runner.graph.nodes[page.node].options:
 						if authored.id == option.id: seen[authored.text] = true
@@ -62,10 +64,20 @@ func walk_seven(campaign: RefCounted) -> void:
 					check(branch.story.choose(option.id, page.revision).ok, "choose camp " + option.id)
 					walk_seven(branch)
 				return
+			"battle":
+				check(page.scenario in ["c07_saltlane_school", "c07_saltlane_kiln"], "only the selected escort encounter is reached")
+				var retreat: RefCounted = Campaign.new()
+				check(retreat.restore(campaign.snapshot()).ok, "duplicate an authored escort briefing")
+				check(retreat.story.resolve_battle(1, page.revision).ok and retreat.story.current().can_retreat, "authored loss exposes withdrawal")
+				check(retreat.story.retreat(retreat.story.current().revision).ok, "retreat enters its own aftermath")
+				walk_seven(retreat)
+				check(runner.resolve_battle(0, page.revision).ok, "fixture unlocks the appropriate aftermath")
 			"end":
 				seen[runner.graph.nodes[page.node].text] = true
 				terminals += 1
-				check(runner.state.decisions.size() == 1 and runner.state.attempts.is_empty(), "one camp decision and no fabricated seventh battle")
+				var joined: bool = runner.state.decisions.saltlane_call == "answer_call"
+				check(runner.state.decisions.size() == (3 if joined else 2) and runner.state.attempts.size() == int(joined), "optional branch preserves its explicit decisions and battle attempts")
+				check((runner.state.flags.saltlane_result != "none") == joined, "only a played side route sets a consequence")
 				check(runner.state.flags.camp_company in ["bridge", "clinic", "watch"], "chosen camp retained at end")
 				for key: String in runner.graph.inherits: check(runner.state.flags[key] == original[key], "inherited fact preserved: " + key)
 				check(campaign.completed == old_history, "earlier histories remain byte-equivalent objects")
@@ -73,7 +85,7 @@ func walk_seven(campaign: RefCounted) -> void:
 				check(copy.restore(JSON.parse_string(JSON.stringify(campaign.snapshot()))).ok and copy.snapshot() == campaign.snapshot(), "all decisions and read histories roundtrip")
 				check(campaign.next_chapter().get("id") == "chapter_08", "completed seventh chapter offers installed eighth")
 				return
-			_: check(false, "no encounter or unknown page in seventh chapter"); return
+			_: check(false, "unknown page in seventh chapter"); return
 	check(false, "seventh route terminates")
 func test_session() -> void:
 	clean()
@@ -109,7 +121,7 @@ func run() -> void:
 		check(battles == 9, "history contains nine explicit battle-result fixtures")
 		check(campaign.advance_chapter().ok and campaign.story.graph.id == "chapter_07", "start seventh with inherited history")
 		walk_seven(campaign)
-	check(terminals == 96, "32 actual incoming condition combinations times three camp choices")
+	check(terminals == 480, "32 incoming condition combinations, three camps and five escort outcomes")
 	var graph: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/narrative/chapters/chapter_07.json"))
 	check(seen.size() == graph.strings.size(), "every seventh-chapter string reached")
 	for id: String in graph.strings: check(seen.has(id), "reached authored string " + id)

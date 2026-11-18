@@ -89,4 +89,9 @@ maps = Array[Dictionary]([{
 "description": "纵向运河分隔港区，两组横桥连接两岸。近岸工事保护增援，外侧遗迹支持持久攻防。",
 "rows": ["..rwwr..", ".trwwrt.", ".rrbbrr.", ".rrbbrr.", ".trwwrt.", "..rwwr.."],
 "spawns": [Vector2i(2, 5), Vector2i(5, 0)], "ruins": [Vector2i(0, 2), Vector2i(7, 3)]
+}, {
+"id": "saltlane", "selectable": false, "campaign_only": true, "name": "盐布巷", "subtitle": "双桥撤离 · 担架护送", "theme": "harbor",
+"description": "染坊的石渠横贯街巷，两座狭桥连接北晒场与南岸。西侧低廊有工事掩护，东侧石阶较高，变换桥口前留意担架队的移动力。",
+"rows": ["mffmm..rr..mmffm", ".f.mm.rrrr.mm.f.", "....t.rrr..t....", ".m.rrrr.rrrr..m.", "...rrrrrrrrrr...", "wwwbwwwwwwwwbwww", "wwwbwwwwwwwwbwww", "...rrr....rrr...", ".t.rrrr.rrrrr.h.", "..tr..rrrr..rh..", ".f...rrrrrr.ffh.", "m..m...rr...f..m"],
+"spawns": [Vector2i(7, 10), Vector2i(8, 1)], "ruins": []
 }])

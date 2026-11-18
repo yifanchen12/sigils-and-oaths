@@ -5,17 +5,21 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.45.0-dev" src="https://img.shields.io/badge/version-0.45.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.46.0-dev" src="https://img.shields.io/badge/version-0.46.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法设计参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局、122 张可构筑牌和十二套自由对战预组。**0.45.0-dev** 的「潮门后备」加入先遣移动、阵亡返场、两面夹击和受击反刺。 [Windows x64 开发预览](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.45.0-dev)
+玩法设计参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局、122 张可构筑牌和十二套自由对战预组。**0.46.0-dev** 在第七章加入「盐布巷」支线。护送担架队走两座桥中的一座，战果会在第八章带来不同的支援。 [Windows x64 开发预览](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.46.0-dev)
 
 ## 实机画面
 
-首图展示七费「扼道立栅」在暮林边境的施法预估，图鉴可按系列与费用查看新牌。
+盐布巷的金框标记担架队，青色方框标出窑场撤离出口。
+
+![盐布巷双桥战场、担架队移动范围与窑场出口](docs/screenshots/v046-saltlane-battle.png)
+
+![1008×700 窗口中的盐布巷染坊场景](docs/screenshots/v046-saltlane-story-small.png)
 
 ![扼道立栅的工事范围和友军护盾预估](docs/screenshots/v045-tidegate-fortification.png)
 
@@ -79,12 +83,18 @@
 | 用手牌伏设与反制 | 地格缚足、地雷、受击补给和术击护印。支付法力伏设，每方最多 2 张，敌方只见数量。可用寻痕灯或高台破雾弩拆除 |
 | 让兵种互相掩护 | 步兵克枪兵、枪兵克骑兵、骑兵克步兵；弓手、法师、医师各有射程与功能 |
 | 发动部队主动技能 | 六兵种各有1费主动：护盾、援护、再机动、精准射击、星火、急救；每单位每回合一次 |
-| 抢到有价值的位置 | 六张可选12×10地图、14×12塔门和四张16×12战役地图。可逐格架临桥，或借森林、高地和工事获得防御 |
+| 抢到有价值的位置 | 六张可选12×10地图、14×12塔门和五张16×12战役地图。可逐格架临桥，或借森林、高地和工事获得防御 |
 | 打通撤离路线 | 第十七章依次接应灯棚、石桥和高街。回合开始确认一处，已接应的格子可以离开 |
 | 选一个指挥官带队 | 艾琳保护阵线，维洛强化火焰，赛菈治疗与林地恢复；各有主动技能和被动能力 |
 | 改变下一轮战局 | 暴雨、浓雾、烈日、寒潮、疾风和灯夜影响双方。可替换或驱散天气，也可铺路、筑垒、击退、定身与换位 |
 | 在有限时间内决策 | 每个行动回合90秒；定向法术限定在友军3格内、法师4格内，天气影响全场 |
 | 熟悉操作和调整体验 | 四节不限时实战教程。F10 调整全屏、剧情字号、战斗动效、音乐和音效 |
+
+## 0.46 · 盐布巷护送
+
+第七章清晨可以接受沈芦的求援，护送会移动和急救的担架队离开染坊。走低桥到学堂可获得第八章的「红灯担架」，走高桥去窑场可让第八章指挥官开场获得 3 护盾。战败后可以重试或撤回主线。
+
+两条支线分别跑通 16 场战斗。跳过支线的主线跑通 15 场，三条均到达「共掌一灯」。 [新关卡、旧档与验证记录](docs/release/v046.md)
 
 ## 0.45 · 潮门后备
 
@@ -382,7 +392,7 @@ git clone https://github.com/yifanchen12/sigils-and-oaths.git
 cd sigils-and-oaths
 ```
 
-只想试玩可下载 Windows x64 开发预览版。解压到一个目录后双击 `SigilsAndOaths.exe`，让 EXE 和 PCK 留在同一目录。 [下载 0.45 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.45.0-dev)
+只想试玩可下载 Windows x64 开发预览版。解压到一个目录后双击 `SigilsAndOaths.exe`，让 EXE 和 PCK 留在同一目录。 [下载 0.46 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.46.0-dev)
 
 从源码运行的步骤如下。
 

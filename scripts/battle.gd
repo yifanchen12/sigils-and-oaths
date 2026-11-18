@@ -82,13 +82,51 @@ func configure_objective(config: Dictionary) -> Dictionary:
 	if turn != 1 or winner != -1 or not objective.is_empty(): return _error("目标只能在开战前设置一次。")
 	var problem: String = ControlObjective.validate_config(config, map_definition)
 	if not problem.is_empty(): return _error(problem)
+	if ControlObjective.is_escort(config):
+		var start: Vector2i = ControlObjective.position(config.escort_start)
+		if not passable(start) or not unit_at(start).is_empty() or army_count(0) >= UNIT_LIMIT:
+			return _error("担架队起点或部队位已被占用。")
+		var sentry_start := Vector2i(-1, -1)
+		if config.has("sentry_start"):
+			sentry_start = ControlObjective.position(config.sentry_start)
+			if not passable(sentry_start) or not unit_at(sentry_start).is_empty() or army_count(1) >= UNIT_LIMIT:
+				return _error("岗哨起点或部队位已被占用。")
+		objective = ControlObjective.initial(config)
+		var escort: Dictionary = _place_objective_unit(ControlObjective.ESCORT_CARD, start, 0)
+		escort["name"] = ControlObjective.ESCORT_NAME
+		escort["short"] = "担"
+		objective["escort_id"] = escort.id
+		if config.has("sentry_start"):
+			var sentry: Dictionary = _place_objective_unit(config.get("sentry_card", ControlObjective.SENTRY_CARD), sentry_start, 1)
+			sentry["name"] = "晒场弩手"
+		return {"ok": true}
 	objective = ControlObjective.initial(config)
 	return {"ok": true}
+
+func _place_objective_unit(card_id: String, cell: Vector2i, side: int) -> Dictionary:
+	var id: int = _spawn(definition(card_id), cell, side)
+	var unit: Dictionary = get_unit(id)
+	unit["card"] = {"uid": _id(), "card_id": card_id, "unit_id": id}
+	unit.moved = false
+	unit.attacked = false
+	unit.summoning = false
+	players[side].card_total += 1
+	return unit
+
+func escort_unit() -> Dictionary:
+	return get_unit(int(objective.get("escort_id", -1)))
+
+func is_escort_unit(unit_id: int) -> bool:
+	return unit_id > 0 and unit_id == int(objective.get("escort_id", -1))
 
 func objective_status() -> String:
 	if objective.is_empty(): return ""
 	var cells: PackedStringArray = []
 	for cell: Array in objective.cells: cells.append(cell_name(Vector2i(int(cell[0]), int(cell[1]))))
+	if ControlObjective.is_escort(objective):
+		var escort: Dictionary = escort_unit()
+		var location: String = cell_name(escort.pos) if not escort.is_empty() else "已倒下"
+		return "担架队 %s → 出口 %s · 已过 %d/%d 轮\n担架队可移动和治疗。抵达立即胜利。担架队和我方指挥官须存活。击破敌方指挥官也可解除封锁。" % [location, cells[0], (turn - 1) / 2, objective.round_limit]
 	if ControlObjective.is_relay(objective):
 		var next: String = cells[int(objective.streak)] if objective.streak < objective.required else "已完成"
 		return "接力路线 %s\n已接应 %d/%d 处 · 下一站 %s · 已过 %d/%d 轮。己方回合开始时，当前接力点有友军即记一处，已接应的位置可离开。击败敌指挥官也可获胜。" % [" → ".join(cells), objective.streak, objective.required, next, (turn - 1) / 2, objective.round_limit]
@@ -318,7 +356,7 @@ func movement_path(unit: Dictionary, destination: Vector2i) -> Array[Vector2i]:
 
 func attack_targets(unit: Dictionary) -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
-	if unit.is_empty() or unit.attacked or unit.summoning:
+	if unit.is_empty() or unit.attacked or unit.summoning or is_escort_unit(unit.id):
 		return result
 	for target: Dictionary in units:
 		if target.side != unit.side and distance(unit.pos, target.pos) <= attack_range(unit):
@@ -369,7 +407,7 @@ func attack_forecast(attacker: Dictionary, target: Dictionary, bonus: int = 0) -
 	var damage: int = damage_preview(attacker, defender) + bonus
 	var loss: int = mini(int(defender.hp), maxi(0, damage - int(defender.shield)))
 	var counter: int = 0
-	if defender.hp > loss and distance(attacker.pos, defender.pos) <= attack_range(defender): counter = damage_preview(defender, attacker)
+	if defender.hp > loss and not is_escort_unit(defender.id) and distance(attacker.pos, defender.pos) <= attack_range(defender): counter = damage_preview(defender, attacker)
 	return {"defender_id": defender.id, "protected_id": target.id, "intercepted": defender.id != target.id,
 		"damage": damage, "counter_damage": counter, "target_loss": loss,
 		"attacker_loss": mini(int(attacker.hp), maxi(0, counter - int(attacker.shield)))}
@@ -385,7 +423,7 @@ func _resolve_attack(unit: Dictionary, selected_target: Dictionary, bonus: int =
 	_hurt(target, damage)
 	var advantage_text: String = "（兵种克制 +2）" if ADVANTAGE.get(unit.kind, "") == target.kind else ""
 	_record("%s攻击%s，造成 %d 点伤害%s。" % [unit.name, target.name, damage, advantage_text])
-	if target.hp > 0 and distance(unit.pos, target.pos) <= attack_range(target):
+	if target.hp > 0 and not is_escort_unit(target.id) and distance(unit.pos, target.pos) <= attack_range(target):
 		var counter: int = damage_preview(target, unit)
 		_hurt(unit, counter)
 		_record("%s反击，造成 %d 点伤害。" % [target.name, counter])
@@ -486,7 +524,7 @@ func spell_cells(card: Dictionary, side: int) -> Array[Vector2i]:
 			"dispel": valid = not friendly and target.shield > 0
 			"exchange": valid = friendly and target.kind != "commander" and distance(commander(side).pos, target.pos) <= 3
 			"onslaught": valid = friendly and target.kind != "commander" and target.attacked and not target.summoning
-			"recall": valid = friendly and target.kind != "commander" and target.has("card")
+			"recall": valid = friendly and target.kind != "commander" and target.has("card") and not is_escort_unit(target.id)
 			"pullback":
 				valid = friendly and target.kind != "commander" and (target.hp < target.max_hp
 					or (card.get("cleanse", false) and target.rooted_turns > 0)
@@ -919,6 +957,17 @@ func _cleanup() -> void:
 func _check_winner() -> void:
 	var blue_alive: bool = not commander(0).is_empty()
 	var red_alive: bool = not commander(1).is_empty()
+	if ControlObjective.is_escort(objective):
+		var escort: Dictionary = escort_unit()
+		if escort.is_empty():
+			winner = 1
+			_record(ControlObjective.result_text(objective, false, true))
+			return
+		if blue_alive and red_alive and escort.pos == ControlObjective.position(objective.cells[0]):
+			objective["streak"] = 1
+			winner = 0
+			_record(ControlObjective.result_text(objective, true))
+			return
 	if blue_alive and red_alive: return
 	winner = 2 if not blue_alive and not red_alive else (0 if blue_alive else 1)
 	if not objective.is_empty() and not blue_alive: winner = 1

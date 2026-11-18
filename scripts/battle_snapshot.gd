@@ -2,7 +2,7 @@ extends RefCounted
 ## Plain-data snapshots. No object deserialization, rendering or turn-start effects.
 
 const Model = preload("res://scripts/battle.gd")
-const VERSION: int = 7
+const VERSION: int = 8
 const EXPANSION_CARDS: Array[String] = ["shatter_bolt", "rally_heal", "cleanse_root", "reveal_traps", "seedwood", "anchor_snare", "ember_mine", "oath_ward"]
 const CHANNEL_CARDS: Array[String] = ["span_kit", "countercurrent_ward"]
 const LATER_SETS: Array[String] = ["warfront", "afterglow", "tidegate"]
@@ -23,10 +23,13 @@ const WARFRONT_PRESETS_V043: Dictionary = {
 }
 
 static func rules_signature() -> String:
-	return _relay_signature(Model.CATALOG.cards, Model.DECKS.decks)
+	return _relay_signature(Model.CATALOG.cards, Model.DECKS.decks, Model.MAPS.maps)
 
-static func _relay_signature(cards: Array[Dictionary], decks: Array[Dictionary]) -> String:
-	return JSON.stringify([cards, Model.HEROES.heroes, decks, Model.MAPS.maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE, "relay_v1"]).sha256_text()
+static func _relay_signature(cards: Array[Dictionary], decks: Array[Dictionary], maps: Array[Dictionary]) -> String:
+	return JSON.stringify([cards, Model.HEROES.heroes, decks, maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE, "relay_v1"]).sha256_text()
+
+static func v045_rules_signature() -> String:
+	return _relay_signature(Model.CATALOG.cards, Model.DECKS.decks, maps_without([]))
 
 static func _cards_through_v044() -> Array[Dictionary]:
 	return Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") != "tidegate")
@@ -35,7 +38,7 @@ static func _presets_through_v044() -> Array[Dictionary]:
 	return Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") != "tidegate")
 
 static func v044_rules_signature() -> String:
-	return _relay_signature(_cards_through_v044(), _presets_through_v044())
+	return _relay_signature(_cards_through_v044(), _presets_through_v044(), maps_without([]))
 
 static func _presets_through_v043() -> Array[Dictionary]:
 	var decks: Array[Dictionary] = []
@@ -45,12 +48,12 @@ static func _presets_through_v043() -> Array[Dictionary]:
 	return decks
 
 static func v043_rules_signature() -> String:
-	return _relay_signature(_cards_through_v044(), _presets_through_v043())
+	return _relay_signature(_cards_through_v044(), _presets_through_v043(), maps_without([]))
 
 static func pre_afterglow_signature() -> String:
 	var cards: Array[Dictionary] = _cards_through_v044().filter(func(card: Dictionary) -> bool: return card.get("set_id", "") != "afterglow")
 	var decks: Array[Dictionary] = _presets_through_v043().filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") != "afterglow")
-	return _relay_signature(cards, decks)
+	return _relay_signature(cards, decks, maps_without([]))
 
 static func cards_before_channel() -> Array[Dictionary]:
 	var cards: Array[Dictionary] = []
@@ -65,9 +68,10 @@ static func decks_before_channel() -> Array[Dictionary]:
 	return decks
 
 static func maps_without(excluded: Array) -> Array[Dictionary]:
+	# Earlier releases all predate the chapter-seven escort battlefield.
 	var maps: Array[Dictionary] = []
 	for map: Dictionary in Model.MAPS.maps:
-		if map.id not in excluded: maps.append(map)
+		if map.id != "saltlane" and map.id not in excluded: maps.append(map)
 	return maps
 
 static func pre_v038_signature() -> String:
@@ -188,6 +192,8 @@ static func validate(data: Variant) -> Dictionary:
 	if data.rules != rules_signature() and (int(version) >= VERSION or not _legacy_rules_match(data)):
 		return {"ok": false, "protected": true, "message": "战斗存档与当前规则版本不同，原档保留。"}
 	var goal: Variant = data.get("objective")
+	if int(version) < 8 and (data.get("map_id") == "saltlane" or (goal is Dictionary and Model.ControlObjective.is_escort(goal))):
+		return {"ok": false, "message": "旧版战斗不支持护送任务。"}
 	if int(version) < 4 and (data.get("map_id") == "lamplanding" or (goal is Dictionary and Model.ControlObjective.is_relay(goal))):
 		return {"ok": false, "message": "旧版战斗不支持接力任务。"}
 	if int(data.version) < 3 and data.get("traps", []) != []: return {"ok": false, "message": "旧版战斗不能包含伏设区。"}
@@ -196,6 +202,7 @@ static func validate(data: Variant) -> Dictionary:
 	return {"ok": true} if problem.is_empty() else {"ok": false, "message": problem}
 
 static func _legacy_rules_match(data: Dictionary) -> bool:
+	if int(data.version) == 7: return data.rules == v045_rules_signature()
 	if int(data.version) == 6: return data.rules == v044_rules_signature()
 	if int(data.version) == 5: return data.rules == v043_rules_signature()
 	if int(data.version) == 4: return data.rules == pre_afterglow_signature()
@@ -320,6 +327,21 @@ static func _validate(data: Dictionary) -> String:
 	if not data.objective.is_empty():
 		if commanders[0] == 0: actual_winner = 1
 		elif commanders[1] == 1: actual_winner = Model.ControlObjective.objective_winner(data.objective, data)
+	if Model.ControlObjective.is_escort(data.objective):
+		var escort: Dictionary = {}
+		for unit: Dictionary in data.units:
+			if unit.id == data.objective.escort_id: escort = unit; break
+		if escort.is_empty():
+			var casualties: int = 0
+			for card: Dictionary in data.players[0].discard:
+				if card.get("unit_id", -1) == data.objective.escort_id and card.card_id == Model.ControlObjective.ESCORT_CARD:
+					casualties += 1
+			if casualties != 1: return "护送记录缺少阵亡的担架队。"
+			actual_winner = 1
+		elif escort.side != 0 or escort.get("card", {}).get("card_id", "") != Model.ControlObjective.ESCORT_CARD or escort.name != Model.ControlObjective.ESCORT_NAME:
+			return "护送对象与担架队资料不一致。"
+		var delivered: bool = not escort.is_empty() and commanders == [1, 1] and Model.ControlObjective.position(escort.pos) == Model.ControlObjective.position(data.objective.cells[0])
+		if int(data.objective.streak) != int(delivered): return "担架队送达状态无效。"
 	if data.winner != actual_winner: return "指挥官状态与战果不一致。"
 	return ""
 
@@ -332,6 +354,8 @@ static func restore(data: Variant) -> Dictionary:
 		battle.objective = Model.ControlObjective.config(data.objective)
 		battle.objective["streak"] = int(data.objective.streak)
 		battle.objective["last_check"] = int(data.objective.last_check)
+		if Model.ControlObjective.is_escort(data.objective):
+			battle.objective["escort_id"] = int(data.objective.escort_id)
 	for key: String in SCALARS:
 		battle.set(key, data[key] if key in ["weather", "turn_time_limit", "time_remaining"] else int(data[key]))
 	battle.players.clear()

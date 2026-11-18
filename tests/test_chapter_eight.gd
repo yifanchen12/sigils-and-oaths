@@ -17,15 +17,22 @@ func check(value: bool, label: String) -> void:
 func clean() -> void:
 	for suffix: String in ["", ".bak", ".tmp"]:
 		if FileAccess.file_exists(PATH + suffix): DirAccess.remove_absolute(PATH + suffix)
-func previous(camp: String, sale: bool, shared: bool) -> RefCounted:
+func previous(camp: String, sale: bool, shared: bool, escort: String) -> RefCounted:
 	var campaign: RefCounted = Campaign.new(); check(campaign.start().ok, "start real history")
 	var choices: Dictionary = {"chapter_04.terms": "sale" if sale else "lease", "chapter_05.mandate": "shared" if shared else "witness", "chapter_07.camp": camp}
+	if escort != "none":
+		choices["chapter_07.saltlane_call"] = "answer_call"
+		choices["chapter_07.saltlane_route"] = "school" if escort == "withdrawn" else escort
 	for step: int in range(1000):
 		var r: RefCounted = campaign.story; var p: Dictionary = r.current()
 		match p.type:
 			"dialogue": r.advance(p.revision)
 			"choice": r.choose(choices.get(r.graph.id + "." + p.node, p.options[0].id), p.revision)
-			"battle": r.resolve_battle(0, p.revision)
+			"battle":
+				if escort == "withdrawn" and r.graph.id == "chapter_07":
+					r.resolve_battle(1, p.revision)
+					r.retreat(r.current().revision)
+				else: r.resolve_battle(0, p.revision)
 			"end":
 				if r.graph.id == "chapter_07": return campaign
 				campaign.advance_chapter()
@@ -56,6 +63,7 @@ func walk(campaign: RefCounted) -> void:
 				seen[r.graph.nodes[p.node].text] = true; terminals += 1
 				check(r.state.decisions.size() == 1 and r.state.attempts.size() == 1 and r.state.attempts.get(r.state.flags.pressure_plan + "_battle") == 3 and r.state.flags.sunspire_stable, "one decision and explicit loss/draw/win attempt history")
 				for key: String in r.graph.inherits: check(r.state.flags[key] == campaign.completed.back().story.flags[key], "old fact retained " + key)
+				check(r.state.flags.saltlane_result == campaign.completed.back().story.flags.saltlane_result, "escort aftermath inherited")
 				var copy: RefCounted = Campaign.new()
 				check(copy.restore(JSON.parse_string(JSON.stringify(campaign.snapshot()))).ok and copy.snapshot() == campaign.snapshot(), "all eight histories roundtrip")
 				check(campaign.next_chapter().get("id") == "chapter_09", "completed eighth chapter offers installed ninth")
@@ -100,11 +108,12 @@ func run() -> void:
 	for camp: String in ["bridge", "clinic", "watch"]:
 		for sale: bool in [false, true]:
 			for shared: bool in [false, true]:
-				var c: RefCounted = previous(camp, sale, shared)
-				if incoming.is_empty(): incoming = c.snapshot()
-				check(c.advance_chapter().ok, "inherit actual seventh route"); walk(c)
+				for escort: String in ["none", "school", "kiln", "withdrawn"]:
+					var c: RefCounted = previous(camp, sale, shared, escort)
+					if incoming.is_empty(): incoming = c.snapshot()
+					check(c.advance_chapter().ok, "inherit actual seventh route"); walk(c)
 	var g: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/narrative/chapters/chapter_08.json"))
-	check(terminals == 24, "12 inherited condition combinations times two pressure plans")
+	check(terminals == 96, "12 inherited condition combinations, four escort facts and two pressure plans")
 	for id: String in g.strings: check(seen.has(id), "reachable string " + id)
 	if checkpoints.size() == 2: sessions()
 	else: check(false, "both briefings reached")

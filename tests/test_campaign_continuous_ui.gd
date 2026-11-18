@@ -21,6 +21,7 @@ func fight_current() -> bool:
 	shadow = Battle.new(int(game.campaign_session.campaign.scenario().seed), game.campaign_session.campaign.scenario().map, game.campaign_session.campaign.scenario().hero, game.campaign_session.campaign.scenario().enemy_class, game.campaign_session.campaign.scenario().deck, game.campaign_session.campaign.scenario().enemy_deck, 90)
 	var config: Dictionary = game.campaign_session.campaign.scenario()
 	shadow.set_commander_identity(1, config.enemy_name, config.enemy_portrait)
+	if config.has("commander_shield"): shadow.commander(0).shield = int(config.commander_shield)
 	if config.has("bonus_card"): shadow.add_generated_card(0, str(config.bonus_card))
 	shadow.configure_objective(config.get("control", {}))
 	cursor = 0

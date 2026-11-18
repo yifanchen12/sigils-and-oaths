@@ -1,0 +1,20 @@
+{
+	"body_pages": {
+		"chapter_07": 273,
+		"chapter_08": 186
+	},
+	"chapter_sha256": {
+		"chapter_07": "ac550a719d925d70ba2c367cd7d7c1c5679cac4d51104aaa0cae7f331a7d1e3d",
+		"chapter_08": "d2cb12bca5f7143e78b4957c6677e0bfdc2dbdbdb325dbde68b8a6f78052c34b"
+	},
+	"checks": 3675,
+	"failures": 0,
+	"milestone": "0.46.0-dev",
+	"passed": true,
+	"reading_size": 130,
+	"scope": "All authored body pages of C07 and C08 opened in the native StoryView from authored line fixtures. Runtime branch access and combat have separate tests.",
+	"window": [
+		1008,
+		700
+	]
+}

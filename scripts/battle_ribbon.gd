@@ -24,6 +24,9 @@ func subtitle_text() -> String:
 	var goal: Dictionary = battle.objective
 	if goal.is_empty(): return value
 	var completed_rounds: int = (battle.turn - 1) / 2
+	if battle.ControlObjective.is_escort(goal):
+		var exit_cell: Vector2i = battle.ControlObjective.position(goal.cells[0])
+		return "%s  ·  护送至 %s  ·  余 %d 轮" % [value, battle.cell_name(exit_cell), maxi(0, int(goal.round_limit) - completed_rounds)]
 	if battle.ControlObjective.is_relay(goal):
 		value += "  ·  接应 %d/%d" % [goal.streak, goal.required]
 		if goal.streak < goal.required:

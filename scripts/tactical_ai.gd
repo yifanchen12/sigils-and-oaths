@@ -41,6 +41,7 @@ static func exposure(battle: Battle, unit: Dictionary, context: Dictionary) -> f
 	var incoming: float = 0.0
 	for entry: Dictionary in threats:
 		var enemy: Dictionary = entry.unit
+		if battle.is_escort_unit(enemy.id): continue
 		var worst: float = 0.0
 		for origin: Vector2i in entry.origins:
 			if origin == unit.pos: continue

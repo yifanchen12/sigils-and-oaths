@@ -69,23 +69,23 @@
     {
       "id": "chapter_07",
       "title": "未送达的名字",
-      "status": "revised_pending_reader_feedback",
-      "nativeValidated": false,
-      "revision": "0.24.0-dev",
+      "status": "escort_routes_verified_pending_reader_feedback",
+      "nativeValidated": true,
+      "revision": "0.46.0-dev",
       "nativeRendered": true,
-      "playthroughValidated": false,
-      "wordCount": 10143,
+      "playthroughValidated": true,
+      "wordCount": 12429,
       "wordCountPass": true
     },
     {
       "id": "chapter_08",
       "title": "长昼的第八夜",
-      "status": "revised_pending_reader_feedback",
+      "status": "escort_followup_verified_pending_reader_feedback",
       "nativeValidated": false,
-      "revision": "0.25.0-dev",
+      "revision": "0.46.0-dev",
       "nativeRendered": true,
-      "playthroughValidated": false,
-      "wordCount": 8079,
+      "playthroughValidated": true,
+      "wordCount": 8278,
       "wordCountPass": true
     },
     {

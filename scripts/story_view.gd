@@ -4,6 +4,7 @@ extends Control
 signal advance_requested(expected: Dictionary)
 signal choice_requested(option_id: String, expected: Dictionary)
 signal battle_requested(expected: Dictionary)
+signal retreat_requested(expected: Dictionary)
 signal next_chapter_requested(expected: Dictionary)
 signal menu_requested
 signal save_requested
@@ -202,6 +203,8 @@ func _render_page() -> void:
 			if page.last_outcome != "": retry = "\n\n上一战" + ("失利" if page.last_outcome == "defeat" else "平局") + "，剧情停在此处。重新出征将重建同一战场。"
 			text_body.text = "作战目标\n%s\n\n%s\n\n敌方指挥：%s\n每回合 90 秒。战斗自动保存，退出后可继续当前局面。%s" % [setup.get("objective", ""), setup.get("brief", ""), setup.get("enemy_name", ""), retry]
 			actions.add_child(_button("重新出征" if page.attempts > 0 else "率军出征", _battle.bind(view_token.duplicate())))
+			if page.get("can_retreat", false):
+				actions.add_child(_button("撤出任务 · 回到主线", retreat_requested.emit.bind(view_token.duplicate())))
 		"end":
 			speaker.text = page.get("ending_title", page.get("chapter", "本章") + " · 章末")
 			if not page.get("next_chapter", {}).is_empty():
