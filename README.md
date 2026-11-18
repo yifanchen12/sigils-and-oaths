@@ -84,7 +84,7 @@
 
 原生 Windows 完成三课、全屏切换、音效播放与设置读回。练习前后的对局快照和战役存档一致。商店候选包包含四张商店图、四张库图、两个图标、五张 1920×1080 游戏截图和中英文说明。断阵重术的人类对战验收与 Steam 提审仍待完成。[Steam 素材与披露底稿](docs/release/steam/README.md)
 
-Windows x64 预览包正在校验。
+Windows x64 预览包为 235,484,635 字节，来自源码提交 `390b1e7`。已经从独立目录用解压后的 EXE 原生启动。公开下载与本机构建一致，SHA-256 为 `210c093859f73294ed7cc22a11c6cf99d2e4b8bd1a0102a54cf2514dbbb6d592`。 [下载 0.42 Windows 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.42.0-dev)
 
 ## 0.41 · 前线扩牌与三盏灯
 

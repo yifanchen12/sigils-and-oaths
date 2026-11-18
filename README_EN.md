@@ -83,7 +83,7 @@ The War Council offers three guided exercises for deployment, class counters, in
 
 The native Windows run completed the drills and verified fullscreen, audio playback, settings reload and preservation of the prior battle and campaign save. Four store images, four library images, two icons, five 1920×1080 game captures and disclosure copy are prepared for review. Human balance and Steam review are pending. [Steam materials](docs/release/steam/README.md)
 
-The Windows x64 preview is undergoing release verification.
+The 235,484,635-byte Windows x64 preview was built from `390b1e7`. The executable launched natively from a fresh extraction directory. The public download matches the local build. SHA-256 is `210c093859f73294ed7cc22a11c6cf99d2e4b8bd1a0102a54cf2514dbbb6d592`. [Download the 0.42 Windows development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.42.0-dev)
 
 ## 0.41 · Warfront cards and Three Lamps
 
