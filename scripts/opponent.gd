@@ -12,14 +12,30 @@ static func choose(battle: Battle) -> Dictionary:
 	# Keep end-turn as the tie winner. In a control emergency its value can be
 	# negative, but ordinary zero-value actions still must not replace waiting.
 	var best_score: float = evaluate(battle, best, fields, objective, threats)
+	var openers: Dictionary = _combo_openers(battle)
 	for unit: Dictionary in battle.units:
 		if unit.side == battle.active_side and not battle.movement_cells(unit).is_empty(): fields[unit.id] = _approach_field(battle, unit)
 	for action: Dictionary in battle.get_legal_actions(battle.active_side):
 		var score: float = evaluate(battle, action, fields, objective, threats) + TacticalAI.value(battle, action, threats)
+		if score > 0.0 and action.type == "play": score += float(openers.get(action.card_uid, 0.0))
 		if score > best_score:
 			best = action
 			best_score = score
 	return best
+
+static func _combo_openers(battle: Battle) -> Dictionary:
+	var openers: Dictionary = {}
+	if battle.hand_played_this_turn: return openers
+	var player: Dictionary = battle.players[battle.active_side]
+	for follow_up: Dictionary in player.hand:
+		var combo: Dictionary = battle.definition(follow_up.card_id)
+		if not combo.has("combo") or combo.cost > player.mana: continue
+		for candidate: Dictionary in player.hand:
+			if candidate.uid == follow_up.uid: continue
+			var card: Dictionary = battle.definition(candidate.card_id)
+			if card.cost <= 3 and card.cost + combo.cost <= player.mana:
+				openers[candidate.uid] = 3.0 if card.has("combo") else 8.0
+	return openers
 
 static func evaluate(battle: Battle, action: Dictionary, fields: Dictionary = {}, objective: Dictionary = {}, threats: Dictionary = {}) -> float:
 	if not battle.objective.is_empty() and objective.is_empty(): objective = ObjectiveAI.prepare(battle, threats)
@@ -79,7 +95,7 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 			return _attack_value(battle, unit, battle.get_unit(forecast.defender_id), forecast)
 		"play":
 			var instance: Dictionary = battle.hand_card(side, action.card_uid)
-			var card: Dictionary = battle.definition(instance.card_id)
+			var card: Dictionary = battle.card_for_play(battle.definition(instance.card_id), side)
 			if card.type == "unit":
 				var score: float = 50.0 + int(card.cost) * 2.0 - battle.distance(action.target, enemy_leader.pos) * 1.5 + (2.0 if battle.ground(action.target) == "forest" else 0.0)
 				if card.has("entry") and battle.entry_active(card.entry, action.target): score += _entry_score(battle, card.entry, action.target)
@@ -95,6 +111,7 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 				if card.trigger != "step":
 					var guarded: Dictionary = battle.unit_at(action.target)
 					var healing: float = mini(int(card.get("healing", 0)), int(guarded.max_hp) - int(guarded.hp)) * 5.0
+					if card.has("rally"): healing += _formation_score(battle, card.rally, action.target) * 0.5
 					var pressure: float = 0.0
 					if card.trigger in ["spell", "either"]:
 						for enemy: Dictionary in battle.units:
@@ -124,7 +141,7 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 				"scheduled": return _scheduled_value(battle, card, action.target)
 				"commission":
 					var loss: int = mini(int(target.hp), maxi(0, int(card.amount) - int(target.shield)))
-					var followup: float = 43.0 + _supply_value(battle, side, card) if loss >= int(target.hp) else 0.0
+					var followup: float = 43.0 + _supply_value(battle, side, card) - _fall_risk(battle, target) if loss >= int(target.hp) else 0.0
 					return loss * 8.0 + mini(int(card.amount), int(target.shield)) * 4.0 + followup - 9.0
 				"formation": return _formation_score(battle, card, action.target) + _reserve_value(battle, side, int(card.get("draw", 0))) + _reclaim_value(battle, side, card)
 				"recall": return _recall_value(battle, target, card, threats)
@@ -149,6 +166,7 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 					var bonus: float = 0.0
 					if loss >= int(target.hp):
 						bonus = 43.0 + _reserve_value(battle, side, int(card.get("kill_draw", 0)))
+						bonus += int(card.get("kill_mana", 0)) * 4.0 - _fall_risk(battle, target)
 					return loss * 9.0 + (removed + mini(damage, shield - removed)) * 4.0 + bonus - 6.0
 				"roadwork":
 					var benefit: float = -3.0
@@ -158,14 +176,16 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 						if occupant.is_empty(): continue
 						if ground == "fort":
 							var defense_gain: int = 2 - battle.terrain_defense(occupant)
-							if occupant.side == side: benefit += defense_gain * 8.0 + mini(5 - int(occupant.shield), int(card.reinforce)) * 5.0
+							if occupant.side == side: benefit += defense_gain * 8.0
 							else: benefit -= defense_gain * 8.0
 						elif occupant.side != side: benefit += battle.terrain_defense(occupant) * 8.0
 						elif occupant.kind == "cavalry" and not occupant.moved: benefit += 12.0 - battle.terrain_defense(occupant) * 5.0
+						if occupant.side == side: benefit += mini(5 - int(occupant.shield), int(card.get("reinforce", 0))) * 5.0
 					return benefit
 				"shatter_bolt":
 					var damage: int = battle.spell_damage(card, side)
-					return 35.0 + damage * 5.0 + int(target.shield) * 6.0 + (3000.0 if target.kind == "commander" else 40.0) * float(damage >= int(target.hp))
+					var defeat: float = (3000.0 if target.kind == "commander" else 40.0 - _fall_risk(battle, target)) if damage >= int(target.hp) else 0.0
+					return 35.0 + damage * 5.0 + int(target.shield) * 6.0 + defeat
 				"rally_heal":
 					var healing: int = 0
 					for ally: Dictionary in battle.units:
@@ -187,7 +207,7 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 						if victim.side == side: continue
 						if victim.pos != action.target and (card.effect != "area" or battle.distance(victim.pos, action.target) > 1): continue
 						score += mini(amount, int(victim.hp) + int(victim.shield)) * 5.0
-						if amount >= int(victim.hp) + int(victim.shield): score += 40.0 if victim.kind != "commander" else 3000.0
+						if amount >= int(victim.hp) + int(victim.shield): score += 40.0 - _fall_risk(battle, victim) if victim.kind != "commander" else 3000.0
 					return score
 				"heal": return 25.0 + mini(int(card.amount), int(target.max_hp) - int(target.hp)) * 4.0
 				"shield": return 12.0 + (8.0 if target.kind == "commander" else 0.0)
@@ -281,14 +301,25 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 			return score
 	return 0.0
 
-static func _attack_value(_battle: Battle, unit: Dictionary, target: Dictionary, forecast: Dictionary) -> float:
+static func _attack_value(battle: Battle, unit: Dictionary, target: Dictionary, forecast: Dictionary) -> float:
 	var score: float = 60.0 + mini(int(forecast.damage), int(target.hp) + int(target.shield)) * 4.0
-	if forecast.target_loss >= int(target.hp): score += 50.0
+	if forecast.target_loss >= int(target.hp): score += 50.0 - _fall_risk(battle, target)
 	if target.kind == "commander": score += 60.0
 	if forecast.target_loss >= int(target.hp) and target.kind == "commander": score += 2000.0
 	score -= int(forecast.attacker_loss) * 6.0
 	if forecast.attacker_loss >= int(unit.hp): score -= 35.0
 	return score
+
+static func _fall_risk(battle: Battle, target: Dictionary) -> float:
+	if not target.has("card"): return 0.0
+	var effect: Dictionary = battle.definition(target.card.card_id).get("fall", {})
+	if effect.get("target_side", "") != "enemy": return 0.0
+	var risk: float = 0.0
+	for change: Dictionary in battle.Formation.changes(battle, effect, target.pos, target.side):
+		if change.friendly: continue
+		risk += int(change.hp_loss) * 7.0 + maxi(0, -int(change.shield_delta)) * 3.0
+		if change.hp_after == 0: risk += 2500.0 if battle.get_unit(change.unit_id).kind == "commander" else 23.0
+	return risk
 
 static func _draw_fatigue(battle: Battle, side: int, amount: int) -> int:
 	var missing: int = maxi(0, amount - battle.players[side].deck.size())
@@ -351,7 +382,7 @@ static func _formation_score(battle: Battle, card: Dictionary, center: Vector2i)
 		var unit: Dictionary = battle.get_unit(change.unit_id)
 		if unit.side != side:
 			score += int(change.hp_loss) * 9.0 - int(change.shield_delta) * 4.0
-			if change.hp_after == 0: score += 3000.0 if unit.kind == "commander" else 40.0
+			if change.hp_after == 0: score += 3000.0 if unit.kind == "commander" else 40.0 - _fall_risk(battle, unit)
 			if change.root: score += 14.0 if unit.kind == "cavalry" else 8.0
 		else:
 			score += int(change.healing) * 7.0 + int(change.shield_delta) * 5.0

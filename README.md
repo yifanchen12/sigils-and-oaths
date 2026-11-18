@@ -5,15 +5,19 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.50.0-dev" src="https://img.shields.io/badge/version-0.50.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.51.0-dev" src="https://img.shields.io/badge/version-0.51.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法设计参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局、164 种可构筑牌和十六套自由对战预组。**0.50.0-dev** 让 24 张「回澜契令」进入战役。随进度开放三个军备位，出征前可挑选补给并预览换下的牌。 [Windows x64 开发预览](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.50.0-dev)
+玩法设计参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局、200 种可构筑牌和十九套自由对战预组。**0.51.0-dev** 加入 36 张「石岭行军」卡，覆盖 1 至 10 费。低费牌开连携，中费牌靠夹击回费和阵亡反击抢回主动，高费牌改变整条阵线。 [Windows x64 开发预览](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.51.0-dev)
 
 ## 实机画面
+
+![图鉴筛选石岭行军系列，可查看新增的部队、法术、手牌陷阱和环境](docs/screenshots/v051-pilgrim-library.png)
+
+![本回合先用过另一张手牌，落花信号亮起连携并预估恢复移动](docs/screenshots/v051-pilgrim-combo.png)
 
 ![第八章的小窗口军备界面预览三张随军卡牌](docs/screenshots/v050-campaign-armory-small.png)
 
@@ -93,7 +97,8 @@
 
 | 战场上的选择 | 当前实现 |
 | --- | --- |
-| 用卡牌向前增援 | 164 种可组牌、1 种对局生成牌、十六套 30 张预组和本地自定义牌组。友军身旁部署，新兵也能延伸阵线 |
+| 用卡牌向前增援 | 200 种可组牌、1 种对局生成牌、十九套 30 张预组和本地自定义牌组。友军身旁部署，新兵也能延伸阵线 |
+| 组织连携和换子 | 先打另一张手牌开启连携。用夹击法术击破返还法力，也能让枪兵吸引敌方近战并在阵亡时反击 |
 | 用手牌伏设与反制 | 地格缚足、地雷、受击补给和术击护印。支付法力伏设，每方最多 2 张，敌方只见数量。可用寻痕灯或高台破雾弩拆除 |
 | 让兵种互相掩护 | 步兵克枪兵、枪兵克骑兵、骑兵克步兵；弓手、法师、医师各有射程与功能 |
 | 发动部队主动技能 | 六兵种各有1费主动：护盾、援护、再机动、精准射击、星火、急救；每单位每回合一次 |
@@ -103,6 +108,10 @@
 | 改变下一轮战局 | 暴雨、浓雾、烈日、寒潮、疾风和灯夜影响双方。可替换或驱散天气，也可铺路、筑垒、击退、定身与换位 |
 | 在有限时间内决策 | 每个行动回合90秒；定向法术限定在友军3格内、法师4格内，天气影响全场 |
 | 熟悉操作和调整体验 | 四节不限时实战教程。F10 调整全屏、剧情字号、战斗动效、音乐和音效 |
+
+## 0.51 · 石岭行军
+
+「粉径先遣」用低费部队、定向补给与恢复移动接连抢位。「界碑守望」用枪兵援护、手牌陷阱和阵亡反击做交换。「钟炉军列」靠夹击回费、筑垒及横列军令找高费窗口。全套新牌也可通过战役军备携带。 [36 张牌的费用、效果和实机记录](docs/release/v051.md)
 
 ## 0.50 · 战役军备
 
@@ -424,7 +433,7 @@ git clone https://github.com/yifanchen12/sigils-and-oaths.git
 cd sigils-and-oaths
 ```
 
-只想试玩可下载 Windows x64 开发预览版。解压到一个目录后双击 `SigilsAndOaths.exe`，让 EXE 和 PCK 留在同一目录。 [下载 0.50 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.50.0-dev)
+只想试玩可下载 Windows x64 开发预览版。解压到一个目录后双击 `SigilsAndOaths.exe`，让 EXE 和 PCK 留在同一目录。 [下载 0.51 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.51.0-dev)
 
 从源码运行的步骤如下。
 

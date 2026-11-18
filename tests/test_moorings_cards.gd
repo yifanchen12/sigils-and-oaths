@@ -33,7 +33,7 @@ func test_catalog() -> void:
 		check(pressure.cards.has(card.id) or recovery.cards.has(card.id), "card occurs in a selectable preset: " + card.id)
 	check(curves == [2, 3, 2, 3, 2, 3, 2, 2, 2, 3], "all ten costs including twelve cards at 6 or above")
 	check(counts == {"unit": 10, "spell": 8, "environment": 3, "trap": 3}, "four actual card types")
-	check(Model.CATALOG.cards.size() == 165 and Model.DECKS.decks.size() == 16, "164 collectible cards and 16 presets")
+	check(Model.CATALOG.cards.size() == 201 and Model.DECKS.decks.size() == 19, "200 collectible cards and 19 presets")
 	for deck: Dictionary in [pressure, recovery]:
 		check(Model.DECKS.validate_counts(deck.cards, Model.CATALOG.cards).is_empty(), "legal 30-card preset " + deck.id)
 

@@ -783,6 +783,7 @@ func _library_details(card: Dictionary, copies: int) -> void:
 	%LibraryPortrait.texture = Art.get_texture(str(card.id))
 	%LibraryPortrait.visible = %LibraryPortrait.texture != null
 	%LibraryDetails.text = "[font_size=21][color=#d0b579]%s[/color][/font_size]  ·  %d 费  ·  %s  ·  当前 %d 张\n%s" % [card.name, card.cost, card.tag, copies, card.text]
+	if card.has("combo"): %LibraryDetails.text += "\n本回合先从手牌用出另一张牌，即可触发连携。"
 	if card.type == "unit":
 		%LibraryDetails.text += "\n攻击 %d / 生命 %d / 防御 %d / 移动 %d / 射程 %d" % [card.atk, card.hp, card.defense, card.move, card.range]
 		var skill: Dictionary = battle.definition(card.kind).get("skill", {})
@@ -949,7 +950,9 @@ func _refresh() -> void:
 		child.queue_free()
 	for instance: Dictionary in player.hand:
 		var view: CardView = CardControl.new()
-		view.configure(battle.definition(instance.card_id), instance.uid, player.mana, instance.uid == selected_card, not _player_can_act())
+		var card: Dictionary = battle.definition(instance.card_id)
+		view.combo_lit = battle.combo_ready(card, 0)
+		view.configure(card, instance.uid, player.mana, instance.uid == selected_card, not _player_can_act())
 		view.pressed.connect(_select_card.bind(int(instance.uid)))
 		view.mouse_entered.connect(_inspect_card.bind(int(instance.uid)))
 		view.mouse_exited.connect(_inspect_card.bind(-1))
@@ -1015,6 +1018,7 @@ func _refresh_compact_hand() -> void:
 		var button: CardView = CardControl.new()
 		button.compact = true
 		button.hotkey_number = index
+		button.combo_lit = battle.combo_ready(card, 0)
 		button.configure(card, instance.uid, battle.players[0].mana, selected_card == instance.uid, not _player_can_act())
 		button.pressed.connect(_select_card.bind(int(instance.uid)))
 		button.mouse_entered.connect(_inspect_card.bind(int(instance.uid)))
@@ -1204,7 +1208,7 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 	if action.type == "play":
 		var instance: Dictionary = battle.hand_card(battle.active_side, int(action.get("card_uid", -1)))
 		if not instance.is_empty():
-			var definition: Dictionary = battle.definition(instance.card_id)
+			var definition: Dictionary = battle.card_for_play(battle.definition(instance.card_id), side)
 			var entry: Dictionary = definition.get("entry", {})
 			visual_action["card_type"] = definition.type
 			visual_action["spell_effect"] = definition.get("effect", "")
@@ -1330,7 +1334,9 @@ func _attack_forecast_text(context: Dictionary) -> String:
 	if prediction.intercepted: lines = "%s援护%s，原目标不受伤。\n\n" % [target.name, context.selected_target.name] + lines
 	if battle.Traps.count(battle, 1) > 0: lines += "敌方存在伏设，预估未计入隐藏陷阱。\n"
 	var outcome: String = "目标存活并反击。"
-	if prediction.target_loss >= target.hp: outcome = "目标被击破，不会反击。"
+	if prediction.target_loss >= target.hp:
+		var definition: Dictionary = battle.definition(target.get("card", {}).get("card_id", ""))
+		outcome = "目标预计阵亡并结算阵亡效果。" if definition.has("fall") else "目标被击破，不会反击。"
 	elif battle.distance(attacker.pos, target.pos) > battle.attack_range(target): outcome = "目标射程不足，不会反击。"
 	elif prediction.attacker_loss == 0: outcome = "反击未造成生命损失。"
 	return "生命损失 %d  /  反击 %d\n\n目标生命  %d → %d\n我方生命  %d → %d\n\n%s\n已计入护盾：我方%d / 敌方%d\n%s\n点击目标确认攻击。" % [prediction.target_loss, prediction.attacker_loss, target.hp, target.hp - prediction.target_loss, attacker.hp, attacker.hp - prediction.attacker_loss, lines, attacker.shield, target.shield, outcome]
@@ -1391,6 +1397,8 @@ func _update_info() -> void:
 		var card: Dictionary = battle.definition(instance.card_id)
 		info_title.text = card.name
 		info_body.text = "[color=#d0b579]%s  /  %d 法力[/color]\n\n%s\n\n" % [card.tag, card.cost, card.text]
+		if card.has("combo"):
+			info_body.text += "[color=#70d3ba]%s[/color]\n\n" % _combo_status(card)
 		if card.type == "unit":
 			var ready_tip: String = "达成卡面条件，便可在部署当回合先遣移动一次。" if card.get("entry", {}).get("vanguard", false) else "部队下个己方回合可行动。"
 			info_body.text += "攻击 [b]%d[/b]     生命 [b]%d[/b]\n防御 %d       移动 %d\n射程 %d\n\n[color=#70d3ba]部署在友军上下左右的空地。%s[/color]" % [card.atk, card.hp, card.defense, card.move, card.range, ready_tip]
@@ -1437,6 +1445,9 @@ func _position_battle_peek() -> void:
 			continue
 		panel.position = Vector2(12 if left else board.size.x - panel.size.x - 12, maxf(16, (board.size.y - panel.size.y) / 2))
 
+func _combo_status(card: Dictionary) -> String:
+	return "连携已就绪。" if battle.combo_ready(card, 0) else "连携需先从手牌用出另一张牌。"
+
 func _update_battle_peek() -> void:
 	if battle_peek == null: return
 	var uid: int = selected_card if selected_card != -1 else inspected_card
@@ -1444,6 +1455,7 @@ func _update_battle_peek() -> void:
 	if not instance.is_empty():
 		var card: Dictionary = battle.definition(instance.card_id)
 		var body: String = card.text
+		if card.has("combo"): body += "\n" + _combo_status(card)
 		if card.type == "unit":
 			var skill: Dictionary = battle.definition(card.kind).get("skill", {})
 			if not skill.is_empty(): body += "\n\n主动 · %s（1费）\n%s" % [skill.name, skill.text]

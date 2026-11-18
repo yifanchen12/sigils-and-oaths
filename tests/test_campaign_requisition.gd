@@ -6,7 +6,7 @@ const Store = preload("res://scripts/campaign_store.gd")
 const Snapshot = preload("res://scripts/battle_snapshot.gd")
 const Opponent = preload("res://scripts/opponent.gd")
 const LEGACY := "res://tests/fixtures/v047-court-encounter.json"
-const SLOT := "res://.tools/v048-requisition-rules.json"
+var slot_path: String = "res://.tools/requisition-rules-%d.json" % OS.get_process_id()
 var checks: int = 0
 var failures: int = 0
 
@@ -66,16 +66,16 @@ func test_store_and_retry() -> void:
 	expected.version = float(Snapshot.VERSION)
 	expected.rules = Snapshot.rules_signature()
 	check(old == expected and prior.campaign.requisition.is_empty(), "original deck, exact clock, identity and board restored without a swap")
-	var model := Store.new(SLOT)
+	var model := Store.new(slot_path)
 	if not check(model.save_progress(legacy.progress).ok, "restore the earned briefing to a per-test slot"): return
-	var session = Session.new(SLOT)
+	var session = Session.new(slot_path)
 	if not check(session.load_campaign().ok and session.current().scenario == "c06_court", "earnings resolve to the actual court briefing"): return
 	var first: Dictionary = session.token()
-	var original: String = FileAccess.get_file_as_string(SLOT)
-	check(not session.choose_requisition("span_kit", first).ok and FileAccess.get_file_as_string(SLOT) == original, "an unoffered card cannot touch selection or disk")
+	var original: String = FileAccess.get_file_as_string(slot_path)
+	check(not session.choose_requisition("span_kit", first).ok and FileAccess.get_file_as_string(slot_path) == original, "an unoffered card cannot touch selection or disk")
 	if not check(session.choose_requisition("dawn_weir", first).ok, "select the new ten-cost order through the coordinator"): return
 	check(not session.begin_battle(first).ok and session.encounter == null, "old briefing token cannot launch after choice changed")
-	session = Session.new(SLOT)
+	session = Session.new(slot_path)
 	if not check(session.load_campaign().ok and session.campaign.requisition == "dawn_weir" and session.encounter == null, "preparation persists across reloading before battle"): return
 	if not check(session.begin_battle(session.token()).ok, "launch selected campaign loadout"): return
 	var opening: Dictionary = Snapshot.capture(session.encounter)
@@ -86,7 +86,7 @@ func test_store_and_retry() -> void:
 	session.encounter.advance_clock(11.25)
 	var active: Dictionary = Snapshot.capture(session.encounter)
 	check(session.save().ok, "save an active encounter with swapped card")
-	var fresh = Session.new(SLOT)
+	var fresh = Session.new(slot_path)
 	if not check(fresh.load_campaign().ok and fresh.encounter != null, "reload active encounter"): return
 	check(Snapshot.capture(fresh.encounter) == active and fresh.campaign.requisition == "dawn_weir", "chosen order and precise timer round-trip")
 	var battle: Battle = fresh.encounter
@@ -95,7 +95,7 @@ func test_store_and_retry() -> void:
 		var action: Dictionary = {"type": "end_turn"} if battle.active_side == 0 else Opponent.choose(battle)
 		if not check(battle.apply_action(action).ok, "the opponent earns the rehearsal defeat through legal actions"): return
 	if not check(battle.winner == 1 and fresh.finish_battle(battle).ok, "actual defeat returns to the same briefing"): return
-	session = Session.new(SLOT)
+	session = Session.new(slot_path)
 	if not check(session.load_campaign().ok and session.campaign.requisition == "dawn_weir" and session.current().attempts == 1, "attempt count and preparation survive reload after defeat"): return
 	check(session.begin_battle(session.token()).ok and Snapshot.capture(session.encounter) == opening, "rebooting and retrying recreate the same chosen hand")
 	check(not session.begin_battle(session.token()).ok, "cannot start on top of a running encounter")
@@ -114,5 +114,7 @@ func run() -> void:
 	test_all_openings()
 	test_store_and_retry()
 	test_no_options_and_rollback()
+	for suffix: String in ["", ".bak", ".tmp"]:
+		if FileAccess.file_exists(slot_path + suffix): DirAccess.remove_absolute(slot_path + suffix)
 	print("REQUISITION RULES %d CHECKS | %d FAILURES" % [checks, failures])
 	quit(0 if failures == 0 else 1)

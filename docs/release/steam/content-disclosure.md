@@ -1,6 +1,6 @@
 # 内容披露与来源清单
 
-面向 Windows 0.50.0-dev。此表用于核对送审版本实际文件和商店页面。提交内容调查和确定地区评级需要发行方查看最终构建与 Steamworks 表单。Steamworks 把开发期间生成并交付给玩家的内容与运行中生成的内容分别调查。 [Steamworks 内容调查](https://partner.steamgames.com/doc/gettingstarted/contentsurvey)
+面向 Windows 0.51.0-dev。此表用于核对送审版本实际文件和商店页面。提交内容调查和确定地区评级需要发行方查看最终构建与 Steamworks 表单。Steamworks 把开发期间生成并交付给玩家的内容与运行中生成的内容分别调查。 [Steamworks 内容调查](https://partner.steamgames.com/doc/gettingstarted/contentsurvey)
 
 ## 可用于填写的说明
 
@@ -18,6 +18,7 @@
 | 潮门后备卡面 | 36 张开发期生成插画，由三张固定 PNG 提供，战斗动作沿用原有兵种素材 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/tidegate-source.md) |
 | 堤灯军令卡面 | 18 张开发期生成插画，由两张固定 PNG 提供 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/levee-source.md) |
 | 回澜契令卡面 | 24 张开发期生成插画，由四张固定 PNG 提供 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/moorings-source.md) |
+| 石岭行军卡面 | 36 张开发期生成插画，由四张固定 PNG 提供 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/pilgrim-source.md) |
 | 章节重走背景 | 一张开发期生成的档案室场景图 | 保留生成提示、来源文件名和 SHA-256。 [档案室生成记录](../../../assets/art/narrative/chapter-replay-source.md) |
 | 战役军备背景 | 一张开发期生成的港口军备库场景图 | 保留生成提示、来源文件名和 SHA-256。 [军备库生成记录](../../../assets/art/narrative/campaign-armory-source.md) |
 | 战前军需的军需桌 | 一张开发期生成插画，选牌后显示原有对应卡图 | 保留生成提示、源图和 SHA-256。 [军需配图来源](../../../assets/art/narrative/quartermaster-desk-source.md) |

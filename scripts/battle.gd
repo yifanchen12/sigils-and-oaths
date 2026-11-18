@@ -45,6 +45,7 @@ var units: Array[Dictionary] = []
 var terrain: Dictionary = {}
 var active_side: int = 0
 var turn: int = 1
+var hand_played_this_turn: bool = false
 var winner: int = -1 # -1 ongoing; 0/1 winner; 2 draw
 var log_lines: Array[String] = []
 var rng := RandomNumberGenerator.new()
@@ -267,6 +268,12 @@ func commander(side: int) -> Dictionary:
 func definition(card_id: String) -> Dictionary:
 	return CATALOG.find(card_id)
 
+func combo_ready(card: Dictionary, side: int) -> bool:
+	return side == active_side and hand_played_this_turn and card.has("combo")
+
+func card_for_play(card: Dictionary, side: int) -> Dictionary:
+	return card.merged(card.combo, true) if combo_ready(card, side) else card
+
 func hand_card(side: int, uid: int) -> Dictionary:
 	for card: Dictionary in players[side].hand:
 		if card.uid == uid:
@@ -478,13 +485,14 @@ static func is_global_card(card: Dictionary) -> bool:
 
 func spell_cells(card: Dictionary, side: int) -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
+	var global_target: Array[Vector2i] = [Vector2i(-1, -1)]
 	if card.type == "trap": return Traps.targets(self, card, side)
 	if card.effect == "scheduled": return Orders.targets(self, side)
-	if card.effect == "supply": return [Vector2i(-1, -1)] if not supply_cards(side, card.supply).is_empty() else []
-	if card.effect == "reclaim": return [Vector2i(-1, -1)] if not reclaim_cards(side, card.reclaim).is_empty() else []
+	if card.effect == "supply": return global_target if not supply_cards(side, card.supply).is_empty() else result
+	if card.effect == "reclaim": return global_target if not reclaim_cards(side, card.reclaim).is_empty() else result
 	if card.effect == "reveal_traps": return casting_cells(side)
-	if card.effect == "recall_fallen": return [Vector2i(-1, -1)] if not fallen_cards(card, side).is_empty() else []
-	if card.effect == "redeploy": return deployment_cells(side) if not fallen_cards(card, side).is_empty() else []
+	if card.effect == "recall_fallen": return global_target if not fallen_cards(card, side).is_empty() else result
+	if card.effect == "redeploy": return deployment_cells(side) if not fallen_cards(card, side).is_empty() else result
 	if card.effect == "formation" or card.effect == "roadwork":
 		for cell: Vector2i in casting_cells(side):
 			var useful: bool = not Formation.recipients(self, card, cell, side).is_empty() if card.effect == "formation" else passable(cell) and not roadwork_cells(cell, card).is_empty()
@@ -496,10 +504,10 @@ func spell_cells(card: Dictionary, side: int) -> Array[Vector2i]:
 				if ally.side == side and ally.hp < ally.max_hp and distance(ally.pos, cell) <= 1:
 					result.append(cell); break
 		return result
-	if card.effect == "mana": return [Vector2i(-1, -1)] if players[side].mana < 10 else []
-	if card.effect == "clear_weather": return [Vector2i(-1, -1)] if weather != "clear" else []
+	if card.effect == "mana": return global_target if players[side].mana < 10 else result
+	if card.effect == "clear_weather": return global_target if weather != "clear" else result
 	if card.effect in ["draw", "weather"]:
-		return [Vector2i(-1, -1)]
+		return global_target
 	if card.effect == "terrain":
 		for y: int in range(height):
 			for x: int in range(width):
@@ -593,7 +601,7 @@ func card_targets(uid: int, side: int) -> Array[Vector2i]:
 	var instance: Dictionary = hand_card(side, uid)
 	if instance.is_empty():
 		return []
-	var card: Dictionary = definition(instance.card_id)
+	var card: Dictionary = card_for_play(definition(instance.card_id), side)
 	return deployment_cells(side) if card.type == "unit" else spell_cells(card, side)
 
 func damage_preview(attacker: Dictionary, target: Dictionary) -> int:
@@ -696,7 +704,7 @@ func apply_action(action: Dictionary) -> Dictionary:
 		"play":
 			var instance: Dictionary = hand_card(active_side, int(action.get("card_uid", -1)))
 			if instance.is_empty(): return _error("这张牌不在当前玩家手中。")
-			var card: Dictionary = definition(instance.card_id)
+			var card: Dictionary = card_for_play(definition(instance.card_id), active_side)
 			if card.cost > players[active_side].mana: return _error("法力不足，无法使用这张牌。")
 			if not card_targets(instance.uid, active_side).has(cell):
 				if card.get("effect", "") == "recall_fallen": return _error("弃牌堆中没有符合条件的阵亡部队。")
@@ -708,6 +716,8 @@ func apply_action(action: Dictionary) -> Dictionary:
 			# All validation happens before resource payment or zone mutation.
 			players[active_side].mana -= int(card.cost)
 			players[active_side].hand.erase(instance)
+			if combo_ready(card, active_side): _record("「%s」触发连携。" % card.name)
+			hand_played_this_turn = true
 			if card.type == "unit":
 				_resolve_entry(card, _deploy_card(instance, card, cell))
 			elif card.type == "trap": Traps.place(self, instance, card, cell)
@@ -755,6 +765,7 @@ func advance_clock(seconds: float) -> bool:
 
 func _start_turn() -> void:
 	time_remaining = turn_time_limit
+	hand_played_this_turn = false
 	if weather_remaining > 0:
 		weather_remaining -= 1
 		if weather_remaining == 0:
@@ -921,7 +932,13 @@ func _resolve_spell(card: Dictionary, cell: Vector2i) -> void:
 			var damage: int = verdict_damage(card, target)
 			if card.get("shatter", false): target.shield = 0
 			_spell_hit(target, damage)
-			if target.hp <= 0: _draw_reserves(active_side, int(card.get("kill_draw", 0)))
+			if target.hp <= 0:
+				_draw_reserves(active_side, int(card.get("kill_draw", 0)))
+				var player: Dictionary = players[active_side]
+				var refund: int = mini(10 - int(player.mana), int(card.get("kill_mana", 0)))
+				if refund > 0:
+					player.mana += refund
+					_record("「%s」击破目标，返还 %d 点法力。" % [card.name, refund])
 		"commission":
 			_spell_hit(target, int(card.amount))
 			if target.hp <= 0: draw_supply(active_side, card.supply)
@@ -998,8 +1015,8 @@ func _resolve_hero(leader_hero: Dictionary, cell: Vector2i) -> void:
 				if unit.side == active_side and distance(commander(active_side).pos, unit.pos) <= hero_cast_range(active_side): unit.hp = mini(int(unit.max_hp), int(unit.hp) + 2)
 			_draw(active_side, 1)
 
-func _spell_hit(target: Dictionary, amount: int) -> void:
-	Traps.spelled(self, target)
+func _spell_hit(target: Dictionary, amount: int, source_side: int = -1) -> void:
+	Traps.spelled(self, target, active_side if source_side == -1 else source_side)
 	_hurt(target, amount)
 
 func _hurt(target: Dictionary, amount: int) -> void:
@@ -1008,24 +1025,26 @@ func _hurt(target: Dictionary, amount: int) -> void:
 	target.hp -= amount - absorbed
 
 func _cleanup() -> void:
-	var fallen: Array[Dictionary] = []
-	for index: int in range(units.size() - 1, -1, -1):
-		var unit: Dictionary = units[index]
-		if unit.hp <= 0:
+	while true:
+		var fallen: Array[Dictionary] = []
+		for index: int in range(units.size() - 1, -1, -1):
+			var unit: Dictionary = units[index]
+			if unit.hp > 0: continue
 			if unit.has("card"):
 				players[unit.side].discard.append(unit.card)
 				if definition(unit.card.card_id).has("fall"): fallen.append(unit)
 			_record("%s倒下了。" % unit.name)
 			units.remove_at(index)
-	Traps.cleanup(self)
-	# Remove all casualties before any support trigger can affect a survivor.
-	for unit: Dictionary in fallen:
-		var effect: Dictionary = definition(unit.card.card_id).fall
-		_record("%s结算阵亡效果。" % unit.name)
-		Formation.resolve(self, effect, unit.pos, unit.side)
-		_draw_reserves(unit.side, int(effect.get("draw", 0)))
-		draw_supply(unit.side, effect.get("supply", []))
-		recover_reserves(unit.side, effect.get("reclaim", []))
+		Traps.cleanup(self)
+		if fallen.is_empty(): return
+		# Remove each wave of casualties before their effects can hit survivors.
+		for unit: Dictionary in fallen:
+			var effect: Dictionary = definition(unit.card.card_id).fall
+			_record("%s结算阵亡效果。" % unit.name)
+			Formation.resolve(self, effect, unit.pos, unit.side)
+			_draw_reserves(unit.side, int(effect.get("draw", 0)))
+			draw_supply(unit.side, effect.get("supply", []))
+			recover_reserves(unit.side, effect.get("reclaim", []))
 
 func _check_winner() -> void:
 	var blue_alive: bool = not commander(0).is_empty()

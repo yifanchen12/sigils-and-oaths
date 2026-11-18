@@ -65,7 +65,7 @@ func zone_invariants(battle: Battle) -> bool:
 
 func run() -> void:
 	var battle: Battle = fresh()
-	check(battle.CATALOG.cards.size() == 165 and battle.deck_size == 30, "164 collectible definitions plus initiative and 30-card deck")
+	check(battle.CATALOG.cards.size() == 201 and battle.deck_size == 30, "200 collectible definitions plus initiative and 30-card deck")
 	check(battle.players[0].hand.size() == 5 and battle.players[1].hand.size() == 6, "second player opening compensation")
 	check(zone_invariants(battle), "initial zones")
 	var duplicate: Battle = BattleModel.new(42, "classic_greenwood")

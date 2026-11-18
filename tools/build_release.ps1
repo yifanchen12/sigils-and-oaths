@@ -113,6 +113,8 @@ func _initialize() -> void:
         "res://assets/art/expansion/levee-watch-v1.png", "res://assets/art/expansion/levee-orders-v1.png", "res://scripts/timed_orders.gd",
         "res://assets/art/expansion/moorings-scouts-v1.png", "res://assets/art/expansion/moorings-veterans-v1.png",
         "res://assets/art/expansion/moorings-works-v1.png", "res://assets/art/expansion/moorings-tides-v1.png",
+        "res://assets/art/expansion/pilgrim-marches-v1.png", "res://assets/art/expansion/pilgrim-watch-v1.png",
+        "res://assets/art/expansion/pilgrim-wards-v1.png", "res://assets/art/expansion/pilgrim-salvos-v1.png",
         "res://assets/art/battlefields/lamplanding-v2.png", "res://assets/art/narrative/return-morning-v1.png",
         "res://assets/art/battlefields/saltlane-v2.png", "res://assets/art/narrative/saltlane-yard-v1.png",
         "res://assets/art/narrative/quartermaster-desk-v1.png", "res://scripts/campaign_requisition.gd",
@@ -125,12 +127,12 @@ func _initialize() -> void:
             problems.append("missing runtime resource: " + path)
     var catalog = load("res://data/cards.tres")
     var decks = load("res://data/decks.tres")
-    if catalog == null or catalog.cards.size() != 165 or catalog.find("sunken_weir_breach").get("cost") != 10 or catalog.find("unbroken_ember_line").get("effect") != "reclaim":
+    if catalog == null or catalog.cards.size() != 201 or catalog.find("thousand_steps").get("cost") != 10 or catalog.find("bridle_break").get("kill_mana") != 2 or not catalog.find("petal_signal").get("combo", {}).get("refresh_move", false):
         problems.append("expansion card data unavailable")
-    if decks == null or decks.decks.size() != 16 or decks.find("breakwater_line").get("cards", {}).get("sunken_weir_breach") != 1 or decks.find("ember_quarter").get("cards", {}).get("unbroken_ember_line") != 1:
+    if decks == null or decks.decks.size() != 19 or decks.find("chalkline_vanguard").get("cards", {}).get("petal_signal", 0) < 1 or decks.find("cairn_watch").get("cards", {}).get("bellglass_cover", 0) < 1 or decks.find("bellfoundry_column").get("cards", {}).get("thousand_steps", 0) < 1:
         problems.append("expansion preset data unavailable")
     var armory = load("res://scripts/campaign_armory.gd")
-    if armory == null or armory.unlocked_count(7) != 3 or not armory.validate({"reserve": "sunken_weir_breach"}, 7).is_empty():
+    if armory == null or armory.unlocked_count(7) != 3 or not armory.validate({"vanguard": "petal_signal", "reserve": "thousand_steps"}, 7).is_empty():
         problems.append("campaign armory unavailable")
     var report = FileAccess.open(OS.get_cmdline_user_args()[0], FileAccess.WRITE)
     report.store_string(JSON.stringify({"count": entries.size(), "entries": entries, "problems": problems, "ok": problems.is_empty()}, "\t"))

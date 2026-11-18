@@ -6,7 +6,7 @@ const Snapshot = preload("res://scripts/battle_snapshot.gd")
 const AI = preload("res://scripts/opponent.gd")
 const ACTIVE := "res://tests/fixtures/v049-active-court.json"
 const ENDING := "res://tests/fixtures/v048-completed-main.json"
-const SLOT := "res://.tools/v050-armory-model.json"
+var slot_path: String = "res://.tools/armory-model-%d.json" % OS.get_process_id()
 
 var checks: int = 0
 var failures: int = 0
@@ -32,7 +32,7 @@ func test_slots() -> void:
 			check(not unlocked_cards.has(card.id), "a card belongs to just one tier")
 			unlocked_cards.append(card.id)
 			check(int(card.cost) >= int(slot.min_cost) and int(card.cost) <= int(slot.max_cost), "option cost is in the printed band")
-	check(unlocked_cards.size() == 24, "all 24 Mooring Oaths cards enter campaign")
+	check(unlocked_cards.size() == 60, "all 60 Mooring Oaths and Pilgrim March cards can enter campaign")
 	check(not Armory.validate({"vanguard": "quiet_net"}, 1).is_empty(), "opening is locked until chapter two finishes")
 	check(not Armory.validate({"company": "sunken_weir_breach"}, 18).is_empty(), "cannot move heavy card into a cheaper tier")
 	check(not Armory.validate({"reserve": "initiative"}, 18).is_empty(), "generated-only cards cannot be equipped")
@@ -96,27 +96,30 @@ func test_running_save() -> void:
 	var previous = Session.new(ACTIVE)
 	if not check(raw.version == 4 and previous.load_campaign().ok and previous.encounter != null, "v0.49 active encounter opens from the real older build"): return
 	var normalized: Dictionary = JSON.parse_string(JSON.stringify(Snapshot.capture(previous.encounter), "", true, true))
-	check(previous.campaign.armory.is_empty() and normalized == raw.encounter.battle and FileAccess.get_sha256(ACTIVE) == old_digest, "legacy board, timer, decks and bytes remain exact")
-	var session = Session.new(SLOT)
+	var expected: Dictionary = raw.encounter.battle.duplicate(true)
+	expected.version = float(Snapshot.VERSION)
+	expected.rules = Snapshot.rules_signature()
+	check(previous.campaign.armory.is_empty() and normalized == expected and FileAccess.get_sha256(ACTIVE) == old_digest, "legacy board, timer, decks and bytes remain exact")
+	var session = Session.new(slot_path)
 	if not check(session.store.save_progress(raw.progress).ok and session.load_campaign().ok, "old earned court briefing loads with unlocked tiers"): return
 	var token: Dictionary = session.token()
-	var digest: String = FileAccess.get_sha256(SLOT)
+	var digest: String = FileAccess.get_sha256(slot_path)
 	var picks: Dictionary = {"vanguard": "quiet_net", "company": "shoal_arbalest"}
-	check(not session.configure_armory({"reserve": "copper_boltline"}, token).ok and FileAccess.get_sha256(SLOT) == digest, "locked candidate never touches the save")
+	check(not session.configure_armory({"reserve": "copper_boltline"}, token).ok and FileAccess.get_sha256(slot_path) == digest, "locked candidate never touches the save")
 	check(session.choose_requisition("dawn_weir", token).ok, "the authored opening swap remains selectable")
 	check(not session.configure_armory(picks, token).ok, "a stale briefing cannot apply equipment")
 	if not check(session.configure_armory(picks, session.token()).ok and session.campaign.armory == picks, "save the loadout through the normal coordinator"): return
-	var fresh = Session.new(SLOT)
+	var fresh = Session.new(slot_path)
 	if not check(fresh.load_campaign().ok and fresh.campaign.armory == picks and fresh.campaign.requisition == "dawn_weir", "stored briefing has both forms of preparation"): return
 	if not check(fresh.begin_battle(fresh.token()).ok, "equip and start the actual court match"): return
 	var opening: Dictionary = Snapshot.capture(fresh.encounter)
 	check(opening.players[0].hand.any(func(card: Dictionary) -> bool: return card.card_id == "dawn_weir"), "the authored requisition is in the untouched starter hand")
-	digest = FileAccess.get_sha256(SLOT)
-	check(not fresh.configure_armory({}, fresh.token()).ok and FileAccess.get_sha256(SLOT) == digest, "parked or running battle cannot be retuned")
+	digest = FileAccess.get_sha256(slot_path)
+	check(not fresh.configure_armory({}, fresh.token()).ok and FileAccess.get_sha256(slot_path) == digest, "parked or running battle cannot be retuned")
 	var forged: Dictionary = fresh.campaign.snapshot()
 	forged.armory.erase("company")
 	var attempted: Dictionary = {"scenario": fresh.current().scenario, "revision": fresh.current().revision, "battle": opening}
-	check(not fresh.store.save_progress(forged, attempted).ok and FileAccess.get_sha256(SLOT) == digest, "forged campaign choices cannot claim the equipped combat deck")
+	check(not fresh.store.save_progress(forged, attempted).ok and FileAccess.get_sha256(slot_path) == digest, "forged campaign choices cannot claim the equipped combat deck")
 	var battle: Battle = fresh.encounter
 	battle.advance_clock(12.25)
 	var in_progress: Dictionary = Snapshot.capture(battle)
@@ -162,5 +165,7 @@ func run() -> void:
 	test_openings()
 	test_running_save()
 	test_checkpoint_and_failure()
+	for suffix: String in ["", ".bak", ".tmp"]:
+		if FileAccess.file_exists(slot_path + suffix): DirAccess.remove_absolute(slot_path + suffix)
 	print("CAMPAIGN ARMORY %d CHECKS | %d FAILURES | %d EQUIPPED OPENINGS" % [checks, failures, tested_openings])
 	quit(0 if failures == 0 else 1)

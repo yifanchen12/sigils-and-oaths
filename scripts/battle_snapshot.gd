@@ -2,10 +2,11 @@ extends RefCounted
 ## Plain-data snapshots. No object deserialization, rendering or turn-start effects.
 
 const Model = preload("res://scripts/battle.gd")
-const VERSION: int = 10
+const VERSION: int = 11
+const NEW_SET: String = "pilgrim"
 const EXPANSION_CARDS: Array[String] = ["shatter_bolt", "rally_heal", "cleanse_root", "reveal_traps", "seedwood", "anchor_snare", "ember_mine", "oath_ward"]
 const CHANNEL_CARDS: Array[String] = ["span_kit", "countercurrent_ward"]
-const LATER_SETS: Array[String] = ["warfront", "afterglow", "tidegate", "levee", "moorings"]
+const LATER_SETS: Array[String] = ["warfront", "afterglow", "tidegate", "levee", "moorings", NEW_SET]
 const SCALARS: Array[String] = ["active_side", "turn", "winner", "next_id", "match_seed", "deck_size", "weather", "weather_remaining", "turn_time_limit", "time_remaining"]
 const PLAYER_FIELDS: Array[String] = ["hero_id", "deck_id", "mana", "max_mana", "fatigue", "skill_cooldown", "spell_boost_used", "card_total"]
 const UNIT_INTS: Array[String] = ["id", "side", "hp", "max_hp", "atk", "defense", "move", "range", "shield", "last_move_distance", "rooted_turns"]
@@ -23,21 +24,26 @@ const WARFRONT_PRESETS_V043: Dictionary = {
 }
 
 static func rules_signature() -> String:
-	return _relay_signature(Model.CATALOG.cards, Model.DECKS.decks, Model.MAPS.maps)
+	return _relay_signature(Model.CATALOG.cards, Model.DECKS.decks, Model.MAPS.maps, "hand_combo_v1")
 
-static func _relay_signature(cards: Array[Dictionary], decks: Array[Dictionary], maps: Array[Dictionary]) -> String:
-	return JSON.stringify([cards, Model.HEROES.heroes, decks, maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE, "relay_v1"]).sha256_text()
+static func _relay_signature(cards: Array[Dictionary], decks: Array[Dictionary], maps: Array[Dictionary], revision: String = "relay_v1") -> String:
+	return JSON.stringify([cards, Model.HEROES.heroes, decks, maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE, revision]).sha256_text()
+
+static func v050_rules_signature() -> String:
+	var cards: Array[Dictionary] = Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") != NEW_SET)
+	var decks: Array[Dictionary] = Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") != NEW_SET)
+	return _relay_signature(cards, decks, Model.MAPS.maps)
 
 static func v048_rules_signature() -> String:
-	var cards: Array[Dictionary] = Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") != "moorings")
-	var decks: Array[Dictionary] = Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") != "moorings")
+	var cards: Array[Dictionary] = Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") not in ["moorings", NEW_SET])
+	var decks: Array[Dictionary] = Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") not in ["moorings", NEW_SET])
 	return _relay_signature(cards, decks, Model.MAPS.maps)
 
 static func _cards_through_v046() -> Array[Dictionary]:
-	return Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") not in ["levee", "moorings"])
+	return Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") not in ["levee", "moorings", NEW_SET])
 
 static func _presets_through_v046() -> Array[Dictionary]:
-	return Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") not in ["levee", "moorings"])
+	return Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") not in ["levee", "moorings", NEW_SET])
 
 static func v046_rules_signature() -> String:
 	return _relay_signature(_cards_through_v046(), _presets_through_v046(), Model.MAPS.maps)
@@ -158,6 +164,7 @@ static func capture(battle: RefCounted) -> Dictionary:
 	var data: Dictionary = {"version": VERSION, "rules": rules_signature(), "map_id": battle.map_definition.id,
 		"rng_seed": str(battle.rng.seed), "rng_state": str(battle.rng.state), "players": [], "units": [], "terrain": [], "log": battle.log_lines.duplicate()}
 	for key: String in SCALARS: data[key] = battle.get(key)
+	if battle.hand_played_this_turn: data["hand_played_this_turn"] = true
 	data["objective"] = battle.objective.duplicate(true)
 	data["traps"] = []
 	for trap: Dictionary in battle.traps:
@@ -209,6 +216,8 @@ static func validate(data: Variant) -> Dictionary:
 	if not data.get("rules") is String or data.rules.length() != 64: return {"ok": false, "message": "战斗规则签名缺失。"}
 	if data.rules != rules_signature() and (int(version) >= VERSION or not _legacy_rules_match(data)):
 		return {"ok": false, "protected": true, "message": "战斗存档与当前规则版本不同，原档保留。"}
+	if data.has("hand_played_this_turn") and (int(version) < 11 or not data.hand_played_this_turn is bool):
+		return {"ok": false, "message": "回合连携记录无效。"}
 	var goal: Variant = data.get("objective")
 	if int(version) < 8 and (data.get("map_id") == "saltlane" or (goal is Dictionary and Model.ControlObjective.is_escort(goal))):
 		return {"ok": false, "message": "旧版战斗不支持护送任务。"}
@@ -221,6 +230,7 @@ static func validate(data: Variant) -> Dictionary:
 	return {"ok": true} if problem.is_empty() else {"ok": false, "message": problem}
 
 static func _legacy_rules_match(data: Dictionary) -> bool:
+	if int(data.version) == 10: return data.rules == v050_rules_signature()
 	if int(data.version) == 9: return data.rules == v048_rules_signature()
 	if int(data.version) == 8: return data.rules == v046_rules_signature()
 	if int(data.version) == 7: return data.rules == v045_rules_signature()
@@ -395,6 +405,7 @@ static func restore(data: Variant) -> Dictionary:
 			battle.objective["escort_id"] = int(data.objective.escort_id)
 	for key: String in SCALARS:
 		battle.set(key, data[key] if key in ["weather", "turn_time_limit", "time_remaining"] else int(data[key]))
+	battle.hand_played_this_turn = data.get("hand_played_this_turn", false)
 	battle.players.clear()
 	for raw: Dictionary in data.players:
 		var player: Dictionary = {}

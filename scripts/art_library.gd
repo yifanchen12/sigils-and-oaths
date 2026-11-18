@@ -98,7 +98,11 @@ const CARD_ATLASES: Dictionary = {
 	"moorings-scouts-v1": {"columns": 3, "rows": 2, "ids": ["saltfield_runner", "bank_pikeman", "bastion_driller", "shrike_saddler", "sill_physician", "shoal_arbalest"]},
 	"moorings-veterans-v1": {"columns": 3, "rows": 2, "ids": ["oathroad_mender", "undertow_knight", "claywatch_sage", "crownless_vanguard", "wayfinder_writ", "seam_shot"]},
 	"moorings-works-v1": {"columns": 3, "rows": 2, "ids": ["ledger_patch", "scour_the_rakes", "sluice_flags", "cress_ribbon", "levee_echo", "ridge_marking"]},
-	"moorings-tides-v1": {"columns": 3, "rows": 2, "ids": ["narrow_ford_calendar", "copper_boltline", "driftglass_standing", "sunken_weir_breach", "unbroken_ember_line", "quiet_net"]}
+	"moorings-tides-v1": {"columns": 3, "rows": 2, "ids": ["narrow_ford_calendar", "copper_boltline", "driftglass_standing", "sunken_weir_breach", "unbroken_ember_line", "quiet_net"]},
+	"pilgrim-marches-v1": {"columns": 3, "rows": 3, "ids": ["chalk_courier", "ridge_listener", "linen_lantern", "coalroad_broker", "shale_lancer", "bracken_hussar", "cairn_colossus", "bellfoundry_oracle", "whitecord_marshal"]},
+	"pilgrim-watch-v1": {"columns": 3, "rows": 3, "ids": ["kiln_sparks", "marl_shield", "river_wasp", "granary_warden", "page_of_ash", "whetstone_order", "petal_signal", "quarry_tithe", "wicker_ceasefire"]},
+	"pilgrim-wards-v1": {"columns": 3, "rows": 3, "ids": ["twine_knot", "cedar_keel", "tin_ward", "cairn_curtain", "undertread_receipt", "sleet_drums", "cracked_threshold", "bellglass_cover", "dusk_serein"]},
+	"pilgrim-salvos-v1": {"columns": 3, "rows": 3, "ids": ["parcel_seal", "waggon_cut", "lampwave", "bridle_break", "granite_dispatch", "crucible_levy", "citadel_forging", "thousand_steps", "night_convoy_order"]}
 }
 
 static func get_texture(asset_id: String) -> Texture2D:

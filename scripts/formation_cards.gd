@@ -46,7 +46,8 @@ static func _helps(card: Dictionary, unit: Dictionary) -> bool:
 		or can_refresh_attack(card, unit))
 
 static func _hinders(card: Dictionary, unit: Dictionary) -> bool:
-	return int(card.get("damage", 0)) > 0 or (card.get("root", false) and unit.kind != "commander" and unit.rooted_turns < 2)
+	if unit.kind == "commander": return int(card.get("commander_damage", card.get("damage", 0))) > 0
+	return int(card.get("damage", 0)) > 0 or (card.get("root", false) and unit.rooted_turns < 2)
 
 static func can_refresh_move(card: Dictionary, unit: Dictionary) -> bool:
 	return (card.get("refresh_move", false) and unit.kind != "commander" and not unit.summoning
@@ -84,7 +85,7 @@ static func resolve(battle: RefCounted, card: Dictionary, center: Vector2i, side
 		if unit.hp <= 0: continue
 		if change.damage > 0:
 			if card.get("clear_shield", false): unit.shield = 0
-			battle._spell_hit(unit, change.damage)
+			battle._spell_hit(unit, change.damage, side)
 		if not change.friendly:
 			# A hidden spell ward may keep a unit alive through a lethal preview.
 			if unit.hp > 0 and unit.kind != "commander" and card.get("root", false): unit.rooted_turns = maxi(2, int(unit.rooted_turns))

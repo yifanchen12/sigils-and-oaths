@@ -76,7 +76,8 @@ static func value(battle: Battle, action: Dictionary, models: Array[Dictionary])
 		var before: float = exposure(battle, unit, unit.pos, models, unit.pos)
 		return before - exposure(battle, unit, action.target, models, unit.pos)
 	if action.type != "play": return 0.0
-	var card: Dictionary = battle.definition(battle.hand_card(battle.active_side, action.card_uid).card_id)
+	var side: int = battle.active_side
+	var card: Dictionary = battle.card_for_play(battle.definition(battle.hand_card(side, action.card_uid).card_id), side)
 	if card.type != "unit": return 0.0
 	var unit: Dictionary = {"kind": card.kind, "hp": card.hp,
 		"shield": int(card.get("entry", {}).get("self_shield", 0)) + int(battle.weather == "lanterns")}

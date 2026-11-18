@@ -64,12 +64,13 @@ static func stepped(battle: RefCounted, unit: Dictionary) -> void:
 			battle._record("%s本回合失去攻击机会。" % unit.name)
 		if card.has("rally"): battle.Formation.resolve(battle, card.rally, unit.pos, trap.side)
 		if int(card.get("draw", 0)) > 0: battle._draw(trap.side, int(card.draw))
+		battle.draw_supply(trap.side, card.get("supply", []))
 
 static func attacked(battle: RefCounted, defender: Dictionary) -> int:
 	return _protect(battle, defender, "attack")
 
-static func spelled(battle: RefCounted, defender: Dictionary) -> void:
-	if defender.side != battle.active_side: _protect(battle, defender, "spell")
+static func spelled(battle: RefCounted, defender: Dictionary, source_side: int) -> void:
+	if defender.side != source_side: _protect(battle, defender, "spell")
 
 static func _protect(battle: RefCounted, defender: Dictionary, trigger: String) -> int:
 	for trap: Dictionary in battle.traps.duplicate():
@@ -79,6 +80,7 @@ static func _protect(battle: RefCounted, defender: Dictionary, trigger: String) 
 		consume(battle, trap, "触发")
 		defender.hp = mini(int(defender.max_hp), int(defender.hp) + int(card.get("healing", 0)))
 		defender.shield = mini(5, int(defender.shield) + int(card.amount))
+		if card.has("rally"): battle.Formation.resolve(battle, card.rally, defender.pos, trap.side)
 		if int(card.get("draw", 0)) > 0: battle._draw(trap.side, int(card.draw))
 		battle.draw_supply(trap.side, card.get("supply", []))
 		if card.has("reclaim"): battle.recover_reserves(trap.side, card.reclaim)

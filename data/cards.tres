@@ -610,4 +610,148 @@ cards = Array[Dictionary]([{
 "id": "quiet_net", "name": "雁回游线", "short": "雁", "type": "trap", "effect": "trap", "cost": 2, "set_id": "moorings",
 "trigger": "step", "amount": 1, "rally": {"shape": "column", "radius": 1, "shield": 1},
 "text": "伏设于空地。敌军踏入时受到1伤害，该格纵列1格内的己方友军各获1护盾，上限5。", "tag": "陷阱 · 踏入护阵"
+}, {
+"id": "chalk_courier", "name": "粉径递骑", "short": "骑", "type": "unit", "cost": 1, "set_id": "pilgrim",
+"kind": "cavalry", "hp": 3, "atk": 2, "defense": 0, "move": 3, "range": 1, "combo": {"entry": {"supply": [{"type": "spell", "max": 2}]}},
+"text": "连携 · 部署时，从牌库调入一张至多2费的法术。", "tag": "骑兵 · 连携调令"
+}, {
+"id": "ridge_listener", "name": "岭哨弓手", "short": "弓", "type": "unit", "cost": 2, "set_id": "pilgrim",
+"kind": "archer", "hp": 4, "atk": 2, "defense": 0, "move": 2, "range": 2, "entry": {"on_ground": ["hill"], "self_shield": 2},
+"text": "部署于高地时，获得2护盾。", "tag": "弓手 · 高地驻守"
+}, {
+"id": "linen_lantern", "name": "麻灯巡医", "short": "医", "type": "unit", "cost": 3, "set_id": "pilgrim",
+"kind": "healer", "hp": 4, "atk": 1, "defense": 0, "move": 2, "range": 1, "fall": {"target_side": "ally", "shape": "column", "radius": 1, "healing": 2},
+"text": "阵亡时，同一纵列1格内友军各恢复2生命。", "tag": "医师 · 阵亡接应"
+}, {
+"id": "coalroad_broker", "name": "炭道司筹", "short": "步", "type": "unit", "cost": 4, "set_id": "pilgrim",
+"kind": "sword", "hp": 5, "atk": 3, "defense": 0, "move": 3, "range": 1, "entry": {"supply": [{"type": "environment", "max": 4}]}, "combo": {"entry": {"supply": [{"type": "environment", "max": 4}, {"type": "trap", "max": 3}]}},
+"text": "部署时，从牌库调入一张至多4费的环境牌。连携 · 再调入一张至多3费的陷阱。", "tag": "步兵 · 连携双补给"
+}, {
+"id": "shale_lancer", "name": "页岩长枪", "short": "枪", "type": "unit", "cost": 5, "set_id": "pilgrim",
+"kind": "spear", "hp": 5, "atk": 2, "defense": 1, "move": 2, "range": 1, "entry": {"guard": true, "self_shield": 1}, "fall": {"target_side": "enemy", "shape": "cross", "radius": 1, "damage": 2, "commander_damage": 0},
+"text": "部署时获1护盾，援护相邻友军至下个己方回合。阵亡时，相邻普通敌军各受2点术击。", "tag": "枪兵 · 援护与阵亡反击"
+}, {
+"id": "bracken_hussar", "name": "蕨原骑尉", "short": "骑", "type": "unit", "cost": 6, "set_id": "pilgrim",
+"kind": "cavalry", "hp": 5, "atk": 4, "defense": 0, "move": 4, "range": 1, "entry": {"vanguard": true, "self_shield": 1}, "combo": {"entry": {"vanguard": true, "self_shield": 3}},
+"text": "部署后可立即移动一次，并获得1护盾。连携 · 改为获得3护盾。", "tag": "骑兵 · 先遣与连携"
+}, {
+"id": "cairn_colossus", "name": "界碑重卫", "short": "步", "type": "unit", "cost": 8, "set_id": "pilgrim",
+"kind": "sword", "hp": 8, "atk": 5, "defense": 1, "move": 2, "range": 1, "fall": {"target_side": "enemy", "shape": "cross", "radius": 2, "damage": 3, "commander_damage": 1},
+"text": "阵亡时，十字2格内普通敌军各受3点术击，敌方指挥官受1点。", "tag": "步兵 · 十字阵亡反击"
+}, {
+"id": "bellfoundry_oracle", "name": "钟炉卜师", "short": "法", "type": "unit", "cost": 9, "set_id": "pilgrim",
+"kind": "mage", "hp": 6, "atk": 3, "defense": 0, "move": 2, "range": 3, "entry": {"target_side": "enemy", "shape": "column", "radius": 2, "damage": 3, "commander_damage": 1, "clear_shield": true},
+"text": "部署时，移除同纵列2格内敌军的护盾。普通敌军各受3点术击，敌方指挥官受1点。", "tag": "法师 · 纵列进场破盾"
+}, {
+"id": "whitecord_marshal", "name": "白绳枪帅", "short": "枪", "type": "unit", "cost": 10, "set_id": "pilgrim",
+"kind": "spear", "hp": 9, "atk": 4, "defense": 1, "move": 2, "range": 1, "entry": {"target_side": "ally", "shape": "column", "radius": 2, "guard": true, "self_shield": 1, "shield": 1, "cleanse": true}, "fall": {"target_side": "ally", "shape": "column", "radius": 2, "healing": 2},
+"text": "部署时获1护盾并援护相邻友军。同纵列2格内友军各获1护盾并解缚。阵亡时，同纵列2格内友军各恢复2生命。", "tag": "枪兵 · 纵列援护"
+}, {
+"id": "kiln_sparks", "name": "手炉学徒", "short": "法", "type": "unit", "cost": 1, "set_id": "pilgrim",
+"kind": "mage", "hp": 3, "atk": 1, "defense": 0, "move": 2, "range": 2, "combo": {"entry": {"target_side": "enemy", "shape": "cross", "radius": 1, "damage": 1, "commander_damage": 0}},
+"text": "连携 · 部署时，相邻普通敌军各受1点术击。", "tag": "法师 · 连携进场"
+}, {
+"id": "marl_shield", "name": "泥盾哨卫", "short": "枪", "type": "unit", "cost": 3, "set_id": "pilgrim",
+"kind": "spear", "hp": 5, "atk": 2, "defense": 0, "move": 2, "range": 1, "entry": {"self_shield": 1}, "combo": {"entry": {"self_shield": 1, "guard": true}},
+"text": "部署时获1护盾。连携 · 援护相邻友军至下个己方回合。", "tag": "枪兵 · 连携援护"
+}, {
+"id": "river_wasp", "name": "苇刺弓手", "short": "弓", "type": "unit", "cost": 5, "set_id": "pilgrim",
+"kind": "archer", "hp": 4, "atk": 3, "defense": 0, "move": 2, "range": 3, "fall": {"target_side": "enemy", "shape": "row", "radius": 1, "damage": 2, "commander_damage": 0, "draw": 1},
+"text": "阵亡时，同横列相邻的普通敌军各受2点术击。若牌库有牌，抽1张。", "tag": "弓手 · 阵亡横射"
+}, {
+"id": "granary_warden", "name": "谷仓护理长", "short": "医", "type": "unit", "cost": 7, "set_id": "pilgrim",
+"kind": "healer", "hp": 6, "atk": 2, "defense": 0, "move": 2, "range": 1, "entry": {"supply": [{"type": "unit", "min": 4, "max": 6}, {"type": "spell", "max": 3}]}, "fall": {"target_side": "ally", "shape": "cross", "radius": 1, "shield": 1},
+"text": "部署时调入一张4至6费部队和一张至多3费法术。阵亡时，相邻友军各获1护盾。", "tag": "医师 · 调令与殿后"
+}, {
+"id": "page_of_ash", "name": "灰页护符", "short": "灰", "type": "spell", "cost": 1, "set_id": "pilgrim",
+"effect": "formation", "target_side": "ally", "shape": "cross", "radius": 0, "shield": 1, "combo": {"shield": 2},
+"text": "一名友军获得1护盾。连携 · 改为获得2护盾。", "tag": "法术 · 连携护盾"
+}, {
+"id": "whetstone_order", "name": "砥刃短令", "short": "砥", "type": "spell", "cost": 2, "set_id": "pilgrim",
+"effect": "verdict", "when": "wounded", "amount": 2, "bonus": 2, "combo": {"kill_mana": 1},
+"text": "对普通敌军造成2伤害，目标已受伤则改为4伤害。连携 · 击破时返还1点本回合法力。", "tag": "法术 · 追伤回费"
+}, {
+"id": "petal_signal", "name": "落花信号", "short": "花", "type": "spell", "cost": 3, "set_id": "pilgrim",
+"effect": "formation", "target_side": "ally", "shape": "column", "radius": 1, "shield": 1, "cleanse": true, "combo": {"refresh_move": true},
+"text": "目标纵列1格内友军各获1护盾并解缚。连携 · 其中已走未打、且本回合可行动的普通部队恢复移动。", "tag": "法术 · 连携再动"
+}, {
+"id": "quarry_tithe", "name": "采石税令", "short": "税", "type": "spell", "cost": 4, "set_id": "pilgrim",
+"effect": "verdict", "when": "shielded", "amount": 2, "bonus": 3, "combo": {"shatter": true, "kill_mana": 2},
+"text": "对普通敌军造成2伤害，有盾则改为5伤害。连携 · 若有盾，先按原护盾计算伤害，再移除护盾；击破返还2点法力。", "tag": "法术 · 连携破盾回费"
+}, {
+"id": "wicker_ceasefire", "name": "柳篱封列", "short": "篱", "type": "spell", "cost": 6, "set_id": "pilgrim",
+"effect": "formation", "target_side": "enemy", "shape": "row", "radius": 2, "damage": 2, "commander_damage": 0, "root": true, "combo": {"damage": 3},
+"text": "目标横列2格内普通敌军各受2伤害，存活者下回合定身。连携 · 改为3伤害。", "tag": "法术 · 横列缚足"
+}, {
+"id": "twine_knot", "name": "麻绳套结", "short": "结", "type": "trap", "cost": 1, "set_id": "pilgrim",
+"effect": "trap", "trigger": "step", "amount": 0, "root": true,
+"text": "伏设在空地。敌军主动踏入后停止余下移动，并在本回合定身。", "tag": "陷阱 · 踏入止步"
+}, {
+"id": "cedar_keel", "name": "雪松铺径", "short": "径", "type": "environment", "cost": 2, "set_id": "pilgrim",
+"effect": "roadwork", "terrain": "road", "shape": "column", "radius": 1, "combo": {"reinforce": 1},
+"text": "目标纵列1格内将合法地格改为军道。连携 · 变更格上的友军各获1护盾。", "tag": "地形 · 连携铺路"
+}, {
+"id": "tin_ward", "name": "锡片回护", "short": "锡", "type": "trap", "cost": 3, "set_id": "pilgrim",
+"effect": "trap", "trigger": "attack", "amount": 1, "rally": {"target_side": "ally", "shape": "column", "radius": 1, "healing": 1}, "retort": 1,
+"text": "伏设于友军。承受下一次普攻前，保护对象获1护盾，同纵列1格内友军各恢复1生命，并对攻击者回敬1伤害。", "tag": "陷阱 · 受击援治"
+}, {
+"id": "cairn_curtain", "name": "界石列垒", "short": "垒", "type": "environment", "cost": 4, "set_id": "pilgrim",
+"effect": "roadwork", "terrain": "fort", "shape": "column", "radius": 1, "combo": {"reinforce": 2},
+"text": "目标纵列1格内将合法地格改为工事。连携 · 变更格上的友军各获2护盾。双方都可利用工事。", "tag": "地形 · 连携筑垒"
+}, {
+"id": "undertread_receipt", "name": "踏线催调", "short": "催", "type": "trap", "cost": 5, "set_id": "pilgrim",
+"effect": "trap", "trigger": "step", "amount": 2, "disarm": true, "supply": [{"type": "spell", "max": 3}],
+"text": "伏设在空地。敌军踏入时受2伤害并耗掉本回合的攻击机会。己方从牌库调入一张至多3费法术。", "tag": "陷阱 · 踏入断攻补给"
+}, {
+"id": "sleet_drums", "name": "霜鼓行道", "short": "鼓", "type": "environment", "cost": 6, "set_id": "pilgrim",
+"effect": "weather", "weather": "snow", "duration": 4, "rally": {"target_side": "ally", "shape": "row", "radius": 2, "shield": 1}, "draw": 1, "combo": {"draw": 2},
+"text": "全场寒潮持续4个行动回合。己方指挥官同横列2格内友军各获1护盾。若牌库有牌，抽1张。连携 · 改为最多2张。", "tag": "天气 · 连携补手"
+}, {
+"id": "cracked_threshold", "name": "崩槛暗钉", "short": "钉", "type": "trap", "cost": 7, "set_id": "pilgrim",
+"effect": "trap", "trigger": "step", "amount": 4, "clear_shield": true, "root": true,
+"text": "伏设在空地。敌军踏入时先失去全部护盾，再受4伤害。存活者停止余下移动，本回合定身。", "tag": "陷阱 · 破盾止步"
+}, {
+"id": "bellglass_cover", "name": "蓝钟护印", "short": "印", "type": "trap", "cost": 8, "set_id": "pilgrim",
+"effect": "trap", "trigger": "spell", "amount": 4, "rally": {"target_side": "ally", "shape": "column", "radius": 1, "healing": 2, "shield": 1},
+"text": "伏设于友军。下一次敌方术击前，保护对象获4护盾。同纵列1格内友军各恢复2生命，再各获1护盾。", "tag": "陷阱 · 术击护阵"
+}, {
+"id": "dusk_serein", "name": "暮雨归营", "short": "雨", "type": "environment", "cost": 9, "set_id": "pilgrim",
+"effect": "weather", "weather": "rain", "duration": 6, "rally": {"target_side": "ally", "shape": "cross", "radius": 2, "healing": 3, "cleanse": true}, "supply": [{"type": "trap", "max": 6}],
+"text": "全场暴雨持续6个行动回合。己方指挥官十字2格内友军各恢复3生命并解缚，再从牌库调入一张至多6费陷阱。", "tag": "天气 · 救援补阵"
+}, {
+"id": "parcel_seal", "name": "封绳补给", "short": "封", "type": "spell", "cost": 2, "set_id": "pilgrim",
+"effect": "supply", "supply": [{"type": "environment", "max": 3}], "combo": {"supply": [{"type": "environment", "max": 3}, {"type": "unit", "max": 2}]},
+"text": "调入一张至多3费的环境牌。连携 · 再调入一张至多2费的部队。至少须有一张可调入。", "tag": "法术 · 连携调兵"
+}, {
+"id": "waggon_cut", "name": "截辙横令", "short": "辙", "type": "spell", "cost": 4, "set_id": "pilgrim",
+"effect": "formation", "target_side": "enemy", "shape": "row", "radius": 2, "damage": 2, "commander_damage": 1, "rally_shield": 1, "combo": {"rally_shield": 2},
+"text": "目标横列2格内普通敌军各受2伤害，敌方指挥官受1伤害。友军各获1护盾。连携 · 友军改获2护盾。", "tag": "法术 · 横列攻守"
+}, {
+"id": "lampwave", "name": "回灯一线", "short": "灯", "type": "spell", "cost": 5, "set_id": "pilgrim",
+"effect": "formation", "target_side": "ally", "shape": "row", "radius": 2, "healing": 2, "combo": {"shield": 1, "cleanse": true},
+"text": "目标横列2格内友军各恢复2生命。连携 · 还各获1护盾并解除定身。", "tag": "法术 · 连携救援"
+}, {
+"id": "bridle_break", "name": "断辔合围", "short": "辔", "type": "spell", "cost": 6, "set_id": "pilgrim",
+"effect": "verdict", "when": "flanked", "amount": 3, "bonus": 3, "kill_mana": 2,
+"text": "对普通敌军造成3伤害。目标上下左右至少有两名我方普通部队时，改为6伤害。击破时返还2点本回合法力。", "tag": "法术 · 夹击回费"
+}, {
+"id": "granite_dispatch", "name": "岩哨封路", "short": "岩", "type": "spell", "cost": 7, "set_id": "pilgrim",
+"effect": "scheduled", "target_side": "enemy", "shape": "row", "radius": 3, "damage": 4, "commander_damage": 1, "root": true,
+"text": "公开标记横列。下个己方回合开始时，目标横列3格内普通敌军各受4伤害，存活者定身；敌方指挥官受1伤害。", "tag": "军令 · 横列延迟封路"
+}, {
+"id": "crucible_levy", "name": "坩炉征调", "short": "炉", "type": "spell", "cost": 8, "set_id": "pilgrim",
+"effect": "formation", "target_side": "enemy", "shape": "cross", "radius": 2, "damage": 4, "commander_damage": 2, "reclaim": [{"type": "environment", "max": 3}], "combo": {"damage": 5},
+"text": "目标十字2格内普通敌军各受4伤害，指挥官受2伤害。收回弃牌堆最近一张至多3费环境牌。连携 · 普通敌军改受5伤害。", "tag": "法术 · 连携与回收"
+}, {
+"id": "citadel_forging", "name": "城垛重锻", "short": "锻", "type": "spell", "cost": 9, "set_id": "pilgrim",
+"effect": "formation", "target_side": "ally", "shape": "cross", "radius": 2, "shield": 2, "healing": 2, "refresh_move": true, "draw": 1,
+"text": "目标十字2格内友军各恢复2生命并获2护盾。已走未打且可行动的普通部队恢复移动。若牌库有牌，抽1张。", "tag": "法术 · 十字复整"
+}, {
+"id": "thousand_steps", "name": "千阶裂阵", "short": "阶", "type": "spell", "cost": 10, "set_id": "pilgrim",
+"effect": "formation", "target_side": "enemy", "shape": "column", "radius": 3, "damage": 5, "commander_damage": 2, "rally_shield": 2,
+"text": "目标纵列3格内普通敌军各受5伤害，敌方指挥官受2伤害，友军各获2护盾。", "tag": "法术 · 纵列攻守"
+}, {
+"id": "night_convoy_order", "name": "夜车接应令", "short": "车", "type": "environment", "cost": 10, "set_id": "pilgrim",
+"effect": "scheduled", "target_side": "ally", "shape": "cross", "radius": 3, "healing": 3, "shield": 3, "cleanse": true,
+"text": "公开标记十字。下个己方回合开始时，目标十字3格内友军各恢复3生命、获得3护盾并解除定身。", "tag": "军令 · 十字延迟救援"
 }])

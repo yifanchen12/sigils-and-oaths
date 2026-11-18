@@ -83,4 +83,16 @@ decks = Array[Dictionary]([{
 "cards": {"saltfield_runner": 2, "bank_pikeman": 2, "bastion_driller": 1, "reed_watch": 1, "sill_physician": 2, "oathroad_mender": 1, "undertow_knight": 1, "claywatch_sage": 1,
 "gate_veteran": 1, "ridge_pioneer": 2, "mage": 2, "healer": 1, "wayfinder_writ": 1, "ledger_patch": 1, "sluice_flags": 1, "cress_ribbon": 2, "levee_echo": 1,
 "narrow_ford_calendar": 1, "driftglass_standing": 1, "unbroken_ember_line": 1, "quiet_net": 1, "bolt": 2, "copper_boltline": 1}
+}, {
+"id": "chalkline_vanguard", "name": "粉径先遣", "set_id": "pilgrim", "description": "低费递骑、学徒和补给连续出牌。连携抢位、挖出后续法术，再把已经走过的部队送上前线。",
+"cards": {"chalk_courier": 2, "kiln_sparks": 2, "ridge_listener": 1, "marl_shield": 1, "coalroad_broker": 1, "bracken_hussar": 2, "cinder_runner": 1, "ridge_pioneer": 1, "shoal_arbalest": 1, "sword": 3, "mage": 2, "spear": 1,
+"page_of_ash": 1, "whetstone_order": 1, "petal_signal": 1, "cedar_keel": 1, "parcel_seal": 1, "waggon_cut": 1, "wicker_ceasefire": 1, "sleet_drums": 1, "twine_knot": 1, "bolt": 1, "bridle_break": 1, "thousand_steps": 1}
+}, {
+"id": "cairn_watch", "name": "界碑守望", "set_id": "pilgrim", "description": "把援护和手牌伏设叠在同一条防线上。阵亡反击惩罚贴身换子，以白绳枪帅和夜车接应令重整队形。",
+"cards": {"linen_lantern": 3, "shale_lancer": 3, "river_wasp": 2, "cairn_colossus": 1, "granary_warden": 2, "whitecord_marshal": 1, "archer": 2, "lamp_patrol": 2, "gate_veteran": 2,
+"tin_ward": 2, "undertread_receipt": 1, "bellglass_cover": 1, "cracked_threshold": 1, "dusk_serein": 1, "lampwave": 2, "night_convoy_order": 1, "clear_skies": 1, "cairn_curtain": 1, "quarry_tithe": 1}
+}, {
+"id": "bellfoundry_column", "name": "钟炉军列", "set_id": "pilgrim", "description": "低费部队打开夹击角度，让断辔合围返还法力。铺垒改变战线，再以岩哨封路和千阶裂阵处理成列敌军。",
+"cards": {"chalk_courier": 2, "kiln_sparks": 2, "ridge_listener": 2, "marl_shield": 2, "coalroad_broker": 2, "bracken_hussar": 1, "shale_lancer": 1, "bellfoundry_oracle": 1, "mage": 2, "granary_warden": 1, "ash_notary": 1, "ridge_archer": 1,
+"quarry_tithe": 1, "bridle_break": 1, "granite_dispatch": 1, "crucible_levy": 1, "citadel_forging": 1, "thousand_steps": 1, "waggon_cut": 1, "cairn_curtain": 1, "sleet_drums": 1, "parcel_seal": 1, "bolt": 1, "slate_grid": 1}
 }])

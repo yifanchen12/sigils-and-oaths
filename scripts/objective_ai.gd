@@ -87,7 +87,7 @@ static func value(battle: Battle, action: Dictionary, context: Dictionary) -> fl
 			if copy.id == forecast.defender_id: copy.hp -= int(forecast.target_loss)
 			if copy.id == unit.id: copy.hp -= int(forecast.attacker_loss)
 	elif action.type == "play":
-		var card: Dictionary = battle.definition(battle.hand_card(side, action.card_uid).card_id)
+		var card: Dictionary = battle.card_for_play(battle.definition(battle.hand_card(side, action.card_uid).card_id), side)
 		if card.type == "unit":
 			projected.append({"id": -1, "kind": card.kind, "hp": card.hp, "side": side, "pos": action.target})
 			added = card.id
@@ -155,7 +155,7 @@ static func _escort_value(battle: Battle, action: Dictionary, context: Dictionar
 		if hit.defender_id == escort.id: return _escort_hit(escort, int(hit.target_loss))
 		return 0.0
 	if action.type == "play":
-		var card: Dictionary = battle.definition(battle.hand_card(side, action.card_uid).card_id)
+		var card: Dictionary = battle.card_for_play(battle.definition(battle.hand_card(side, action.card_uid).card_id), side)
 		if card.type == "unit" or card.get("effect", "") == "redeploy":
 			if action.target == exit_cell: return -70.0 if side == 0 else 38.0
 			var nearby: float = maxf(0.0, 5.0 - battle.distance(action.target, escort.pos))

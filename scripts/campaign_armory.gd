@@ -16,7 +16,7 @@ static func unlocked_count(completed: int) -> int:
 	return count
 
 static func _fits(slot: Dictionary, card: Dictionary) -> bool:
-	return (card.get("set_id", "") == "moorings" and not card.get("generated_only", false)
+	return (card.get("set_id", "") in ["moorings", "pilgrim"] and not card.get("generated_only", false)
 		and int(card.cost) >= int(slot.min_cost) and int(card.cost) <= int(slot.max_cost))
 
 static func options(slot: Dictionary) -> Array[Dictionary]:

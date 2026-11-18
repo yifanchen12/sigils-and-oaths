@@ -23,15 +23,16 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 		"play":
 			var instance: Dictionary = battle.hand_card(side, int(action.get("card_uid", -1)))
 			if instance.is_empty(): return {}
-			var card: Dictionary = battle.definition(instance.card_id)
+			var card: Dictionary = battle.card_for_play(battle.definition(instance.card_id), side)
 			if card.cost > battle.players[side].mana or not battle.card_targets(instance.uid, side).has(cell): return {}
 			title = card.name
 			effect = str(card.get("effect", ""))
+			var combo_note: String = "\n连携已就绪，预估按强化效果计算。" if battle.combo_ready(card, side) else ""
 			var entry: Dictionary = card.get("entry", {})
 			if (entry.get("target_side", "") == "enemy" or entry.has("shape")) and battle.entry_active(entry, cell):
-				return _formation_preview(battle, card, entry, cell, side)
+				return _formation_preview(battle, card, entry, cell, side, combo_note)
 			if effect == "formation":
-				return _formation_preview(battle, card, card, cell, side)
+				return _formation_preview(battle, card, card, cell, side, combo_note)
 			if effect == "scheduled":
 				var note: String = "落点公开。对手有一个完整回合调整站位，军令在第 %d 回合开始时生效。\n%s" % [battle.turn + 2, card.text]
 				return {"title": title, "effect": effect, "art": card.id, "amount": int(card.get("damage", 0)), "target_id": -1, "changes": [],
@@ -54,7 +55,7 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 				var note: String = "标出的格子将成为%s，桥梁和不可通行地形保留。" % battle.TERRAIN[ground].name
 				if ground == "fort": note += "\n双方均可利用地形防御。"
 				return {"title": title, "effect": effect, "art": card.id, "amount": 0, "target_id": -1, "changes": gains,
-					"cells": sites, "ground_name": battle.TERRAIN[ground].name, "note": note}
+					"cells": sites, "ground_name": battle.TERRAIN[ground].name, "note": note + combo_note}
 			if effect == "redeploy":
 				var troop: Dictionary = battle.definition(battle.fallen_cards(card, side)[0].card_id)
 				var shield: int = int(card.get("self_shield", 0)) + int(battle.weather == "lanterns")
@@ -76,9 +77,10 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 				var note: String = "预估按公开战况计算，隐藏陷阱可能改写结果。"
 				if card.get("shatter", false) and target.shield > 0: note = "先清除当前护盾。\n" + note
 				if card.has("kill_draw") and change.hp_after == 0 and not battle.players[side].deck.is_empty(): note = "若击破目标，抽1张。\n" + note
+				if card.has("kill_mana"): note = "若击破目标，返还 %d 点本回合法力。\n" % int(card.kill_mana) + note
 				if card.when == "flanked": note = ("已达成两面夹击。" if amount > card.amount else "尚未达成两面夹击。") + "\n" + note
 				if card.when == "isolated": note = ("目标处于孤立。" if amount > card.amount else "目标有相邻友军。") + "\n" + note
-				return {"title": title, "effect": effect, "art": card.id, "amount": amount, "target_id": target.id, "changes": [change], "note": note}
+				return {"title": title, "effect": effect, "art": card.id, "amount": amount, "target_id": target.id, "changes": [change], "note": note + combo_note}
 			if effect not in ["damage", "area", "heal", "shield", "dispel", "repulse", "shatter_bolt", "rally_heal", "cleanse_root"]: return {}
 			if effect in ["damage", "area", "shatter_bolt"]: amount = battle.spell_damage(card, side)
 			elif effect == "repulse": amount = int(card.amount) + (1 if battle.repulse_destination(target, side) == cell else 0)
@@ -118,7 +120,7 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 	if str(action.get("type", "")) == "unit_skill": note += "\n消耗1法力，结束施术部队的行动。"
 	return {"title": title, "effect": effect, "amount": amount, "target_id": target.get("id", -1), "changes": changes, "note": note}
 
-static func _formation_preview(battle: Battle, card: Dictionary, spec: Dictionary, cell: Vector2i, side: int) -> Dictionary:
+static func _formation_preview(battle: Battle, card: Dictionary, spec: Dictionary, cell: Vector2i, side: int, combo_note: String) -> Dictionary:
 	var note: String = "预估按公开战况计算，实际结算可能触发隐藏陷阱。"
 	if spec.has("grounds"):
 		var names := PackedStringArray()
@@ -131,7 +133,7 @@ static func _formation_preview(battle: Battle, card: Dictionary, spec: Dictionar
 		if not cards.is_empty(): note += "\n可从弃牌堆收回%d张，受手牌上限约束。" % cards.size()
 	return {"title": card.name, "effect": "formation", "art": card.id, "amount": battle.Formation.damage(battle, spec, side), "target_id": -1,
 		"changes": battle.Formation.changes(battle, spec, cell, side), "cells": battle.Formation.footprint(battle, cell, int(spec.get("radius", 1)), str(spec.get("shape", ""))),
-		"commander_amount": battle.Formation.damage(battle, spec, side, true), "note": note}
+		"commander_amount": battle.Formation.damage(battle, spec, side, true), "note": note + combo_note}
 
 static func _change(unit: Dictionary, effect: String, amount: int) -> Dictionary:
 	var hp: int = unit.hp

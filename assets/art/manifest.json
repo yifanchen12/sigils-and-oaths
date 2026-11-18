@@ -2245,6 +2245,58 @@
       "role": "Painted coastal storeroom behind the campaign armory.",
       "processing": "Original generated PNG displayed as a cover crop.",
       "validation": "tests/test_campaign_armory_ui.gd"
+    },
+    {
+      "id": "pilgrim-marches-v1",
+      "path": "assets/art/expansion/pilgrim-marches-v1.png",
+      "source_filename": "exec-c0db64ef-40f0-4b1d-b716-5aa02634f3db.png",
+      "prompt_file": "assets/art/expansion/pilgrim-source.md",
+      "size": [1254, 1254],
+      "mode": "RGB",
+      "sha256": "ddb6614c71dd73a0d528f1b8d6ff1249a39563d3c6628dc77eb22d41974d3a51",
+      "source_bytes_preserved": true,
+      "role": "Nine unit portraits for the Stone Ridge March set.",
+      "processing": "Original generated PNG. Godot reads the nine regular square tiles with a two-pixel inset.",
+      "validation": "tests/test_pilgrim_cards.gd and tests/test_pilgrim_native_ui.gd"
+    },
+    {
+      "id": "pilgrim-watch-v1",
+      "path": "assets/art/expansion/pilgrim-watch-v1.png",
+      "source_filename": "exec-26e0630e-3548-43ec-aff1-b7f7bbe55c96.png",
+      "prompt_file": "assets/art/expansion/pilgrim-source.md",
+      "size": [1254, 1254],
+      "mode": "RGB",
+      "sha256": "12be714149745490eeaa4fb181c943689794c8f4b383022d6a6c9332416027b9",
+      "source_bytes_preserved": true,
+      "role": "Four unit portraits and five support or attack spells.",
+      "processing": "Original generated PNG. Godot reads the nine regular square tiles with a two-pixel inset.",
+      "validation": "tests/test_pilgrim_cards.gd and tests/test_pilgrim_native_ui.gd"
+    },
+    {
+      "id": "pilgrim-wards-v1",
+      "path": "assets/art/expansion/pilgrim-wards-v1.png",
+      "source_filename": "exec-309a1523-cb46-47fe-b432-aade8544382d.png",
+      "prompt_file": "assets/art/expansion/pilgrim-source.md",
+      "size": [1254, 1254],
+      "mode": "RGB",
+      "sha256": "417280242c965759b72ccd60ea05b8103cc3c10605d1ef645c8b726b64ecaadc",
+      "source_bytes_preserved": true,
+      "role": "Five hand traps and four weather or terrain compositions.",
+      "processing": "Original generated PNG. Godot reads the nine regular square tiles with a two-pixel inset.",
+      "validation": "tests/test_pilgrim_cards.gd and tests/test_pilgrim_native_ui.gd"
+    },
+    {
+      "id": "pilgrim-salvos-v1",
+      "path": "assets/art/expansion/pilgrim-salvos-v1.png",
+      "source_filename": "exec-84bd7594-6d37-45d9-92b1-723e53c2ad98.png",
+      "prompt_file": "assets/art/expansion/pilgrim-source.md",
+      "size": [1254, 1254],
+      "mode": "RGB",
+      "sha256": "5e2b709d9170a9f1d13b0188ecebddf7cb352fb92d402ea635a9e16f0d6fe2d7",
+      "source_bytes_preserved": true,
+      "role": "Eight spells and the Night Convoy order.",
+      "processing": "Original generated PNG. Godot reads the nine regular square tiles with a two-pixel inset.",
+      "validation": "tests/test_pilgrim_cards.gd and tests/test_pilgrim_native_ui.gd"
     }
   ]
 }

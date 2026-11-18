@@ -20,6 +20,7 @@ var illustration: Texture2D
 var deck_copies: int = -1
 var compact: bool = false
 var hotkey_number: int = 0
+var combo_lit: bool = false
 var hover_blend: float = 0.0
 var hover_tween: Tween
 
@@ -53,6 +54,7 @@ func configure(definition: Dictionary, uid: int, mana: int, selected: bool, lock
 	chosen = selected
 	disabled = locked
 	tooltip_text = "%s · %d 费\n%s\n%s" % [card.name, card.cost, card.tag, card.text]
+	if combo_lit: tooltip_text += "\n连携已就绪。"
 	if card.type == "unit":
 		tooltip_text += "\n攻击 %d · 生命 %d · 防御 %d · 移动 %d · 射程 %d" % [card.atk, card.hp, card.defense, card.move, card.range]
 		var skill: Dictionary = Catalog.find(card.kind).get("skill", {})
@@ -104,6 +106,10 @@ func _draw() -> void:
 	draw_circle(badge, 12, Color("172c40"))
 	draw_arc(badge, 12, 0, TAU, 32, GOLD, 1, true)
 	draw_symbol(self, str(card.get("kind", card.get("weather", card.get("terrain", card.get("effect", "draw"))))), badge, 8, accent)
+	if combo_lit:
+		var ribbon := Rect2(art_rect.position.x + 4, art_rect.end.y - 21, 43, 17)
+		draw_rect(ribbon, Color("172c40"))
+		_center("连携", ribbon.get_center() + Vector2(0, 4), 12, TEAL)
 	if hotkey_number > 0:
 		draw_rect(Rect2(Vector2(size.x - 23, art_rect.end.y - 21), Vector2(19, 20)), Color("172c40"))
 		_center(str(hotkey_number), Vector2(size.x - 14, art_rect.end.y - 5), 12, INK)
