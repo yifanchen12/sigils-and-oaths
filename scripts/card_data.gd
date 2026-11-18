@@ -2,7 +2,7 @@ class_name CardData
 extends Resource
 ## Immutable card definitions; runtime card instances contain only uid + card_id.
 
-const SET_NAMES: Dictionary = {"warfront": "前线扩牌", "afterglow": "余烬回声"}
+const SET_NAMES: Dictionary = {"warfront": "前线扩牌", "afterglow": "余烬回声", "tidegate": "潮门后备"}
 
 @export var cards: Array[Dictionary] = []
 

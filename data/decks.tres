@@ -55,4 +55,14 @@ decks = Array[Dictionary]([{
 "kiln_wardens": 1, "last_bridge_clinic": 1, "mage": 1, "gate_veteran": 1,
 "quiet_veil": 2, "salt_marker": 1, "mirror_anchor": 1, "dew_wall": 1, "lamplight_shift": 1, "coast_drizzle": 1,
 "last_bell": 1, "oath_deliberation": 1, "valley_reckoner": 1, "return_manifest": 1, "bolt": 2}
+}, {
+"id": "tideline_raiders", "name": "折潮快旗", "set_id": "tidegate", "description": "先遣部队部署即抢位，再用两面夹击和暗格破盾。留一张静潮断甲令收拾密集的敌阵。",
+"cards": {"sword": 1, "cinder_runner": 2, "ridge_pioneer": 3, "reed_harrier": 2, "byway_guard": 1, "kiln_outrider": 2, "storm_saddle": 1, "sunbreak_column": 1, "night_surveyor": 1, "archer": 2,
+"first_wake": 1, "two_shore_claim": 2, "stragglers_writ": 1, "lantern_stretcher": 1, "split_the_pier": 1, "open_the_ranks": 1, "tidewall_verdict": 1,
+"copper_buckle": 1, "chalk_spike": 1, "mud_sluice": 1, "seagate_sting": 1, "turning_bastion": 1, "wind_banner": 1}
+}, {
+"id": "reserve_company", "name": "回港后备军", "set_id": "tidegate", "description": "用枪卫殿后、军医牵回和手牌伏设稳住阵线。随后取回阵亡部队，或让它们在前沿重新部署。",
+"cards": {"spear": 2, "mage": 1, "quay_salver": 2, "byway_guard": 2, "sandbar_physician": 1, "night_surveyor": 1, "levee_marshal": 1, "indigo_gate_mage": 1, "sword": 2, "archer": 1, "cavalry": 1,
+"sealed_roll": 1, "field_muster": 1, "remember_the_company": 1, "slate_grid": 1, "last_rollcall": 1, "split_sentence": 1, "first_wake": 1, "lantern_stretcher": 1, "ward": 1,
+"rain_cloak": 1, "iron_undertow": 1, "watchtower_cage": 1, "camp_screen": 1, "rain_break": 1, "winter_watch": 1}
 }])

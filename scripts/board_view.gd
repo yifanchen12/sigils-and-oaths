@@ -186,7 +186,8 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 		var actors: Dictionary = {}
 		for old: Dictionary in before: actors[old.id] = old
 		if actors.has(action.unit_id) and actors.has(forecast.defender_id):
-			action_duration = 0.40 if reduced_motion else (1.0 if forecast.counter_damage > 0 else 0.66)
+			var reply: bool = forecast.counter_damage > 0 or forecast.get("retort_damage", 0) > 0
+			action_duration = 0.40 if reduced_motion else (1.0 if reply else 0.66)
 			combat = {"attacker": actors[action.unit_id], "defender": actors[forecast.defender_id],
 				"protected": actors[forecast.protected_id], "forecast": forecast, "age": 0.0, "duration": action_duration}
 	var pose_action: bool = action.type == "hero" or (action.type == "unit_skill" and action.get("unit_kind", "") != "cavalry") or (action.type == "play" and action.get("card_type", "") in ["spell", "environment"])
@@ -221,16 +222,19 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 			_effect("spawn", current.pos, "追击", GOLD, 0.8)
 		if old.moved and not current.moved and (action.get("spell_effect", "") == "formation" or action.get("card_type", "") == "unit"):
 			_effect("spawn", current.pos, "恢复移动", BLUE, 0.8)
-		if current.rooted_turns == 0 and old.rooted_turns > 0 and (action.get("spell_effect", "") == "formation" or action.get("card_type", "") == "unit"):
+		if current.rooted_turns == 0 and old.rooted_turns > 0 and (action.get("spell_effect", "") in ["formation", "pullback"] or action.get("card_type", "") == "unit"):
 			_effect("spawn", current.pos, "解除定身", BLUE, 0.8)
 		if current.pos != old.pos and action.type != "move":
-			_effect("spawn", current.pos, "换位" if action.get("spell_effect", "") == "exchange" else "击退", BLUE, 0.7)
+			var transition: String = {"exchange": "换位", "pullback": "牵回"}.get(action.get("spell_effect", ""), "击退")
+			_effect("spawn", current.pos, transition, BLUE, 0.7)
 		if hp_delta < 0: _effect("hit", current.pos, str(hp_delta), RED, 0.75, delay)
 		elif hp_delta > 0: _effect("heal", current.pos, "+%d" % hp_delta, BLUE, 0.8, delay)
 		if shield_delta != 0:
 			_effect("shield", current.pos, ("+%d盾" if shield_delta > 0 else "%d盾") % shield_delta, GOLD, 0.9, delay)
 	for current: Dictionary in battle.units:
-		if not previous_ids.has(current.id): _effect("spawn", current.pos, "增援", BLUE if current.side == 0 else RED, 0.7)
+		if not previous_ids.has(current.id):
+			var arrival: String = "返场" if action.get("spell_effect", "") == "redeploy" else ("先遣" if battle.can_vanguard_move(current) else "增援")
+			_effect("spawn", current.pos, arrival, BLUE if current.side == 0 else RED, 0.7)
 	if not reduced_motion and (action.type == "move" or action.get("unit_kind", "") == "cavalry") and path.size() >= 2:
 		if motion_tween != null and motion_tween.is_valid(): motion_tween.kill()
 		motion_unit = int(action.unit_id)
@@ -247,6 +251,7 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 		if forecast.counter_damage > 0:
 			_effect("shield", defender.pos, "反击", GOLD, 0.6, 0.55)
 			if battle.ADVANTAGE.get(defender.kind, "") == attacker.kind: _effect("hit", attacker.pos, "反击克制 +2", RED, 0.65, 0.76)
+		if forecast.get("retort_damage", 0) > 0: _effect("hit", attacker.pos, "反刺", Color("c6a6ff"), 0.72, 0.76)
 	if casts:
 		var style: String = "heal_cast" if effect_kind in ["heal", "rally_heal", "cleanse_root"] else ("ward_cast" if effect_kind in ["shield", "blessing"] else ("fire_area" if effect_kind == "area" else "fire_cast"))
 		var color: Color = Color("8ef2c8") if style == "heal_cast" else (GOLD if style == "ward_cast" else Color("ffb47b"))

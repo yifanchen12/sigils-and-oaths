@@ -5,17 +5,21 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.44.0-dev" src="https://img.shields.io/badge/version-0.44.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.45.0-dev" src="https://img.shields.io/badge/version-0.45.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 86 collectible cards and ten skirmish presets. **0.44.0-dev** adds a drill for spreading out and countering spells, along with preset adjustments. [Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.44.0-dev)
+The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 122 collectible cards and twelve skirmish presets. In **0.45.0-dev**, Tidegate Reserves adds vanguard movement, casualty redeployment, flanking spells and retaliatory traps. [Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.45.0-dev)
 
 ## In-game screenshots
 
-The first screenshot shows the fourth drill in 0.44.0-dev. Further down are the Afterglow card collection and earlier gameplay captures.
+The first screenshot shows the casting preview for the seven-mana fortification spell. The compendium can filter the new artwork by set and mana cost.
+
+![Fortification footprint and friendly shield preview](docs/screenshots/v045-tidegate-fortification.png)
+
+![The four ten-mana Tidegate Reserves cards](docs/screenshots/v045-tidegate-ten-mana.png)
 
 ![The fourth drill outlines the splash from a ten-mana spell and the archer's escape tiles](docs/screenshots/v044-counterplay-drill.png)
 
@@ -70,7 +74,7 @@ The first screenshot shows the fourth drill in 0.44.0-dev. Further down are the 
 
 | Tactical choice | Implemented |
 | --- | --- |
-| Reinforce from cards | 86 collectible cards, one generated card, ten 30-card presets, and a saved custom deck. Adjacent deployment can extend from newly summoned units |
+| Reinforce from cards | 122 collectible cards, one generated card, twelve 30-card presets, and a saved custom deck. Adjacent deployment can extend from newly summoned units |
 | Set traps and counter them | Set snares, mines, attack traps and spell wards from hand. Each side has two slots, enemies see only the count, and reconnaissance can remove concealed traps |
 | Cover different unit roles | Infantry beats spears, spears beat cavalry, cavalry beats infantry; archers, mages and healers have distinct ranges and roles |
 | Use active unit skills | Six one-mana abilities: shielding, interception, extra movement, a precise shot, fire damage and healing; once per unit per turn |
@@ -80,6 +84,12 @@ The first screenshot shows the fourth drill in 0.44.0-dev. Further down are the 
 | Change the next exchange | Rain, fog, sun, snow, tailwind and lantern weather affect both sides. Replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
 | Learn and adjust | Four untimed drills. F10 opens display, reading size, motion, music and effects settings |
+
+## 0.45 · Tidegate Reserves
+
+The set adds 36 illustrated cards. There are twelve units, twelve spells, eight hand traps and four weather cards, with at least three additions at each mana cost from one to ten. Thirteen additions cost seven mana or more. Use a vanguard's first move to set up a flanking spell, pull a wounded unit back toward its commander, or redeploy an eligible fallen unit into an open reinforcement tile.
+
+The two new presets play at different speeds. Tideline Raiders use early movement and flank spells to contest ground. The Reserve Company uses casualty recovery, retreats and traps to hold a line. Select either preset for either side in the War Council, or browse Tidegate Reserves in the Deck Workshop. [Card rules and verification](docs/release/v045.md)
 
 ## 0.44 · Counterplay and positioning
 
@@ -478,7 +488,7 @@ UI, forecast, map-art and skill-window checks require a graphical window. Earlie
 
 ## Current limits and artwork
 
-- Single-player development build with a [Windows x64 preview ZIP](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.40.0-dev); no multiplayer or touch adaptation. macOS and Linux have not been validated.
+- Single-player development build for Windows x64. Keep the EXE and PCK together after extraction. [Download the development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.45.0-dev)
 - Ranged attacks and spells currently do not check line of sight. AI diagnostics are not a substitute for competitive human playtesting.
 - One custom deck is saved locally at Godot's `user://custom_deck.json`; player data is not included in this repository.
 - One campaign autosave and a last-good backup use `user://campaign_autosave.json`. Starting over asks for in-game confirmation before replacing progress; these files are not published.

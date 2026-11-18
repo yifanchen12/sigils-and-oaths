@@ -2063,6 +2063,45 @@
       "processing": "Original generated PNG copied intact; UI crop and dark overlay in Godot.",
       "status": "source and native chapter UI visually reviewed",
       "validation": "tests/test_chapter_fifteen_catalog_ui.gd"
+    },
+    {
+      "id": "tidegate_units",
+      "path": "assets/art/expansion/tidegate-units-v1.png",
+      "source_filename": "exec-32fa52be-5af5-4fdf-b8aa-395908818ac5.png",
+      "prompt_file": "assets/art/expansion/tidegate-source.md",
+      "size": [1448, 1086],
+      "mode": "RGB",
+      "sha256": "d9e2ac931698b887ab2e6ed273f6219dec71f402265e815de4024f0097db9b1a",
+      "source_bytes_preserved": true,
+      "role": "Twelve original adult troop card portraits.",
+      "processing": "Original generated PNG. Godot uses a four-by-three atlas with a two-pixel inset.",
+      "validation": "tests/test_tidegate_cards.gd and tests/test_ui.gd"
+    },
+    {
+      "id": "tidegate_spells",
+      "path": "assets/art/expansion/tidegate-spells-v1.png",
+      "source_filename": "exec-4a3a443e-37a8-412a-ac48-1571f968168c.png",
+      "prompt_file": "assets/art/expansion/tidegate-source.md",
+      "size": [1448, 1086],
+      "mode": "RGB",
+      "sha256": "4862a744bef9cf724bcb75d42f5a176aea4b0bd365f8de513a209582291ea995",
+      "source_bytes_preserved": true,
+      "role": "Twelve original spell illustrations.",
+      "processing": "Original generated PNG. Godot uses a four-by-three atlas with a two-pixel inset.",
+      "validation": "tests/test_tidegate_cards.gd and tests/test_ui.gd"
+    },
+    {
+      "id": "tidegate_traps_weather",
+      "path": "assets/art/expansion/tidegate-traps-weather-v1.png",
+      "source_filename": "exec-8b2ae878-7712-4a45-ac54-6603a59e37ff.png",
+      "prompt_file": "assets/art/expansion/tidegate-source.md",
+      "size": [1448, 1086],
+      "mode": "RGB",
+      "sha256": "2b29bdc1b7830301204189664e530a351b62e45ad7d240c0d411205469ab9529",
+      "source_bytes_preserved": true,
+      "role": "Eight original trap illustrations and four weather illustrations.",
+      "processing": "Original generated PNG. Godot uses a four-by-three atlas with a two-pixel inset.",
+      "validation": "tests/test_tidegate_cards.gd and tests/test_ui.gd"
     }
   ]
 }

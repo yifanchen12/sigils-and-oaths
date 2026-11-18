@@ -595,8 +595,11 @@ func _library_details(card: Dictionary, copies: int) -> void:
 		%LibraryDetails.text += "\n攻击 %d / 生命 %d / 防御 %d / 移动 %d / 射程 %d" % [card.atk, card.hp, card.defense, card.move, card.range]
 		var skill: Dictionary = battle.definition(card.kind).get("skill", {})
 		if not skill.is_empty(): %LibraryDetails.text += "\n主动 · %s（1费，每回合一次）：%s" % [skill.name, skill.text]
-	elif card.effect not in ["draw", "mana", "weather", "clear_weather"]:
-		%LibraryDetails.text += "\n施法范围：友军3格、法师4格；换位目标另须在指挥官3格内。"
+	elif card.get("effect", "") == "redeploy":
+		%LibraryDetails.text += "\n返场位置遵循邻接部署与6支普通部队上限。"
+	elif not Battle.is_global_card(card):
+		%LibraryDetails.text += "\n施法范围：友军3格、法师4格。"
+		if card.effect == "exchange": %LibraryDetails.text += "换位目标另须在指挥官3格内。"
 	if card.type == "trap": %LibraryDetails.text += "\n伏设上限2张；从手牌支付费用后等待触发。部署、击退与换位不触发地格陷阱。"
 
 func _make_theme() -> void:
@@ -848,7 +851,7 @@ func _update_board() -> void:
 					if card.type == "unit": board.deploy = battle.card_targets(selected_card, 0)
 					else:
 						board.spell_targets = battle.card_targets(selected_card, 0)
-						if card.effect not in ["draw", "mana", "weather", "clear_weather"]: board.cast_reach = battle.casting_cells(0)
+						if not Battle.is_global_card(card) and card.effect != "redeploy": board.cast_reach = battle.casting_cells(0)
 		elif selected_unit != -1:
 			var unit: Dictionary = battle.get_unit(selected_unit)
 			if not unit.is_empty() and unit.side == 0:
@@ -875,7 +878,7 @@ func _select_card(uid: int) -> void:
 	if card.cost > battle.players[0].mana:
 		message = "「%s」需要 %d 点法力，当前只有 %d 点。" % [card.name, card.cost, battle.players[0].mana]
 		error_message = true
-	elif card.get("effect", "") in ["draw", "weather", "mana", "clear_weather"]:
+	elif Battle.is_global_card(card):
 		_commit({"type": "play", "card_uid": uid, "target": Vector2i(-1, -1)})
 		return
 	else:
@@ -883,6 +886,11 @@ func _select_card(uid: int) -> void:
 		if card.type == "trap": message = "从手牌伏设「%s」：选择%s。己方最多2张伏设，对手只知道数量；右键取消。" % [card.name, "范围内空格" if card.trigger == "step" else "受保护友军"]
 		if card.id == "reveal_traps": message = "选择侦查中心：探查目标格及相邻四格；空查仍支付1法力并消耗卡牌。"
 		if battle.card_targets(uid, 0).is_empty(): message = "「%s」当前没有合法目标。" % card.name
+		if card.get("effect", "") == "redeploy":
+			var fallen: Array[Dictionary] = battle.fallen_cards(card, 0)
+			if fallen.is_empty(): message = "弃牌堆中没有符合条件的阵亡部队。"
+			elif battle.deployment_cells(0).is_empty(): message = "需要一处邻接空地和空余部队位。"
+			else: message = "选择高亮空格，让「%s」重新部署。" % battle.definition(fallen[0].card_id).name
 		error_message = false
 	_refresh()
 	board.grab_focus()
@@ -1009,10 +1017,14 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 					if not definition.get("fire", false): visual_action["cast_color"] = Color("9ad6f5")
 				else: visual_action.effect_kind = "rally_heal" if int(definition.get("healing", 0)) > 0 else "shield"
 			elif visual_action.spell_effect == "roadwork":
-				visual_action["affected_cells"] = battle.roadwork_cells(action.target)
+				visual_action["affected_cells"] = battle.roadwork_cells(action.target, definition.get("terrain", "road"))
 				visual_action.effect_kind = "shield"
 			elif visual_action.spell_effect in ["verdict", "recall"]:
 				visual_action.effect_kind = "damage" if visual_action.spell_effect == "verdict" else "shield"
+			elif visual_action.spell_effect == "pullback":
+				visual_action.effect_kind = "heal"
+			elif visual_action.spell_effect == "redeploy":
+				visual_action.effect_kind = "shield"
 				visual_action["cast_color"] = Color("9ad6f5")
 			elif int(entry.get("damage", 0)) > 0:
 				visual_action["affected_cells"] = battle.Formation.footprint(battle, action.target, int(entry.get("radius", 1)))
@@ -1171,7 +1183,10 @@ func _update_info() -> void:
 			info_body.text += "攻击 [b]%d[/b]     生命 [b]%d[/b]\n防御 %d       移动 %d\n射程 %d\n\n[color=#70d3ba]部署在友军上下左右的空地。新兵本回合无法行动。[/color]" % [card.atk, card.hp, card.defense, card.move, card.range]
 			if card.has("skill"): info_body.text += "\n\n主动 · %s（1费）\n%s" % [card.skill.name, card.skill.text]
 		else:
-			info_body.text += "[color=#8eaaa4]%s\n右键或 Esc 可取消。[/color]" % ("全局牌：不需要选择棋盘目标。" if card.effect in ["draw", "mana", "weather", "clear_weather"] else "施法目标须在友军3格内，法师可延伸至4格。淡蓝为覆盖，赤框为合法目标。")
+			var target_tip: String = "施法目标须在友军3格内，法师可延伸至4格。淡蓝为覆盖，赤框为合法目标。"
+			if Battle.is_global_card(card): target_tip = "这张牌不需要选择棋盘目标。"
+			elif card.effect == "redeploy": target_tip = "选择相邻空格重新部署。最多同时拥有6支普通部队。"
+			info_body.text += "[color=#8eaaa4]%s\n右键或 Esc 可取消。[/color]" % target_tip
 		return
 	var context: Dictionary = _attack_context()
 	if not context.is_empty():
@@ -1262,6 +1277,7 @@ func _portrait_for(unit: Dictionary) -> String:
 
 func _unit_status(unit: Dictionary) -> String:
 	if unit.get("guarding", false): return "援护中：保护上下左右相邻友军的普通攻击；定身时无法接应。" if int(unit.get("rooted_turns", 0)) == 0 else "援护受阻：定身中，无法接应。"
+	if battle.can_vanguard_move(unit): return "先遣：部署当回合可走一次，攻击和技能下个回合开放。"
 	if unit.summoning: return "新兵待命：下个己方回合恢复行动。"
 	if int(unit.get("rooted_turns", 0)) > 0: return "已被定身：无法主动移动，仍可攻击或被换位。"
 	if unit.side != battle.active_side: return "等待所属阵营的回合。"

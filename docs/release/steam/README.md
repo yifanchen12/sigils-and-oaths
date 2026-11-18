@@ -1,6 +1,6 @@
 # 《纹章与誓约》Steam 商店素材候选包
 
-当前 Windows 预览为 0.44.0-dev。界面和剧情为简体中文，以下中英文文案供商店语言版本使用。本目录保留高分辨率游戏画面、商店及库用图片和内容披露底稿。
+当前 Windows 预览为 0.45.0-dev。界面和剧情为简体中文，以下中英文文案供商店语言版本使用。本目录保留高分辨率游戏画面、商店及库用图片和内容披露底稿。
 
 ## 中文简介
 
@@ -10,7 +10,7 @@
 
 在《纹章与誓约》中，牌从哪里打出和手上有什么同样重要。每名友军都能成为增援点。相邻格能接上新兵，森林和高地会改变防御、射程和移动费用。战线推进后，更多地格进入法师的施法范围。走得太紧凑，也给了对面的范围法术机会。
 
-- 在 86 种可组牌中选择部队、法术、手牌陷阱与地形天气牌。用十套预组开局，或编辑自己的 30 张牌组。
+- 在 122 种可组牌中选择部队、法术、手牌陷阱与地形天气牌。用十二套预组开局，或编辑自己的 30 张牌组。派先遣部队抢位，或者在阵线旁重新部署阵亡部队。
 - 攻下桥头、护送水车或按序接应撤离处。六种兵种各有主动技能，指挥官也有独立的主动与被动。
 - 在河门来信开始十八章单人战役。故事记录关于救济、修渠和同伴去留的选择，通向三个结局。
 - 从四节不限时教程入门。自由对战使用 90 秒行动回合。战役支持中途保存，并提供剧情回看和可调阅读字号。
@@ -23,7 +23,7 @@ Play cards onto a tactical battlefield. Deploy beside allies, hide traps at cros
 
 In *Sigils & Oaths*, the ground determines what your hand can do. Every ally can anchor reinforcements. Forests and hills change defense, range, and movement. Advance a mage to extend your casting reach, or spread your forces before an enemy spell catches them together.
 
-- Build a thirty-card deck from 86 collectible cards or start with one of ten presets. Deploy troops, cast spells, set traps from hand, and change terrain and weather.
+- Build a thirty-card deck from 122 collectible cards or start with one of twelve presets. Set traps from hand, move vanguards on deployment, and redeploy fallen troops beside your line.
 - Fight over crossings, escort water carts, and reach evacuation points in order. Six unit roles have their own active abilities, and each commander has active and passive powers.
 - Begin with a letter from Rivergate and finish one of three endings in the eighteen-chapter solo campaign. Your choices affect relief, repairs, and the future of the company.
 - Practice in four untimed drills. Skirmishes use ninety-second turns. Campaign progress can be saved mid-battle. Read previous dialogue and adjust story text size.

@@ -297,4 +297,147 @@ cards = Array[Dictionary]([{
 }, {
 "id": "last_bell", "name": "再鸣铜钟", "short": "钟", "type": "spell", "effect": "formation", "target_side": "enemy", "radius": 2, "damage": 3, "commander_damage": 1, "root": true, "rally_shield": 2, "cost": 10, "set_id": "afterglow",
 "text": "距目标格2格内，敌军受3伤害，指挥官受1伤害，存活普通部队下个己方回合定身。\n同一区域友军各加2护盾，上限5。", "tag": "法术 · 双向压轴"
+}, {
+"id": "cinder_runner", "name": "灰岸传旗骑", "short": "骑", "type": "unit", "kind": "cavalry", "cost": 2, "set_id": "tidegate", "hp": 3,
+"atk": 2, "defense": 0, "move": 3, "range": 1, "entry": {"vanguard": true},
+"text": "先遣：部署当回合可正常移动一次，不能主动攻击或使用技能。", "tag": "骑兵 · 先遣开路"
+}, {
+"id": "ridge_pioneer", "name": "坡脊斥候", "short": "步", "type": "unit", "kind": "sword", "cost": 3, "set_id": "tidegate", "hp": 4,
+"atk": 3, "defense": 0, "move": 2, "range": 1, "entry": {"vanguard": true, "self_shield": 1},
+"text": "部署时获得1护盾。先遣：当回合可正常移动一次，不能主动攻击或使用技能。", "tag": "步兵 · 先遣护盾"
+}, {
+"id": "quay_salver", "name": "潮堤送药人", "short": "医", "type": "unit", "kind": "healer", "cost": 3, "set_id": "tidegate", "hp": 4,
+"atk": 1, "defense": 0, "move": 2, "range": 1, "fall": {"healing": 2},
+"text": "阵亡时为相邻友军恢复2生命。\n保留医师的回合治疗。", "tag": "医师 · 退场救治"
+}, {
+"id": "reed_harrier", "name": "苇滩斜弓手", "short": "弓", "type": "unit", "kind": "archer", "cost": 4, "set_id": "tidegate", "hp": 4,
+"atk": 2, "defense": 0, "move": 2, "range": 3, "entry": {"vanguard": true},
+"text": "先遣：部署当回合可正常移动一次，不能主动攻击或使用技能。\n可提前登上高地，之后再利用增加的射程。", "tag": "弓手 · 先遣抢位"
+}, {
+"id": "byway_guard", "name": "旧道接应枪卫", "short": "枪", "type": "unit", "kind": "spear", "cost": 4, "set_id": "tidegate", "hp": 6,
+"atk": 3, "defense": 1, "move": 2, "range": 1, "fall": {"shield": 2},
+"text": "阵亡时相邻友军各获得2护盾，上限5。", "tag": "枪兵 · 殿后留盾"
+}, {
+"id": "kiln_outrider", "name": "暖炉驿兵", "short": "骑", "type": "unit", "kind": "cavalry", "cost": 5, "set_id": "tidegate", "hp": 5,
+"atk": 4, "defense": 0, "move": 3, "range": 1, "entry": {"vanguard": true, "self_shield": 1},
+"text": "部署时获得1护盾。先遣：当回合可正常移动一次，不能主动攻击或使用技能。", "tag": "骑兵 · 带盾推进"
+}, {
+"id": "sandbar_physician", "name": "沙洲缝合师", "short": "医", "type": "unit", "kind": "healer", "cost": 5, "set_id": "tidegate", "hp": 5,
+"atk": 2, "defense": 0, "move": 2, "range": 2, "entry": {"radius": 2, "cleanse": true}, "fall": {"draw": 1},
+"text": "部署时解除2格内友军的定身。\n阵亡时牌库有牌则抽1张。", "tag": "医师 · 进场解缚"
+}, {
+"id": "night_surveyor", "name": "夜汐测绘师", "short": "法", "type": "unit", "kind": "mage", "cost": 6, "set_id": "tidegate", "hp": 6,
+"atk": 3, "defense": 0, "move": 2, "range": 3, "entry": {"reveal": true, "draw": 1}, "fall": {"shield": 1},
+"text": "部署时拆除落点及相邻四格内的敌方陷阱，并抽1张。\n阵亡时相邻友军各获1护盾，上限5。", "tag": "法师 · 拆设补给"
+}, {
+"id": "levee_marshal", "name": "守堤长枪", "short": "枪", "type": "unit", "kind": "spear", "cost": 7, "set_id": "tidegate", "hp": 9,
+"atk": 4, "defense": 1, "move": 2, "range": 1, "entry": {"guard": true, "self_shield": 1}, "fall": {"shield": 1, "cleanse": true},
+"text": "部署时获得1护盾并援护相邻友军至下个己方回合。\n阵亡时解除相邻友军的定身并各加1护盾。", "tag": "枪兵 · 接敌解围"
+}, {
+"id": "storm_saddle", "name": "追汐重骑", "short": "骑", "type": "unit", "kind": "cavalry", "cost": 8, "set_id": "tidegate", "hp": 7,
+"atk": 5, "defense": 1, "move": 4, "range": 1, "entry": {"vanguard": true, "self_shield": 2},
+"text": "部署时获得2护盾。先遣：当回合可正常移动一次，不能主动攻击或使用技能。", "tag": "骑兵 · 先遣重骑"
+}, {
+"id": "indigo_gate_mage", "name": "靛门执法师", "short": "法", "type": "unit", "kind": "mage", "cost": 9, "set_id": "tidegate", "hp": 6,
+"atk": 5, "defense": 0, "move": 2, "range": 3, "entry": {"target_side": "enemy", "radius": 2, "damage": 2, "commander_damage": 1}, "fall": {"shield": 1},
+"text": "部署时对2格内敌军造成2伤害，敌方指挥官受1伤害。\n阵亡时相邻友军各获1护盾，上限5。", "tag": "法师 · 进场夺阵"
+}, {
+"id": "sunbreak_column", "name": "破晓掌旗卫", "short": "步", "type": "unit", "kind": "sword", "cost": 10, "set_id": "tidegate", "hp": 10,
+"atk": 6, "defense": 1, "move": 3, "range": 1, "entry": {"vanguard": true, "shield": 1}, "fall": {"healing": 2},
+"text": "部署时给自身及相邻友军各1护盾。先遣：部署后可走一次，不能主动攻击或用技能。\n阵亡时相邻友军恢复2生命。", "tag": "步兵 · 先遣接旗"
+}, {
+"id": "first_wake", "name": "墨绳回缆", "short": "缆", "type": "spell", "effect": "pullback", "cost": 1, "set_id": "tidegate", "steps": 1,
+"healing": 1,
+"text": "一支友方普通部队向己方指挥官退最多1格并恢复1生命。位移不触发地格陷阱。", "tag": "法术 · 短程牵回"
+}, {
+"id": "sealed_roll", "name": "残旗归册", "short": "册", "type": "spell", "effect": "recall_fallen", "cost": 1, "set_id": "tidegate", "max_cost": 2,
+"count": 1,
+"text": "最近一张符合条件的己方阵亡部队牌回到手牌。\n只取2费及以下，再部署照常付费。", "tag": "法术 · 低费归队"
+}, {
+"id": "two_shore_claim", "name": "双岸夹签", "short": "夹", "type": "spell", "effect": "verdict", "cost": 2, "set_id": "tidegate", "amount": 2,
+"bonus": 2, "when": "flanked",
+"text": "对一支敌方普通部队造成2伤害。\n若其相邻格有至少两支己方普通部队，改为4伤害。", "tag": "法术 · 双面夹击"
+}, {
+"id": "stragglers_writ", "name": "落单追令", "short": "追", "type": "spell", "effect": "verdict", "cost": 3, "set_id": "tidegate", "amount": 2,
+"bonus": 3, "when": "isolated",
+"text": "对一支敌方普通部队造成2伤害。\n若目标相邻格没有它的友军，改为5伤害。", "tag": "法术 · 孤立惩罚"
+}, {
+"id": "lantern_stretcher", "name": "红灯担架", "short": "担", "type": "spell", "effect": "pullback", "cost": 4, "set_id": "tidegate", "steps": 2,
+"healing": 3, "cleanse": true,
+"text": "一支友方普通部队向己方指挥官退最多2格，恢复3生命并解除定身。\n位移不触发地格陷阱，已消耗的行动不重置。", "tag": "法术 · 牵回急救"
+}, {
+"id": "field_muster", "name": "灰营点卯", "short": "卯", "type": "spell", "effect": "redeploy", "cost": 5, "set_id": "tidegate", "max_cost": 3,
+"text": "将最近阵亡的3费及以下己方部队在所选部署格重新部署，恢复至满血。\n不结算进场效果，新兵下个己方回合行动。", "tag": "法术 · 返场部署"
+}, {
+"id": "split_the_pier", "name": "拔桩断径", "short": "桩", "type": "spell", "effect": "formation", "cost": 6, "set_id": "tidegate", "target_side": "enemy",
+"radius": 1, "damage": 3, "commander_damage": 1, "root": true, "grounds": ["road","bridge"],
+"text": "目标格及相邻四格中，军道或桥梁上的敌军受3伤害且存活部队定身；指挥官只受1伤害。", "tag": "法术 · 路桥截断"
+}, {
+"id": "remember_the_company", "name": "营旗下的名字", "short": "名", "type": "spell", "effect": "recall_fallen", "cost": 6, "set_id": "tidegate", "max_cost": 5,
+"count": 2,
+"text": "将最近阵亡的最多两张5费及以下部队牌取回手牌。\n手牌没空位时停止取回，再部署照常付费。", "tag": "法术 · 两队补给"
+}, {
+"id": "slate_grid", "name": "扼道立栅", "short": "栅", "type": "spell", "effect": "roadwork", "cost": 7, "set_id": "tidegate", "terrain": "fort",
+"reinforce": 2,
+"text": "将目标格及相邻四格内可用的陆地改为工事，双方驻军均获地形防御。\n改造格的己方部队额外获得2护盾，上限5。", "tag": "法术 · 就地筑垒"
+}, {
+"id": "open_the_ranks", "name": "两翼裁断", "short": "裁", "type": "spell", "effect": "verdict", "cost": 8, "set_id": "tidegate", "amount": 5,
+"bonus": 3, "when": "flanked", "shatter": true,
+"text": "清除一支敌方普通部队的当前护盾，再造成5伤害。\n若其相邻格有至少两支己方普通部队，改为8伤害。", "tag": "法术 · 双翼破盾"
+}, {
+"id": "last_rollcall", "name": "雾岸集结", "short": "集", "type": "spell", "effect": "redeploy", "cost": 9, "set_id": "tidegate", "max_cost": 7,
+"self_shield": 2,
+"text": "在所选部署格重新部署最近阵亡的7费及以下部队，满血并获得2护盾。\n不结算进场效果，下个己方回合行动。", "tag": "法术 · 重装返场"
+}, {
+"id": "tidewall_verdict", "name": "静潮断甲令", "short": "潮", "type": "spell", "effect": "formation", "cost": 10, "set_id": "tidegate", "target_side": "enemy",
+"radius": 2, "damage": 4, "commander_damage": 1, "clear_shield": true,
+"text": "破除距目标格2格内敌军的当前护盾，再对其造成4伤害。\n敌方指挥官只承受1点伤害。", "tag": "法术 · 局部大破盾"
+}, {
+"id": "chalk_spike", "name": "画线尖钉", "short": "钉", "type": "trap", "effect": "trap", "cost": 1, "set_id": "tidegate", "trigger": "step",
+"amount": 1, "root": true,
+"text": "伏设空格。敌军主动踏入时受到1伤害，移动立即中断，定身至本回合结束。", "tag": "陷阱 · 截步"
+}, {
+"id": "copper_buckle", "name": "铜扣反刺", "short": "扣", "type": "trap", "effect": "trap", "cost": 2, "set_id": "tidegate", "trigger": "attack",
+"amount": 1, "retort": 2,
+"text": "伏设于友军。实际受普攻前获得1护盾。该次普攻和可能的反击结算后，对仍存活的攻击者造成2伤害。", "tag": "陷阱 · 受击反刺"
+}, {
+"id": "mud_sluice", "name": "泥闸绊石", "short": "石", "type": "trap", "effect": "trap", "cost": 2, "set_id": "tidegate", "trigger": "step",
+"amount": 0, "clear_shield": true,
+"text": "伏设空格。敌军主动踏入时移除其当前护盾，移动继续。", "tag": "陷阱 · 破盾暗格"
+}, {
+"id": "rain_cloak", "name": "帆布副甲", "short": "帆", "type": "trap", "effect": "trap", "cost": 3, "set_id": "tidegate", "trigger": "either",
+"amount": 2, "draw": 1,
+"text": "伏设于友军。下次实际受敌方普攻、伤害法术或技能前，获得2护盾并抽1张，仅触发一次。", "tag": "陷阱 · 双向护盾"
+}, {
+"id": "seagate_sting", "name": "闸门反牙", "short": "牙", "type": "trap", "effect": "trap", "cost": 5, "set_id": "tidegate", "trigger": "attack",
+"amount": 3, "retort": 3,
+"text": "伏设于友军。实际受普攻前获得3护盾。该次普攻和可能的反击结算后，对仍存活的攻击者造成3伤害。", "tag": "陷阱 · 反刺护阵"
+}, {
+"id": "iron_undertow", "name": "锈链落闸", "short": "闸", "type": "trap", "effect": "trap", "cost": 6, "set_id": "tidegate", "trigger": "step",
+"amount": 4, "clear_shield": true, "root": true,
+"text": "伏设空格。敌军主动踏入时先失去当前护盾，再受4伤害，移动中断并定身至本回合结束。", "tag": "陷阱 · 重型控格"
+}, {
+"id": "watchtower_cage", "name": "瞭楼回钩", "short": "钩", "type": "trap", "effect": "trap", "cost": 8, "set_id": "tidegate", "trigger": "either",
+"amount": 4, "healing": 3, "draw": 2,
+"text": "伏设于友军。下次实际受敌方普攻、伤害法术或技能前，先恢复3生命、加4护盾，再抽2张，仅触发一次。", "tag": "陷阱 · 双向救援"
+}, {
+"id": "turning_bastion", "name": "反潮总闸", "short": "澜", "type": "trap", "effect": "trap", "cost": 10, "set_id": "tidegate", "trigger": "attack",
+"amount": 5, "healing": 3, "retort": 4,
+"text": "伏设于友军。实际受普攻前恢复3生命并加5护盾。该次普攻和可能的反击结算后，对仍存活的攻击者造成4伤害。", "tag": "陷阱 · 反击压轴"
+}, {
+"id": "camp_screen", "name": "湾营低雾", "short": "雾", "type": "environment", "effect": "weather", "cost": 4, "set_id": "tidegate", "weather": "fog",
+"duration": 4, "rally": {"radius": 1, "shield": 1},
+"text": "全场浓雾持续4个行动回合，所有单位射程上限2。\n立即为己方指挥官及相邻友军各加1护盾。", "tag": "天气 · 遮蔽护营"
+}, {
+"id": "rain_break", "name": "长棚接雨", "short": "雨", "type": "environment", "effect": "weather", "cost": 7, "set_id": "tidegate", "weather": "rain",
+"duration": 4, "rally": {"radius": 2, "healing": 3}, "draw": 1,
+"text": "全场暴雨持续4个行动回合。军道与桥外骑兵移动费用+1，火伤-1。\n为指挥官2格内的己方部队恢复3生命，牌库有牌时抽1张。", "tag": "天气 · 雨中接应"
+}, {
+"id": "winter_watch", "name": "白潮守灯", "short": "雪", "type": "environment", "effect": "weather", "cost": 9, "set_id": "tidegate", "weather": "snow",
+"duration": 5, "rally": {"radius": 2, "shield": 3},
+"text": "全场寒潮持续5个行动回合，普通部队移动力-1，森林额外加1防御。\n为己方指挥官2格内友军各加3护盾。", "tag": "天气 · 冬防护阵"
+}, {
+"id": "wind_banner", "name": "风旗开港", "short": "旗", "type": "environment", "effect": "weather", "cost": 10, "set_id": "tidegate", "weather": "tailwind",
+"duration": 6, "rally": {"radius": 3, "healing": 2, "shield": 2, "cleanse": true},
+"text": "全场疾风持续6个行动回合，双方普通部队移动力+1。\n为己方指挥官3格内友军恢复2生命、加2护盾并解除定身。", "tag": "天气 · 大军解围"
 }])

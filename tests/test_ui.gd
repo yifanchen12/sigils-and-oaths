@@ -53,7 +53,8 @@ func capture(filename: String, viewport: Viewport = null) -> void:
 	var warfront_only: bool = filename.begins_with("v041-warfront-") and OS.get_cmdline_user_args().has("--warfront-screens") and DisplayServer.get_name() != "headless"
 	var afterglow_only: bool = filename.begins_with("v043-afterglow-") and OS.get_cmdline_user_args().has("--afterglow-screens") and DisplayServer.get_name() != "headless"
 	var counterplay_only: bool = filename == "v044-counterplay-drill.png" and OS.get_cmdline_user_args().has("--counterplay-screen") and DisplayServer.get_name() != "headless"
-	if not screenshots_enabled() and not warfront_only and not afterglow_only and not counterplay_only: return
+	var tidegate_only: bool = filename.begins_with("v045-tidegate-") and OS.get_cmdline_user_args().has("--tidegate-screens") and DisplayServer.get_name() != "headless"
+	if not screenshots_enabled() and not warfront_only and not afterglow_only and not counterplay_only and not tidegate_only: return
 	await RenderingServer.frame_post_draw
 	var directory: String = ProjectSettings.globalize_path("res://docs/screenshots")
 	DirAccess.make_dir_recursive_absolute(directory)
@@ -209,6 +210,7 @@ func run() -> void:
 	await test_custom_deck_ui()
 	await test_warfront_cast()
 	await test_selected_opponent()
+	await test_tidegate_cast()
 	# Same logical layout must fit a smaller desktop window and a wide screen.
 	for window_size: Vector2i in [Vector2i(1008, 700), Vector2i(1920, 1080)]:
 		root.size = window_size
@@ -235,10 +237,10 @@ func test_custom_deck_ui() -> void:
 	var visible_cards: int = 0
 	for row: Dictionary in editor.rows.values():
 		if row.cell.visible: visible_cards += 1
-	check(visible_cards == 26, "deck workshop troop filter shows all twenty-six unit cards")
+	check(visible_cards == 38, "deck workshop troop filter shows all thirty-eight unit cards")
 	await click(Vector2(editor.position) + editor.filter_buttons.all.get_global_rect().get_center())
 	check(editor.rows.values().all(func(row: Dictionary) -> bool: return row.cell.visible), "all filter restores collectible catalog")
-	check(editor.rows.size() == 86 and not editor.rows.has("initiative"), "editor exposes 86 cards and excludes generated initiative")
+	check(editor.rows.size() == 122 and not editor.rows.has("initiative"), "editor exposes 122 cards and excludes generated initiative")
 	check(not editor.get_ok_button().disabled and editor._total() == 30, "valid preset starts as editable 30-card draft")
 	# Dialog controls live in their own Window viewport, so inject there.
 	await click_window(editor, editor.rows.sword.minus.get_global_rect().get_center())
@@ -378,6 +380,49 @@ func test_warfront_cast() -> void:
 	check(game.battle.players[0].mana == 0 and target.hp == target.max_hp - 6 and edge.hp == edge.max_hp - 6 and safe.hp == safe.max_hp, "click executes the real ten-cost group spell")
 	check(game.board.effects.any(func(effect: Dictionary) -> bool: return effect.kind == "fire_area" and effect.cells.size() == 13), "battle presentation uses the same area as the forecast")
 	check(game.selected_card == -1 and game.board.predicted_area.is_empty(), "resolution clears the selected card and stale hover area")
+	if game.expanded_battlefield: game._toggle_battlefield()
+	await settle()
+
+func test_tidegate_cast() -> void:
+	game.current_map = "greenwood"
+	game._open_council()
+	await settle()
+	var choice: OptionButton = game.council.deck_choice
+	var index: int = option_index(choice, "reserve_company")
+	check(index >= 0, "council offers the reserve preset")
+	if index < 0: return
+	choice.select(index)
+	choice.item_selected.emit(index)
+	await click(game.council.start_button.get_global_rect().get_center())
+	check(game.battle.deck(0).id == "reserve_company", "council starts the actual reserve deck")
+	if not game.expanded_battlefield: game._toggle_battlefield()
+	var center := Vector2i(5, 6)
+	var ally: Dictionary = Fixture.troop(game.battle, "levee_marshal", center)
+	var enemy: Dictionary = Fixture.troop(game.battle, "spear", Vector2i(6, 6), 1)
+	Fixture.troop(game.battle, "archer", Vector2i(6, 7))
+	Fixture.troop(game.battle, "mage", Vector2i(4, 6))
+	Fixture.troop(game.battle, "mage", Vector2i(6, 5), 1)
+	game.battle.terrain[Vector2i(5, 5)] = "bridge"
+	var instance: Dictionary = Fixture.give(game.battle, "slate_grid")
+	game.battle.players[0].mana = 7
+	game.battle.players[0].max_mana = 7
+	game._refresh()
+	await settle()
+	var selected: CardView
+	for card: CardView in game.get_node("%CompactHand").get_children():
+		if card.card_uid == instance.uid: selected = card; break
+	check(selected != null and selected.affordable and selected.illustration != null, "new spell is present in the live hand with its illustration")
+	if selected == null: return
+	await click(selected.get_global_rect().get_center())
+	var point: Vector2 = game.board.global_position + game.board.cell_center(center)
+	hover(point)
+	await settle()
+	check(game.battle_peek.heading.text == "扼道立栅" and game.board.predicted_area.size() == 4, "actual hover shows the four changed cells, excluding the bridge")
+	check(game.board.predicted_gains.get(ally.id, {}).get("shield", 0) == 2 and not game.board.predicted_gains.has(enemy.id), "only friendly fortified troops gain shields in preview")
+	await capture("v045-tidegate-fortification.png")
+	await click(point)
+	check(game.battle.players[0].mana == 0 and game.battle.ground(ally.pos) == "fort" and ally.shield == 2 and enemy.shield == 0, "mouse casts the seven-cost spell with forecasted results")
+	check(game.battle.ground(enemy.pos) == "fort" and game.battle.ground(Vector2i(5, 5)) == "bridge", "enemy can also benefit from new terrain, existing bridge intact")
 	if game.expanded_battlefield: game._toggle_battlefield()
 	await settle()
 
@@ -565,8 +610,8 @@ func test_decks_and_library() -> void:
 	game.council.deck_choice.item_selected.emit(1)
 	await click(game.council.library_button.get_global_rect().get_center())
 	check(game.get_node("%CardsDialog").visible, "menu library button opens compendium")
-	check(game.get_node("%CardGrid").get_child_count() == 87, "compendium lists 86 collectible cards and initiative")
-	check(game.get_node("%LibraryIntro").text.contains("86 种可组牌"), "visible catalog count includes all collectible expansions")
+	check(game.get_node("%CardGrid").get_child_count() == 123, "compendium lists 122 collectible cards and initiative")
+	check(game.get_node("%LibraryIntro").text.contains("122 种可组牌"), "visible catalog count includes all collectible expansions")
 	for view: CardView in game.get_node("%CardGrid").get_children():
 		check(view.illustration != null, "native illustration mapped for " + view.card.id)
 	check(game.get_node("%LibraryIntro").text.contains("锋线突袭"), "library shows selected deck context")
@@ -602,10 +647,17 @@ func test_decks_and_library() -> void:
 	await settle()
 	check(grid.get_child_count() == 2 and grid.get_child(0).card.id == "copper_gate_requiem" and grid.get_child(1).card.id == "last_bell", "only the two new ten-cost cards match")
 	await capture("v043-afterglow-ten-mana.png", dialog)
+	expansion_filter.select(option_index(expansion_filter, "tidegate"))
+	expansion_filter.item_selected.emit(expansion_filter.selected)
+	await settle()
+	check(grid.get_child_count() == 4 and grid.get_child(0).card.id == "sunbreak_column" and grid.get_child(3).card.id == "wind_banner", "new set has one selectable ten-cost card of each type")
+	grid.get_child(1).pressed.emit()
+	check(game.get_node("%LibraryDetails").text.contains("静潮断甲令"), "library shows exact printed rules for new capstone")
+	await capture("v045-tidegate-ten-mana.png", dialog)
 	expansion_filter.select(0)
 	cost_filter.select(0)
 	cost_filter.item_selected.emit(0)
-	check(grid.get_child_count() == 87, "resetting both filters restores the full library")
+	check(grid.get_child_count() == 123, "resetting both filters restores the full library")
 	check(before == var_to_str([game.battle.players, game.battle.units, game.battle.turn]), "browsing cards cannot mutate battle")
 	await settle()
 	if screenshots_enabled():

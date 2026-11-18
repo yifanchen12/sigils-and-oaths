@@ -32,8 +32,31 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 			if effect == "formation":
 				return _formation_preview(battle, card, card, cell, side)
 			if effect == "roadwork":
+				var ground: String = card.get("terrain", "road")
+				var sites: Array[Vector2i] = battle.roadwork_cells(cell, ground)
+				var gains: Array[Dictionary] = []
+				var reinforce: int = int(card.get("reinforce", 0))
+				if reinforce > 0:
+					for site: Vector2i in sites:
+						var occupant: Dictionary = battle.unit_at(site)
+						if not occupant.is_empty() and occupant.side == side:
+							gains.append(_change(occupant, "shield", mini(5, int(occupant.shield) + reinforce)))
+				var note: String = "标出的格子将成为%s，桥梁和不可通行地形保留。" % battle.TERRAIN[ground].name
+				if ground == "fort": note += "\n双方均可利用地形防御。"
+				return {"title": title, "effect": effect, "art": card.id, "amount": 0, "target_id": -1, "changes": gains,
+					"cells": sites, "ground_name": battle.TERRAIN[ground].name, "note": note}
+			if effect == "redeploy":
+				var troop: Dictionary = battle.definition(battle.fallen_cards(card, side)[0].card_id)
+				var shield: int = int(card.get("self_shield", 0)) + int(battle.weather == "lanterns")
 				return {"title": title, "effect": effect, "art": card.id, "amount": 0, "target_id": -1, "changes": [],
-					"cells": battle.roadwork_cells(cell), "note": "标出的格子将成为军道，桥梁和不可通行地形保留。"}
+					"cells": [cell], "note": "「%s」以 %d 生命和 %d 护盾返场。下个己方回合可行动。" % [troop.name, troop.hp, shield]}
+			if effect == "pullback":
+				var change: Dictionary = _change(target, "heal", int(card.healing))
+				var destination: Vector2i = battle.pullback_destination(target, side, int(card.steps))
+				change["position_after"] = destination
+				change["cleanse"] = card.get("cleanse", false) and target.rooted_turns > 0
+				return {"title": title, "effect": effect, "art": card.id, "amount": 0, "target_id": target.id, "changes": [change],
+					"cells": [cell] if destination == cell else [cell, destination], "note": "蓝色区域标示原位置和退回位置。"}
 			if effect == "recall":
 				return {"title": title, "effect": effect, "art": card.id, "amount": 0, "target_id": target.id, "changes": [],
 					"note": "%s将返回手牌，附着伏设随之移除。" % target.name}
@@ -43,7 +66,9 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 				var note: String = "预估按公开战况计算，隐藏陷阱可能改写结果。"
 				if card.get("shatter", false) and target.shield > 0: note = "先清除当前护盾。\n" + note
 				if card.has("kill_draw") and change.hp_after == 0 and not battle.players[side].deck.is_empty(): note = "若击破目标，抽1张。\n" + note
-				return {"title": title, "effect": effect, "amount": amount, "target_id": target.id, "changes": [change], "note": note}
+				if card.when == "flanked": note = ("已达成两面夹击。" if amount > card.amount else "尚未达成两面夹击。") + "\n" + note
+				if card.when == "isolated": note = ("目标处于孤立。" if amount > card.amount else "目标有相邻友军。") + "\n" + note
+				return {"title": title, "effect": effect, "art": card.id, "amount": amount, "target_id": target.id, "changes": [change], "note": note}
 			if effect not in ["damage", "area", "heal", "shield", "dispel", "repulse", "shatter_bolt", "rally_heal", "cleanse_root"]: return {}
 			if effect in ["damage", "area", "shatter_bolt"]: amount = battle.spell_damage(card, side)
 			elif effect == "repulse": amount = int(card.amount) + (1 if battle.repulse_destination(target, side) == cell else 0)
@@ -117,7 +142,7 @@ static func describe(forecast: Dictionary, battle: Battle, compact: bool = false
 		for change: Dictionary in forecast.changes:
 			if not change.friendly: hostile += 1
 		lines.append("%s · 命中敌军 %d 名\n" % [group, hostile])
-	if forecast.effect == "roadwork": lines.append("铺设 %d 格军道\n" % forecast.cells.size())
+	if forecast.effect == "roadwork": lines.append("将 %d 格改为%s\n" % [forecast.cells.size(), forecast.ground_name])
 	if forecast.effect in ["damage", "area", "shatter_bolt"]: lines.append("本次火焰伤害 %d\n" % forecast.amount)
 	if forecast.effect == "verdict": lines.append("本次法术伤害 %d\n" % forecast.amount)
 	if forecast.effect == "area": lines.append("范围命中 %d 名敌军\n" % forecast.changes.size())
@@ -137,8 +162,9 @@ static func describe(forecast: Dictionary, battle: Battle, compact: bool = false
 	return "\n".join(lines)
 
 static func hint(forecast: Dictionary) -> String:
-	if forecast.effect == "roadwork": return "%s预估 · 铺设%d格军道 · 点击确认，右键取消。" % [forecast.title, forecast.cells.size()]
+	if forecast.effect == "roadwork": return "%s预估 · %d格改为%s · 点击确认，右键取消。" % [forecast.title, forecast.cells.size(), forecast.ground_name]
 	if forecast.effect == "recall": return "%s · 点击确认回收，右键取消。" % forecast.title
+	if forecast.effect == "redeploy": return "%s · %s" % [forecast.title, forecast.note]
 	var loss: int = 0
 	var healing: int = 0
 	var shield: int = 0
@@ -151,5 +177,9 @@ static func hint(forecast: Dictionary) -> String:
 	if healing > 0: values.append("恢复%d生命" % healing)
 	if shield > 0: values.append("增加%d护盾" % shield)
 	elif shield < 0: values.append("减少%d护盾" % -shield)
+	if forecast.effect == "pullback":
+		var change: Dictionary = forecast.changes[0]
+		if change.position_before != change.position_after: values.append("向后撤回")
+		if change.cleanse: values.append("解除定身")
 	if values.is_empty(): values.append("调整定身或行动" if forecast.effect == "formation" else "不改变生命与护盾")
 	return "%s预估 · %d个目标 · %s · 点击确认，右键取消。" % [forecast.title, forecast.changes.size(), " / ".join(values)]

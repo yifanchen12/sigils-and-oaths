@@ -17,20 +17,21 @@ static func position(battle: RefCounted, trap: Dictionary) -> Vector2i:
 static func targets(battle: RefCounted, card: Dictionary, side: int) -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
 	if count(battle, side) >= LIMIT: return result
+	var anchored: bool = card.trigger != "step"
 	for cell: Vector2i in battle.casting_cells(side):
 		var unit: Dictionary = battle.unit_at(cell)
-		if card.trigger == "step" and (not battle.passable(cell) or not unit.is_empty()): continue
-		if card.trigger in ["attack", "spell"] and (unit.is_empty() or unit.side != side): continue
+		if anchored and (unit.is_empty() or unit.side != side): continue
+		if not anchored and (not battle.passable(cell) or not unit.is_empty()): continue
 		var occupied: bool = false
 		for trap: Dictionary in battle.traps:
 			if trap.side != side: continue
-			if card.trigger == "step" and trap.unit_id == -1 and trap.pos == cell: occupied = true
-			if card.trigger in ["attack", "spell"] and trap.unit_id == unit.id: occupied = true
+			if anchored and trap.unit_id == unit.id: occupied = true
+			if not anchored and trap.unit_id == -1 and trap.pos == cell: occupied = true
 		if not occupied: result.append(cell)
 	return result
 
 static func place(battle: RefCounted, instance: Dictionary, card: Dictionary, cell: Vector2i) -> void:
-	var anchored: bool = card.trigger in ["attack", "spell"]
+	var anchored: bool = card.trigger != "step"
 	battle.traps.append({"side": battle.active_side, "card": instance, "pos": Vector2i(-1, -1) if anchored else cell, "unit_id": battle.unit_at(cell).id if anchored else -1})
 	battle._record("%s从手牌伏设了一张陷阱。" % battle.side_name(battle.active_side))
 
@@ -50,6 +51,7 @@ static func stepped(battle: RefCounted, unit: Dictionary) -> void:
 		if trap.side == unit.side or trap.unit_id != -1 or trap.pos != unit.pos: continue
 		var card: Dictionary = battle.definition(trap.card.card_id)
 		consume(battle, trap, "触发")
+		if card.get("clear_shield", false): unit.shield = 0
 		battle._hurt(unit, battle.fire_damage(int(card.amount)) if card.get("fire", false) else int(card.amount))
 		var player: Dictionary = battle.players[unit.side]
 		var drain: int = mini(int(player.mana), int(card.get("drain", 0)))
@@ -59,21 +61,23 @@ static func stepped(battle: RefCounted, unit: Dictionary) -> void:
 		if card.get("root", false): unit.rooted_turns = maxi(1, int(unit.rooted_turns))
 		if int(card.get("draw", 0)) > 0: battle._draw(trap.side, int(card.draw))
 
-static func attacked(battle: RefCounted, defender: Dictionary) -> void:
-	_protect(battle, defender, "attack")
+static func attacked(battle: RefCounted, defender: Dictionary) -> int:
+	return _protect(battle, defender, "attack")
 
 static func spelled(battle: RefCounted, defender: Dictionary) -> void:
 	if defender.side != battle.active_side: _protect(battle, defender, "spell")
 
-static func _protect(battle: RefCounted, defender: Dictionary, trigger: String) -> void:
+static func _protect(battle: RefCounted, defender: Dictionary, trigger: String) -> int:
 	for trap: Dictionary in battle.traps.duplicate():
 		if trap.unit_id != defender.id: continue
 		var card: Dictionary = battle.definition(trap.card.card_id)
-		if card.trigger != trigger: continue
+		if card.trigger != trigger and card.trigger != "either": continue
 		consume(battle, trap, "触发")
 		defender.hp = mini(int(defender.max_hp), int(defender.hp) + int(card.get("healing", 0)))
 		defender.shield = mini(5, int(defender.shield) + int(card.amount))
 		if int(card.get("draw", 0)) > 0: battle._draw(trap.side, int(card.draw))
+		return int(card.get("retort", 0))
+	return 0
 
 static func reveal(battle: RefCounted, cell: Vector2i, side: int) -> void:
 	var found: int = 0

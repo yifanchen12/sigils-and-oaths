@@ -103,6 +103,8 @@ func _initialize() -> void:
         "res://assets/art/expansion/warfront-units-v1.png", "res://assets/art/expansion/warfront-effects-v1.png",
         "res://assets/art/expansion/afterglow-units-v1.png", "res://assets/art/expansion/afterglow-spells-v1.png",
         "res://assets/art/expansion/afterglow-traps-weather-v1.png",
+        "res://assets/art/expansion/tidegate-units-v1.png", "res://assets/art/expansion/tidegate-spells-v1.png",
+        "res://assets/art/expansion/tidegate-traps-weather-v1.png",
         "res://assets/art/battlefields/lamplanding-v2.png", "res://assets/art/narrative/return-morning-v1.png",
         "res://scripts/settings_dialog.gd", "res://scripts/training.gd", "res://scripts/game_audio.gd", "res://assets/audio/council.ogg",
         "res://assets/audio/battle.ogg", "res://assets/audio/trap.wav", "res://assets/audio/victory.wav"]
@@ -111,9 +113,9 @@ func _initialize() -> void:
             problems.append("missing runtime resource: " + path)
     var catalog = load("res://data/cards.tres")
     var decks = load("res://data/decks.tres")
-    if catalog == null or catalog.cards.size() < 87 or catalog.find("last_bell").get("cost") != 10:
+    if catalog == null or catalog.cards.size() < 123 or catalog.find("tidewall_verdict").get("cost") != 10:
         problems.append("expansion card data unavailable")
-    if decks == null or decks.decks.size() < 10 or decks.find("hearth_compact").get("cards", {}).get("last_bell") != 1:
+    if decks == null or decks.decks.size() < 12 or decks.find("reserve_company").get("cards", {}).get("last_rollcall") != 1:
         problems.append("expansion preset data unavailable")
     var report = FileAccess.open(OS.get_cmdline_user_args()[0], FileAccess.WRITE)
     report.store_string(JSON.stringify({"count": entries.size(), "entries": entries, "problems": problems, "ok": problems.is_empty()}, "\t"))

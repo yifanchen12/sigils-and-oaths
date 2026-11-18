@@ -90,28 +90,45 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 			if card.type == "trap":
 				var draw_bonus: float = _trap_supply_value(battle, card, side)
 				if threats.is_empty(): threats = TacticalAI.prepare(battle)
-				if card.trigger in ["attack", "spell"]:
+				if card.trigger != "step":
 					var guarded: Dictionary = battle.unit_at(action.target)
 					var healing: float = mini(int(card.get("healing", 0)), int(guarded.max_hp) - int(guarded.hp)) * 5.0
-					if card.trigger == "spell":
-						var pressure: float = 0.0
+					var pressure: float = 0.0
+					if card.trigger in ["spell", "either"]:
 						for enemy: Dictionary in battle.units:
 							if enemy.side != side and enemy.kind == "mage" and battle.distance(enemy.pos, guarded.pos) <= 2: pressure = 15.0
 						if battle.hero(1 - side).effect == "firestrike" and battle.distance(battle.commander(1 - side).pos, guarded.pos) <= battle.hero_cast_range(1 - side): pressure = maxf(pressure, 12.0)
+					if card.trigger == "spell":
 						return 11.0 + pressure + draw_bonus + healing + (8.0 if int(guarded.hp) <= 3 else 0.0) - mini(3, int(guarded.shield)) * 2.0
-					return minf(42.0, TacticalAI.exposure(battle, guarded, threats)) + 6.0 + draw_bonus + healing - mini(3, int(guarded.shield)) * 2.0
+					var exposure: float = minf(42.0, TacticalAI.exposure(battle, guarded, threats))
+					var retort: float = int(card.get("retort", 0)) * (3.0 if exposure > 0.0 else 0.0)
+					return maxf(exposure, pressure) + retort + 6.0 + draw_bonus + healing - mini(3, int(guarded.shield)) * 2.0
 				var value: float = -1.0
 				for entry: Dictionary in threats.enemies:
 					if not entry.origins.has(action.target): continue
 					var nearest: int = 999
 					for ally: Dictionary in battle.units:
 						if ally.side == side: nearest = mini(nearest, battle.distance(ally.pos, action.target))
-					value = maxf(value, 28.0 - nearest * 4.0 + (6.0 if card.get("root", false) and entry.unit.kind == "cavalry" else 0.0))
+					var shatter: float = int(entry.unit.shield) * 3.0 if card.get("clear_shield", false) else 0.0
+					value = maxf(value, 28.0 - nearest * 4.0 + shatter + (6.0 if card.get("root", false) and entry.unit.kind == "cavalry" else 0.0))
 				return value + draw_bonus if value >= 0.0 else value
 			var target: Dictionary = battle.unit_at(action.target)
 			match String(card.effect):
 				"formation": return _formation_score(battle, card, action.target) + _reserve_value(battle, side, int(card.get("draw", 0)))
 				"recall": return _recall_value(battle, target, card, threats)
+				"recall_fallen":
+					var room: int = Battle.HAND_LIMIT - battle.players[side].hand.size() + 1
+					var count: int = mini(room, battle.fallen_cards(card, side).size())
+					return count * 18.0 - int(card.cost) * 1.5 - (10.0 if room == 1 else 0.0)
+				"redeploy":
+					var troop: Dictionary = battle.definition(battle.fallen_cards(card, side)[0].card_id)
+					return 43.0 + int(troop.cost) * 4.5 - int(card.cost) * 2.0 + int(card.get("self_shield", 0)) * 3.0 - battle.distance(action.target, enemy_leader.pos) * 1.5
+				"pullback":
+					var landing: Vector2i = battle.pullback_destination(target, side, int(card.steps))
+					var healing: int = mini(int(card.healing), int(target.max_hp) - int(target.hp))
+					var safety: float = _danger(battle, side, target.pos) - _danger(battle, side, landing)
+					var release: float = 12.0 if card.get("cleanse", false) and target.rooted_turns > 0 else 0.0
+					return healing * 7.0 + safety * 7.0 + release - (10.0 if not target.attacked and not target.summoning and landing != target.pos else 0.0)
 				"verdict":
 					var damage: int = battle.verdict_damage(card, target)
 					var shield: int = int(target.shield)
@@ -123,10 +140,15 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 					return loss * 9.0 + (removed + mini(damage, shield - removed)) * 4.0 + bonus - 6.0
 				"roadwork":
 					var benefit: float = -3.0
-					for cell: Vector2i in battle.roadwork_cells(action.target):
+					var ground: String = card.get("terrain", "road")
+					for cell: Vector2i in battle.roadwork_cells(action.target, ground):
 						var occupant: Dictionary = battle.unit_at(cell)
 						if occupant.is_empty(): continue
-						if occupant.side != side: benefit += battle.terrain_defense(occupant) * 8.0
+						if ground == "fort":
+							var defense_gain: int = 2 - battle.terrain_defense(occupant)
+							if occupant.side == side: benefit += defense_gain * 8.0 + mini(5 - int(occupant.shield), int(card.reinforce)) * 5.0
+							else: benefit -= defense_gain * 8.0
+						elif occupant.side != side: benefit += battle.terrain_defense(occupant) * 8.0
 						elif occupant.kind == "cavalry" and not occupant.moved: benefit += 12.0 - battle.terrain_defense(occupant) * 5.0
 					return benefit
 				"shatter_bolt":
@@ -236,7 +258,7 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 			candidate.pos = action.target
 			candidate.moved = true
 			candidate.last_move_distance = battle.distance(unit.pos, action.target)
-			if not unit.attacked:
+			if not unit.attacked and not unit.summoning:
 				var shot: float = _firing_position(battle, candidate)
 				if shot > -INF: score += 40.0 + shot
 			score += battle.terrain_defense(candidate) * 1.5
@@ -309,7 +331,8 @@ static func _entry_score(battle: Battle, entry: Dictionary, center: Vector2i) ->
 	var leader: Dictionary = battle.commander(side)
 	if fatigue >= int(leader.hp) + int(leader.shield): return -3000.0
 	var cards: int = mini(int(entry.get("draw", 0)), battle.players[side].deck.size())
-	return _formation_score(battle, entry, center) + cards * 6.0 + int(entry.get("self_shield", 0)) * 3.0 - fatigue * 7.0
+	var advance: float = 5.0 if entry.get("vanguard", false) else 0.0
+	return _formation_score(battle, entry, center) + cards * 6.0 + int(entry.get("self_shield", 0)) * 3.0 + advance - fatigue * 7.0
 
 static func _trap_supply_value(battle: Battle, card: Dictionary, side: int) -> float:
 	var draws: int = int(card.get("draw", 0))

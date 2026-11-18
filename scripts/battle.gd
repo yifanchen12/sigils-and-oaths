@@ -15,6 +15,7 @@ var width: int = 8
 var height: int = 6
 const HAND_LIMIT: int = 8
 const UNIT_LIMIT: int = 6
+const GLOBAL_EFFECTS: Array[String] = ["draw", "mana", "weather", "clear_weather", "recall_fallen"]
 const DIRECTIONS: Array[Vector2i] = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
 const ADVANTAGE: Dictionary = {"sword": "spear", "spear": "cavalry", "cavalry": "sword"}
 const TERRAIN: Dictionary = {
@@ -281,13 +282,20 @@ func walk_distances(origin: Vector2i, unit: Dictionary = {}, occupancy_overrides
 
 func movement_cells(unit: Dictionary, occupancy_overrides: Dictionary = {}) -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
-	if unit.is_empty() or unit.moved or unit.attacked or unit.summoning or unit.move == 0 or int(unit.get("rooted_turns", 0)) > 0:
+	if unit.is_empty() or unit.moved or unit.attacked or unit.move == 0 or int(unit.get("rooted_turns", 0)) > 0:
+		return result
+	if unit.summoning and not can_vanguard_move(unit):
 		return result
 	var distances: Dictionary = walk_distances(unit.pos, unit, occupancy_overrides, movement_allowance(unit))
 	for cell: Vector2i in distances:
 		if cell != unit.pos and int(distances[cell]) <= movement_allowance(unit):
 			result.append(cell)
 	return result
+
+func can_vanguard_move(unit: Dictionary) -> bool:
+	if not unit.summoning or unit.moved or unit.attacked or int(unit.rooted_turns) > 0: return false
+	var card: Dictionary = definition(unit.get("card", {}).get("card_id", ""))
+	return card.get("entry", {}).get("vanguard", false)
 
 func movement_path(unit: Dictionary, destination: Vector2i) -> Array[Vector2i]:
 	var distances: Dictionary = walk_distances(unit.pos, unit)
@@ -371,7 +379,7 @@ func _resolve_attack(unit: Dictionary, selected_target: Dictionary, bonus: int =
 	unit.attacked = true
 	unit.moved = true
 	if target.id != selected_target.id: _record("%s援护%s，代为承受攻击。" % [target.name, selected_target.name])
-	Traps.attacked(self, target)
+	var retort: int = Traps.attacked(self, target)
 	last_combat = attack_forecast(unit, selected_target, bonus)
 	var damage: int = damage_preview(unit, target) + bonus
 	_hurt(target, damage)
@@ -381,6 +389,10 @@ func _resolve_attack(unit: Dictionary, selected_target: Dictionary, bonus: int =
 		var counter: int = damage_preview(target, unit)
 		_hurt(unit, counter)
 		_record("%s反击，造成 %d 点伤害。" % [target.name, counter])
+	if retort > 0 and unit.hp > 0:
+		_hurt(unit, retort)
+		last_combat["retort_damage"] = retort
+		_record("反刺陷阱对%s造成 %d 点伤害。" % [unit.name, retort])
 
 func _resolve_unit_skill(unit: Dictionary, cell: Vector2i) -> void:
 	unit["skill_used"] = true
@@ -420,13 +432,18 @@ func casting_cells(side: int, leader_only: bool = false) -> Array[Vector2i]:
 			if covered: result.append(cell)
 	return result
 
+static func is_global_card(card: Dictionary) -> bool:
+	return card.get("effect", "") in GLOBAL_EFFECTS
+
 func spell_cells(card: Dictionary, side: int) -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
 	if card.type == "trap": return Traps.targets(self, card, side)
 	if card.effect == "reveal_traps": return casting_cells(side)
+	if card.effect == "recall_fallen": return [Vector2i(-1, -1)] if not fallen_cards(card, side).is_empty() else []
+	if card.effect == "redeploy": return deployment_cells(side) if not fallen_cards(card, side).is_empty() else []
 	if card.effect == "formation" or card.effect == "roadwork":
 		for cell: Vector2i in casting_cells(side):
-			var useful: bool = not Formation.recipients(self, card, cell, side).is_empty() if card.effect == "formation" else passable(cell) and not roadwork_cells(cell).is_empty()
+			var useful: bool = not Formation.recipients(self, card, cell, side).is_empty() if card.effect == "formation" else passable(cell) and not roadwork_cells(cell, card.get("terrain", "road")).is_empty()
 			if useful: result.append(cell)
 		return result
 	if card.effect == "rally_heal":
@@ -470,17 +487,21 @@ func spell_cells(card: Dictionary, side: int) -> Array[Vector2i]:
 			"exchange": valid = friendly and target.kind != "commander" and distance(commander(side).pos, target.pos) <= 3
 			"onslaught": valid = friendly and target.kind != "commander" and target.attacked and not target.summoning
 			"recall": valid = friendly and target.kind != "commander" and target.has("card")
+			"pullback":
+				valid = friendly and target.kind != "commander" and (target.hp < target.max_hp
+					or (card.get("cleanse", false) and target.rooted_turns > 0)
+					or pullback_destination(target, side, int(card.steps)) != target.pos)
 			"verdict": valid = not friendly and target.kind != "commander"
 		if valid and can_cast_at(target.pos, side):
 			result.append(target.pos)
 	return result
 
-func roadwork_cells(center: Vector2i) -> Array[Vector2i]:
+func roadwork_cells(center: Vector2i, new_ground: String = "road") -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
 	var footprint: Array[Vector2i] = [center]
 	for direction: Vector2i in DIRECTIONS: footprint.append(center + direction)
 	for cell: Vector2i in footprint:
-		if passable(cell) and ground(cell) not in ["road", "bridge"]: result.append(cell)
+		if passable(cell) and ground(cell) not in [new_ground, "bridge"]: result.append(cell)
 	return result
 
 func repulse_destination(target: Dictionary, side: int) -> Vector2i:
@@ -490,6 +511,34 @@ func repulse_destination(target: Dictionary, side: int) -> Vector2i:
 	var destination: Vector2i = target.pos + direction
 	if direction == Vector2i.ZERO or not passable(destination) or not unit_at(destination).is_empty(): return target.pos
 	return destination
+
+func pullback_destination(target: Dictionary, side: int, steps: int) -> Vector2i:
+	var leader: Dictionary = commander(side)
+	var cell: Vector2i = target.pos
+	if leader.is_empty(): return cell
+	for step_index: int in range(steps):
+		var remaining: int = distance(cell, leader.pos)
+		var closer: Vector2i = cell
+		for direction: Vector2i in DIRECTIONS:
+			var candidate: Vector2i = cell + direction
+			if distance(candidate, leader.pos) < remaining and passable(candidate) and unit_at(candidate).is_empty():
+				closer = candidate
+				break
+		if closer == cell: break
+		cell = closer
+	return cell
+
+func fallen_cards(card: Dictionary, side: int) -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	var discard: Array = players[side].discard
+	for index: int in range(discard.size() - 1, -1, -1):
+		var instance: Dictionary = discard[index]
+		if not instance.has("unit_id"): continue
+		var troop: Dictionary = definition(instance.card_id)
+		if troop.type != "unit" or int(troop.cost) > int(card.max_cost): continue
+		result.append(instance)
+		if result.size() >= int(card.get("count", 1)): break
+	return result
 
 func card_targets(uid: int, side: int) -> Array[Vector2i]:
 	var instance: Dictionary = hand_card(side, uid)
@@ -525,6 +574,14 @@ func spell_damage(card: Dictionary, side: int) -> int:
 
 func verdict_damage(card: Dictionary, target: Dictionary) -> int:
 	var granted: bool = (card.when == "wounded" and target.hp < target.max_hp) or (card.when == "shielded" and target.shield > 0)
+	if card.when in ["flanked", "isolated"]:
+		var adjacent: int = 0
+		for direction: Vector2i in DIRECTIONS:
+			var unit: Dictionary = unit_at(target.pos + direction)
+			if unit.is_empty(): continue
+			if card.when == "isolated" and unit.side == target.side: adjacent += 1
+			elif card.when == "flanked" and unit.side != target.side and unit.kind != "commander": adjacent += 1
+		granted = adjacent >= 2 if card.when == "flanked" else adjacent == 0
 	return int(card.amount) + (int(card.bonus) if granted else 0)
 
 func hero_targets(side: int) -> Array[Vector2i]:
@@ -592,15 +649,14 @@ func apply_action(action: Dictionary) -> Dictionary:
 			var card: Dictionary = definition(instance.card_id)
 			if card.cost > players[active_side].mana: return _error("法力不足，无法使用这张牌。")
 			if not card_targets(instance.uid, active_side).has(cell):
+				if card.get("effect", "") == "recall_fallen": return _error("弃牌堆中没有符合条件的阵亡部队。")
+				if card.get("effect", "") == "redeploy": return _error("返场需要符合条件的阵亡部队、一处相邻空地和空余部队位。")
 				return _error("部署需紧邻己方部队的空地（上下左右），最多 6 支部队。" if card.type == "unit" else "目标需在友军3格内（法师4格），且满足卡牌条件；换位限指挥官3格。")
 			# All validation happens before resource payment or zone mutation.
 			players[active_side].mana -= int(card.cost)
 			players[active_side].hand.erase(instance)
 			if card.type == "unit":
-				var unit_id: int = _spawn(card, cell, active_side)
-				instance["unit_id"] = unit_id
-				units.back()["card"] = instance
-				_resolve_entry(card, units.back())
+				_resolve_entry(card, _deploy_card(instance, card, cell))
 			elif card.type == "trap": Traps.place(self, instance, card, cell)
 			else:
 				players[active_side].discard.append(instance)
@@ -703,12 +759,21 @@ func _spawn(card: Dictionary, cell: Vector2i, side: int) -> int:
 		"shield": 0, "pos": cell, "moved": true, "attacked": true, "summoning": true, "last_move_distance": 0, "rooted_turns": 0, "skill_used": false, "guarding": false})
 	return unit_id
 
-func _resolve_entry(card: Dictionary, unit: Dictionary) -> void:
+func _deploy_card(instance: Dictionary, card: Dictionary, cell: Vector2i) -> Dictionary:
+	instance["unit_id"] = _spawn(card, cell, active_side)
+	var unit: Dictionary = units.back()
+	unit["card"] = instance
 	if weather == "lanterns": unit.shield = mini(5, int(unit.shield) + 1)
+	return unit
+
+func _resolve_entry(card: Dictionary, unit: Dictionary) -> void:
 	var effects: Dictionary = card.get("entry", {})
 	if effects.is_empty(): return
 	_record("%s结算进场效果。" % unit.name)
 	if effects.get("guard", false): unit.guarding = true
+	if effects.get("vanguard", false):
+		unit.moved = false
+		unit.attacked = false
 	unit.shield = mini(5, int(unit.shield) + int(effects.get("self_shield", 0)))
 	if effects.get("reveal", false): Traps.reveal(self, unit.pos, active_side)
 	Formation.resolve(self, effects, unit.pos, active_side)
@@ -728,15 +793,41 @@ func _resolve_spell(card: Dictionary, cell: Vector2i) -> void:
 			players[active_side].hand.append(instance)
 			_record("%s返回手牌。" % target.name)
 			_draw_reserves(active_side, int(card.get("draw", 0)))
+		"recall_fallen":
+			var player: Dictionary = players[active_side]
+			for instance: Dictionary in fallen_cards(card, active_side):
+				if player.hand.size() >= HAND_LIMIT: break
+				player.discard.erase(instance)
+				instance.erase("unit_id")
+				player.hand.append(instance)
+				_record("从阵亡记录中收回「%s」。" % definition(instance.card_id).name)
+		"redeploy":
+			var instance: Dictionary = fallen_cards(card, active_side)[0]
+			players[active_side].discard.erase(instance)
+			var unit: Dictionary = _deploy_card(instance, definition(instance.card_id), cell)
+			unit.shield = mini(5, int(unit.shield) + int(card.get("self_shield", 0)))
+			_record("%s从阵亡记录返场。" % unit.name)
+		"pullback":
+			var destination: Vector2i = pullback_destination(target, active_side, int(card.steps))
+			if destination != target.pos:
+				target.pos = destination
+				_record("%s被牵回%s。" % [target.name, cell_name(destination)])
+			target.hp = mini(int(target.max_hp), int(target.hp) + int(card.healing))
+			if card.get("cleanse", false): target.rooted_turns = 0
 		"verdict":
 			var damage: int = verdict_damage(card, target)
 			if card.get("shatter", false): target.shield = 0
 			_spell_hit(target, damage)
 			if target.hp <= 0: _draw_reserves(active_side, int(card.get("kill_draw", 0)))
 		"roadwork":
-			for road: Vector2i in roadwork_cells(cell):
-				terrain[road] = "road"
-				_record("%s变为军道。" % cell_name(road))
+			var new_ground: String = card.get("terrain", "road")
+			var reinforce: int = int(card.get("reinforce", 0))
+			for site: Vector2i in roadwork_cells(cell, new_ground):
+				terrain[site] = new_ground
+				_record("%s变为%s。" % [cell_name(site), TERRAIN[new_ground].name])
+				if reinforce == 0: continue
+				var occupant: Dictionary = unit_at(site)
+				if not occupant.is_empty() and occupant.side == active_side: occupant.shield = mini(5, int(occupant.shield) + reinforce)
 		"shatter_bolt":
 			target.shield = 0
 			_spell_hit(target, spell_damage(card, active_side))

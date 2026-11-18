@@ -57,8 +57,11 @@ func configure(definition: Dictionary, uid: int, mana: int, selected: bool, lock
 		tooltip_text += "\n攻击 %d · 生命 %d · 防御 %d · 移动 %d · 射程 %d" % [card.atk, card.hp, card.defense, card.move, card.range]
 		var skill: Dictionary = Catalog.find(card.kind).get("skill", {})
 		if not skill.is_empty(): tooltip_text += "\n主动 · %s（1费，每回合一次）：%s" % [skill.name, skill.text]
-	elif card.effect not in ["draw", "mana", "weather", "clear_weather"]:
-		tooltip_text += "\n施法范围：友军3格、法师4格；换位另限指挥官3格。"
+	elif card.effect == "redeploy":
+		tooltip_text += "\n需要一处相邻空地和空余部队位。"
+	elif not Battle.is_global_card(card):
+		tooltip_text += "\n施法范围：友军3格、法师4格。"
+		if card.effect == "exchange": tooltip_text += "换位另限指挥官3格。"
 	if card.type == "trap":
 		tooltip_text += "\n每方最多2张伏设；对手只见数量。"
 		if card.trigger == "step": tooltip_text += "主动移动含骑兵再机动，不含部署、击退或换位。"

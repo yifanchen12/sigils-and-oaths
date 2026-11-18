@@ -5,17 +5,21 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.44.0-dev" src="https://img.shields.io/badge/version-0.44.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.45.0-dev" src="https://img.shields.io/badge/version-0.45.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法研究参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局、86 张可构筑牌和十套自由对战预组。**0.44.0-dev** 新增散阵与术击反制练习，并调整战斗预组。 [Windows x64 开发预览](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.44.0-dev)
+玩法设计参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局、122 张可构筑牌和十二套自由对战预组。**0.45.0-dev** 的「潮门后备」加入先遣移动、阵亡返场、两面夹击和受击反刺。 [Windows x64 开发预览](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.45.0-dev)
 
 ## 实机画面
 
-首图来自 0.44.0-dev 的散阵练习。下方有「余烬回声」图鉴及各版本实机画面。
+首图展示七费「扼道立栅」在暮林边境的施法预估，图鉴可按系列与费用查看新牌。
+
+![扼道立栅的工事范围和友军护盾预估](docs/screenshots/v045-tidegate-fortification.png)
+
+![潮门后备的四张十费牌](docs/screenshots/v045-tidegate-ten-mana.png)
 
 ![第四节实战教程标出十费法术溅射和游侠的撤离格](docs/screenshots/v044-counterplay-drill.png)
 
@@ -71,7 +75,7 @@
 
 | 战场上的选择 | 当前实现 |
 | --- | --- |
-| 用卡牌向前增援 | 86 种可组牌、1 种对局生成牌、十套 30 张预组和本地自定义牌组。友军身旁部署，新兵也能延伸阵线 |
+| 用卡牌向前增援 | 122 种可组牌、1 种对局生成牌、十二套 30 张预组和本地自定义牌组。友军身旁部署，新兵也能延伸阵线 |
 | 用手牌伏设与反制 | 地格缚足、地雷、受击补给和术击护印。支付法力伏设，每方最多 2 张，敌方只见数量。可用寻痕灯或高台破雾弩拆除 |
 | 让兵种互相掩护 | 步兵克枪兵、枪兵克骑兵、骑兵克步兵；弓手、法师、医师各有射程与功能 |
 | 发动部队主动技能 | 六兵种各有1费主动：护盾、援护、再机动、精准射击、星火、急救；每单位每回合一次 |
@@ -81,6 +85,12 @@
 | 改变下一轮战局 | 暴雨、浓雾、烈日、寒潮、疾风和灯夜影响双方。可替换或驱散天气，也可铺路、筑垒、击退、定身与换位 |
 | 在有限时间内决策 | 每个行动回合90秒；定向法术限定在友军3格内、法师4格内，天气影响全场 |
 | 熟悉操作和调整体验 | 四节不限时实战教程。F10 调整全屏、剧情字号、战斗动效、音乐和音效 |
+
+## 0.45 · 潮门后备
+
+新增 36 张带专属卡图的牌，包括 12 张部队、12 张法术、8 张手牌陷阱和 4 张天气牌。1 到 10 费每档至少 3 张，其中 13 张为 7 到 10 费。二费「双岸夹签」看包夹站位，四费「红灯担架」把伤兵牵回己方指挥官方向，九费「雾岸集结」把阵亡部队带回前线。
+
+「折潮快旗」用先遣部队抢位，再让夹击法术吃到站位加成。「回港后备军」用殿后、手牌伏设和阵亡部队返场维持阵线。战前可选任意一套为己方或对手，也可在组牌界面查看「潮门后备」。 [完整规则与验证](docs/release/v045.md)
 
 ## 0.44 · 散阵与反制
 
@@ -372,7 +382,9 @@ git clone https://github.com/yifanchen12/sigils-and-oaths.git
 cd sigils-and-oaths
 ```
 
-只想试玩可下载 [最新 Windows x64 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.40.0-dev)，解压后运行 `SigilsAndOaths.exe`。从源码运行则按以下步骤：
+只想试玩可下载 Windows x64 开发预览版。解压到一个目录后双击 `SigilsAndOaths.exe`，让 EXE 和 PCK 留在同一目录。 [下载 0.45 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.45.0-dev)
+
+从源码运行的步骤如下。
 
 1. 从 [Godot 官方下载页](https://godotengine.org/download/windows/)获取引擎；当前工程验证版本及官方归档地址见 [`docs/engine-download.json`](docs/engine-download.json)。
 2. 在 Godot 项目管理器中导入根目录的 `project.godot`，等待资源导入完成。

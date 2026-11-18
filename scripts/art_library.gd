@@ -77,7 +77,16 @@ const CARD_ATLASES: Dictionary = {
 	"afterglow-spells-v1": {"columns": 5, "rows": 2, "ids": ["recall_writ", "triage_writ", "split_sentence", "ford_lock", "return_manifest",
 		"dew_wall", "valley_reckoner", "terrace_relay", "oath_deliberation", "last_bell"]},
 	"afterglow-traps-weather-v1": {"columns": 3, "rows": 2, "ids": ["drawwire", "quiet_veil", "salt_marker",
-		"mirror_anchor", "coast_drizzle", "lamplight_shift"]}
+		"mirror_anchor", "coast_drizzle", "lamplight_shift"]},
+	"tidegate-units-v1": {"columns": 4, "rows": 3, "ids": ["cinder_runner", "ridge_pioneer", "quay_salver", "reed_harrier",
+		"byway_guard", "kiln_outrider", "sandbar_physician", "night_surveyor",
+		"levee_marshal", "storm_saddle", "indigo_gate_mage", "sunbreak_column"]},
+	"tidegate-spells-v1": {"columns": 4, "rows": 3, "ids": ["first_wake", "sealed_roll", "two_shore_claim", "stragglers_writ",
+		"lantern_stretcher", "field_muster", "split_the_pier", "remember_the_company",
+		"slate_grid", "open_the_ranks", "last_rollcall", "tidewall_verdict"]},
+	"tidegate-traps-weather-v1": {"columns": 4, "rows": 3, "ids": ["chalk_spike", "copper_buckle", "mud_sluice", "rain_cloak",
+		"seagate_sting", "iron_undertow", "watchtower_cage", "turning_bastion",
+		"camp_screen", "rain_break", "winter_watch", "wind_banner"]}
 }
 
 static func get_texture(asset_id: String) -> Texture2D:

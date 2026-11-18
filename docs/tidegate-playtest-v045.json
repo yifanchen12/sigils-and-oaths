@@ -1,0 +1,6920 @@
+{
+  "version": "0.45.0-dev",
+  "basis": "Production AI in both seats. Standard deck order, draw, mana and card targeting. Same commander within each matchup. Three maps with two seeded openings per map and mirrored seats. Counts include either side if it played a Tidegate card.",
+  "maps": [
+    "greenwood",
+    "rivergate",
+    "ridgepass"
+  ],
+  "match_count": 84,
+  "legal_actions": 21310,
+  "invalid_actions_or_final_snapshots": 0,
+  "new_cards_played": {
+    "byway_guard": 136,
+    "camp_screen": 31,
+    "chalk_spike": 34,
+    "cinder_runner": 85,
+    "copper_buckle": 38,
+    "field_muster": 19,
+    "first_wake": 66,
+    "indigo_gate_mage": 34,
+    "iron_undertow": 37,
+    "kiln_outrider": 80,
+    "lantern_stretcher": 67,
+    "last_rollcall": 27,
+    "levee_marshal": 43,
+    "mud_sluice": 39,
+    "night_surveyor": 78,
+    "open_the_ranks": 42,
+    "quay_salver": 86,
+    "rain_break": 33,
+    "rain_cloak": 32,
+    "reed_harrier": 79,
+    "remember_the_company": 31,
+    "ridge_pioneer": 116,
+    "sandbar_physician": 42,
+    "seagate_sting": 39,
+    "sealed_roll": 42,
+    "slate_grid": 42,
+    "split_the_pier": 30,
+    "storm_saddle": 37,
+    "stragglers_writ": 43,
+    "sunbreak_column": 40,
+    "tidewall_verdict": 40,
+    "turning_bastion": 31,
+    "two_shore_claim": 73,
+    "watchtower_cage": 39,
+    "wind_banner": 26,
+    "winter_watch": 31
+  },
+  "mana_7_to_10_play_counts": {
+    "7": 118,
+    "8": 118,
+    "9": 92,
+    "10": 137
+  },
+  "initial_reserve_vs_frost_engine": {
+    "outcome": {
+      "draws": 0,
+      "losses": 10,
+      "wins": 2
+    },
+    "cases": [
+      {
+        "map": "greenwood",
+        "seed": 4515,
+        "seat": 0,
+        "winner": 1
+      },
+      {
+        "map": "greenwood",
+        "seed": 4515,
+        "seat": 1,
+        "winner": 0
+      },
+      {
+        "map": "rivergate",
+        "seed": 4594,
+        "seat": 0,
+        "winner": 1
+      },
+      {
+        "map": "rivergate",
+        "seed": 4594,
+        "seat": 1,
+        "winner": 0
+      },
+      {
+        "map": "ridgepass",
+        "seed": 4673,
+        "seat": 0,
+        "winner": 0
+      },
+      {
+        "map": "ridgepass",
+        "seed": 4673,
+        "seat": 1,
+        "winner": 0
+      },
+      {
+        "map": "greenwood",
+        "seed": 4752,
+        "seat": 0,
+        "winner": 1
+      },
+      {
+        "map": "greenwood",
+        "seed": 4752,
+        "seat": 1,
+        "winner": 0
+      },
+      {
+        "map": "rivergate",
+        "seed": 4831,
+        "seat": 0,
+        "winner": 1
+      },
+      {
+        "map": "rivergate",
+        "seed": 4831,
+        "seat": 1,
+        "winner": 1
+      },
+      {
+        "map": "ridgepass",
+        "seed": 4910,
+        "seat": 0,
+        "winner": 1
+      },
+      {
+        "map": "ridgepass",
+        "seed": 4910,
+        "seat": 1,
+        "winner": 0
+      }
+    ]
+  },
+  "cases": [
+    {
+      "case": "press-v-balanced",
+      "opponent": "balanced",
+      "shared_commander": "warden",
+      "outcome_for_test_deck": {
+        "draws": 0,
+        "losses": 5,
+        "wins": 7
+      },
+      "legal_actions": 3020,
+      "matches": [
+        {
+          "actions": 213,
+          "area_casts": [],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 25
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 9,
+              "turn": 31
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "cinder_runner": 1,
+            "copper_buckle": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "two_shore_claim": 1,
+            "wind_banner": 1
+          },
+          "seed": 4515,
+          "turn": 35,
+          "winner": 0
+        },
+        {
+          "actions": 94,
+          "area_casts": [
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 12,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 16
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 1,
+            "split_the_pier": 1,
+            "two_shore_claim": 2
+          },
+          "seed": 4515,
+          "turn": 19,
+          "winner": 0
+        },
+        {
+          "actions": 213,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 21,
+              "units": 2
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 21
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 23
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 10,
+              "turn": 25
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 27
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 33
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 1,
+            "seagate_sting": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "wind_banner": 1
+          },
+          "seed": 4594,
+          "turn": 34,
+          "winner": 0
+        },
+        {
+          "actions": 272,
+          "area_casts": [],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 18
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 26
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 32
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 38
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "wind_banner": 1
+          },
+          "seed": 4594,
+          "turn": 40,
+          "winner": 1
+        },
+        {
+          "actions": 346,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 19,
+              "units": 3
+            },
+            {
+              "id": "split_the_pier",
+              "side": 0,
+              "turn": 55,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 10,
+              "turn": 21
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 51
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 53
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2
+          },
+          "seed": 4673,
+          "turn": 56,
+          "winner": 0
+        },
+        {
+          "actions": 243,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 20,
+              "units": 1
+            },
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 34,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 24
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 26
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 30
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 2,
+            "seagate_sting": 1,
+            "split_the_pier": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "wind_banner": 1
+          },
+          "seed": 4673,
+          "turn": 41,
+          "winner": 0
+        },
+        {
+          "actions": 220,
+          "area_casts": [
+            {
+              "id": "split_the_pier",
+              "side": 0,
+              "turn": 25,
+              "units": 1
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 31,
+              "units": 3
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 21
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 31
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "cinder_runner": 2,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "reed_harrier": 1,
+            "ridge_pioneer": 2,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 1
+          },
+          "seed": 4752,
+          "turn": 32,
+          "winner": 1
+        },
+        {
+          "actions": 326,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 20,
+              "units": 4
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 9,
+              "turn": 18
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 10,
+              "turn": 26
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 32
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 40
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "wind_banner": 1
+          },
+          "seed": 4752,
+          "turn": 56,
+          "winner": 0
+        },
+        {
+          "actions": 148,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 25,
+              "units": 4
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 25
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "chalk_spike": 1,
+            "cinder_runner": 1,
+            "copper_buckle": 1,
+            "kiln_outrider": 2,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 1,
+            "ridge_pioneer": 2,
+            "seagate_sting": 1,
+            "stragglers_writ": 1,
+            "tidewall_verdict": 1,
+            "two_shore_claim": 1
+          },
+          "seed": 4831,
+          "turn": 27,
+          "winner": 0
+        },
+        {
+          "actions": 248,
+          "area_casts": [
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 16,
+              "units": 1
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 24,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 24
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 30
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 8,
+              "turn": 32
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 36
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "wind_banner": 1
+          },
+          "seed": 4831,
+          "turn": 41,
+          "winner": 0
+        },
+        {
+          "actions": 367,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 19,
+              "units": 3
+            },
+            {
+              "id": "split_the_pier",
+              "side": 0,
+              "turn": 47,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 21
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 25
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 29
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 9,
+              "turn": 43
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 9,
+              "turn": 49
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "wind_banner": 1
+          },
+          "seed": 4910,
+          "turn": 58,
+          "winner": 0
+        },
+        {
+          "actions": 330,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 20,
+              "units": 1
+            },
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 24,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 30
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 9,
+              "turn": 40
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "two_shore_claim": 2
+          },
+          "seed": 4910,
+          "turn": 53,
+          "winner": 1
+        }
+      ]
+    },
+    {
+      "case": "press-v-frost",
+      "opponent": "frost_engine",
+      "shared_commander": "pyromancer",
+      "outcome_for_test_deck": {
+        "draws": 0,
+        "losses": 0,
+        "wins": 12
+      },
+      "legal_actions": 2567,
+      "matches": [
+        {
+          "actions": 138,
+          "area_casts": [
+            {
+              "id": "mist_spike",
+              "side": 1,
+              "turn": 10,
+              "units": 2
+            },
+            {
+              "id": "signal_torrent",
+              "side": 1,
+              "turn": 16,
+              "units": 2
+            },
+            {
+              "id": "last_hearth",
+              "side": 1,
+              "turn": 20,
+              "units": 2
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 17
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 19
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "copper_buckle": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 1,
+            "ridge_pioneer": 2,
+            "seagate_sting": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "two_shore_claim": 1
+          },
+          "seed": 4515,
+          "turn": 27,
+          "winner": 0
+        },
+        {
+          "actions": 191,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 13,
+              "units": 2
+            },
+            {
+              "id": "last_hearth",
+              "side": 0,
+              "turn": 19,
+              "units": 1
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 22,
+              "units": 1
+            },
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 26,
+              "units": 2
+            },
+            {
+              "id": "signal_torrent",
+              "side": 0,
+              "turn": 35,
+              "units": 2
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 10,
+              "turn": 24
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 28
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 36
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "kiln_outrider": 1,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 2,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "wind_banner": 1
+          },
+          "seed": 4515,
+          "turn": 40,
+          "winner": 1
+        },
+        {
+          "actions": 130,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 19,
+              "units": 1
+            },
+            {
+              "id": "last_hearth",
+              "side": 1,
+              "turn": 20,
+              "units": 1
+            },
+            {
+              "id": "mist_spike",
+              "side": 1,
+              "turn": 26,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 21
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "chalk_spike": 1,
+            "cinder_runner": 1,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 1,
+            "seagate_sting": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1
+          },
+          "seed": 4594,
+          "turn": 26,
+          "winner": 0
+        },
+        {
+          "actions": 233,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 17,
+              "units": 1
+            },
+            {
+              "id": "last_hearth",
+              "side": 0,
+              "turn": 19,
+              "units": 1
+            },
+            {
+              "id": "mist_spike",
+              "side": 0,
+              "turn": 41,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 9,
+              "turn": 18
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 26
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 28
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 40
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "wind_banner": 1
+          },
+          "seed": 4594,
+          "turn": 42,
+          "winner": 1
+        },
+        {
+          "actions": 252,
+          "area_casts": [
+            {
+              "id": "mist_spike",
+              "side": 1,
+              "turn": 14,
+              "units": 3
+            },
+            {
+              "id": "signal_torrent",
+              "side": 1,
+              "turn": 16,
+              "units": 3
+            },
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 18,
+              "units": 2
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 19,
+              "units": 2
+            },
+            {
+              "id": "last_hearth",
+              "side": 1,
+              "turn": 20,
+              "units": 2
+            },
+            {
+              "id": "split_the_pier",
+              "side": 0,
+              "turn": 35,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 9,
+              "turn": 23
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 25
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 43
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 45
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "wind_banner": 1
+          },
+          "seed": 4673,
+          "turn": 48,
+          "winner": 0
+        },
+        {
+          "actions": 248,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 20,
+              "units": 3
+            },
+            {
+              "id": "last_hearth",
+              "side": 0,
+              "turn": 21,
+              "units": 2
+            },
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 26,
+              "units": 1
+            },
+            {
+              "id": "signal_torrent",
+              "side": 0,
+              "turn": 27,
+              "units": 1
+            },
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 31,
+              "units": 2
+            },
+            {
+              "id": "mist_spike",
+              "side": 0,
+              "turn": 41,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 24
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 30
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 32
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 10,
+              "turn": 48
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "wind_banner": 1
+          },
+          "seed": 4673,
+          "turn": 55,
+          "winner": 1
+        },
+        {
+          "actions": 242,
+          "area_casts": [
+            {
+              "id": "split_the_pier",
+              "side": 0,
+              "turn": 11,
+              "units": 1
+            },
+            {
+              "id": "mist_spike",
+              "side": 1,
+              "turn": 18,
+              "units": 1
+            },
+            {
+              "id": "last_hearth",
+              "side": 1,
+              "turn": 26,
+              "units": 1
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 31,
+              "units": 1
+            },
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 34,
+              "units": 1
+            },
+            {
+              "id": "signal_torrent",
+              "side": 1,
+              "turn": 36,
+              "units": 2
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 23
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 27
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 29
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 31
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 43
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 1,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 1,
+            "wind_banner": 1
+          },
+          "seed": 4752,
+          "turn": 45,
+          "winner": 0
+        },
+        {
+          "actions": 250,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 13,
+              "units": 1
+            },
+            {
+              "id": "signal_torrent",
+              "side": 0,
+              "turn": 15,
+              "units": 3
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 20,
+              "units": 2
+            },
+            {
+              "id": "mist_spike",
+              "side": 0,
+              "turn": 29,
+              "units": 1
+            },
+            {
+              "id": "last_hearth",
+              "side": 0,
+              "turn": 39,
+              "units": 1
+            },
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 40,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 8,
+              "turn": 18
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 30
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 10,
+              "turn": 32
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 38
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "wind_banner": 1
+          },
+          "seed": 4752,
+          "turn": 51,
+          "winner": 1
+        },
+        {
+          "actions": 240,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 14,
+              "units": 1
+            },
+            {
+              "id": "signal_torrent",
+              "side": 1,
+              "turn": 16,
+              "units": 2
+            },
+            {
+              "id": "last_hearth",
+              "side": 1,
+              "turn": 20,
+              "units": 1
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 21,
+              "units": 1
+            },
+            {
+              "id": "mist_spike",
+              "side": 1,
+              "turn": 26,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 21
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 3,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "two_shore_claim": 1
+          },
+          "seed": 4831,
+          "turn": 41,
+          "winner": 0
+        },
+        {
+          "actions": 206,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 11,
+              "units": 1
+            },
+            {
+              "id": "last_hearth",
+              "side": 0,
+              "turn": 19,
+              "units": 1
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 22,
+              "units": 1
+            },
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 30,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 18
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 26
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 10,
+              "turn": 32
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "wind_banner": 1
+          },
+          "seed": 4831,
+          "turn": 40,
+          "winner": 1
+        },
+        {
+          "actions": 209,
+          "area_casts": [
+            {
+              "id": "mist_spike",
+              "side": 1,
+              "turn": 10,
+              "units": 1
+            },
+            {
+              "id": "signal_torrent",
+              "side": 1,
+              "turn": 16,
+              "units": 1
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 19,
+              "units": 2
+            },
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 20,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 23
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 25
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 27
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "reed_harrier": 1,
+            "ridge_pioneer": 2,
+            "seagate_sting": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 1,
+            "wind_banner": 1
+          },
+          "seed": 4910,
+          "turn": 35,
+          "winner": 0
+        },
+        {
+          "actions": 228,
+          "area_casts": [
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 12,
+              "units": 1
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 20,
+              "units": 2
+            },
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 33,
+              "units": 1
+            },
+            {
+              "id": "mist_spike",
+              "side": 0,
+              "turn": 33,
+              "units": 1
+            },
+            {
+              "id": "signal_torrent",
+              "side": 0,
+              "turn": 37,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 30
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 10,
+              "turn": 40
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 1,
+            "ridge_pioneer": 2,
+            "seagate_sting": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "two_shore_claim": 2
+          },
+          "seed": 4910,
+          "turn": 44,
+          "winner": 1
+        }
+      ]
+    },
+    {
+      "case": "press-v-lantern",
+      "opponent": "lantern_convoy",
+      "shared_commander": "grove",
+      "outcome_for_test_deck": {
+        "draws": 0,
+        "losses": 1,
+        "wins": 11
+      },
+      "legal_actions": 2834,
+      "matches": [
+        {
+          "actions": 239,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 18,
+              "units": 3
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 21
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 8,
+              "turn": 29
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "cinder_runner": 1,
+            "copper_buckle": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "two_shore_claim": 1
+          },
+          "seed": 4515,
+          "turn": 35,
+          "winner": 0
+        },
+        {
+          "actions": 312,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 20,
+              "units": 2
+            },
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 31,
+              "units": 1
+            },
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 32,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 10,
+              "turn": 24
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 26
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 9,
+              "turn": 28
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 42
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "wind_banner": 1
+          },
+          "seed": 4515,
+          "turn": 47,
+          "winner": 1
+        },
+        {
+          "actions": 320,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 19,
+              "units": 2
+            },
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 38,
+              "units": 1
+            },
+            {
+              "id": "split_the_pier",
+              "side": 0,
+              "turn": 41,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 9,
+              "turn": 21
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 25
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 29
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 33
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "wind_banner": 1
+          },
+          "seed": 4594,
+          "turn": 48,
+          "winner": 0
+        },
+        {
+          "actions": 282,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 35,
+              "units": 1
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 38,
+              "units": 2
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 9,
+              "turn": 18
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 26
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 30
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 34
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 38
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "wind_banner": 1
+          },
+          "seed": 4594,
+          "turn": 42,
+          "winner": 1
+        },
+        {
+          "actions": 307,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 14,
+              "units": 2
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 19,
+              "units": 3
+            },
+            {
+              "id": "split_the_pier",
+              "side": 0,
+              "turn": 33,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 21
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 10,
+              "turn": 25
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 39
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "two_shore_claim": 2,
+            "wind_banner": 1
+          },
+          "seed": 4673,
+          "turn": 48,
+          "winner": 0
+        },
+        {
+          "actions": 222,
+          "area_casts": [
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 14,
+              "units": 1
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 20,
+              "units": 4
+            },
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 23,
+              "units": 2
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 9,
+              "turn": 18
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 24
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 28
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 1,
+            "seagate_sting": 1,
+            "split_the_pier": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2
+          },
+          "seed": 4673,
+          "turn": 36,
+          "winner": 1
+        },
+        {
+          "actions": 212,
+          "area_casts": [
+            {
+              "id": "split_the_pier",
+              "side": 0,
+              "turn": 25,
+              "units": 2
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 27,
+              "units": 3
+            },
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 30,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 23
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 27
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 29
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 31
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "cinder_runner": 2,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "reed_harrier": 1,
+            "ridge_pioneer": 2,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "wind_banner": 1
+          },
+          "seed": 4752,
+          "turn": 31,
+          "winner": 0
+        },
+        {
+          "actions": 144,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 11,
+              "units": 1
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 20,
+              "units": 4
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 9,
+              "turn": 18
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 10,
+              "turn": 24
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "cinder_runner": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 1,
+            "ridge_pioneer": 2,
+            "seagate_sting": 1,
+            "storm_saddle": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1
+          },
+          "seed": 4752,
+          "turn": 24,
+          "winner": 1
+        },
+        {
+          "actions": 169,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 12,
+              "units": 1
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 21,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 21
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "chalk_spike": 1,
+            "cinder_runner": 1,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 1,
+            "ridge_pioneer": 2,
+            "seagate_sting": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "two_shore_claim": 1
+          },
+          "seed": 4831,
+          "turn": 29,
+          "winner": 0
+        },
+        {
+          "actions": 242,
+          "area_casts": [
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 12,
+              "units": 1
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 20,
+              "units": 2
+            },
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 37,
+              "units": 2
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 9,
+              "turn": 28
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 36
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 3,
+            "seagate_sting": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2
+          },
+          "seed": 4831,
+          "turn": 37,
+          "winner": 0
+        },
+        {
+          "actions": 245,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 12,
+              "units": 1
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 19,
+              "units": 2
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 21
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 31
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "reed_harrier": 1,
+            "ridge_pioneer": 2,
+            "seagate_sting": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2
+          },
+          "seed": 4910,
+          "turn": 35,
+          "winner": 0
+        },
+        {
+          "actions": 140,
+          "area_casts": [
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 20,
+              "units": 2
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 22,
+              "units": 3
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 8,
+              "turn": 18
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 22
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "cinder_runner": 2,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "reed_harrier": 1,
+            "ridge_pioneer": 2,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "tidewall_verdict": 1
+          },
+          "seed": 4910,
+          "turn": 24,
+          "winner": 1
+        }
+      ]
+    },
+    {
+      "case": "press-v-reserve",
+      "opponent": "reserve_company",
+      "shared_commander": "warden",
+      "outcome_for_test_deck": {
+        "draws": 0,
+        "losses": 5,
+        "wins": 7
+      },
+      "legal_actions": 3304,
+      "matches": [
+        {
+          "actions": 195,
+          "area_casts": [],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 7,
+              "turn": 14
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 9,
+              "turn": 18
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 10,
+              "turn": 21
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 8,
+              "turn": 26
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 10,
+              "turn": 28
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 9,
+              "turn": 31
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 32
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "cinder_runner": 1,
+            "copper_buckle": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 2,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 2,
+            "open_the_ranks": 1,
+            "quay_salver": 1,
+            "rain_break": 1,
+            "reed_harrier": 2,
+            "remember_the_company": 1,
+            "ridge_pioneer": 2,
+            "seagate_sting": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "two_shore_claim": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4515,
+          "turn": 33,
+          "winner": 0
+        },
+        {
+          "actions": 219,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 20,
+              "units": 2
+            },
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 28,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 7,
+              "turn": 13
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 8,
+              "turn": 24
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 3,
+            "camp_screen": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "iron_undertow": 1,
+            "kiln_outrider": 1,
+            "lantern_stretcher": 1,
+            "levee_marshal": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "quay_salver": 2,
+            "reed_harrier": 2,
+            "remember_the_company": 1,
+            "ridge_pioneer": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "two_shore_claim": 2
+          },
+          "seed": 4515,
+          "turn": 34,
+          "winner": 1
+        },
+        {
+          "actions": 276,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 19,
+              "units": 3
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 7,
+              "turn": 16
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 18
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 21
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 9,
+              "turn": 22
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 10,
+              "turn": 23
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 8,
+              "turn": 26
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 10,
+              "turn": 28
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 31
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 37
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 9,
+              "turn": 42
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 3,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 2,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 2,
+            "open_the_ranks": 1,
+            "quay_salver": 2,
+            "rain_cloak": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 1,
+            "sandbar_physician": 1,
+            "seagate_sting": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "watchtower_cage": 1,
+            "wind_banner": 1,
+            "winter_watch": 1
+          },
+          "seed": 4594,
+          "turn": 44,
+          "winner": 1
+        },
+        {
+          "actions": 347,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 44,
+              "units": 2
+            },
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 48,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 7,
+              "turn": 13
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 9,
+              "turn": 18
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 9,
+              "turn": 21
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 27
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 28
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 10,
+              "turn": 33
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 10,
+              "turn": 35
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 44
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 50
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 3,
+            "camp_screen": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "field_muster": 1,
+            "first_wake": 2,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 2,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 2,
+            "open_the_ranks": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "reed_harrier": 2,
+            "remember_the_company": 1,
+            "ridge_pioneer": 3,
+            "sandbar_physician": 1,
+            "seagate_sting": 1,
+            "slate_grid": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "watchtower_cage": 1,
+            "wind_banner": 1,
+            "winter_watch": 1
+          },
+          "seed": 4594,
+          "turn": 57,
+          "winner": 1
+        },
+        {
+          "actions": 224,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 19,
+              "units": 4
+            },
+            {
+              "id": "split_the_pier",
+              "side": 0,
+              "turn": 39,
+              "units": 2
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 7,
+              "turn": 14
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 9,
+              "turn": 18
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 9,
+              "turn": 21
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 10,
+              "turn": 24
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 7,
+              "turn": 26
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 9,
+              "turn": 32
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 2,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "kiln_outrider": 2,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "reed_harrier": 2,
+            "remember_the_company": 1,
+            "ridge_pioneer": 2,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "tidewall_verdict": 1,
+            "two_shore_claim": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4673,
+          "turn": 40,
+          "winner": 0
+        },
+        {
+          "actions": 288,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 20,
+              "units": 5
+            },
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 28,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 9,
+              "turn": 25
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 26
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 31
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 10,
+              "turn": 33
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 9,
+              "turn": 37
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 5,
+            "camp_screen": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "field_muster": 1,
+            "first_wake": 2,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 2,
+            "open_the_ranks": 1,
+            "quay_salver": 2,
+            "rain_cloak": 1,
+            "reed_harrier": 2,
+            "remember_the_company": 1,
+            "ridge_pioneer": 3,
+            "sandbar_physician": 1,
+            "seagate_sting": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "split_the_pier": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4673,
+          "turn": 45,
+          "winner": 0
+        },
+        {
+          "actions": 168,
+          "area_casts": [
+            {
+              "id": "split_the_pier",
+              "side": 0,
+              "turn": 17,
+              "units": 2
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 7,
+              "turn": 14
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 8,
+              "turn": 18
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 8,
+              "turn": 19
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 10,
+              "turn": 20
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "camp_screen": 1,
+            "cinder_runner": 2,
+            "first_wake": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 1,
+            "levee_marshal": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "quay_salver": 1,
+            "rain_break": 1,
+            "reed_harrier": 1,
+            "ridge_pioneer": 2,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "watchtower_cage": 1
+          },
+          "seed": 4752,
+          "turn": 28,
+          "winner": 1
+        },
+        {
+          "actions": 327,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 20,
+              "units": 3
+            },
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 40,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 7,
+              "turn": 13
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 8,
+              "turn": 18
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 10,
+              "turn": 23
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 24
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 25
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 30
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 10,
+              "turn": 33
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 34
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 35
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 36
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 9,
+              "turn": 45
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 4,
+            "camp_screen": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "field_muster": 1,
+            "first_wake": 2,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 2,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 2,
+            "open_the_ranks": 1,
+            "quay_salver": 1,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "reed_harrier": 2,
+            "remember_the_company": 1,
+            "ridge_pioneer": 3,
+            "sandbar_physician": 1,
+            "seagate_sting": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "watchtower_cage": 1,
+            "wind_banner": 1,
+            "winter_watch": 1
+          },
+          "seed": 4752,
+          "turn": 53,
+          "winner": 1
+        },
+        {
+          "actions": 321,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 21,
+              "units": 2
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 7,
+              "turn": 14
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 7,
+              "turn": 16
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 21
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 9,
+              "turn": 22
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 24
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 9,
+              "turn": 32
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 10,
+              "turn": 38
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 9,
+              "turn": 40
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 43
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 3,
+            "camp_screen": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "field_muster": 1,
+            "first_wake": 2,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 2,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 2,
+            "open_the_ranks": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "reed_harrier": 2,
+            "remember_the_company": 1,
+            "ridge_pioneer": 3,
+            "sandbar_physician": 1,
+            "seagate_sting": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4831,
+          "turn": 46,
+          "winner": 0
+        },
+        {
+          "actions": 256,
+          "area_casts": [
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 14,
+              "units": 1
+            },
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 22,
+              "units": 3
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 7,
+              "turn": 13
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 8,
+              "turn": 17
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 21
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 25
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 29
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 10,
+              "turn": 32
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 7,
+              "turn": 33
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 40
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 3,
+            "camp_screen": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "field_muster": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 2,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 1,
+            "open_the_ranks": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "reed_harrier": 2,
+            "ridge_pioneer": 3,
+            "sandbar_physician": 1,
+            "seagate_sting": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "watchtower_cage": 1,
+            "wind_banner": 1
+          },
+          "seed": 4831,
+          "turn": 43,
+          "winner": 0
+        },
+        {
+          "actions": 354,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 0,
+              "turn": 19,
+              "units": 3
+            },
+            {
+              "id": "split_the_pier",
+              "side": 0,
+              "turn": 47,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 21
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 23
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 24
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 9,
+              "turn": 26
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 10,
+              "turn": 28
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 9,
+              "turn": 32
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 9,
+              "turn": 36
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 7,
+              "turn": 38
+            },
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 10,
+              "turn": 43
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 45
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 9,
+              "turn": 49
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 4,
+            "camp_screen": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "first_wake": 2,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 2,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 2,
+            "open_the_ranks": 1,
+            "quay_salver": 3,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "reed_harrier": 2,
+            "remember_the_company": 1,
+            "ridge_pioneer": 3,
+            "sandbar_physician": 1,
+            "seagate_sting": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "watchtower_cage": 1,
+            "wind_banner": 1,
+            "winter_watch": 1
+          },
+          "seed": 4910,
+          "turn": 55,
+          "winner": 1
+        },
+        {
+          "actions": 329,
+          "area_casts": [
+            {
+              "id": "tidewall_verdict",
+              "side": 1,
+              "turn": 20,
+              "units": 4
+            },
+            {
+              "id": "split_the_pier",
+              "side": 1,
+              "turn": 22,
+              "units": 1
+            }
+          ],
+          "deck": "tideline_raiders",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "storm_saddle",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 9,
+              "turn": 19
+            },
+            {
+              "cost": 10,
+              "id": "tidewall_verdict",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 9,
+              "turn": 21
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 29
+            },
+            {
+              "cost": 10,
+              "id": "sunbreak_column",
+              "mana_before": 10,
+              "turn": 30
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 10,
+              "turn": 37
+            },
+            {
+              "cost": 10,
+              "id": "turning_bastion",
+              "mana_before": 10,
+              "turn": 38
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 10,
+              "turn": 39
+            },
+            {
+              "cost": 8,
+              "id": "open_the_ranks",
+              "mana_before": 10,
+              "turn": 40
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 41
+            },
+            {
+              "cost": 10,
+              "id": "wind_banner",
+              "mana_before": 10,
+              "turn": 44
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 4,
+            "camp_screen": 1,
+            "chalk_spike": 1,
+            "cinder_runner": 2,
+            "copper_buckle": 1,
+            "field_muster": 1,
+            "first_wake": 2,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "kiln_outrider": 2,
+            "lantern_stretcher": 2,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "mud_sluice": 1,
+            "night_surveyor": 2,
+            "open_the_ranks": 1,
+            "quay_salver": 3,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "reed_harrier": 2,
+            "remember_the_company": 1,
+            "ridge_pioneer": 3,
+            "sandbar_physician": 1,
+            "seagate_sting": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "split_the_pier": 1,
+            "storm_saddle": 1,
+            "stragglers_writ": 1,
+            "sunbreak_column": 1,
+            "tidewall_verdict": 1,
+            "turning_bastion": 1,
+            "two_shore_claim": 2,
+            "watchtower_cage": 1,
+            "wind_banner": 1,
+            "winter_watch": 1
+          },
+          "seed": 4910,
+          "turn": 51,
+          "winner": 1
+        }
+      ]
+    },
+    {
+      "case": "reserve-v-balanced",
+      "opponent": "balanced",
+      "shared_commander": "warden",
+      "outcome_for_test_deck": {
+        "draws": 0,
+        "losses": 9,
+        "wins": 3
+      },
+      "legal_actions": 3439,
+      "matches": [
+        {
+          "actions": 145,
+          "area_casts": [],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 7,
+              "turn": 13
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 7,
+              "turn": 17
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "iron_undertow": 1,
+            "levee_marshal": 1,
+            "quay_salver": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1
+          },
+          "seed": 4515,
+          "turn": 24,
+          "winner": 1
+        },
+        {
+          "actions": 134,
+          "area_casts": [],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 7,
+              "turn": 14
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 7,
+              "turn": 16
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 10,
+              "turn": 22
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "iron_undertow": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "winter_watch": 1
+          },
+          "seed": 4515,
+          "turn": 25,
+          "winner": 0
+        },
+        {
+          "actions": 93,
+          "area_casts": [],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 17
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "indigo_gate_mage": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 1,
+            "sandbar_physician": 1
+          },
+          "seed": 4594,
+          "turn": 18,
+          "winner": 1
+        },
+        {
+          "actions": 381,
+          "area_casts": [],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 7,
+              "turn": 14
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 18
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 10,
+              "turn": 24
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 9,
+              "turn": 34
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 40
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "camp_screen": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "lantern_stretcher": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4594,
+          "turn": 54,
+          "winner": 1
+        },
+        {
+          "actions": 138,
+          "area_casts": [],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 7,
+              "turn": 19
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 10,
+              "turn": 21
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "indigo_gate_mage": 1,
+            "night_surveyor": 1,
+            "quay_salver": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1
+          },
+          "seed": 4673,
+          "turn": 22,
+          "winner": 1
+        },
+        {
+          "actions": 439,
+          "area_casts": [],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 8,
+              "turn": 18
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 9,
+              "turn": 20
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 22
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 9,
+              "turn": 26
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 8,
+              "turn": 36
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "camp_screen": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "quay_salver": 3,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4673,
+          "turn": 58,
+          "winner": 0
+        },
+        {
+          "actions": 208,
+          "area_casts": [],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 9,
+              "turn": 27
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "field_muster": 1,
+            "first_wake": 1,
+            "lantern_stretcher": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 2,
+            "remember_the_company": 1,
+            "watchtower_cage": 1
+          },
+          "seed": 4752,
+          "turn": 28,
+          "winner": 1
+        },
+        {
+          "actions": 384,
+          "area_casts": [],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 8,
+              "turn": 18
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 9,
+              "turn": 26
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 9,
+              "turn": 28
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 38
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "camp_screen": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "lantern_stretcher": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4752,
+          "turn": 54,
+          "winner": 0
+        },
+        {
+          "actions": 375,
+          "area_casts": [],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 7,
+              "turn": 13
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 9,
+              "turn": 21
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 10,
+              "turn": 23
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 10,
+              "turn": 33
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 9,
+              "turn": 35
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 3,
+            "camp_screen": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4831,
+          "turn": 57,
+          "winner": 1
+        },
+        {
+          "actions": 347,
+          "area_casts": [],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 7,
+              "turn": 16
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 9,
+              "turn": 22
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 7,
+              "turn": 28
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 32
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 40
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 10,
+              "turn": 44
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "camp_screen": 1,
+            "field_muster": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 1,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4831,
+          "turn": 53,
+          "winner": 1
+        },
+        {
+          "actions": 412,
+          "area_casts": [],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 8,
+              "turn": 17
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 9,
+              "turn": 19
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 7,
+              "turn": 25
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 29
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 10,
+              "turn": 41
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 10,
+              "turn": 43
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 45
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 3,
+            "camp_screen": 1,
+            "field_muster": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4910,
+          "turn": 57,
+          "winner": 1
+        },
+        {
+          "actions": 383,
+          "area_casts": [],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 9,
+              "turn": 28
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 9,
+              "turn": 32
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 44
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 10,
+              "turn": 46
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "camp_screen": 1,
+            "field_muster": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "watchtower_cage": 1
+          },
+          "seed": 4910,
+          "turn": 55,
+          "winner": 1
+        }
+      ]
+    },
+    {
+      "case": "reserve-v-frost",
+      "opponent": "frost_engine",
+      "shared_commander": "pyromancer",
+      "outcome_for_test_deck": {
+        "draws": 0,
+        "losses": 5,
+        "wins": 7
+      },
+      "legal_actions": 3158,
+      "matches": [
+        {
+          "actions": 103,
+          "area_casts": [
+            {
+              "id": "mist_spike",
+              "side": 1,
+              "turn": 10,
+              "units": 2
+            },
+            {
+              "id": "signal_torrent",
+              "side": 1,
+              "turn": 16,
+              "units": 1
+            },
+            {
+              "id": "last_hearth",
+              "side": 1,
+              "turn": 20,
+              "units": 2
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 10,
+              "turn": 19
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "field_muster": 1,
+            "levee_marshal": 1,
+            "quay_salver": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1
+          },
+          "seed": 4515,
+          "turn": 22,
+          "winner": 1
+        },
+        {
+          "actions": 317,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 17,
+              "units": 1
+            },
+            {
+              "id": "last_hearth",
+              "side": 0,
+              "turn": 19,
+              "units": 3
+            },
+            {
+              "id": "signal_torrent",
+              "side": 0,
+              "turn": 33,
+              "units": 7
+            },
+            {
+              "id": "mist_spike",
+              "side": 0,
+              "turn": 39,
+              "units": 2
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 7,
+              "turn": 14
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 7,
+              "turn": 24
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 9,
+              "turn": 26
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "camp_screen": 1,
+            "first_wake": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 3,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4515,
+          "turn": 59,
+          "winner": 1
+        },
+        {
+          "actions": 336,
+          "area_casts": [
+            {
+              "id": "last_hearth",
+              "side": 1,
+              "turn": 20,
+              "units": 2
+            },
+            {
+              "id": "mist_spike",
+              "side": 1,
+              "turn": 26,
+              "units": 2
+            },
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 32,
+              "units": 1
+            },
+            {
+              "id": "signal_torrent",
+              "side": 1,
+              "turn": 44,
+              "units": 4
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 7,
+              "turn": 13
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 23
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 27
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 10,
+              "turn": 31
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 7,
+              "turn": 33
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 3,
+            "camp_screen": 1,
+            "field_muster": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 2,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4594,
+          "turn": 57,
+          "winner": 1
+        },
+        {
+          "actions": 241,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 17,
+              "units": 2
+            },
+            {
+              "id": "last_hearth",
+              "side": 0,
+              "turn": 19,
+              "units": 2
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 7,
+              "turn": 14
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 8,
+              "turn": 18
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 9,
+              "turn": 24
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 10,
+              "turn": 26
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 9,
+              "turn": 32
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 1,
+            "rain_break": 1,
+            "sandbar_physician": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4594,
+          "turn": 40,
+          "winner": 1
+        },
+        {
+          "actions": 278,
+          "area_casts": [
+            {
+              "id": "mist_spike",
+              "side": 1,
+              "turn": 14,
+              "units": 2
+            },
+            {
+              "id": "signal_torrent",
+              "side": 1,
+              "turn": 16,
+              "units": 3
+            },
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 18,
+              "units": 2
+            },
+            {
+              "id": "last_hearth",
+              "side": 1,
+              "turn": 20,
+              "units": 2
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 9,
+              "turn": 19
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 21
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 10,
+              "turn": 25
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 9,
+              "turn": 31
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 8,
+              "turn": 33
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 10,
+              "turn": 39
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "camp_screen": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4673,
+          "turn": 45,
+          "winner": 0
+        },
+        {
+          "actions": 338,
+          "area_casts": [
+            {
+              "id": "last_hearth",
+              "side": 0,
+              "turn": 21,
+              "units": 2
+            },
+            {
+              "id": "signal_torrent",
+              "side": 0,
+              "turn": 23,
+              "units": 3
+            },
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 29,
+              "units": 2
+            },
+            {
+              "id": "mist_spike",
+              "side": 0,
+              "turn": 41,
+              "units": 1
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 7,
+              "turn": 16
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 18
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 7,
+              "turn": 22
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 9,
+              "turn": 38
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 9,
+              "turn": 54
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 3,
+            "camp_screen": 1,
+            "field_muster": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 2,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1
+          },
+          "seed": 4673,
+          "turn": 56,
+          "winner": 0
+        },
+        {
+          "actions": 321,
+          "area_casts": [
+            {
+              "id": "mist_spike",
+              "side": 1,
+              "turn": 12,
+              "units": 1
+            },
+            {
+              "id": "last_hearth",
+              "side": 1,
+              "turn": 24,
+              "units": 2
+            },
+            {
+              "id": "signal_torrent",
+              "side": 1,
+              "turn": 34,
+              "units": 3
+            },
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 36,
+              "units": 2
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 7,
+              "turn": 13
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 7,
+              "turn": 15
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 10,
+              "turn": 21
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 27
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 35
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 10,
+              "turn": 37
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "camp_screen": 1,
+            "field_muster": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4752,
+          "turn": 46,
+          "winner": 0
+        },
+        {
+          "actions": 85,
+          "area_casts": [
+            {
+              "id": "signal_torrent",
+              "side": 0,
+              "turn": 15,
+              "units": 2
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [],
+          "map": "greenwood",
+          "new_cards_played": {
+            "camp_screen": 1
+          },
+          "seed": 4752,
+          "turn": 15,
+          "winner": 0
+        },
+        {
+          "actions": 215,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 14,
+              "units": 1
+            },
+            {
+              "id": "signal_torrent",
+              "side": 1,
+              "turn": 16,
+              "units": 3
+            },
+            {
+              "id": "mist_spike",
+              "side": 1,
+              "turn": 18,
+              "units": 1
+            },
+            {
+              "id": "last_hearth",
+              "side": 1,
+              "turn": 20,
+              "units": 4
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 7,
+              "turn": 13
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 21
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 10,
+              "turn": 23
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "camp_screen": 1,
+            "field_muster": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 1,
+            "rain_cloak": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1
+          },
+          "seed": 4831,
+          "turn": 39,
+          "winner": 0
+        },
+        {
+          "actions": 322,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 15,
+              "units": 2
+            },
+            {
+              "id": "last_hearth",
+              "side": 0,
+              "turn": 19,
+              "units": 2
+            },
+            {
+              "id": "mist_spike",
+              "side": 0,
+              "turn": 41,
+              "units": 2
+            },
+            {
+              "id": "signal_torrent",
+              "side": 0,
+              "turn": 45,
+              "units": 1
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 7,
+              "turn": 14
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 22
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 36
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 9,
+              "turn": 40
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 10,
+              "turn": 42
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 8,
+              "turn": 48
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "camp_screen": 1,
+            "field_muster": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4831,
+          "turn": 51,
+          "winner": 1
+        },
+        {
+          "actions": 316,
+          "area_casts": [
+            {
+              "id": "mist_spike",
+              "side": 1,
+              "turn": 10,
+              "units": 2
+            },
+            {
+              "id": "signal_torrent",
+              "side": 1,
+              "turn": 16,
+              "units": 6
+            },
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 20,
+              "units": 2
+            },
+            {
+              "id": "last_hearth",
+              "side": 1,
+              "turn": 36,
+              "units": 2
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 8,
+              "turn": 17
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 10,
+              "turn": 23
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 27
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 10,
+              "turn": 37
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 9,
+              "turn": 39
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 10,
+              "turn": 41
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "camp_screen": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4910,
+          "turn": 51,
+          "winner": 1
+        },
+        {
+          "actions": 286,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 33,
+              "units": 1
+            },
+            {
+              "id": "mist_spike",
+              "side": 0,
+              "turn": 37,
+              "units": 1
+            },
+            {
+              "id": "signal_torrent",
+              "side": 0,
+              "turn": 39,
+              "units": 2
+            },
+            {
+              "id": "last_hearth",
+              "side": 0,
+              "turn": 47,
+              "units": 2
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 22
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 26
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 30
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 10,
+              "turn": 32
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 10,
+              "turn": 36
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 10,
+              "turn": 38
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 9,
+              "turn": 46
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4910,
+          "turn": 49,
+          "winner": 1
+        }
+      ]
+    },
+    {
+      "case": "reserve-v-lantern",
+      "opponent": "lantern_convoy",
+      "shared_commander": "grove",
+      "outcome_for_test_deck": {
+        "draws": 0,
+        "losses": 5,
+        "wins": 7
+      },
+      "legal_actions": 2988,
+      "matches": [
+        {
+          "actions": 108,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 18,
+              "units": 1
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 9,
+              "turn": 17
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 1,
+            "levee_marshal": 1,
+            "quay_salver": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1
+          },
+          "seed": 4515,
+          "turn": 20,
+          "winner": 1
+        },
+        {
+          "actions": 364,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 31,
+              "units": 1
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 7,
+              "turn": 14
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 9,
+              "turn": 20
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 9,
+              "turn": 26
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 9,
+              "turn": 28
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "camp_screen": 1,
+            "field_muster": 1,
+            "first_wake": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 3,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4515,
+          "turn": 49,
+          "winner": 1
+        },
+        {
+          "actions": 362,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 42,
+              "units": 2
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 8,
+              "turn": 15
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 8,
+              "turn": 17
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 19
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 10,
+              "turn": 25
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 10,
+              "turn": 27
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 29
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 35
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 3,
+            "camp_screen": 1,
+            "field_muster": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 3,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4594,
+          "turn": 48,
+          "winner": 0
+        },
+        {
+          "actions": 294,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 35,
+              "units": 3
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 18
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 20
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 9,
+              "turn": 30
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 9,
+              "turn": 32
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "night_surveyor": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4594,
+          "turn": 39,
+          "winner": 0
+        },
+        {
+          "actions": 297,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 12,
+              "units": 1
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 9,
+              "turn": 17
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 25
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 9,
+              "turn": 29
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 8,
+              "turn": 33
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 9,
+              "turn": 37
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 3,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4673,
+          "turn": 40,
+          "winner": 0
+        },
+        {
+          "actions": 320,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 21,
+              "units": 3
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 7,
+              "turn": 14
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 18
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 9,
+              "turn": 20
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 9,
+              "turn": 22
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 10,
+              "turn": 24
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 9,
+              "turn": 26
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 32
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 3,
+            "camp_screen": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "quay_salver": 3,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4673,
+          "turn": 47,
+          "winner": 1
+        },
+        {
+          "actions": 369,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 32,
+              "units": 2
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团回合 · 法力 10/10",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 7,
+              "turn": 13
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 9,
+              "turn": 19
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 9,
+              "turn": 23
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 9,
+              "turn": 25
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 10,
+              "turn": 31
+            },
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 10,
+              "turn": 33
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "field_muster": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 3,
+            "rain_break": 1,
+            "rain_cloak": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4752,
+          "turn": 49,
+          "winner": 1
+        },
+        {
+          "actions": 127,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 13,
+              "units": 2
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 7,
+              "turn": 14
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 8,
+              "turn": 16
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 10,
+              "turn": 20
+            }
+          ],
+          "map": "greenwood",
+          "new_cards_played": {
+            "camp_screen": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 1,
+            "rain_break": 1,
+            "sealed_roll": 1,
+            "watchtower_cage": 1
+          },
+          "seed": 4752,
+          "turn": 21,
+          "winner": 0
+        },
+        {
+          "actions": 129,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 14,
+              "units": 1
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "苍蓝军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 8,
+              "turn": 17
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 10,
+              "turn": 19
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 21
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "iron_undertow": 1,
+            "levee_marshal": 1,
+            "quay_salver": 1,
+            "rain_cloak": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1
+          },
+          "seed": 4831,
+          "turn": 23,
+          "winner": 0
+        },
+        {
+          "actions": 99,
+          "area_casts": [],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 8,
+              "turn": 16
+            }
+          ],
+          "map": "rivergate",
+          "new_cards_played": {
+            "first_wake": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "slate_grid": 1
+          },
+          "seed": 4831,
+          "turn": 20,
+          "winner": 1
+        },
+        {
+          "actions": 171,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 1,
+              "turn": 12,
+              "units": 2
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 0,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 8,
+              "turn": 17
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 21
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 25
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 2,
+            "camp_screen": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "quay_salver": 2,
+            "rain_cloak": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "watchtower_cage": 1
+          },
+          "seed": 4910,
+          "turn": 26,
+          "winner": 1
+        },
+        {
+          "actions": 348,
+          "area_casts": [
+            {
+              "id": "hammer_sweep",
+              "side": 0,
+              "turn": 29,
+              "units": 1
+            }
+          ],
+          "deck": "reserve_company",
+          "error": "",
+          "expansion_side": 1,
+          "finish_reason": "赤曜军团取得胜利！",
+          "high_cost_plays": [
+            {
+              "cost": 9,
+              "id": "indigo_gate_mage",
+              "mana_before": 9,
+              "turn": 18
+            },
+            {
+              "cost": 8,
+              "id": "watchtower_cage",
+              "mana_before": 10,
+              "turn": 24
+            },
+            {
+              "cost": 7,
+              "id": "levee_marshal",
+              "mana_before": 9,
+              "turn": 28
+            },
+            {
+              "cost": 7,
+              "id": "slate_grid",
+              "mana_before": 9,
+              "turn": 34
+            },
+            {
+              "cost": 9,
+              "id": "winter_watch",
+              "mana_before": 9,
+              "turn": 40
+            },
+            {
+              "cost": 7,
+              "id": "rain_break",
+              "mana_before": 7,
+              "turn": 42
+            },
+            {
+              "cost": 9,
+              "id": "last_rollcall",
+              "mana_before": 10,
+              "turn": 44
+            }
+          ],
+          "map": "ridgepass",
+          "new_cards_played": {
+            "byway_guard": 3,
+            "camp_screen": 1,
+            "first_wake": 1,
+            "indigo_gate_mage": 1,
+            "iron_undertow": 1,
+            "lantern_stretcher": 1,
+            "last_rollcall": 1,
+            "levee_marshal": 1,
+            "night_surveyor": 1,
+            "quay_salver": 2,
+            "rain_break": 1,
+            "remember_the_company": 1,
+            "sandbar_physician": 1,
+            "sealed_roll": 1,
+            "slate_grid": 1,
+            "watchtower_cage": 1,
+            "winter_watch": 1
+          },
+          "seed": 4910,
+          "turn": 48,
+          "winner": 1
+        }
+      ]
+    }
+  ]
+}

@@ -2,9 +2,10 @@ extends RefCounted
 ## Plain-data snapshots. No object deserialization, rendering or turn-start effects.
 
 const Model = preload("res://scripts/battle.gd")
-const VERSION: int = 6
+const VERSION: int = 7
 const EXPANSION_CARDS: Array[String] = ["shatter_bolt", "rally_heal", "cleanse_root", "reveal_traps", "seedwood", "anchor_snare", "ember_mine", "oath_ward"]
 const CHANNEL_CARDS: Array[String] = ["span_kit", "countercurrent_ward"]
+const LATER_SETS: Array[String] = ["warfront", "afterglow", "tidegate"]
 const SCALARS: Array[String] = ["active_side", "turn", "winner", "next_id", "match_seed", "deck_size", "weather", "weather_remaining", "turn_time_limit", "time_remaining"]
 const PLAYER_FIELDS: Array[String] = ["hero_id", "deck_id", "mana", "max_mana", "fatigue", "skill_cooldown", "spell_boost_used", "card_total"]
 const UNIT_INTS: Array[String] = ["id", "side", "hp", "max_hp", "atk", "defense", "move", "range", "shield", "last_move_distance", "rooted_turns"]
@@ -27,31 +28,40 @@ static func rules_signature() -> String:
 static func _relay_signature(cards: Array[Dictionary], decks: Array[Dictionary]) -> String:
 	return JSON.stringify([cards, Model.HEROES.heroes, decks, Model.MAPS.maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE, "relay_v1"]).sha256_text()
 
+static func _cards_through_v044() -> Array[Dictionary]:
+	return Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") != "tidegate")
+
+static func _presets_through_v044() -> Array[Dictionary]:
+	return Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") != "tidegate")
+
+static func v044_rules_signature() -> String:
+	return _relay_signature(_cards_through_v044(), _presets_through_v044())
+
 static func _presets_through_v043() -> Array[Dictionary]:
 	var decks: Array[Dictionary] = []
-	for preset: Dictionary in Model.DECKS.decks:
+	for preset: Dictionary in _presets_through_v044():
 		var previous: Dictionary = WARFRONT_PRESETS_V043.get(preset.id, {})
 		decks.append(preset if previous.is_empty() else preset.merged(previous, true))
 	return decks
 
 static func v043_rules_signature() -> String:
-	return _relay_signature(Model.CATALOG.cards, _presets_through_v043())
+	return _relay_signature(_cards_through_v044(), _presets_through_v043())
 
 static func pre_afterglow_signature() -> String:
-	var cards: Array[Dictionary] = Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") != "afterglow")
+	var cards: Array[Dictionary] = _cards_through_v044().filter(func(card: Dictionary) -> bool: return card.get("set_id", "") != "afterglow")
 	var decks: Array[Dictionary] = _presets_through_v043().filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") != "afterglow")
 	return _relay_signature(cards, decks)
 
 static func cards_before_channel() -> Array[Dictionary]:
 	var cards: Array[Dictionary] = []
 	for card: Dictionary in Model.CATALOG.cards:
-		if card.id not in CHANNEL_CARDS and card.get("set_id", "") not in ["warfront", "afterglow"]: cards.append(card)
+		if card.id not in CHANNEL_CARDS and card.get("set_id", "") not in LATER_SETS: cards.append(card)
 	return cards
 
 static func decks_before_channel() -> Array[Dictionary]:
 	var decks: Array[Dictionary] = []
 	for deck: Dictionary in Model.DECKS.decks:
-		if deck.id != "channel" and deck.get("set_id", "") not in ["warfront", "afterglow"]: decks.append(deck)
+		if deck.id != "channel" and deck.get("set_id", "") not in LATER_SETS: decks.append(deck)
 	return decks
 
 static func maps_without(excluded: Array) -> Array[Dictionary]:
@@ -70,8 +80,8 @@ static func pre_relay_signature() -> String:
 	return _signature_before_warfront(["lamplanding"])
 
 static func _signature_before_warfront(excluded_maps: Array) -> String:
-	var cards: Array[Dictionary] = Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") not in ["warfront", "afterglow"])
-	var decks: Array[Dictionary] = Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") not in ["warfront", "afterglow"])
+	var cards: Array[Dictionary] = Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") not in LATER_SETS)
+	var decks: Array[Dictionary] = Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") not in LATER_SETS)
 	return JSON.stringify([cards, Model.HEROES.heroes, decks, maps_without(excluded_maps), Model.TERRAIN, weather_before_warfront(), Model.ADVANTAGE]).sha256_text()
 
 static func weather_before_warfront() -> Dictionary:
@@ -162,7 +172,7 @@ static func _card(card: Variant, ids: Dictionary, next_id: int, deployed_id: int
 	if ids.has(int(card.uid)): return "卡牌或单位实例编号重复。"
 	var definition: Dictionary = Model.CATALOG.find(str(card.get("card_id", "")))
 	if definition.is_empty(): return "卡牌定义不存在。"
-	if card.has("unit_id") and not _whole(card.unit_id, 1, next_id - 1): return "部署牌关联编号无效。"
+	if card.has("unit_id") and (definition.type != "unit" or not _whole(card.unit_id, 1, next_id - 1)): return "部署牌关联编号无效。"
 	if deployed_id != -1 and (definition.type != "unit" or card.get("unit_id") != deployed_id): return "部署牌与部队关联不一致。"
 	ids[int(card.uid)] = true
 	return ""
@@ -186,6 +196,7 @@ static func validate(data: Variant) -> Dictionary:
 	return {"ok": true} if problem.is_empty() else {"ok": false, "message": problem}
 
 static func _legacy_rules_match(data: Dictionary) -> bool:
+	if int(data.version) == 6: return data.rules == v044_rules_signature()
 	if int(data.version) == 5: return data.rules == v043_rules_signature()
 	if int(data.version) == 4: return data.rules == pre_afterglow_signature()
 	var map: Variant = data.get("map_id")
@@ -302,6 +313,7 @@ static func _validate(data: Dictionary) -> String:
 			for card: Variant in player[zone]:
 				issue = _card(card, ids, int(data.next_id))
 				if not issue.is_empty(): return issue
+				if zone != "discard" and card.has("unit_id"): return "牌库与手牌不能保留部署编号。"
 				cards[side] += 1
 		if cards[side] != int(player.card_total): return "卡牌总数与牌区、场上部队不一致。"
 	var actual_winner: int = -1 if commanders == [1, 1] else (2 if commanders == [0, 0] else (0 if commanders[0] == 1 else 1))
