@@ -4,7 +4,7 @@ extends RefCounted
 const Campaign = preload("res://scripts/campaign.gd")
 const Story = preload("res://scripts/story_runner.gd")
 const Snapshot = preload("res://scripts/battle_snapshot.gd")
-const VERSION: int = 3
+const VERSION: int = 4
 const MAX_BYTES: int = 1048576
 var path: String
 
@@ -27,7 +27,10 @@ func _read_path(source: String) -> Dictionary:
 	if typeof(version) not in [TYPE_INT, TYPE_FLOAT] or not is_finite(float(version)) or float(version) != floorf(float(version)) or version < 1:
 		return {"ok": false, "message": "战役存档版本无效。"}
 	if data.version > VERSION: return {"ok": false, "future": true, "message": "存档来自较新版本，当前版本不会覆盖。"}
-	var validated: Dictionary = _validate(data.get("progress"), {} if int(data.version) == 1 else data.get("encounter"))
+	var progress: Variant = data.get("progress")
+	if int(data.version) < 4 and progress is Dictionary and progress.has("requisition"):
+		return {"ok": false, "message": "旧版战役档不能包含战前军需。"}
+	var validated: Dictionary = _validate(progress, {} if int(data.version) == 1 else data.get("encounter"))
 	if validated.ok and int(data.version) < VERSION: validated["migrated"] = true
 	return validated
 
@@ -54,7 +57,10 @@ func _validate(progress: Variant, encounter: Variant) -> Dictionary:
 		var previous_enemy_deck: String = {"c01_bridge": "bastion", "c02_relief_bridge": "assault", "c08_isolate": "bastion"}.get(page.scenario, "")
 		var old_encounter: bool = setup.enemy_deck == "balanced" and battle.deck(1).id == previous_enemy_deck
 		var old_dispatch_deck: bool = page.scenario == "c02_dispatch" and setup.deck == "bastion" and battle.deck(0).id == "assault"
-		if battle.players[0].hero_id != setup.hero or battle.players[1].hero_id != setup.enemy_class or (battle.deck(0).id != setup.deck and not old_dispatch_deck) or (battle.deck(1).id != setup.enemy_deck and not old_encounter):
+		var correct_deck: bool = battle.deck(0).id == setup.deck or old_dispatch_deck
+		if not campaign.requisition.is_empty():
+			correct_deck = battle.deck(0).id == "custom" and battle.deck(0).cards == Campaign.Requisition.counts_for(setup, campaign.requisition)
+		if battle.players[0].hero_id != setup.hero or battle.players[1].hero_id != setup.enemy_class or not correct_deck or (battle.deck(1).id != setup.enemy_deck and not old_encounter):
 			return {"ok": false, "message": "战斗军势与关卡不一致。"}
 		if battle.players[0].has("hero_display") or battle.hero(1).name != setup.enemy_name or battle.hero(1).portrait != setup.enemy_portrait:
 			return {"ok": false, "message": "战斗指挥官身份与关卡不一致。"}

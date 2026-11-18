@@ -4,6 +4,7 @@ extends Control
 signal advance_requested(expected: Dictionary)
 signal choice_requested(option_id: String, expected: Dictionary)
 signal battle_requested(expected: Dictionary)
+signal requisition_requested(card_id: String, expected: Dictionary)
 signal retreat_requested(expected: Dictionary)
 signal next_chapter_requested(expected: Dictionary)
 signal menu_requested
@@ -11,6 +12,7 @@ signal save_requested
 signal settings_requested
 
 const Art = preload("res://scripts/art_library.gd")
+const Cards = preload("res://data/cards.tres")
 const GOLD := Color("d0b579")
 const INK := Color("eee8db")
 var heading: Label
@@ -23,6 +25,10 @@ var stage: Control
 var dialogue_panel: PanelContainer
 var backlog_button: Button
 var settings_button: Button
+var requisition_panel: PanelContainer
+var requisition_choice: OptionButton
+var requisition_art: TextureRect
+var requisition_text: RichTextLabel
 var background_id: String = "menu"
 var page: Dictionary = {}
 var setup: Dictionary = {}
@@ -126,6 +132,7 @@ func _build() -> void:
 	text_body.add_theme_constant_override("line_separation", 14)
 	text_body.add_theme_color_override("default_color", INK)
 	copy.add_child(text_body)
+	_build_requisition(copy)
 	actions = VBoxContainer.new()
 	actions.add_theme_constant_override("separation", 12)
 	copy.add_child(actions)
@@ -137,6 +144,74 @@ func _build() -> void:
 	status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	footer.add_child(status)
 	footer.add_child(_button("保存进度", func() -> void: save_requested.emit(), false))
+
+func _build_requisition(parent: Control) -> void:
+	requisition_panel = PanelContainer.new()
+	var surface := StyleBoxFlat.new()
+	surface.bg_color = Color("142438")
+	surface.border_color = Color("57656a")
+	surface.set_border_width_all(1)
+	surface.set_corner_radius_all(4)
+	for side: Side in [SIDE_LEFT, SIDE_RIGHT, SIDE_TOP, SIDE_BOTTOM]:
+		surface.set_content_margin(side, 10)
+	requisition_panel.add_theme_stylebox_override("panel", surface)
+	parent.add_child(requisition_panel)
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 14)
+	requisition_panel.add_child(row)
+	requisition_art = TextureRect.new()
+	requisition_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	requisition_art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	requisition_art.custom_minimum_size = Vector2(128, 82)
+	requisition_art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	row.add_child(requisition_art)
+	var picker := VBoxContainer.new()
+	picker.custom_minimum_size.x = 240
+	picker.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	picker.add_theme_constant_override("separation", 6)
+	row.add_child(picker)
+	picker.add_child(_label("战前军需", 18, GOLD))
+	requisition_choice = OptionButton.new()
+	requisition_choice.custom_minimum_size.y = 38
+	requisition_choice.add_theme_font_size_override("font_size", 17)
+	requisition_choice.item_selected.connect(func(index: int) -> void:
+		requisition_requested.emit(str(requisition_choice.get_item_metadata(index)), view_token.duplicate()))
+	picker.add_child(requisition_choice)
+	requisition_text = RichTextLabel.new()
+	requisition_text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	requisition_text.custom_minimum_size.y = 104
+	requisition_text.add_theme_font_size_override("normal_font_size", 17)
+	requisition_text.add_theme_constant_override("line_separation", 4)
+	requisition_text.add_theme_color_override("default_color", INK)
+	row.add_child(requisition_text)
+	requisition_panel.hide()
+
+func render_requisition() -> void:
+	var config: Dictionary = setup.get("requisition", {})
+	requisition_panel.visible = page.get("type", "") == "battle" and not showing_history and not config.is_empty()
+	if not requisition_panel.visible: return
+	requisition_choice.clear()
+	requisition_choice.add_item("沿用原定军势")
+	requisition_choice.set_item_metadata(0, "")
+	var selected_id: String = setup.get("selected_requisition", "")
+	var selected_index: int = 0
+	for id: String in config.offers:
+		var definition: Dictionary = Cards.find(id)
+		var index: int = requisition_choice.item_count
+		requisition_choice.add_item("%s · %d 费" % [definition.name, definition.cost])
+		requisition_choice.set_item_metadata(index, id)
+		if id == selected_id: selected_index = index
+	requisition_choice.select(selected_index)
+	var outgoing: Dictionary = Cards.find(config.replace)
+	var picked: Dictionary = Cards.find(selected_id)
+	if picked.is_empty():
+		requisition_art.texture = Art.get_texture("requisition_desk")
+		requisition_text.text = "可换下起手的「%s」（%d 费），将一张军需牌直接换入手牌。\n点击出征确认本次阵容。" % [outgoing.name, outgoing.cost]
+	else:
+		requisition_art.texture = Art.get_texture(selected_id)
+		requisition_text.text = "换下「%s」 · %d 费\n%s" % [outgoing.name, outgoing.cost, picked.text.replace("\n", " ")]
+	requisition_text.tooltip_text = requisition_text.text
+	requisition_text.scroll_to_line(0)
 
 func open(current_page: Dictionary, expected: Dictionary, scenario: Dictionary, backlog: Array[Dictionary], save_notice: String, save_failed: bool) -> void:
 	page = current_page.duplicate(true)
@@ -159,6 +234,8 @@ func set_status(message: String, failed: bool = false) -> void:
 func set_reading_size(percent: int) -> void:
 	text_body.add_theme_font_size_override("normal_font_size", roundi(22.0 * percent / 100.0))
 	text_body.add_theme_constant_override("line_separation", roundi(14.0 * percent / 100.0))
+	requisition_text.add_theme_font_size_override("normal_font_size", roundi(17.0 * percent / 100.0))
+	requisition_text.custom_minimum_size.y = 128 if percent == 130 else 104
 
 func _clear_actions() -> void:
 	for child: Node in actions.get_children():
@@ -172,6 +249,8 @@ func _render_page() -> void:
 	# Battle objectives and retry details must not be pushed below a decorative
 	# stage in a small window. Dialogue still keeps its portrait/background space.
 	var briefing: bool = page.get("type", "") == "battle"
+	render_requisition()
+	text_body.custom_minimum_size.y = 118 if requisition_panel.visible else 160
 	stage.visible = not showing_history and not briefing
 	dialogue_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL if showing_history or briefing else Control.SIZE_FILL
 	if showing_history:

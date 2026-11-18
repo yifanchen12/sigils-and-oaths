@@ -46,9 +46,12 @@ func eighth_end(variant: int) -> RefCounted:
 
 func walk_nine(campaign: RefCounted, plan: String) -> void:
 	var inherited: Dictionary = campaign.story.state.flags.duplicate(true)
+	var escort_result: String = inherited.get("saltlane_result", "none")
+	inherited.erase("saltlane_result")
 	check(campaign.next_chapter().get("id") == "chapter_09", "eighth ending offers ninth chapter")
 	check(campaign.advance_chapter().ok, "advance to ninth from earned eighth ending")
 	check(campaign.story.graph.id == "chapter_09" and campaign.story.current().line_id == "c09.dawn.01", "ninth starts with visible local inspection")
+	check(campaign.completed.back().story.flags.get("saltlane_result") == escort_result, "chapter-eight history retains its local escort result")
 	for key: String in inherited:
 		check(campaign.story.state.flags[key] == inherited[key], "old fact carries into ninth: " + key)
 	var choices: int = 0

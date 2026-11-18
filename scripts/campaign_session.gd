@@ -103,10 +103,28 @@ func choose(option_id: String, expected: Dictionary) -> Dictionary:
 	if not result.ok: return result
 	return _after_action(campaign.story.choose(option_id, int(expected.revision)))
 
+func choose_requisition(card_id: String, expected: Dictionary) -> Dictionary:
+	var result: Dictionary = _guard(expected)
+	if not result.ok: return result
+	var setup: Dictionary = campaign.scenario()
+	if not setup.has("requisition") or not Campaign.Requisition.allows(setup, card_id):
+		return {"ok": false, "message": "当前关卡没有这项军需。"}
+	var previous: String = campaign.requisition
+	if card_id == previous: return {"ok": true}
+	campaign.requisition = card_id
+	result = save()
+	if not result.ok:
+		campaign.requisition = previous
+		return result
+	epoch += 1
+	return result
+
 func retreat(expected: Dictionary) -> Dictionary:
 	var result: Dictionary = _guard(expected)
 	if not result.ok: return result
-	return _after_action(campaign.story.retreat(int(expected.revision)))
+	result = campaign.story.retreat(int(expected.revision))
+	if result.ok: campaign.requisition = ""
+	return _after_action(result)
 
 func next_chapter(expected: Dictionary) -> Dictionary:
 	var result: Dictionary = _guard(expected)
@@ -134,16 +152,9 @@ func begin_battle(expected: Dictionary) -> Dictionary:
 	result = save()
 	if not result.ok: return result
 	var setup: Dictionary = campaign.scenario()
-	encounter = BattleModel.new(int(setup.seed), setup.map, setup.hero, setup.enemy_class, setup.deck, setup.enemy_deck, 90)
-	encounter.set_commander_identity(1, setup.enemy_name, setup.enemy_portrait)
-	if setup.has("commander_shield"): encounter.commander(0).shield = int(setup.commander_shield)
-	if setup.has("bonus_card") and not encounter.add_generated_card(0, str(setup.bonus_card)):
-		encounter = null
-		return {"ok": false, "message": "关卡增援牌无法加入手牌。"}
-	result = encounter.configure_objective(setup.get("control", {}))
-	if not result.ok:
-		encounter = null
-		return result
+	result = create_encounter(setup, campaign.requisition)
+	if not result.ok: return result
+	encounter = result.battle
 	encounter_revision = int(current().revision)
 	suspended = false
 	result = save()
@@ -153,11 +164,23 @@ func begin_battle(expected: Dictionary) -> Dictionary:
 		return result
 	return {"ok": true, "battle": encounter, "scenario": setup}
 
+static func create_encounter(setup: Dictionary, requisition: String = "") -> Dictionary:
+	var battle := BattleModel.new(int(setup.seed), setup.map, setup.hero, setup.enemy_class, setup.deck, setup.enemy_deck, 90)
+	var result: Dictionary = Campaign.Requisition.apply(battle, setup, requisition)
+	if not result.ok: return result
+	battle.set_commander_identity(1, setup.enemy_name, setup.enemy_portrait)
+	if setup.has("commander_shield"): battle.commander(0).shield = int(setup.commander_shield)
+	if setup.has("bonus_card") and not battle.add_generated_card(0, str(setup.bonus_card)):
+		return {"ok": false, "message": "关卡增援牌无法加入手牌。"}
+	result = battle.configure_objective(setup.get("control", {}))
+	return {"ok": true, "battle": battle} if result.ok else result
+
 func finish_battle(completed: RefCounted) -> Dictionary:
 	if suspended or completed == null or completed != encounter: return {"ok": false, "message": "这场战斗已过期或暂挂。"}
 	if completed.winner not in [0, 1, 2]: return {"ok": false, "message": "战斗尚未结束。"}
 	var result: Dictionary = campaign.story.resolve_battle(completed.winner, encounter_revision)
 	if not result.ok: return result
+	if completed.winner == 0: campaign.requisition = ""
 	encounter = null
 	encounter_revision = -1
 	return _after_action(result)

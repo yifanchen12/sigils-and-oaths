@@ -3,6 +3,7 @@ extends RefCounted
 
 const Story = preload("res://scripts/story_runner.gd")
 const BattleModel = preload("res://scripts/battle.gd")
+const Requisition = preload("res://scripts/campaign_requisition.gd")
 const INDEX_PATH: String = "res://data/campaign.json"
 const GATE_VARIANTS: Dictionary = {"joint": "c10_joint_gate", "split": "c10_split_gate", "hold": "c10_hold_gate"}
 const DEPOT_VARIANTS: Dictionary = {"joint": "c12_joint_depot", "split": "c12_split_depot", "hold": "c12_hold_depot"}
@@ -10,6 +11,7 @@ const CHANNEL_VARIANTS: Dictionary = {"upstream": "c14_upstream_channel", "tower
 var index: Dictionary = {}
 var story: RefCounted
 var completed: Array[Dictionary] = []
+var requisition: String = ""
 var error_message: String = ""
 
 func _init() -> void:
@@ -55,7 +57,7 @@ static func validate_scenario(value: Variant) -> String:
 	if value.has("commander_shield") and not Story._whole(value.commander_shield, 1, 5): return "开场指挥官护盾无效。"
 	var problem: String = BattleModel.ControlObjective.validate_config(value.get("control", {}), BattleModel.MAPS.find(value.map))
 	if not problem.is_empty(): return problem
-	return ""
+	return Requisition.validate_setup(value)
 
 func start(chapter_id: String = "chapter_01") -> Dictionary:
 	if index.is_empty() or index.chapters.is_empty() or chapter_id != index.chapters[0].id:
@@ -65,6 +67,7 @@ func start(chapter_id: String = "chapter_01") -> Dictionary:
 	if not loaded.source.get("inherits", []).is_empty() or not loaded.source.get("optional_inherits", []).is_empty(): return {"ok": false, "message": "首章不能依赖上一章事实。"}
 	story = Story.new(loaded.source)
 	completed.clear()
+	requisition = ""
 	return {"ok": true}
 
 func next_chapter() -> Dictionary:
@@ -96,17 +99,21 @@ func advance_chapter() -> Dictionary:
 	candidate._enter(candidate.graph.start)
 	completed.append({"chapter_id": story.graph.id, "story": story.snapshot()})
 	story = candidate
+	requisition = ""
 	return {"ok": true}
 
 func scenario() -> Dictionary:
-	if story == null or story.current().type != "battle": return {}
-	var scenario_id: String = story.current().scenario
-	if scenario_id == "c10_gate": scenario_id = GATE_VARIANTS.get(str(story.state.flags.get("governance_plan", "")), "")
-	if scenario_id == "c12_depot": scenario_id = DEPOT_VARIANTS.get(str(story.state.flags.get("governance_plan", "")), "")
-	if scenario_id == "c14_channel": scenario_id = CHANNEL_VARIANTS.get(str(story.state.flags.get("night_watch", "")), "")
+	return _scenario_at(story)
+
+func _scenario_at(cursor: RefCounted) -> Dictionary:
+	if cursor == null or cursor.current().type != "battle": return {}
+	var scenario_id: String = cursor.current().scenario
+	if scenario_id == "c10_gate": scenario_id = GATE_VARIANTS.get(str(cursor.state.flags.get("governance_plan", "")), "")
+	if scenario_id == "c12_depot": scenario_id = DEPOT_VARIANTS.get(str(cursor.state.flags.get("governance_plan", "")), "")
+	if scenario_id == "c14_channel": scenario_id = CHANNEL_VARIANTS.get(str(cursor.state.flags.get("night_watch", "")), "")
 	var setup: Dictionary = index.scenarios.get(scenario_id, {}).duplicate(true)
 	if scenario_id in ["c08_isolate", "c08_buffer"]:
-		match String(story.state.flags.get("saltlane_result", "none")):
+		match String(cursor.state.flags.get("saltlane_result", "none")):
 			"school":
 				setup["bonus_card"] = "lantern_stretcher"
 				setup.brief += "\n\n学堂援助 · 初始手牌加入「红灯担架」。"
@@ -117,7 +124,9 @@ func scenario() -> Dictionary:
 
 func snapshot() -> Dictionary:
 	if story == null: return {}
-	return {"chapter_id": story.graph.id, "story": story.snapshot(), "completed": completed.duplicate(true)}
+	var progress: Dictionary = {"chapter_id": story.graph.id, "story": story.snapshot(), "completed": completed.duplicate(true)}
+	if not requisition.is_empty(): progress["requisition"] = requisition
+	return progress
 
 func restore(payload: Variant) -> Dictionary:
 	if not payload is Dictionary or not payload.get("chapter_id") is String: return {"ok": false, "message": "战役存档缺少章节。"}
@@ -150,8 +159,12 @@ func restore(payload: Variant) -> Dictionary:
 	if not result.ok: return result
 	var problem: String = _inherit(candidate, previous, true)
 	if not problem.is_empty(): return {"ok": false, "message": problem}
+	var choice: Variant = payload.get("requisition", "")
+	if not choice is String or not Requisition.allows(_scenario_at(candidate), choice):
+		return {"ok": false, "message": "保存的战前军需与当前关卡不一致。"}
 	story = candidate
 	completed = restored_records
+	requisition = choice
 	return {"ok": true}
 
 func backlog() -> Array[Dictionary]:

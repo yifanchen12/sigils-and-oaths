@@ -12,6 +12,7 @@ const NARRATIVE_SCENES: Dictionary = {
 	"scene_eaststreet": "eaststreet-day-v1", "scene_sunspire_camp": "school-night-v1",
 	"scene_school_day": "school-day-v1", "scene_school_ward": "school-ward-night-v1",
 	"scene_saltlane_yard": "saltlane-yard-v1",
+	"requisition_desk": "quartermaster-desk-v1",
 	"scene_waterpass": "waterpass-day-v1", "scene_oldfurnace": "oldfurnace-day-v1",
 	"scene_council_terrace": "council-terrace-day-v1",
 	"scene_redroof": "redroof-day-v1", "scene_northbank_memorial": "northbank-memorial-v1",

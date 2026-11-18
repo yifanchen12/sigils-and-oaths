@@ -98,6 +98,11 @@ func _initialize() -> void:
         for chapter in campaign.chapters:
             if not JSON.parse_string(FileAccess.get_file_as_string(chapter.path)) is Dictionary:
                 problems.append("missing chapter: " + chapter.path)
+        var requisitions: int = 0
+        for setup: Dictionary in campaign.scenarios.values():
+            if setup.has("requisition"): requisitions += 1
+        if requisitions != 20 or not campaign.scenarios.get("c06_court", {}).get("requisition", {}).get("offers", []).has("dawn_weir"):
+            problems.append("campaign requisition data unavailable")
     var required_resources = ["res://scenes/main.tscn", "res://data/cards.tres", "res://data/decks.tres",
         "res://assets/art/expansion/spells-v1.png", "res://assets/art/expansion/traps-forest-v1.png",
         "res://assets/art/expansion/warfront-units-v1.png", "res://assets/art/expansion/warfront-effects-v1.png",
@@ -108,6 +113,7 @@ func _initialize() -> void:
         "res://assets/art/expansion/levee-watch-v1.png", "res://assets/art/expansion/levee-orders-v1.png", "res://scripts/timed_orders.gd",
         "res://assets/art/battlefields/lamplanding-v2.png", "res://assets/art/narrative/return-morning-v1.png",
         "res://assets/art/battlefields/saltlane-v2.png", "res://assets/art/narrative/saltlane-yard-v1.png",
+        "res://assets/art/narrative/quartermaster-desk-v1.png", "res://scripts/campaign_requisition.gd",
         "res://scripts/settings_dialog.gd", "res://scripts/training.gd", "res://scripts/game_audio.gd", "res://assets/audio/council.ogg",
         "res://assets/audio/battle.ogg", "res://assets/audio/trap.wav", "res://assets/audio/victory.wav"]
     for path in required_resources:

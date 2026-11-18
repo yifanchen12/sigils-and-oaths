@@ -194,6 +194,7 @@ func _ready() -> void:
 	story_view.advance_requested.connect(_advance_story)
 	story_view.choice_requested.connect(_choose_story)
 	story_view.battle_requested.connect(_begin_campaign_battle)
+	story_view.requisition_requested.connect(_choose_requisition)
 	story_view.retreat_requested.connect(_retreat_from_campaign_battle)
 	story_view.next_chapter_requested.connect(_next_story_chapter)
 	story_view.menu_requested.connect(_open_council)
@@ -440,15 +441,25 @@ func _continue_campaign() -> void:
 	if campaign_session.encounter != null: _mount_campaign_encounter(campaign_session.resume_encounter())
 	else: _show_story()
 
-func _show_story() -> void:
+func _show_story(focus_requisition: bool = false) -> void:
 	generation += 1
 	ai_running = false
 	has_started = false
 	board.reset_effects()
 	%ResultOverlay.hide()
 	council.hide()
-	story_view.open(campaign_session.current(), campaign_session.token(), campaign_session.campaign.scenario(), campaign_session.backlog(), campaign_session.notice, campaign_session.unsaved)
+	var setup: Dictionary = campaign_session.campaign.scenario()
+	if not setup.is_empty(): setup["selected_requisition"] = campaign_session.campaign.requisition
+	story_view.open(campaign_session.current(), campaign_session.token(), setup, campaign_session.backlog(), campaign_session.notice, campaign_session.unsaved)
+	if focus_requisition and story_view.requisition_panel.visible: story_view.requisition_choice.grab_focus()
 	_refresh()
+
+func _choose_requisition(card_id: String, expected: Dictionary) -> void:
+	var result: Dictionary = campaign_session.choose_requisition(card_id, expected)
+	if result.ok: _show_story(true)
+	else:
+		story_view.render_requisition()
+		story_view.set_status(result.message, true)
 
 func _next_story_chapter(expected: Dictionary) -> void:
 	var result: Dictionary = campaign_session.next_chapter(expected)
@@ -516,6 +527,8 @@ func _mount_campaign_encounter(result: Dictionary) -> void:
 	has_started = true
 	_new_match(int(result.scenario.seed), result.battle)
 	message = result.scenario.title + " · " + result.scenario.objective
+	if not campaign_session.campaign.requisition.is_empty():
+		message = "战前军需 · 「%s」随军出征。 %s" % [battle.definition(campaign_session.campaign.requisition).name, message]
 	if not expanded_battlefield: _toggle_battlefield()
 	_refresh()
 	board.grab_focus()

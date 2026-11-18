@@ -36,12 +36,13 @@ func enter_seventh(session: RefCounted) -> bool:
 	if not check(session.campaign.restore(start).ok and session.next_chapter(session.token()).ok, "enter C07 from actual 0.45 history"): return false
 	return check(until_page(session, "saltlane_call", {"camp": "clinic"}), "normal C07 dialogue reaches optional rescue")
 
-func enter_branch(session: RefCounted, route: String) -> bool:
+func enter_branch(session: RefCounted, route: String, requisition: String = "") -> bool:
 	if not enter_seventh(session): return false
 	if not check(session.choose("answer_call", session.token()).ok and until_page(session, "saltlane_route"), "accept rescue and reach route choice"): return false
 	var scenario := "c07_saltlane_" + route
 	if not check(session.choose(route, session.token()).ok and until_page(session, scenario), "reach chosen escort briefing"): return false
 	if not check(not session.current().can_retreat and not session.retreat(session.token()).ok, "cannot withdraw before fighting"): return false
+	if not requisition.is_empty() and not check(session.choose_requisition(requisition, session.token()).ok, "choose a real optional-escort requisition"): return false
 	return check(session.begin_battle(session.token()).ok, "start authored escort with normal opening resources")
 
 func test_rules() -> void:
@@ -123,7 +124,7 @@ func test_delivery(route: String, reward: String) -> void:
 func test_withdrawal() -> void:
 	var path := "res://.tools/v046-saltlane-defeat.json"
 	var session = Session.new(path)
-	if not enter_branch(session, "kiln"): return
+	if not enter_branch(session, "kiln", "chalk_spike"): return
 	var battle: Battle = session.encounter
 	var original: Dictionary = Snapshot.capture(battle)
 	while battle.winner == -1 and battle.turn <= 20:
@@ -132,6 +133,7 @@ func test_withdrawal() -> void:
 	if not check(session.save().ok, "save terminal timeout before returning to story"): return
 	session = Session.new(path)
 	if not check(session.load_campaign().ok and session.encounter == null and session.current().can_retreat and session.current().attempts == 1, "loading terminal battle restores retry exactly once"): return
+	check(session.campaign.requisition == "chalk_spike", "losing preserves the selected escort requisition")
 	var stale: Dictionary = session.token()
 	if not check(session.begin_battle(stale).ok and Snapshot.capture(session.encounter) == original, "retry rebuilds same authored force and seed"): return
 	battle = session.encounter
@@ -142,6 +144,7 @@ func test_withdrawal() -> void:
 	if not check(battle.winner == 1 and battle.escort_unit().is_empty() and Snapshot.validate(Snapshot.capture(battle)).ok, "enemy can cause escort loss and casualty survives validation"): return
 	if not check(session.finish_battle(battle).ok and not session.retreat(stale).ok, "stale retreat token fails after retry and second loss"): return
 	if not check(session.current().attempts == 2 and session.retreat(session.token()).ok and session.current().node == "saltlane_retreat", "withdrawal after defeat takes its authored path"): return
+	check(session.campaign.requisition.is_empty(), "withdrawing clears the selected escort requisition")
 	finish_to_eighth(session, "withdrawn", "")
 
 func test_old_release() -> void:

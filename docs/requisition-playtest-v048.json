@@ -1,0 +1,1164 @@
+{
+  "build": "0.48.0-dev",
+  "scope": "Four launches of each offered scenario with identical authored seed and rules. The scenario sweep uses raw catalog setup; scenario modifiers earned in the preceding narrative are applied in continuous runs instead. Each scenario uses the same declared player policy for all four hands. No human-balance claim.",
+  "policy": {
+    "enemy": "production",
+    "default_player": "production",
+    "HarborPilot": [
+      "c04_pump",
+      "c06_court"
+    ],
+    "FocusPilot": [
+      "c05_nursery",
+      "c12_joint_depot",
+      "c12_split_depot",
+      "c12_hold_depot"
+    ],
+    "ChannelPilot": [
+      "c14_upstream_channel",
+      "c14_tower_channel"
+    ]
+  },
+  "matches": 80,
+  "actions": 14890,
+  "baseline_wins": 19,
+  "requisition_wins": 41,
+  "requisitions_played": 53,
+  "scenarios_with_winning_requisition": 20,
+  "scenario_results": [
+    {
+      "scenario": "c04_dock",
+      "seed": 4317.0,
+      "outgoing": "sun",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 269,
+          "turn": 43,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "苍蓝军团取得胜利！"
+        },
+        {
+          "card": "cinder_runner",
+          "winner": 0,
+          "actions": 443,
+          "turn": 60,
+          "play_turn": 3,
+          "play_mana": 2,
+          "finish": "北坞雇卫长所部回合 · 法力 10/10"
+        },
+        {
+          "card": "severed_pullcord",
+          "winner": 1,
+          "actions": 434,
+          "turn": 63,
+          "play_turn": 11,
+          "play_mana": 5,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "chalk_route",
+          "winner": 1,
+          "actions": 411,
+          "turn": 59,
+          "play_turn": 3,
+          "play_mana": 1,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        }
+      ]
+    },
+    {
+      "scenario": "c04_pump",
+      "seed": 4318.0,
+      "outgoing": "insight",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 90,
+          "turn": 17,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "苍蓝军团取得胜利！"
+        },
+        {
+          "card": "troop_receipt",
+          "winner": 0,
+          "actions": 101,
+          "turn": 19,
+          "play_turn": 15,
+          "play_mana": 5,
+          "finish": "苍蓝军团取得胜利！"
+        },
+        {
+          "card": "two_shore_claim",
+          "winner": 0,
+          "actions": 391,
+          "turn": 62,
+          "play_turn": 21,
+          "play_mana": 5,
+          "finish": "泵房守机队长所部回合 · 法力 10/10"
+        },
+        {
+          "card": "reed_watch",
+          "winner": 0,
+          "actions": 202,
+          "turn": 33,
+          "play_turn": 5,
+          "play_mana": 3,
+          "finish": "苍蓝军团取得胜利！"
+        }
+      ]
+    },
+    {
+      "scenario": "c05_channel",
+      "seed": 5318.0,
+      "outgoing": "cavalry",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 168,
+          "turn": 27,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "苍蓝军团取得胜利！"
+        },
+        {
+          "card": "lantern_bearer",
+          "winner": 0,
+          "actions": 124,
+          "turn": 21,
+          "play_turn": 3,
+          "play_mana": 2,
+          "finish": "苍蓝军团取得胜利！"
+        },
+        {
+          "card": "cinder_runner",
+          "winner": 1,
+          "actions": 180,
+          "turn": 30,
+          "play_turn": 3,
+          "play_mana": 2,
+          "finish": "渠首管事岑槐所部取得胜利！"
+        },
+        {
+          "card": "rain_saddle",
+          "winner": 1,
+          "actions": 194,
+          "turn": 28,
+          "play_turn": 15,
+          "play_mana": 6,
+          "finish": "渠首管事岑槐所部取得胜利！"
+        }
+      ]
+    },
+    {
+      "scenario": "c05_nursery",
+      "seed": 5317.0,
+      "outgoing": "rain",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 132,
+          "turn": 25,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "dike_flagstones",
+          "winner": 1,
+          "actions": 138,
+          "turn": 25,
+          "play_turn": 15,
+          "play_mana": 6,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "reed_watch",
+          "winner": 1,
+          "actions": 143,
+          "turn": 25,
+          "play_turn": 5,
+          "play_mana": 3,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "anchor_snare",
+          "winner": 0,
+          "actions": 121,
+          "turn": 23,
+          "play_turn": 13,
+          "play_mana": 3,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        }
+      ]
+    },
+    {
+      "scenario": "c06_court",
+      "seed": 6317.0,
+      "outgoing": "exchange",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 445,
+          "turn": 62,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "留守队长陶因所部回合 · 法力 10/10"
+        },
+        {
+          "card": "floodline_warning",
+          "winner": 0,
+          "actions": 342,
+          "turn": 51,
+          "play_turn": 13,
+          "play_mana": 6,
+          "finish": "苍蓝军团取得胜利！"
+        },
+        {
+          "card": "dawn_weir",
+          "winner": 1,
+          "actions": 380,
+          "turn": 54,
+          "play_turn": 19,
+          "play_mana": 10,
+          "finish": "留守队长陶因所部取得胜利！"
+        },
+        {
+          "card": "lantern_surgeon",
+          "winner": 0,
+          "actions": 391,
+          "turn": 56,
+          "play_turn": 19,
+          "play_mana": 10,
+          "finish": "留守队长陶因所部回合 · 法力 10/10"
+        }
+      ]
+    },
+    {
+      "scenario": "c07_saltlane_kiln",
+      "seed": 7402.0,
+      "outgoing": "sword",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 23,
+          "turn": 7,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "担架队已抵达安全出口，本次护送完成。"
+        },
+        {
+          "card": "lantern_stretcher",
+          "winner": 0,
+          "actions": 23,
+          "turn": 7,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "担架队已抵达安全出口，本次护送完成。"
+        },
+        {
+          "card": "chalk_spike",
+          "winner": 0,
+          "actions": 23,
+          "turn": 7,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "担架队已抵达安全出口，本次护送完成。"
+        },
+        {
+          "card": "reed_watch",
+          "winner": 0,
+          "actions": 23,
+          "turn": 7,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "担架队已抵达安全出口，本次护送完成。"
+        }
+      ]
+    },
+    {
+      "scenario": "c07_saltlane_school",
+      "seed": 7401.0,
+      "outgoing": "hammer_sweep",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 27,
+          "turn": 7,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "担架队已抵达安全出口，本次护送完成。"
+        },
+        {
+          "card": "lantern_stretcher",
+          "winner": 0,
+          "actions": 27,
+          "turn": 7,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "担架队已抵达安全出口，本次护送完成。"
+        },
+        {
+          "card": "stretcher_signal",
+          "winner": 0,
+          "actions": 27,
+          "turn": 7,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "担架队已抵达安全出口，本次护送完成。"
+        },
+        {
+          "card": "severed_pullcord",
+          "winner": 0,
+          "actions": 27,
+          "turn": 7,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "担架队已抵达安全出口，本次护送完成。"
+        }
+      ]
+    },
+    {
+      "scenario": "c08_buffer",
+      "seed": 8318.0,
+      "outgoing": "march",
+      "results": [
+        {
+          "card": "",
+          "winner": 1,
+          "actions": 258,
+          "turn": 38,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "守机管事阮衡所部取得胜利！"
+        },
+        {
+          "card": "severed_pullcord",
+          "winner": 1,
+          "actions": 211,
+          "turn": 31,
+          "play_turn": 13,
+          "play_mana": 6,
+          "finish": "守机管事阮衡所部取得胜利！"
+        },
+        {
+          "card": "first_wake",
+          "winner": 0,
+          "actions": 197,
+          "turn": 29,
+          "play_turn": 13,
+          "play_mana": 5,
+          "finish": "苍蓝军团取得胜利！"
+        },
+        {
+          "card": "troop_receipt",
+          "winner": 1,
+          "actions": 248,
+          "turn": 36,
+          "play_turn": 13,
+          "play_mana": 3,
+          "finish": "守机管事阮衡所部取得胜利！"
+        }
+      ]
+    },
+    {
+      "scenario": "c08_isolate",
+      "seed": 8317.0,
+      "outgoing": "healer",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 115,
+          "turn": 21,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "quay_salver",
+          "winner": 0,
+          "actions": 115,
+          "turn": 21,
+          "play_turn": 5,
+          "play_mana": 3,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "dike_flagstones",
+          "winner": 0,
+          "actions": 92,
+          "turn": 19,
+          "play_turn": 15,
+          "play_mana": 7,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "stretcher_signal",
+          "winner": 0,
+          "actions": 93,
+          "turn": 19,
+          "play_turn": 15,
+          "play_mana": 7,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        }
+      ]
+    },
+    {
+      "scenario": "c10_hold_gate",
+      "seed": 10343.0,
+      "outgoing": "snow",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 165,
+          "turn": 29,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "dike_flagstones",
+          "winner": 0,
+          "actions": 193,
+          "turn": 33,
+          "play_turn": 11,
+          "play_mana": 4,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "bell_winch",
+          "winner": 0,
+          "actions": 115,
+          "turn": 21,
+          "play_turn": 9,
+          "play_mana": 5,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "reed_toll",
+          "winner": 0,
+          "actions": 166,
+          "turn": 29,
+          "play_turn": 15,
+          "play_mana": 7,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        }
+      ]
+    },
+    {
+      "scenario": "c10_joint_gate",
+      "seed": 10341.0,
+      "outgoing": "repulse",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 213,
+          "turn": 37,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "mud_sluice",
+          "winner": 0,
+          "actions": 218,
+          "turn": 37,
+          "play_turn": 9,
+          "play_mana": 2,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "field_muster",
+          "winner": 1,
+          "actions": 208,
+          "turn": 37,
+          "play_turn": 13,
+          "play_mana": 5,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "rain_saddle",
+          "winner": 1,
+          "actions": 213,
+          "turn": 37,
+          "play_turn": 11,
+          "play_mana": 6,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        }
+      ]
+    },
+    {
+      "scenario": "c10_split_gate",
+      "seed": 10342.0,
+      "outgoing": "repulse",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 98,
+          "turn": 19,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "severed_pullcord",
+          "winner": 0,
+          "actions": 100,
+          "turn": 19,
+          "play_turn": 11,
+          "play_mana": 5,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "field_muster",
+          "winner": 0,
+          "actions": 103,
+          "turn": 19,
+          "play_turn": 15,
+          "play_mana": 8,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "levee_brothers",
+          "winner": 0,
+          "actions": 103,
+          "turn": 19,
+          "play_turn": 13,
+          "play_mana": 7,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        }
+      ]
+    },
+    {
+      "scenario": "c12_hold_depot",
+      "seed": 12033.0,
+      "outgoing": "rain",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 228,
+          "turn": 39,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "苍蓝军团取得胜利！"
+        },
+        {
+          "card": "dike_flagstones",
+          "winner": 1,
+          "actions": 287,
+          "turn": 45,
+          "play_turn": 15,
+          "play_mana": 8,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "stretcher_signal",
+          "winner": 0,
+          "actions": 208,
+          "turn": 37,
+          "play_turn": 17,
+          "play_mana": 6,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "reed_toll",
+          "winner": 1,
+          "actions": 295,
+          "turn": 45,
+          "play_turn": 15,
+          "play_mana": 8,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        }
+      ]
+    },
+    {
+      "scenario": "c12_joint_depot",
+      "seed": 12031.0,
+      "outgoing": "spear",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 74,
+          "turn": 15,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "苍蓝军团回合 · 法力 8/8"
+        },
+        {
+          "card": "ferry_pikeman",
+          "winner": 1,
+          "actions": 241,
+          "turn": 41,
+          "play_turn": 5,
+          "play_mana": 3,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "bell_winch",
+          "winner": 1,
+          "actions": 214,
+          "turn": 41,
+          "play_turn": 9,
+          "play_mana": 5,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "reed_toll",
+          "winner": 0,
+          "actions": 71,
+          "turn": 15,
+          "play_turn": 13,
+          "play_mana": 7,
+          "finish": "苍蓝军团回合 · 法力 8/8"
+        }
+      ]
+    },
+    {
+      "scenario": "c12_split_depot",
+      "seed": 12032.0,
+      "outgoing": "sun",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 109,
+          "turn": 23,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "recommission_crew",
+          "winner": 0,
+          "actions": 108,
+          "turn": 23,
+          "play_turn": 17,
+          "play_mana": 8,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "dike_flagstones",
+          "winner": 0,
+          "actions": 108,
+          "turn": 23,
+          "play_turn": 11,
+          "play_mana": 6,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "lantern_stretcher",
+          "winner": 0,
+          "actions": 189,
+          "turn": 33,
+          "play_turn": 15,
+          "play_mana": 4,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        }
+      ]
+    },
+    {
+      "scenario": "c14_tower_channel",
+      "seed": 14032.0,
+      "outgoing": "fog",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 231,
+          "turn": 33,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "reed_toll",
+          "winner": 0,
+          "actions": 253,
+          "turn": 35,
+          "play_turn": 27,
+          "play_mana": 6,
+          "finish": "苍蓝军团取得胜利！"
+        },
+        {
+          "card": "dike_flagstones",
+          "winner": 0,
+          "actions": 202,
+          "turn": 31,
+          "play_turn": 15,
+          "play_mana": 7,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "lantern_stretcher",
+          "winner": 0,
+          "actions": 194,
+          "turn": 29,
+          "play_turn": 17,
+          "play_mana": 4,
+          "finish": "苍蓝军团取得胜利！"
+        }
+      ]
+    },
+    {
+      "scenario": "c14_upstream_channel",
+      "seed": 14031.0,
+      "outgoing": "trail",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 240,
+          "turn": 37,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "mud_sluice",
+          "winner": 0,
+          "actions": 240,
+          "turn": 37,
+          "play_turn": 13,
+          "play_mana": 2,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "reed_watch",
+          "winner": 1,
+          "actions": 171,
+          "turn": 26,
+          "play_turn": 5,
+          "play_mana": 3,
+          "finish": "暗渠守闸长孟绫所部取得胜利！"
+        },
+        {
+          "card": "rain_saddle",
+          "winner": 1,
+          "actions": 301,
+          "turn": 45,
+          "play_turn": 13,
+          "play_mana": 7,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        }
+      ]
+    },
+    {
+      "scenario": "c16_bridge",
+      "seed": 16031.0,
+      "outgoing": "anchor_snare",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 472,
+          "turn": 64,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "护运队长白祁所部回合 · 法力 10/10"
+        },
+        {
+          "card": "dike_lights",
+          "winner": 0,
+          "actions": 339,
+          "turn": 43,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "苍蓝军团取得胜利！"
+        },
+        {
+          "card": "dawn_weir",
+          "winner": 1,
+          "actions": 390,
+          "turn": 52,
+          "play_turn": 19,
+          "play_mana": 10,
+          "finish": "护运队长白祁所部取得胜利！"
+        },
+        {
+          "card": "lantern_surgeon",
+          "winner": 0,
+          "actions": 339,
+          "turn": 41,
+          "play_turn": 23,
+          "play_mana": 10,
+          "finish": "苍蓝军团取得胜利！"
+        }
+      ]
+    },
+    {
+      "scenario": "c17_runner",
+      "seed": 17031.0,
+      "outgoing": "cavalry",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 120,
+          "turn": 21,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "cinder_runner",
+          "winner": 0,
+          "actions": 28,
+          "turn": 9,
+          "play_turn": 3,
+          "play_mana": 2,
+          "finish": "苍蓝军团回合 · 法力 5/5"
+        },
+        {
+          "card": "lantern_stretcher",
+          "winner": 0,
+          "actions": 114,
+          "turn": 21,
+          "play_turn": 15,
+          "play_mana": 6,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "troop_receipt",
+          "winner": 1,
+          "actions": 203,
+          "turn": 33,
+          "play_turn": 15,
+          "play_mana": 6,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        }
+      ]
+    },
+    {
+      "scenario": "c17_screen",
+      "seed": 17031.0,
+      "outgoing": "onslaught",
+      "results": [
+        {
+          "card": "",
+          "winner": 0,
+          "actions": 97,
+          "turn": 19,
+          "play_turn": 0,
+          "play_mana": 0,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "bell_winch",
+          "winner": 0,
+          "actions": 77,
+          "turn": 17,
+          "play_turn": 9,
+          "play_mana": 5,
+          "finish": "苍蓝军团回合 · 法力 9/9"
+        },
+        {
+          "card": "stretcher_signal",
+          "winner": 0,
+          "actions": 119,
+          "turn": 21,
+          "play_turn": 17,
+          "play_mana": 5,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        },
+        {
+          "card": "reed_toll",
+          "winner": 0,
+          "actions": 105,
+          "turn": 21,
+          "play_turn": 13,
+          "play_mana": 6,
+          "finish": "苍蓝军团回合 · 法力 10/10"
+        }
+      ]
+    }
+  ],
+  "continuous": [
+    {
+      "escort": "kiln",
+      "policy": "production on both sides except c04_pump harbor focus player, c05_nursery wounded/support focus player, c06_court central-formation focus player, c12_depot formation focus and c14_channel bridge focus player",
+      "completed_chapters": 18,
+      "ending": "joint_end",
+      "selected_requisitions": 11,
+      "played_requisitions": 10,
+      "actions": 3254,
+      "checks": 5131,
+      "dialogue_pages": 1551,
+      "battles": [
+        {
+          "scenario": "c01_road",
+          "winner": 0,
+          "actions": 151,
+          "turn": 25,
+          "reload_at_action": 27
+        },
+        {
+          "scenario": "c01_bridge",
+          "winner": 0,
+          "actions": 448,
+          "turn": 62,
+          "reload_at_action": 25
+        },
+        {
+          "scenario": "c02_relief_bridge",
+          "winner": 0,
+          "actions": 128,
+          "turn": 21,
+          "reload_at_action": 21
+        },
+        {
+          "scenario": "c02_dispatch",
+          "winner": 0,
+          "actions": 454,
+          "turn": 62,
+          "reload_at_action": 21
+        },
+        {
+          "scenario": "c03_vent",
+          "winner": 0,
+          "actions": 55,
+          "turn": 13,
+          "reload_at_action": 28
+        },
+        {
+          "scenario": "c04_dock",
+          "winner": 0,
+          "actions": 443,
+          "turn": 60,
+          "reload_at_action": 27,
+          "requisition": "cinder_runner",
+          "played_requisition": true
+        },
+        {
+          "scenario": "c04_pump",
+          "winner": 0,
+          "actions": 101,
+          "turn": 19,
+          "reload_at_action": 16,
+          "requisition": "troop_receipt",
+          "played_requisition": true
+        },
+        {
+          "scenario": "c05_nursery",
+          "winner": 0,
+          "actions": 121,
+          "turn": 23,
+          "reload_at_action": 21,
+          "requisition": "anchor_snare",
+          "played_requisition": true
+        },
+        {
+          "scenario": "c06_court",
+          "winner": 0,
+          "actions": 342,
+          "turn": 51,
+          "reload_at_action": 26,
+          "requisition": "floodline_warning",
+          "played_requisition": true
+        },
+        {
+          "scenario": "c07_saltlane_kiln",
+          "winner": 0,
+          "actions": 23,
+          "turn": 7,
+          "reload_at_action": 6,
+          "requisition": "chalk_spike",
+          "played_requisition": false
+        },
+        {
+          "scenario": "c08_isolate",
+          "winner": 0,
+          "actions": 92,
+          "turn": 19,
+          "reload_at_action": 24,
+          "requisition": "dike_flagstones",
+          "played_requisition": true
+        },
+        {
+          "scenario": "c10_gate",
+          "winner": 0,
+          "actions": 218,
+          "turn": 37,
+          "reload_at_action": 24,
+          "requisition": "mud_sluice",
+          "played_requisition": true
+        },
+        {
+          "scenario": "c12_depot",
+          "winner": 0,
+          "actions": 71,
+          "turn": 15,
+          "reload_at_action": 25,
+          "requisition": "reed_toll",
+          "played_requisition": true
+        },
+        {
+          "scenario": "c14_channel",
+          "winner": 0,
+          "actions": 240,
+          "turn": 37,
+          "reload_at_action": 21,
+          "requisition": "mud_sluice",
+          "played_requisition": true
+        },
+        {
+          "scenario": "c16_bridge",
+          "winner": 0,
+          "actions": 339,
+          "turn": 41,
+          "reload_at_action": 21,
+          "requisition": "lantern_surgeon",
+          "played_requisition": true
+        },
+        {
+          "scenario": "c17_runner",
+          "winner": 0,
+          "actions": 28,
+          "turn": 9,
+          "reload_at_action": 23,
+          "requisition": "cinder_runner",
+          "played_requisition": true
+        }
+      ]
+    },
+    {
+      "escort": "school",
+      "policy": "production on both sides except c04_pump harbor focus player, c05_nursery wounded/support focus player, c06_court central-formation focus player, c12_depot formation focus and c14_channel bridge focus player",
+      "completed_chapters": 18,
+      "ending": "joint_end",
+      "selected_requisitions": 0,
+      "played_requisitions": 0,
+      "actions": 3434,
+      "checks": 5276,
+      "dialogue_pages": 1550,
+      "battles": [
+        {
+          "scenario": "c01_road",
+          "winner": 0,
+          "actions": 151,
+          "turn": 25,
+          "reload_at_action": 27
+        },
+        {
+          "scenario": "c01_bridge",
+          "winner": 0,
+          "actions": 448,
+          "turn": 62,
+          "reload_at_action": 25
+        },
+        {
+          "scenario": "c02_relief_bridge",
+          "winner": 0,
+          "actions": 128,
+          "turn": 21,
+          "reload_at_action": 21
+        },
+        {
+          "scenario": "c02_dispatch",
+          "winner": 0,
+          "actions": 454,
+          "turn": 62,
+          "reload_at_action": 21
+        },
+        {
+          "scenario": "c03_vent",
+          "winner": 0,
+          "actions": 55,
+          "turn": 13,
+          "reload_at_action": 28
+        },
+        {
+          "scenario": "c04_dock",
+          "winner": 0,
+          "actions": 269,
+          "turn": 43,
+          "reload_at_action": 25
+        },
+        {
+          "scenario": "c04_pump",
+          "winner": 0,
+          "actions": 90,
+          "turn": 17,
+          "reload_at_action": 16
+        },
+        {
+          "scenario": "c05_nursery",
+          "winner": 0,
+          "actions": 132,
+          "turn": 25,
+          "reload_at_action": 21
+        },
+        {
+          "scenario": "c06_court",
+          "winner": 0,
+          "actions": 445,
+          "turn": 62,
+          "reload_at_action": 26
+        },
+        {
+          "scenario": "c07_saltlane_school",
+          "winner": 0,
+          "actions": 27,
+          "turn": 7,
+          "reload_at_action": 8
+        },
+        {
+          "scenario": "c08_isolate",
+          "winner": 0,
+          "actions": 116,
+          "turn": 21,
+          "reload_at_action": 23
+        },
+        {
+          "scenario": "c10_gate",
+          "winner": 0,
+          "actions": 213,
+          "turn": 37,
+          "reload_at_action": 24
+        },
+        {
+          "scenario": "c12_depot",
+          "winner": 0,
+          "actions": 74,
+          "turn": 15,
+          "reload_at_action": 25
+        },
+        {
+          "scenario": "c14_channel",
+          "winner": 0,
+          "actions": 240,
+          "turn": 37,
+          "reload_at_action": 21
+        },
+        {
+          "scenario": "c16_bridge",
+          "winner": 0,
+          "actions": 472,
+          "turn": 64,
+          "reload_at_action": 21
+        },
+        {
+          "scenario": "c17_runner",
+          "winner": 0,
+          "actions": 120,
+          "turn": 21,
+          "reload_at_action": 20
+        }
+      ]
+    }
+  ]
+}

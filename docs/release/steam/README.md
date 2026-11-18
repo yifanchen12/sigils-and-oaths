@@ -1,6 +1,6 @@
 # 《纹章与誓约》Steam 商店素材候选包
 
-当前 Windows 预览为 0.47.0-dev。界面和剧情为简体中文，以下中英文文案供商店语言版本使用。本目录保留高分辨率游戏画面、商店及库用图片和内容披露底稿。
+当前 Windows 预览为 0.48.0-dev。界面和剧情为简体中文，以下中英文文案供商店语言版本使用。本目录保留高分辨率游戏画面、商店及库用图片和内容披露底稿。
 
 ## 中文简介
 
@@ -12,7 +12,7 @@
 
 - 在 140 种可组牌中选择部队、法术、手牌陷阱与地形天气牌。用十四套预组开局，或编辑自己的 30 张牌组。高费军令会先标出受影响的地格，给对手留出一个完整回合调整站位。
 - 攻下桥头、在盐布巷护送担架队，或按序接应撤离处。六种兵种各有主动技能，指挥官也有独立的主动与被动。
-- 在河门来信开始十八章单人战役。故事记录关于救济、修渠和同伴去留的选择，通向三个结局。
+- 在河门来信开始十八章单人战役。故事记录关于救济、修渠和同伴去留的选择，通向三个结局。第四章起可在 20 场战斗的简报中选择军需，更换一张起手牌。
 - 从四节不限时教程入门。自由对战使用 90 秒行动回合。战役支持中途保存，并提供剧情回看和可调阅读字号。
 
 ## English store copy
@@ -25,7 +25,7 @@ In *Sigils & Oaths*, the ground determines what your hand can do. Every ally can
 
 - Build a thirty-card deck from 140 collectible cards or start with one of fourteen presets. Set traps from hand, move vanguards on deployment, and mark a battlefield area with orders that resolve after the opponent's turn.
 - Fight over crossings, escort a stretcher crew across Saltcloth Lane, and reach evacuation points in order. Six unit roles have their own active abilities, and each commander has active and passive powers.
-- Begin with a letter from Rivergate and finish one of three endings in the eighteen-chapter solo campaign. Your choices affect relief, repairs, and the future of the company.
+- Begin with a letter from Rivergate and finish one of three endings in the eighteen-chapter solo campaign. Your choices affect relief, repairs, and the future of the company. Requisition one opening-hand replacement in twenty engagements from chapter four onward.
 - Practice in four untimed drills. Skirmishes use ninety-second turns. Campaign progress can be saved mid-battle. Read previous dialogue and adjust story text size.
 
 Game interface and story text are in Simplified Chinese.

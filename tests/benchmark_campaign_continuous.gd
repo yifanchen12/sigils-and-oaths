@@ -17,6 +17,8 @@ var nursery_focus: bool = false
 var court_focus: bool = false
 var late_route_focus: bool = false
 var saltlane: String = "skip"
+var requisitions: Dictionary = {}
+var requisition_report: String = ""
 var save_path: String = SAVE
 var report: Dictionary = {"policy": "production opponent on both sides", "coverage": "continuous_campaign", "note": "New campaign, first visible choices (except the declared opening route and priority), real battle results and save/reload. Stops at first defeat. Automated diagnostic, not a human playthrough or balance verdict.", "route": "road", "priority": "relief", "choices": [], "chapters_entered": [], "dialogue_ids": [], "games": [], "reached_authored_end": false, "stop": ""}
 
@@ -39,9 +41,12 @@ func reload_exact() -> bool:
 
 func fight() -> bool:
 	var scenario: String = session.current().scenario
+	var recruited: String = requisitions.get(scenario, "")
+	if not recruited.is_empty() and not check(session.choose_requisition(recruited, session.token()).ok, "select an offered campaign requisition"): return false
 	var before: Dictionary = session.campaign.snapshot()
 	if not check(session.begin_battle(session.token()).ok, "begin actual encountered battle " + scenario): return false
 	var row: Dictionary = {"scenario": scenario, "story_before": before, "trace": [], "reload_at_action": -1}
+	var played_requisition: bool = false
 	var restored: bool = false
 	while session.encounter.winner == -1 and row.trace.size() < 1000:
 		var b: Battle = session.encounter
@@ -53,6 +58,8 @@ func fight() -> bool:
 		if side == 0 and late_route_focus and scenario == "c12_depot": actor = FocusPilot
 		if side == 0 and late_route_focus and scenario == "c14_channel": actor = ChannelPilot
 		var action: Dictionary = actor.choose(b)
+		if not recruited.is_empty() and side == 0 and action.type == "play" and b.hand_card(side, action.card_uid).card_id == recruited:
+			played_requisition = true
 		b.advance_clock(0.35)
 		if not check(side == b.active_side and b.apply_action(action).ok, "continuous battle action is legal and within the actual clock"): return false
 		var portable: Dictionary = action.duplicate(true)
@@ -70,6 +77,10 @@ func fight() -> bool:
 	if not check(battle.winner in [0, 1, 2], "continuous battle reaches a real terminal result before the action cap"): return false
 	if not check(session.finish_battle(battle).ok, "only the authoritative battle result advances the story"): return false
 	row.story_after = session.campaign.snapshot()
+	if not recruited.is_empty():
+		row["requisition"] = recruited
+		row["played_requisition"] = played_requisition
+		if row.winner == 0 and not check(session.campaign.requisition.is_empty(), "winning resets the preparation for later missions"): return false
 	report.games.append(row)
 	if not reload_exact(): return false
 	print("CONTINUOUS %s | WINNER %d | TURN %d | ACTIONS %d" % [scenario, row.winner, row.turn, row.actions])
@@ -91,6 +102,14 @@ func run() -> void:
 		if arg == "--nursery-focus": nursery_focus = true
 		if arg == "--court-focus": court_focus = true
 		if arg == "--late-route-focus": late_route_focus = true
+		if arg.begins_with("--requisitions="):
+			var path: String = arg.trim_prefix("--requisitions=")
+			var selection: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+			if not check(selection is Dictionary, "requisition plan defines scenario-to-card selections"): quit(1); return
+			for choice: Variant in selection.values():
+				if not check(choice is String, "plan uses card identifiers"): quit(1); return
+			requisitions = selection
+		if arg.begins_with("--requisition-report="): requisition_report = arg.trim_prefix("--requisition-report=")
 	if pump_focus or nursery_focus or court_focus or late_route_focus:
 		var selected_policies: Array[String] = []
 		if pump_focus: selected_policies.append("c04_pump harbor focus player")
@@ -104,6 +123,7 @@ func run() -> void:
 	if not check(saltlane in ["school", "kiln", "skip"], "optional escort route is recognized"): quit(1); return
 	report["saltlane"] = saltlane
 	if saltlane != "skip": save_path = "res://.tools/continuous_diagnostic_saltlane_" + saltlane + ".json"
+	if not requisition_report.is_empty(): save_path = requisition_report + ".save"
 	for suffix: String in ["", ".bak", ".tmp"]:
 		if FileAccess.file_exists(save_path + suffix): DirAccess.remove_absolute(save_path + suffix)
 	session = Session.new(save_path)
@@ -134,6 +154,7 @@ func run() -> void:
 	if failures > 0: report.stop = "invalid"
 	report.progress = session.campaign.snapshot()
 	var destination: String = "res://.tools/continuous-campaign-" + report.route + ("-seed" if report.priority == "seed" else "") + ("-pump-focus" if pump_focus else "") + ("-nursery-focus" if nursery_focus else "") + ("-court-focus" if court_focus else "") + ("-late-route-focus" if late_route_focus else "") + ("-saltlane-" + saltlane if saltlane != "skip" else "") + ".json"
+	if not requisition_report.is_empty(): destination = requisition_report
 	var file := FileAccess.open(destination, FileAccess.WRITE)
 	if not check(file != null, "write complete continuous diagnostic including defeat"): quit(1); return
 	report.checks = checks; report.failures = failures
