@@ -34,7 +34,7 @@ func exercise_skills() -> void:
 		check(effect.get("title") == game.battle.unit_skill(actor).name and CastArt.Art.get_texture(effect.portrait) != null,
 			"the skill cut-in uses the actor's portrait and actual skill name")
 		if kind == "spear":
-			check(effect.guard and effect.cells.has(friend.pos) and not effect.cells.has(foe.pos), "the guard links only to adjacent friendly pieces")
+			check(effect.guard and effect.signature == CastArt.Signature.GUARD and effect.cells.has(friend.pos) and not effect.cells.has(foe.pos), "the spear-and-shield links only to adjacent friendly pieces")
 		if kind == "cavalry": check(actor.pos == target and actor.skill_used,"the charge arrives on the actual second move")
 		check(game.battle.players[0].mana == 9, "one skill payment " + kind)
 
@@ -70,11 +70,42 @@ func exercise_cards() -> void:
 	var empty := Vector2i(5,4)
 	check(play("sword",empty).ok and effect_of("arrival_cast").cell == empty, "a playable recruit arrives on its own tile")
 	game.board.reset_effects()
-	check(play("anchor_snare",Vector2i(4,5)).ok and effect_of("snare_cast").from == anchor.pos, "the player's hand trap can show its placement")
+	check(play("anchor_snare",Vector2i(4,5)).ok and effect_of("snare_cast").from == anchor.pos and effect_of("snare_cast").signature == CastArt.Signature.MOORING, "the player's tile trap springs a rope on its own tile")
 	game.board.reset_effects()
 	game.battle.end_turn()
 	troop("spear",Vector2i(4,2),1)
 	check(play("anchor_snare",Vector2i(4,3),1).ok and game.board.effects.is_empty() and game.board.casting_pose.is_empty(), "enemy placement reveals neither its position nor its caster")
+
+func exercise_interceptions() -> void:
+	await stage()
+	var ally := troop("sword",Vector2i(5,5))
+	var enemy := troop("sword",Vector2i(6,4),1)
+	var cell := Vector2i(5,4)
+	check(play("gate_veteran",cell).ok,"deploy the guard directly from hand")
+	var guard := effect_of("ward_cast")
+	check(guard.get("signature") == CastArt.Signature.GUARD and guard.cell == cell and guard.cells.has(ally.pos) and not guard.cells.has(enemy.pos), "entry guard links originate at the summoned spearman")
+	game.board.reset_effects()
+	check(play("oath_ward",cell).ok and effect_of("snare_cast").signature == CastArt.Signature.COUNTER and not effect_of("snare_cast").get("sprung", false), "a protected ally receives the dormant counter-sigil")
+	game.board.reset_effects()
+	game.battle.end_turn()
+	check(game._apply_with_feedback({"type":"attack","unit_id":enemy.id,"target":cell}).ok, "ordinary attack triggers the face-down ward")
+	check(effect_of("snare_cast").get("signature") == CastArt.Signature.COUNTER and effect_of("snare_cast").cell == cell and effect_of("snare_cast").sprung, "reveal the actual ward on its protected defender")
+	await stage()
+	troop("mage",Vector2i(5,5))
+	enemy = troop("sword",Vector2i(4,4),1)
+	check(play("anchor_snare",cell).ok,"set the hidden mooring on walkable ground")
+	game.board.reset_effects()
+	game.battle.end_turn()
+	check(game._apply_with_feedback({"type":"move","unit_id":enemy.id,"target":cell}).ok,"an enemy walks onto the actual hand trap")
+	check(effect_of("snare_cast").get("signature") == CastArt.Signature.MOORING and effect_of("snare_cast").cell == cell,"the public snare snaps exactly on the stopped unit")
+	await stage()
+	troop("mage",Vector2i(5,5))
+	troop("mage",Vector2i(4,4),1)
+	check(play("anchor_snare",cell).ok,"place a second trap for the detection check")
+	game.board.reset_effects()
+	game.battle.end_turn()
+	check(play("reveal_traps",cell,1).ok and game.battle.last_trap_events.size() == 1,"scouting consumes a discovered trap")
+	check(not game.board.effects.any(func(e: Dictionary) -> bool: return e.get("signature") == CastArt.Signature.MOORING), "disarming never shows the sprung-trap impact")
 
 func exercise_accessibility() -> void:
 	await stage()
@@ -104,10 +135,19 @@ func exercise_commanders() -> void:
 		var target := troop("spear",near,int(id == "pyromancer"))
 		target.hp -= 2
 		var cell: Vector2i = Vector2i(-1,-1) if id == "grove" else near
+		if DisplayServer.get_name() != "headless":
+			game.audio.stopping = false
+			game.audio.set_levels(0,100)
 		check(game._apply_with_feedback({"type":"hero","target":cell}).ok,"commander can use " + id)
+		if DisplayServer.get_name() != "headless":
+			var cue: String = {"warden":"bulwark","pyromancer":"comet","grove":"willow"}[id]
+			check(game.audio.sfx.get_children().any(func(p: AudioStreamPlayer) -> bool:
+				return p.playing and p.stream == game.audio.CUES[cue]), "the matching commander sound starts at cast time: " + cue)
+			game.audio.stopping = true
 		var style: String = {"warden":"ward_cast","pyromancer":"fire_cast","grove":"heal_cast"}[id]
 		var effect := effect_of(style)
 		check(effect.get("title") == game.battle.hero(0).skill and effect.from == leader.pos,"commander's own name and origin " + id)
+		check(effect.get("signature") == CastArt.COMMANDER_SIGNATURES[game.battle.hero(0).effect], "the commander uses the right river emblem " + id)
 		check(effect.cells.has(near),"the affected piece appears in the commander effect")
 
 func run() -> void:
@@ -120,10 +160,13 @@ func run() -> void:
 	game.board.set_reduced_motion(false)
 	await exercise_skills()
 	await exercise_cards()
+	await exercise_interceptions()
 	await exercise_commanders()
 	await exercise_accessibility()
 	var atlas: Image = CastArt.ATLAS.get_image()
 	check(atlas != null and atlas.get_size() == Vector2i(1536,1024) and atlas.get_pixel(1,1).a < 0.01,"packaged atlas retains clear margins")
+	atlas = CastArt.SIGNATURE_ATLAS.get_image()
+	check(atlas != null and atlas.get_size() == Vector2i(1536,1024) and atlas.get_pixel(1,1).a < 0.01, "the six new emblems keep their transparency")
 	print("CAST ART UI: %d CHECKS | FAILURES: %d" % [checks,failures])
 	game.audio.stop_playback()
 	await create_timer(0.15,true,false,true).timeout

@@ -1,0 +1,11 @@
+# 河岸战斗特效
+
+三位指挥官分别使用闸盾、流星与柳枝。下排用于地格陷阱、受击反制和枪兵援护。原图使用开发期内置图像生成工具制作，导出为 1536 × 1024 的 RGBA 图集。游戏按照真实的施法起点、目标及受保护的友军位置绘制动作。 [透明图集](river-signatures-v1.png) · [棋盘演出](../../../scripts/cast_art.gd)
+
+生成文件为 `exec-f6bf3d99-87dd-4d53-845a-8d3f10d900d1.png`。工具结果未提供具体模型编号。
+
+## 原始提示词
+
+```text
+Production transparent sprite atlas, landscape 3:2 exactly. Six ORIGINAL painted impact emblems for a flat top-down Japanese fantasy tactical RPG about river wardens, light, floodgates and oaths. Six equal invisible square cells arranged in a precise 3-column 2-row grid. Center each isolated emblem in its cell with at least 16% completely clear padding on ALL sides. Each single cohesive silhouette readable at 48-90 pixels on a busy map, lively cel-shaded 2D animation effects, controlled deep ink keylines and warm ivory highlights, angular hand-drawn action brushwork, no embossed UI buttons, no circles framing every design. TOP LEFT: tall luminous prussian-blue and pale brass bulwark made of THREE articulated riveted sluice-gate plates fanning up from a low arc of turquoise water. TOP CENTER: brilliant white core inside a diagonal vermilion and tangerine falling comet, crashing at lower left with a forked upward spray of sharp flame. TOP RIGHT: a translucent jade-green double willow frond with warm gold new leaves unfurling from a small upward-moving spiral of water. BOTTOM LEFT: violet and lilac braided mooring line springs from ground in the shape of an open asymmetric loop with two little dark iron anchors and displaced pebbles, ground oriented horizontally. BOTTOM CENTER: diagonal purple and amber ward plate breaks into sharp angular reflected glints, visibly an active protective counter-sigil with arrows pointing outward. BOTTOM RIGHT: an upraised steel-and-teal spearhead beside a stout shield, a sharply defined gold glint where they cross, front-on heroic heraldic silhouette. Strong distinct color families, each local volume with ink detail; preserve ample transparency through the open areas as well as around each. Genuine transparent alpha background. No people, words, letters, numerals, logos, outlines of cells, borders, text, background scene or checkerboard. Grid gaps are clear transparent. No existing game marks, designs or characters.
+```

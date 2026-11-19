@@ -6,6 +6,9 @@ const AI = preload("res://scripts/opponent.gd")
 const HarborPilot = preload("res://tests/fixtures/harbor_court_pilot.gd")
 const FocusPilot = preload("res://tests/fixtures/bridge_focus_pilot.gd")
 const ChannelPilot = preload("res://tests/fixtures/channel_push_pilot.gd")
+const CautiousPilot = preload("res://tests/fixtures/campaign_pilot.gd")
+const RidgePilot = preload("res://tests/fixtures/sunspire_focus_pilot.gd")
+const RETRY_PILOTS: Array[Script] = [AI, FocusPilot, HarborPilot, CautiousPilot, ChannelPilot, RidgePilot]
 const Snapshot = preload("res://scripts/battle_snapshot.gd")
 const Replay = preload("res://tests/test_campaign_replays.gd")
 const SAVE: String = "res://.tools/continuous_diagnostic_save.json"
@@ -13,6 +16,9 @@ var checks: int = 0
 var failures: int = 0
 var session: RefCounted
 var pump_focus: bool = false
+var bridge_focus: bool = false
+var retry_tactics: bool = false
+var attempts_by_scenario: Dictionary = {}
 var nursery_focus: bool = false
 var court_focus: bool = false
 var late_route_focus: bool = false
@@ -45,6 +51,20 @@ func reload_exact() -> bool:
 
 func fight() -> bool:
 	var scenario: String = session.current().scenario
+	var pilot: Script = AI
+	if bridge_focus and scenario == "c01_bridge": pilot = FocusPilot
+	if pump_focus and scenario == "c04_pump": pilot = HarborPilot
+	if nursery_focus and scenario == "c05_nursery": pilot = FocusPilot
+	if court_focus and scenario == "c06_court": pilot = HarborPilot
+	if late_route_focus and scenario == "c12_depot": pilot = FocusPilot
+	if late_route_focus and scenario == "c14_channel": pilot = ChannelPilot
+	var candidates: Array[Script] = [pilot]
+	if retry_tactics:
+		for option: Script in RETRY_PILOTS:
+			if option != pilot: candidates.append(option)
+	var attempt: int = attempts_by_scenario.get(scenario, 0)
+	pilot = candidates[attempt]
+	attempts_by_scenario[scenario] = attempt + 1
 	if session.campaign.difficulty != difficulty and not check(session.choose_difficulty(difficulty, session.token()).ok, "choose the declared campaign difficulty at its briefing"): return false
 	var recruited: String = requisitions.get(scenario, "")
 	if not recruited.is_empty() and not check(session.choose_requisition(recruited, session.token()).ok, "select an offered campaign requisition"): return false
@@ -72,12 +92,7 @@ func fight() -> bool:
 	while session.encounter.winner == -1 and row.trace.size() < 1000:
 		var b: Battle = session.encounter
 		var side: int = b.active_side
-		var actor: Script = AI
-		if side == 0 and pump_focus and scenario == "c04_pump": actor = HarborPilot
-		if side == 0 and nursery_focus and scenario == "c05_nursery": actor = FocusPilot
-		if side == 0 and court_focus and scenario == "c06_court": actor = HarborPilot
-		if side == 0 and late_route_focus and scenario == "c12_depot": actor = FocusPilot
-		if side == 0 and late_route_focus and scenario == "c14_channel": actor = ChannelPilot
+		var actor: Script = pilot if side == 0 else AI
 		var action: Dictionary = actor.choose(b)
 		for instance: Dictionary in b.players[0].hand:
 			if gear_uids.has(instance.uid) and not seen_gear.has(instance.card_id):
@@ -100,6 +115,8 @@ func fight() -> bool:
 		await process_frame
 	var battle: Battle = session.encounter
 	row.final = Snapshot.capture(battle)
+	row["attempt"] = attempt + 1
+	row["player_policy"] = pilot.resource_path.get_file().get_basename()
 	row.winner = battle.winner; row.turn = battle.turn; row.actions = row.trace.size()
 	if not check(battle.winner in [0, 1, 2], "continuous battle reaches a real terminal result before the action cap"): return false
 	if not check(session.finish_battle(battle).ok, "only the authoritative battle result advances the story"): return false
@@ -121,6 +138,7 @@ func fight() -> bool:
 		check(session.campaign.story.state.flags == before.story.flags, "defeat grants no victory flags")
 		check(session.campaign.story.state.history == before.story.history, "defeat invents no unread story history")
 		check(session.campaign.story.state.attempts.get(before.story.node, 0) == int(before.story.attempts.get(before.story.node, 0)) + 1, "defeat is persisted exactly once")
+		if retry_tactics and failures == 0 and attempt + 1 < candidates.size(): return true
 		report.stop = "defeat" if row.winner == 1 else "draw"
 		return false
 	return true
@@ -132,6 +150,8 @@ func run() -> void:
 		if arg.begins_with("--saltlane="): saltlane = arg.trim_prefix("--saltlane=")
 		if arg.begins_with("--difficulty="): difficulty = arg.trim_prefix("--difficulty=")
 		if arg == "--pump-focus": pump_focus = true
+		if arg == "--bridge-focus": bridge_focus = true
+		if arg == "--retry-tactics": retry_tactics = true
 		if arg == "--nursery-focus": nursery_focus = true
 		if arg == "--court-focus": court_focus = true
 		if arg == "--late-route-focus": late_route_focus = true
@@ -160,8 +180,9 @@ func run() -> void:
 			var configured: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
 			if not check(configured is Dictionary, "decision plan maps chapter and node to visible options"): quit(1); return
 			decisions = configured
-	if pump_focus or nursery_focus or court_focus or late_route_focus:
+	if bridge_focus or pump_focus or nursery_focus or court_focus or late_route_focus:
 		var selected_policies: Array[String] = []
+		if bridge_focus: selected_policies.append("c01_bridge left-bridge focus player")
 		if pump_focus: selected_policies.append("c04_pump harbor focus player")
 		if nursery_focus: selected_policies.append("c05_nursery wounded/support focus player")
 		if court_focus: selected_policies.append("c06_court central-formation focus player")
@@ -173,6 +194,9 @@ func run() -> void:
 	if not check(saltlane in ["school", "kiln", "skip"], "optional escort route is recognized"): quit(1); return
 	if not check(Session.Difficulty.is_valid(difficulty), "campaign difficulty is recognized"): quit(1); return
 	report["difficulty"] = difficulty
+	if retry_tactics:
+		report["retry_tactics"] = true
+		report.note = "Every defeat stays in its chapter and uses the ordinary retry path. Retries select a different public-board player policy; opponent decisions and cards always come from the shipped game. All attempts are recorded."
 	report["saltlane"] = saltlane
 	if saltlane != "skip": save_path = "res://.tools/continuous_diagnostic_saltlane_" + saltlane + ".json"
 	if not requisition_report.is_empty(): save_path = requisition_report + ".save"

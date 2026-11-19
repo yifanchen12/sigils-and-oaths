@@ -24,14 +24,14 @@ func require(value: bool, description: String) -> bool:
 	push_error(description)
 	return false
 
-func capture(stem: String) -> void:
+func capture(stem: String, output_file: String = "") -> void:
 	for frame: int in range(5):
 		await process_frame
 		game._position_battle_peek()
 	await RenderingServer.frame_post_draw
 	var frame_image: Image = target_view.get_texture().get_image()
 	if not require(frame_image.get_size() == SIZE, "Actual viewport size differs from the delivery width"): return
-	var file: String = ProjectSettings.globalize_path(DIRECTORY.path_join(stem + ".png"))
+	var file: String = ProjectSettings.globalize_path(DIRECTORY.path_join(stem + ".png")) if output_file.is_empty() else output_file
 	if require(frame_image.save_png(file) == OK, "Could not save a gameplay image"): print("CAPTURE ", stem, " ", frame_image.get_size())
 
 func reach_action(battle: Battle, rule: Callable) -> Dictionary:
@@ -168,8 +168,9 @@ func cleanup() -> void:
 		if FileAccess.file_exists(TEST_SAVE + suffix): DirAccess.remove_absolute(TEST_SAVE + suffix)
 
 func film_position(map_id: String, deck: String, id: String) -> Dictionary:
+	if id in ["trigger_step", "trigger_counter"]: return await trap_film_position(map_id, deck, id == "trigger_step")
 	for seed_value: int in [56037, 56377, 56102]:
-		var hero := "pyromancer" if id == "firestrike" else "warden"
+		var hero: String = {"firestrike":"pyromancer", "renewal":"grove"}.get(id, "warden")
 		var battle := Model.new(seed_value,map_id,hero,"warden",deck,"balanced")
 		for step: int in range(520):
 			if battle.winner != -1: break
@@ -177,7 +178,14 @@ func film_position(map_id: String, deck: String, id: String) -> Dictionary:
 				for action: Dictionary in battle.get_legal_actions(0):
 					var matched: bool = action.type == "play" and battle.hand_card(0,action.card_uid).card_id == id
 					if matched and id == "glass_treaty": matched = battle.unit_at(action.target).get("side",-1) == 1
-					if id == "firestrike": matched = action.type == "hero"
+					if id in ["blessing", "firestrike", "renewal"]:
+						matched = action.type == "hero"
+						if matched and id == "blessing": matched = action.target != battle.commander(0).pos
+						if matched and id == "renewal":
+							matched = battle.units.any(func(ally: Dictionary) -> bool:
+								return ally.side == 0 and ally.kind != "commander" and ally.hp < ally.max_hp and battle.distance(battle.commander(0).pos, ally.pos) <= battle.hero_cast_range(0))
+					if matched and id == "gate_veteran":
+						matched = battle.units.any(func(ally: Dictionary) -> bool: return ally.side == 0 and ally.kind != "commander" and battle.distance(ally.pos, action.target) == 1)
 					if action.type == "unit_skill" and battle.get_unit(action.unit_id).kind == id:
 						matched = id != "spear" or battle.units.any(func(unit: Dictionary) -> bool:
 							return unit.side == 0 and battle.distance(unit.pos,action.target) == 1)
@@ -186,11 +194,34 @@ func film_position(map_id: String, deck: String, id: String) -> Dictionary:
 			if step % 24 == 0: await process_frame
 	return {}
 
-func capture_cast_frames(directory: String) -> void:
+func trap_film_position(map_id: String, deck: String, step_trap: bool) -> Dictionary:
+	for seed_value: int in [57023, 56037, 56377, 57107, 57139]:
+		var battle := Model.new(seed_value,map_id,"warden","warden",deck,"ambush")
+		for step: int in range(650):
+			if battle.winner != -1: break
+			var side := battle.active_side
+			var action: Dictionary = AI.choose(battle)
+			if not require(battle.apply_action(action).ok,"legal trap replay prefix"): return {}
+			if side != 0 or action.type != ("move" if step_trap else "attack"): continue
+			for event: Dictionary in battle.last_trap_events:
+				if not event.triggered or event.side != 1 or (event.trigger == "step") != step_trap: continue
+				var before := Model.new(seed_value,map_id,"warden","warden",deck,"ambush")
+				for i: int in range(step):
+					if not require(before.apply_action(AI.choose(before)).ok,"rebuild the actual pre-trigger board"): return {}
+				return {"battle":before, "action":action, "prefix":step, "revealed_cell":event.cell}
+		await process_frame
+	return {}
+
+func capture_cast_frames(directory: String, signatures: bool = false) -> void:
 	if not require(DirAccess.dir_exists_absolute(directory), "an existing capture directory is required"): return
 	var shots := [["ridgepass","balanced","bolt"], ["sunspire","balanced","healer"],
 		["citadel","reed_legion","spear"], ["citadel","glassroad_edict","anchor_snare"],
 		["sunspire","balanced","firestrike"], ["harbor","balanced","rain"], ["rivergate","glassroad_edict","glass_treaty"]]
+	if signatures:
+		shots = [["rivergate","frost_engine","gate_veteran"], ["sunspire","balanced","firestrike"],
+			["ridgepass","balanced","blessing"], ["greenwood","balanced","renewal"],
+			["citadel","ambush","anchor_snare"], ["harbor","ambush","oath_ward"],
+			["rivergate","reed_legion","trigger_step"], ["citadel","balanced","trigger_counter"]]
 	var frame_index := 0
 	for shot: Array in shots:
 		var position: Dictionary = await film_position(shot[0],shot[1],shot[2])
@@ -201,15 +232,15 @@ func capture_cast_frames(directory: String) -> void:
 		game.set_process(false)
 		game.board.set_process(false)
 		var global_card: bool = action.type == "play" and not battle.inside(action.target)
-		var focus: Vector2i = battle.commander(0).pos if global_card else action.target
+		var untargeted_hero: bool = action.type == "hero" and not battle.inside(action.target)
+		var focus: Vector2i = battle.commander(0).pos if global_card or untargeted_hero else action.target
 		if global_card: game._inspect_card(action.card_uid)
 		elif action.type == "play": game._select_card(action.card_uid)
 		elif action.type == "hero":
-			game.using_hero = true
-			game._refresh()
+			if not untargeted_hero: game._select_hero_skill()
 		else:
 			game.selected_unit = action.unit_id
-			game.using_unit_skill = true
+			game.using_unit_skill = action.type == "unit_skill"
 			game._refresh()
 		await process_frame
 		game.board.fit_map()
@@ -221,8 +252,11 @@ func capture_cast_frames(directory: String) -> void:
 		for f: int in range(36):
 			if f == 8:
 				if global_card: game._select_card(action.card_uid)
-				else: game._commit(action)
+				elif untargeted_hero: game._select_hero_skill()
+				else: game._on_cell_clicked(action.target,MOUSE_BUTTON_LEFT)
 				if not require(not game.error_message and game.board.is_presenting(),"cast accepted through the battle UI"): return
+				if position.has("revealed_cell") and not require(battle.last_trap_events.any(func(event: Dictionary) -> bool:
+					return event.triggered and event.cell == position.revealed_cell), "live UI reveals the replayed trap"): return
 				game.board.hover_cell = Vector2i(-1,-1)
 			if f > 8: game.board._process(1.0/24.0)
 			game.board.queue_redraw()
@@ -230,12 +264,42 @@ func capture_cast_frames(directory: String) -> void:
 			await RenderingServer.frame_post_draw
 			var frame: Image = target_view.get_texture().get_image()
 			if not require(frame.save_png(directory.path_join("cast-%04d.png" % frame_index)) == OK,"write actual game frame"): return
-			if shot[2] == "bolt" and f == 20:
+			if not signatures and shot[2] == "bolt" and f == 20:
 				if not require(frame.save_png(ProjectSettings.globalize_path(DIRECTORY.path_join("12-cast-impact.png"))) == OK,"write spell impact screenshot"): return
 			frame_index += 1
 		game.board.set_process(true)
 		print("CAST FILM ", shot[2], " map ", shot[0], " seed ", battle.match_seed, " preceding legal actions ",
 			position.prefix, " turn ", battle.turn, " target ", action.target)
+
+func capture_frost_front(output: String) -> void:
+	game._start_from_council("rivergate", "warden", "frost_engine", "glassroad_edict")
+	if not require(game.battle.deck(0).cards.has("gate_veteran") and game.battle.deck(0).cards.has("breakwater_guard"), "skirmish menu loads the Frost reinforcements"): return
+	var battle := Model.new(57023, "rivergate", "warden", "warden", "frost_engine", "glassroad_edict")
+	for step: int in range(78):
+		if not require(battle.winner == -1 and battle.apply_action(AI.choose(battle)).ok, "replay through the normal skirmish"): return
+	var cell := Vector2i(8, battle.height - 6)
+	var ally := battle.unit_at(cell + Vector2i.DOWN)
+	if not require(battle.active_side == 0 and not ally.is_empty() and ally.card.card_id == "mink_watcher"
+		and battle.attack_defender(battle.commander(1), ally).id == ally.id, "the exposed archer is on I5"): return
+	var veterans: Array = battle.players[0].hand.filter(func(c: Dictionary) -> bool: return c.card_id == "gate_veteran")
+	if not require(not veterans.is_empty() and battle.card_targets(veterans[0].uid, 0).has(cell), "I6 is a legal deployment from this hand"): return
+	mount_battle(battle)
+	await process_frame
+	game._select_card(veterans[0].uid)
+	game._on_cell_clicked(cell, MOUSE_BUTTON_LEFT)
+	var guard := battle.unit_at(cell)
+	if not require(not guard.is_empty() and guard.guarding and battle.attack_defender(battle.commander(1), ally).id == guard.id, "hand deployment immediately intercepts for the archer"): return
+	game.board._process(2.0)
+	game._on_cell_clicked(cell, MOUSE_BUTTON_LEFT)
+	game.board.fit_map()
+	game.board.zoom_at(game.board.cell_center(cell), 1.35)
+	game.board.reveal_cell(cell)
+	game.board.hover_cell = ally.pos
+	game._on_cell_hovered(ally.pos)
+	if not require(game.selected_unit == guard.id, "select the deployed guarding unit"): return
+	await capture("13-frost-front", output)
+	print("FROST FRONT ", battle.match_seed, " | preceding actions 78 | turn ", battle.turn,
+		" | guard ", battle.cell_name(cell), " | ally ", ally.name, " ", battle.cell_name(ally.pos))
 
 func run() -> void:
 	if DisplayServer.get_name() == "headless":
@@ -243,7 +307,9 @@ func run() -> void:
 		quit(2)
 		return
 	cleanup()
-	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(DIRECTORY))
+	var args := OS.get_cmdline_user_args()
+	if not (args.size() == 2 and args[0] in ["--frost-front","--signature-frames"]):
+		DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(DIRECTORY))
 	target_view = SubViewport.new()
 	target_view.size = SIZE
 	target_view.size_2d_override = Vector2i(1778, 1000)
@@ -258,9 +324,10 @@ func run() -> void:
 	game.audio.stop_playback()
 	AudioServer.set_bus_mute(0, true)
 	await process_frame
-	var args := OS.get_cmdline_user_args()
-	if args.size() == 2 and args[0] == "--cast-frames":
-		await capture_cast_frames(args[1])
+	if args.size() == 2 and args[0] in ["--cast-frames","--signature-frames"]:
+		await capture_cast_frames(args[1], args[0] == "--signature-frames")
+	elif args.has("--frost-front"):
+		await capture_frost_front(args[1] if args.size() == 2 else "")
 	elif args.has("--highlands"):
 		await capture_highlands()
 	else:
@@ -269,6 +336,7 @@ func run() -> void:
 		await capture_skirmishes()
 		await capture_harbor()
 		await capture_highlands()
+		await capture_frost_front("")
 		if not skirmishes_only:
 			await capture_lesson()
 			await capture_relay()

@@ -175,7 +175,8 @@ func test_actions_weather_and_legacy() -> bool:
 		var normalized: Dictionary = JSON.parse_string(JSON.stringify(upgraded))
 		raw.rules = normalized.rules
 		raw.version = normalized.version
-		check(raw == normalized and Snapshot.validate(upgraded).ok, "only version metadata changes on upgrade")
+		raw.pending_orders = []
+		check(raw == normalized and Snapshot.validate(upgraded).ok, "the older save gains an empty order queue and retains every battle field")
 	return true
 
 func test_formation_risk() -> bool:

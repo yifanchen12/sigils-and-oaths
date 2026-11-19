@@ -15,6 +15,7 @@ func run() -> void:
 		quit(1)
 		return
 	var old: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(OLD_SAVE))
+	Model.DECKS.find("frost_engine").merge(Snapshot.FROST_V056, true)
 	var preset := Model.DECKS.find(EDICT)
 	if args[2] == "v055":
 		preset.cards = Model.DECKS.canonical_counts(old.snapshot.players[0].deck_counts, Model.CATALOG.cards)
@@ -46,7 +47,7 @@ func run() -> void:
 					"plays": {}, "leader_damage": {}, "troop_losses": {}, "finisher": ""}
 				var watch := func(game: Battle, actor: int, action: Dictionary, card: Dictionary) -> void:
 					observe_edict(trace, game, seat, actor, action, card)
-				var result := play_match(int(args[1]), map_id, blue, red, "glassroad", watch)
+				var result := play_match(int(args[1]), map_id, blue, red, "glassroad", watch, 1)
 				if not str(result.error).is_empty() or int(result.winner) not in [0,1,2]:
 					push_error("Incomplete game on %s against %s: %s" % [map_id, other, result.error])
 					quit(2)

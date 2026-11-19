@@ -1,5 +1,5 @@
 {
-  "version": "0.56.0-dev",
+  "version": "0.57.0-dev",
   "images": [
     {
       "path": "key-art-v1.png",
@@ -265,8 +265,32 @@
       "bytes": 2158876,
       "sha256": "eb954ffd3d94b769993565b51cc8a776099f2a5eba5211a85aca5506ed30dc11",
       "capture": "Balanced Host mirror on Ridgepass, seed 56037. Fire impact sampled half a second after a legal Starfire Bolt, on side turn 27 after 170 preceding actions."
+    },
+    {
+      "path": "gameplay/13-frost-front.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1636927,
+      "sha256": "5d951802071ca9309b2e70332b29c6986934bb6140221ace339ee93f00732031",
+      "capture": "Frost Engine vs Twin-Tide Orders on Rivergate, seed 57023, after 78 legal actions. On side turn 17 the player deploys a Gate Veteran from hand at I6, immediately guarding the archer at I5."
+    },
+    {
+      "path": "gameplay/14-river-signatures.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1928944,
+      "sha256": "d275e6c379b8627f7d6d9a153311b3da619a419d57a91640d5651133509c6baa",
+      "capture": "Pyromancer casts Fire Verdict on Sunspire on side turn 31. Balanced Host mirror, seed 56037, after 186 legal actions. Native frame sampled 0.50 s after casting."
     }
   ],
-  "viewport_screenshots": 12,
+  "viewport_screenshots": 14,
   "store_and_library_graphics_including_icons": 10
 }

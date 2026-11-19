@@ -206,12 +206,40 @@ func test_edict_revision() -> bool:
 	spoiled.players[0].deck_counts.bolt = 1
 	spoiled.players[0].deck_counts.frostbind = 1
 	invalid(spoiled, "hybrid recipe cannot masquerade as a released preset")
+	return check_archived_decisions(battle, proof)
+
+func test_frost_revision() -> bool:
+	var proof: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://tests/fixtures/v056-active-frost.json"))
+	var raw: Dictionary = proof.snapshot
+	check(raw.version == 13 and raw.rules == Snapshot.v056_rules_signature() and raw.rules != Snapshot.rules_signature(), "actual 0.56 release signature")
+	var restored := Snapshot.restore(raw)
+	check(restored.ok, "continued the previous release's Rivergate match")
+	if not restored.ok: return false
+	var battle: Battle = restored.battle
+	check(battle.tactics_revision == 1 and battle.deck(0).cards == Snapshot.FROST_V056.cards and battle.deck(0).description == Snapshot.FROST_V056.description,
+		"the old in-progress match retains its policy, published list and description")
+	var spoiled: Dictionary = raw.duplicate(true)
+	spoiled.players[0].deck_counts = Model.DECKS.find("frost_engine").cards
+	invalid(spoiled, "the new roster cannot be inserted into a 0.56 battle")
+	spoiled = raw.duplicate(true)
+	spoiled.tactics_revision = Model.CURRENT_TACTICS
+	invalid(spoiled, "a pre-0.57 header cannot opt into a newer policy")
+	var fresh := Model.new(56037, "rivergate", "warden", "warden", "frost_engine", "glassroad_edict")
+	check(fresh.deck(0).cards.gate_veteran == 1 and fresh.deck(0).cards.breakwater_guard == 1, "a fresh Frost game uses both line holders")
+	var resume := roundtrip(fresh)
+	check(resume.ok and resume.battle.tactics_revision == Model.CURRENT_TACTICS, "the current policy survives a new save and reload")
+	spoiled = Snapshot.capture(fresh)
+	spoiled.tactics_revision = 100
+	invalid(spoiled, "an unknown tactics revision is protected")
+	return check_archived_decisions(battle, proof)
+
+func check_archived_decisions(battle: Battle, proof: Dictionary) -> bool:
 	var ai = preload("res://scripts/opponent.gd")
 	for i: int in range(proof.next_actions.size()):
 		var action: Dictionary = ai.choose(battle)
 		var encoded := action.duplicate(true)
 		if encoded.get("target") is Vector2i: encoded.target = [encoded.target.x, encoded.target.y]
-		check(JSON.parse_string(JSON.stringify(encoded)) == proof.next_actions[i], "same next decision as the packaged 0.55 game, step " + str(i))
+		check(JSON.parse_string(JSON.stringify(encoded)) == proof.next_actions[i], "same next decision as the packaged " + str(proof.release) + " game, step " + str(i))
 		check(battle.apply_action(action).ok, "recorded action still resolves")
 		if i == 5:
 			var resumed := roundtrip(battle)
@@ -221,11 +249,11 @@ func test_edict_revision() -> bool:
 	var after: Dictionary = JSON.parse_string(JSON.stringify(Snapshot.capture(battle), "", true, true))
 	after.erase("version")
 	after.erase("rules")
-	check(JSON.stringify(after, "", true, true).sha256_text() == proof.after_sha256, "continued state including RNG and every card matches 0.55")
+	check(JSON.stringify(after, "", true, true).sha256_text() == proof.after_sha256, "continued state including RNG and every card matches " + str(proof.release))
 	return true
 
 func run() -> void:
-	for method: String in ["test_roundtrip", "test_skills_and_special_states", "test_invalid", "test_spells_and_heroes", "test_preset_revision", "test_edict_revision"]:
+	for method: String in ["test_roundtrip", "test_skills_and_special_states", "test_invalid", "test_spells_and_heroes", "test_preset_revision", "test_edict_revision", "test_frost_revision"]:
 		check(call(method) == true, method + " completed without runtime interruption")
 	print("BATTLE SNAPSHOT CHECKS: %d | FAILURES: %d | DISPLAY: %s" % [checks, failures, DisplayServer.get_name()])
 	quit(0 if failures == 0 else 1)

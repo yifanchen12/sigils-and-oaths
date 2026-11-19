@@ -60,9 +60,12 @@ func test_storage_and_migration() -> bool:
 	var legacy: Dictionary = data.duplicate(true)
 	legacy.version = 2; legacy.progress.erase("completed"); legacy.progress.story.erase("line_id")
 	legacy.encounter.battle.version = 1; legacy.encounter.battle.erase("objective")
+	legacy.encounter.battle.erase("tactics_revision")
+	var old_board := before.duplicate(true)
+	old_board.erase("tactics_revision")
 	write_raw(PATH, legacy)
 	var legacy_file: String = FileAccess.get_file_as_string(PATH)
-	check(fresh.load_campaign().ok and Snapshot.capture(fresh.encounter) == before, "v2 full battle and legacy dialogue cursor migrate without board drift")
+	check(fresh.load_campaign().ok and Snapshot.capture(fresh.encounter) == old_board, "v2 full battle and legacy dialogue cursor migrate without board drift")
 	check(FileAccess.get_file_as_string(PATH) == legacy_file, "loading v2 does not rewrite it")
 	check(fresh.save().ok and int(JSON.parse_string(FileAccess.get_file_as_string(PATH)).version) == Store.VERSION, "next save upgrades full battle schema")
 	valid_file = FileAccess.get_file_as_string(PATH)
@@ -82,7 +85,7 @@ func test_storage_and_migration() -> bool:
 	data = JSON.parse_string(valid_file); data.encounter.battle.units[0].pos = [-1, 0]
 	write_raw(PATH, data)
 	loaded = Store.new(PATH).load_progress()
-	check(loaded.ok and loaded.get("recovered", false) and loaded.encounter.battle == before, "invalid newest board recovers full previous board")
+	check(loaded.ok and loaded.get("recovered", false) and loaded.encounter.battle == old_board, "invalid newest board recovers the full migrated backup including its original tactics")
 	check(session.save().ok, "repaired snapshot can replace corrupt primary")
 	data = JSON.parse_string(FileAccess.get_file_as_string(PATH)); data.encounter.battle.version = 1000000001
 	write_raw(PATH, data)

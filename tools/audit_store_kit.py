@@ -1,6 +1,7 @@
 """Check real image files and write a SHA-256 inventory for the Steam materials."""
 import hashlib
 import json
+import re
 from pathlib import Path
 
 from PIL import Image
@@ -33,6 +34,8 @@ SCREENSHOTS = {
     "10-sunspire.png": "Reed Legion vs Balanced Host, Sunspire seed 56037. Attack preview on side turn 15 after 73 legal actions.",
     "11-citadel.png": "Twin-Tide Orders vs Balanced Host, Citadel seed 56037. An Anchor Snare hand trap targets G6 on side turn 35 after 203 legal actions.",
     "12-cast-impact.png": "Balanced Host mirror on Ridgepass, seed 56037. Fire impact sampled half a second after a legal Starfire Bolt, on side turn 27 after 170 preceding actions.",
+    "13-frost-front.png": "Frost Engine vs Twin-Tide Orders on Rivergate, seed 57023, after 78 legal actions. On side turn 17 the player deploys a Gate Veteran from hand at I6, immediately guarding the archer at I5.",
+    "14-river-signatures.png": "Pyromancer casts Fire Verdict on Sunspire on side turn 31. Balanced Host mirror, seed 56037, after 186 legal actions. Native frame sampled 0.50 s after casting.",
 }
 
 
@@ -64,7 +67,10 @@ def audit() -> None:
     with Image.open(PROJECT / "assets" / "art" / "lantern-windows.ico") as icon:
         if icon.ico.sizes() != {(n, n) for n in (16, 32, 48, 64, 128, 256)}:
             raise ValueError("Unexpected Windows executable icon sizes")
-    inventory = {"version": "0.56.0-dev", "images": assets, "viewport_screenshots": len(SCREENSHOTS),
+    version = re.search(r'^config/version="([^"]+)"$', (PROJECT / "project.godot").read_text(encoding="utf-8"), re.MULTILINE)
+    if version is None:
+        raise ValueError("Godot project is missing its release version")
+    inventory = {"version": version.group(1), "images": assets, "viewport_screenshots": len(SCREENSHOTS),
                  "store_and_library_graphics_including_icons": len(GRAPHICS)}
     (KIT / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"{len(assets)} decoded images, {len(SCREENSHOTS)} real gameplay viewports, six Windows executable icon sizes")

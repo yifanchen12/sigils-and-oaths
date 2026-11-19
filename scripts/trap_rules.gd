@@ -35,12 +35,12 @@ static func place(battle: RefCounted, instance: Dictionary, card: Dictionary, ce
 	battle.traps.append({"side": battle.active_side, "card": instance, "pos": Vector2i(-1, -1) if anchored else cell, "unit_id": battle.unit_at(cell).id if anchored else -1})
 	battle._record("%s从手牌伏设了一张陷阱。" % battle.side_name(battle.active_side))
 
-static func consume(battle: RefCounted, trap: Dictionary, reason: String) -> void:
+static func consume(battle: RefCounted, trap: Dictionary, reason: String, triggered: bool = false) -> void:
 	var cell: Vector2i = position(battle, trap)
 	battle.traps.erase(trap)
 	battle.players[trap.side].discard.append(trap.card)
 	var card: Dictionary = battle.definition(trap.card.card_id)
-	battle.last_trap_events.append({"cell": cell, "name": card.name, "reason": reason, "side": trap.side})
+	battle.last_trap_events.append({"cell": cell, "name": card.name, "reason": reason, "side": trap.side, "trigger": card.trigger, "triggered": triggered})
 	battle._record("%s的「%s」%s。" % [battle.side_name(trap.side), card.name, reason])
 
 static func stepped(battle: RefCounted, unit: Dictionary) -> void:
@@ -50,7 +50,7 @@ static func stepped(battle: RefCounted, unit: Dictionary) -> void:
 		if unit.hp <= 0: break
 		if trap.side == unit.side or trap.unit_id != -1 or trap.pos != unit.pos: continue
 		var card: Dictionary = battle.definition(trap.card.card_id)
-		consume(battle, trap, "触发")
+		consume(battle, trap, "触发", true)
 		if card.get("clear_shield", false): unit.shield = 0
 		battle._hurt(unit, battle.fire_damage(int(card.amount)) if card.get("fire", false) else int(card.amount))
 		var player: Dictionary = battle.players[unit.side]
@@ -77,7 +77,7 @@ static func _protect(battle: RefCounted, defender: Dictionary, trigger: String) 
 		if trap.unit_id != defender.id: continue
 		var card: Dictionary = battle.definition(trap.card.card_id)
 		if card.trigger != trigger and card.trigger != "either": continue
-		consume(battle, trap, "触发")
+		consume(battle, trap, "触发", true)
 		defender.hp = mini(int(defender.max_hp), int(defender.hp) + int(card.get("healing", 0)))
 		defender.shield = mini(5, int(defender.shield) + int(card.amount))
 		if card.has("rally"): battle.Formation.resolve(battle, card.rally, defender.pos, trap.side)

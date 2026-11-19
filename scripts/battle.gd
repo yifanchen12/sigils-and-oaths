@@ -15,6 +15,7 @@ const Orders = preload("res://scripts/timed_orders.gd")
 var width: int = 8
 var height: int = 6
 const HAND_LIMIT: int = 8
+const CURRENT_TACTICS: int = 2
 const UNIT_LIMIT: int = 6
 const GLOBAL_EFFECTS: Array[String] = ["draw", "mana", "weather", "clear_weather", "recall_fallen", "supply", "reclaim"]
 const DIRECTIONS: Array[Vector2i] = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
@@ -45,6 +46,7 @@ var units: Array[Dictionary] = []
 var terrain: Dictionary = {}
 var active_side: int = 0
 var turn: int = 1
+var tactics_revision: int = CURRENT_TACTICS
 var hand_played_this_turn: bool = false
 var winner: int = -1 # -1 ongoing; 0/1 winner; 2 draw
 var log_lines: Array[String] = []
@@ -271,12 +273,13 @@ func definition(card_id: String) -> Dictionary:
 func combo_ready(card: Dictionary, side: int) -> bool:
 	return side == active_side and hand_played_this_turn and card.has("combo")
 
-func escalation_ready(card: Dictionary, side: int) -> bool:
-	return card.has("escalation") and int(players[side].max_mana) >= int(card.escalation.threshold)
+func escalation_ready(card: Dictionary, side: int, mana_cap: int = -1) -> bool:
+	var available_cap: int = int(players[side].max_mana) if mana_cap < 0 else mana_cap
+	return card.has("escalation") and available_cap >= int(card.escalation.threshold)
 
-func card_for_play(card: Dictionary, side: int) -> Dictionary:
+func card_for_play(card: Dictionary, side: int, mana_cap: int = -1) -> Dictionary:
 	var effective: Dictionary = card.merged(card.combo, true) if combo_ready(card, side) else card
-	if escalation_ready(card, side): effective = effective.merged(card.escalation.bonus, true)
+	if escalation_ready(card, side, mana_cap): effective = effective.merged(card.escalation.bonus, true)
 	return effective
 
 func hand_card(side: int, uid: int) -> Dictionary:

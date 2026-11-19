@@ -133,7 +133,62 @@ func test_movement_budget_search() -> void:
 				for cell: Vector2i in all_distances:
 					if cell != unit.pos and int(all_distances[cell]) <= battle.movement_allowance(unit): expected.append(cell)
 				check(battle.movement_cells(unit) == expected, "bounded movement preserves weighted reach and order: %s/%s/%s" % [map.id, weather, kind])
+
+func test_order_footprints() -> void:
+	var battle := fresh()
+	Fixture.troop(battle, "mage", Vector2i(6, 4), 1)
+	var anchor := Fixture.troop(battle, "archer", Vector2i(5, 4), 0)
+	var mover := Fixture.troop(battle, "archer", Vector2i(4, 4), 0)
+	var foe: Dictionary = battle.players[1]
+	foe.deck_id = "glassroad_edict"
+	foe.deck_definition = Model.DECKS.find(foe.deck_id).duplicate(true)
+	foe.max_mana = 4
+	var models: Array = Tactics.prepare(battle).formations
+	var rain: Array[Dictionary] = []
+	for model: Dictionary in models:
+		if model.id == "rain_notch": rain.append(model)
+	check(rain.size() == 1 and rain[0].radius == 1, "the affordable three-mana order has its printed row")
+	if rain.is_empty(): return
+	check(not models.any(func(m: Dictionary) -> bool: return m.id in ["glass_treaty", "crossroads_whistle", "hinge_order"]), "unaffordable and single-target orders have no group risk")
+	var grouped := Tactics.FormationRisk.exposure(battle, mover, mover.pos, rain, mover.pos)
+	var vacated := Tactics.FormationRisk.exposure(battle, mover, Vector2i(3, 4), rain, mover.pos)
+	var diagonal := Tactics.FormationRisk.exposure(battle, mover, Vector2i(4, 5), rain, mover.pos)
+	check(grouped > 0.0 and vacated == 0.0 and diagonal == 0.0, "a hostile order needs an occupied center on its printed row; vacating the middle tile breaks the pair")
+	foe.max_mana = 6
+	models = Tactics.prepare(battle).formations
+	rain.clear()
+	for model: Dictionary in models:
+		if model.id == "rain_notch": rain.append(model)
+	check(rain.size() == 1 and rain[0].radius == 2 and Tactics.FormationRisk.exposure(battle, mover, Vector2i(3, 4), rain, mover.pos) > 0.0,
+		"next turn's seventh mana extends the hostile row to two without spending mana or changing the card")
+	foe.max_mana = 9
+	battle.terrain[anchor.pos] = "fort"
+	var terrain_model: Array[Dictionary] = []
+	for model: Dictionary in Tactics.prepare(battle).formations:
+		if model.id == "scour_fulcrum": terrain_model.append(model)
+	check(terrain_model.size() == 1, "known terrain-breaking formation is affordable")
+	if terrain_model.is_empty(): return
+	check(Tactics.FormationRisk.exposure(battle, mover, mover.pos, terrain_model, mover.pos) == 0.0, "a plain beside a fort does not expose its occupant to terrain-only damage")
+	var ridge := Vector2i(4, 5)
+	battle.terrain[ridge] = "hill"
+	var future := Tactics.FormationRisk.exposure(battle, mover, ridge, terrain_model, mover.pos)
+	check(future > 0.0, "stepping onto a nearby hill puts both troops at risk")
+	check(battle.apply_action({"type":"move", "unit_id":mover.id, "target":ridge}).ok, "play the forecast move")
+	terrain_model.clear()
+	for model: Dictionary in Tactics.prepare(battle).formations:
+		if model.id == "scour_fulcrum": terrain_model.append(model)
+	check(future == Tactics.FormationRisk.exposure(battle, mover, ridge, terrain_model, ridge), "hypothetical terrain exposure agrees with the resolved move")
+	foe.discard.append({"card_id":"glass_treaty", "uid":900})
+	check(not Tactics.prepare(battle).formations.any(func(m: Dictionary) -> bool: return m.id == "glass_treaty"), "the last publicly spent copy stops affecting spacing")
+	foe.deck_id = "custom"
+	foe.discard.clear()
+	foe.hand = [{"card_id":"glass_treaty", "uid":901}]
+	check(Tactics.prepare(battle).formations.is_empty(), "an unseen custom order cannot change the defender's prediction")
+	foe.discard.append({"card_id":"rain_notch", "uid":902})
+	check(Tactics.prepare(battle).formations.any(func(m: Dictionary) -> bool: return m.id == "rain_notch"), "a publicly seen custom order can inform later formations")
+
 func run() -> void:
 	test_deployment(); test_paths_and_status(); test_hidden_information(); test_healer_action_budget(); test_vacated_cell(); test_candidate_cache_occupancy(); test_occupied_destination(); test_movement_budget_search()
+	test_order_footprints()
 	print("TACTICAL AI CHECKS: %d | FAILURES: %d" % [checks, failures])
 	quit(0 if failures == 0 else 1)

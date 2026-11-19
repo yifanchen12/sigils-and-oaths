@@ -7,6 +7,9 @@ const CUES: Dictionary = {
 	"deploy": preload("res://assets/audio/deploy.wav"),
 	"attack": preload("res://assets/audio/attack.wav"),
 	"cast": preload("res://assets/audio/cast.wav"),
+	"bulwark": preload("res://assets/audio/bulwark.wav"),
+	"comet": preload("res://assets/audio/comet.wav"),
+	"willow": preload("res://assets/audio/willow.wav"),
 	"guard": preload("res://assets/audio/guard.wav"),
 	"trap": preload("res://assets/audio/trap.wav"),
 	"turn": preload("res://assets/audio/turn.wav"),
@@ -83,7 +86,7 @@ func feedback(action: Dictionary, battle: Battle, acting_side: int) -> void:
 		match str(action.type):
 			"attack": _play("attack")
 			"move": _play("move")
-			"hero": _play("cast")
+			"hero": _play({"blessing":"bulwark", "firestrike":"comet", "renewal":"willow"}.get(action.get("effect_kind"), "cast"))
 			"unit_skill":
 				match str(action.get("unit_kind", "")):
 					"sword", "spear": _play("guard")

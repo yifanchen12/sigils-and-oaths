@@ -2,6 +2,9 @@ extends RefCounted
 ## All positions are board cells. Rendering samples time and never advances the battle.
 
 const ATLAS: Texture2D = preload("res://assets/art/actions/cast-seals-v1.png")
+const SIGNATURE_ATLAS: Texture2D = preload("res://assets/art/actions/river-signatures-v1.png")
+enum Signature { BULWARK, COMET, WILLOW, MOORING, COUNTER, GUARD }
+const COMMANDER_SIGNATURES := {"blessing":Signature.BULWARK, "firestrike":Signature.COMET, "renewal":Signature.WILLOW}
 const Art = preload("res://scripts/art_library.gd")
 const STYLES := {
 	"fire_cast": [0, Color("ff9866")], "fire_area": [0, Color("ffac70")],
@@ -34,10 +37,10 @@ static func style_for(action: Dictionary) -> String:
 	if action.get("card_type") == "unit": return "arrival_cast"
 	return "order_cast"
 
-static func stamp(canvas: CanvasItem, index: int, center: Vector2, size: Vector2, opacity: float) -> void:
-	var cell := ATLAS.get_size() / Vector2(3,2)
+static func stamp(canvas: CanvasItem, index: int, center: Vector2, size: Vector2, opacity: float, atlas: Texture2D = ATLAS) -> void:
+	var cell := atlas.get_size() / Vector2(3,2)
 	var offset := Vector2(index % 3, floori(index / 3.0)) * cell
-	canvas.draw_texture_rect_region(ATLAS, Rect2(center - size / 2, size), Rect2(offset, cell).grow(-1), Color(1,1,1,clampf(opacity,0,1)))
+	canvas.draw_texture_rect_region(atlas, Rect2(center - size / 2, size), Rect2(offset, cell).grow(-1), Color(1,1,1,clampf(opacity,0,1)))
 
 static func star(canvas: CanvasItem, at: Vector2, radius: float, color: Color) -> void:
 	if radius < 0.35 or color.a < 0.005: return
@@ -52,11 +55,12 @@ static func draw_cast(board: Control, effect: Dictionary, tile: float) -> void:
 	var style: String = effect.kind
 	var color: Color = effect.color
 	var frame: int = int(STYLES[style][0])
+	var signature: int = effect.get("signature", -1)
 	var t: float = clampf(effect.age / effect.duration,0,1)
 	if board.reduced_motion:
 		for cell: Vector2i in effect.cells:
 			board.draw_rect(Rect2(board.cell_center(cell)-Vector2.ONE*tile*0.45, Vector2.ONE*tile*0.90), Color(color,0.55), false,1.5)
-		stamp(board, frame, at+Vector2(tile*0.24,-tile*0.25), Vector2.ONE*tile*0.52,0.82)
+		stamp(board, signature if signature >= 0 else frame, at+Vector2(tile*0.24,-tile*0.25), Vector2.ONE*tile*0.60,0.9, SIGNATURE_ATLAS if signature >= 0 else ATLAS)
 		return
 	var foot := at + Vector2.DOWN*tile*0.17
 	if t < 0.39:
@@ -77,6 +81,9 @@ static func draw_cast(board: Control, effect: Dictionary, tile: float) -> void:
 			star(board,head,tile*0.13,Color.WHITE)
 		return
 	var hit := (t-0.39)/0.61
+	if signature >= 0:
+		_draw_signature(board, effect, signature, at, tile, hit)
+		return
 	var appear := smoothstep(0.0,0.14,hit)
 	var fade := 1.0-smoothstep(0.55,1.0,hit)
 	var strength := appear*fade
@@ -114,6 +121,60 @@ static func draw_cast(board: Control, effect: Dictionary, tile: float) -> void:
 		var direction := Vector2.from_angle(i*TAU/5-0.71)
 		var p := foot + direction*spread
 		star(board,p, maxf(0.5,tile*(0.038+0.025*sin(i*2.1+hit*PI)))*fade, Color(color,strength*0.85))
+
+static func _draw_signature(board: Control, effect: Dictionary, signature: int, at: Vector2, tile: float, hit: float) -> void:
+	var appear := smoothstep(0, 0.19, hit)
+	var fade := 1.0 - smoothstep(0.59, 1, hit)
+	var alpha := appear * fade
+	var color: Color = effect.color
+	var size := Vector2.ONE * tile
+	var center := at - Vector2(0, tile * 0.16)
+	match signature:
+		Signature.BULWARK, Signature.GUARD:
+			for cell: Vector2i in effect.cells:
+				if cell == effect.cell: continue
+				var ally: Vector2 = board.cell_center(cell)
+				var tip := at.lerp(ally, smoothstep(0.07, 0.45, hit))
+				board.draw_line(at, tip, Color(color, alpha * 0.86), maxf(1.8, tile*0.045), true)
+				stamp(board, 2, ally - Vector2(0, tile*0.17), size*0.62, alpha*smoothstep(0.15,0.46,hit))
+			center.y += (1.0-appear)*tile*0.38
+			size *= Vector2(1.16, 0.45+0.70*appear)
+		Signature.COMET:
+			var fall := smoothstep(0, 0.34, hit)
+			var impact := at + Vector2(0, tile*0.13)
+			size *= 1.53
+			# The bright tip is at the lower left of the source cel.
+			center = impact + size*Vector2(0.28,-0.30) + Vector2(0.60,-0.72)*tile*(1.0-fall)
+			if hit >= 0.28:
+				var spread := smoothstep(0.28, 0.83, hit)
+				for i: int in range(5):
+					var direction := Vector2.from_angle(-PI*(i+0.5)/5.0)
+					board.draw_line(impact+direction*tile*(0.05+0.30*spread), impact+direction*tile*(0.18+0.50*spread), Color(Color("ffe2a5"),(1.0-spread)*fade), maxf(1.4,tile*0.035),true)
+		Signature.WILLOW:
+			for cell: Vector2i in effect.cells:
+				if cell == effect.cell: continue
+				var ally: Vector2 = board.cell_center(cell)
+				var distance := Vector2(cell-effect.cell).length()
+				var wave := clampf((hit-minf(0.32,distance*0.07))/0.52, 0, 1)
+				if wave <= 0 or wave >= 1: continue
+				var tip := at.lerp(ally, wave) - Vector2(0, sin(wave*PI)*tile*0.21)
+				star(board, tip, tile*0.10, Color(color, sin(wave*PI)))
+				stamp(board, signature, ally-Vector2(0,tile*(0.10+0.25*wave)), size*(0.47+0.24*wave), sin(wave*PI)*0.87, SIGNATURE_ATLAS)
+			center.y -= hit*tile*0.22
+			size *= 1.13
+		Signature.MOORING:
+			var snap := sin(minf(hit*2.7, 1.0)*PI) if effect.get("sprung", false) else 0.0
+			center.y += tile*0.12
+			if not effect.get("sprung", false): center.y -= (1.0-appear)*tile*0.26
+			size *= Vector2(1.18-snap*0.35, 0.68+snap*0.42)
+		Signature.COUNTER:
+			var flare := sin(minf(hit*2.6, 1.0)*PI)
+			size *= 0.87 + 0.36*flare
+			for i: int in range(3):
+				var direction := Vector2.from_angle((i-1)*0.66-0.6)
+				var ray := hit if effect.get("sprung", false) else 1.0-hit
+				star(board, at+direction*tile*(0.43+ray*0.35), tile*0.11*flare, Color(color,alpha))
+	stamp(board, signature, center, size, alpha, SIGNATURE_ATLAS)
 
 static func _weather(board: Control, at: Vector2, tile: float, hit: float, color: Color, name: String, alpha: float) -> void:
 	var grid: Rect2 = board.grid_rect()

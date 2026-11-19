@@ -34,10 +34,10 @@ decks = Array[Dictionary]([{
 "cards": {"reed_scout": 3, "gate_veteran": 3, "ridge_courier": 3, "ridge_archer": 2, "shore_medic": 2, "breakwater_guard": 2, "bronze_watch": 1, "sword": 2,
 "field_signals": 2, "detach_line": 2, "dispatch_bundle": 1, "march": 2, "second_watch": 1, "open_wind": 1, "reed_roads": 1, "silt_snare": 1, "bolt": 1}
 }, {
-"id": "frost_engine", "name": "断阵重术", "set_id": "warfront", "description": "用巡弓清出落脚点，以临桥木架接续施法线。预留法力给崩纹破盾、八费澜潮或十费坠火。",
-"cards": {"sword": 1, "spear": 2, "archer": 2, "mage": 2, "reed_scout": 2, "cavalry": 1, "quay_lantern": 2, "mink_watcher": 3,
+"id": "frost_engine", "name": "断阵重术", "set_id": "warfront", "description": "守桥老枪入场就能援护相邻的术士。前线吃紧时，用断浪卫长补盾；也可以把法力留给八费澜潮或十费坠火。",
+"cards": {"sword": 1, "spear": 2, "archer": 2, "mage": 2, "reed_scout": 2, "cavalry": 1, "quay_lantern": 1, "mink_watcher": 3, "gate_veteran": 1, "breakwater_guard": 1,
 "mist_spike": 1, "warder_hymn": 1, "hammer_sweep": 1, "signal_torrent": 1, "last_hearth": 1, "frostbind": 2, "clear_skies": 1, "fog": 1, "ward": 1, "second_watch": 1,
-"open_wind": 1, "span_kit": 1, "split_sentence": 1, "shatter_bolt": 1}
+"span_kit": 1, "split_sentence": 1, "shatter_bolt": 1}
 }, {
 "id": "lantern_convoy", "name": "灯曜守队", "set_id": "warfront", "description": "用枪兵援护和术击伏设稳住阵线。临时桥梁可打开另一条进路，三巡接灯为指挥官身旁的伤兵争取恢复时间。",
 "cards": {"sword": 2, "gate_veteran": 2, "healer": 2, "shore_medic": 2, "breakwater_guard": 2, "bronze_watch": 1, "mage": 2, "archer": 2, "quay_lantern": 1, "spear": 1,

@@ -46,11 +46,16 @@ func run() -> void:
 	if failures > 0: quit(1); return
 	for row: Dictionary in report.games:
 		var config: Dictionary = catalog.index.scenarios[row.scenario]
-		var battle: Battle = Model.new(int(config.seed), config.map, config.hero, config.enemy_class, config.deck, config.enemy_deck, 90.0)
-		battle.set_commander_identity(1, config.enemy_name, config.enemy_portrait)
+		var recorded: Dictionary = row.final
+		var blue: Dictionary = recorded.players[0]
+		var red: Dictionary = recorded.players[1]
+		# A historical trace starts with its recorded scenario setup; later briefings may field another army.
+		var battle: Battle = Model.new(int(recorded.match_seed), recorded.map_id, blue.hero_id, red.hero_id, blue.deck_id, red.deck_id, recorded.turn_time_limit)
+		battle.tactics_revision = int(recorded.get("tactics_revision", 1))
+		if not red.identity.is_empty(): battle.set_commander_identity(1, red.identity.name, red.identity.portrait)
 		if config.has("bonus_card"):
 			check(battle.add_generated_card(0, str(config.bonus_card)), "authored starting card appears in the replay")
-		battle.configure_objective(config.get("control", {}))
+		if not recorded.objective.is_empty(): battle.configure_objective(Model.ControlObjective.config(recorded.objective))
 		for step: Dictionary in row.trace:
 			check(battle.active_side == int(step.side) and battle.winner == -1, "recorded action belongs to current live turn")
 			battle.advance_clock(float(step.elapsed))

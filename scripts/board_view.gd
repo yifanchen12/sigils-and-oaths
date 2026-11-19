@@ -226,7 +226,7 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 			_effect("spawn", current.pos, "恢复移动", BLUE, 0.8)
 		if current.rooted_turns == 0 and old.rooted_turns > 0 and (action.get("spell_effect", "") in ["formation", "pullback"] or action.get("card_type", "") == "unit"):
 			_effect("spawn", current.pos, "解除定身", BLUE, 0.8)
-		if current.pos != old.pos and action.type != "move":
+		if current.pos != old.pos and action.type != "move" and not (action.type == "unit_skill" and action.get("unit_kind") == "cavalry"):
 			var transition: String = {"exchange": "换位", "pullback": "牵回"}.get(action.get("spell_effect", ""), "击退")
 			_effect("spawn", current.pos, transition, BLUE, 0.7)
 		if hp_delta < 0: _effect("hit", current.pos, str(hp_delta), RED, 0.75, delay)
@@ -266,8 +266,17 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 			for direction: Vector2i in battle.DIRECTIONS:
 				if battle.inside(landing + direction): cells.append(landing + direction)
 		var guard: bool = action.type == "unit_skill" and action.get("unit_kind", "") == "spear"
+		var signature: int = CastArt.COMMANDER_SIGNATURES.get(effect_kind, -1) if action.type == "hero" else -1
+		if action.get("card_type") == "unit":
+			var arrival: Dictionary = battle.unit_at(landing)
+			guard = arrival.get("guarding", false) and not previous_ids.has(arrival.get("id", -1))
+		if guard:
+			signature = CastArt.Signature.GUARD
+			style = "ward_cast"
+		if action.has("trap_trigger"):
+			signature = CastArt.Signature.MOORING if action.trap_trigger == "step" else CastArt.Signature.COUNTER
 		if guard or effect_kind == "renewal":
-			var actor: Dictionary = battle.get_unit(int(action.visual_caster_id))
+			var actor: Dictionary = battle.unit_at(landing) if guard else battle.get_unit(int(action.visual_caster_id))
 			var reach: int = 1 if guard else battle.hero_cast_range(actor.side)
 			for ally: Dictionary in battle.units:
 				if ally.side == actor.side and ally.pos != landing and battle.distance(landing,ally.pos) <= reach: cells.append(ally.pos)
@@ -276,7 +285,7 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 		var duration: float = 0.46 if reduced_motion else 0.82
 		effects.append({"kind": style, "cell": landing, "from": origin, "cells": cells, "text": "", "color": color,
 			"title":action.get("cast_title",""), "portrait":action.get("cast_art",""),
-			"guard":guard, "martial":action.has("cast_color"), "weather":battle.weather, "age":0.0, "duration":duration})
+			"guard":guard, "signature":signature, "martial":action.has("cast_color"), "weather":battle.weather, "age":0.0, "duration":duration})
 		action_duration = maxf(action_duration, duration)
 	if action.type == "unit_skill" and action.get("unit_kind", "") == "spear": _effect("shield", action.target, "援护展开", BLUE, 0.85)
 	if action.get("card_type", "") == "trap" and battle.inside(action.target): _effect("shield", action.target, "伏设", Color("b5a0ed"), 0.8)
@@ -292,8 +301,10 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 	for event: Dictionary in battle.last_trap_events:
 		if battle.inside(event.cell):
 			_effect("burst", event.cell, event.name + " · " + event.reason, Color("c6a6ff"), 1.05)
-			effects.append({"kind":"snare_cast", "cell":event.cell, "from":event.cell, "cells":[event.cell], "text":"",
-				"color":Color("c6a6ff"), "age":0.0 if reduced_motion else 0.28, "duration":0.46 if reduced_motion else 0.82})
+			if event.triggered:
+				var signature: int = CastArt.Signature.MOORING if event.trigger == "step" else CastArt.Signature.COUNTER
+				effects.append({"kind":"snare_cast", "cell":event.cell, "from":event.cell, "cells":[event.cell], "text":"",
+					"signature":signature, "sprung":true, "color":Color("c6a6ff"), "age":0.0 if reduced_motion else 0.28, "duration":0.46 if reduced_motion else 0.82})
 	presentation_remaining = action_duration
 	for effect: Dictionary in effects: presentation_remaining = maxf(presentation_remaining, float(effect.duration) - float(effect.age))
 	queue_redraw()

@@ -1237,6 +1237,7 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 			var definition: Dictionary = battle.card_for_play(battle.definition(instance.card_id), side)
 			var entry: Dictionary = definition.get("entry", {})
 			visual_action["card_type"] = definition.type
+			if definition.type == "trap": visual_action["trap_trigger"] = definition.trigger
 			visual_action["spell_effect"] = definition.get("effect", "")
 			visual_action["effect_kind"] = visual_action.spell_effect
 			if int(definition.cost) >= 7 and definition.type != "trap":
@@ -1426,6 +1427,11 @@ func _update_info() -> void:
 		info_title.text = chosen.skill
 		info_body.text = "[color=#d0b579]英雄主动 · %d 费 · 冷却 %d[/color]\n\n%s\n\n[color=#70d3ba]点击高亮目标施放，右键取消。[/color]" % [chosen.cost, chosen.cooldown, chosen.skill_text]
 		return
+	var context: Dictionary = _attack_context()
+	if not context.is_empty():
+		info_title.text = "攻击预估 · " + str(context.target.name)
+		info_body.text = _attack_forecast_text(context)
+		return
 	var uid: int = selected_card if selected_card != -1 else inspected_card
 	var instance: Dictionary = battle.hand_card(0, uid)
 	if not instance.is_empty():
@@ -1447,11 +1453,6 @@ func _update_info() -> void:
 			elif card.effect == "choice": target_tip = "在施法范围内选友军或敌军，执行该方对应的效果。"
 			elif card.effect == "muster": target_tip = "选择邻接友军的空格。指向格子可查看征召名单和落点。"
 			info_body.text += "[color=#8eaaa4]%s\n右键或 Esc 可取消。[/color]" % target_tip
-		return
-	var context: Dictionary = _attack_context()
-	if not context.is_empty():
-		info_title.text = "攻击预估 · " + str(context.target.name)
-		info_body.text = _attack_forecast_text(context)
 		return
 	var unit: Dictionary = battle.get_unit(selected_unit)
 	if unit.is_empty(): unit = battle.unit_at(hovered_cell)

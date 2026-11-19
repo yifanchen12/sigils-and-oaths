@@ -47,6 +47,7 @@ func test_relay() -> void:
 	check(Snapshot.restore(Snapshot.capture(battle)).ok, "relay victory restores with both commanders alive")
 	var old_relay: Dictionary = raw.duplicate(true)
 	old_relay.version = 3
+	old_relay.erase("tactics_revision")
 	check(not Snapshot.validate(old_relay).ok, "a relay state cannot claim the pre-relay schema")
 	var invalid_relay: Dictionary = RELAY.duplicate(true)
 	invalid_relay.cells.pop_back()
@@ -101,6 +102,7 @@ func run() -> void:
 		var bad: Dictionary = saved.duplicate(true); bad.objective.merge(fields, true)
 		check(not Snapshot.restore(bad).ok, "inconsistent objective progress rejected")
 	var classic: RefCounted = Model.new()
+	classic.tactics_revision = 1
 	var legacy: Dictionary = Snapshot.capture(classic); legacy.version = 1; legacy.erase("objective")
 	check(Snapshot.restore(legacy).ok and Snapshot.restore(legacy).battle.objective.is_empty(), "v1 skirmish snapshot migrates without inventing an objective")
 	legacy.version = 2

@@ -5,13 +5,13 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.56.0-dev" src="https://img.shields.io/badge/version-0.56.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.57.0-dev" src="https://img.shields.io/badge/version-0.57.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 248 collectible cards, and twenty-three skirmish presets. **0.56.0-dev** completes the six Blender-rendered skirmish boards and adds distinct casting, travel and impact effects for cards and skills. [Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.56.0-dev)
+The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 248 collectible cards, twenty-three preset decks and six Blender-rendered skirmish boards. In **0.57.0-dev**, each commander has a distinct cast and sound. Guard links appear at deployment, and a triggered trap reveals its effect on the board. [Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.57.0-dev)
 
 ## In-game screenshots
 
@@ -113,6 +113,12 @@ The gold frame marks the stretcher crew. The teal square marks the kiln evacuati
 | Change the next exchange | Rain, fog, sun, snow, tailwind and lantern weather affect both sides. Replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
 | Learn and adjust | Four untimed drills. F10 opens display, reading size, motion, music and effects settings |
+
+## 0.57 · Commander casts and holding the bridge
+
+The Warden raises a three-plate sluice shield, the Pyromancer lands a diagonal fire strike, and the Grove commander sends willow light to nearby allies. Each has an original sound. A newly deployed Gate Veteran draws a spear-and-shield link to the allies he can protect. Tile traps close around an intruder, while reactive wards flare on the defender. Reduced motion keeps static markers at the same cells. [Gameplay reel](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.57.0-dev/SigilsAndOaths-0.57.0-dev-River-Signatures.mp4) · [Fire Verdict in play](docs/release/steam/gameplay/14-river-signatures.png)
+
+Frost Engine can deploy a three-mana Gate Veteran to guard a nearby caster or archer. A seven-mana Breakwater Guard shields the front line while the deck waits for its finishing spells. The opponent accounts for occupied cast centers, rows, columns and terrain restrictions when deciding where to move or deploy. Frost won 17 of 36 held-out games against Twin-Tide Orders, up from 3 under the previous build. [Rivergate screenshot](docs/release/steam/gameplay/13-frost-front.png) · [Release notes and match records](docs/release/v057.md)
 
 ## 0.56 · Battlefields and casting effects
 
@@ -573,7 +579,7 @@ UI, forecast, map-art and skill-window checks require a graphical window. Earlie
 
 ## Current limits and artwork
 
-- Single-player development build for Windows x64. Open the MSI to install or extract the portable ZIP and keep its EXE and PCK together. [Download the development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.56.0-dev)
+- Single-player development build for Windows x64. Open the MSI to install or extract the portable ZIP and keep its EXE and PCK together. [Download the development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.57.0-dev)
 - Ranged attacks and spells currently do not check line of sight. AI diagnostics are not a substitute for competitive human playtesting.
 - One custom deck is saved locally at Godot's `user://custom_deck.json`; player data is not included in this repository.
 - One campaign autosave and a last-good backup use `user://campaign_autosave.json`. Starting over asks for in-game confirmation before replacing progress; these files are not published.

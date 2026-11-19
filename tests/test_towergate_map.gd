@@ -46,10 +46,12 @@ func run() -> void:
 	check(battle.cell_name(Vector2i(3, 3)) == "D9" and battle.cell_name(Vector2i(10, 3)) == "K9", "briefing coordinates match the northern objective cells")
 	var old_map_save: Dictionary = Snapshot.capture(Model.new(1034, "sunspire"))
 	old_map_save.version = 3
+	old_map_save.erase("tactics_revision")
 	old_map_save.rules = Snapshot.pre_towergate_signature()
 	check(Snapshot.restore(old_map_save).ok, "an unchanged old-map battle accepts the exact pre-gate rule signature")
 	var invalid_gate_save: Dictionary = Snapshot.capture(battle)
 	invalid_gate_save.version = 3
+	invalid_gate_save.erase("tactics_revision")
 	invalid_gate_save.rules = Snapshot.pre_towergate_signature()
 	check(not Snapshot.validate(invalid_gate_save).ok, "the new gate cannot be forged with the older map signature")
 	check(reachable(battle, start, gate), "gate reachable with both bridges open")

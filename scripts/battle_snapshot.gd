@@ -2,7 +2,7 @@ extends RefCounted
 ## Plain-data snapshots. No object deserialization, rendering or turn-start effects.
 
 const Model = preload("res://scripts/battle.gd")
-const VERSION: int = 13
+const VERSION: int = 14
 const PILGRIM_SET: String = "pilgrim"
 const NEW_SET: String = "glassroad"
 const EXPANSION_CARDS: Array[String] = ["shatter_bolt", "rally_heal", "cleanse_root", "reveal_traps", "seedwood", "anchor_snare", "ember_mine", "oath_ward"]
@@ -30,15 +30,32 @@ const EDICT_V055: Dictionary = {
 		"crossroads_whistle": 1, "hinge_order": 1, "rain_notch": 1, "highroad_edict": 1, "twin_standard": 1, "ebb_and_surge": 1, "glass_treaty": 1,
 		"scour_fulcrum": 1, "winter_march": 1, "miller_alarm": 1, "hollow_hammer": 1, "storm_of_seals": 1, "bolt": 2, "quay_signal": 1}}
 
-static func _historical_preset(id: String) -> Dictionary:
-	return EDICT_V055 if id == "glassroad_edict" else WARFRONT_PRESETS_V043.get(id, {})
+const FROST_V056: Dictionary = {
+	"description": "用巡弓清出落脚点，以临桥木架接续施法线。预留法力给崩纹破盾、八费澜潮或十费坠火。",
+	"cards": {"sword": 1, "spear": 2, "archer": 2, "mage": 2, "reed_scout": 2, "cavalry": 1, "quay_lantern": 2, "mink_watcher": 3,
+		"mist_spike": 1, "warder_hymn": 1, "hammer_sweep": 1, "signal_torrent": 1, "last_hearth": 1, "frostbind": 2, "clear_skies": 1, "fog": 1, "ward": 1, "second_watch": 1,
+		"open_wind": 1, "span_kit": 1, "split_sentence": 1, "shatter_bolt": 1}}
+
+static func _historical_preset(id: String, counts: Dictionary) -> Dictionary:
+	if id == "frost_engine" and counts == FROST_V056.cards: return FROST_V056
+	var candidate: Dictionary = EDICT_V055 if id == "glassroad_edict" else WARFRONT_PRESETS_V043.get(id, {})
+	return candidate if counts == candidate.get("cards", {}) else {}
+
+static func _presets_v056() -> Array[Dictionary]:
+	var prior: Array[Dictionary] = []
+	for deck: Dictionary in Model.DECKS.decks:
+		prior.append(deck.merged(FROST_V056, true) if deck.id == "frost_engine" else deck)
+	return prior
 
 static func rules_signature() -> String:
 	return _relay_signature(Model.CATALOG.cards, Model.DECKS.decks, Model.MAPS.maps, "glassroad_v1")
 
+static func v056_rules_signature() -> String:
+	return _relay_signature(Model.CATALOG.cards, _presets_v056(), Model.MAPS.maps, "glassroad_v1")
+
 static func v055_rules_signature() -> String:
 	var prior: Array[Dictionary] = []
-	for deck: Dictionary in Model.DECKS.decks:
+	for deck: Dictionary in _presets_v056():
 		prior.append(deck.merged(EDICT_V055, true) if deck.id == "glassroad_edict" else deck)
 	return _relay_signature(Model.CATALOG.cards, prior, Model.MAPS.maps, "glassroad_v1")
 
@@ -47,24 +64,24 @@ static func _relay_signature(cards: Array[Dictionary], decks: Array[Dictionary],
 
 static func v052_rules_signature() -> String:
 	var cards: Array[Dictionary] = Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") != NEW_SET)
-	var decks: Array[Dictionary] = Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") != NEW_SET)
+	var decks: Array[Dictionary] = _presets_v056().filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") != NEW_SET)
 	return _relay_signature(cards, decks, Model.MAPS.maps, "hand_combo_v1")
 
 static func v050_rules_signature() -> String:
 	var cards: Array[Dictionary] = Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") not in [PILGRIM_SET, NEW_SET])
-	var decks: Array[Dictionary] = Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") not in [PILGRIM_SET, NEW_SET])
+	var decks: Array[Dictionary] = _presets_v056().filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") not in [PILGRIM_SET, NEW_SET])
 	return _relay_signature(cards, decks, Model.MAPS.maps)
 
 static func v048_rules_signature() -> String:
 	var cards: Array[Dictionary] = Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") not in ["moorings", PILGRIM_SET, NEW_SET])
-	var decks: Array[Dictionary] = Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") not in ["moorings", PILGRIM_SET, NEW_SET])
+	var decks: Array[Dictionary] = _presets_v056().filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") not in ["moorings", PILGRIM_SET, NEW_SET])
 	return _relay_signature(cards, decks, Model.MAPS.maps)
 
 static func _cards_through_v046() -> Array[Dictionary]:
 	return Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") not in ["levee", "moorings", PILGRIM_SET, NEW_SET])
 
 static func _presets_through_v046() -> Array[Dictionary]:
-	return Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") not in ["levee", "moorings", PILGRIM_SET, NEW_SET])
+	return _presets_v056().filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") not in ["levee", "moorings", PILGRIM_SET, NEW_SET])
 
 static func v046_rules_signature() -> String:
 	return _relay_signature(_cards_through_v046(), _presets_through_v046(), Model.MAPS.maps)
@@ -185,6 +202,8 @@ static func capture(battle: RefCounted) -> Dictionary:
 	var data: Dictionary = {"version": VERSION, "rules": rules_signature(), "map_id": battle.map_definition.id,
 		"rng_seed": str(battle.rng.seed), "rng_state": str(battle.rng.state), "players": [], "units": [], "terrain": [], "log": battle.log_lines.duplicate()}
 	for key: String in SCALARS: data[key] = battle.get(key)
+	# An absent marker keeps the choices of a game started before 0.57, including after a resave.
+	if battle.tactics_revision != 1: data["tactics_revision"] = battle.tactics_revision
 	if battle.hand_played_this_turn: data["hand_played_this_turn"] = true
 	data["objective"] = battle.objective.duplicate(true)
 	data["traps"] = []
@@ -235,8 +254,12 @@ static func validate(data: Variant) -> Dictionary:
 	if data.version > VERSION:
 		return {"ok": false, "protected": true, "message": "战斗存档版本不兼容，原档保留。"}
 	if not data.get("rules") is String or data.rules.length() != 64: return {"ok": false, "message": "战斗规则签名缺失。"}
+	if data.has("tactics_revision") and (int(version) < 14 or not _whole(data.tactics_revision, Model.CURRENT_TACTICS, Model.CURRENT_TACTICS)):
+		return {"ok":false, "protected":true, "message":"战斗存档的电脑策略版本不兼容，原档保留。"}
 	var compatible: bool
-	if int(version) == 12:
+	if int(version) == 13:
+		compatible = data.rules == v056_rules_signature()
+	elif int(version) == 12:
 		compatible = data.rules == v055_rules_signature()
 	else:
 		compatible = data.rules == rules_signature() or (int(version) < VERSION and _legacy_rules_match(data))
@@ -381,10 +404,11 @@ static func _validate(data: Dictionary) -> String:
 		if not issue.is_empty(): return issue
 		if not preset.is_empty():
 			var counts: Dictionary = Model.DECKS.canonical_counts(player.deck_counts, Model.CATALOG.cards)
-			var old_counts: Dictionary = _historical_preset(preset.id).get("cards", {})
-			if int(data.version) == 12 and preset.id == "glassroad_edict" and counts != old_counts:
+			if int(data.version) == 12 and preset.id == "glassroad_edict" and counts != EDICT_V055.cards:
 				return "旧版双潮军令与已发行牌表不一致。"
-			if counts != preset.cards and counts != old_counts: return "预组套牌与已发行牌表不一致。"
+			if int(data.version) < 14 and preset.id == "frost_engine" and counts == preset.cards:
+				return "旧版断阵重术与已发行牌表不一致。"
+			if counts != preset.cards and _historical_preset(preset.id, counts).is_empty(): return "预组套牌与已发行牌表不一致。"
 		for key: String in ["mana", "max_mana", "fatigue", "skill_cooldown", "card_total"]:
 			if not _whole(player.get(key)): return "玩家数值无效：" + key
 		if player.mana > 10 or player.max_mana > 10 or player.card_total > 1024 or not player.get("spell_boost_used") is bool: return "玩家资源状态无效。"
@@ -434,6 +458,7 @@ static func restore(data: Variant) -> Dictionary:
 			battle.objective["escort_id"] = int(data.objective.escort_id)
 	for key: String in SCALARS:
 		battle.set(key, data[key] if key in ["weather", "turn_time_limit", "time_remaining"] else int(data[key]))
+	battle.tactics_revision = int(data.get("tactics_revision", 1))
 	battle.hand_played_this_turn = data.get("hand_played_this_turn", false)
 	battle.players.clear()
 	for raw: Dictionary in data.players:
@@ -444,7 +469,7 @@ static func restore(data: Variant) -> Dictionary:
 			player["deck_definition"] = {"id": "custom", "name": "自定义军势", "description": "本地自定义套牌。", "cards": counts}
 		else:
 			var preset: Dictionary = Model.DECKS.find(raw.deck_id).duplicate(true)
-			if counts != preset.cards: preset.merge(_historical_preset(raw.deck_id), true)
+			if counts != preset.cards: preset.merge(_historical_preset(raw.deck_id, counts), true)
 			preset["cards"] = counts
 			player["deck_definition"] = preset
 		for zone: String in ["deck", "hand", "discard"]:
