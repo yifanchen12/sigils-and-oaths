@@ -13,6 +13,7 @@ const TEST_SAVE = "user://store-capture-v042.tmp.json"
 var target_view: SubViewport
 var game: Control
 var failures: int = 0
+var legal_prefix: int = 0
 
 func _initialize() -> void:
 	call_deferred("run")
@@ -37,7 +38,9 @@ func reach_action(battle: Battle, rule: Callable) -> Dictionary:
 	for action_index: int in range(600):
 		if battle.winner != -1: break
 		var action: Dictionary = AI.choose(battle)
-		if battle.active_side == 0 and rule.call(battle, action): return action
+		if battle.active_side == 0 and rule.call(battle, action):
+			legal_prefix = action_index
+			return action
 		if not require(battle.apply_action(action).ok, "AI proposed an illegal move before capture"): return {}
 		if action_index % 24 == 0: await process_frame
 	return {}
@@ -85,6 +88,26 @@ func capture_skirmishes() -> void:
 		await capture("02-bridge-engagement")
 		print("CAPTURE STRIKE TURN ", river.turn)
 
+func capture_harbor() -> void:
+	for seed_value: int in [5501,5502,5503,5504,5505]:
+		var harbor := Model.new(seed_value, "harbor", "warden", "warden", "reed_legion", "balanced")
+		var strike: Dictionary = await reach_action(harbor, func(model: Battle, action: Dictionary) -> bool:
+			if action.type != "attack" or model.turn < 8 or model.units.size() < 6: return false
+			return model.ground(model.get_unit(action.unit_id).pos) == "bridge" or model.ground(action.target) == "bridge")
+		if strike.is_empty(): continue
+		mount_battle(harbor)
+		game.selected_unit = strike.unit_id
+		game._refresh()
+		game.board.hover_cell = strike.target
+		game._on_cell_hovered(strike.target)
+		if not require(not game._attack_context().is_empty(), "Harbor basic attack preview opens on the actual bridge"): return
+		await capture("08-harbor-crossing")
+		print("HARBOR CAPTURE seed ", seed_value, " turn ", harbor.turn, " legal prefix ", legal_prefix,
+			" attacker ", harbor.get_unit(strike.unit_id).kind, " ", harbor.get_unit(strike.unit_id).pos,
+			" target ", harbor.unit_at(strike.target).kind, " ", strike.target)
+		return
+	require(false, "Could not reach an ordinary Harbor bridge engagement")
+
 func capture_lesson() -> void:
 	game._open_council()
 	game._start_training()
@@ -126,12 +149,20 @@ func run() -> void:
 	game.settings_store = Preferences.new("user://store-capture-defaults.cfg")
 	target_view.add_child(game)
 	game.set_process(false)
+	game.audio.stop_playback()
 	AudioServer.set_bus_mute(0, true)
 	await process_frame
-	await capture_campaign()
+	var skirmishes_only := OS.get_cmdline_user_args().has("--skirmishes")
+	if not skirmishes_only: await capture_campaign()
 	await capture_skirmishes()
-	await capture_lesson()
-	await capture_relay()
+	await capture_harbor()
+	if not skirmishes_only:
+		await capture_lesson()
+		await capture_relay()
 	cleanup()
 	print("STORE GAMEPLAY CAPTURE | FAILURES ", failures)
+	game.audio.stop_playback()
+	await create_timer(0.15, true, false, true).timeout
+	target_view.queue_free()
+	await process_frame
 	quit(0 if failures == 0 else 1)

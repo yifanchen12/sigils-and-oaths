@@ -139,8 +139,9 @@ static func get_texture(asset_id: String) -> Texture2D:
 	if asset_id.begins_with("battlefield_"):
 		var map_id: String = asset_id.trim_prefix("battlefield_")
 		path = "res://assets/art/battlefields/%s-v2.png" % map_id
-		if map_id == "rivergate" and ResourceLoader.exists("res://assets/art/battlefields/rivergate-relief-v1.png"):
-			path = "res://assets/art/battlefields/rivergate-relief-v1.png"
+		var relief_path := "res://assets/art/battlefields/%s-relief-v1.png" % map_id
+		if ResourceLoader.exists(relief_path):
+			path = relief_path
 	var texture: Texture2D = null
 	for atlas_id: String in SPELL_ATLASES:
 		var index: int = SPELL_ATLASES[atlas_id].find(asset_id)

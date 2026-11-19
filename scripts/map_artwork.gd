@@ -5,6 +5,10 @@ extends RefCounted
 const Art = preload("res://scripts/art_library.gd")
 const Landscape = preload("res://scripts/battlefield_art.gd")
 const SYMBOLS: Dictionary = {".": "plain", "f": "forest", "m": "mountain", "r": "road", "w": "water", "b": "bridge", "h": "hill", "t": "fort"}
+## The four moored boats each fit one tile. Their matching empty-water crops come
+## from a second render of the same harbor with only the vessels and lines hidden.
+const MOORINGS: Array[Vector2i] = [Vector2i(4, 1), Vector2i(7, 4), Vector2i(4, 6), Vector2i(7, 9)]
+const EMPTY_MOORINGS: Texture2D = preload("res://assets/art/battlefields/harbor-empty-moorings-v1.png")
 
 static func texture(game: Battle) -> Texture2D:
 	return Art.get_texture("battlefield_" + str(game.map_definition.id))
@@ -42,12 +46,20 @@ static func draw_map(canvas: CanvasItem, game: Battle, grid: Rect2) -> bool:
 	var sample := Rect2(Vector2(floor_sample(game)) * source_cell, source_cell)
 	for cell: Vector2i in changed_cells(game):
 		var rect := Rect2(grid.position + Vector2(cell) * tile, Vector2.ONE * tile)
+		var kind: String = game.ground(cell)
+		if kind == "bridge" and original_ground(game, cell) == "water":
+			if game.map_definition.id == "harbor" and painting.resource_path.ends_with("harbor-relief-v1.png"):
+				var berth := MOORINGS.find(cell)
+				if berth >= 0:
+					var offset := Vector2(berth % 2, floori(berth / 2.0)) * source_cell
+					canvas.draw_texture_rect_region(EMPTY_MOORINGS, rect, Rect2(offset, source_cell))
+			Landscape._bridge(canvas, game, cell, rect)
+			continue
 		# Clear old objects, then feather the patch into the surrounding painting.
 		for edge: int in range(5):
 			var extent: float = 0.17 - edge * 0.03
 			var alpha: float = 0.16 + edge * 0.21
 			canvas.draw_texture_rect_region(painting, rect.grow(tile * extent).intersection(grid), sample, Color(1, 1, 1, alpha))
-		var kind: String = game.ground(cell)
 		if kind == "road": Landscape._road(canvas, game, cell, rect)
 		elif kind == "bridge": Landscape._bridge(canvas, game, cell, rect)
 		else: Landscape.draw_prop(canvas, kind, rect, game.map_definition.theme, game.map_definition.id)

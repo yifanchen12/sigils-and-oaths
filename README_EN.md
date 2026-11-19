@@ -5,13 +5,13 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.54.0-dev" src="https://img.shields.io/badge/version-0.54.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.55.0-dev" src="https://img.shields.io/badge/version-0.55.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 248 collectible cards, and twenty-three skirmish presets. **0.53.0-dev** adds Glassroad Orders, a 48-card set across the 1–10 mana curve. Its new effects include dual orders, reserve musters, and upgrades unlocked by the mana cap. [Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.54.0-dev)
+The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 248 collectible cards, and twenty-three skirmish presets. **0.55.0-dev** brings full Blender-rendered maps to Greenwood and Harbor. Play a bridge card to turn a berth into a new crossing. [Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.55.0-dev)
 
 ## In-game screenshots
 
@@ -83,8 +83,8 @@ The gold frame marks the stretcher crew. The teal square marks the kiln evacuati
 
 [Scene states, small-window choices, backlog and verification](docs/narrative-art-v020.md).
 
-![Forest battlefield during a match](docs/screenshots/expanded-battle.png)
-![Harbor battlefield with a central canal and two bridges](docs/screenshots/painted-harbor.png)
+![A local spell preview in the modeled Greenwood frontier](docs/release/steam/gameplay/01-local-spell.png)
+![A healer on Harbor's southern drawbridge takes aim at the eastern quay](docs/release/steam/gameplay/08-harbor-crossing.png)
 
 <details>
 <summary>Preparation screen and more maps</summary>
@@ -111,6 +111,10 @@ The gold frame marks the stretcher crew. The teal square marks the kiln evacuati
 | Change the next exchange | Rain, fog, sun, snow, tailwind and lantern weather affect both sides. Replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
 | Learn and adjust | Four untimed drills. F10 opens display, reading size, motion, music and effects settings |
+
+## 0.55 · Greenwood and Harbor
+
+Greenwood's roads skirt the groves and meet the central high ground, where archers gain an extra tile of range. Harbor's stone bridge and wooden drawbridge link the quays. Zoom in to see the moored boats, freight cranes and market stalls. Both battlefields use flat images rendered from complete Blender models. Build out from shore with bridge cards to open a third route. A berth that receives a bridge now shows the water beneath the deck. [In-game checks and editable models](docs/release/v055.md)
 
 ## 0.54 · Rivergate and the Windows installer
 
@@ -561,7 +565,7 @@ UI, forecast, map-art and skill-window checks require a graphical window. Earlie
 
 ## Current limits and artwork
 
-- Single-player development build for Windows x64. Open the MSI to install or extract the portable ZIP and keep its EXE and PCK together. [Download the development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.54.0-dev)
+- Single-player development build for Windows x64. Open the MSI to install or extract the portable ZIP and keep its EXE and PCK together. [Download the development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.55.0-dev)
 - Ranged attacks and spells currently do not check line of sight. AI diagnostics are not a substitute for competitive human playtesting.
 - One custom deck is saved locally at Godot's `user://custom_deck.json`; player data is not included in this repository.
 - One campaign autosave and a last-good backup use `user://campaign_autosave.json`. Starting over asks for in-game confirmation before replacing progress; these files are not published.

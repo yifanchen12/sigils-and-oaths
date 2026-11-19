@@ -124,7 +124,7 @@ func _initialize() -> void:
         "res://assets/art/expansion/pilgrim-wards-v1.png", "res://assets/art/expansion/pilgrim-salvos-v1.png",
         "res://assets/art/expansion/glassroad-company-v1.png", "res://assets/art/expansion/glassroad-edicts-v1.png",
         "res://assets/art/expansion/glassroad-reserves-v1.png", "res://assets/art/expansion/glassroad-ambush-v1.png",
-        "res://assets/art/battlefields/rivergate-relief-v1.png",
+        "res://assets/art/battlefields/harbor-empty-moorings-v1.png",
         "res://assets/art/battlefields/lamplanding-v2.png", "res://assets/art/narrative/return-morning-v1.png",
         "res://assets/art/battlefields/saltlane-v2.png", "res://assets/art/narrative/saltlane-yard-v1.png",
         "res://assets/art/narrative/quartermaster-desk-v1.png", "res://scripts/campaign_requisition.gd",
@@ -149,6 +149,14 @@ func _initialize() -> void:
             if art.get_texture(card.id) == null: problems.append("missing Glassroad illustration: " + card.id)
     if decks == null or decks.decks.size() != 23 or decks.find("chalkline_vanguard").get("cards", {}).get("petal_signal", 0) < 1 or decks.find("cairn_watch").get("cards", {}).get("bellglass_cover", 0) < 1 or decks.find("bellfoundry_column").get("cards", {}).get("thousand_steps", 0) < 1 or decks.find("glassroad_reserve").get("cards", {}).get("all_banner_call", 0) != 1:
         problems.append("expansion preset data unavailable")
+    var artwork = load("res://scripts/map_artwork.gd")
+    var battle = load("res://scripts/battle.gd")
+    for map_id in ["rivergate", "greenwood", "harbor"]:
+        var texture: Texture2D = artwork.texture(battle.new(1, map_id))
+        if texture == null or texture.get_size() != Vector2(2160, 1800) or not texture.resource_path.ends_with(map_id + "-relief-v1.png"):
+            problems.append("full battlefield render unavailable: " + map_id)
+    if artwork.EMPTY_MOORINGS.get_size() != Vector2(360, 360):
+        problems.append("empty harbor moorings unavailable")
     var armory = load("res://scripts/campaign_armory.gd")
     if armory == null or armory.unlocked_count(7) != 3 or not armory.validate({"vanguard": "petal_signal", "company": "roadside_muster", "reserve": "glass_treaty"}, 7).is_empty():
         problems.append("campaign armory unavailable")
@@ -158,8 +166,12 @@ func _initialize() -> void:
     print("PACK_AUDIT count=", entries.size(), " errors=", problems.size())
     quit(0 if problems.is_empty() else 1)
 '@ | Set-Content -LiteralPath $AuditScript -Encoding utf8
-& $GodotPath --headless --main-pack $PackPath --script $AuditScript --log-file $AuditLog -- $AuditReport *> (Join-Path $OutputRoot 'pack-audit-console.log')
-if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $AuditReport)) { throw "PCK audit failed. See $AuditLog" }
+Push-Location -LiteralPath $PackageDir
+try {
+    & $GodotPath --headless --main-pack $PackPath --script $AuditScript --log-file $AuditLog -- $AuditReport *> (Join-Path $OutputRoot 'pack-audit-console.log')
+    $AuditExit = $LASTEXITCODE
+} finally { Pop-Location }
+if ($AuditExit -ne 0 -or -not (Test-Path -LiteralPath $AuditReport)) { throw "PCK audit failed. See $AuditLog" }
 $PackAudit = Get-Content -LiteralPath $AuditReport -Raw | ConvertFrom-Json
 if (-not $PackAudit.ok) { throw "PCK contains unexpected or missing resources. See $AuditReport" }
 

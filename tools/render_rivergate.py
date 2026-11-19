@@ -123,11 +123,13 @@ def outline(name, positions, width, mat):
     return obj
 
 
-def read_map(path):
+def read_map(path, map_id="rivergate"):
     source = path.read_text(encoding="utf-8")
-    rivergate = re.search(r'"id": "rivergate".*?\n\},', source, re.S).group()
-    rows = json.loads(re.search(r'"rows": (\[[^\n]*\])', rivergate).group(1))
-    ruin_list = re.search(r'"ruins": \[(.*?)\]', rivergate).group(1)
+    entry = re.search(r'"id": "' + re.escape(map_id) + r'".*?"ruins": \[[^\]]*\]', source, re.S)
+    if not entry:
+        raise ValueError(f"Unknown battlefield {map_id}")
+    rows = json.loads(re.search(r'"rows": (\[[^\n]*\])', entry.group()).group(1))
+    ruin_list = re.search(r'"ruins": \[(.*?)\]', entry.group()).group(1)
     ruins = [(int(x), int(y)) for x, y in re.findall(r"Vector2i\((\d+), (\d+)\)", ruin_list)]
     return rows, ruins
 
@@ -197,7 +199,7 @@ class Landscape:
         dirt = lerp(dirt, srgb("#796349"), wheel_wear)
         return (*lerp(grass, dirt, road), 1)
 
-    def ground(self):
+    def ground(self, name="Continuous sculpted valley"):
         mat = material("Grass, soil and worn track", "#748f52", texture_scale=20, bump_strength=0.21)
         nodes = mat.node_tree.nodes
         colors = nodes.new("ShaderNodeVertexColor")
@@ -221,7 +223,7 @@ class Landscape:
                 if ix < nx and iy < ny:
                     v = iy * (nx + 1) + ix
                     faces.append((v, v + nx + 1, v + nx + 2, v + 1))
-        surface = form_mesh("Continuous sculpted valley", verts, faces, mat)
+        surface = form_mesh(name, verts, faces, mat)
         layer = surface.data.color_attributes.new(name="Terrain palette", type="FLOAT_COLOR", domain="POINT")
         for index, color in enumerate(pigment):
             layer.data[index].color = color
@@ -430,6 +432,14 @@ def configure_render(width, length, draft):
     return scene
 
 
+def use_relative_browser_paths():
+    for screen in bpy.data.screens:
+        for area in screen.areas:
+            for space in area.spaces:
+                if space.type == "FILE_BROWSER" and space.params is not None:
+                    space.params.directory = b"//"
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--maps", type=Path, required=True)
@@ -452,6 +462,7 @@ def main():
     scene = configure_render(valley.width, valley.length, args.draft)
     scene.render.filepath = "//rivergate-relief.png"
     if args.blend:
+        use_relative_browser_paths()
         bpy.ops.wm.save_as_mainfile(filepath=str(args.blend.resolve()), compress=True)
     scene.render.filepath = str(args.image.resolve())
     bpy.ops.render.render(write_still=True)

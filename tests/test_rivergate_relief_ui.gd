@@ -14,6 +14,7 @@ func run() -> void:
 	game.settings_store = Settings.new("res://.tools/rivergate-relief-qa-prefs.cfg")
 	check(game.settings_store.save_preferences({"reduce_motion": true}).ok, "set isolated preferences")
 	root.add_child(game)
+	game.audio.stop_playback()
 	current_scene = game
 	await settle()
 	var index: int = game.council.map_options.find_custom(func(map: Dictionary) -> bool: return map.id == "rivergate")
@@ -23,6 +24,11 @@ func run() -> void:
 		await click(game.council.start_button.get_global_rect().get_center())
 		await verify_board()
 	print("RIVERGATE RELIEF UI: %d CHECKS | FAILURES: %d" % [checks, failures])
+	await finish_relief_test()
+
+func finish_relief_test() -> void:
+	game.audio.stop_playback()
+	await create_timer(0.15, true, false, true).timeout
 	game.queue_free()
 	await process_frame
 	quit(0 if failures == 0 else 1)

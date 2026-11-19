@@ -5,13 +5,13 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.54.0-dev" src="https://img.shields.io/badge/version-0.54.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.55.0-dev" src="https://img.shields.io/badge/version-0.55.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法设计参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局、248 种可构筑牌和二十三套自由对战预组。**0.53.0-dev** 的「镜道兵书」新增 48 张牌，横跨 1–10 费，加入两用军令、牌库征召和法力上限强化。 [Windows x64 开发预览](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.54.0-dev)
+玩法设计参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局、248 种可构筑牌和二十三套自由对战预组。**0.55.0-dev** 更新了暮林边境和碧潮港湾的整张地图，也能用手牌把港边泊位改成新渡口。 [Windows x64 开发预览](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.55.0-dev)
 
 ## 实机画面
 
@@ -83,9 +83,9 @@
 
 [锁舱与救援后的港口、夜间诊室、小窗口选择及回看](docs/narrative-art-v020.md)。
 
-![暮林边境实机：双方部队、指挥官、手牌与战况](docs/screenshots/expanded-battle.png)
+![暮林边境实机，弓手身后的中央高地与局部施法范围](docs/release/steam/gameplay/01-local-spell.png)
 
-![碧潮港湾实机：水道、双桥与港口工事](docs/screenshots/painted-harbor.png)
+![碧潮港湾实机，南桥上的医师正在瞄准东岸枪卫](docs/release/steam/gameplay/08-harbor-crossing.png)
 
 <details>
 <summary>查看战前部署与更多地图</summary>
@@ -112,6 +112,10 @@
 | 改变下一轮战局 | 暴雨、浓雾、烈日、寒潮、疾风和灯夜影响双方。可替换或驱散天气，也可铺路、筑垒、击退、定身与换位 |
 | 在有限时间内决策 | 每个行动回合90秒；定向法术限定在友军3格内、法师4格内，天气影响全场 |
 | 熟悉操作和调整体验 | 四节不限时实战教程。F10 调整全屏、剧情字号、战斗动效、音乐和音效 |
+
+## 0.55 · 暮林边境与碧潮港湾
+
+暮林的军道沿林缘伸向中央高地，弓手登高后可以多射一格。碧潮港湾的北石桥和南吊桥连接两岸，港边的泊船、吊机和货摊可随地图放大查看。两张战场都由完整的 Blender 模型渲染为平面底图。临桥木架能在泊位开辟第三条路线，桥下可见原处的水面。 [实机验证与可编辑模型](docs/release/v055.md)
 
 ## 0.54 · 双桥河谷与 Windows 安装版
 
@@ -455,7 +459,7 @@ git clone https://github.com/yifanchen12/sigils-and-oaths.git
 cd sigils-and-oaths
 ```
 
-Windows x64 预览版提供 MSI 安装包和 ZIP 便携包。下载 MSI 可双击安装。下载 ZIP 则先解压，把 EXE 和 PCK 留在同一目录，再双击 `SigilsAndOaths.exe`。 [下载 0.54 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.54.0-dev)
+Windows x64 预览版提供 MSI 安装包和 ZIP 便携包。下载 MSI 可双击安装。下载 ZIP 则先解压，把 EXE 和 PCK 留在同一目录，再双击 `SigilsAndOaths.exe`。 [下载 0.55 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.55.0-dev)
 
 从源码运行的步骤如下。
 

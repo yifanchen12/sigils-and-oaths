@@ -1,5 +1,5 @@
 {
-  "version": "0.54.0-dev",
+  "version": "0.55.0-dev",
   "images": [
     {
       "path": "key-art-v1.png",
@@ -130,9 +130,9 @@
       ],
       "format": "PNG",
       "mode": "RGBA",
-      "bytes": 1645490,
-      "sha256": "b2a90badd44fbcc2ac8e5b84c9245ccf0a799a8cf1cdc0301884cda5ff8dc09e",
-      "capture": "Normal Frost Engine vs Balanced Host skirmish, Greenwood seed 4107, before a legal ten-mana cast on side turn 23."
+      "bytes": 1459495,
+      "sha256": "c347541d7637d61431ad617ba5a5003c466980755998eeae4f3c01af5f4e0628",
+      "capture": "Normal Frost Engine vs Balanced Host skirmish on the Blender-rendered Greenwood, seed 4107, before a legal ten-mana cast on side turn 21."
     },
     {
       "path": "gameplay/02-bridge-engagement.png",
@@ -142,8 +142,8 @@
       ],
       "format": "PNG",
       "mode": "RGBA",
-      "bytes": 1639435,
-      "sha256": "16782c6dac4d3456fced1eca5eb21d4e12be174c0ad98d6c4d121ce9caa3c528",
+      "bytes": 1328501,
+      "sha256": "dc6afebba87020bcd27ebac985e1bf0cb0fea590ea6aceffa76444cd73287809",
       "capture": "Normal Reed Legion vs Balanced Host skirmish, Rivergate seed 4186, attack preview on side turn 13."
     },
     {
@@ -190,8 +190,8 @@
       ],
       "format": "PNG",
       "mode": "RGBA",
-      "bytes": 1617359,
-      "sha256": "0c58a4b655e57dc841be5b0b64371d38b93c0e28a7b44b46c9476e874b8335b9",
+      "bytes": 1407672,
+      "sha256": "ed04fa95408354314302264c99a5ea7bb88546d954997aa515d7124b14474a2c",
       "capture": "Salt Road Reserves vs Twin-Tide Orders, Greenwood seed 5423. Two legal reserve landings on side turn 21 after 103 legal actions."
     },
     {
@@ -205,8 +205,20 @@
       "bytes": 1301022,
       "sha256": "cb12643b28d934bd01404aa608450badbca970691d6d55d885c002be4183568a",
       "capture": "Twin-Tide Orders vs Bell Ambush on the Blender-rendered Rivergate map, seed 5479. Enemy branch of Glassroad Treaty on side turn 19 after 94 legal actions."
+    },
+    {
+      "path": "gameplay/08-harbor-crossing.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1344426,
+      "sha256": "ec90aecc201223fae4f22cb1cde5d76553c8fbe6fa0107282f3701005ddc39f3",
+      "capture": "Reed Legion vs Balanced Host on Harbor, seed 5501, side turn 13 after 57 legal actions. A healer on the southern drawbridge previews an attack on a spearman on the east bank."
     }
   ],
-  "viewport_screenshots": 7,
+  "viewport_screenshots": 8,
   "store_and_library_graphics_including_icons": 10
 }

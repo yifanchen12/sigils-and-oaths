@@ -2359,10 +2359,52 @@
       "size": [2160, 1800],
       "mode": "RGB",
       "sha256": "00f9133320fee970d589b4c9945a0d8f0e2fd1031e7ba5f2c98bf9fc94f9b6fa",
-      "source_sha256": "d0de21ce7af6c9ef416030f76d6247af9383a4c4c94ab0a7228d29b6f886d842",
+      "source_sha256": "7452a147e1ee85b501ed10d4fb87229843b90e60cac9cee576b579252909e268",
       "role": "Full orthographic battlefield artwork for the original 12 by 10 Rivergate grid.",
       "processing": "Original procedural meshes, pigments, materials and lighting rendered directly from the Blender scene.",
       "validation": "Five camera projection anchors and native Godot movement, spell previews and terrain changes."
+    },
+    {
+      "id": "greenwood-relief-v1",
+      "path": "assets/art/battlefields/greenwood-relief-v1.png",
+      "source_path": "assets/art/model_sources/greenwood-relief-v1.blend",
+      "build_script": "tools/render_frontier.py",
+      "tool": "Blender 4.5.16 LTS, Cycles CPU",
+      "size": [2160, 1800],
+      "mode": "RGB",
+      "sha256": "41620f17f13842b2bc6ec9f8603c3afd3f9dd942b79b32bbbe215bd1f07e5bdf",
+      "source_sha256": "8e37e60f4d697bc6bad2b5e4fac158979318be47650d164a0c738de99be1fabe",
+      "role": "Full orthographic image of the playable Greenwood frontier.",
+      "processing": "Original ground mesh, pigments, cedar-like spruce tiers, broadleaf groves, slate crags, chapels and weathered roadside masonry. No external geometry or textures.",
+      "validation": "tests/test_frontier_relief_ui.gd, on-board movement, terrain replacement, ranged combat and spell preview."
+    },
+    {
+      "id": "harbor-relief-v1",
+      "path": "assets/art/battlefields/harbor-relief-v1.png",
+      "source_path": "assets/art/model_sources/harbor-relief-v1.blend",
+      "build_script": "tools/render_frontier.py",
+      "tool": "Blender 4.5.16 LTS, Cycles CPU",
+      "size": [2160, 1800],
+      "mode": "RGB",
+      "sha256": "9f5f3e8265f43cbf89752df243b0394f13dcd5df8e2b782d65cef1ff8eab7fff",
+      "source_sha256": "3c2f061185260e821fac4fa63131066f5c943f1687cccc6e6d79948a0514b558",
+      "role": "Full orthographic image of the playable tidal harbor.",
+      "processing": "Original masonry arch bridge, timber bascule, freight equipment, ships, quay paving, bastions and water. No external geometry or textures.",
+      "validation": "tests/test_frontier_relief_ui.gd, both authored crossings and a playable temporary bridge."
+    },
+    {
+      "id": "harbor-empty-moorings-v1",
+      "path": "assets/art/battlefields/harbor-empty-moorings-v1.png",
+      "source_path": "assets/art/model_sources/harbor-relief-v1.blend",
+      "build_script": "tools/crop_harbor_moorings.py",
+      "tool": "Blender 4.5.16 LTS and Pillow",
+      "size": [360, 360],
+      "mode": "RGB",
+      "sha256": "47a0aab959945b2eae93427092a6d5b664c9ce8409298ef4531b284630ae3115",
+      "source_sha256": "3c2f061185260e821fac4fa63131066f5c943f1687cccc6e6d79948a0514b558",
+      "role": "Matching empty water for each of the four berths when a bridge occupies its tile.",
+      "processing": "A second render hides the four vessels and mooring lines. Four exact 180px tile crops form a two-by-two sheet.",
+      "validation": "Native Godot framebuffer comparisons against each matching empty berth in tests/test_frontier_relief_ui.gd."
     }
   ]
 }
