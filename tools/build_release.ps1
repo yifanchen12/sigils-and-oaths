@@ -1,7 +1,8 @@
 [CmdletBinding()]
 param(
     [string]$GodotPath,
-    [switch]$DownloadTemplates
+    [switch]$DownloadTemplates,
+    [switch]$WindowsInstaller
 )
 
 $ErrorActionPreference = 'Stop'
@@ -199,5 +200,14 @@ $Payload = @('SigilsAndOaths.exe', 'SigilsAndOaths.pck') | ForEach-Object {
 $ZipPath = Join-Path $OutputRoot "sigils-and-oaths-$Version-windows-x64.zip"
 [IO.Compression.ZipFile]::CreateFromDirectory($PackageDir, $ZipPath, [IO.Compression.CompressionLevel]::Optimal, $false)
 $ZipHash = (Get-FileHash -LiteralPath $ZipPath -Algorithm SHA256).Hash.ToLowerInvariant()
-"$ZipHash  $([IO.Path]::GetFileName($ZipPath))" | Set-Content -LiteralPath (Join-Path $OutputRoot 'SHA256SUMS.txt') -Encoding ascii
-[pscustomobject]@{version=$Version; source_commit=$SourceCommit; source_dirty=$SourceDirty; archive=$ZipPath; sha256=$ZipHash; bytes=(Get-Item -LiteralPath $ZipPath).Length; smoke='passed'} | ConvertTo-Json
+$Checksums = @("$ZipHash  $([IO.Path]::GetFileName($ZipPath))")
+$Result = [ordered]@{
+    version=$Version; source_commit=$SourceCommit; source_dirty=$SourceDirty
+    archive=$ZipPath; sha256=$ZipHash; bytes=(Get-Item -LiteralPath $ZipPath).Length; smoke='passed'
+}
+if ($WindowsInstaller) {
+    $Result.installer = & (Join-Path $PSScriptRoot 'build_windows_installer.ps1') -BuildDirectory $OutputRoot | ConvertFrom-Json
+    $Checksums += "$($Result.installer.sha256)  $([IO.Path]::GetFileName($Result.installer.path))"
+}
+$Checksums | Set-Content -LiteralPath (Join-Path $OutputRoot 'SHA256SUMS.txt') -Encoding ascii
+$Result | ConvertTo-Json -Depth 4

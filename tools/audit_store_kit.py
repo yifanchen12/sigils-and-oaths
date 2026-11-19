@@ -26,6 +26,8 @@ SCREENSHOTS = {
     "03-rivergate-story.png": "The opening chapter's actual c01.a03 dialogue page reached by reading from New Campaign.",
     "04-guard-drill.png": "The playable second tutorial, with the hand trap selected on the actual training board.",
     "05-three-lamps-mission.png": "The authored c17_runner objective and opening cards loaded in the production battlefield scene.",
+    "06-glassroad-muster.png": "Salt Road Reserves vs Twin-Tide Orders, Greenwood seed 5423. Two legal reserve landings on side turn 21 after 103 legal actions.",
+    "07-glassroad-dual-order.png": "Twin-Tide Orders vs Bell Ambush, Rivergate seed 5479. Enemy branch of Glassroad Treaty on side turn 19 after 94 legal actions.",
 }
 
 
@@ -57,10 +59,10 @@ def audit() -> None:
     with Image.open(PROJECT / "assets" / "art" / "lantern-windows.ico") as icon:
         if icon.ico.sizes() != {(n, n) for n in (16, 32, 48, 64, 128, 256)}:
             raise ValueError("Unexpected Windows executable icon sizes")
-    inventory = {"version": "0.42.0-dev", "images": assets, "viewport_screenshots": len(SCREENSHOTS),
+    inventory = {"version": "0.54.0-dev", "images": assets, "viewport_screenshots": len(SCREENSHOTS),
                  "store_and_library_graphics_including_icons": len(GRAPHICS)}
     (KIT / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"{len(assets)} decoded images, five real gameplay viewports, six Windows executable icon sizes")
+    print(f"{len(assets)} decoded images, {len(SCREENSHOTS)} real gameplay viewports, six Windows executable icon sizes")
 
 
 if __name__ == "__main__":

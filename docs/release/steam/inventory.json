@@ -1,5 +1,5 @@
 {
-  "version": "0.42.0-dev",
+  "version": "0.54.0-dev",
   "images": [
     {
       "path": "key-art-v1.png",
@@ -181,8 +181,32 @@
       "bytes": 1659113,
       "sha256": "884cda437f67b598a3750dbf568cd693498aeb38697848409e9fee3c45fadde2",
       "capture": "The authored c17_runner objective and opening cards loaded in the production battlefield scene."
+    },
+    {
+      "path": "gameplay/06-glassroad-muster.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1617359,
+      "sha256": "0c58a4b655e57dc841be5b0b64371d38b93c0e28a7b44b46c9476e874b8335b9",
+      "capture": "Salt Road Reserves vs Twin-Tide Orders, Greenwood seed 5423. Two legal reserve landings on side turn 21 after 103 legal actions."
+    },
+    {
+      "path": "gameplay/07-glassroad-dual-order.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1644464,
+      "sha256": "84de9694821b2a53a0f27d9a7c0b928e5a2eb757263e9fc046a0c9f7afda9c5c",
+      "capture": "Twin-Tide Orders vs Bell Ambush, Rivergate seed 5479. Enemy branch of Glassroad Treaty on side turn 19 after 94 legal actions."
     }
   ],
-  "viewport_screenshots": 5,
+  "viewport_screenshots": 7,
   "store_and_library_graphics_including_icons": 10
 }

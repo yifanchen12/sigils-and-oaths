@@ -2,6 +2,8 @@
 
 从经过校验的 Windows 构建生成同一版本的 SteamPipe 目录。运行程序、PCK、版本清单及三份授权文件都放在 content 下，EXE 和 PCK 处于同一层。STAGING_INFO.json 记录源提交、启动文件、各文件长度和 SHA-256。应用构建脚本留在 scripts 中，SteamPipe 的中间文件写入 output。 [Steamworks 构建脚本说明](https://partner.steamgames.com/doc/sdk/uploading)
 
+GitHub 的 MSI 供直接安装。SteamPipe 使用同一构建的游戏文件，由 Steam 客户端负责部署和更新。
+
 ~~~powershell
 powershell -NoProfile -File tools/stage_steam.ps1 -BuildDirectory build/<本次构建目录>
 ~~~
