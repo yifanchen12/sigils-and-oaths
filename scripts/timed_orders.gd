@@ -27,9 +27,13 @@ static func resolve(battle: RefCounted) -> bool:
 	var card: Dictionary = battle.definition(order.card.card_id)
 	battle.pending_orders.erase(order)
 	battle.players[order.side].discard.append(order.card)
-	battle._record("「%s」在 %s 生效。" % [card.name, battle.cell_name(order.pos)])
-	battle.last_order_event = {"card_id": card.id, "name": card.name, "pos": order.pos, "cells": footprint(battle, order), "support": card.target_side == "ally"}
-	battle.last_order_event["impacts"] = battle.Formation.resolve(battle, card, order.pos, order.side, true)
+	var cells: Array[Vector2i] = footprint(battle, order)
+	var support: bool = card.target_side == "ally"
+	var impacts: Array[Vector2i] = battle.Formation.resolve(battle, card, order.pos, order.side, true)
+	var result: String = ("支援 %d 支友军" if support else "命中 %d 支敌军") % impacts.size()
+	battle.last_order_event = {"card_id":card.id, "name":card.name, "pos":order.pos, "cells":cells,
+		"support":support, "impacts":impacts, "result":result}
+	battle._record("「%s」在 %s 生效，%s。" % [card.name, battle.cell_name(order.pos), result])
 	return true
 
 static func incoming(battle: RefCounted, unit: Dictionary) -> int:

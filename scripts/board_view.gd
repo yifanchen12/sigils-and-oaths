@@ -326,11 +326,10 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 		var order_color: Color = BLUE if order.support else Color("f9b36a")
 		_effect("burst", order.pos, str(order.name), order_color, 1.15)
 		var card: Dictionary = battle.definition(order.card_id)
-		var result_caption: String = ("支援 %d 支友军" if order.support else "命中 %d 支敌军") % order.impacts.size()
 		effects.append({"kind": "heal_cast" if order.support else "fire_area", "cell": order.pos,
 			"from":order.pos, "cells":order.cells, "struck":order.impacts, "recipients":order.impacts,
 			"stroke":CastArt.Stroke.LEAVES if order.support else -1, "martial":not card.get("fire",false),
-			"title":order.name+" · 生效", "caption":result_caption, "portrait":order.card_id, "text":"", "color":order_color,
+			"title":order.name+" · 生效", "caption":order.result, "portrait":order.card_id, "text":"", "color":order_color,
 			"age":0.0 if reduced_motion else 0.31, "duration":0.46 if reduced_motion else 0.80})
 	for event: Dictionary in battle.last_trap_events:
 		if battle.inside(event.cell):

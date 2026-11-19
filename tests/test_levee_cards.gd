@@ -121,9 +121,16 @@ func test_scheduled_fields() -> void:
 	check(Snapshot.capture(battle) == Snapshot.capture(resumed.battle), "reloaded round resolves identically")
 	check(staying.hp == staying.max_hp - 4 and staying.rooted_turns == 2 and ally.hp == ally.max_hp and retreating.hp == retreating.max_hp, "current enemy positions, friendly fire immunity and root apply")
 	check(battle.pending_orders.size() == 1 and battle.players[0].discard.back().uid == action.card_uid and battle.last_order_event.pos == center, "only the due order is discarded and animated")
+	check(battle.last_order_event.result == "命中 1 支敌军" and battle.log_lines.any(func(line: String) -> bool: return line.contains("命中 1 支敌军")), "one enemy remaining in the footprint is reported in the saved battle log")
 	battle.end_turn()
 	check(battle.pending_orders.is_empty() and staying.hp == staying.max_hp and staying.shield == 2 and staying.rooted_turns == 1, "red order fires and heals its current allies")
 	valid(battle, "both orders consumed")
+	var open_field := arena()
+	check(play(open_field, "floodline_warning", open_field.commander(0).pos).ok, "an empty attack footprint can be marked")
+	open_field.end_turn()
+	open_field.end_turn()
+	var saved: Dictionary = Snapshot.restore(Snapshot.capture(open_field))
+	check(saved.ok and open_field.last_order_event.result == "命中 0 支敌军" and saved.battle.log_lines.any(func(line: String) -> bool: return line.contains("命中 0 支敌军")), "an order with no enemy at impact remains a visible miss after saving and loading")
 
 func test_lethal_timing() -> void:
 	var battle := arena()
