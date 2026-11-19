@@ -26,9 +26,13 @@ SCREENSHOTS = {
     "03-rivergate-story.png": "The opening chapter's actual c01.a03 dialogue page reached by reading from New Campaign.",
     "04-guard-drill.png": "The playable second tutorial, with the hand trap selected on the actual training board.",
     "05-three-lamps-mission.png": "The authored c17_runner objective and opening cards loaded in the production battlefield scene.",
-    "06-glassroad-muster.png": "Salt Road Reserves vs Twin-Tide Orders, Greenwood seed 5423. Two legal reserve landings on side turn 21 after 103 legal actions.",
+    "06-glassroad-muster.png": "Salt Road Reserves vs Twin-Tide Orders, Greenwood seed 5423. Two legal reserve landings on side turn 21 after 108 legal actions.",
     "07-glassroad-dual-order.png": "Twin-Tide Orders vs Bell Ambush on the Blender-rendered Rivergate map, seed 5479. Enemy branch of Glassroad Treaty on side turn 19 after 94 legal actions.",
     "08-harbor-crossing.png": "Reed Legion vs Balanced Host on Harbor, seed 5501, side turn 13 after 57 legal actions. A healer on the southern drawbridge previews an attack on a spearman on the east bank.",
+    "09-ridgepass.png": "Reed Legion vs Balanced Host, Ridgepass seed 56037. Mountain pass attack preview on side turn 23 after 145 legal actions.",
+    "10-sunspire.png": "Reed Legion vs Balanced Host, Sunspire seed 56037. Attack preview on side turn 15 after 73 legal actions.",
+    "11-citadel.png": "Twin-Tide Orders vs Balanced Host, Citadel seed 56037. An Anchor Snare hand trap targets G6 on side turn 35 after 203 legal actions.",
+    "12-cast-impact.png": "Balanced Host mirror on Ridgepass, seed 56037. Fire impact sampled half a second after a legal Starfire Bolt, on side turn 27 after 170 preceding actions.",
 }
 
 
@@ -60,7 +64,7 @@ def audit() -> None:
     with Image.open(PROJECT / "assets" / "art" / "lantern-windows.ico") as icon:
         if icon.ico.sizes() != {(n, n) for n in (16, 32, 48, 64, 128, 256)}:
             raise ValueError("Unexpected Windows executable icon sizes")
-    inventory = {"version": "0.55.0-dev", "images": assets, "viewport_screenshots": len(SCREENSHOTS),
+    inventory = {"version": "0.56.0-dev", "images": assets, "viewport_screenshots": len(SCREENSHOTS),
                  "store_and_library_graphics_including_icons": len(GRAPHICS)}
     (KIT / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"{len(assets)} decoded images, {len(SCREENSHOTS)} real gameplay viewports, six Windows executable icon sizes")

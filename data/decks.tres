@@ -111,8 +111,8 @@ decks = Array[Dictionary]([{
 "counterseal": 2, "iron_sluice": 1, "tollglass": 1, "false_beacon": 1, "blackridge_net": 1, "drowned_clapper": 1, "lowglass_fog": 1, "anchored_rain": 1, "inkglass_archive": 1, "lamp_ledger": 1,
 "mercy_manifest": 1}
 }, {
-"id": "glassroad_edict", "name": "双潮军令", "set_id": "glassroad", "description": "从低费灵活军令过渡到高费攻守两用牌。等敌军成列再破阵，或用天气、援护和续攻为下一轮抢先。",
+"id": "glassroad_edict", "name": "双潮军令", "set_id": "glassroad", "description": "在敌军必经的路口伏下锚索，或用坚冰锁住前锋。等敌军成列再破阵；满岸风印还能从牌库找出低费陷阱和法术。",
 "cards": {"sword": 3, "glassroad_runner": 2, "rook_pickets": 1, "reedglass_bow": 2, "hinge_lancer": 2, "cinder_coxswain": 1, "copper_cistern": 1, "skylens_sentinel": 1, "mage": 1, "breakline_sappers": 1,
 "crossroads_whistle": 1, "hinge_order": 1, "rain_notch": 1, "highroad_edict": 1, "twin_standard": 1, "ebb_and_surge": 1, "glass_treaty": 1, "scour_fulcrum": 1, "winter_march": 1, "miller_alarm": 1,
-"hollow_hammer": 1, "storm_of_seals": 1, "bolt": 2, "quay_signal": 1}
+"hollow_hammer": 1, "storm_of_seals": 1, "anchor_snare": 1, "frostbind": 1, "quay_signal": 1}
 }])

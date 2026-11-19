@@ -36,7 +36,10 @@ func run() -> void:
 	create_timer(120).timeout.connect(func() -> void: push_error("expansion native fixture timeout"); quit(2))
 	game = MainScene.instantiate(); game.deck_store = Store.new("res://.tools/expansion_native_deck.json")
 	game.campaign_session = Session.new("res://.tools/expansion_native_campaign.json")
-	root.add_child(game); current_scene = game; await settle()
+	root.add_child(game)
+	game.audio.stop_playback()
+	current_scene = game
+	await settle()
 	await fixture()
 	for id: String in Snapshot.EXPANSION_CARDS:
 		give(id)
@@ -105,10 +108,16 @@ func run() -> void:
 	await click_editor(game.deck_editor.filter_buttons.trap.get_global_rect().get_center())
 	var visible_rows: int = 0
 	for entry: Dictionary in game.deck_editor.rows.values():
-		if entry.cell.visible: visible_rows += 1; check(entry.type == "trap", "trap filter excludes other card types")
-	check(visible_rows == 3, "deck editor exposes all three new traps")
-	await RenderingServer.frame_post_draw
-	check(game.deck_editor.get_texture().get_image().save_png("res://docs/screenshots/v029-trap-deck-editor.png") == OK, "capture the native deck-editor window")
+		if entry.cell.visible:
+			visible_rows += 1
+			check(entry.card.type == "trap", "trap filter excludes other card types")
+	var traps: Array = Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.type == "trap" and not card.get("generated_only",false))
+	check(visible_rows == traps.size(), "deck editor exposes every constructible hand trap")
+	if OS.get_cmdline_user_args().has("--record"):
+		await RenderingServer.frame_post_draw
+		check(game.deck_editor.get_texture().get_image().save_png("res://docs/screenshots/v029-trap-deck-editor.png") == OK, "capture the native deck-editor window")
 	game.deck_editor.hide()
 	print("EXPANSION NATIVE UI: %d CHECKS | FAILURES: %d | DISPLAY: %s" % [checks, failures, DisplayServer.get_name()])
+	game.audio.stop_playback()
+	await create_timer(0.15,true,false,true).timeout
 	game.queue_free(); await process_frame; quit(0 if failures == 0 else 1)

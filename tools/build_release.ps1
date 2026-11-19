@@ -151,12 +151,19 @@ func _initialize() -> void:
         problems.append("expansion preset data unavailable")
     var artwork = load("res://scripts/map_artwork.gd")
     var battle = load("res://scripts/battle.gd")
-    for map_id in ["rivergate", "greenwood", "harbor"]:
+    for map in battle.MAPS.available():
+        var map_id: String = map.id
         var texture: Texture2D = artwork.texture(battle.new(1, map_id))
         if texture == null or texture.get_size() != Vector2(2160, 1800) or not texture.resource_path.ends_with(map_id + "-relief-v1.png"):
             problems.append("full battlefield render unavailable: " + map_id)
     if artwork.EMPTY_MOORINGS.get_size() != Vector2(360, 360):
         problems.append("empty harbor moorings unavailable")
+    var cast_art = load("res://scripts/cast_art.gd")
+    if cast_art == null or cast_art.ATLAS.get_size() != Vector2(1536,1024) or cast_art.SKILLS.size() != 6:
+        problems.append("battle casting artwork unavailable")
+    var edict: Dictionary = decks.find("glassroad_edict").cards
+    if edict.has("bolt") or edict.get("frostbind",0) != 1 or edict.get("anchor_snare",0) != 1:
+        problems.append("Twin-Tide Orders preset unavailable")
     var armory = load("res://scripts/campaign_armory.gd")
     if armory == null or armory.unlocked_count(7) != 3 or not armory.validate({"vanguard": "petal_signal", "company": "roadside_muster", "reserve": "glass_treaty"}, 7).is_empty():
         problems.append("campaign armory unavailable")

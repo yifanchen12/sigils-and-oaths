@@ -185,8 +185,47 @@ func test_preset_revision() -> bool:
 	invalid(changed, "neither released preset revision is allowed to drift")
 	return true
 
+func test_edict_revision() -> bool:
+	var proof: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://tests/fixtures/v055-active-edict.json"))
+	var raw: Dictionary = proof.snapshot
+	check(raw.version == 12 and raw.rules == Snapshot.v055_rules_signature() and raw.rules != Snapshot.rules_signature(), "actual 0.55 build signature")
+	var restored := Snapshot.restore(raw)
+	check(restored.ok, "continued the archived Harbor mirror match")
+	if not restored.ok: return false
+	var battle: Battle = restored.battle
+	for side: int in [0, 1]:
+		check(battle.deck(side).cards == Snapshot.EDICT_V055.cards and battle.deck(side).description == Snapshot.EDICT_V055.description,
+			"each old stock deck retains its own cards and description")
+	var spoiled: Dictionary = raw.duplicate(true)
+	spoiled.rules = Snapshot.rules_signature()
+	invalid(spoiled, "old header cannot use the new rules signature")
+	spoiled = raw.duplicate(true)
+	spoiled.players[1].deck_counts = Model.DECKS.find("glassroad_edict").cards
+	invalid(spoiled, "a current recipe cannot be substituted in an old match")
+	spoiled = Snapshot.capture(battle)
+	spoiled.players[0].deck_counts.bolt = 1
+	spoiled.players[0].deck_counts.frostbind = 1
+	invalid(spoiled, "hybrid recipe cannot masquerade as a released preset")
+	var ai = preload("res://scripts/opponent.gd")
+	for i: int in range(proof.next_actions.size()):
+		var action: Dictionary = ai.choose(battle)
+		var encoded := action.duplicate(true)
+		if encoded.get("target") is Vector2i: encoded.target = [encoded.target.x, encoded.target.y]
+		check(JSON.parse_string(JSON.stringify(encoded)) == proof.next_actions[i], "same next decision as the packaged 0.55 game, step " + str(i))
+		check(battle.apply_action(action).ok, "recorded action still resolves")
+		if i == 5:
+			var resumed := roundtrip(battle)
+			check(resumed.ok and Snapshot.capture(battle) == Snapshot.capture(resumed.battle), "upgraded in-progress game can be saved and reopened")
+			if not resumed.ok: return false
+			battle = resumed.battle
+	var after: Dictionary = JSON.parse_string(JSON.stringify(Snapshot.capture(battle), "", true, true))
+	after.erase("version")
+	after.erase("rules")
+	check(JSON.stringify(after, "", true, true).sha256_text() == proof.after_sha256, "continued state including RNG and every card matches 0.55")
+	return true
+
 func run() -> void:
-	for method: String in ["test_roundtrip", "test_skills_and_special_states", "test_invalid", "test_spells_and_heroes", "test_preset_revision"]:
+	for method: String in ["test_roundtrip", "test_skills_and_special_states", "test_invalid", "test_spells_and_heroes", "test_preset_revision", "test_edict_revision"]:
 		check(call(method) == true, method + " completed without runtime interruption")
 	print("BATTLE SNAPSHOT CHECKS: %d | FAILURES: %d | DISPLAY: %s" % [checks, failures, DisplayServer.get_name()])
 	quit(0 if failures == 0 else 1)

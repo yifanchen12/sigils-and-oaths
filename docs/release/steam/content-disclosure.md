@@ -1,6 +1,6 @@
 # 内容披露与来源清单
 
-面向 Windows 0.55.0-dev。此表用于核对送审版本实际文件和商店页面。提交内容调查和确定地区评级需要发行方查看最终构建与 Steamworks 表单。Steamworks 把开发期间生成并交付给玩家的内容与运行中生成的内容分别调查。 [Steamworks 内容调查](https://partner.steamgames.com/doc/gettingstarted/contentsurvey)
+面向 Windows 0.56.0-dev。此表用于核对送审版本实际文件和商店页面。提交内容调查和确定地区评级需要发行方查看最终构建与 Steamworks 表单。Steamworks 把开发期间生成并交付给玩家的内容与运行中生成的内容分别调查。 [Steamworks 内容调查](https://partner.steamgames.com/doc/gettingstarted/contentsurvey)
 
 ## 可用于填写的说明
 
@@ -24,6 +24,7 @@
 | 章节重走背景 | 一张开发期生成的档案室场景图 | 保留生成提示、来源文件名和 SHA-256。 [档案室生成记录](../../../assets/art/narrative/chapter-replay-source.md) |
 | 战役军备背景 | 一张开发期生成的港口军备库场景图 | 保留生成提示、来源文件名和 SHA-256。 [军备库生成记录](../../../assets/art/narrative/campaign-armory-source.md) |
 | 战前军需的军需桌 | 一张开发期生成插画，选牌后显示原有对应卡图 | 保留生成提示、源图和 SHA-256。 [军需配图来源](../../../assets/art/narrative/quartermaster-desk-source.md) |
+| 断脊隘口、日陨遗城、古堡棋庭与新特效 | 三份原创 Blender 模型使用开发期生成的地材，古堡另嵌有风玫瑰纹样。技能和卡牌从一张六幅透明图集取图，运行时由 Godot 按实际行动播放 | 保留三份可编辑工程、两张材质图和透明特效图集，并记录提示词及来源。 [制作记录](../../../assets/art/battlefields/highlands-and-casts-source.md) |
 | 盐布巷地图与对话背景 | 两张开发期生成图，战场地形和可通行范围由游戏规则数据决定 | 保留生成提示、源图编号和 SHA-256。 [盐布巷美术记录](../../../assets/art/narrative/saltlane-source.md) |
 | 叙事与翻译 | 十八章剧情、档案、游戏规则和商店文案。部分文字在开发过程中经 AI 辅助编写和场景编辑 | 游戏正文在已提交的叙事数据中。发行方确认最终编辑与公开文案，真人整篇审读仍待开展。 [正文源](../../../data/narrative) |
 | 音乐及音效 | 2 首合成循环、9 个战斗事件音效。小节、声部、包络和音高由本项目脚本编排，素材用软件合成 | 无导入采样或第三方录音。可从同一源重新渲染。 [音乐源码](../../../tools/compose_audio.py) |

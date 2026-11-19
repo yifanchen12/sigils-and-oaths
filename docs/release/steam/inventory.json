@@ -1,5 +1,5 @@
 {
-  "version": "0.55.0-dev",
+  "version": "0.56.0-dev",
   "images": [
     {
       "path": "key-art-v1.png",
@@ -190,9 +190,9 @@
       ],
       "format": "PNG",
       "mode": "RGBA",
-      "bytes": 1407672,
-      "sha256": "ed04fa95408354314302264c99a5ea7bb88546d954997aa515d7124b14474a2c",
-      "capture": "Salt Road Reserves vs Twin-Tide Orders, Greenwood seed 5423. Two legal reserve landings on side turn 21 after 103 legal actions."
+      "bytes": 1462477,
+      "sha256": "b750799df1e6b5d16a19e7e08ca71ec1cb1530a4a8748f0f1a94feb2e08b9b12",
+      "capture": "Salt Road Reserves vs Twin-Tide Orders, Greenwood seed 5423. Two legal reserve landings on side turn 21 after 108 legal actions."
     },
     {
       "path": "gameplay/07-glassroad-dual-order.png",
@@ -202,8 +202,8 @@
       ],
       "format": "PNG",
       "mode": "RGBA",
-      "bytes": 1301022,
-      "sha256": "cb12643b28d934bd01404aa608450badbca970691d6d55d885c002be4183568a",
+      "bytes": 1301041,
+      "sha256": "6cfc523ffdcd94e5322e1c49ace45c2736cb499b07f1629c56ff031e89764d4e",
       "capture": "Twin-Tide Orders vs Bell Ambush on the Blender-rendered Rivergate map, seed 5479. Enemy branch of Glassroad Treaty on side turn 19 after 94 legal actions."
     },
     {
@@ -217,8 +217,56 @@
       "bytes": 1344426,
       "sha256": "ec90aecc201223fae4f22cb1cde5d76553c8fbe6fa0107282f3701005ddc39f3",
       "capture": "Reed Legion vs Balanced Host on Harbor, seed 5501, side turn 13 after 57 legal actions. A healer on the southern drawbridge previews an attack on a spearman on the east bank."
+    },
+    {
+      "path": "gameplay/09-ridgepass.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1694303,
+      "sha256": "db64d6db725e823aefc22ef8ed7725b8ae1a61d1112d9f6ee58167becf80f769",
+      "capture": "Reed Legion vs Balanced Host, Ridgepass seed 56037. Mountain pass attack preview on side turn 23 after 145 legal actions."
+    },
+    {
+      "path": "gameplay/10-sunspire.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1559129,
+      "sha256": "b801e9f55e6ddf6ab76150c0c2e7704b5b2312962de990829504b05a4e2c922e",
+      "capture": "Reed Legion vs Balanced Host, Sunspire seed 56037. Attack preview on side turn 15 after 73 legal actions."
+    },
+    {
+      "path": "gameplay/11-citadel.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1533781,
+      "sha256": "ebc1963c9d2b214ad5b87d2290671ee184d6d737ad2e93e5f6132fce5a15daf9",
+      "capture": "Twin-Tide Orders vs Balanced Host, Citadel seed 56037. An Anchor Snare hand trap targets G6 on side turn 35 after 203 legal actions."
+    },
+    {
+      "path": "gameplay/12-cast-impact.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 2158876,
+      "sha256": "eb954ffd3d94b769993565b51cc8a776099f2a5eba5211a85aca5506ed30dc11",
+      "capture": "Balanced Host mirror on Ridgepass, seed 56037. Fire impact sampled half a second after a legal Starfire Bolt, on side turn 27 after 170 preceding actions."
     }
   ],
-  "viewport_screenshots": 8,
+  "viewport_screenshots": 12,
   "store_and_library_graphics_including_icons": 10
 }

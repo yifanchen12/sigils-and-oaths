@@ -2,7 +2,7 @@ extends RefCounted
 ## Plain-data snapshots. No object deserialization, rendering or turn-start effects.
 
 const Model = preload("res://scripts/battle.gd")
-const VERSION: int = 12
+const VERSION: int = 13
 const PILGRIM_SET: String = "pilgrim"
 const NEW_SET: String = "glassroad"
 const EXPANSION_CARDS: Array[String] = ["shatter_bolt", "rally_heal", "cleanse_root", "reveal_traps", "seedwood", "anchor_snare", "ember_mine", "oath_ward"]
@@ -24,8 +24,23 @@ const WARFRONT_PRESETS_V043: Dictionary = {
 			"field_signals": 2, "warder_hymn": 2, "fallback_horn": 2, "tidal_oath": 1, "night_muster": 2, "reed_roads": 1, "detach_line": 1, "silt_snare": 1, "hammer_sweep": 1}},
 }
 
+const EDICT_V055: Dictionary = {
+	"description": "从低费灵活军令过渡到高费攻守两用牌。等敌军成列再破阵，或用天气、援护和续攻为下一轮抢先。",
+	"cards": {"sword": 3, "glassroad_runner": 2, "rook_pickets": 1, "reedglass_bow": 2, "hinge_lancer": 2, "cinder_coxswain": 1, "copper_cistern": 1, "skylens_sentinel": 1, "mage": 1, "breakline_sappers": 1,
+		"crossroads_whistle": 1, "hinge_order": 1, "rain_notch": 1, "highroad_edict": 1, "twin_standard": 1, "ebb_and_surge": 1, "glass_treaty": 1,
+		"scour_fulcrum": 1, "winter_march": 1, "miller_alarm": 1, "hollow_hammer": 1, "storm_of_seals": 1, "bolt": 2, "quay_signal": 1}}
+
+static func _historical_preset(id: String) -> Dictionary:
+	return EDICT_V055 if id == "glassroad_edict" else WARFRONT_PRESETS_V043.get(id, {})
+
 static func rules_signature() -> String:
 	return _relay_signature(Model.CATALOG.cards, Model.DECKS.decks, Model.MAPS.maps, "glassroad_v1")
+
+static func v055_rules_signature() -> String:
+	var prior: Array[Dictionary] = []
+	for deck: Dictionary in Model.DECKS.decks:
+		prior.append(deck.merged(EDICT_V055, true) if deck.id == "glassroad_edict" else deck)
+	return _relay_signature(Model.CATALOG.cards, prior, Model.MAPS.maps, "glassroad_v1")
 
 static func _relay_signature(cards: Array[Dictionary], decks: Array[Dictionary], maps: Array[Dictionary], revision: String = "relay_v1") -> String:
 	return JSON.stringify([cards, Model.HEROES.heroes, decks, maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE, revision]).sha256_text()
@@ -220,7 +235,12 @@ static func validate(data: Variant) -> Dictionary:
 	if data.version > VERSION:
 		return {"ok": false, "protected": true, "message": "战斗存档版本不兼容，原档保留。"}
 	if not data.get("rules") is String or data.rules.length() != 64: return {"ok": false, "message": "战斗规则签名缺失。"}
-	if data.rules != rules_signature() and (int(version) >= VERSION or not _legacy_rules_match(data)):
+	var compatible: bool
+	if int(version) == 12:
+		compatible = data.rules == v055_rules_signature()
+	else:
+		compatible = data.rules == rules_signature() or (int(version) < VERSION and _legacy_rules_match(data))
+	if not compatible:
 		return {"ok": false, "protected": true, "message": "战斗存档与当前规则版本不同，原档保留。"}
 	if data.has("hand_played_this_turn") and (int(version) < 11 or not data.hand_played_this_turn is bool):
 		return {"ok": false, "message": "回合连携记录无效。"}
@@ -361,7 +381,9 @@ static func _validate(data: Dictionary) -> String:
 		if not issue.is_empty(): return issue
 		if not preset.is_empty():
 			var counts: Dictionary = Model.DECKS.canonical_counts(player.deck_counts, Model.CATALOG.cards)
-			var old_counts: Dictionary = WARFRONT_PRESETS_V043.get(preset.id, {}).get("cards", {})
+			var old_counts: Dictionary = _historical_preset(preset.id).get("cards", {})
+			if int(data.version) == 12 and preset.id == "glassroad_edict" and counts != old_counts:
+				return "旧版双潮军令与已发行牌表不一致。"
 			if counts != preset.cards and counts != old_counts: return "预组套牌与已发行牌表不一致。"
 		for key: String in ["mana", "max_mana", "fatigue", "skill_cooldown", "card_total"]:
 			if not _whole(player.get(key)): return "玩家数值无效：" + key
@@ -422,7 +444,7 @@ static func restore(data: Variant) -> Dictionary:
 			player["deck_definition"] = {"id": "custom", "name": "自定义军势", "description": "本地自定义套牌。", "cards": counts}
 		else:
 			var preset: Dictionary = Model.DECKS.find(raw.deck_id).duplicate(true)
-			if counts != preset.cards: preset.merge(WARFRONT_PRESETS_V043[raw.deck_id], true)
+			if counts != preset.cards: preset.merge(_historical_preset(raw.deck_id), true)
 			preset["cards"] = counts
 			player["deck_definition"] = preset
 		for zone: String in ["deck", "hand", "discard"]:

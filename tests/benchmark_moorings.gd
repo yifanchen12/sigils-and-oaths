@@ -40,7 +40,7 @@ func run_suite(card_set: String, seed_value: int, pairs: Array[Array]) -> void:
 	print("%s MATCHUPS: %d | ACTIONS: %d | FAILURES: %d" % [title, games.size(), actions, failures])
 	quit(0 if failures == 0 else 1)
 
-func play_match(seed_value: int, map_id: String, blue: String, red: String, card_set: String = "moorings") -> Dictionary:
+func play_match(seed_value: int, map_id: String, blue: String, red: String, card_set: String = "moorings", after_action: Callable = Callable()) -> Dictionary:
 	var battle := Model.new(seed_value, map_id, "warden", "warden", blue, red)
 	var turn_actions: int = 0
 	var count: int = 0
@@ -67,6 +67,7 @@ func play_match(seed_value: int, map_id: String, blue: String, red: String, card
 		if not result.ok:
 			problem = str(result.message)
 			break
+		if after_action.is_valid(): after_action.call(battle, side, action, card)
 		count += 1
 		if card.get("set_id", "") == card_set:
 			plays[card.id] = int(plays.get(card.id, 0)) + 1

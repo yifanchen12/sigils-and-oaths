@@ -9,6 +9,7 @@ const CardArt = preload("res://scripts/card_view.gd")
 const Art = preload("res://scripts/art_library.gd")
 const Landscape = preload("res://scripts/battlefield_art.gd")
 const Painted = preload("res://scripts/map_artwork.gd")
+const CastArt = preload("res://scripts/cast_art.gd")
 const BLUE := Color("70d3ba")
 const RED := Color("ef8c79")
 const GOLD := Color("c6ab72")
@@ -180,7 +181,8 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 	motion_ghost.clear()
 	action_duration = 0.0
 	var effect_kind: String = action.get("effect_kind", "")
-	var casts: bool = effect_kind in ["damage", "area", "heal", "shield", "blessing", "firestrike", "shatter_bolt", "rally_heal", "cleanse_root"] and action.has("target") and battle.inside(action.target)
+	var style := CastArt.style_for(action)
+	var casts := not style.is_empty()
 	var forecast: Dictionary = action.get("combat", {})
 	if not forecast.is_empty():
 		var actors: Dictionary = {}
@@ -253,15 +255,28 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 			if battle.ADVANTAGE.get(defender.kind, "") == attacker.kind: _effect("hit", attacker.pos, "反击克制 +2", RED, 0.65, 0.76)
 		if forecast.get("retort_damage", 0) > 0: _effect("hit", attacker.pos, "反刺", Color("c6a6ff"), 0.72, 0.76)
 	if casts:
-		var style: String = "heal_cast" if effect_kind in ["heal", "rally_heal", "cleanse_root"] else ("ward_cast" if effect_kind in ["shield", "blessing"] else ("fire_area" if effect_kind == "area" else "fire_cast"))
-		var color: Color = Color("8ef2c8") if style == "heal_cast" else (GOLD if style == "ward_cast" else Color("ffb47b"))
+		var origin: Vector2i = action.visual_origin
+		var landing: Vector2i = action.get("target", origin)
+		if not battle.inside(landing): landing = origin
+		if not combat.is_empty(): landing = combat.defender.pos
+		if action.get("unit_kind", "") == "cavalry" and not path.is_empty(): landing = path.back()
 		var cells: Array[Vector2i] = []
-		cells.assign(action.get("affected_cells", [action.target]))
+		cells.assign(action.get("affected_cells", [landing]))
 		if effect_kind == "area" and not action.has("affected_cells"):
 			for direction: Vector2i in battle.DIRECTIONS:
-				if battle.inside(action.target + direction): cells.append(action.target + direction)
-		var duration: float = 0.46 if reduced_motion else 0.80
-		effects.append({"kind": style, "cell": action.target, "from": action.get("visual_origin", action.target), "cells": cells, "text": "", "color": action.get("cast_color", color), "age": 0.0, "duration": duration})
+				if battle.inside(landing + direction): cells.append(landing + direction)
+		var guard: bool = action.type == "unit_skill" and action.get("unit_kind", "") == "spear"
+		if guard or effect_kind == "renewal":
+			var actor: Dictionary = battle.get_unit(int(action.visual_caster_id))
+			var reach: int = 1 if guard else battle.hero_cast_range(actor.side)
+			for ally: Dictionary in battle.units:
+				if ally.side == actor.side and ally.pos != landing and battle.distance(landing,ally.pos) <= reach: cells.append(ally.pos)
+		var color: Color = action.get("cast_color", CastArt.STYLES[style][1])
+		if style == "weather_cast": color = CastArt.WEATHER.get(battle.weather, color)
+		var duration: float = 0.46 if reduced_motion else 0.82
+		effects.append({"kind": style, "cell": landing, "from": origin, "cells": cells, "text": "", "color": color,
+			"title":action.get("cast_title",""), "portrait":action.get("cast_art",""),
+			"guard":guard, "martial":action.has("cast_color"), "weather":battle.weather, "age":0.0, "duration":duration})
 		action_duration = maxf(action_duration, duration)
 	if action.type == "unit_skill" and action.get("unit_kind", "") == "spear": _effect("shield", action.target, "援护展开", BLUE, 0.85)
 	if action.get("card_type", "") == "trap" and battle.inside(action.target): _effect("shield", action.target, "伏设", Color("b5a0ed"), 0.8)
@@ -275,7 +290,10 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 			effects.append({"kind": "heal_cast" if order.support else "fire_area", "cell": order.pos,
 				"from": order.pos, "cells": order.cells, "text": "", "color": order_color, "age": 0.0, "duration": 0.8})
 	for event: Dictionary in battle.last_trap_events:
-		if battle.inside(event.cell): _effect("burst", event.cell, event.name + " · " + event.reason, Color("c6a6ff"), 1.05)
+		if battle.inside(event.cell):
+			_effect("burst", event.cell, event.name + " · " + event.reason, Color("c6a6ff"), 1.05)
+			effects.append({"kind":"snare_cast", "cell":event.cell, "from":event.cell, "cells":[event.cell], "text":"",
+				"color":Color("c6a6ff"), "age":0.0 if reduced_motion else 0.28, "duration":0.46 if reduced_motion else 0.82})
 	presentation_remaining = action_duration
 	for effect: Dictionary in effects: presentation_remaining = maxf(presentation_remaining, float(effect.duration) - float(effect.age))
 	queue_redraw()
@@ -510,15 +528,18 @@ func _draw_weather(grid: Rect2) -> void:
 				draw_circle(grid.position + local, 2.2, Color(1.0, 0.75, 0.36, 0.34 + sin(visual_time + lamp) * 0.13))
 
 func _draw_effects(tile: float) -> void:
+	var title_effect: Dictionary = {}
 	for effect: Dictionary in effects:
-		if effect.age < 0: continue
+		if effect.age >= 0 and CastArt.STYLES.has(effect.kind):
+			CastArt.draw_cast(self,effect,tile)
+			if not str(effect.get("title","")).is_empty(): title_effect = effect
+	if not reduced_motion and not title_effect.is_empty(): CastArt.draw_title(self,title_effect)
+	for effect: Dictionary in effects:
+		if effect.age < 0 or CastArt.STYLES.has(effect.kind): continue
 		var progress: float = float(effect.age) / float(effect.duration)
 		var at: Vector2 = cell_center(effect.cell)
 		var color: Color = effect.color
 		color.a = 1.0 - progress
-		if effect.kind in ["fire_cast", "heal_cast", "ward_cast", "fire_area"]:
-			_draw_cast_effect(effect, tile)
-			continue
 		if effect.kind in ["trace", "cast"]:
 			var start: Vector2 = cell_center(effect.from)
 			_draw_projectile(start, at, progress, "mage", color, tile)
@@ -533,37 +554,6 @@ func _draw_effects(tile: float) -> void:
 		var text_at: Vector2 = at - Vector2(0, 23 + offset + (0 if reduced_motion else progress * 32))
 		_text(str(effect.text), text_at + Vector2(1, 1), 17, Color(0.01, 0.03, 0.04, color.a))
 		_text(str(effect.text), text_at, 17, color)
-
-func _draw_cast_effect(effect: Dictionary, tile: float) -> void:
-	var at: Vector2 = cell_center(effect.cell)
-	var color: Color = effect.color
-	if reduced_motion:
-		for cell: Vector2i in effect.cells:
-			var rect := Rect2(cell_center(cell) - Vector2.ONE * tile * 0.47, Vector2.ONE * tile * 0.94)
-			draw_rect(rect, Color(color, 0.14))
-			draw_rect(rect, Color(color, 0.70), false, 2)
-		return
-	if effect.age < 0.32:
-		_draw_projectile(cell_center(effect.from), at, float(effect.age) / 0.32, "mage", color, tile)
-		return
-	var progress: float = clampf((float(effect.age) - 0.32) / 0.48, 0, 1)
-	var fade: float = 1 - progress
-	if effect.cells.size() > 1:
-		for cell: Vector2i in effect.cells:
-			var rect := Rect2(cell_center(cell) - Vector2.ONE * tile * 0.47, Vector2.ONE * tile * 0.94)
-			draw_rect(rect, Color(color, fade * 0.14))
-			draw_rect(rect, Color(color, fade * 0.70), false, 2)
-	if effect.kind == "heal_cast":
-		var radius: float = tile * (0.12 + progress * 0.16)
-		draw_line(at - Vector2(radius, 0), at + Vector2(radius, 0), Color(color, fade), 4.5, true)
-		draw_line(at - Vector2(0, radius), at + Vector2(0, radius), Color(color, fade), 4.5, true)
-	elif effect.kind == "ward_cast":
-		_draw_guard_shield(at - Vector2(0, tile * 0.10), tile * (0.20 + progress * 0.10), Color(color, fade))
-	else:
-		for spark: int in range(8):
-			var direction: Vector2 = Vector2.from_angle(TAU * spark / 8 + progress * 0.5)
-			draw_line(at + direction * tile * progress * 0.20, at + direction * tile * (0.20 + progress * 0.42), Color(color, fade), 2.5, true)
-	draw_arc(at, tile * (0.20 + progress * 0.38), 0, TAU, 32, Color(color, fade * 0.7), 2, true)
 
 func _draw_guard_links() -> void:
 	for guard: Dictionary in battle.units:

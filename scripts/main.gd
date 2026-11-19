@@ -1216,13 +1216,18 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 		visual_action["effect_kind"] = battle.hero(side).effect
 		visual_action["visual_origin"] = battle.commander(side).pos
 		visual_action["visual_caster_id"] = battle.commander(side).id
+		visual_action["cast_title"] = battle.hero(side).skill
+		visual_action["cast_art"] = battle.hero(side).portrait
 	if action.type in ["attack", "unit_skill"]:
 		var caster: Dictionary = battle.get_unit(int(action.get("unit_id", -1)))
 		if not caster.is_empty():
 			visual_action["unit_kind"] = caster.kind
 			visual_action["visual_origin"] = caster.pos
 			visual_action["visual_caster_id"] = caster.id
-			if action.type == "unit_skill": visual_action["effect_kind"] = {"mage": "damage", "healer": "heal", "sword": "shield"}.get(caster.kind, "")
+			if action.type == "unit_skill":
+				visual_action["effect_kind"] = {"mage": "damage", "healer": "heal", "sword": "shield"}.get(caster.kind, "")
+				visual_action["cast_title"] = battle.unit_skill(caster).name
+				visual_action["cast_art"] = caster.get("card",{}).get("card_id", caster.kind)
 			if action.type == "attack" or caster.kind == "archer":
 				var target: Dictionary = battle.unit_at(action.target)
 				if not target.is_empty(): visual_action["combat"] = battle.attack_forecast(caster, target, 1 if action.type == "unit_skill" else 0)
@@ -1234,21 +1239,30 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 			visual_action["card_type"] = definition.type
 			visual_action["spell_effect"] = definition.get("effect", "")
 			visual_action["effect_kind"] = visual_action.spell_effect
-			if visual_action.spell_effect == "formation":
-				visual_action["affected_cells"] = battle.Formation.footprint(battle, action.target, int(definition.get("radius", 1)), str(definition.get("shape", "")))
-				if int(definition.get("damage", 0)) > 0:
+			if int(definition.cost) >= 7 and definition.type != "trap":
+				visual_action["cast_title"] = definition.name
+				visual_action["cast_art"] = definition.id
+			if visual_action.spell_effect in ["formation", "choice"] and battle.inside(action.target):
+				var area: Dictionary = battle.choice_mode(definition, action.target, side) if visual_action.spell_effect == "choice" else definition
+				visual_action["affected_cells"] = battle.Formation.footprint(battle, action.target, int(area.get("radius", 0)), str(area.get("shape", "")))
+				if int(area.get("damage", 0)) > 0:
 					visual_action.effect_kind = "area"
-					if not definition.get("fire", false): visual_action["cast_color"] = Color("9ad6f5")
-				else: visual_action.effect_kind = "rally_heal" if int(definition.get("healing", 0)) > 0 else "shield"
+					if not area.get("fire", false): visual_action["cast_color"] = Color("9ad6f5")
+				elif area.get("root", false): visual_action.effect_kind = "root"
+				else: visual_action.effect_kind = "rally_heal" if int(area.get("healing", 0)) > 0 else "shield"
+			elif visual_action.spell_effect == "muster":
+				var landings: Array[Vector2i] = []
+				for landing: Dictionary in battle.muster_plan(definition, action.target, side): landings.append(landing.cell)
+				visual_action["affected_cells"] = landings
 			elif visual_action.spell_effect == "roadwork":
 				visual_action["affected_cells"] = battle.roadwork_cells(action.target, definition)
-				visual_action.effect_kind = "shield"
+				visual_action.effect_kind = "roadwork"
 			elif visual_action.spell_effect in ["verdict", "commission", "recall"]:
 				visual_action.effect_kind = "shield" if visual_action.spell_effect == "recall" else "damage"
 			elif visual_action.spell_effect == "pullback":
 				visual_action.effect_kind = "heal"
 			elif visual_action.spell_effect == "redeploy":
-				visual_action.effect_kind = "shield"
+				visual_action.effect_kind = "redeploy"
 				visual_action["cast_color"] = Color("9ad6f5")
 			elif (int(entry.get("damage", 0)) > 0 or entry.has("shape")) and battle.entry_active(entry, action.target):
 				visual_action["affected_cells"] = battle.Formation.footprint(battle, action.target, int(entry.get("radius", 1)), str(entry.get("shape", "")))

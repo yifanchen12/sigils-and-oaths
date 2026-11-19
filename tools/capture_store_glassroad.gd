@@ -34,6 +34,8 @@ func run() -> void:
 	root.content_scale_size = SIZE
 	root.add_child(game)
 	current_scene = game
+	game.audio.stop_playback()
+	AudioServer.set_bus_mute(0, true)
 	for shot: Dictionary in SHOTS:
 		var position: Dictionary = find_position(matches, shot)
 		if position.is_empty():
@@ -43,6 +45,8 @@ func run() -> void:
 		if not await capture(game, position, shot, args[0]):
 			quit(1)
 			return
+	game.audio.stop_playback()
+	await create_timer(0.15, true, false, true).timeout
 	game.queue_free()
 	await process_frame
 	quit(0)
