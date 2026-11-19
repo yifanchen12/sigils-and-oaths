@@ -95,6 +95,7 @@ func fight() -> bool:
 		var side: int = b.active_side
 		var actor: Script = pilot if side == 0 else AI
 		var action: Dictionary = actor.choose(b)
+		if not check(action.has("type"), "test player returns an action for " + scenario): return false
 		for instance: Dictionary in b.players[0].hand:
 			if gear_uids.has(instance.uid) and not seen_gear.has(instance.card_id):
 				seen_gear.append(instance.card_id)
@@ -232,6 +233,7 @@ func run() -> void:
 				check(session.next_chapter(session.token()).ok, "next chapter inherits the earned story outcome")
 				if not reload_exact(): break
 	check(pages < 5000, "continuous narrative finishes or stops without a graph loop")
+	check(report.reached_authored_end or report.stop in ["defeat","draw"] or failures > 0, "a stopped route has an explicit result")
 	if report.reached_authored_end:
 		for key: String in decisions:
 			check(report.choices.any(func(choice: Dictionary) -> bool: return choice.chapter + "." + choice.node == key and choice.option == decisions[key]), "declared choice was reached and applied: " + key)

@@ -4,6 +4,7 @@ extends Control
 signal cell_clicked(cell: Vector2i, button: int)
 signal cell_hovered(cell: Vector2i)
 signal view_changed(zoom: float)
+signal trap_contact
 
 const CardArt = preload("res://scripts/card_view.gd")
 const Art = preload("res://scripts/art_library.gd")
@@ -86,7 +87,9 @@ func _process(delta: float) -> void:
 		queue_redraw()
 	if not effects.is_empty():
 		for index: int in range(effects.size() - 1, -1, -1):
+			var waiting: bool = effects[index].age < 0 and effects[index].get("sprung",false)
 			effects[index].age += delta
+			if waiting and effects[index].age >= 0: trap_contact.emit()
 			if effects[index].age >= effects[index].duration: effects.remove_at(index)
 		queue_redraw()
 	if not reduced_motion and battle != null and (battle.weather != "clear" or battle.map_definition.theme in ["river", "harbor"]) and redraw_clock > 0.05:
@@ -184,6 +187,8 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 	var effect_kind: String = action.get("effect_kind", "")
 	var style := CastArt.style_for(action)
 	var casts := not style.is_empty()
+	var travel_time := minf(0.42, 0.14 + path.size()*0.04) if path.size() >= 2 else 0.0
+	var step_trap := battle.last_trap_events.any(func(event: Dictionary) -> bool: return event.triggered and event.trigger == "step")
 	var forecast: Dictionary = action.get("combat", {})
 	if not forecast.is_empty():
 		var actors: Dictionary = {}
@@ -203,18 +208,25 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 			action_duration = maxf(action_duration, 0.72)
 	var previous_ids: Dictionary = {}
 	var recipients: Array[Vector2i] = []
+	var struck: Array[Vector2i] = []
 	for old: Dictionary in before:
 		var delay: float = 0.32 if casts and not reduced_motion else 0.0
+		if not reduced_motion and style == "fire_area":
+			delay = 0.82*CastArt.volley_contact(old.pos,action.target)
+		var order_hit: bool = not battle.last_order_event.is_empty() and not battle.last_order_event.support and battle.last_order_event.impacts.has(old.pos)
+		if order_hit and not reduced_motion: delay = 0.80*CastArt.volley_contact(old.pos,battle.last_order_event.pos)-0.31
 		if not combat.is_empty(): delay = 0.72 if old.id == combat.attacker.id else (0.35 if old.id == combat.defender.id else 0.0)
+		if not reduced_motion and step_trap and old.id == int(action.get("unit_id",-1)): delay = travel_time
 		previous_ids[old.id] = true
 		var current: Dictionary = battle.get_unit(old.id)
 		if current.is_empty():
+			struck.append(old.pos)
 			var death_cell: Vector2i = old.pos
-			if casts and not reduced_motion and combat.is_empty() and not (old.id == int(action.get("unit_id",-1)) and path.size() >= 2):
+			if (casts or order_hit) and not reduced_motion and combat.is_empty() and not (old.id == int(action.get("unit_id",-1)) and path.size() >= 2):
 				effects.append({"kind":"departing", "actor":old, "cell":old.pos, "age":0.0, "duration":delay})
 			if old.id == int(action.get("unit_id", -1)) and path.size() >= 2:
 				death_cell = path.back()
-				delay = minf(0.42, 0.14 + path.size() * 0.04)
+				delay = travel_time
 				motion_ghost = old.duplicate(true)
 			if action.get("spell_effect", "") == "recall" and action.target == old.pos:
 				_effect("spawn", old.pos, "返回手牌", BLUE, 0.8, delay)
@@ -222,6 +234,7 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 			continue
 		var hp_delta: int = int(current.hp) - int(old.hp)
 		var shield_delta: int = int(current.shield) - int(old.shield)
+		if hp_delta < 0 or shield_delta < 0: struck.append(current.pos)
 		if int(current.get("rooted_turns", 0)) > int(old.get("rooted_turns", 0)):
 			_effect("spawn", current.pos, "定身", Color("a5cfed"), 0.9, delay)
 		if hp_delta > 0 or shield_delta > 0 or current.rooted_turns > old.rooted_turns: recipients.append(current.pos)
@@ -248,8 +261,8 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 		motion_path = path
 		motion_progress = 0.0
 		motion_tween = create_tween()
-		motion_tween.tween_property(self, "motion_progress", 1.0, minf(0.42, 0.14 + path.size() * 0.04)).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-		action_duration = minf(0.42, 0.14 + path.size() * 0.04)
+		motion_tween.tween_property(self, "motion_progress", 1.0, travel_time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		action_duration = travel_time
 	if not combat.is_empty():
 		var attacker: Dictionary = combat.attacker
 		var defender: Dictionary = combat.defender
@@ -286,12 +299,23 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 			for ally: Dictionary in battle.units:
 				if ally.side == actor.side and ally.pos != landing and battle.distance(landing,ally.pos) <= reach: cells.append(ally.pos)
 		var color: Color = action.get("cast_color", CastArt.STYLES[style][1])
-		if style == "weather_cast": color = CastArt.WEATHER.get(battle.weather, color)
+		var caption := ""
+		match style:
+			"weather_cast":
+				color = CastArt.WEATHER.get(battle.weather, color)
+				if battle.weather == "clear":
+					var previous: String = action.get("previous_weather", "clear")
+					caption = "晴朗" if previous == "clear" else "%s散去 · 恢复晴朗" % battle.WEATHER[previous].name
+				else:
+					caption = "%s · 全场 %d 个行动回合" % [battle.WEATHER[battle.weather].name, battle.weather_remaining]
+			"signal_cast": caption = "标记 %d 格 · 下次己方回合生效" % cells.size()
+			"works_cast": caption = "改建 %d 格" % cells.size()
 		var duration: float = 0.46 if reduced_motion else 0.82
 		effects.append({"kind": style, "cell": landing, "from": origin, "cells": cells, "text": "", "color": color,
-			"title":action.get("cast_title",""), "portrait":action.get("cast_art",""), "cost":action.get("cast_cost",-1),
+			"title":action.get("cast_title",""), "caption":caption, "portrait":action.get("cast_art",""), "cost":action.get("cast_cost",-1),
 			"stroke":CastArt.field_stroke(action, style), "recipients":recipients, "route":path, "rider":action.get("unit_id",-1),
-			"guard":guard, "signature":signature, "martial":action.has("cast_color"), "weather":battle.weather, "age":0.0, "duration":duration})
+			"guard":guard, "signature":signature, "martial":action.has("cast_color"), "struck":struck,
+			"weather":battle.weather, "previous_weather":action.get("previous_weather","clear"), "age":0.0, "duration":duration})
 		action_duration = maxf(action_duration, duration)
 	if action.type == "unit_skill" and action.get("unit_kind", "") == "spear": _effect("shield", action.target, "援护展开", BLUE, 0.85)
 	if action.get("card_type", "") == "trap" and battle.inside(action.target): _effect("shield", action.target, "伏设", Color("b5a0ed"), 0.8)
@@ -301,16 +325,29 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 		var order: Dictionary = battle.last_order_event
 		var order_color: Color = BLUE if order.support else Color("f9b36a")
 		_effect("burst", order.pos, str(order.name), order_color, 1.15)
-		if not reduced_motion:
-			effects.append({"kind": "heal_cast" if order.support else "fire_area", "cell": order.pos,
-				"from": order.pos, "cells": order.cells, "text": "", "color": order_color, "age": 0.0, "duration": 0.8})
+		var card: Dictionary = battle.definition(order.card_id)
+		var result_caption: String = ("支援 %d 支友军" if order.support else "命中 %d 支敌军") % order.impacts.size()
+		effects.append({"kind": "heal_cast" if order.support else "fire_area", "cell": order.pos,
+			"from":order.pos, "cells":order.cells, "struck":order.impacts, "recipients":order.impacts,
+			"stroke":CastArt.Stroke.LEAVES if order.support else -1, "martial":not card.get("fire",false),
+			"title":order.name+" · 生效", "caption":result_caption, "portrait":order.card_id, "text":"", "color":order_color,
+			"age":0.0 if reduced_motion else 0.31, "duration":0.46 if reduced_motion else 0.80})
 	for event: Dictionary in battle.last_trap_events:
 		if battle.inside(event.cell):
-			_effect("burst", event.cell, event.name + " · " + event.reason, Color("c6a6ff"), 1.05)
+			var reveal_delay := 0.0
+			if event.triggered and not reduced_motion:
+				if event.trigger == "step" and path.size() >= 2:
+					var step := path.find(event.cell)
+					# Invert the movement tween so intermediate traps snap as the rider crosses them.
+					var fraction := clampf(float(step)/(path.size()-1),0,1)
+					reveal_delay = travel_time*acos(1.0-2.0*fraction)/PI
+				else: reveal_delay = 0.35 if not combat.is_empty() else 0.32
+			_effect("burst", event.cell, event.name + " · " + event.reason, Color("c6a6ff"), 1.05, reveal_delay)
 			if event.triggered:
+				if reveal_delay == 0.0: trap_contact.emit()
 				var signature: int = CastArt.Signature.MOORING if event.trigger == "step" else CastArt.Signature.COUNTER
 				effects.append({"kind":"snare_cast", "cell":event.cell, "from":event.cell, "cells":[event.cell], "text":"",
-					"signature":signature, "sprung":true, "color":Color("c6a6ff"), "age":0.0 if reduced_motion else 0.28, "duration":0.46 if reduced_motion else 0.82})
+					"signature":signature, "sprung":true, "color":Color("c6a6ff"), "age":-reveal_delay, "duration":0.46 if reduced_motion else 0.55})
 	presentation_remaining = action_duration
 	for effect: Dictionary in effects: presentation_remaining = maxf(presentation_remaining, float(effect.duration) - float(effect.age))
 	queue_redraw()

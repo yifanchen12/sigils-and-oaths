@@ -57,6 +57,20 @@ func all_origins(primary: RefCounted) -> void:
 			for field: String in branch.story.graph.get("inherits", []) + branch.story.graph.get("optional_inherits", []):
 				check(progress.story.flags[field] == previous_flags.get(field, branch.story.graph.defaults[field]), "earlier fact preserved " + row.id + " " + field)
 	check(primary.campaign.snapshot() == original, "all forks have left the main instance intact")
+	for entry: Dictionary in entries:
+		check(not entry.end_text.is_empty() and entry.can_revise_covenant == (entry.number == 18),"completed chapter has its own reached final page and correct replay actions")
+	var covenant: Dictionary = primary.campaign.replay_from("chapter_18",true)
+	if not check(covenant.ok and covenant.campaign.story.current().node == "covenant","return to the actual last choice from an old ending"): return
+	var branch: RefCounted = covenant.campaign
+	var read: Array = branch.story.state.history
+	check(not read.is_empty() and original.story.history.slice(0,read.size()) == read and branch.story.state.decisions.is_empty(),"only the exact earned text prefix is fast-forwarded")
+	check(not primary.campaign.replay_from("chapter_09",true).ok, "a covenant cannot bypass encounters in an earlier chapter")
+	for option: Dictionary in branch.story.current().options:
+		var another: RefCounted = primary.campaign.replay_from("chapter_18",true).campaign
+		var page: Dictionary = another.story.current()
+		check(another.story.choose(option.id,page.revision).ok,"choose a different visible oath")
+		while another.story.current().type == "dialogue": another.story.advance(another.story.current().revision)
+		check(another.story.current().node == option.id+"_end","the altered oath reaches its own authored ending")
 
 func play(branch: RefCounted, capture_trace: bool) -> Dictionary:
 	var battle: Battle = branch.encounter
@@ -124,6 +138,8 @@ func test_active_and_protected() -> void:
 	var active_before: Dictionary = Snapshot.capture(primary.encounter)
 	var branch = Session.new(Session.replay_path(ACTIVE))
 	check(not branch.start_replay_from(primary, "chapter_06").ok and branch.campaign.story == null, "incomplete current chapter stays locked")
+	var locked: Dictionary = primary.campaign.replay_chapters().back()
+	check(not locked.unlocked and not locked.has("end_text") and not locked.has("decisions") and not branch.start_replay_from(primary,"chapter_18",true).ok,"locked chapters reveal no choices, ending prose or covenant")
 	check(not primary.start_replay_from(primary, "chapter_04").ok, "cannot reuse the main slot for a branch")
 	if not check(branch.start_replay_from(primary, "chapter_04").ok and branch.advance(branch.token()).ok, "branch can progress while original battle is active"): return
 	var fresh = Session.new(ACTIVE)

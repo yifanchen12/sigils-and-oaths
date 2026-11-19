@@ -1,8 +1,10 @@
-"""Encode the native --field-frames capture with the game's exact action cues."""
+"""Encode a native field or weather reel with the game's action cues."""
 import argparse
+from array import array
 import json
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
 import wave
 
@@ -12,16 +14,22 @@ def encode(directory: Path, output: Path) -> None:
     fps, frames = data["fps"], data["frames"]
     cues = Path(__file__).resolve().parents[1] / "assets" / "audio"
     rate, channels, width = 32000, 2, 2
-    audio = bytearray(round(frames / fps * rate) * channels * width)
-    for shot in data["shots"]:
-        file = cues / Path(shot["sound"]).name
+    audio = array("h", [0]) * (round(frames / fps * rate) * channels)
+    recorded = data.get("cues", [{"sound": s["sound"], "frame": s["sound_frame"]} for s in data["shots"]])
+    for onset in recorded:
+        file = cues / Path(onset["sound"]).name
         with wave.open(str(file), "rb") as cue:
             if (cue.getframerate(), cue.getnchannels(), cue.getsampwidth()) != (rate, channels, width):
                 raise ValueError(f"Unexpected sample format in {file.name}")
-            samples = cue.readframes(cue.getnframes())
-        start = round(shot["sound_frame"] / fps * rate) * channels * width
-        end = min(start + len(samples), len(audio))
-        audio[start:end] = samples[:end-start]
+            samples = array("h")
+            samples.frombytes(cue.readframes(cue.getnframes()))
+        if sys.byteorder != "little":
+            samples.byteswap()
+        start = round(onset["frame"] / fps * rate) * channels
+        for i, sample in enumerate(samples[:max(0, len(audio)-start)]):
+            audio[start+i] = min(32767, max(-32768, audio[start+i]+sample))
+    if sys.byteorder != "little":
+        audio.byteswap()
     with tempfile.TemporaryDirectory() as scratch:
         soundtrack = Path(scratch) / "action-cues.wav"
         with wave.open(str(soundtrack), "wb") as track:
@@ -29,7 +37,8 @@ def encode(directory: Path, output: Path) -> None:
             track.writeframes(audio)
         subprocess.run([
             "ffmpeg", "-nostdin", "-v", "error", "-y", "-framerate", str(fps), "-i", str(directory / "cast-%04d.png"),
-            "-i", str(soundtrack), "-frames:v", str(frames), "-vf", "crop=1280:720:320:184",
+            "-i", str(soundtrack), "-frames:v", str(frames), "-vf",
+            "scale=1600:900" if data.get("full_board") else "crop=1280:720:320:184",
             "-c:v", "libx264", "-crf", "17", "-preset", "medium", "-pix_fmt", "yuv420p",
             "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart", str(output),
         ], check=True)

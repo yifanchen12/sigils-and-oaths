@@ -2,6 +2,7 @@ extends Control
 ## Chapter selection and the status of the independently saved branch.
 
 signal start_requested(chapter_id: String)
+signal covenant_requested
 signal continue_requested
 signal close_requested
 
@@ -14,10 +15,13 @@ var shell: PanelContainer
 var chapters: ItemList
 var unlocked_count: Label
 var selected_title: Label
-var detail: Label
+var detail: RichTextLabel
+var art: TextureRect
+var entries: Array[Dictionary] = []
 var branch_status: Label
 var status: Label
 var start_button: Button
+var covenant_button: Button
 var continue_button: Button
 var close_button: Button
 
@@ -82,7 +86,7 @@ func _build() -> void:
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	layout.add_child(body)
 	chapters = ItemList.new()
-	chapters.custom_minimum_size = Vector2(390, 225)
+	chapters.custom_minimum_size = Vector2(294, 225)
 	chapters.add_theme_font_size_override("font_size", 22)
 	chapters.add_theme_constant_override("v_separation", 13)
 	chapters.add_theme_stylebox_override("panel", _panel_fill(Color("0b1624"), Color("506278"), 12))
@@ -94,19 +98,25 @@ func _build() -> void:
 	preview.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	preview.add_theme_constant_override("separation", 12)
 	body.add_child(preview)
-	var art := TextureRect.new()
+	art = TextureRect.new()
 	art.texture = Art.get_texture("chapter_replay_archive")
 	art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	art.custom_minimum_size.y = 180
+	art.custom_minimum_size.y = 92
 	art.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	art.size_flags_stretch_ratio = 0.70
 	art.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	preview.add_child(art)
 	selected_title = _label("", 25, GOLD)
 	selected_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	preview.add_child(selected_title)
-	detail = _label("", 18, INK)
-	detail.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	detail = RichTextLabel.new()
+	detail.focus_mode = Control.FOCUS_ALL
+	detail.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	detail.custom_minimum_size.y = 105
+	detail.add_theme_color_override("default_color", INK)
+	detail.add_theme_constant_override("line_separation", 4)
+	set_reading_size(100)
 	preview.add_child(detail)
 	branch_status = _label("", 18, MUTED)
 	branch_status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -125,6 +135,11 @@ func _build() -> void:
 	continue_button.custom_minimum_size = Vector2(152, 49)
 	continue_button.pressed.connect(continue_requested.emit)
 	footer.add_child(continue_button)
+	covenant_button = Button.new()
+	covenant_button.text = "重议终章誓约"
+	covenant_button.custom_minimum_size = Vector2(155,49)
+	covenant_button.pressed.connect(covenant_requested.emit)
+	footer.add_child(covenant_button)
 	start_button = Button.new()
 	start_button.text = "从本章重走"
 	start_button.custom_minimum_size = Vector2(180, 49)
@@ -133,7 +148,11 @@ func _build() -> void:
 		if not chapter_id.is_empty(): start_requested.emit(chapter_id))
 	footer.add_child(start_button)
 
-func open(entries: Array[Dictionary], branch_label: String, can_continue: bool, source_notice: String) -> void:
+func set_reading_size(percent: int) -> void:
+	detail.add_theme_font_size_override("normal_font_size",roundi(18.0*percent/100.0))
+
+func open(records: Array[Dictionary], branch_label: String, can_continue: bool, source_notice: String) -> void:
+	entries = records
 	chapters.clear()
 	var latest: int = -1
 	var unlocked: int = 0
@@ -147,22 +166,51 @@ func open(entries: Array[Dictionary], branch_label: String, can_continue: bool, 
 	unlocked_count.text = "主线已完成 %d / %d 章" % [unlocked, entries.size()]
 	branch_status.text = branch_label
 	continue_button.disabled = not can_continue
-	set_status(source_notice)
+	set_status(source_notice if not source_notice.is_empty() else "从本章重走会承接主线此前的选择，新的进度保存在分支存档。")
 	show()
 	if latest >= 0:
 		chapters.select(latest)
 		_select(latest)
-		chapters.ensure_current_is_visible()
 		chapters.grab_focus()
+		_reveal_selected(latest)
 	else:
 		start_button.disabled = true
+		covenant_button.hide()
+		art.texture = Art.get_texture("chapter_replay_archive")
 		selected_title.text = "从已完成的章节重走"
 		detail.text = "完成主线第一章后，这里会开放章节选择。"
 		(continue_button if can_continue else close_button).grab_focus()
 
+func _reveal_selected(index: int) -> void:
+	await get_tree().process_frame
+	if not visible or not chapters.is_selected(index): return
+	chapters.force_update_list_size()
+	var row := chapters.get_item_rect(index)
+	var bar := chapters.get_v_scroll_bar()
+	if row.end.y > bar.value+bar.page: bar.value = row.end.y-bar.page+8
+	elif row.position.y < bar.value: bar.value = row.position.y
+
 func _select(index: int) -> void:
+	if index < 0 or index >= entries.size() or not entries[index].unlocked: return
+	var entry: Dictionary = entries[index]
 	selected_title.text = chapters.get_item_text(index)
-	detail.text = "从本章第一句开始，承接主线此前的选择。随后获得的进度会保存到分支存档。"
+	art.texture = Art.get_texture(entry.get("background","chapter_replay_archive"))
+	if art.texture == null: art.texture = Art.get_texture("chapter_replay_archive")
+	detail.clear()
+	var choices: PackedStringArray = entry.get("decisions",PackedStringArray())
+	if not choices.is_empty():
+		detail.push_color(GOLD)
+		detail.add_text("主线抉择")
+		detail.pop()
+		for choice: String in choices: detail.add_text("\n· "+choice)
+		detail.add_text("\n\n")
+	detail.push_color(GOLD)
+	detail.add_text(entry.get("end_title","章末"))
+	if entry.get("sorties",0) > 0: detail.add_text("  ·  出征 %d 次" % entry.sorties)
+	detail.pop()
+	detail.add_text("\n"+str(entry.get("end_text","")))
+	detail.scroll_to_line(0)
+	covenant_button.visible = entry.get("can_revise_covenant",false)
 	start_button.disabled = chapters.is_item_disabled(index)
 
 func selected_chapter() -> String:

@@ -43,7 +43,7 @@ func new_campaign() -> Dictionary:
 static func replay_path(primary_path: String) -> String:
 	return primary_path.get_basename() + "_branch.json"
 
-func start_replay_from(primary: RefCounted, chapter_id: String) -> Dictionary:
+func start_replay_from(primary: RefCounted, chapter_id: String, at_covenant: bool = false) -> Dictionary:
 	if ProjectSettings.globalize_path(store.path).simplify_path().nocasecmp_to(ProjectSettings.globalize_path(primary.store.path).simplify_path()) == 0:
 		return {"ok": false, "message": "请为重走章节选择独立的分支存档。"}
 	var saved: Dictionary = primary.store.load_progress()
@@ -51,7 +51,7 @@ func start_replay_from(primary: RefCounted, chapter_id: String) -> Dictionary:
 	var original: RefCounted = Campaign.new()
 	var opened: Dictionary = original.restore(saved.progress)
 	if not opened.ok: return opened
-	var checkpoint: Dictionary = original.replay_from(chapter_id)
+	var checkpoint: Dictionary = original.replay_from(chapter_id, at_covenant)
 	if not checkpoint.ok: return checkpoint
 	return _start_saved_campaign(checkpoint.campaign, "分支已保存。")
 

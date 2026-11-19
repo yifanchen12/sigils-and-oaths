@@ -38,6 +38,9 @@ SCREENSHOTS = {
     "14-river-signatures.png": "Pyromancer casts Fire Verdict on Sunspire on side turn 31. Balanced Host mirror, seed 56037, after 186 legal actions. Native frame sampled 0.50 s after casting.",
     "15-field-frost.png": "Frostbind played from hand on Harbor. Twin-Tide Orders against Balanced Host, seed 56037, side turn 45 after 275 preceding legal actions, at 0.50 seconds after casting.",
     "16-channel-review.png": "Campaign chapter 14 after-action map loaded from an authentic 0.57 save. Third standard attempt, both commanders alive, F6 and K9 held by the enemy at the 22-round deadline.",
+    "17-lantern-weather.png": "Night Muster played from the Lantern Convoy hand on Citadel, seed 56037, side turn 9 after 28 legal actions. Native frame 0.50 seconds after casting.",
+    "18-hammer-order.png": "Hollow Hammer marked on Citadel F5 on side turn 15 and resolved at the start of turn 17, seed 56377. The cross covers nine cells and one enemy takes the hit. Native frame 5/24 seconds after resolution.",
+    "19-chapter-chronicle.png": "Chapter archive opened from the standard river, relief and school campaign ending. The archive displays the chosen split covenant and its reached epilogue.",
 }
 
 

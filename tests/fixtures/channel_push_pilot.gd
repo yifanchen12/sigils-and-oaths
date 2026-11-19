@@ -32,7 +32,7 @@ static func choose(battle: Battle) -> Dictionary:
 				if not guard_needed:
 					score += maxi(0, unit.pos.y - action.target.y) * 22.0
 					if action.target.y <= 5: score += 25.0
-					if battle.objective.cells.has([action.target.x, action.target.y]): score += 80.0
+					if battle.objective.get("cells", []).has([action.target.x, action.target.y]): score += 80.0
 		if action.type == "play":
 			var card: Dictionary = battle.definition(battle.hand_card(battle.active_side, action.card_uid).card_id)
 			if card.type == "unit":

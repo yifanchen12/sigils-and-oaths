@@ -1,6 +1,6 @@
 # 内容披露与来源清单
 
-面向 Windows 0.56.0-dev。此表用于核对送审版本实际文件和商店页面。提交内容调查和确定地区评级需要发行方查看最终构建与 Steamworks 表单。Steamworks 把开发期间生成并交付给玩家的内容与运行中生成的内容分别调查。 [Steamworks 内容调查](https://partner.steamgames.com/doc/gettingstarted/contentsurvey)
+面向 Windows 0.59.0-dev。此表用于核对送审版本实际文件和商店页面。提交内容调查和确定地区评级需要发行方查看最终构建与 Steamworks 表单。Steamworks 把开发期间生成并交付给玩家的内容与运行中生成的内容分别调查。 [Steamworks 内容调查](https://partner.steamgames.com/doc/gettingstarted/contentsurvey)
 
 ## 可用于填写的说明
 
@@ -27,9 +27,10 @@
 | 断脊隘口、日陨遗城、古堡棋庭与新特效 | 三份原创 Blender 模型使用开发期生成的地材，古堡另嵌有风玫瑰纹样。技能和卡牌从一张六幅透明图集取图，运行时由 Godot 按实际行动播放 | 保留三份可编辑工程、两张材质图和透明特效图集，并记录提示词及来源。 [制作记录](../../../assets/art/battlefields/highlands-and-casts-source.md) |
 | 河岸指挥官、援护与陷阱的演出 | 开发期生成的第二张六幅透明图集，配合地格、单位和攻击结果绘制。 | [图集、出处及完整提示词](../../../assets/art/actions/river-signatures.md) |
 | 兵种与手牌动作 | 第三张六幅透明图集用于骑兵蹄痕、精准箭、火矢、护盾、治疗和冰缚。五种音效由项目合成器产生。 | [图像来源与提示词](../../../assets/art/actions/field-strokes.md) · [音效源码](../../../tools/compose_audio.py) |
+| 天气牌 | 雨、雪、日光、雾带、风和纸灯均使用开发期间生成的原创图像。游戏按地格与天气状态绘制雨线、光束、薄雾和灯火，读取本地合成声音。 | [天气原画、提示词与校验值](../../../assets/art/actions/weather-cels.md) |
 | 盐布巷地图与对话背景 | 两张开发期生成图，战场地形和可通行范围由游戏规则数据决定 | 保留生成提示、源图编号和 SHA-256。 [盐布巷美术记录](../../../assets/art/narrative/saltlane-source.md) |
 | 叙事与翻译 | 十八章剧情、档案、游戏规则和商店文案。部分文字在开发过程中经 AI 辅助编写和场景编辑 | 游戏正文在已提交的叙事数据中。发行方确认最终编辑与公开文案，真人整篇审读仍待开展。 [正文源](../../../data/narrative) |
-| 音乐及音效 | 2 首合成循环、12 个战斗事件音效。小节、声部、包络和音高由本项目脚本编排，素材用软件合成。三位指挥官分别使用金属合声、下行扫音和上行琶音。 | [可复现的音效与配乐源码](../../../tools/compose_audio.py) |
+| 音乐及音效 | 2 首合成循环、24 个事件音效，包含六种天气和天气驱散。小节、声部、包络和音高由本项目脚本编排，素材用软件合成。 | [音效与配乐源码](../../../tools/compose_audio.py) |
 | 字体 | 界面使用操作系统字体。商店图片用 Noto Serif SC 成像，素材包与游戏包均不包含字体二进制 | 核对最终排版和字形。 [Noto Serif SC 来源和许可证](https://github.com/google/fonts/tree/main/ofl/notoserifsc) |
 | 商店主视觉与图标 | 原图为开发期图像生成，字标和灯笼图标由本地排版脚本完成 | 图像源、提示词和哈希单独留存。 [主视觉记录](key-art-source.md) |
 

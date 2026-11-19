@@ -126,16 +126,38 @@ func replay_chapters() -> Array[Dictionary]:
 	var unlocked: int = completed_chapter_count()
 	for position: int in range(index.get("chapters", []).size()):
 		var chapter: Dictionary = index.chapters[position]
-		entries.append({"id": chapter.id, "title": chapter.title, "number": position + 1, "unlocked": position < unlocked})
+		var entry := {"id":chapter.id, "title":chapter.title, "number":position+1, "unlocked":position<unlocked}
+		if entry.unlocked:
+			var saved: Dictionary = completed[position].story if position < completed.size() else story.state
+			var graph: Dictionary = story.graph if chapter.id == story.graph.id else _source(chapter.id).get("source",{})
+			if not graph.is_empty(): entry.merge(_chapter_record(graph,saved))
+		entries.append(entry)
 	return entries
 
-func replay_from(chapter_id: String) -> Dictionary:
+func _chapter_record(graph: Dictionary, saved: Dictionary) -> Dictionary:
+	var chosen: Dictionary = {}
+	for node_id: String in saved.decisions:
+		for option: Dictionary in graph.nodes[node_id].options:
+			if option.id == saved.decisions[node_id]: chosen[option.text] = true
+	var decisions := PackedStringArray()
+	for line_id: String in saved.history:
+		if chosen.has(line_id): decisions.append(graph.strings[line_id])
+	var end: Dictionary = graph.nodes[saved.node]
+	var sorties := 0
+	for count: Variant in saved.attempts.values(): sorties += int(count)
+	return {"decisions":decisions, "end_text":graph.strings[end.text], "end_title":end.get("title","章末"),
+		"background":end.get("background",""), "sorties":sorties,
+		"can_revise_covenant":graph.id == "chapter_18" and saved.decisions.has("covenant")}
+
+func replay_from(chapter_id: String, at_covenant: bool = false) -> Dictionary:
 	var target: int = -1
 	for position: int in range(completed_chapter_count()):
 		if index.chapters[position].id == chapter_id:
 			target = position
 			break
 	if target < 0: return {"ok": false, "message": "主线完成这一章后，即可从这里重走。"}
+	if at_covenant and (chapter_id != "chapter_18" or not story.state.decisions.has("covenant")):
+		return {"ok":false, "message":"完成终章誓约后可重议。"}
 	var copy: RefCounted = get_script().new()
 	if target == 0:
 		var opened: Dictionary = copy.start()
@@ -147,6 +169,19 @@ func replay_from(chapter_id: String) -> Dictionary:
 	var restored: Dictionary = copy.restore(progress)
 	if not restored.ok: return restored
 	restored = copy.advance_chapter()
+	if restored.ok and at_covenant:
+		var cursor: RefCounted = copy.story
+		var read_index := 0
+		var history: Array = story.state.history
+		while cursor.current().type == "dialogue":
+			var page: Dictionary = cursor.current()
+			if read_index >= history.size() or history[read_index] != page.line_id:
+				return {"ok":false, "message":"主线记录未包含这段前情，可从本章开头重走。"}
+			var step: Dictionary = cursor.advance(page.revision)
+			if not step.ok: return step
+			read_index += 1
+		if cursor.current().type != "choice" or cursor.current().node != "covenant":
+			return {"ok":false, "message":"此处有待处理的剧情，可从本章开头重走。"}
 	return {"ok": true, "campaign": copy} if restored.ok else restored
 
 func scenario() -> Dictionary:

@@ -79,7 +79,8 @@ static func changes(battle: RefCounted, card: Dictionary, center: Vector2i, side
 			"refresh_move": friendly and can_refresh_move(card, unit), "refresh_attack": friendly and can_refresh_attack(card, unit)})
 	return results
 
-static func resolve(battle: RefCounted, card: Dictionary, center: Vector2i, side: int) -> void:
+static func resolve(battle: RefCounted, card: Dictionary, center: Vector2i, side: int, record_impacts: bool = false) -> Array[Vector2i]:
+	var impacts: Array[Vector2i] = []
 	for change: Dictionary in changes(battle, card, center, side):
 		var unit: Dictionary = battle.get_unit(change.unit_id)
 		if unit.hp <= 0: continue
@@ -89,9 +90,13 @@ static func resolve(battle: RefCounted, card: Dictionary, center: Vector2i, side
 		if not change.friendly:
 			# A hidden spell ward may keep a unit alive through a lethal preview.
 			if unit.hp > 0 and unit.kind != "commander" and card.get("root", false): unit.rooted_turns = maxi(2, int(unit.rooted_turns))
+			if record_impacts and (unit.hp < change.hp_before or unit.shield < change.shield_before or (change.root and unit.rooted_turns > 0)):
+				impacts.append(unit.pos)
 			continue
 		unit.hp = mini(int(unit.max_hp), int(unit.hp) + int(change.healing))
 		unit.shield = mini(5, int(unit.shield) + int(change.shield_delta))
 		if change.cleanse: unit.rooted_turns = 0
 		if change.refresh_move: unit.moved = false
 		if change.refresh_attack: unit.attacked = false
+		if record_impacts and card.target_side == "ally": impacts.append(unit.pos)
+	return impacts

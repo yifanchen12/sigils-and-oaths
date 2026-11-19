@@ -1,6 +1,6 @@
 # 《纹章与誓约》Steam 商店素材候选包
 
-当前 Windows 预览为 0.58.0-dev。界面和剧情为简体中文，以下中英文文案供商店语言版本使用。本目录保留高分辨率游戏画面、商店及库用图片和内容披露底稿。
+当前 Windows 预览为 0.59.0-dev。界面和剧情为简体中文，以下中英文文案供商店语言版本使用。本目录保留高分辨率游戏画面、商店及库用图片和内容披露底稿。
 
 ## 中文简介
 
@@ -49,6 +49,8 @@ Game interface and story text are in Simplified Chinese.
 第九至十二张记录断脊隘口、日陨遗城、古堡棋庭和星火箭命中的瞬间。第十三张记录双桥河谷第九轮在 I6 部署守桥老枪，接应 I5 的芦汊巡弓。第十四张截自日陨遗城，维洛施放烈焰裁决后的半秒。 [桥头实机](gameplay/13-frost-front.png) · [裁决命中](gameplay/14-river-signatures.png) · [0.57 实战演示](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.57.0-dev/SigilsAndOaths-0.57.0-dev-River-Signatures.mp4)
 
 ## 玩法预告候选
+
+0.59 的 19.5 秒有声短片从十三次真实行动中取景。古堡的纸灯升起后，卡牌下方会写明灯夜持续多久。「空锤待落」公开九格十字，敌方走完后才在命中的敌军处落锤。第十九张画面记录完成战役后可翻阅的主线抉择与结局。 [实机短片](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.59.0-dev/SigilsAndOaths-0.59.0-dev-Weather-and-Orders.mp4) · [灯夜](gameplay/17-lantern-weather.png) · [军令生效](gameplay/18-hammer-order.png) · [章节记录](gameplay/19-chapter-chronicle.png)
 
 0.58 的第十五张截图记录手牌「坚冰锁链」在碧潮港湾 H8 结算，第十六张记录暗渠第 22 轮结束时的据点归属。10.5 秒实机短片包含五次兵种主动技能和两次手牌施法。 [冰缚实机](gameplay/15-field-frost.png) · [战局复盘](gameplay/16-channel-review.png) · [有声演示](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.58.0-dev/SigilsAndOaths-0.58.0-dev-Field-Arts.mp4)
 

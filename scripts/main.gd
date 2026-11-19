@@ -66,6 +66,7 @@ var replay_view: Control
 var armory_view: Control
 var replay_confirmation: ConfirmationDialog
 var pending_replay_chapter: String = ""
+var pending_replay_covenant := false
 var campaign_confirmation: ConfirmationDialog
 var quit_confirmation: ConfirmationDialog
 var exiting: bool = false
@@ -215,6 +216,7 @@ func _ready() -> void:
 	replay_view.theme = theme
 	add_child(replay_view)
 	replay_view.start_requested.connect(_request_replay_branch)
+	replay_view.covenant_requested.connect(_request_replay_branch.bind("chapter_18",true))
 	replay_view.continue_requested.connect(_continue_replay_branch)
 	replay_view.close_requested.connect(_close_chapter_replay)
 	armory_view = ArmoryView.new()
@@ -245,6 +247,7 @@ func _ready() -> void:
 	replay_confirmation.confirmed.connect(_confirm_replay_branch)
 	replay_confirmation.canceled.connect(func() -> void:
 		pending_replay_chapter = ""
+		pending_replay_covenant = false
 		replay_view.start_button.grab_focus())
 	add_child(replay_confirmation)
 	quit_confirmation = ConfirmationDialog.new()
@@ -263,6 +266,7 @@ func _ready() -> void:
 	session_rng.randomize()
 	board.cell_clicked.connect(_on_cell_clicked)
 	board.cell_hovered.connect(_on_cell_hovered)
+	board.trap_contact.connect(audio.play_trap_contact)
 	board.view_changed.connect(func(value: float) -> void: %ZoomValue.text = "%d%%" % roundi(value * 100))
 	%ZoomOut.pressed.connect(func() -> void: board.zoom_at(board.size / 2, 1.0 / 1.18))
 	%ZoomIn.pressed.connect(func() -> void: board.zoom_at(board.size / 2, 1.18))
@@ -390,6 +394,7 @@ func _apply_settings() -> void:
 		if values.fullscreen: get_window().mode = Window.MODE_FULLSCREEN
 		elif get_window().mode in [Window.MODE_FULLSCREEN, Window.MODE_EXCLUSIVE_FULLSCREEN]: get_window().mode = Window.MODE_WINDOWED
 	story_view.set_reading_size(values.reading_size)
+	replay_view.set_reading_size(values.reading_size)
 	board.set_reduced_motion(values.reduce_motion)
 	audio.set_levels(values.music, values.effects)
 
@@ -532,25 +537,30 @@ func _close_chapter_replay() -> void:
 	council.replay_button.grab_focus()
 	_refresh()
 
-func _request_replay_branch(chapter_id: String) -> void:
+func _request_replay_branch(chapter_id: String, at_covenant: bool = false) -> void:
 	if not replay_view.visible or chapter_id != replay_view.selected_chapter(): return
+	if at_covenant and not replay_view.covenant_button.is_visible_in_tree(): return
 	var path: String = CampaignSession.replay_path(_main_campaign_session().store.path)
 	if _has_campaign_file(path):
 		pending_replay_chapter = chapter_id
-		replay_confirmation.dialog_text = "将从「%s」开头另开分支，并替换当前的分支进度。" % replay_view.selected_title.text
+		pending_replay_covenant = at_covenant
+		var origin: String = "终章的誓约抉择" if at_covenant else "「%s」开头" % replay_view.selected_title.text
+		replay_confirmation.dialog_text = "将从%s另开分支，并替换当前的分支进度。" % origin
 		replay_confirmation.popup_centered()
-	else: _start_replay_branch(chapter_id)
+	else: _start_replay_branch(chapter_id,at_covenant)
 
 func _confirm_replay_branch() -> void:
 	var chapter_id: String = pending_replay_chapter
+	var at_covenant := pending_replay_covenant
 	pending_replay_chapter = ""
-	if replay_view.visible and not chapter_id.is_empty(): _start_replay_branch(chapter_id)
+	pending_replay_covenant = false
+	if replay_view.visible and not chapter_id.is_empty(): _start_replay_branch(chapter_id,at_covenant)
 
-func _start_replay_branch(chapter_id: String) -> void:
+func _start_replay_branch(chapter_id: String, at_covenant: bool = false) -> void:
 	if not _flush_campaign_for_switch(): return
 	var primary: RefCounted = _main_campaign_session()
 	var branch := CampaignSession.new(CampaignSession.replay_path(primary.store.path))
-	var result: Dictionary = branch.start_replay_from(primary, chapter_id)
+	var result: Dictionary = branch.start_replay_from(primary, chapter_id,at_covenant)
 	if not result.ok:
 		replay_view.set_status(result.message, true)
 		return
@@ -1252,6 +1262,8 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 			visual_action["cast_title"] = definition.name
 			visual_action["cast_art"] = definition.id
 			visual_action["cast_cost"] = int(definition.cost)
+			if visual_action.spell_effect in ["weather","clear_weather"]:
+				visual_action["previous_weather"] = battle.weather
 			if visual_action.spell_effect in ["formation", "choice"] and battle.inside(action.target):
 				var area: Dictionary = battle.choice_mode(definition, action.target, side) if visual_action.spell_effect == "choice" else definition
 				visual_action["affected_cells"] = battle.Formation.footprint(battle, action.target, int(area.get("radius", 0)), str(area.get("shape", "")))
@@ -1267,6 +1279,8 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 			elif visual_action.spell_effect == "roadwork":
 				visual_action["affected_cells"] = battle.roadwork_cells(action.target, definition)
 				visual_action.effect_kind = "roadwork"
+			elif visual_action.spell_effect == "scheduled":
+				visual_action["affected_cells"] = battle.Formation.footprint(battle,action.target,int(definition.radius),str(definition.get("shape","")))
 			elif visual_action.spell_effect in ["verdict", "commission", "recall"]:
 				visual_action.effect_kind = "shield" if visual_action.spell_effect == "recall" else "damage"
 			elif visual_action.spell_effect == "pullback":

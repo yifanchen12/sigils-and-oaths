@@ -29,7 +29,7 @@ static func resolve(battle: RefCounted) -> bool:
 	battle.players[order.side].discard.append(order.card)
 	battle._record("「%s」在 %s 生效。" % [card.name, battle.cell_name(order.pos)])
 	battle.last_order_event = {"card_id": card.id, "name": card.name, "pos": order.pos, "cells": footprint(battle, order), "support": card.target_side == "ally"}
-	battle.Formation.resolve(battle, card, order.pos, order.side)
+	battle.last_order_event["impacts"] = battle.Formation.resolve(battle, card, order.pos, order.side, true)
 	return true
 
 static func incoming(battle: RefCounted, unit: Dictionary) -> int:

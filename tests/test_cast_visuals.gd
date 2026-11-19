@@ -132,6 +132,100 @@ func exercise_accessibility() -> void:
 	var card := Fixture.give(game.battle,"frostbind")
 	check(not game._apply_with_feedback({"type":"play","card_uid":card.uid,"target":source.pos}).ok and game.board.effects.is_empty(),"an illegal target produces no cast cue")
 
+func exercise_weather_and_orders() -> void:
+	var skies := {"rain":"rain","fog":"fog","snow":"snow","sun":"sun","open_wind":"tailwind","night_muster":"lanterns"}
+	for id: String in skies:
+		await stage()
+		game.board.set_reduced_motion(id in ["fog","sun"])
+		game.audio.stopping = false
+		game.audio.set_levels(0,100)
+		check(play(id,Vector2i(-1,-1)).ok,"weather accepted from the hand: "+id)
+		var effect := effect_of("weather_cast")
+		check(effect.get("weather") == skies[id] and effect.previous_weather == "clear" and CastArt.SKY_CELS.has(skies[id]),
+				"every weather selects its actual painted cel: "+id)
+		if DisplayServer.get_name() != "headless":
+			check(game.audio.sfx.get_children().any(func(p: AudioStreamPlayer) -> bool:
+				return p.playing and p.stream == game.audio.CUES[game.audio.SKY_CUES[skies[id]]]),"audible weather cue: "+id)
+		game.board.reset_effects()
+		check(play("clear_skies",Vector2i(-1,-1)).ok,"actual weather can be dispelled: "+id)
+		effect = effect_of("weather_cast")
+		check(effect.weather == "clear" and effect.previous_weather == skies[id] and game.battle.weather_remaining == 0,
+				"clearing disperses precisely the previous weather: "+id)
+		if DisplayServer.get_name() != "headless":
+			check(game.audio.sfx.get_children().any(func(p: AudioStreamPlayer) -> bool:
+				return p.playing and p.stream == game.audio.CUES.clearair),"clearing has a distinct sound")
+		game.audio.stop_playback()
+		await create_timer(0.10,true,false,true).timeout
+	game.board.set_reduced_motion(false)
+	await stage()
+	var ally := troop("sword",game.battle.commander(0).pos+Vector2i.UP)
+	var far := troop("archer",Vector2i(5,3))
+	ally.hp -= 2; far.hp -= 2
+	check(play("lamplight_shift",Vector2i(-1,-1)).ok and effect_of("weather_cast").recipients == [ally.pos],
+			"a global lantern front shows a healing ring only on the wounded local recipient")
+	await stage()
+	troop("mage",Vector2i(5,5))
+	var aim := Vector2i(5,4)
+	var job: Array = game.battle.roadwork_cells(aim,game.battle.definition("dike_flagstones"))
+	check(not job.is_empty() and play("dike_flagstones",aim).ok,"build the defensive works from hand")
+	check(effect_of("works_cast").cells == job and effect_of("weather_cast").is_empty() and game.battle.weather == "clear",
+			"an environment with earthworks marks exactly the changed cells")
+	await stage()
+	troop("mage",Vector2i(5,5))
+	var victim := troop("sword",aim,1)
+	var shielded := troop("spear",aim+Vector2i.RIGHT,1)
+	var friend := troop("archer",aim+Vector2i.LEFT)
+	shielded.shield = 5
+	victim.hp = 1
+	check(play("nova",aim).ok, "use a genuine area fire spell on a mixed formation")
+	var burst := effect_of("fire_area")
+	check(burst.struck.has(aim) and burst.struck.has(shielded.pos) and not burst.struck.has(friend.pos) and burst.struck.size() == 2,
+			"impact cels include a defeated enemy and a shield-only hit but exclude friendly and empty tiles")
+	for reduced: bool in [false,true]:
+		await stage()
+		game.board.set_reduced_motion(reduced)
+		troop("mage",Vector2i(5,5))
+		victim = troop("spear",aim,1)
+		var old_hp: int = victim.hp
+		check(play("hollow_hammer",aim).ok and victim.hp == old_hp and effect_of("fire_area").is_empty(), "issuing a hammer order causes no immediate impact")
+		var mark := effect_of("signal_cast")
+		check(mark.cells == game.battle.Orders.footprint(game.battle,game.battle.pending_orders[0]) and effect_of("weather_cast").is_empty(),
+				"a public order shows its actual nine-tile cross on the selected grid")
+		game.board.reset_effects()
+		check(game._apply_with_feedback({"type":"end_turn"}).ok and effect_of("fire_area").is_empty(),"order stays dormant through the opposing turn")
+		check(game._apply_with_feedback({"type":"end_turn"}).ok and not game.battle.last_order_event.is_empty(),"order resolves when the issuer next acts")
+		burst = effect_of("fire_area")
+		check(burst.cell == aim and burst.cells == mark.cells and burst.struck == [aim] and burst.martial and burst.portrait == "hollow_hammer",
+				"ordinary and reduced motion reveal the actual order, footprint and damage at resolution")
+	game.board.set_reduced_motion(false)
+
+func exercise_passing_trap() -> void:
+	await stage()
+	var start := Vector2i(4,4)
+	var trapped := start+Vector2i.RIGHT
+	var finish := trapped+Vector2i.RIGHT
+	for point: Vector2i in [start,trapped,finish]: game.battle.terrain[point] = "plain"
+	troop("mage",trapped+Vector2i.DOWN)
+	var rider := troop("cavalry",start,1)
+	check(play("severed_pullcord",trapped).ok,"place the hand trap that lets a rider pass")
+	game.board.reset_effects()
+	game.battle.end_turn()
+	check(game._apply_with_feedback({"type":"move","unit_id":rider.id,"target":finish}).ok and rider.pos == finish,
+			"the mounted unit continues after crossing the trap")
+	var reveal := effect_of("snare_cast")
+	check(reveal.cell == trapped and is_equal_approx(float(reveal.age),-game.board.action_duration*0.5),
+			"the trap springs halfway through this actual three-cell path")
+	var contacts := [0]
+	var on_contact := func() -> void: contacts[0] += 1
+	game.board.trap_contact.connect(on_contact)
+	game.board._process(-reveal.age-0.002)
+	check(contacts[0] == 0 and reveal.age < 0,"no contact sound occurs before the rider reaches the snare")
+	game.board._process(0.004)
+	check(contacts[0] == 1,"the snap is sounded on the first presentation tick after crossing")
+	game.board._process(game.board.presentation_remaining+0.01)
+	check(contacts[0] == 1 and game.board.effects.is_empty(),"the full reaction and message expire without repeating the snap")
+	game.board.trap_contact.disconnect(on_contact)
+
 func exercise_contact() -> void:
 	await stage()
 	troop("mage",Vector2i(5,5))
@@ -214,12 +308,16 @@ func run() -> void:
 	await exercise_accessibility()
 	await exercise_contact()
 	await check_field_audio()
+	await exercise_weather_and_orders()
+	await exercise_passing_trap()
 	var atlas: Image = CastArt.ATLAS.get_image()
 	check(atlas != null and atlas.get_size() == Vector2i(1536,1024) and atlas.get_pixel(1,1).a < 0.01,"packaged atlas retains clear margins")
 	atlas = CastArt.SIGNATURE_ATLAS.get_image()
 	check(atlas != null and atlas.get_size() == Vector2i(1536,1024) and atlas.get_pixel(1,1).a < 0.01, "the six new emblems keep their transparency")
 	atlas = CastArt.FIELD_ATLAS.get_image()
 	check(atlas.get_size() == Vector2i(1536,1024) and atlas.get_pixel(512,512).a < 0.02, "painted field strokes retain transparent gutters")
+	atlas = CastArt.SKY_ATLAS.get_image()
+	check(atlas.get_size() == Vector2i(1536,1024) and atlas.get_pixel(512,512).a < 0.025 and CastArt.SKY_CELS.values().size() == 6,"weather atlas is imported with transparent gutters")
 	print("CAST ART UI: %d CHECKS | FAILURES: %d" % [checks,failures])
 	game.audio.stop_playback()
 	await create_timer(0.15,true,false,true).timeout

@@ -7,6 +7,7 @@ const AI = preload("res://scripts/opponent.gd")
 const Campaign = preload("res://scripts/campaign_session.gd")
 const CastArt = preload("res://scripts/cast_art.gd")
 const Preferences = preload("res://scripts/settings_store.gd")
+const Snapshot = preload("res://scripts/battle_snapshot.gd")
 const SIZE := Vector2i(1920, 1080)
 const DIRECTORY = "res://docs/release/steam/gameplay"
 const TEST_SAVE = "user://store-capture-v042.tmp.json"
@@ -15,6 +16,7 @@ var target_view: SubViewport
 var game: Control
 var failures: int = 0
 var legal_prefix: int = 0
+var filming_frame := 0
 
 func _initialize() -> void:
 	call_deferred("run")
@@ -165,11 +167,15 @@ func capture_relay() -> void:
 	await capture("05-three-lamps-mission")
 
 func cleanup() -> void:
-	for suffix: String in ["", ".bak", ".tmp"]:
-		if FileAccess.file_exists(TEST_SAVE + suffix): DirAccess.remove_absolute(TEST_SAVE + suffix)
+	for path: String in [TEST_SAVE,Campaign.replay_path(TEST_SAVE)]:
+		for suffix: String in ["", ".bak", ".tmp"]:
+			if FileAccess.file_exists(path+suffix): DirAccess.remove_absolute(path+suffix)
 
 func film_position(map_id: String, deck: String, id: String) -> Dictionary:
 	if id in ["trigger_step", "trigger_counter"]: return await trap_film_position(map_id, deck, id == "trigger_step")
+	if id == "hammer_due":
+		var placement := await film_position(map_id,deck,"hollow_hammer")
+		return placement.get("followup",{})
 	for seed_value: int in [56037, 56377, 56102]:
 		var hero: String = {"firestrike":"pyromancer", "renewal":"grove"}.get(id, "warden")
 		var battle := Model.new(seed_value,map_id,hero,"warden",deck,"balanced")
@@ -179,6 +185,13 @@ func film_position(map_id: String, deck: String, id: String) -> Dictionary:
 				for action: Dictionary in battle.get_legal_actions(0):
 					var matched: bool = action.type == "play" and not CastArt.SKILLS.has(id) and battle.hand_card(0,action.card_uid).card_id == id
 					if matched and id == "glass_treaty": matched = battle.unit_at(action.target).get("side",-1) == 1
+					if matched and id == "nova":
+						matched = battle.units.filter(func(enemy: Dictionary) -> bool: return enemy.side == 1 and battle.distance(enemy.pos,action.target) <= 1).size() >= 2
+					if matched and id == "hollow_hammer":
+						if battle.unit_at(action.target).get("side",-1) != 1: continue
+						var next := hammer_reply(battle,action,step)
+						if not next.is_empty(): return {"battle":battle,"action":action,"prefix":step,"followup":next}
+						continue
 					if id in ["blessing", "firestrike", "renewal"]:
 						matched = action.type == "hero"
 						if matched and id == "blessing": matched = action.target != battle.commander(0).pos
@@ -196,6 +209,19 @@ func film_position(map_id: String, deck: String, id: String) -> Dictionary:
 					if matched: return {"battle":battle,"action":action,"prefix":step}
 			if not require(battle.apply_action(AI.choose(battle)).ok, "legal film prefix"): return {}
 			if step % 24 == 0: await process_frame
+	return {}
+
+func hammer_reply(battle: Battle, cast: Dictionary, prefix: int) -> Dictionary:
+	var replay: Battle = Snapshot.restore(Snapshot.capture(battle)).battle
+	if not require(replay.apply_action(cast).ok and replay.end_turn().ok,"end the turn after marking the actual hammer"): return {}
+	for steps: int in range(65):
+		if replay.winner != -1: return {}
+		var next := AI.choose(replay)
+		var before: Dictionary = Snapshot.capture(replay) if next.type == "end_turn" else {}
+		if not require(replay.apply_action(next).ok,"the opponent plays its normal reply to the field order"): return {}
+		if not before.is_empty():
+			if replay.last_order_event.get("impacts",[]).is_empty() or replay.winner != -1: return {}
+			return {"battle":Snapshot.restore(before).battle,"action":next,"prefix":prefix+2+steps,"order_cell":cast.target}
 	return {}
 
 func trap_film_position(map_id: String, deck: String, step_trap: bool) -> Dictionary:
@@ -230,6 +256,17 @@ func capture_cast_frames(directory: String, series: String) -> void:
 		shots = [["ridgepass","balanced","sword"], ["rivergate","assault","cavalry"], ["sunspire","balanced","archer"],
 			["citadel","balanced","mage"], ["greenwood","balanced","healer"], ["harbor","glassroad_edict","frostbind"],
 			["ridgepass","balanced","bolt"]]
+	elif series == "--sky-frames":
+		shots = [["sunspire","balanced","nova"], ["harbor","balanced","rain"], ["ridgepass","balanced","snow"],
+			["sunspire","balanced","sun"], ["rivergate","balanced","fog"], ["greenwood","reed_legion","open_wind"],
+			["citadel","lantern_convoy","night_muster"], ["rivergate","frost_engine","clear_skies"],
+			["harbor","levee_relief","dike_flagstones"], ["citadel","glassroad_edict","hollow_hammer"],
+			["citadel","glassroad_edict","hammer_due"], ["rivergate","reed_legion","trigger_step"], ["sunspire","balanced","firestrike"]]
+	var record_sound := series in ["--field-frames","--sky-frames"]
+	var soundtrack: Array[Dictionary] = []
+	if record_sound:
+		game.audio.cue_started.connect(func(cue: String) -> void:
+			soundtrack.append({"sound":game.audio.CUES[cue].resource_path.get_file(), "frame":filming_frame}))
 	var frame_index := 0
 	var recorded: Array[Dictionary] = []
 	for shot: Array in shots:
@@ -240,14 +277,16 @@ func capture_cast_frames(directory: String, series: String) -> void:
 		mount_battle(battle)
 		game.set_process(false)
 		game.board.set_process(false)
-		if series == "--field-frames":
+		if record_sound:
 			game.audio.stopping = false
 			game.audio.set_levels(0,100)
 		var global_card: bool = action.type == "play" and not battle.inside(action.target)
 		var untargeted_hero: bool = action.type == "hero" and not battle.inside(action.target)
 		var self_skill: bool = action.type == "unit_skill" and battle.get_unit(action.unit_id).kind in ["sword","spear"]
-		var focus: Vector2i = battle.commander(0).pos if global_card or untargeted_hero else action.target
-		if global_card: game._inspect_card(action.card_uid)
+		var due: bool = position.has("order_cell")
+		var focus: Vector2i = position.order_cell if due else (battle.commander(0).pos if global_card or untargeted_hero else action.target)
+		if due: pass
+		elif global_card: game._inspect_card(action.card_uid)
 		elif action.type == "play": game._select_card(action.card_uid)
 		elif action.type == "hero":
 			if not untargeted_hero: game._select_hero_skill()
@@ -262,8 +301,12 @@ func capture_cast_frames(directory: String, series: String) -> void:
 			game.board.hover_cell = focus
 			game._on_cell_hovered(focus)
 		for f: int in range(36):
+			filming_frame = frame_index
 			if f == 8:
-				if global_card: game._select_card(action.card_uid)
+				if due:
+					if not require(game._apply_with_feedback(action).ok and battle.last_order_event.get("card_id") == "hollow_hammer","turn change resolves the same player's marked order"): return
+					game._refresh()
+				elif global_card: game._select_card(action.card_uid)
 				elif untargeted_hero: game._select_hero_skill()
 				elif self_skill: game._select_unit_skill()
 				else: game._on_cell_clicked(action.target,MOUSE_BUTTON_LEFT)
@@ -271,10 +314,16 @@ func capture_cast_frames(directory: String, series: String) -> void:
 				if series == "--field-frames":
 					if not require(game.board.effects.any(func(effect: Dictionary) -> bool:
 						return effect.get("stroke",-1) >= 0 and (effect.get("rider",-1) == action.unit_id if action.type == "unit_skill" else effect.get("cost",-1) >= 0)), "the filmed action actually displays its declared stroke"): return
+				if record_sound:
 					var sounds: Array = game.audio.sfx.get_children().filter(func(node: Node) -> bool: return node.playing)
 					if not require(not sounds.is_empty(),"native audio starts at the filmed input"): return
+					var event: Dictionary = {}
+					for cue: Dictionary in game.board.effects:
+						if CastArt.STYLES.has(cue.kind): event = cue
+					if not require(not event.is_empty(),"the recorded input generates a board effect"): return
 					recorded.append({"id":shot[2], "type":action.type, "map":shot[0], "seed":battle.match_seed,
-						"preceding_actions":position.prefix, "turn":battle.turn, "target":battle.cell_name(action.target),
+						"preceding_actions":position.prefix, "turn":battle.turn, "target":battle.cell_name(event.cell),
+						"effect":event.kind,"weather":battle.weather,"footprint":event.cells.size(),"impacts":event.get("struck",[]).size(),
 						"sound":sounds.back().stream.resource_path.get_file(), "sound_frame":frame_index})
 				if position.has("revealed_cell") and not require(battle.last_trap_events.any(func(event: Dictionary) -> bool:
 					return event.triggered and event.cell == position.revealed_cell), "live UI reveals the replayed trap"): return
@@ -294,11 +343,11 @@ func capture_cast_frames(directory: String, series: String) -> void:
 			frame_index += 1
 		game.board.set_process(true)
 		print("CAST FILM ", shot[2], " action ",action.type, " map ", shot[0], " seed ", battle.match_seed, " preceding legal actions ",
-			position.prefix, " turn ", battle.turn, " target ", action.target)
-	if series == "--field-frames":
+			position.prefix, " turn ", battle.turn, " target ", focus)
+	if record_sound:
 		var manifest := FileAccess.open(directory.path_join("shots.json"), FileAccess.WRITE)
 		if not require(manifest != null, "open reel metadata"): return
-		manifest.store_string(JSON.stringify({"fps":24,"frames":frame_index,"shots":recorded},"\t"))
+		manifest.store_string(JSON.stringify({"fps":24,"frames":frame_index,"shots":recorded,"cues":soundtrack,"full_board":series == "--sky-frames"},"\t"))
 		manifest.close()
 
 func capture_frost_front(output: String) -> void:
@@ -343,6 +392,42 @@ func capture_field(source: String, output: String) -> void:
 	if not require(not view.field_view.previous and view.field_view.board.battle.turn == 1, "switching shows the fresh starting position"): return
 	await capture("briefing-field",output.path_join("briefing-field.png"))
 
+func capture_chronicle(source: String, output: String) -> void:
+	if not require(DirAccess.copy_absolute(source,TEST_SAVE) == OK,"copy a reached ending to the isolated main slot"): return
+	var original: String = FileAccess.get_sha256(TEST_SAVE)
+	game._continue_campaign()
+	var last: Dictionary = game.campaign_session.current()
+	if not require(last.type == "end" and last.has("ending_title"),"the archived save opens at a genuine ending"): return
+	game.story_view.actions.get_child(0).pressed.emit()
+	var view: Control = game.replay_view
+	if not require(view.is_visible_in_tree() and view.selected_chapter() == "chapter_18" and view.covenant_button.visible
+			and view.detail.get_parsed_text().contains(last.text), "last chapter shows this run's own ending"): return
+	await capture("chronicle",output.path_join("chronicle.png"))
+	var list: ItemList = view.chapters
+	var selected: int = list.get_selected_items()[0]
+	var scroll := list.get_v_scroll_bar()
+	var row := list.get_item_rect(selected)
+	if not require(row.position.y >= scroll.value-16 and row.end.y <= scroll.value+scroll.page+16,
+			"selected chapter must be visible in the list; current=%s row=%s scroll=%s page=%s" % [selected,row,scroll.value,scroll.page]): return
+	view.covenant_button.pressed.emit()
+	if game.replay_confirmation.visible: game.replay_confirmation.confirmed.emit(); game.replay_confirmation.hide()
+	var session: RefCounted = game.campaign_session
+	var page: Dictionary = session.current()
+	if not require(page.node == "covenant" and page.options.size() == 3 and session.store.path != TEST_SAVE, "the shortcut opens an unanswered covenant in the separate branch"): return
+	await capture("covenant",output.path_join("covenant.png"))
+	var picked: int = 1 if last.node != "split_end" else 2
+	var choice: String = page.options[picked].id
+	game.story_view.actions.get_child(picked).pressed.emit()
+	var read := 0
+	while session.current().type == "dialogue" and read < 160:
+		game.story_view.actions.get_child(0).pressed.emit()
+		read += 1
+	var earned: Dictionary = session.current()
+	if not require(earned.node == choice+"_end" and earned.node != last.node,"follow the changed covenant to a different actual ending"): return
+	var reopened := Campaign.new(session.store.path)
+	if not require(reopened.load_campaign().ok and reopened.current().node == earned.node and FileAccess.get_sha256(TEST_SAVE) == original,"reopen the separate ending with the primary file intact"): return
+	print("CHRONICLE ", last.node, " -> ", earned.node, " | read ", read," | native route reloaded")
+
 func run() -> void:
 	if DisplayServer.get_name() == "headless":
 		push_error("A native renderer is required for gameplay screenshots")
@@ -350,7 +435,7 @@ func run() -> void:
 		return
 	cleanup()
 	var args := OS.get_cmdline_user_args()
-	if args.is_empty() or args[0] not in ["--frost-front","--signature-frames","--field-frames","--campaign-field"]:
+	if args.is_empty() or args[0] not in ["--frost-front","--signature-frames","--field-frames","--sky-frames","--campaign-field","--chronicle"]:
 		DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(DIRECTORY))
 	target_view = SubViewport.new()
 	target_view.size = SIZE
@@ -366,10 +451,12 @@ func run() -> void:
 	game.audio.stop_playback()
 	AudioServer.set_bus_mute(0, true)
 	await process_frame
-	if args.size() == 2 and args[0] in ["--cast-frames","--signature-frames","--field-frames"]:
+	if args.size() == 2 and args[0] in ["--cast-frames","--signature-frames","--field-frames","--sky-frames"]:
 		await capture_cast_frames(args[1], args[0])
 	elif args.size() == 3 and args[0] == "--campaign-field":
 		await capture_field(args[1],args[2])
+	elif args.size() == 3 and args[0] == "--chronicle":
+		await capture_chronicle(args[1],args[2])
 	elif args.has("--frost-front"):
 		await capture_frost_front(args[1] if args.size() == 2 else "")
 	elif args.has("--highlands"):

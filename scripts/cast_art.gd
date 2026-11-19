@@ -4,6 +4,10 @@ extends RefCounted
 const ATLAS: Texture2D = preload("res://assets/art/actions/cast-seals-v1.png")
 const SIGNATURE_ATLAS: Texture2D = preload("res://assets/art/actions/river-signatures-v1.png")
 const FIELD_ATLAS: Texture2D = preload("res://assets/art/actions/field-strokes-v1.png")
+const SKY_ATLAS: Texture2D = preload("res://assets/art/actions/weather-cels-v1.png")
+const SKY_CELS := {"rain":0, "snow":1, "sun":2, "fog":3, "tailwind":4, "lanterns":5}
+const SKY_LIGHT := {"rain":Color("244d73"), "snow":Color("b3d5e5"), "sun":Color("efb65c"),
+	"fog":Color("b1abc7"), "tailwind":Color("71c8ad"), "lanterns":Color("283656")}
 enum Signature { BULWARK, COMET, WILLOW, MOORING, COUNTER, GUARD }
 enum Stroke { SHIELD, RIDE, ARROW, FIRE, LEAVES, ICE }
 const TROOP_STROKES := {"sword":Stroke.SHIELD, "cavalry":Stroke.RIDE, "archer":Stroke.ARROW, "mage":Stroke.FIRE, "healer":Stroke.LEAVES}
@@ -15,7 +19,8 @@ const STYLES := {
 	"snare_cast": [3, Color("c6a0ed")], "frost_cast": [4, Color("8fcfff")],
 	"arrival_cast": [5, Color("ffcf7b")], "order_cast": [5, Color("f1c97d")],
 	"mobility_cast": [5, Color("8de0d9")], "shot_cast": [5, Color("ffdb8c")],
-	"weather_cast": [5, Color("bfdddd")]}
+	"weather_cast": [5, Color("bfdddd")], "works_cast": [5, Color("dec38f")],
+	"signal_cast": [5, Color("efc373")]}
 const SKILLS := {"sword":"ward_cast", "spear":"ward_cast", "cavalry":"mobility_cast",
 	"archer":"shot_cast", "mage":"fire_cast", "healer":"heal_cast"}
 const WEATHER := {"rain": Color("8cbfee"), "snow": Color("daefff"), "sun": Color("ffd177"),
@@ -26,7 +31,6 @@ static func style_for(action: Dictionary) -> String:
 	if action.type == "unit_skill": return SKILLS.get(action.get("unit_kind", ""), "")
 	if action.type not in ["play","hero"]: return ""
 	if action.get("card_type") == "trap": return "snare_cast"
-	if action.get("card_type") == "environment": return "weather_cast"
 	match str(action.get("effect_kind", "")):
 		"damage", "firestrike", "shatter_bolt": return "fire_cast"
 		"area": return "fire_area"
@@ -35,6 +39,8 @@ static func style_for(action: Dictionary) -> String:
 		"root": return "frost_cast"
 		"muster", "redeploy": return "arrival_cast"
 		"weather", "clear_weather": return "weather_cast"
+		"terrain", "roadwork": return "works_cast"
+		"scheduled": return "signal_cast"
 		"march", "repulse", "exchange", "onslaught": return "mobility_cast"
 		"reveal_traps": return "snare_cast"
 	if action.get("card_type") == "unit": return "arrival_cast"
@@ -76,12 +82,21 @@ static func draw_cast(board: Control, effect: Dictionary, tile: float) -> void:
 	var signature: int = effect.get("signature", -1)
 	var stroke: int = effect.get("stroke", -1)
 	var t: float = clampf(effect.age / effect.duration,0,1)
+	if style == "weather_cast":
+		_draw_weather_cast(board, effect, tile, t)
+		return
 	if board.reduced_motion:
 		for cell: Vector2i in effect.cells:
 			board.draw_rect(Rect2(board.cell_center(cell)-Vector2.ONE*tile*0.45, Vector2.ONE*tile*0.90), Color(color,0.55), false,1.5)
 		var badge := at + Vector2(tile*0.24,-tile*0.25)
 		if stroke >= 0: stamp(board,stroke,badge,Vector2.ONE*tile*0.82,1.0,FIELD_ATLAS)
 		else: stamp(board, signature if signature >= 0 else frame, badge, Vector2.ONE*tile*0.60,0.9, SIGNATURE_ATLAS if signature >= 0 else ATLAS)
+		if style == "fire_area":
+			for cell: Vector2i in effect.get("struck", []):
+				star(board,board.cell_center(cell)-Vector2(0,tile*0.22),tile*0.13,Color("fff0ba"))
+		return
+	if effect.get("sprung",false):
+		_draw_signature(board,effect,signature,at,tile,t)
 		return
 	if stroke == Stroke.RIDE:
 		_draw_ride(board, effect, tile, t)
@@ -113,38 +128,31 @@ static func draw_cast(board: Control, effect: Dictionary, tile: float) -> void:
 	if stroke >= 0:
 		_draw_field_hit(board, effect, stroke, at, tile, hit)
 		return
+	if style == "fire_area":
+		_draw_volley(board,effect,tile,hit)
+		return
+	if style in ["signal_cast","works_cast"]:
+		_draw_ground_signal(board,effect,tile,hit)
+		return
 	var appear := smoothstep(0.0,0.14,hit)
 	var fade := 1.0-smoothstep(0.55,1.0,hit)
 	var strength := appear*fade
 	var extent := tile*(0.91 + 0.25*sin(minf(1,hit*2.8)*PI/2))
-	if style == "fire_area": extent *= 1.15
 	if style in ["mobility_cast","shot_cast"]: extent *= 0.7
-	if style == "weather_cast":
-		_weather(board, at, tile, hit, color, str(effect.get("weather", "")), strength)
-	else:
-		if style == "ward_cast" and effect.get("guard",false):
-			for cell: Vector2i in effect.cells:
-				if cell == effect.cell: continue
-				var ally: Vector2 = board.cell_center(cell)
-				board.draw_line(at, ally, Color(color,strength*0.72),maxf(1.7,tile*0.043),true)
-				stamp(board,frame,ally+Vector2(0,-tile*0.16),Vector2.ONE*tile*0.60,strength*0.76)
-		elif effect.cells.size() > 1:
-			for cell: Vector2i in effect.cells:
-				var center: Vector2 = board.cell_center(cell)
-				var rect := Rect2(center-Vector2.ONE*tile*0.46, Vector2.ONE*tile*0.92)
-				board.draw_rect(rect,Color(color,strength*0.14))
-				board.draw_rect(rect,Color(color,strength*0.65),false,1.6)
-				if cell != effect.cell:
-					var distance: float = Vector2(cell-effect.cell).length()
-					var wave := clampf((hit-distance*0.075)*2.0,0,1)
-					if wave > 0 and wave < 1 and style in ["fire_area","heal_cast","frost_cast","arrival_cast"]:
-						var icon := 5 if style == "fire_area" and effect.get("martial",false) else frame
-						stamp(board,icon,center-Vector2(0,tile*(0.05+wave*0.10)),Vector2.ONE*tile*(0.42+wave*0.26),sin(wave*PI)*0.72)
-					else: star(board,center,tile*(0.18-hit*0.08),Color(color,strength*0.81))
-		var lift: float = tile*(0.08+hit*0.14) if style == "heal_cast" else tile*0.14
-		var tint_frame := 5 if style == "fire_area" and effect.get("martial",false) else frame
-		stamp(board,tint_frame,foot-Vector2(0,lift+extent*0.14),
-			Vector2(extent*(0.72+appear*0.28),extent*(0.76+appear*0.24)),strength*0.94)
+	if effect.cells.size() > 1:
+		for cell: Vector2i in effect.cells:
+			var center: Vector2 = board.cell_center(cell)
+			var rect := Rect2(center-Vector2.ONE*tile*0.46, Vector2.ONE*tile*0.92)
+			board.draw_rect(rect,Color(color,strength*0.14))
+			board.draw_rect(rect,Color(color,strength*0.65),false,1.6)
+			if cell != effect.cell:
+				var wave := clampf((hit-Vector2(cell-effect.cell).length()*0.075)*2.0,0,1)
+				if wave > 0 and wave < 1 and style in ["heal_cast","frost_cast","arrival_cast"]:
+					stamp(board,frame,center-Vector2(0,tile*(0.05+wave*0.10)),Vector2.ONE*tile*(0.42+wave*0.26),sin(wave*PI)*0.72)
+				else: star(board,center,tile*(0.18-hit*0.08),Color(color,strength*0.81))
+	var lift: float = tile*(0.08+hit*0.14) if style == "heal_cast" else tile*0.14
+	stamp(board,frame,foot-Vector2(0,lift+extent*0.14),
+		Vector2(extent*(0.72+appear*0.28),extent*(0.76+appear*0.24)),strength*0.94)
 	var spread := (0.21 + 0.29*hit)*tile
 	for i: int in range(5):
 		var direction := Vector2.from_angle(i*TAU/5-0.71)
@@ -267,19 +275,147 @@ static func _draw_signature(board: Control, effect: Dictionary, signature: int, 
 				star(board, at+direction*tile*(0.43+ray*0.35), tile*0.11*flare, Color(color,alpha))
 	stamp(board, signature, center, size, alpha, SIGNATURE_ATLAS)
 
-static func _weather(board: Control, at: Vector2, tile: float, hit: float, color: Color, name: String, alpha: float) -> void:
-	var grid: Rect2 = board.grid_rect()
-	var front := grid.position.x + (grid.size.x + tile)*hit
-	for i: int in range(14):
-		var y := grid.position.y + grid.size.y * (i+0.5)/14.0
-		var p := Vector2(front-tile*(0.4+0.38*sin(i*2.6)),y)
-		if not grid.grow(-tile*0.13).has_point(p): continue
-		match name:
-			"rain": board.draw_line(p,p+Vector2(-0.06,0.16)*tile,Color(color,0.83*alpha),2,true)
-			"snow", "sun", "lanterns": star(board,p,tile*0.068,Color(color,0.85*alpha))
-			_: board.draw_line(p,p+Vector2(0.21,-0.045)*tile,Color(color,0.58*alpha),2,true)
-	board.draw_arc(at,tile*(0.26+hit*0.34),0,TAU,40,Color(color,alpha*0.83),2,true)
-	star(board,at-Vector2(0,tile*0.25),tile*0.16,Color(color,alpha))
+static func _draw_weather_cast(board: Control, effect: Dictionary, tile: float, t: float) -> void:
+	var visible_field: Rect2 = board.grid_rect().intersection(Rect2(Vector2.ZERO,board.size))
+	var area := visible_field.grow(-tile*0.46)
+	if area.size.x < tile or area.size.y < tile: return
+	var clearing: bool = effect.weather == "clear"
+	var sky: String = effect.get("previous_weather","clear") if clearing else effect.weather
+	if not SKY_CELS.has(sky): return
+	var index: int = SKY_CELS[sky]
+	var ink: Color = WEATHER[sky]
+	var source: Vector2 = board.cell_center(effect.from)
+	var badge := (source-Vector2(0,tile*0.55)).clamp(area.position,area.end)
+	# The old weather dissolves on dispel. A clear sky never plays the blazing-sun buff.
+	if board.reduced_motion:
+		board.draw_rect(visible_field.grow(-3),Color(ink,0.80), false,2)
+		stamp(board,index,badge,Vector2.ONE*tile*0.84,0.96,SKY_ATLAS)
+		if clearing: board.draw_line(badge+Vector2(-0.31,0.31)*tile,badge+Vector2(0.31,-0.31)*tile,Color.WHITE,3,true)
+	else:
+		var alpha := smoothstep(0,0.13,t)*(1.0-smoothstep(0.76,1,t))
+		_weather_light(board,visible_field,sky,t,tile,alpha*(1.0-t if clearing else 1.0))
+		stamp(board,index,badge,Vector2.ONE*tile*(0.66+0.29*sin(t*PI)),alpha,SKY_ATLAS)
+		var count := 2 if sky == "sun" else (4 if sky in ["rain","fog"] else 7)
+		for i: int in range(count):
+			var lane := Vector2(fposmod(0.19+i*0.618,1), fposmod(0.13+i*0.382+i%3*0.17,1))
+			var wave := clampf((t-0.07-lane.x*0.27)/0.62,0,1)
+			if wave <= 0 or wave >= 1: continue
+			var pos: Vector2 = area.position + lane*area.size
+			var strength := sin(wave*PI)*alpha
+			var size := Vector2.ONE*tile*(0.53+0.12*(i%3))
+			var drift := Vector2.ZERO
+			match sky:
+				"rain": drift = Vector2(-0.43,0.85)*tile*wave
+				"snow": drift = Vector2(sin(i+wave*3)*0.24,wave*0.58)*tile
+				"fog":
+					size *= Vector2(2.45,1.25)
+					drift.x = tile*(wave-0.5)*1.65
+				"tailwind": drift = Vector2(wave*1.45,-0.19*sin(wave*PI))*tile
+				"lanterns": drift = Vector2(sin(i+wave*4)*0.13,-0.94*wave)*tile
+				"sun":
+					var end := pos+Vector2(-0.74,1.18)*tile
+					board.draw_colored_polygon(PackedVector2Array([pos,pos+Vector2.RIGHT*tile*0.09,end+Vector2.RIGHT*tile*0.32,end]),Color(ink,strength*0.24))
+					size *= 0.80
+			if clearing:
+				drift += (pos-area.get_center()).normalized()*tile*wave
+				strength *= 1.0-smoothstep(0.3,1.0,wave)
+			pos += drift
+			if visible_field.encloses(Rect2(pos-size/2,size)):
+				stamp(board,index,pos,size,strength*(0.60 if sky == "fog" else 0.86),SKY_ATLAS)
+	for cell: Vector2i in effect.get("recipients",[]):
+		var foot: Vector2 = board.cell_center(cell)+Vector2(0,tile*0.19)
+		var glow := 0.88 if board.reduced_motion else sin(t*PI)
+		board.draw_arc(foot,tile*0.32,-PI*0.1,PI*1.10,24,Color(Color("a9e9bd"),glow),2,true)
+
+static func _weather_light(board: Control, field: Rect2, sky: String, t: float, tile: float, alpha: float) -> void:
+	var ink: Color = WEATHER[sky]
+	board.draw_rect(field, Color(SKY_LIGHT[sky],alpha*(0.28 if sky == "lanterns" else 0.16)))
+	match sky:
+		"rain", "snow":
+			for i: int in range(38):
+				var near := 0.45+float(i%5)*0.12
+				var x := fposmod(i*0.618-t*(0.14 if sky == "rain" else 0.025),1)
+				var y := fposmod(i*0.293+t*(1.25 if sky == "rain" else 0.36)*near,1)
+				var pt := field.position+Vector2(x,y)*field.size
+				if sky == "rain":
+					var tail := pt+Vector2(0.24,-0.60)*tile*near
+					if field.has_point(tail): board.draw_line(tail,pt,Color(ink.lightened(0.42),alpha*near*0.82),maxf(1.1,tile*0.028*near),true)
+				else: star(board,pt,tile*near*0.061,Color(Color("effcff"),alpha*near))
+		"sun":
+			for i: int in range(3):
+				var top := field.position+Vector2(field.size.x*(0.36+i*0.24+t*0.018),0)
+				var bottom := Vector2(maxf(field.position.x,top.x-field.size.y*0.34),field.end.y)
+				var quad := PackedVector2Array([top,top+Vector2.RIGHT*tile*0.29,bottom+Vector2.RIGHT*tile*0.94,bottom])
+				board.draw_polygon(quad,PackedColorArray([Color(ink,alpha*0.29),Color(ink,alpha*0.26),Color(ink,0.01),Color(ink,0.06)]))
+		"fog", "tailwind":
+			for band: int in range(3):
+				var top := PackedVector2Array()
+				var bottom := PackedVector2Array()
+				for i: int in range(23):
+					var u := float(i)/22
+					var y := field.size.y*(0.20+0.28*band)+sin(u*5.6+band*1.8-t*4.8)*tile*0.27
+					var point := field.position+Vector2(field.size.x*u,y)
+					top.append(point)
+					bottom.append(point+Vector2.DOWN*tile*(0.18+0.53*sin(u*PI)))
+				if sky == "fog":
+					bottom.reverse()
+					top.append_array(bottom)
+					board.draw_colored_polygon(top,Color(ink,alpha*0.14))
+				else: board.draw_polyline(top,Color(ink,alpha*0.37),maxf(1.4,tile*0.028),true)
+		"lanterns":
+			for i: int in range(21):
+				var lane := Vector2(fposmod(i*0.618+sin(t*3+i)*0.009,1),fposmod(i*0.392-t*0.23,1))
+				var spark := field.position+field.size*lane
+				star(board,spark,tile*(0.028+i%3*0.021),Color(Color("ffdfa3"),alpha*0.88))
+
+static func volley_contact(cell: Vector2i, center: Vector2i) -> float:
+	return 0.39+0.61*(minf(0.31,Vector2(cell-center).length()*0.078)+0.23*0.68)
+
+static func _draw_volley(board: Control, effect: Dictionary, tile: float, t: float) -> void:
+	var martial: bool = effect.get("martial",false)
+	var color: Color = effect.color
+	var hits: Array = effect.get("struck",[])
+	for cell: Vector2i in effect.cells:
+		var at: Vector2 = board.cell_center(cell)
+		var distance: float = Vector2(cell-effect.cell).length()
+		var phase := clampf((t-minf(0.31,distance*0.078))/0.68,0,1)
+		var alpha := sin(phase*PI)
+		var rect := Rect2(at-Vector2.ONE*tile*0.46,Vector2.ONE*tile*0.92)
+		board.draw_rect(rect,Color(color,alpha*0.12))
+		board.draw_rect(rect,Color(color,alpha*0.62),false,maxf(1.3,tile*0.028))
+		if phase <= 0 or phase >= 1 or not hits.has(cell): continue
+		var direction := Vector2(-0.40,0.92) if martial else Vector2(0.48,0.88)
+		var drop := smoothstep(0.01,0.38,phase)
+		var tip := at-direction*tile*(1.0-drop)*0.65
+		if drop < 1:
+			oriented_stroke(board,Stroke.ARROW if martial else Stroke.FIRE,tip-direction*tile*0.24,direction,Vector2.ONE*tile*0.82,alpha*1.35)
+		if phase >= 0.23:
+			var burst := smoothstep(0.23,0.55,phase)
+			if martial:
+				for sign_x: int in [-1,1]:
+					var blade := Vector2(sign_x*0.48,-0.64)*tile
+					board.draw_line(at+blade*(1-burst),at+blade*(1-burst-0.73),Color(Color("d5f3ff"),alpha),maxf(2.3,tile*0.08),true)
+				star(board,at,tile*(0.30-0.14*phase),Color(Color("fff1b5"),alpha))
+			else:
+				var size := Vector2.ONE*tile*(0.81+0.43*burst)
+				stamp(board,0,at-Vector2(0,tile*0.14),size,alpha,ATLAS)
+
+static func _draw_ground_signal(board: Control, effect: Dictionary, tile: float, t: float) -> void:
+	var alpha := smoothstep(0,0.12,t)*(1.0-smoothstep(0.62,1,t))
+	for cell: Vector2i in effect.cells:
+		var at: Vector2 = board.cell_center(cell)
+		var wave := smoothstep(0,0.42,t-minf(0.23,Vector2(cell-effect.cell).length()*0.06))
+		var size := Vector2.ONE*tile*0.87
+		board.draw_rect(Rect2(at-size/2,size),Color(effect.color,alpha*wave*0.12))
+		for corner: Vector2 in [Vector2(-1,-1),Vector2(1,-1),Vector2(1,1),Vector2(-1,1)]:
+			var tip := at+corner*tile*(0.35+0.08*wave)
+			board.draw_polyline(PackedVector2Array([tip-Vector2(corner.x,0)*tile*0.16,tip,tip-Vector2(0,corner.y)*tile*0.16]),Color(effect.color,alpha*wave),maxf(1.6,tile*0.045),true)
+		if effect.kind == "works_cast":
+			for j: int in range(3):
+				var p := at+Vector2((j-1)*0.20,0.19-wave*0.14)*tile
+				board.draw_line(p,p+Vector2(0.12,-0.10)*tile,Color(Color("ffedb8"),alpha*wave),maxf(2,tile*0.06),true)
+	var center: Vector2 = board.cell_center(effect.cell)
+	if effect.kind == "signal_cast": stamp(board,5,center-Vector2(0,tile*(0.10+0.12*t)),Vector2.ONE*tile*0.84,alpha,ATLAS)
 
 static func draw_title(board: Control, effect: Dictionary) -> void:
 	var area: Rect2 = board.grid_rect().intersection(Rect2(Vector2.ZERO,board.size)).grow(-5)
@@ -288,7 +424,8 @@ static func draw_title(board: Control, effect: Dictionary) -> void:
 	var t: float = effect.age/effect.duration
 	var opacity := 1.0 if board.reduced_motion else smoothstep(0.0,0.13,t)*(1.0-smoothstep(0.68,0.97,t))
 	if opacity < 0.02: return
-	var width := minf(260.0,area.size.x*0.49)
+	var caption: String = effect.get("caption","")
+	var width := minf(297.0 if not caption.is_empty() else 260.0,area.size.x*0.53)
 	var height := clampf(area.size.y*0.10,36.0,55.0)
 	var right: bool = board.cell_center(effect.cell).x < area.get_center().x
 	var x: float = area.end.x-width if right else area.position.x
@@ -307,10 +444,13 @@ static func draw_title(board: Control, effect: Dictionary) -> void:
 		board.draw_texture_rect_region(portrait,Rect2(where+Vector2(2,2),Vector2.ONE*side),source,Color(1,1,1,opacity))
 	else:
 		stamp(board,STYLES[effect.kind][0],where+Vector2.ONE*(side*0.5+2),Vector2.ONE*side,opacity)
-	var font_size := clampi(roundi(height*0.40),14,22)
-	var pos := where+Vector2(side+10,height*0.50+font_size*0.33)
+	var font_size := clampi(roundi(height*(0.34 if not caption.is_empty() else 0.40)),14,22)
+	var pos := where+Vector2(side+10,height*(0.34 if not caption.is_empty() else 0.50)+font_size*0.33)
 	var cost: int = effect.get("cost",-1)
 	var badge_width := 35.0 if cost >= 0 else 0.0
+	if not caption.is_empty():
+		board.draw_string(board.get_theme_default_font(),Vector2(pos.x,where.y+height*0.83),caption,HORIZONTAL_ALIGNMENT_LEFT,
+			width-side-23,clampi(roundi(height*0.24),11,14),Color(color.lightened(0.34),opacity))
 	board.draw_string(board.get_theme_default_font(), pos, effect.title, HORIZONTAL_ALIGNMENT_LEFT,
 		width-side-29-badge_width,font_size,Color(1.0,0.965,0.88,opacity))
 	if cost >= 0:

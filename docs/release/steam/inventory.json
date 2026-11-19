@@ -1,5 +1,5 @@
 {
-  "version": "0.58.0-dev",
+  "version": "0.59.0-dev",
   "images": [
     {
       "path": "key-art-v1.png",
@@ -313,8 +313,44 @@
       "bytes": 2331842,
       "sha256": "7b4f54f848c4d24c89a257e900d86c10884d80bf62b0d2489c0b2922dd0c733e",
       "capture": "Campaign chapter 14 after-action map loaded from an authentic 0.57 save. Third standard attempt, both commanders alive, F6 and K9 held by the enemy at the 22-round deadline."
+    },
+    {
+      "path": "gameplay/17-lantern-weather.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1341382,
+      "sha256": "6bdc68aa8942a3c5067b881db9c3888274e5227b60b463c47491a3574aa06664",
+      "capture": "Night Muster played from the Lantern Convoy hand on Citadel, seed 56037, side turn 9 after 28 legal actions. Native frame 0.50 seconds after casting."
+    },
+    {
+      "path": "gameplay/18-hammer-order.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1946209,
+      "sha256": "0c747033b4322eb5ad969041ee4a76aca7a06e612b34dbd9f074341341d58472",
+      "capture": "Hollow Hammer marked on Citadel F5 on side turn 15 and resolved at the start of turn 17, seed 56377. The cross covers nine cells and one enemy takes the hit. Native frame 5/24 seconds after resolution."
+    },
+    {
+      "path": "gameplay/19-chapter-chronicle.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1238776,
+      "sha256": "2b21e355f8046b429bdafafd8617005522095bc72b46d40465e8b3903bb04fdc",
+      "capture": "Chapter archive opened from the standard river, relief and school campaign ending. The archive displays the chosen split covenant and its reached epilogue."
     }
   ],
-  "viewport_screenshots": 16,
+  "viewport_screenshots": 19,
   "store_and_library_graphics_including_icons": 10
 }

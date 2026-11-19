@@ -134,7 +134,18 @@ def render_music() -> None:
             subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", str(intermediate),
                             "-c:a", "libvorbis", "-q:a", "4", str(OUTPUT / (scene + ".ogg"))], check=True)
 
-def render_cues(signatures_only: bool, field_only: bool = False) -> None:
+WEATHER_CUES = {
+    "rainfall": (0.81, "snap", ((0.09, 0.13, -0.54), (0.15, 0.16, 0.42), (0.29, 0.19, -0.18), (0.38, 0.21, 0.40), (0.50, 0.12, -0.30)), ((0.19, 64), (0.39, 57))),
+    "snowfall": (0.82, "wash", ((0.04, 0.08, -0.16),), ((0.12, 89), (0.23, 82), (0.39, 77), (0.56, 70))),
+    "sunbreak": (0.83, "wash", ((0.09, 0.09, 0.0),), ((0.08, 53), (0.16, 60), (0.25, 65), (0.36, 69))),
+    "mistroll": (0.80, "wash", ((0.04, 0.46, -0.56), (0.29, 0.38, 0.48)), ((0.17, 47),)),
+    "windrush": (0.73, "wash", ((0.02, 0.57, -0.62), (0.19, 0.50, 0.52)), ((0.15, 71), (0.23, 78))),
+    "paperlights": (0.85, "tap", ((0.05, 0.11, -0.2),), ((0.12, 65), (0.27, 72), (0.43, 77))),
+    "clearair": (0.78, "wash", ((0.01, 0.30, -0.38),), ((0.17, 62), (0.27, 69), (0.38, 81))),
+}
+
+
+def render_cues(signatures_only: bool, field_only: bool = False, weather_only: bool = False) -> None:
     cues = {
         "move": (0.36, "tap", ((0.00, 0.65, -0.20), (0.12, 0.37, 0.18)), ()),
         "deploy": (0.64, "tap", ((0.00, 0.21, 0.10),), ((0.08, 58), (0.18, 65))),
@@ -153,11 +164,14 @@ def render_cues(signatures_only: bool, field_only: bool = False) -> None:
         "rime": (0.80, "clash", ((0.30, 0.30, -0.26), (0.36, 0.22, 0.16)), ((0.33, 87), (0.37, 94), (0.43, 82))),
         "sprout": (0.81, "wash", ((0.12, 0.09, -0.14),), ((0.04, 67), (0.23, 71), (0.34, 78))),
         "flare": (0.71, "wash", ((0.04, 0.42, -0.22), (0.31, 0.58, 0.21)), ((0.32, 46),)),
+        **WEATHER_CUES,
     }
     for index, (name, (length, kind, hits, notes)) in enumerate(cues.items()):
         if signatures_only and name not in {"bulwark", "comet", "willow"}:
             continue
         if field_only and name not in {"canter", "bowstring", "rime", "sprout", "flare"}:
+            continue
+        if weather_only and name not in WEATHER_CUES:
             continue
         mix = np.zeros((round(RATE * length), 2), dtype=np.float64)
         for onset, gain, pan in hits:
@@ -177,8 +191,9 @@ if __name__ == "__main__":
     subset = parser.add_mutually_exclusive_group()
     subset.add_argument("--signatures-only", action="store_true")
     subset.add_argument("--field-only", action="store_true")
+    subset.add_argument("--weather-only", action="store_true")
     args = parser.parse_args()
     OUTPUT.mkdir(parents=True, exist_ok=True)
-    if not args.signatures_only and not args.field_only:
+    if not (args.signatures_only or args.field_only or args.weather_only):
         render_music()
-    render_cues(args.signatures_only, args.field_only)
+    render_cues(args.signatures_only, args.field_only, args.weather_only)

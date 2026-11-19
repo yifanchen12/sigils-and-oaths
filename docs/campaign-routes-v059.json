@@ -1,0 +1,897 @@
+{
+  "counting": "Only read dialogue and reached end pages; identical Han-only bodies counted once across runs. Choices, UI, lore archive and simulations from late saves are excluded.",
+  "routes": [
+    {
+      "opening": "road",
+      "priority": "relief",
+      "escort": "school",
+      "difficulty": "standard",
+      "ending": "shared_lanterns",
+      "ending_title": "结局 · 共掌一灯",
+      "choices": {
+        "chapter_01.route": "road",
+        "chapter_01.supplies": "open",
+        "chapter_01.publication": "copy",
+        "chapter_02.priority": "relief",
+        "chapter_02.inspection": "open",
+        "chapter_03.letter": "return",
+        "chapter_03.route": "vent",
+        "chapter_04.shelter": "warehouse",
+        "chapter_04.terms": "sale",
+        "chapter_05.water": "nursery",
+        "chapter_05.mandate": "shared",
+        "chapter_06.disclosure": "open",
+        "chapter_06.letter_choice": "alone",
+        "chapter_07.camp": "bridge",
+        "chapter_07.saltlane_call": "answer_call",
+        "chapter_07.saltlane_route": "school",
+        "chapter_08.pressure": "isolate",
+        "chapter_09.governance": "joint",
+        "chapter_12.custody": "loaned",
+        "chapter_13.night_watch": "upstream",
+        "chapter_14.water_order": "seal",
+        "chapter_15.repair_choice": "recast",
+        "chapter_16.escort_choice": "hearing",
+        "chapter_17.kit": "runner",
+        "chapter_18.covenant": "joint"
+      },
+      "wins": 16,
+      "losses": 10,
+      "draws": 0,
+      "actions": 6256,
+      "dialogue_pages": 1550,
+      "observed_unique_han": 87276,
+      "checks": 14593,
+      "battle_reloads": 26,
+      "attempts": [
+        {
+          "scenario": "c01_road",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 0,
+          "turn": 37,
+          "actions": 243
+        },
+        {
+          "scenario": "c01_bridge",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 22,
+          "actions": 141,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c01_bridge",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 1,
+          "turn": 54,
+          "actions": 351,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c01_bridge",
+          "attempt": 3,
+          "player_policy": "harbor_court_pilot",
+          "winner": 1,
+          "turn": 63,
+          "actions": 427,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c01_bridge",
+          "attempt": 4,
+          "player_policy": "campaign_pilot",
+          "winner": 0,
+          "turn": 56,
+          "actions": 380
+        },
+        {
+          "scenario": "c02_relief_bridge",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 0,
+          "turn": 21,
+          "actions": 127
+        },
+        {
+          "scenario": "c02_dispatch",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 44,
+          "actions": 308,
+          "review_reason": "我方指挥官维洛 · 赤烬倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c02_dispatch",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 0,
+          "turn": 62,
+          "actions": 442
+        },
+        {
+          "scenario": "c03_vent",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 0,
+          "turn": 13,
+          "actions": 57
+        },
+        {
+          "scenario": "c04_dock",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 63,
+          "actions": 446,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c04_dock",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 1,
+          "turn": 61,
+          "actions": 434,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c04_dock",
+          "attempt": 3,
+          "player_policy": "harbor_court_pilot",
+          "winner": 1,
+          "turn": 61,
+          "actions": 434,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c04_dock",
+          "attempt": 4,
+          "player_policy": "campaign_pilot",
+          "winner": 0,
+          "turn": 23,
+          "actions": 149
+        },
+        {
+          "scenario": "c04_pump",
+          "attempt": 1,
+          "player_policy": "harbor_court_pilot",
+          "winner": 0,
+          "turn": 33,
+          "actions": 212
+        },
+        {
+          "scenario": "c05_nursery",
+          "attempt": 1,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 0,
+          "turn": 19,
+          "actions": 97
+        },
+        {
+          "scenario": "c06_court",
+          "attempt": 1,
+          "player_policy": "harbor_court_pilot",
+          "winner": 0,
+          "turn": 62,
+          "actions": 396
+        },
+        {
+          "scenario": "c07_saltlane_school",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 0,
+          "turn": 7,
+          "actions": 27
+        },
+        {
+          "scenario": "c08_isolate",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 25,
+          "actions": 145,
+          "review_reason": "驻守期限已到，未能稳住两处据点，本次驻守任务失败。"
+        },
+        {
+          "scenario": "c08_isolate",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 0,
+          "turn": 19,
+          "actions": 96
+        },
+        {
+          "scenario": "c10_gate",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 37,
+          "actions": 213,
+          "review_reason": "驻守期限已到，未能稳住两处据点，本次驻守任务失败。"
+        },
+        {
+          "scenario": "c10_gate",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 0,
+          "turn": 35,
+          "actions": 207
+        },
+        {
+          "scenario": "c12_depot",
+          "attempt": 1,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 0,
+          "turn": 15,
+          "actions": 74
+        },
+        {
+          "scenario": "c14_channel",
+          "attempt": 1,
+          "player_policy": "channel_push_pilot",
+          "winner": 0,
+          "turn": 21,
+          "actions": 113,
+          "requisition": "reed_watch"
+        },
+        {
+          "scenario": "c16_bridge",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 0,
+          "turn": 64,
+          "actions": 472
+        },
+        {
+          "scenario": "c17_runner",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 33,
+          "actions": 182,
+          "review_reason": "接应期限已到，未能打通撤离通道。"
+        },
+        {
+          "scenario": "c17_runner",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 0,
+          "turn": 17,
+          "actions": 83
+        }
+      ],
+      "raw_report_sha256": "bba23471eb95fa9d1462ed007280389aa70f1b5de8996ea70d0ea1143c343eb8"
+    },
+    {
+      "opening": "river",
+      "priority": "relief",
+      "escort": "school",
+      "difficulty": "standard",
+      "ending": "streams_apart",
+      "ending_title": "结局 · 各守一渠",
+      "choices": {
+        "chapter_01.route": "river",
+        "chapter_01.supplies": "ration",
+        "chapter_01.publication": "hold",
+        "chapter_02.priority": "relief",
+        "chapter_02.inspection": "sealed",
+        "chapter_03.letter": "unscheduled",
+        "chapter_03.route": "vent",
+        "chapter_04.shelter": "households",
+        "chapter_04.terms": "lease",
+        "chapter_05.water": "nursery",
+        "chapter_05.mandate": "witness",
+        "chapter_06.disclosure": "witnessed",
+        "chapter_06.letter_choice": "companions",
+        "chapter_07.camp": "clinic",
+        "chapter_07.saltlane_call": "answer_call",
+        "chapter_07.saltlane_route": "school",
+        "chapter_08.pressure": "isolate",
+        "chapter_09.governance": "split",
+        "chapter_12.custody": "northbank",
+        "chapter_13.night_watch": "upstream",
+        "chapter_14.water_order": "metered",
+        "chapter_15.repair_choice": "sleeve",
+        "chapter_16.escort_choice": "service",
+        "chapter_17.kit": "screen",
+        "chapter_18.covenant": "split"
+      },
+      "wins": 16,
+      "losses": 10,
+      "draws": 0,
+      "actions": 6439,
+      "dialogue_pages": 1561,
+      "observed_unique_han": 87994,
+      "checks": 14984,
+      "battle_reloads": 26,
+      "attempts": [
+        {
+          "scenario": "c01_river",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 0,
+          "turn": 62,
+          "actions": 438
+        },
+        {
+          "scenario": "c01_bridge",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 22,
+          "actions": 141,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c01_bridge",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 1,
+          "turn": 54,
+          "actions": 351,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c01_bridge",
+          "attempt": 3,
+          "player_policy": "harbor_court_pilot",
+          "winner": 1,
+          "turn": 63,
+          "actions": 427,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c01_bridge",
+          "attempt": 4,
+          "player_policy": "campaign_pilot",
+          "winner": 0,
+          "turn": 56,
+          "actions": 380
+        },
+        {
+          "scenario": "c02_relief_bridge",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 0,
+          "turn": 21,
+          "actions": 127
+        },
+        {
+          "scenario": "c02_dispatch",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 44,
+          "actions": 308,
+          "review_reason": "我方指挥官维洛 · 赤烬倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c02_dispatch",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 0,
+          "turn": 62,
+          "actions": 442
+        },
+        {
+          "scenario": "c03_vent",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 0,
+          "turn": 13,
+          "actions": 57
+        },
+        {
+          "scenario": "c04_dock",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 63,
+          "actions": 446,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c04_dock",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 1,
+          "turn": 61,
+          "actions": 434,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c04_dock",
+          "attempt": 3,
+          "player_policy": "harbor_court_pilot",
+          "winner": 1,
+          "turn": 61,
+          "actions": 434,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c04_dock",
+          "attempt": 4,
+          "player_policy": "campaign_pilot",
+          "winner": 0,
+          "turn": 23,
+          "actions": 149
+        },
+        {
+          "scenario": "c04_pump",
+          "attempt": 1,
+          "player_policy": "harbor_court_pilot",
+          "winner": 0,
+          "turn": 33,
+          "actions": 212
+        },
+        {
+          "scenario": "c05_nursery",
+          "attempt": 1,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 0,
+          "turn": 19,
+          "actions": 97
+        },
+        {
+          "scenario": "c06_court",
+          "attempt": 1,
+          "player_policy": "harbor_court_pilot",
+          "winner": 0,
+          "turn": 62,
+          "actions": 396
+        },
+        {
+          "scenario": "c07_saltlane_school",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 0,
+          "turn": 7,
+          "actions": 27
+        },
+        {
+          "scenario": "c08_isolate",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 25,
+          "actions": 145,
+          "review_reason": "驻守期限已到，未能稳住两处据点，本次驻守任务失败。"
+        },
+        {
+          "scenario": "c08_isolate",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 0,
+          "turn": 19,
+          "actions": 96
+        },
+        {
+          "scenario": "c10_gate",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 33,
+          "actions": 186,
+          "review_reason": "驻守期限已到，未能稳住两处据点，本次驻守任务失败。"
+        },
+        {
+          "scenario": "c10_gate",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 0,
+          "turn": 33,
+          "actions": 188
+        },
+        {
+          "scenario": "c12_depot",
+          "attempt": 1,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 1,
+          "turn": 37,
+          "actions": 210,
+          "review_reason": "驻守期限已到，未能稳住两处据点，本次驻守任务失败。"
+        },
+        {
+          "scenario": "c12_depot",
+          "attempt": 2,
+          "player_policy": "opponent",
+          "winner": 0,
+          "turn": 17,
+          "actions": 80
+        },
+        {
+          "scenario": "c14_channel",
+          "attempt": 1,
+          "player_policy": "channel_push_pilot",
+          "winner": 0,
+          "turn": 21,
+          "actions": 113,
+          "requisition": "reed_watch"
+        },
+        {
+          "scenario": "c16_bridge",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 0,
+          "turn": 64,
+          "actions": 472
+        },
+        {
+          "scenario": "c17_screen",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 0,
+          "turn": 17,
+          "actions": 83
+        }
+      ],
+      "raw_report_sha256": "df973378c02795861be123fe585b6224f10750363850bdea36f2a3889adc2f18"
+    },
+    {
+      "opening": "river",
+      "priority": "seed",
+      "escort": "kiln",
+      "difficulty": "standard",
+      "ending": "quiet_reservoir",
+      "ending_title": "结局 · 留水过冬",
+      "choices": {
+        "chapter_01.route": "river",
+        "chapter_01.supplies": "open",
+        "chapter_01.publication": "witness",
+        "chapter_02.priority": "seed",
+        "chapter_02.inspection": "open",
+        "chapter_03.letter": "return",
+        "chapter_03.route": "ridge",
+        "chapter_04.shelter": "warehouse",
+        "chapter_04.terms": "sale",
+        "chapter_05.water": "channel",
+        "chapter_05.mandate": "shared",
+        "chapter_06.disclosure": "open",
+        "chapter_06.letter_choice": "alone",
+        "chapter_07.camp": "bridge",
+        "chapter_07.saltlane_call": "answer_call",
+        "chapter_07.saltlane_route": "kiln",
+        "chapter_08.pressure": "buffer",
+        "chapter_09.governance": "hold",
+        "chapter_12.custody": "loaned",
+        "chapter_13.night_watch": "tower",
+        "chapter_14.water_order": "seal",
+        "chapter_15.repair_choice": "recast",
+        "chapter_16.escort_choice": "hearing",
+        "chapter_17.kit": "runner",
+        "chapter_18.covenant": "hold"
+      },
+      "wins": 16,
+      "losses": 17,
+      "draws": 0,
+      "actions": 9044,
+      "dialogue_pages": 1551,
+      "observed_unique_han": 87481,
+      "checks": 20365,
+      "battle_reloads": 33,
+      "attempts": [
+        {
+          "scenario": "c01_river",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 0,
+          "turn": 62,
+          "actions": 438
+        },
+        {
+          "scenario": "c01_bridge",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 22,
+          "actions": 141,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c01_bridge",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 1,
+          "turn": 54,
+          "actions": 351,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c01_bridge",
+          "attempt": 3,
+          "player_policy": "harbor_court_pilot",
+          "winner": 1,
+          "turn": 63,
+          "actions": 427,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c01_bridge",
+          "attempt": 4,
+          "player_policy": "campaign_pilot",
+          "winner": 0,
+          "turn": 56,
+          "actions": 380
+        },
+        {
+          "scenario": "c02_seed_bridge",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 25,
+          "actions": 142,
+          "review_reason": "驻守期限已到，未能稳住两处据点，本次驻守任务失败。"
+        },
+        {
+          "scenario": "c02_seed_bridge",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 0,
+          "turn": 19,
+          "actions": 118
+        },
+        {
+          "scenario": "c02_dispatch",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 44,
+          "actions": 308,
+          "review_reason": "我方指挥官维洛 · 赤烬倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c02_dispatch",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 0,
+          "turn": 62,
+          "actions": 442
+        },
+        {
+          "scenario": "c03_ridge",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 63,
+          "actions": 393,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c03_ridge",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 0,
+          "turn": 62,
+          "actions": 403
+        },
+        {
+          "scenario": "c04_dock",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 63,
+          "actions": 446,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c04_dock",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 1,
+          "turn": 61,
+          "actions": 434,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c04_dock",
+          "attempt": 3,
+          "player_policy": "harbor_court_pilot",
+          "winner": 1,
+          "turn": 61,
+          "actions": 434,
+          "review_reason": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c04_dock",
+          "attempt": 4,
+          "player_policy": "campaign_pilot",
+          "winner": 0,
+          "turn": 23,
+          "actions": 149
+        },
+        {
+          "scenario": "c04_pump",
+          "attempt": 1,
+          "player_policy": "harbor_court_pilot",
+          "winner": 0,
+          "turn": 33,
+          "actions": 212
+        },
+        {
+          "scenario": "c05_channel",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 53,
+          "actions": 343,
+          "review_reason": "我方指挥官赛菈 · 月祷倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c05_channel",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 0,
+          "turn": 23,
+          "actions": 131
+        },
+        {
+          "scenario": "c06_court",
+          "attempt": 1,
+          "player_policy": "harbor_court_pilot",
+          "winner": 0,
+          "turn": 62,
+          "actions": 396
+        },
+        {
+          "scenario": "c07_saltlane_kiln",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 0,
+          "turn": 7,
+          "actions": 23
+        },
+        {
+          "scenario": "c08_buffer",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 38,
+          "actions": 258,
+          "requisition": "severed_pullcord",
+          "armory": {
+            "company": "waggon_cut",
+            "vanguard": "page_of_ash"
+          },
+          "review_reason": "我方指挥官维洛 · 赤烬倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c08_buffer",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 1,
+          "turn": 26,
+          "actions": 140,
+          "requisition": "severed_pullcord",
+          "armory": {
+            "company": "waggon_cut",
+            "vanguard": "page_of_ash"
+          },
+          "review_reason": "我方指挥官维洛 · 赤烬倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c08_buffer",
+          "attempt": 3,
+          "player_policy": "harbor_court_pilot",
+          "winner": 1,
+          "turn": 26,
+          "actions": 140,
+          "requisition": "severed_pullcord",
+          "armory": {
+            "company": "waggon_cut",
+            "vanguard": "page_of_ash"
+          },
+          "review_reason": "我方指挥官维洛 · 赤烬倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c08_buffer",
+          "attempt": 4,
+          "player_policy": "campaign_pilot",
+          "winner": 1,
+          "turn": 24,
+          "actions": 138,
+          "requisition": "severed_pullcord",
+          "armory": {
+            "company": "waggon_cut",
+            "vanguard": "page_of_ash"
+          },
+          "review_reason": "我方指挥官维洛 · 赤烬倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c08_buffer",
+          "attempt": 5,
+          "player_policy": "channel_push_pilot",
+          "winner": 1,
+          "turn": 34,
+          "actions": 214,
+          "requisition": "severed_pullcord",
+          "armory": {
+            "company": "waggon_cut",
+            "vanguard": "page_of_ash"
+          },
+          "review_reason": "我方指挥官维洛 · 赤烬倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c08_buffer",
+          "attempt": 6,
+          "player_policy": "sunspire_focus_pilot",
+          "winner": 0,
+          "turn": 55,
+          "actions": 313,
+          "requisition": "severed_pullcord",
+          "armory": {
+            "company": "waggon_cut",
+            "vanguard": "page_of_ash"
+          }
+        },
+        {
+          "scenario": "c10_gate",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 0,
+          "turn": 39,
+          "actions": 243
+        },
+        {
+          "scenario": "c12_depot",
+          "attempt": 1,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 1,
+          "turn": 45,
+          "actions": 289,
+          "requisition": "dike_flagstones",
+          "review_reason": "驻守期限已到，未能稳住两处据点，本次驻守任务失败。"
+        },
+        {
+          "scenario": "c12_depot",
+          "attempt": 2,
+          "player_policy": "opponent",
+          "winner": 0,
+          "turn": 35,
+          "actions": 208,
+          "requisition": "dike_flagstones"
+        },
+        {
+          "scenario": "c14_channel",
+          "attempt": 1,
+          "player_policy": "channel_push_pilot",
+          "winner": 0,
+          "turn": 35,
+          "actions": 253,
+          "requisition": "reed_toll"
+        },
+        {
+          "scenario": "c16_bridge",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 0,
+          "turn": 64,
+          "actions": 472
+        },
+        {
+          "scenario": "c17_runner",
+          "attempt": 1,
+          "player_policy": "opponent",
+          "winner": 1,
+          "turn": 33,
+          "actions": 182,
+          "review_reason": "接应期限已到，未能打通撤离通道。"
+        },
+        {
+          "scenario": "c17_runner",
+          "attempt": 2,
+          "player_policy": "bridge_focus_pilot",
+          "winner": 0,
+          "turn": 17,
+          "actions": 83
+        }
+      ],
+      "raw_report_sha256": "13d17e9c1823dd23a2424948cab53a512804517a2f78e3ff7151544044cd49b7"
+    }
+  ],
+  "observed_unique_han_across_routes": 107558,
+  "total_actions": 21739
+}

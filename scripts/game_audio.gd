@@ -1,8 +1,12 @@
 extends Node
 
+signal cue_started(cue: String)
+
 const COUNCIL = preload("res://assets/audio/council.ogg")
 const BATTLE = preload("res://assets/audio/battle.ogg")
 const CastArt = preload("res://scripts/cast_art.gd")
+const SKY_CUES := {"rain":"rainfall","snow":"snowfall","sun":"sunbreak","fog":"mistroll",
+	"tailwind":"windrush","lanterns":"paperlights","clear":"clearair"}
 const FIELD_CUES := {CastArt.Stroke.SHIELD:"guard", CastArt.Stroke.RIDE:"canter", CastArt.Stroke.ARROW:"bowstring",
 	CastArt.Stroke.FIRE:"flare", CastArt.Stroke.LEAVES:"sprout", CastArt.Stroke.ICE:"rime"}
 const CUES: Dictionary = {
@@ -18,6 +22,13 @@ const CUES: Dictionary = {
 	"rime": preload("res://assets/audio/rime.wav"),
 	"sprout": preload("res://assets/audio/sprout.wav"),
 	"flare": preload("res://assets/audio/flare.wav"),
+	"rainfall": preload("res://assets/audio/rainfall.wav"),
+	"snowfall": preload("res://assets/audio/snowfall.wav"),
+	"sunbreak": preload("res://assets/audio/sunbreak.wav"),
+	"mistroll": preload("res://assets/audio/mistroll.wav"),
+	"windrush": preload("res://assets/audio/windrush.wav"),
+	"paperlights": preload("res://assets/audio/paperlights.wav"),
+	"clearair": preload("res://assets/audio/clearair.wav"),
 	"guard": preload("res://assets/audio/guard.wav"),
 	"trap": preload("res://assets/audio/trap.wav"),
 	"turn": preload("res://assets/audio/turn.wav"),
@@ -60,6 +71,7 @@ func stop_playback() -> void:
 		player.stop()
 	for player: AudioStreamPlayer in sfx.get_children():
 		player.stop()
+		player.queue_free()
 
 func set_levels(music_level: int, effects_level: int) -> void:
 	_apply_bus("Music", music_level)
@@ -86,11 +98,18 @@ func set_battle_music(in_battle: bool) -> void:
 	fade.finished.connect(outgoing.stop)
 
 func feedback(action: Dictionary, battle: Battle, acting_side: int) -> void:
-	var stroke := CastArt.field_stroke(action, CastArt.style_for(action))
-	if not battle.last_trap_events.is_empty():
+	var style := CastArt.style_for(action)
+	var stroke := CastArt.field_stroke(action, style)
+	if not battle.last_trap_events.is_empty() and not battle.last_trap_events.any(func(event: Dictionary) -> bool: return event.triggered):
 		_play("trap")
 	elif action.get("combat", {}).get("intercepted", false):
 		_play("guard")
+	elif not battle.last_order_event.is_empty():
+		_play("sprout" if battle.last_order_event.support else "attack")
+	elif style == "weather_cast":
+		_play(SKY_CUES[battle.weather])
+	elif style == "fire_area":
+		_play("attack" if action.has("cast_color") else "flare")
 	elif FIELD_CUES.has(stroke):
 		_play(FIELD_CUES[stroke])
 	else:
@@ -109,6 +128,9 @@ func feedback(action: Dictionary, battle: Battle, acting_side: int) -> void:
 				if battle.active_side == 0 and battle.winner == -1: _play("turn")
 	if battle.winner != -1: _play("victory" if battle.winner == 0 else "defeat")
 
+func play_trap_contact() -> void:
+	_play("trap")
+
 func _play(cue: String) -> void:
 	if stopping or DisplayServer.get_name() == "headless" or AudioServer.is_bus_mute(AudioServer.get_bus_index("SFX")): return
 	if sfx.get_child_count() >= 8: return
@@ -119,3 +141,4 @@ func _play(cue: String) -> void:
 	sfx.add_child(player)
 	player.finished.connect(player.queue_free, CONNECT_ONE_SHOT)
 	player.play()
+	cue_started.emit(cue)

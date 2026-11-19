@@ -5,15 +5,17 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.58.0-dev" src="https://img.shields.io/badge/version-0.58.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.59.0-dev" src="https://img.shields.io/badge/version-0.59.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法设计参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局、248 种可构筑牌、二十三套预组和六张立体建模的平面战场。**0.58.0-dev** 中，骑兵拐过桥头会留下蹄痕，精准箭飞向实际接战的部队。手牌施放时亮出牌名和费用，战役出征前可以对照开局与上次败局。 [Windows 开发预览](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.58.0-dev) · [看 10.5 秒有声实机演示](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.58.0-dev/SigilsAndOaths-0.58.0-dev-Field-Arts.mp4)
+玩法设计参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局、248 种可构筑牌、二十三套预组和六张立体建模的平面战场。**0.59.0-dev** 中，暴雨落在双方阵地，纸灯从古堡升起。「空锤待落」先亮出九格十字，等敌军走完才砸向仍留在阵中的人。通关后可查阅自己的抉择，在独立分支重议终章誓约。 [Windows 下载](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.59.0-dev) · [19.5 秒有声实机](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.59.0-dev/SigilsAndOaths-0.59.0-dev-Weather-and-Orders.mp4)
 
 ## 实机画面
+
+![古堡棋庭打出环境牌「诸营守夜」](docs/release/steam/gameplay/17-lantern-weather.png)
 
 ![断脊隘口实战，星火箭命中敌军](docs/release/steam/gameplay/12-cast-impact.png)
 
@@ -114,6 +116,10 @@
 | 改变下一轮战局 | 暴雨、浓雾、烈日、寒潮、疾风和灯夜影响双方。可替换或驱散天气，也可铺路、筑垒、击退、定身与换位 |
 | 在有限时间内决策 | 每个行动回合90秒；定向法术限定在友军3格内、法师4格内，天气影响全场 |
 | 熟悉操作和调整体验 | 四节不限时实战教程。F10 调整全屏、剧情字号、战斗动效、音乐和音效 |
+
+## 0.59 · 灯夜与落锤
+
+打出「诸营守夜」，纸灯升起，牌名旁写明灯夜还剩几个行动回合。「晴空号令」会驱散当时的天气。铺路亮出改建格，截索在骑兵踏过那一格时响起。 [十三段实机](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.59.0-dev/SigilsAndOaths-0.59.0-dev-Weather-and-Orders.mp4) · [军令落锤](docs/release/steam/gameplay/18-hammer-order.png) · [章节抉择](docs/release/steam/gameplay/19-chapter-chronicle.png) · [更新说明](docs/release/v059.md)
 
 ## 0.58 · 蹄痕、弦鸣与冰缚
 

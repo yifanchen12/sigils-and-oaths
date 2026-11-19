@@ -2509,6 +2509,17 @@
       "sha256": "6a0942efe9f674d3211d4b660c4045eb96e14babbcc9ff573ef48af672663c94",
       "source_bytes_preserved": true,
       "role": "Shield, hoof trail, arrow, fire lance, healing leaves and ice spires for board actions."
+    },
+    {
+      "id": "weather-cels-v1",
+      "path": "assets/art/actions/weather-cels-v1.png",
+      "source_filename": "exec-a7f43a72-ddd4-4485-9a7d-3b878d109de7.png",
+      "prompt_file": "assets/art/actions/weather-cels.md",
+      "size": [1536, 1024],
+      "mode": "RGBA",
+      "sha256": "d2856e53f8fa32f314d45f78cb09c1ba3d75368e63fccbfa448c28c3f78d112f",
+      "source_bytes_preserved": true,
+      "role": "Six weather silhouettes painted for the rain, snow, sun, fog, wind and lantern card transitions."
     }
   ]
 }
