@@ -7,7 +7,7 @@
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
 <p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.11.0" src="https://img.shields.io/badge/version-0.11.0-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
-**试玩 0.57.0-dev 开发预览。** 维洛的火线落在敌军脚下，艾琳用闸盾护住友军，赛菈将柳光送往伤员。守桥老枪从手牌入场即能援护，敌人踩中锚索会让绳圈收紧。Windows 提供便携版和安装包。 [下载游戏](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.57.0-dev) · [看 12 秒有声实机演示](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.57.0-dev/SigilsAndOaths-0.57.0-dev-River-Signatures.mp4) · [完整玩法说明](https://github.com/yifanchen12/sigils-and-oaths/blob/v0.57.0-dev/README.md)
+**试玩 0.58.0-dev 开发预览。** 骑兵拐过桥头留下蹄痕，弓手的金箭会射向接应友军的枪兵。打出坚冰锁链时，冰棱从目标格升起。战役中可以回看最后一轮，再带着新的起手重新部署。Windows 提供便携版和安装包。 [下载游戏](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.58.0-dev) · [看 10.5 秒有声实机](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.58.0-dev/SigilsAndOaths-0.58.0-dev-Field-Arts.mp4) · [完整玩法说明](https://github.com/yifanchen12/sigils-and-oaths/blob/v0.58.0-dev/README.md)
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
