@@ -2,6 +2,9 @@ extends Node
 
 const COUNCIL = preload("res://assets/audio/council.ogg")
 const BATTLE = preload("res://assets/audio/battle.ogg")
+const CastArt = preload("res://scripts/cast_art.gd")
+const FIELD_CUES := {CastArt.Stroke.SHIELD:"guard", CastArt.Stroke.RIDE:"canter", CastArt.Stroke.ARROW:"bowstring",
+	CastArt.Stroke.FIRE:"flare", CastArt.Stroke.LEAVES:"sprout", CastArt.Stroke.ICE:"rime"}
 const CUES: Dictionary = {
 	"move": preload("res://assets/audio/move.wav"),
 	"deploy": preload("res://assets/audio/deploy.wav"),
@@ -10,6 +13,11 @@ const CUES: Dictionary = {
 	"bulwark": preload("res://assets/audio/bulwark.wav"),
 	"comet": preload("res://assets/audio/comet.wav"),
 	"willow": preload("res://assets/audio/willow.wav"),
+	"canter": preload("res://assets/audio/canter.wav"),
+	"bowstring": preload("res://assets/audio/bowstring.wav"),
+	"rime": preload("res://assets/audio/rime.wav"),
+	"sprout": preload("res://assets/audio/sprout.wav"),
+	"flare": preload("res://assets/audio/flare.wav"),
 	"guard": preload("res://assets/audio/guard.wav"),
 	"trap": preload("res://assets/audio/trap.wav"),
 	"turn": preload("res://assets/audio/turn.wav"),
@@ -78,21 +86,19 @@ func set_battle_music(in_battle: bool) -> void:
 	fade.finished.connect(outgoing.stop)
 
 func feedback(action: Dictionary, battle: Battle, acting_side: int) -> void:
+	var stroke := CastArt.field_stroke(action, CastArt.style_for(action))
 	if not battle.last_trap_events.is_empty():
 		_play("trap")
 	elif action.get("combat", {}).get("intercepted", false):
 		_play("guard")
+	elif FIELD_CUES.has(stroke):
+		_play(FIELD_CUES[stroke])
 	else:
 		match str(action.type):
 			"attack": _play("attack")
 			"move": _play("move")
 			"hero": _play({"blessing":"bulwark", "firestrike":"comet", "renewal":"willow"}.get(action.get("effect_kind"), "cast"))
-			"unit_skill":
-				match str(action.get("unit_kind", "")):
-					"sword", "spear": _play("guard")
-					"cavalry": _play("move")
-					"archer": _play("attack")
-					_: _play("cast")
+			"unit_skill": _play("guard" if action.get("unit_kind") == "spear" else "cast")
 			"play":
 				match str(action.get("card_type", "")):
 					"unit": _play("deploy")

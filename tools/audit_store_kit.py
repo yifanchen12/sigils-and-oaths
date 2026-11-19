@@ -36,6 +36,8 @@ SCREENSHOTS = {
     "12-cast-impact.png": "Balanced Host mirror on Ridgepass, seed 56037. Fire impact sampled half a second after a legal Starfire Bolt, on side turn 27 after 170 preceding actions.",
     "13-frost-front.png": "Frost Engine vs Twin-Tide Orders on Rivergate, seed 57023, after 78 legal actions. On side turn 17 the player deploys a Gate Veteran from hand at I6, immediately guarding the archer at I5.",
     "14-river-signatures.png": "Pyromancer casts Fire Verdict on Sunspire on side turn 31. Balanced Host mirror, seed 56037, after 186 legal actions. Native frame sampled 0.50 s after casting.",
+    "15-field-frost.png": "Frostbind played from hand on Harbor. Twin-Tide Orders against Balanced Host, seed 56037, side turn 45 after 275 preceding legal actions, at 0.50 seconds after casting.",
+    "16-channel-review.png": "Campaign chapter 14 after-action map loaded from an authentic 0.57 save. Third standard attempt, both commanders alive, F6 and K9 held by the enemy at the 22-round deadline.",
 }
 
 

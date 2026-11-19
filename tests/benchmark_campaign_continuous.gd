@@ -46,6 +46,7 @@ func reload_exact() -> bool:
 	if not check(fresh.load_campaign().ok, "fresh session reads the same disk save"): return false
 	if not check(fresh.campaign.snapshot() == progress, "all story flags, choices, history, attempts and cursors survive reload"): return false
 	if not check((Snapshot.capture(fresh.encounter) if fresh.encounter != null else {}) == encounter, "battle including cards, RNG and precise clock survives reload"): return false
+	if not check(fresh.last_attempt == session.last_attempt, "the last attempt survives loading the game"): return false
 	session = fresh
 	return true
 
@@ -134,6 +135,9 @@ func fight() -> bool:
 	if not reload_exact(): return false
 	print("CONTINUOUS %s | WINNER %d | TURN %d | ACTIONS %d" % [scenario, row.winner, row.turn, row.actions])
 	if row.winner != 0:
+		var review: Dictionary = session.inspect_field(session.token(), true)
+		if not check(review.ok and Snapshot.capture(review.battle) == row.final, "review opens on the exact final board after reloading"): return false
+		row["review_reason"] = review.battle.result_reason()
 		check(session.current().type == "battle" and session.current().scenario == scenario, "defeat stays at its own encounter without granting a later chapter")
 		check(session.campaign.story.state.flags == before.story.flags, "defeat grants no victory flags")
 		check(session.campaign.story.state.history == before.story.history, "defeat invents no unread story history")

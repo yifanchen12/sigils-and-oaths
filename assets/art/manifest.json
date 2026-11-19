@@ -2498,6 +2498,17 @@
       "sha256": "39340d643038671ff4e320a8ebda546883c6feab86de8f2e2106e1d8ef2ce31a",
       "source_bytes_preserved": true,
       "role": "Six transparent, animated-in-engine magic and tactical skill motifs."
+    },
+    {
+      "id": "field-strokes-v1",
+      "path": "assets/art/actions/field-strokes-v1.png",
+      "source_filename": "exec-00110b6d-90de-4cbb-96e8-e62b6f0e351d.png",
+      "prompt_file": "assets/art/actions/field-strokes.md",
+      "size": [1536, 1024],
+      "mode": "RGBA",
+      "sha256": "6a0942efe9f674d3211d4b660c4045eb96e14babbcc9ff573ef48af672663c94",
+      "source_bytes_preserved": true,
+      "role": "Shield, hoof trail, arrow, fire lance, healing leaves and ice spires for board actions."
     }
   ]
 }

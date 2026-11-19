@@ -5,13 +5,13 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.57.0-dev" src="https://img.shields.io/badge/version-0.57.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.58.0-dev" src="https://img.shields.io/badge/version-0.58.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法设计参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局、248 种可构筑牌、二十三套预组和六张立体建模的平面战场。**0.57.0-dev** 中，三位指挥官拥有各自的施法画面和音效。守桥老枪入场就会连线援护，陷阱被触发时会在战场上亮出。 [Windows x64 开发预览](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.57.0-dev)
+玩法设计参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局、248 种可构筑牌、二十三套预组和六张立体建模的平面战场。**0.58.0-dev** 中，骑兵拐过桥头会留下蹄痕，精准箭飞向实际接战的部队。手牌施放时亮出牌名和费用，战役出征前可以对照开局与上次败局。 [Windows 开发预览](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.58.0-dev) · [看 10.5 秒有声实机演示](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.58.0-dev/SigilsAndOaths-0.58.0-dev-Field-Arts.mp4)
 
 ## 实机画面
 
@@ -114,6 +114,12 @@
 | 改变下一轮战局 | 暴雨、浓雾、烈日、寒潮、疾风和灯夜影响双方。可替换或驱散天气，也可铺路、筑垒、击退、定身与换位 |
 | 在有限时间内决策 | 每个行动回合90秒；定向法术限定在友军3格内、法师4格内，天气影响全场 |
 | 熟悉操作和调整体验 | 四节不限时实战教程。F10 调整全屏、剧情字号、战斗动效、音乐和音效 |
+
+## 0.58 · 蹄痕、弦鸣与冰缚
+
+骑兵再机动时，蹄痕沿走过的格子转弯。弓手的金箭会射向实际挡枪的人，星火箭从施法友军飞向落点，医师让药叶从伤员脚下升起。打开「简化战斗动效」可用静止标记辨认效果。 [七段有声实机](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.58.0-dev/SigilsAndOaths-0.58.0-dev-Field-Arts.mp4) · [碧潮港湾的冰缚](docs/release/steam/gameplay/15-field-frost.png)
+
+出征前点「查看战场」可以检查地形、指挥官、据点与起手。战败后点「战局复盘」，可看到末段战报，并逐格对照上次终局和本次开局。 [暗渠终局](docs/release/steam/gameplay/16-channel-review.png) · [本版说明](docs/release/v058.md)
 
 ## 0.57 · 指挥官施法与桥头援护
 
@@ -473,7 +479,7 @@ git clone https://github.com/yifanchen12/sigils-and-oaths.git
 cd sigils-and-oaths
 ```
 
-Windows x64 预览版提供 MSI 安装包和 ZIP 便携包。下载 MSI 可双击安装。下载 ZIP 则先解压，把 EXE 和 PCK 留在同一目录，再双击 `SigilsAndOaths.exe`。 [下载 0.57 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.57.0-dev)
+Windows x64 预览版提供 MSI 安装包和 ZIP 便携包。下载 MSI 可双击安装。下载 ZIP 则先解压，把 EXE 和 PCK 留在同一目录，再双击 `SigilsAndOaths.exe`。 [下载 0.58 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.58.0-dev)
 
 从源码运行的步骤如下。
 

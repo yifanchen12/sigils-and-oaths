@@ -5,13 +5,13 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.57.0-dev" src="https://img.shields.io/badge/version-0.57.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.58.0-dev" src="https://img.shields.io/badge/version-0.58.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 248 collectible cards, twenty-three preset decks and six Blender-rendered skirmish boards. In **0.57.0-dev**, each commander has a distinct cast and sound. Guard links appear at deployment, and a triggered trap reveals its effect on the board. [Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.57.0-dev)
+The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 248 collectible cards, twenty-three preset decks and six Blender-rendered skirmish boards. In **0.58.0-dev**, horse tracks follow each turn in a rider’s path and a precision arrow flies toward the soldier who takes the hit. Spell cards show their cost and name as they resolve. Campaign briefings let you compare the opening field with your last defeat. [Windows x64 development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.58.0-dev) · [Watch 10.5 seconds of gameplay with sound](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.58.0-dev/SigilsAndOaths-0.58.0-dev-Field-Arts.mp4)
 
 ## In-game screenshots
 
@@ -113,6 +113,12 @@ The gold frame marks the stretcher crew. The teal square marks the kiln evacuati
 | Change the next exchange | Rain, fog, sun, snow, tailwind and lantern weather affect both sides. Replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
 | Learn and adjust | Four untimed drills. F10 opens display, reading size, motion, music and effects settings |
+
+## 0.58 · Hoof tracks, bowstrings and frost
+
+The rider’s trail follows the legal route around a corner. A precision shot can hit a guarding spearman. Starfire travels across the board, healing leaves rise from friendly pieces, and ice grows out of the target’s tile. The settings include a stationary cue for each effect. [Gameplay reel](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.58.0-dev/SigilsAndOaths-0.58.0-dev-Field-Arts.mp4) · [Frostbind on Harbor](docs/release/steam/gameplay/15-field-frost.png)
+
+Before deploying, inspect objectives and terrain, or reopen the last attempt to see who fell or which posts were lost. The map uses the selected difficulty and your actual opening hand. [After-action map](docs/release/steam/gameplay/16-channel-review.png) · [Release notes](docs/release/v058.md)
 
 ## 0.57 · Commander casts and holding the bridge
 
@@ -579,7 +585,7 @@ UI, forecast, map-art and skill-window checks require a graphical window. Earlie
 
 ## Current limits and artwork
 
-- Single-player development build for Windows x64. Open the MSI to install or extract the portable ZIP and keep its EXE and PCK together. [Download the development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.57.0-dev)
+- Single-player development build for Windows x64. Open the MSI to install or extract the portable ZIP and keep its EXE and PCK together. [Download the development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.58.0-dev)
 - Ranged attacks and spells currently do not check line of sight. AI diagnostics are not a substitute for competitive human playtesting.
 - One custom deck is saved locally at Godot's `user://custom_deck.json`; player data is not included in this repository.
 - One campaign autosave and a last-good backup use `user://campaign_autosave.json`. Starting over asks for in-game confirmation before replacing progress; these files are not published.

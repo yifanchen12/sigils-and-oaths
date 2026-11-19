@@ -31,6 +31,7 @@ func key(code: Key) -> void:
 	await settle()
 
 func capture(name: String) -> void:
+	if DisplayServer.get_name() == "headless" or OS.get_cmdline_user_args().has("--no-screenshots"): return
 	await RenderingServer.frame_post_draw
 	check(root.get_texture().get_image().save_png("res://docs/screenshots/" + name + ".png") == OK, "screenshot " + name)
 

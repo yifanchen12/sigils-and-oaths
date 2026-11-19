@@ -134,7 +134,7 @@ def render_music() -> None:
             subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", str(intermediate),
                             "-c:a", "libvorbis", "-q:a", "4", str(OUTPUT / (scene + ".ogg"))], check=True)
 
-def render_cues(signatures_only: bool) -> None:
+def render_cues(signatures_only: bool, field_only: bool = False) -> None:
     cues = {
         "move": (0.36, "tap", ((0.00, 0.65, -0.20), (0.12, 0.37, 0.18)), ()),
         "deploy": (0.64, "tap", ((0.00, 0.21, 0.10),), ((0.08, 58), (0.18, 65))),
@@ -148,9 +148,16 @@ def render_cues(signatures_only: bool) -> None:
         "bulwark": (0.79, "clash", ((0.06, 0.11, -0.20), (0.33, 0.49, 0.05)), ((0.10, 53), (0.33, 60), (0.38, 65))),
         "comet": (0.86, "wash", ((0.03, 0.37, -0.19), (0.24, 0.66, 0.18)), ((0.06, 81), (0.20, 70), (0.41, 43))),
         "willow": (0.90, "wash", ((0.13, 0.15, -0.22),), ((0.08, 69), (0.21, 74), (0.35, 76), (0.48, 81))),
+        "canter": (0.57, "tap", ((0.00, 0.49, -0.29), (0.08, 0.31, -0.10), (0.18, 0.57, 0.12), (0.26, 0.36, 0.28)), ()),
+        "bowstring": (0.52, "snap", ((0.13, 0.37, -0.19), (0.35, 0.20, 0.23)), ((0.13, 70), (0.16, 55))),
+        "rime": (0.80, "clash", ((0.30, 0.30, -0.26), (0.36, 0.22, 0.16)), ((0.33, 87), (0.37, 94), (0.43, 82))),
+        "sprout": (0.81, "wash", ((0.12, 0.09, -0.14),), ((0.04, 67), (0.23, 71), (0.34, 78))),
+        "flare": (0.71, "wash", ((0.04, 0.42, -0.22), (0.31, 0.58, 0.21)), ((0.32, 46),)),
     }
     for index, (name, (length, kind, hits, notes)) in enumerate(cues.items()):
         if signatures_only and name not in {"bulwark", "comet", "willow"}:
+            continue
+        if field_only and name not in {"canter", "bowstring", "rime", "sprout", "flare"}:
             continue
         mix = np.zeros((round(RATE * length), 2), dtype=np.float64)
         for onset, gain, pan in hits:
@@ -167,9 +174,11 @@ def render_cues(signatures_only: bool) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--signatures-only", action="store_true")
+    subset = parser.add_mutually_exclusive_group()
+    subset.add_argument("--signatures-only", action="store_true")
+    subset.add_argument("--field-only", action="store_true")
     args = parser.parse_args()
     OUTPUT.mkdir(parents=True, exist_ok=True)
-    if not args.signatures_only:
+    if not args.signatures_only and not args.field_only:
         render_music()
-    render_cues(args.signatures_only)
+    render_cues(args.signatures_only, args.field_only)

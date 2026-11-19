@@ -1,0 +1,219 @@
+{
+  "version": "0.58.0-dev",
+  "native_effect_checks": 95,
+  "native_briefing_checks": 12,
+  "legacy_review_checks": 33,
+  "reel": {
+    "fps": 24,
+    "frames": 252,
+    "shots": [
+      {
+        "id": "sword",
+        "map": "ridgepass",
+        "preceding_actions": 11,
+        "seed": 56037,
+        "sound": "guard.wav",
+        "sound_frame": 8,
+        "target": "H2",
+        "turn": 5,
+        "type": "unit_skill"
+      },
+      {
+        "id": "cavalry",
+        "map": "rivergate",
+        "preceding_actions": 20,
+        "seed": 56037,
+        "sound": "canter.wav",
+        "sound_frame": 44,
+        "target": "H4",
+        "turn": 7,
+        "type": "unit_skill"
+      },
+      {
+        "id": "archer",
+        "map": "sunspire",
+        "preceding_actions": 30,
+        "seed": 56037,
+        "sound": "bowstring.wav",
+        "sound_frame": 80,
+        "target": "H7",
+        "turn": 9,
+        "type": "unit_skill"
+      },
+      {
+        "id": "mage",
+        "map": "citadel",
+        "preceding_actions": 150,
+        "seed": 56037,
+        "sound": "flare.wav",
+        "sound_frame": 116,
+        "target": "G7",
+        "turn": 23,
+        "type": "unit_skill"
+      },
+      {
+        "id": "healer",
+        "map": "greenwood",
+        "preceding_actions": 62,
+        "seed": 56037,
+        "sound": "sprout.wav",
+        "sound_frame": 152,
+        "target": "G5",
+        "turn": 13,
+        "type": "unit_skill"
+      },
+      {
+        "id": "frostbind",
+        "map": "harbor",
+        "preceding_actions": 275,
+        "seed": 56037,
+        "sound": "rime.wav",
+        "sound_frame": 188,
+        "target": "H8",
+        "turn": 45,
+        "type": "play"
+      },
+      {
+        "id": "bolt",
+        "map": "ridgepass",
+        "preceding_actions": 172,
+        "seed": 56037,
+        "sound": "flare.wav",
+        "sound_frame": 224,
+        "target": "F6",
+        "turn": 29,
+        "type": "play"
+      }
+    ]
+  },
+  "campaign_route": "Road, relief, school escort, joint governance. The automated player retried actual losses under each difficulty. Every retry loaded the final field through an independent campaign session from disk.",
+  "campaigns": {
+    "standard": {
+      "ending": "authored_end",
+      "chapters": 18,
+      "read_passages": 1550,
+      "checks": 8332,
+      "wins": 16,
+      "actions": 6256,
+      "gameplay_traces_equal_to_057": true,
+      "reviews_after_reload": [
+        {
+          "scenario": "c01_bridge",
+          "attempt": 1,
+          "turn": 22,
+          "seed": 1319,
+          "result": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c01_bridge",
+          "attempt": 2,
+          "turn": 54,
+          "seed": 1319,
+          "result": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c01_bridge",
+          "attempt": 3,
+          "turn": 63,
+          "seed": 1319,
+          "result": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c02_dispatch",
+          "attempt": 1,
+          "turn": 44,
+          "seed": 2319,
+          "result": "我方指挥官维洛 · 赤烬倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c04_dock",
+          "attempt": 1,
+          "turn": 63,
+          "seed": 4317,
+          "result": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c04_dock",
+          "attempt": 2,
+          "turn": 61,
+          "seed": 4317,
+          "result": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c04_dock",
+          "attempt": 3,
+          "turn": 61,
+          "seed": 4317,
+          "result": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c08_isolate",
+          "attempt": 1,
+          "turn": 25,
+          "seed": 8317,
+          "result": "驻守期限已到，未能稳住两处据点，本次驻守任务失败。"
+        },
+        {
+          "scenario": "c10_gate",
+          "attempt": 1,
+          "turn": 37,
+          "seed": 10341,
+          "result": "驻守期限已到，未能稳住两处据点，本次驻守任务失败。"
+        },
+        {
+          "scenario": "c17_runner",
+          "attempt": 1,
+          "turn": 33,
+          "seed": 17031,
+          "result": "接应期限已到，未能打通撤离通道。"
+        }
+      ]
+    },
+    "story": {
+      "ending": "authored_end",
+      "chapters": 18,
+      "read_passages": 1550,
+      "checks": 5301,
+      "wins": 16,
+      "actions": 3319,
+      "gameplay_traces_equal_to_057": true,
+      "reviews_after_reload": [
+        {
+          "scenario": "c05_nursery",
+          "attempt": 1,
+          "turn": 31,
+          "seed": 5317,
+          "result": "驻守期限已到，未能稳住两处据点，本次驻守任务失败。"
+        },
+        {
+          "scenario": "c06_court",
+          "attempt": 1,
+          "turn": 42,
+          "seed": 6317,
+          "result": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c06_court",
+          "attempt": 2,
+          "turn": 56,
+          "seed": 6317,
+          "result": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c06_court",
+          "attempt": 3,
+          "turn": 46,
+          "seed": 6317,
+          "result": "我方指挥官艾琳 · 破晓倒下，本次战斗失利。"
+        },
+        {
+          "scenario": "c08_isolate",
+          "attempt": 1,
+          "turn": 31,
+          "seed": 8317,
+          "result": "驻守期限已到，未能稳住两处据点，本次驻守任务失败。"
+        }
+      ]
+    }
+  }
+}

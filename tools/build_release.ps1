@@ -159,7 +159,7 @@ func _initialize() -> void:
     if artwork.EMPTY_MOORINGS.get_size() != Vector2(360, 360):
         problems.append("empty harbor moorings unavailable")
     var cast_art = load("res://scripts/cast_art.gd")
-    if cast_art == null or cast_art.ATLAS.get_size() != Vector2(1536,1024) or cast_art.SKILLS.size() != 6:
+    if cast_art == null or cast_art.ATLAS.get_size() != Vector2(1536,1024) or cast_art.FIELD_ATLAS.get_size() != Vector2(1536,1024) or cast_art.SIGNATURE_ATLAS.get_size() != Vector2(1536,1024) or cast_art.SKILLS.size() != 6:
         problems.append("battle casting artwork unavailable")
     var edict: Dictionary = decks.find("glassroad_edict").cards
     if edict.has("bolt") or edict.get("frostbind",0) != 1 or edict.get("anchor_snare",0) != 1:

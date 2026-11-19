@@ -1,5 +1,5 @@
 {
-  "version": "0.57.0-dev",
+  "version": "0.58.0-dev",
   "images": [
     {
       "path": "key-art-v1.png",
@@ -289,8 +289,32 @@
       "bytes": 1928944,
       "sha256": "d275e6c379b8627f7d6d9a153311b3da619a419d57a91640d5651133509c6baa",
       "capture": "Pyromancer casts Fire Verdict on Sunspire on side turn 31. Balanced Host mirror, seed 56037, after 186 legal actions. Native frame sampled 0.50 s after casting."
+    },
+    {
+      "path": "gameplay/15-field-frost.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1583793,
+      "sha256": "f652869a3f85f36c942f3fa84dc6793147d501fcb256534e49708e5c0f024ff6",
+      "capture": "Frostbind played from hand on Harbor. Twin-Tide Orders against Balanced Host, seed 56037, side turn 45 after 275 preceding legal actions, at 0.50 seconds after casting."
+    },
+    {
+      "path": "gameplay/16-channel-review.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 2331842,
+      "sha256": "7b4f54f848c4d24c89a257e900d86c10884d80bf62b0d2489c0b2922dd0c733e",
+      "capture": "Campaign chapter 14 after-action map loaded from an authentic 0.57 save. Third standard attempt, both commanders alive, F6 and K9 held by the enemy at the 22-round deadline."
     }
   ],
-  "viewport_screenshots": 14,
+  "viewport_screenshots": 16,
   "store_and_library_graphics_including_icons": 10
 }

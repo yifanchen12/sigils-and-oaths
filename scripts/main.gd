@@ -204,6 +204,7 @@ func _ready() -> void:
 	story_view.requisition_requested.connect(_choose_requisition)
 	story_view.difficulty_requested.connect(_choose_difficulty)
 	story_view.armory_requested.connect(_open_armory)
+	story_view.field_requested.connect(_inspect_campaign_field)
 	story_view.retreat_requested.connect(_retreat_from_campaign_battle)
 	story_view.next_chapter_requested.connect(_next_story_chapter)
 	story_view.replay_requested.connect(_replay_from_ending)
@@ -602,11 +603,20 @@ func _show_story(focus_requisition: bool = false) -> void:
 		setup["difficulty"] = campaign_session.campaign.difficulty
 		setup["armory_slots"] = CampaignSession.Campaign.Armory.unlocked_count(campaign_session.campaign.completed.size())
 		setup["armory_equipped"] = campaign_session.campaign.armory.size()
+		if not campaign_session.last_attempt.is_empty():
+			var replay: Dictionary = campaign_session.inspect_field(campaign_session.token(), true)
+			if replay.ok: setup["last_summary"] = replay.battle.result_reason()
 	var page: Dictionary = campaign_session.current()
 	if parked_main_campaign != null: page["chapter"] = "分支 · " + str(page.get("chapter", "战役"))
 	story_view.open(page, campaign_session.token(), setup, campaign_session.backlog(), campaign_session.notice, campaign_session.unsaved)
 	if focus_requisition and story_view.requisition_panel.visible: story_view.requisition_choice.grab_focus()
 	_refresh()
+
+func _inspect_campaign_field(previous: bool, expected: Dictionary) -> void:
+	if not story_view.visible or story_view.showing_history: return
+	var result: Dictionary = campaign_session.inspect_field(expected, previous)
+	if result.ok: story_view.show_field(result.battle, result.difficulty, previous)
+	else: story_view.set_status(result.message, true)
 
 func _open_armory(expected: Dictionary) -> void:
 	if not story_view.armory_button.is_visible_in_tree() or expected != campaign_session.token(): return
@@ -707,7 +717,7 @@ func _mount_campaign_encounter(result: Dictionary) -> void:
 	council.hide()
 	has_started = true
 	_new_match(int(result.scenario.seed), result.battle)
-	message = result.scenario.title + " · " + result.scenario.objective
+	message = result.scenario.title + " · " + CampaignSession.Difficulty.objective_for(result.scenario, campaign_session.campaign.difficulty)
 	var equipped_count: int = campaign_session.campaign.armory.size()
 	if equipped_count > 0: message = "携带军备 %d 张 · %s" % [equipped_count, message]
 	if not campaign_session.campaign.requisition.is_empty():
@@ -993,11 +1003,10 @@ func _refresh() -> void:
 		var already_visible: bool = %ResultOverlay.visible
 		%ResultOverlay.show()
 		%ResultTitle.text = "苍蓝旗帜，仍在飘扬" if battle.winner == 0 else ("战场归于寂静" if battle.winner == 2 else "此役失利，再整旗鼓")
-		%ResultDetail.text = "%s\n共 %d 轮 · 种子 %d" % ["你取得了胜利！" if battle.winner == 0 else ("双方指挥官同时倒下，平局。" if battle.winner == 2 else "%s赢得本次战斗。" % battle.side_name(1)), ceili(float(battle.turn) / 2), battle.match_seed]
+		var rounds := "第 %d 轮" % ceili(float(battle.turn) / 2)
 		if not battle.objective.is_empty() and not blue.is_empty() and not red.is_empty():
-			%ResultDetail.text = "%s\n经过 %d 个完整轮次 · 种子 %d" % [battle.ControlObjective.result_text(battle.objective, battle.winner == 0, battle.escort_unit().is_empty()), (battle.turn - 1) / 2, battle.match_seed]
-		elif battle.ControlObjective.is_escort(battle.objective) and battle.escort_unit().is_empty():
-			%ResultDetail.text = battle.ControlObjective.result_text(battle.objective, false, true)
+			rounds = "经过 %d 个完整轮次" % ((battle.turn - 1) / 2)
+		%ResultDetail.text = "%s\n%s · 种子 %d" % [battle.result_reason(), rounds, battle.match_seed]
 		%PlayAgain.text = ("继续剧情" if battle.winner == 0 else "返回战前 · 重新部署") if campaign_active else "再来一局"
 		if campaign_active: %ResultDetail.text += "\n" + campaign_session.notice
 		if not already_visible: %PlayAgain.grab_focus()
@@ -1240,9 +1249,9 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 			if definition.type == "trap": visual_action["trap_trigger"] = definition.trigger
 			visual_action["spell_effect"] = definition.get("effect", "")
 			visual_action["effect_kind"] = visual_action.spell_effect
-			if int(definition.cost) >= 7 and definition.type != "trap":
-				visual_action["cast_title"] = definition.name
-				visual_action["cast_art"] = definition.id
+			visual_action["cast_title"] = definition.name
+			visual_action["cast_art"] = definition.id
+			visual_action["cast_cost"] = int(definition.cost)
 			if visual_action.spell_effect in ["formation", "choice"] and battle.inside(action.target):
 				var area: Dictionary = battle.choice_mode(definition, action.target, side) if visual_action.spell_effect == "choice" else definition
 				visual_action["affected_cells"] = battle.Formation.footprint(battle, action.target, int(area.get("radius", 0)), str(area.get("shape", "")))

@@ -96,6 +96,7 @@ func _process(delta: float) -> void:
 func grid_rect() -> Rect2:
 	if battle == null: return Rect2()
 	var cell_size: float = floorf(minf((size.x - 60.0) / battle.width, (size.y - 38.0) / battle.height)) * zoom
+	if cell_size <= 0: return Rect2()
 	var extent := Vector2(cell_size * battle.width, cell_size * battle.height)
 	return Rect2((size - extent) / 2 + Vector2(8, 7) + pan, extent)
 
@@ -191,7 +192,7 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 			var reply: bool = forecast.counter_damage > 0 or forecast.get("retort_damage", 0) > 0
 			action_duration = 0.40 if reduced_motion else (1.0 if reply else 0.66)
 			combat = {"attacker": actors[action.unit_id], "defender": actors[forecast.defender_id],
-				"protected": actors[forecast.protected_id], "forecast": forecast, "age": 0.0, "duration": action_duration}
+				"protected": actors[forecast.protected_id], "forecast": forecast, "precision": style == "shot_cast", "age": 0.0, "duration": action_duration}
 	var pose_action: bool = action.type == "hero" or (action.type == "unit_skill" and action.get("unit_kind", "") != "cavalry") or (action.type == "play" and action.get("card_type", "") in ["spell", "environment"])
 	if not reduced_motion and pose_action and combat.is_empty() and action.has("visual_caster_id"):
 		var caster: Dictionary = battle.get_unit(int(action.visual_caster_id))
@@ -201,13 +202,16 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 			casting_pose = {"unit_id": caster.id, "age": 0.0, "duration": 0.72, "brace": kind in ["sword", "spear", "warden"], "facing": float(target.x - caster.pos.x) if battle.inside(target) else 1.0}
 			action_duration = maxf(action_duration, 0.72)
 	var previous_ids: Dictionary = {}
+	var recipients: Array[Vector2i] = []
 	for old: Dictionary in before:
-		var delay: float = 0.32 if casts else 0.0
+		var delay: float = 0.32 if casts and not reduced_motion else 0.0
 		if not combat.is_empty(): delay = 0.72 if old.id == combat.attacker.id else (0.35 if old.id == combat.defender.id else 0.0)
 		previous_ids[old.id] = true
 		var current: Dictionary = battle.get_unit(old.id)
 		if current.is_empty():
 			var death_cell: Vector2i = old.pos
+			if casts and not reduced_motion and combat.is_empty() and not (old.id == int(action.get("unit_id",-1)) and path.size() >= 2):
+				effects.append({"kind":"departing", "actor":old, "cell":old.pos, "age":0.0, "duration":delay})
 			if old.id == int(action.get("unit_id", -1)) and path.size() >= 2:
 				death_cell = path.back()
 				delay = minf(0.42, 0.14 + path.size() * 0.04)
@@ -219,7 +223,8 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 		var hp_delta: int = int(current.hp) - int(old.hp)
 		var shield_delta: int = int(current.shield) - int(old.shield)
 		if int(current.get("rooted_turns", 0)) > int(old.get("rooted_turns", 0)):
-			_effect("spawn", current.pos, "定身", Color("a5cfed"), 0.9)
+			_effect("spawn", current.pos, "定身", Color("a5cfed"), 0.9, delay)
+		if hp_delta > 0 or shield_delta > 0 or current.rooted_turns > old.rooted_turns: recipients.append(current.pos)
 		if action.get("spell_effect", "") in ["onslaught", "formation"] and old.attacked and not current.attacked:
 			_effect("spawn", current.pos, "追击", GOLD, 0.8)
 		if old.moved and not current.moved and (action.get("spell_effect", "") == "formation" or action.get("card_type", "") == "unit"):
@@ -284,7 +289,8 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 		if style == "weather_cast": color = CastArt.WEATHER.get(battle.weather, color)
 		var duration: float = 0.46 if reduced_motion else 0.82
 		effects.append({"kind": style, "cell": landing, "from": origin, "cells": cells, "text": "", "color": color,
-			"title":action.get("cast_title",""), "portrait":action.get("cast_art",""),
+			"title":action.get("cast_title",""), "portrait":action.get("cast_art",""), "cost":action.get("cast_cost",-1),
+			"stroke":CastArt.field_stroke(action, style), "recipients":recipients, "route":path, "rider":action.get("unit_id",-1),
 			"guard":guard, "signature":signature, "martial":action.has("cast_color"), "weather":battle.weather, "age":0.0, "duration":duration})
 		action_duration = maxf(action_duration, duration)
 	if action.type == "unit_skill" and action.get("unit_kind", "") == "spear": _effect("shield", action.target, "援护展开", BLUE, 0.85)
@@ -366,6 +372,7 @@ func _gui_input(event: InputEvent) -> void:
 func _draw() -> void:
 	if battle == null or font == null: return
 	var grid: Rect2 = grid_rect()
+	if not grid.has_area(): return
 	var tile: float = grid.size.x / battle.width
 	var frame := StyleBoxFlat.new()
 	frame.bg_color = Color("101e23")
@@ -443,6 +450,9 @@ func _draw() -> void:
 		draw_circle(at, 10, Color("29203f"))
 		draw_arc(at, 10, 0, TAU, 24, Color("c6a6ff"), 1.5, true)
 		_text("伏", at + Vector2(0, 4), 12, Color("d8c6ff"))
+	for effect: Dictionary in effects:
+		if effect.kind == "departing":
+			_draw_unit(effect.actor, cell_center(effect.cell), tile)
 	for unit: Dictionary in battle.units:
 		if not reduced_motion and not combat.is_empty() and unit.id in [combat.attacker.id, combat.defender.id]: continue
 		var at: Vector2 = cell_center(unit.pos)
@@ -544,9 +554,9 @@ func _draw_effects(tile: float) -> void:
 		if effect.age >= 0 and CastArt.STYLES.has(effect.kind):
 			CastArt.draw_cast(self,effect,tile)
 			if not str(effect.get("title","")).is_empty(): title_effect = effect
-	if not reduced_motion and not title_effect.is_empty(): CastArt.draw_title(self,title_effect)
+	if not title_effect.is_empty(): CastArt.draw_title(self,title_effect)
 	for effect: Dictionary in effects:
-		if effect.age < 0 or CastArt.STYLES.has(effect.kind): continue
+		if effect.age < 0 or effect.kind == "departing" or CastArt.STYLES.has(effect.kind): continue
 		var progress: float = float(effect.age) / float(effect.duration)
 		var at: Vector2 = cell_center(effect.cell)
 		var color: Color = effect.color
@@ -595,7 +605,10 @@ func _draw_combat(tile: float) -> void:
 	_draw_combat_actor(defender, defender_at, tile, 0.35, -direction.x)
 	if time >= 0.12 and time <= 0.35:
 		var progress: float = (time - 0.12) / 0.23
-		if melee: _draw_slash(defender_at, direction, progress, GOLD, tile)
+		if combat.precision:
+			var arrow := a.lerp(defender_at, progress) + Vector2.UP * sin(PI * progress) * tile * 0.14
+			CastArt.oriented_stroke(self, CastArt.Stroke.ARROW, arrow, direction, Vector2.ONE*tile*1.32, minf(progress*6.0,1.0))
+		elif melee: _draw_slash(defender_at, direction, progress, GOLD, tile)
 		else: _draw_projectile(a, defender_at, progress, attacker.kind, GOLD if attacker.kind == "archer" else Color("c6a5ff"), tile)
 	if time >= 0.35 and time <= 0.48:
 		var progress: float = (time - 0.35) / 0.13

@@ -5,6 +5,7 @@ const MainScene = preload("res://scenes/main.tscn")
 const Model = preload("res://scripts/battle.gd")
 const AI = preload("res://scripts/opponent.gd")
 const Campaign = preload("res://scripts/campaign_session.gd")
+const CastArt = preload("res://scripts/cast_art.gd")
 const Preferences = preload("res://scripts/settings_store.gd")
 const SIZE := Vector2i(1920, 1080)
 const DIRECTORY = "res://docs/release/steam/gameplay"
@@ -176,7 +177,7 @@ func film_position(map_id: String, deck: String, id: String) -> Dictionary:
 			if battle.winner != -1: break
 			if battle.active_side == 0 and battle.turn >= 5 and battle.units.size() >= 5:
 				for action: Dictionary in battle.get_legal_actions(0):
-					var matched: bool = action.type == "play" and battle.hand_card(0,action.card_uid).card_id == id
+					var matched: bool = action.type == "play" and not CastArt.SKILLS.has(id) and battle.hand_card(0,action.card_uid).card_id == id
 					if matched and id == "glass_treaty": matched = battle.unit_at(action.target).get("side",-1) == 1
 					if id in ["blessing", "firestrike", "renewal"]:
 						matched = action.type == "hero"
@@ -189,6 +190,9 @@ func film_position(map_id: String, deck: String, id: String) -> Dictionary:
 					if action.type == "unit_skill" and battle.get_unit(action.unit_id).kind == id:
 						matched = id != "spear" or battle.units.any(func(unit: Dictionary) -> bool:
 							return unit.side == 0 and battle.distance(unit.pos,action.target) == 1)
+						if id == "cavalry":
+							var path := battle.movement_path(battle.get_unit(action.unit_id),action.target)
+							matched = path.size() == 3 and path[1]-path[0] != path[2]-path[1]
 					if matched: return {"battle":battle,"action":action,"prefix":step}
 			if not require(battle.apply_action(AI.choose(battle)).ok, "legal film prefix"): return {}
 			if step % 24 == 0: await process_frame
@@ -212,17 +216,22 @@ func trap_film_position(map_id: String, deck: String, step_trap: bool) -> Dictio
 		await process_frame
 	return {}
 
-func capture_cast_frames(directory: String, signatures: bool = false) -> void:
+func capture_cast_frames(directory: String, series: String) -> void:
 	if not require(DirAccess.dir_exists_absolute(directory), "an existing capture directory is required"): return
 	var shots := [["ridgepass","balanced","bolt"], ["sunspire","balanced","healer"],
 		["citadel","reed_legion","spear"], ["citadel","glassroad_edict","anchor_snare"],
 		["sunspire","balanced","firestrike"], ["harbor","balanced","rain"], ["rivergate","glassroad_edict","glass_treaty"]]
-	if signatures:
+	if series == "--signature-frames":
 		shots = [["rivergate","frost_engine","gate_veteran"], ["sunspire","balanced","firestrike"],
 			["ridgepass","balanced","blessing"], ["greenwood","balanced","renewal"],
 			["citadel","ambush","anchor_snare"], ["harbor","ambush","oath_ward"],
 			["rivergate","reed_legion","trigger_step"], ["citadel","balanced","trigger_counter"]]
+	elif series == "--field-frames":
+		shots = [["ridgepass","balanced","sword"], ["rivergate","assault","cavalry"], ["sunspire","balanced","archer"],
+			["citadel","balanced","mage"], ["greenwood","balanced","healer"], ["harbor","glassroad_edict","frostbind"],
+			["ridgepass","balanced","bolt"]]
 	var frame_index := 0
+	var recorded: Array[Dictionary] = []
 	for shot: Array in shots:
 		var position: Dictionary = await film_position(shot[0],shot[1],shot[2])
 		if not require(not position.is_empty(), "legal cast available for " + str(shot[2])): return
@@ -231,17 +240,20 @@ func capture_cast_frames(directory: String, signatures: bool = false) -> void:
 		mount_battle(battle)
 		game.set_process(false)
 		game.board.set_process(false)
+		if series == "--field-frames":
+			game.audio.stopping = false
+			game.audio.set_levels(0,100)
 		var global_card: bool = action.type == "play" and not battle.inside(action.target)
 		var untargeted_hero: bool = action.type == "hero" and not battle.inside(action.target)
+		var self_skill: bool = action.type == "unit_skill" and battle.get_unit(action.unit_id).kind in ["sword","spear"]
 		var focus: Vector2i = battle.commander(0).pos if global_card or untargeted_hero else action.target
 		if global_card: game._inspect_card(action.card_uid)
 		elif action.type == "play": game._select_card(action.card_uid)
 		elif action.type == "hero":
 			if not untargeted_hero: game._select_hero_skill()
 		else:
-			game.selected_unit = action.unit_id
-			game.using_unit_skill = action.type == "unit_skill"
-			game._refresh()
+			game._on_cell_clicked(battle.get_unit(action.unit_id).pos,MOUSE_BUTTON_LEFT)
+			if action.type == "unit_skill" and not self_skill: game._select_unit_skill()
 		await process_frame
 		game.board.fit_map()
 		if not global_card:
@@ -253,23 +265,41 @@ func capture_cast_frames(directory: String, signatures: bool = false) -> void:
 			if f == 8:
 				if global_card: game._select_card(action.card_uid)
 				elif untargeted_hero: game._select_hero_skill()
+				elif self_skill: game._select_unit_skill()
 				else: game._on_cell_clicked(action.target,MOUSE_BUTTON_LEFT)
 				if not require(not game.error_message and game.board.is_presenting(),"cast accepted through the battle UI"): return
+				if series == "--field-frames":
+					if not require(game.board.effects.any(func(effect: Dictionary) -> bool:
+						return effect.get("stroke",-1) >= 0 and (effect.get("rider",-1) == action.unit_id if action.type == "unit_skill" else effect.get("cost",-1) >= 0)), "the filmed action actually displays its declared stroke"): return
+					var sounds: Array = game.audio.sfx.get_children().filter(func(node: Node) -> bool: return node.playing)
+					if not require(not sounds.is_empty(),"native audio starts at the filmed input"): return
+					recorded.append({"id":shot[2], "type":action.type, "map":shot[0], "seed":battle.match_seed,
+						"preceding_actions":position.prefix, "turn":battle.turn, "target":battle.cell_name(action.target),
+						"sound":sounds.back().stream.resource_path.get_file(), "sound_frame":frame_index})
 				if position.has("revealed_cell") and not require(battle.last_trap_events.any(func(event: Dictionary) -> bool:
 					return event.triggered and event.cell == position.revealed_cell), "live UI reveals the replayed trap"): return
 				game.board.hover_cell = Vector2i(-1,-1)
-			if f > 8: game.board._process(1.0/24.0)
+				if game.board.motion_tween != null: game.board.motion_tween.pause()
+			if f > 8:
+				game.board._process(1.0/24.0)
+				if game.board.motion_tween != null and game.board.motion_tween.is_valid():
+					game.board.motion_tween.custom_step(1.0/24.0)
 			game.board.queue_redraw()
 			await process_frame
 			await RenderingServer.frame_post_draw
 			var frame: Image = target_view.get_texture().get_image()
 			if not require(frame.save_png(directory.path_join("cast-%04d.png" % frame_index)) == OK,"write actual game frame"): return
-			if not signatures and shot[2] == "bolt" and f == 20:
+			if series == "--cast-frames" and shot[2] == "bolt" and f == 20:
 				if not require(frame.save_png(ProjectSettings.globalize_path(DIRECTORY.path_join("12-cast-impact.png"))) == OK,"write spell impact screenshot"): return
 			frame_index += 1
 		game.board.set_process(true)
-		print("CAST FILM ", shot[2], " map ", shot[0], " seed ", battle.match_seed, " preceding legal actions ",
+		print("CAST FILM ", shot[2], " action ",action.type, " map ", shot[0], " seed ", battle.match_seed, " preceding legal actions ",
 			position.prefix, " turn ", battle.turn, " target ", action.target)
+	if series == "--field-frames":
+		var manifest := FileAccess.open(directory.path_join("shots.json"), FileAccess.WRITE)
+		if not require(manifest != null, "open reel metadata"): return
+		manifest.store_string(JSON.stringify({"fps":24,"frames":frame_index,"shots":recorded},"\t"))
+		manifest.close()
 
 func capture_frost_front(output: String) -> void:
 	game._start_from_council("rivergate", "warden", "frost_engine", "glassroad_edict")
@@ -301,6 +331,18 @@ func capture_frost_front(output: String) -> void:
 	print("FROST FRONT ", battle.match_seed, " | preceding actions 78 | turn ", battle.turn,
 		" | guard ", battle.cell_name(cell), " | ally ", ally.name, " ", battle.cell_name(ally.pos))
 
+func capture_field(source: String, output: String) -> void:
+	if not require(DirAccess.copy_absolute(source, TEST_SAVE) == OK, "copy an earned campaign save to the isolated capture slot"): return
+	game._continue_campaign()
+	var view: Control = game.story_view
+	if not require(view.field_button.is_visible_in_tree() and view.setup.has("last_summary"), "continue reaches a genuine post-defeat briefing"): return
+	view.field_button.pressed.emit()
+	if not require(view.field_view.previous and view.field_view.board.battle.winner == 1, "review opens on the saved defeat"): return
+	await capture("after-action",output.path_join("after-action.png"))
+	view.field_view.opening_button.pressed.emit()
+	if not require(not view.field_view.previous and view.field_view.board.battle.turn == 1, "switching shows the fresh starting position"): return
+	await capture("briefing-field",output.path_join("briefing-field.png"))
+
 func run() -> void:
 	if DisplayServer.get_name() == "headless":
 		push_error("A native renderer is required for gameplay screenshots")
@@ -308,7 +350,7 @@ func run() -> void:
 		return
 	cleanup()
 	var args := OS.get_cmdline_user_args()
-	if not (args.size() == 2 and args[0] in ["--frost-front","--signature-frames"]):
+	if args.is_empty() or args[0] not in ["--frost-front","--signature-frames","--field-frames","--campaign-field"]:
 		DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(DIRECTORY))
 	target_view = SubViewport.new()
 	target_view.size = SIZE
@@ -324,8 +366,10 @@ func run() -> void:
 	game.audio.stop_playback()
 	AudioServer.set_bus_mute(0, true)
 	await process_frame
-	if args.size() == 2 and args[0] in ["--cast-frames","--signature-frames"]:
-		await capture_cast_frames(args[1], args[0] == "--signature-frames")
+	if args.size() == 2 and args[0] in ["--cast-frames","--signature-frames","--field-frames"]:
+		await capture_cast_frames(args[1], args[0])
+	elif args.size() == 3 and args[0] == "--campaign-field":
+		await capture_field(args[1],args[2])
 	elif args.has("--frost-front"):
 		await capture_frost_front(args[1] if args.size() == 2 else "")
 	elif args.has("--highlands"):

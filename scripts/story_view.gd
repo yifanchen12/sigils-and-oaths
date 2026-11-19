@@ -7,6 +7,7 @@ signal battle_requested(expected: Dictionary)
 signal requisition_requested(card_id: String, expected: Dictionary)
 signal difficulty_requested(mode: String, expected: Dictionary)
 signal armory_requested(expected: Dictionary)
+signal field_requested(previous: bool, expected: Dictionary)
 signal retreat_requested(expected: Dictionary)
 signal next_chapter_requested(expected: Dictionary)
 signal replay_requested
@@ -17,6 +18,7 @@ signal settings_requested
 const Art = preload("res://scripts/art_library.gd")
 const Cards = preload("res://data/cards.tres")
 const Difficulty = preload("res://scripts/campaign_difficulty.gd")
+const FieldView = preload("res://scripts/campaign_field_view.gd")
 const GOLD := Color("d0b579")
 const INK := Color("eee8db")
 var heading: Label
@@ -35,6 +37,9 @@ var requisition_art: TextureRect
 var requisition_text: RichTextLabel
 var difficulty_choice: OptionButton
 var armory_button: Button
+var field_view: FieldView
+var field_button: Button
+var content_margin: MarginContainer
 var background_id: String = "menu"
 var page: Dictionary = {}
 var setup: Dictionary = {}
@@ -48,6 +53,11 @@ func _ready() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	hide()
 	_build()
+	field_view = FieldView.new()
+	add_child(field_view)
+	field_view.close_requested.connect(_close_field)
+	field_view.switch_requested.connect(func(previous: bool) -> void: field_requested.emit(previous, view_token.duplicate()))
+	field_view.deploy_requested.connect(func() -> void: battle_requested.emit(view_token.duplicate()))
 	resized.connect(queue_redraw)
 
 func _draw() -> void:
@@ -80,6 +90,7 @@ func _button(text: String, callback: Callable, wrap: bool = true) -> Button:
 
 func _build() -> void:
 	var margin := MarginContainer.new()
+	content_margin = margin
 	add_child(margin)
 	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for side: String in ["left", "right", "top", "bottom"]: margin.add_theme_constant_override("margin_" + side, 36)
@@ -92,6 +103,8 @@ func _build() -> void:
 	heading = _label("河门来信", 28, INK)
 	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(heading)
+	field_button = _button("查看战场", func() -> void: field_requested.emit(setup.has("last_summary"), view_token.duplicate()), false)
+	header.add_child(field_button)
 	backlog_button = _button("已读回看", _toggle_history, false)
 	header.add_child(backlog_button)
 	settings_button = _button("设置", settings_requested.emit, false)
@@ -236,6 +249,9 @@ func render_requisition() -> void:
 	requisition_text.scroll_to_line(0)
 
 func open(current_page: Dictionary, expected: Dictionary, scenario: Dictionary, backlog: Array[Dictionary], save_notice: String, save_failed: bool) -> void:
+	field_view.hide()
+	field_view.board.battle = null
+	content_margin.show()
 	page = current_page.duplicate(true)
 	view_token = expected.duplicate(true)
 	setup = scenario.duplicate(true)
@@ -254,6 +270,7 @@ func set_status(message: String, failed: bool = false) -> void:
 	status.add_theme_color_override("font_color", Color("f08b76") if failed else Color("b7c7ce"))
 
 func set_reading_size(percent: int) -> void:
+	field_view.set_reading_size(percent)
 	text_body.add_theme_font_size_override("normal_font_size", roundi(22.0 * percent / 100.0))
 	text_body.add_theme_constant_override("line_separation", roundi(14.0 * percent / 100.0))
 	requisition_text.add_theme_font_size_override("normal_font_size", roundi(17.0 * percent / 100.0))
@@ -275,6 +292,8 @@ func _render_page() -> void:
 	# Battle objectives and retry details must not be pushed below a decorative
 	# stage in a small window. Dialogue still keeps its portrait/background space.
 	var briefing: bool = page.get("type", "") == "battle"
+	field_button.visible = briefing and not showing_history
+	field_button.text = "战局复盘" if setup.has("last_summary") else "查看战场"
 	armory_button.visible = briefing and not showing_history and int(setup.get("armory_slots", 0)) > 0
 	if armory_button.visible: armory_button.text = "战役军备  %d/%d" % [setup.get("armory_equipped", 0), setup.armory_slots]
 	render_difficulty()
@@ -311,7 +330,11 @@ func _render_page() -> void:
 			if page.last_outcome != "": retry = "\n\n上一战" + ("失利" if page.last_outcome == "defeat" else "平局") + "，剧情停在此处。可调整难度再出征。"
 			var mode: String = setup.get("difficulty", Difficulty.STANDARD)
 			var support: String = "\n\n" + Difficulty.support_text() if mode == Difficulty.STORY else ""
-			text_body.text = "作战目标\n%s%s\n\n%s\n\n敌方指挥：%s\n每回合 90 秒。战斗自动保存，退出后可继续当前局面。%s" % [Difficulty.objective_for(setup, mode), support, Difficulty.brief_for(setup, mode), setup.get("enemy_name", ""), retry]
+			var last_result: String = ""
+			if setup.has("last_summary"):
+				last_result = "上次战果\n%s\n\n" % setup.last_summary
+				retry = ""
+			text_body.text = "%s作战目标\n%s%s\n\n%s\n\n敌方指挥：%s\n每回合 90 秒。战斗自动保存，退出后可继续当前局面。%s" % [last_result, Difficulty.objective_for(setup, mode), support, Difficulty.brief_for(setup, mode), setup.get("enemy_name", ""), retry]
 			actions.add_child(_button("重新出征" if page.attempts > 0 else "率军出征", _battle.bind(view_token.duplicate())))
 			if page.get("can_retreat", false):
 				actions.add_child(_button("撤出任务 · 回到主线", retreat_requested.emit.bind(view_token.duplicate())))
@@ -333,8 +356,23 @@ func _toggle_history() -> void:
 	showing_history = not showing_history
 	_render_page()
 
+func show_field(field: Battle, mode: String, previous: bool) -> void:
+	content_margin.hide()
+	field_view.open(field, setup, mode, previous, int(page.attempts), setup.has("last_summary"))
+
+func _close_field() -> void:
+	field_view.hide()
+	field_view.board.battle = null
+	content_margin.show()
+	field_button.grab_focus()
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not visible or not event is InputEventKey or not event.pressed or event.echo: return
+	if field_view.visible:
+		if event.keycode == KEY_ESCAPE:
+			_close_field()
+			get_viewport().set_input_as_handled()
+		return
 	if event.keycode == KEY_ESCAPE:
 		if showing_history: _toggle_history()
 		else: menu_requested.emit()

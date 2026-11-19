@@ -11,6 +11,7 @@ var store: RefCounted
 var epoch: int = 0
 var encounter: RefCounted
 var encounter_revision: int = -1
+var last_attempt: Dictionary = {}
 var notice: String = ""
 var unsaved: bool = false
 var suspended: bool = false
@@ -62,6 +63,7 @@ func _start_saved_campaign(candidate: RefCounted, saved_notice: String) -> Dicti
 	epoch += 1
 	encounter = null
 	encounter_revision = -1
+	last_attempt = {}
 	suspended = false
 	autosave_elapsed = 0.0
 	notice = saved_notice
@@ -82,6 +84,7 @@ func load_campaign() -> Dictionary:
 	campaign = candidate
 	epoch += 1
 	encounter = loaded_battle
+	last_attempt = loaded.get("last_attempt", {})
 	encounter_revision = int(current().revision) if encounter != null else -1
 	suspended = false
 	autosave_elapsed = 0.0
@@ -95,7 +98,7 @@ func save() -> Dictionary:
 	if encounter != null:
 		saved_encounter = {"scenario": current().get("scenario", ""), "revision": encounter_revision, "battle": Snapshot.capture(encounter)}
 		if campaign.difficulty != Difficulty.STANDARD: saved_encounter["difficulty"] = campaign.difficulty
-	var result: Dictionary = store.save_progress(campaign.snapshot(), saved_encounter)
+	var result: Dictionary = store.save_progress(campaign.snapshot(), saved_encounter, last_attempt)
 	unsaved = not result.ok
 	autosave_elapsed = 0.0
 	notice = ("战局已保存，可从当前局面继续。" if encounter != null else "剧情进度已保存。") if result.ok else result.message
@@ -151,7 +154,7 @@ func choose_difficulty(mode: String, expected: Dictionary) -> Dictionary:
 	var progress: Dictionary = campaign.snapshot()
 	if mode == Difficulty.STANDARD: progress.erase("difficulty")
 	else: progress["difficulty"] = mode
-	result = store.save_progress(progress)
+	result = store.save_progress(progress, {}, last_attempt)
 	if not result.ok: return result
 	campaign.difficulty = mode
 	epoch += 1
@@ -172,7 +175,7 @@ func configure_armory(picks: Dictionary, expected: Dictionary) -> Dictionary:
 	var progress: Dictionary = campaign.snapshot()
 	if picks.is_empty(): progress.erase("armory")
 	else: progress["armory"] = picks.duplicate()
-	result = store.save_progress(progress)
+	result = store.save_progress(progress, {}, last_attempt)
 	if not result.ok: return result
 	campaign.armory = picks.duplicate()
 	epoch += 1
@@ -185,7 +188,9 @@ func retreat(expected: Dictionary) -> Dictionary:
 	var result: Dictionary = _guard(expected)
 	if not result.ok: return result
 	result = campaign.story.retreat(int(expected.revision))
-	if result.ok: campaign.requisition = ""
+	if result.ok:
+		campaign.requisition = ""
+		last_attempt = {}
 	return _after_action(result)
 
 func next_chapter(expected: Dictionary) -> Dictionary:
@@ -223,12 +228,33 @@ func begin_battle(expected: Dictionary) -> Dictionary:
 	encounter = result.battle
 	encounter_revision = int(current().revision)
 	suspended = false
+	var prior: Dictionary = last_attempt
+	last_attempt = {}
 	result = save()
 	if not result.ok:
 		encounter = null
 		encounter_revision = -1
+		last_attempt = prior
 		return result
 	return {"ok": true, "battle": encounter, "scenario": setup}
+
+func inspect_field(expected: Dictionary, previous: bool) -> Dictionary:
+	var access: Dictionary = _guard(expected)
+	if not access.ok: return access
+	if current().type != "battle": return {"ok": false, "message": "当前没有可查看的作战简报。"}
+	var setup: Dictionary = campaign.scenario()
+	var mode: String = campaign.difficulty
+	var field: Dictionary
+	if previous:
+		if last_attempt.is_empty(): return {"ok": false, "message": "这场战斗还没有留下终局棋盘。"}
+		field = Snapshot.restore(last_attempt.battle)
+		mode = last_attempt.get("difficulty", Difficulty.STANDARD)
+	else:
+		field = create_encounter(setup, campaign.requisition, campaign.armory, mode)
+	if field.ok:
+		field["difficulty"] = mode
+		field["scenario"] = setup
+	return field
 
 static func create_encounter(setup: Dictionary, requisition: String = "", armory: Dictionary = {}, mode: String = Difficulty.STANDARD) -> Dictionary:
 	if not Difficulty.is_valid(mode): return {"ok": false, "message": "战役难度无效。"}
@@ -248,7 +274,15 @@ func finish_battle(completed: RefCounted) -> Dictionary:
 	if completed.winner not in [0, 1, 2]: return {"ok": false, "message": "战斗尚未结束。"}
 	var result: Dictionary = campaign.story.resolve_battle(completed.winner, encounter_revision)
 	if not result.ok: return result
-	if completed.winner == 0: campaign.requisition = ""
+	last_attempt = {}
+	if completed.winner == 0:
+		campaign.requisition = ""
+	else:
+		var page: Dictionary = current()
+		last_attempt = {"scenario":page.scenario, "attempt":page.attempts, "revision":encounter_revision, "battle":Snapshot.capture(completed)}
+		if campaign.difficulty != Difficulty.STANDARD: last_attempt["difficulty"] = campaign.difficulty
+		if not campaign.requisition.is_empty(): last_attempt["requisition"] = campaign.requisition
+		if not campaign.armory.is_empty(): last_attempt["armory"] = campaign.armory.duplicate()
 	encounter = null
 	encounter_revision = -1
 	return _after_action(result)

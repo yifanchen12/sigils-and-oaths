@@ -125,6 +125,16 @@ func escort_unit() -> Dictionary:
 func is_escort_unit(unit_id: int) -> bool:
 	return unit_id > 0 and unit_id == int(objective.get("escort_id", -1))
 
+func result_reason() -> String:
+	if winner == -1: return ""
+	if ControlObjective.is_escort(objective) and escort_unit().is_empty():
+		return ControlObjective.result_text(objective, false, true)
+	if winner == 2: return "双方指挥官同时倒下，平局。"
+	if commander(0).is_empty(): return "我方指挥官%s倒下，本次战斗失利。" % hero(0).name
+	if commander(1).is_empty(): return "敌方指挥官%s倒下，我方取得胜利。" % hero(1).name
+	if not objective.is_empty(): return ControlObjective.result_text(objective, winner == 0)
+	return "%s取得胜利。" % side_name(winner)
+
 func objective_status() -> String:
 	if objective.is_empty(): return ""
 	var cells: PackedStringArray = []

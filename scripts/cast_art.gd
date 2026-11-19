@@ -3,7 +3,10 @@ extends RefCounted
 
 const ATLAS: Texture2D = preload("res://assets/art/actions/cast-seals-v1.png")
 const SIGNATURE_ATLAS: Texture2D = preload("res://assets/art/actions/river-signatures-v1.png")
+const FIELD_ATLAS: Texture2D = preload("res://assets/art/actions/field-strokes-v1.png")
 enum Signature { BULWARK, COMET, WILLOW, MOORING, COUNTER, GUARD }
+enum Stroke { SHIELD, RIDE, ARROW, FIRE, LEAVES, ICE }
+const TROOP_STROKES := {"sword":Stroke.SHIELD, "cavalry":Stroke.RIDE, "archer":Stroke.ARROW, "mage":Stroke.FIRE, "healer":Stroke.LEAVES}
 const COMMANDER_SIGNATURES := {"blessing":Signature.BULWARK, "firestrike":Signature.COMET, "renewal":Signature.WILLOW}
 const Art = preload("res://scripts/art_library.gd")
 const STYLES := {
@@ -42,6 +45,21 @@ static func stamp(canvas: CanvasItem, index: int, center: Vector2, size: Vector2
 	var offset := Vector2(index % 3, floori(index / 3.0)) * cell
 	canvas.draw_texture_rect_region(atlas, Rect2(center - size / 2, size), Rect2(offset, cell).grow(-1), Color(1,1,1,clampf(opacity,0,1)))
 
+static func field_stroke(action: Dictionary, style: String) -> int:
+	if action.type == "unit_skill": return TROOP_STROKES.get(action.get("unit_kind",""), -1)
+	if action.get("card_type") != "spell": return -1
+	match style:
+		"fire_cast": return Stroke.FIRE if action.get("spell_effect") in ["damage", "shatter_bolt"] else -1
+		"frost_cast": return Stroke.ICE
+		"heal_cast": return Stroke.LEAVES if action.get("spell_effect") != "pullback" else -1
+		"ward_cast": return Stroke.SHIELD if action.get("spell_effect") != "recall" else -1
+	return -1
+
+static func oriented_stroke(board: Control, stroke: int, at: Vector2, direction: Vector2, size: Vector2, alpha: float) -> void:
+	board.draw_set_transform(at, direction.angle())
+	stamp(board, stroke, Vector2.ZERO, size, alpha, FIELD_ATLAS)
+	board.draw_set_transform(Vector2.ZERO)
+
 static func star(canvas: CanvasItem, at: Vector2, radius: float, color: Color) -> void:
 	if radius < 0.35 or color.a < 0.005: return
 	var shape := PackedVector2Array()
@@ -56,11 +74,17 @@ static func draw_cast(board: Control, effect: Dictionary, tile: float) -> void:
 	var color: Color = effect.color
 	var frame: int = int(STYLES[style][0])
 	var signature: int = effect.get("signature", -1)
+	var stroke: int = effect.get("stroke", -1)
 	var t: float = clampf(effect.age / effect.duration,0,1)
 	if board.reduced_motion:
 		for cell: Vector2i in effect.cells:
 			board.draw_rect(Rect2(board.cell_center(cell)-Vector2.ONE*tile*0.45, Vector2.ONE*tile*0.90), Color(color,0.55), false,1.5)
-		stamp(board, signature if signature >= 0 else frame, at+Vector2(tile*0.24,-tile*0.25), Vector2.ONE*tile*0.60,0.9, SIGNATURE_ATLAS if signature >= 0 else ATLAS)
+		var badge := at + Vector2(tile*0.24,-tile*0.25)
+		if stroke >= 0: stamp(board,stroke,badge,Vector2.ONE*tile*0.82,1.0,FIELD_ATLAS)
+		else: stamp(board, signature if signature >= 0 else frame, badge, Vector2.ONE*tile*0.60,0.9, SIGNATURE_ATLAS if signature >= 0 else ATLAS)
+		return
+	if stroke == Stroke.RIDE:
+		_draw_ride(board, effect, tile, t)
 		return
 	var foot := at + Vector2.DOWN*tile*0.17
 	if t < 0.39:
@@ -78,11 +102,16 @@ static func draw_cast(board: Control, effect: Dictionary, tile: float) -> void:
 			tail.y -= sin(maxf(0,launch-0.29)*PI)*tile*0.17
 			board.draw_line(tail,head,Color(color,0.38),maxf(2,tile*0.085),true)
 			board.draw_line(tail,head,Color(color.lightened(0.5),0.93),maxf(1,tile*0.027),true)
-			star(board,head,tile*0.13,Color.WHITE)
+			if stroke == Stroke.FIRE:
+				oriented_stroke(board, stroke, head, head-tail, Vector2.ONE*tile*1.10, minf(1.0,launch*5.0))
+			else: star(board,head,tile*0.13,Color.WHITE)
 		return
 	var hit := (t-0.39)/0.61
 	if signature >= 0:
 		_draw_signature(board, effect, signature, at, tile, hit)
+		return
+	if stroke >= 0:
+		_draw_field_hit(board, effect, stroke, at, tile, hit)
 		return
 	var appear := smoothstep(0.0,0.14,hit)
 	var fade := 1.0-smoothstep(0.55,1.0,hit)
@@ -121,6 +150,68 @@ static func draw_cast(board: Control, effect: Dictionary, tile: float) -> void:
 		var direction := Vector2.from_angle(i*TAU/5-0.71)
 		var p := foot + direction*spread
 		star(board,p, maxf(0.5,tile*(0.038+0.025*sin(i*2.1+hit*PI)))*fade, Color(color,strength*0.85))
+
+static func _draw_ride(board: Control, effect: Dictionary, tile: float, t: float) -> void:
+	var route: Array = effect.route
+	if route.size() < 2: return
+	var progress: float = board.motion_progress if board.motion_unit == effect.rider else 1.0
+	var travelled := progress * (route.size()-1)
+	var fade := 1.0-smoothstep(0.43, 0.96, t)
+	for i: int in range(route.size()-1):
+		var ratio := clampf(travelled-i, 0, 1)
+		if ratio <= 0: break
+		var a: Vector2 = board.cell_center(route[i]) + Vector2.DOWN*tile*0.22
+		var b: Vector2 = board.cell_center(route[i+1]) + Vector2.DOWN*tile*0.22
+		var tip := a.lerp(b, ratio)
+		board.draw_line(a, tip, Color(Color("77daca"),0.62*fade), maxf(2,tile*0.065),true)
+		oriented_stroke(board, Stroke.RIDE, a.lerp(tip,0.50), b-a, Vector2.ONE*tile*0.72, fade*minf(ratio*2,1))
+	if progress >= 0.98:
+		var at: Vector2 = board.cell_center(route.back()) + Vector2.DOWN*tile*0.22
+		board.draw_arc(at,tile*(0.15+0.31*t),0.12,PI-0.12,18,Color(Color("c8f4dd"),fade),2,true)
+
+static func _draw_field_hit(board: Control, effect: Dictionary, stroke: int, at: Vector2, tile: float, hit: float) -> void:
+	var alpha := smoothstep(0,0.10,hit)*(1.0-smoothstep(0.63,1,hit))
+	var bloom := sin(minf(hit*2.7,1.0)*PI)
+	var center := at - Vector2(0, tile*0.13)
+	var size := Vector2.ONE*tile
+	if effect.cells.size() > 1:
+		for cell: Vector2i in effect.cells:
+			var rect := Rect2(Vector2(board.cell_center(cell)) - size*0.45,size*0.90)
+			board.draw_rect(rect,Color(effect.color,alpha*0.12))
+			board.draw_rect(rect,Color(effect.color,alpha*0.62),false,1.6)
+		for cell: Vector2i in effect.get("recipients",[]):
+			if cell == effect.cell: continue
+			var wave := clampf((hit-0.07*Vector2(cell-effect.cell).length())*1.7,0,1)
+			if wave > 0 and wave < 1:
+				stamp(board,stroke,board.cell_center(cell)-Vector2(0,tile*(0.04+wave*0.26)),size*(0.76+wave*0.22),sin(PI*wave)*0.9,FIELD_ATLAS)
+	match stroke:
+		Stroke.SHIELD:
+			center.y += tile*0.25*(1.0-smoothstep(0,0.28,hit))
+			stamp(board,stroke,center,size*Vector2(1.19+0.08*bloom,0.75+0.48*smoothstep(0,0.22,hit)),alpha,FIELD_ATLAS)
+			board.draw_arc(center,tile*(0.26+0.34*hit),-PI*0.91,-PI*0.09,24,Color(Color("c3ebff"),alpha*(1-hit)),2,true)
+		Stroke.FIRE, Stroke.ARROW:
+			var direction: Vector2 = (at-board.cell_center(effect.from)).normalized()
+			if direction.is_zero_approx(): direction = Vector2.RIGHT
+			if stroke == Stroke.FIRE: stamp(board,0,center,size*(1.04+bloom*0.42),alpha,ATLAS)
+			for i: int in range(5):
+				var dir := direction.rotated((i-2)*0.48)
+				var point := at + dir*tile*(0.19+0.56*hit)
+				board.draw_line(point-dir*tile*(1-hit)*0.24,point,Color(effect.color,alpha),maxf(1.5,tile*0.043),true)
+				star(board,point,tile*(0.072 if i==2 else 0.044)*alpha, Color("fff4ce"))
+		Stroke.LEAVES:
+			center.y -= tile*hit*0.33
+			stamp(board,stroke,center,size*(0.90+0.33*smoothstep(0,0.31,hit)),alpha,FIELD_ATLAS)
+			for i: int in range(3):
+				var mote := at+Vector2(sin(hit*4.1+i*2.3)*0.40,0.06-hit*0.66-i*0.10)*tile
+				star(board,mote,tile*0.061,Color(Color("f8e492"),alpha))
+		Stroke.ICE:
+			var grow := smoothstep(0,0.29,hit)
+			var extent := size*Vector2(1.28+0.10*bloom,0.24+grow*1.09)
+			center.y = at.y+tile*0.16-extent.y*0.28
+			stamp(board,stroke,center,extent,alpha,FIELD_ATLAS)
+			for i: int in range(3):
+				var shard := at+Vector2((i-1)*(0.26+hit*0.26),-sin(hit*PI)*(0.42+0.12*i))*tile
+				star(board,shard,tile*0.068,Color(Color("d3f7ff"),alpha))
 
 static func _draw_signature(board: Control, effect: Dictionary, signature: int, at: Vector2, tile: float, hit: float) -> void:
 	var appear := smoothstep(0, 0.19, hit)
@@ -194,11 +285,10 @@ static func draw_title(board: Control, effect: Dictionary) -> void:
 	var area: Rect2 = board.grid_rect().intersection(Rect2(Vector2.ZERO,board.size)).grow(-5)
 	if area.size.x < 180 or area.size.y < 120: return
 	var portrait: Texture2D = Art.get_texture(effect.portrait)
-	if portrait == null: return
 	var t: float = effect.age/effect.duration
-	var opacity := smoothstep(0.0,0.13,t)*(1.0-smoothstep(0.68,0.97,t))
+	var opacity := 1.0 if board.reduced_motion else smoothstep(0.0,0.13,t)*(1.0-smoothstep(0.68,0.97,t))
 	if opacity < 0.02: return
-	var width := minf(222.0,area.size.x*0.47)
+	var width := minf(260.0,area.size.x*0.49)
 	var height := clampf(area.size.y*0.10,36.0,55.0)
 	var right: bool = board.cell_center(effect.cell).x < area.get_center().x
 	var x: float = area.end.x-width if right else area.position.x
@@ -210,11 +300,19 @@ static func draw_title(board: Control, effect: Dictionary) -> void:
 	board.draw_line(where,where+Vector2(width,0),Color(color,opacity),2.4,true)
 	board.draw_line(where+Vector2(0,height),where+Vector2(width-15,height),Color(color,opacity*0.72),1.3,true)
 	var side := height-4.0
-	var image_size := portrait.get_size()
-	var crop := minf(image_size.x,image_size.y)*0.84
-	var source := Rect2((image_size.x-crop)/2.0,maxf(0,(image_size.y-crop)*0.22),crop,crop)
-	board.draw_texture_rect_region(portrait,Rect2(where+Vector2(2,2),Vector2.ONE*side),source,Color(1,1,1,opacity))
+	if portrait != null:
+		var image_size := portrait.get_size()
+		var crop := minf(image_size.x,image_size.y)*0.84
+		var source := Rect2((image_size.x-crop)/2.0,maxf(0,(image_size.y-crop)*0.22),crop,crop)
+		board.draw_texture_rect_region(portrait,Rect2(where+Vector2(2,2),Vector2.ONE*side),source,Color(1,1,1,opacity))
+	else:
+		stamp(board,STYLES[effect.kind][0],where+Vector2.ONE*(side*0.5+2),Vector2.ONE*side,opacity)
 	var font_size := clampi(roundi(height*0.40),14,22)
 	var pos := where+Vector2(side+10,height*0.50+font_size*0.33)
+	var cost: int = effect.get("cost",-1)
+	var badge_width := 35.0 if cost >= 0 else 0.0
 	board.draw_string(board.get_theme_default_font(), pos, effect.title, HORIZONTAL_ALIGNMENT_LEFT,
-		width-side-29,font_size,Color(1.0,0.965,0.88,opacity))
+		width-side-29-badge_width,font_size,Color(1.0,0.965,0.88,opacity))
+	if cost >= 0:
+		board.draw_string(board.get_theme_default_font(), Vector2(where.x+width-49,pos.y), "%d费" % cost,
+			HORIZONTAL_ALIGNMENT_CENTER,34,font_size-2,Color(color.lightened(0.28),opacity))
