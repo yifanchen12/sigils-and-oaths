@@ -139,6 +139,8 @@ static func _combat_value(battle: Battle, action: Dictionary, fields: Dictionary
 				"supply": return _supply_value(battle, side, card) - int(card.cost) * 1.5
 				"reclaim": return _reclaim_value(battle, side, card) - int(card.cost) * 1.5
 				"scheduled": return _scheduled_value(battle, card, action.target)
+				"choice": return _formation_score(battle, battle.choice_mode(card, action.target, side), action.target) - 2.0
+				"muster": return _muster_score(battle, card, action.target, enemy_leader.pos)
 				"commission":
 					var loss: int = mini(int(target.hp), maxi(0, int(card.amount) - int(target.shield)))
 					var followup: float = 43.0 + _supply_value(battle, side, card) - _fall_risk(battle, target) if loss >= int(target.hp) else 0.0
@@ -357,6 +359,17 @@ static func _scheduled_value(battle: Battle, card: Dictionary, center: Vector2i)
 		if change.hp_after == 0: impact += 100.0 if unit.kind == "commander" else 31.0
 		value += impact * (0.85 if unit.move == 0 or unit.rooted_turns > 1 else 0.54)
 	return value
+
+static func _muster_score(battle: Battle, card: Dictionary, center: Vector2i, enemy_leader: Vector2i) -> float:
+	var side: int = battle.active_side
+	var score: float = -int(card.cost) * 2.4
+	for landing: Dictionary in battle.muster_plan(card, center, side):
+		var troop: Dictionary = battle.definition(landing.instance.card_id)
+		var shield: int = int(card.get("self_shield", 0)) + int(battle.weather == "lanterns")
+		score += 37.0 + int(troop.cost) * 4.5 + shield * 3.0
+		score -= battle.distance(landing.cell, enemy_leader) * 1.2
+		score -= _danger(battle, side, landing.cell) * (1.0 if int(troop.hp) + shield >= 5 else 2.0)
+	return score
 
 static func _recall_value(battle: Battle, target: Dictionary, card: Dictionary, threats: Dictionary) -> float:
 	var side: int = battle.active_side

@@ -2297,6 +2297,58 @@
       "role": "Eight spells and the Night Convoy order.",
       "processing": "Original generated PNG. Godot reads the nine regular square tiles with a two-pixel inset.",
       "validation": "tests/test_pilgrim_cards.gd and tests/test_pilgrim_native_ui.gd"
+    },
+    {
+      "id": "glassroad-company-v1",
+      "path": "assets/art/expansion/glassroad-company-v1.png",
+      "source_filename": "exec-e1dcc79c-8bbf-43e5-838c-0e8153492d8d.png",
+      "prompt_file": "assets/art/expansion/glassroad-source.md",
+      "size": [1536, 1024],
+      "mode": "RGB",
+      "sha256": "78dfa8b0656061da568ca4b8f79cd8a79bfeea8bb585b4749546ae62cd8fd1be",
+      "source_bytes_preserved": true,
+      "role": "Twelve Glassroad troop portraits.",
+      "processing": "Original generated PNG. Godot crops four columns by three rows with a two-pixel inset.",
+      "validation": "tests/test_glassroad_cards.gd and tests/test_glassroad_native_ui.gd"
+    },
+    {
+      "id": "glassroad-edicts-v1",
+      "path": "assets/art/expansion/glassroad-edicts-v1.png",
+      "source_filename": "exec-ffa55213-48c9-4ad2-b6a6-609bde8c0e0c.png",
+      "prompt_file": "assets/art/expansion/glassroad-source.md",
+      "size": [1536, 1024],
+      "mode": "RGB",
+      "sha256": "3ba80ddd06b4cd92ea799eacc0f54f1ddf9dfb095004c1bb48d325ba8c57cbbb",
+      "source_bytes_preserved": true,
+      "role": "Twelve Glassroad order and battlefield effect illustrations.",
+      "processing": "Original generated PNG. Godot crops four columns by three rows with a two-pixel inset.",
+      "validation": "tests/test_glassroad_cards.gd and tests/test_glassroad_native_ui.gd"
+    },
+    {
+      "id": "glassroad-reserves-v1",
+      "path": "assets/art/expansion/glassroad-reserves-v1.png",
+      "source_filename": "exec-ed1660cb-3865-44b2-b162-0ae2b0dcf442.png",
+      "prompt_file": "assets/art/expansion/glassroad-source.md",
+      "size": [1536, 1024],
+      "mode": "RGB",
+      "sha256": "b9d8b2b72e6f60a2fd05a7bb9b22b1044c7a40e1330fcee967333d2d58daf020",
+      "source_bytes_preserved": true,
+      "role": "Twelve Glassroad supply and reserve order illustrations.",
+      "processing": "Original generated PNG. Godot crops four columns by three rows with a two-pixel inset.",
+      "validation": "tests/test_glassroad_cards.gd and tests/test_glassroad_native_ui.gd"
+    },
+    {
+      "id": "glassroad-ambush-v1",
+      "path": "assets/art/expansion/glassroad-ambush-v1.png",
+      "source_filename": "exec-077ff993-13fa-43ff-af71-f5fa8ec59513.png",
+      "prompt_file": "assets/art/expansion/glassroad-source.md",
+      "size": [1536, 1024],
+      "mode": "RGB",
+      "sha256": "40c7c06df5aa4a5d6bd4436bca96850fb8b0670ff84c1981d98dd84cf8d9897d",
+      "source_bytes_preserved": true,
+      "role": "Twelve Glassroad hand trap and weather illustrations.",
+      "processing": "Original generated PNG. Godot crops four columns by three rows with a two-pixel inset.",
+      "validation": "tests/test_glassroad_cards.gd and tests/test_glassroad_native_ui.gd"
     }
   ]
 }

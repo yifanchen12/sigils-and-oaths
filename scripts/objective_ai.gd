@@ -91,6 +91,10 @@ static func value(battle: Battle, action: Dictionary, context: Dictionary) -> fl
 		if card.type == "unit":
 			projected.append({"id": -1, "kind": card.kind, "hp": card.hp, "side": side, "pos": action.target})
 			added = card.id
+		elif card.effect == "muster":
+			for landing: Dictionary in battle.muster_plan(card, action.target, side):
+				var troop: Dictionary = battle.definition(landing.instance.card_id)
+				projected.append({"id": -int(landing.instance.uid), "kind": troop.kind, "hp": troop.hp, "side": side, "pos": landing.cell})
 		elif card.effect == "exchange":
 			var leader: Dictionary = battle.commander(side)
 			var ally: Dictionary = battle.unit_at(action.target)

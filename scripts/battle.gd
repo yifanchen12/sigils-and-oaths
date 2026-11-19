@@ -271,8 +271,13 @@ func definition(card_id: String) -> Dictionary:
 func combo_ready(card: Dictionary, side: int) -> bool:
 	return side == active_side and hand_played_this_turn and card.has("combo")
 
+func escalation_ready(card: Dictionary, side: int) -> bool:
+	return card.has("escalation") and int(players[side].max_mana) >= int(card.escalation.threshold)
+
 func card_for_play(card: Dictionary, side: int) -> Dictionary:
-	return card.merged(card.combo, true) if combo_ready(card, side) else card
+	var effective: Dictionary = card.merged(card.combo, true) if combo_ready(card, side) else card
+	if escalation_ready(card, side): effective = effective.merged(card.escalation.bonus, true)
+	return effective
 
 func hand_card(side: int, uid: int) -> Dictionary:
 	for card: Dictionary in players[side].hand:
@@ -493,6 +498,13 @@ func spell_cells(card: Dictionary, side: int) -> Array[Vector2i]:
 	if card.effect == "reveal_traps": return casting_cells(side)
 	if card.effect == "recall_fallen": return global_target if not fallen_cards(card, side).is_empty() else result
 	if card.effect == "redeploy": return deployment_cells(side) if not fallen_cards(card, side).is_empty() else result
+	if card.effect == "muster": return deployment_cells(side) if not supply_cards(side, card.recruits).is_empty() else result
+	if card.effect == "choice":
+		for target: Dictionary in units:
+			var mode: Dictionary = choice_mode(card, target.pos, side)
+			if can_cast_at(target.pos, side) and not Formation.recipients(self, mode, target.pos, side).is_empty():
+				result.append(target.pos)
+		return result
 	if card.effect == "formation" or card.effect == "roadwork":
 		for cell: Vector2i in casting_cells(side):
 			var useful: bool = not Formation.recipients(self, card, cell, side).is_empty() if card.effect == "formation" else passable(cell) and not roadwork_cells(cell, card).is_empty()
@@ -548,6 +560,25 @@ func spell_cells(card: Dictionary, side: int) -> Array[Vector2i]:
 		if valid and can_cast_at(target.pos, side):
 			result.append(target.pos)
 	return result
+
+func choice_mode(card: Dictionary, cell: Vector2i, side: int) -> Dictionary:
+	var target: Dictionary = unit_at(cell)
+	if target.is_empty(): return {}
+	return card.modes.ally if target.side == side else card.modes.enemy
+
+func muster_plan(card: Dictionary, center: Vector2i, side: int) -> Array[Dictionary]:
+	var plan: Array[Dictionary] = []
+	if not deployment_cells(side).has(center): return plan
+	var cells: Array[Vector2i] = [center]
+	# Reserve troops extend from the selected landing in the same order for both seats.
+	for direction: Vector2i in DIRECTIONS:
+		var cell: Vector2i = center + (direction if side == 0 else -direction)
+		if passable(cell) and unit_at(cell).is_empty(): cells.append(cell)
+	var reserves: Array[Dictionary] = supply_cards(side, card.recruits)
+	var count: int = mini(UNIT_LIMIT - army_count(side), mini(cells.size(), reserves.size()))
+	for index: int in range(count):
+		plan.append({"instance": reserves[index], "cell": cells[index]})
+	return plan
 
 func roadwork_cells(center: Vector2i, spec: Dictionary) -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
@@ -711,12 +742,15 @@ func apply_action(action: Dictionary) -> Dictionary:
 				if card.get("effect", "") == "redeploy": return _error("返场需要符合条件的阵亡部队、一处相邻空地和空余部队位。")
 				if card.get("effect", "") == "supply": return _error("牌库里没有符合条件的补给牌。")
 				if card.get("effect", "") == "reclaim": return _error("弃牌堆没有符合条件、可回收的牌。")
+				if card.get("effect", "") == "muster": return _error("征召需要牌库有合适的部队、余下部队位和一处邻接友军的空地。")
+				if card.get("effect", "") == "choice": return _error("请选择施法范围内有效的友军或敌军作为中心。")
 				if card.get("effect", "") == "scheduled" and not Orders.for_side(self, active_side).is_empty(): return _error("己方已有一条待结算的地格军令。")
 				return _error("部署需紧邻己方部队的空地（上下左右），最多 6 支部队。" if card.type == "unit" else "目标需在友军3格内（法师4格），且满足卡牌条件；换位限指挥官3格。")
 			# All validation happens before resource payment or zone mutation.
 			players[active_side].mana -= int(card.cost)
 			players[active_side].hand.erase(instance)
 			if combo_ready(card, active_side): _record("「%s」触发连携。" % card.name)
+			if escalation_ready(card, active_side): _record("「%s」已达到法力上限强化。" % card.name)
 			hand_played_this_turn = true
 			if card.type == "unit":
 				_resolve_entry(card, _deploy_card(instance, card, cell))
@@ -900,6 +934,17 @@ func _resolve_spell(card: Dictionary, cell: Vector2i) -> void:
 		"formation":
 			Formation.resolve(self, card, cell, active_side)
 			_draw_reserves(active_side, int(card.get("draw", 0)))
+		"choice":
+			var mode: Dictionary = choice_mode(card, cell, active_side)
+			_record("「%s」执行「%s」。" % [card.name, mode.label])
+			Formation.resolve(self, mode, cell, active_side)
+		"muster":
+			for landing: Dictionary in muster_plan(card, cell, active_side):
+				var instance: Dictionary = landing.instance
+				players[active_side].deck.erase(instance)
+				var unit: Dictionary = _deploy_card(instance, definition(instance.card_id), landing.cell)
+				unit.shield = mini(5, int(unit.shield) + int(card.get("self_shield", 0)))
+				_record("%s由牌库征召至%s。" % [unit.name, cell_name(unit.pos)])
 		"recall":
 			var instance: Dictionary = target.card
 			instance.erase("unit_id")

@@ -97,7 +97,10 @@ func test_loading_and_retry() -> void:
 	var session = Session.new(OLD_BATTLE)
 	if not check(old.version == 5 and session.load_campaign().ok and session.encounter != null, "executable-generated v0.51 bridge save opens"): return
 	var original: Dictionary = JSON.parse_string(JSON.stringify(Snapshot.capture(session.encounter), "", true, true))
-	check(original == old.encounter.battle and session.encounter.hand_played_this_turn and session.campaign.difficulty == Difficulty.STANDARD, "mid-turn card flag, timer, board and legacy rule restore exactly")
+	var expected: Dictionary = old.encounter.battle.duplicate(true)
+	expected.version = float(Snapshot.VERSION)
+	expected.rules = Snapshot.rules_signature()
+	check(original == expected and session.encounter.hand_played_this_turn and session.campaign.difficulty == Difficulty.STANDARD, "mid-turn card flag, timer, board and legacy rule restore exactly")
 	check(Session.new(OLD_ARMORY).load_campaign().ok, "actual 0.50 armory save also opens")
 	var short_save = Session.new(save_path)
 	if not check(short_save.store.save_progress(old.progress).ok and short_save.load_campaign().ok, "earned bridge briefing loads into isolated slot"): return

@@ -102,7 +102,11 @@ const CARD_ATLASES: Dictionary = {
 	"pilgrim-marches-v1": {"columns": 3, "rows": 3, "ids": ["chalk_courier", "ridge_listener", "linen_lantern", "coalroad_broker", "shale_lancer", "bracken_hussar", "cairn_colossus", "bellfoundry_oracle", "whitecord_marshal"]},
 	"pilgrim-watch-v1": {"columns": 3, "rows": 3, "ids": ["kiln_sparks", "marl_shield", "river_wasp", "granary_warden", "page_of_ash", "whetstone_order", "petal_signal", "quarry_tithe", "wicker_ceasefire"]},
 	"pilgrim-wards-v1": {"columns": 3, "rows": 3, "ids": ["twine_knot", "cedar_keel", "tin_ward", "cairn_curtain", "undertread_receipt", "sleet_drums", "cracked_threshold", "bellglass_cover", "dusk_serein"]},
-	"pilgrim-salvos-v1": {"columns": 3, "rows": 3, "ids": ["parcel_seal", "waggon_cut", "lampwave", "bridle_break", "granite_dispatch", "crucible_levy", "citadel_forging", "thousand_steps", "night_convoy_order"]}
+	"pilgrim-salvos-v1": {"columns": 3, "rows": 3, "ids": ["parcel_seal", "waggon_cut", "lampwave", "bridle_break", "granite_dispatch", "crucible_levy", "citadel_forging", "thousand_steps", "night_convoy_order"]},
+	"glassroad-company-v1": {"columns": 4, "rows": 3, "ids": ["glassroad_runner", "rook_pickets", "reedglass_bow", "saltband_surgeon", "hinge_lancer", "cinder_coxswain", "quarry_bugler", "copper_cistern", "breakline_sappers", "skylens_sentinel", "bellroad_captain", "silver_bulwark"]},
+	"glassroad-edicts-v1": {"columns": 4, "rows": 3, "ids": ["crossroads_whistle", "hinge_order", "rain_notch", "quay_signal", "highroad_edict", "twin_standard", "ebb_and_surge", "glass_treaty", "oath_of_breakers", "scour_fulcrum", "saltgate_covenant", "winter_march"]},
+	"glassroad-reserves-v1": {"columns": 4, "rows": 3, "ids": ["blueprint_slip", "lamp_ledger", "chain_landing", "roadside_muster", "towpath_convoy", "quay_requisition", "third_column", "twin_rearguard", "all_banner_call", "mercy_manifest", "brass_works", "inkglass_archive"]},
+	"glassroad-ambush-v1": {"columns": 4, "rows": 3, "ids": ["sill_chalk", "counterseal", "iron_sluice", "tollglass", "false_beacon", "miller_alarm", "lowglass_fog", "blackridge_net", "anchored_rain", "hollow_hammer", "storm_of_seals", "drowned_clapper"]}
 }
 
 static func get_texture(asset_id: String) -> Texture2D:

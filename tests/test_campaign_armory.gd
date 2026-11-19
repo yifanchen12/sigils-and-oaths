@@ -32,7 +32,7 @@ func test_slots() -> void:
 			check(not unlocked_cards.has(card.id), "a card belongs to just one tier")
 			unlocked_cards.append(card.id)
 			check(int(card.cost) >= int(slot.min_cost) and int(card.cost) <= int(slot.max_cost), "option cost is in the printed band")
-	check(unlocked_cards.size() == 60, "all 60 Mooring Oaths and Pilgrim March cards can enter campaign")
+	check(unlocked_cards.size() == 108, "all 108 Mooring Oaths, Pilgrim March and Glassroad Orders cards can enter campaign")
 	check(not Armory.validate({"vanguard": "quiet_net"}, 1).is_empty(), "opening is locked until chapter two finishes")
 	check(not Armory.validate({"company": "sunken_weir_breach"}, 18).is_empty(), "cannot move heavy card into a cheaper tier")
 	check(not Armory.validate({"reserve": "initiative"}, 18).is_empty(), "generated-only cards cannot be equipped")

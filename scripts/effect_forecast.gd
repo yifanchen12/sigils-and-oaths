@@ -27,12 +27,26 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 			if card.cost > battle.players[side].mana or not battle.card_targets(instance.uid, side).has(cell): return {}
 			title = card.name
 			effect = str(card.get("effect", ""))
-			var combo_note: String = "\n连携已就绪，预估按强化效果计算。" if battle.combo_ready(card, side) else ""
+			var readiness: String = "\n连携已就绪，预估按强化效果计算。" if battle.combo_ready(card, side) else ""
+			if battle.escalation_ready(card, side): readiness += "\n法力上限已达到 %d，预估包含强化。" % int(card.escalation.threshold)
 			var entry: Dictionary = card.get("entry", {})
 			if (entry.get("target_side", "") == "enemy" or entry.has("shape")) and battle.entry_active(entry, cell):
-				return _formation_preview(battle, card, entry, cell, side, combo_note)
+				return _formation_preview(battle, card, entry, cell, side, readiness)
+			if effect == "choice":
+				var mode: Dictionary = battle.choice_mode(card, cell, side)
+				return _formation_preview(battle, card, mode, cell, side, "\n当前选择 · " + str(mode.label) + readiness)
+			if effect == "muster":
+				var cells: Array[Vector2i] = []
+				var troops := PackedStringArray()
+				for landing: Dictionary in battle.muster_plan(card, cell, side):
+					cells.append(landing.cell)
+					troops.append("%s · %s" % [battle.cell_name(landing.cell), battle.definition(landing.instance.card_id).name])
+				var shield: int = int(card.get("self_shield", 0)) + int(battle.weather == "lanterns")
+				var note: String = "从牌库征召 %d 支部队\n%s\n下个己方回合可行动，不结算进场效果。" % [troops.size(), "\n".join(troops)]
+				if shield > 0: note += "\n每支带 %d 护盾。" % shield
+				return {"title": title, "effect": effect, "art": card.id, "amount": 0, "target_id": -1, "changes": [], "cells": cells, "note": note}
 			if effect == "formation":
-				return _formation_preview(battle, card, card, cell, side, combo_note)
+				return _formation_preview(battle, card, card, cell, side, readiness)
 			if effect == "scheduled":
 				var note: String = "落点公开。对手有一个完整回合调整站位，军令在第 %d 回合开始时生效。\n%s" % [battle.turn + 2, card.text]
 				return {"title": title, "effect": effect, "art": card.id, "amount": int(card.get("damage", 0)), "target_id": -1, "changes": [],
@@ -55,7 +69,7 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 				var note: String = "标出的格子将成为%s，桥梁和不可通行地形保留。" % battle.TERRAIN[ground].name
 				if ground == "fort": note += "\n双方均可利用地形防御。"
 				return {"title": title, "effect": effect, "art": card.id, "amount": 0, "target_id": -1, "changes": gains,
-					"cells": sites, "ground_name": battle.TERRAIN[ground].name, "note": note + combo_note}
+					"cells": sites, "ground_name": battle.TERRAIN[ground].name, "note": note + readiness}
 			if effect == "redeploy":
 				var troop: Dictionary = battle.definition(battle.fallen_cards(card, side)[0].card_id)
 				var shield: int = int(card.get("self_shield", 0)) + int(battle.weather == "lanterns")
@@ -80,7 +94,7 @@ static func predict(battle: Battle, action: Dictionary) -> Dictionary:
 				if card.has("kill_mana"): note = "若击破目标，返还 %d 点本回合法力。\n" % int(card.kill_mana) + note
 				if card.when == "flanked": note = ("已达成两面夹击。" if amount > card.amount else "尚未达成两面夹击。") + "\n" + note
 				if card.when == "isolated": note = ("目标处于孤立。" if amount > card.amount else "目标有相邻友军。") + "\n" + note
-				return {"title": title, "effect": effect, "art": card.id, "amount": amount, "target_id": target.id, "changes": [change], "note": note + combo_note}
+				return {"title": title, "effect": effect, "art": card.id, "amount": amount, "target_id": target.id, "changes": [change], "note": note + readiness}
 			if effect not in ["damage", "area", "heal", "shield", "dispel", "repulse", "shatter_bolt", "rally_heal", "cleanse_root"]: return {}
 			if effect in ["damage", "area", "shatter_bolt"]: amount = battle.spell_damage(card, side)
 			elif effect == "repulse": amount = int(card.amount) + (1 if battle.repulse_destination(target, side) == cell else 0)
@@ -181,6 +195,7 @@ static func describe(forecast: Dictionary, battle: Battle, compact: bool = false
 	return "\n".join(lines)
 
 static func hint(forecast: Dictionary) -> String:
+	if forecast.effect == "muster": return "%s · 征召 %d 支部队 · 点击确认，右键取消。" % [forecast.title, forecast.cells.size()]
 	if forecast.effect == "scheduled": return "%s · 标记 %d 格 · 下个己方回合结算 · 点击设置，右键取消。" % [forecast.title, forecast.cells.size()]
 	if forecast.effect == "roadwork": return "%s预估 · %d格改为%s · 点击确认，右键取消。" % [forecast.title, forecast.cells.size(), forecast.ground_name]
 	if forecast.effect == "recall": return "%s · 点击确认回收，右键取消。" % forecast.title

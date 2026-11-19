@@ -119,6 +119,8 @@ func _initialize() -> void:
         "res://assets/art/expansion/moorings-works-v1.png", "res://assets/art/expansion/moorings-tides-v1.png",
         "res://assets/art/expansion/pilgrim-marches-v1.png", "res://assets/art/expansion/pilgrim-watch-v1.png",
         "res://assets/art/expansion/pilgrim-wards-v1.png", "res://assets/art/expansion/pilgrim-salvos-v1.png",
+        "res://assets/art/expansion/glassroad-company-v1.png", "res://assets/art/expansion/glassroad-edicts-v1.png",
+        "res://assets/art/expansion/glassroad-reserves-v1.png", "res://assets/art/expansion/glassroad-ambush-v1.png",
         "res://assets/art/battlefields/lamplanding-v2.png", "res://assets/art/narrative/return-morning-v1.png",
         "res://assets/art/battlefields/saltlane-v2.png", "res://assets/art/narrative/saltlane-yard-v1.png",
         "res://assets/art/narrative/quartermaster-desk-v1.png", "res://scripts/campaign_requisition.gd",
@@ -132,12 +134,19 @@ func _initialize() -> void:
             problems.append("missing runtime resource: " + path)
     var catalog = load("res://data/cards.tres")
     var decks = load("res://data/decks.tres")
-    if catalog == null or catalog.cards.size() != 201 or catalog.find("thousand_steps").get("cost") != 10 or catalog.find("bridle_break").get("kill_mana") != 2 or not catalog.find("petal_signal").get("combo", {}).get("refresh_move", false):
+    if catalog == null or catalog.cards.size() != 249 or catalog.find("thousand_steps").get("cost") != 10 or catalog.find("bridle_break").get("kill_mana") != 2 or not catalog.find("petal_signal").get("combo", {}).get("refresh_move", false):
         problems.append("expansion card data unavailable")
-    if decks == null or decks.decks.size() != 19 or decks.find("chalkline_vanguard").get("cards", {}).get("petal_signal", 0) < 1 or decks.find("cairn_watch").get("cards", {}).get("bellglass_cover", 0) < 1 or decks.find("bellfoundry_column").get("cards", {}).get("thousand_steps", 0) < 1:
+    if catalog != null:
+        var glassroad: Array[Dictionary] = catalog.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") == "glassroad")
+        var art = load("res://scripts/art_library.gd")
+        if glassroad.size() != 48 or catalog.find("all_banner_call").get("recruits", []).size() != 3 or catalog.find("glass_treaty").get("modes", {}).size() != 2:
+            problems.append("Glassroad Orders rules unavailable")
+        for card: Dictionary in glassroad:
+            if art.get_texture(card.id) == null: problems.append("missing Glassroad illustration: " + card.id)
+    if decks == null or decks.decks.size() != 23 or decks.find("chalkline_vanguard").get("cards", {}).get("petal_signal", 0) < 1 or decks.find("cairn_watch").get("cards", {}).get("bellglass_cover", 0) < 1 or decks.find("bellfoundry_column").get("cards", {}).get("thousand_steps", 0) < 1 or decks.find("glassroad_reserve").get("cards", {}).get("all_banner_call", 0) != 1:
         problems.append("expansion preset data unavailable")
     var armory = load("res://scripts/campaign_armory.gd")
-    if armory == null or armory.unlocked_count(7) != 3 or not armory.validate({"vanguard": "petal_signal", "reserve": "thousand_steps"}, 7).is_empty():
+    if armory == null or armory.unlocked_count(7) != 3 or not armory.validate({"vanguard": "petal_signal", "company": "roadside_muster", "reserve": "glass_treaty"}, 7).is_empty():
         problems.append("campaign armory unavailable")
     var report = FileAccess.open(OS.get_cmdline_user_args()[0], FileAccess.WRITE)
     report.store_string(JSON.stringify({"count": entries.size(), "entries": entries, "problems": problems, "ok": problems.is_empty()}, "\t"))

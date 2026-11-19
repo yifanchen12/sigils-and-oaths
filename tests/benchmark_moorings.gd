@@ -48,12 +48,21 @@ func play_match(seed_value: int, map_id: String, blue: String, red: String, card
 	var paid_by_cost: Dictionary = {}
 	var triggers: Dictionary = {}
 	var combos: Dictionary = {}
+	var mechanics: Dictionary = {}
 	var problem: String = ""
 	while battle.winner == -1 and count < ACTION_LIMIT:
 		var side: int = battle.active_side
 		var action: Dictionary = AI.choose(battle)
 		var card: Dictionary = battle.definition(battle.hand_card(side, action.card_uid).card_id) if action.type == "play" else {}
 		var had_combo: bool = battle.combo_ready(card, side)
+		if card.get("set_id", "") == "glassroad":
+			var effective: Dictionary = battle.card_for_play(card, side)
+			if battle.escalation_ready(card, side): mechanics["escalated"] = int(mechanics.get("escalated", 0)) + 1
+			if effective.get("effect", "") == "choice":
+				var key: String = "choice_" + str(battle.choice_mode(effective, action.target, side).target_side)
+				mechanics[key] = int(mechanics.get(key, 0)) + 1
+			if effective.get("effect", "") == "muster":
+				mechanics["mustered_units"] = int(mechanics.get("mustered_units", 0)) + battle.muster_plan(effective, action.target, side).size()
 		var result: Dictionary = battle.apply_action(action)
 		if not result.ok:
 			problem = str(result.message)
@@ -75,4 +84,5 @@ func play_match(seed_value: int, map_id: String, blue: String, red: String, card
 	var summary: Dictionary = {"map": map_id, "blue": blue, "red": red, "winner": battle.winner, "turn": battle.turn, "actions": count,
 		"plays": plays, "played_costs": paid_by_cost, "trap_triggers": triggers, "error": problem}
 	if card_set == "pilgrim": summary["combos"] = combos
+	if card_set == "glassroad": summary["mechanics"] = mechanics
 	return summary

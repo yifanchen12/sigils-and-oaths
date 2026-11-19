@@ -795,12 +795,15 @@ func _library_details(card: Dictionary, copies: int) -> void:
 	%LibraryPortrait.visible = %LibraryPortrait.texture != null
 	%LibraryDetails.text = "[font_size=21][color=#d0b579]%s[/color][/font_size]  ·  %d 费  ·  %s  ·  当前 %d 张\n%s" % [card.name, card.cost, card.tag, copies, card.text]
 	if card.has("combo"): %LibraryDetails.text += "\n本回合先从手牌用出另一张牌，即可触发连携。"
+	if card.has("escalation"): %LibraryDetails.text += "\n强化读取法力上限，当前剩余法力只用于支付费用。"
 	if card.type == "unit":
 		%LibraryDetails.text += "\n攻击 %d / 生命 %d / 防御 %d / 移动 %d / 射程 %d" % [card.atk, card.hp, card.defense, card.move, card.range]
 		var skill: Dictionary = battle.definition(card.kind).get("skill", {})
 		if not skill.is_empty(): %LibraryDetails.text += "\n主动 · %s（1费，每回合一次）：%s" % [skill.name, skill.text]
 	elif card.get("effect", "") == "redeploy":
 		%LibraryDetails.text += "\n返场位置遵循邻接部署与6支普通部队上限。"
+	elif card.get("effect", "") == "muster":
+		%LibraryDetails.text += "\n先落在选定空格，其余部队落在相邻空格。全军最多6支普通部队。指向落点可查看名单。"
 	elif not Battle.is_global_card(card):
 		%LibraryDetails.text += "\n施法范围：友军3格、法师4格。"
 		if card.effect == "exchange": %LibraryDetails.text += "换位目标另须在指挥官3格内。"
@@ -966,6 +969,7 @@ func _refresh() -> void:
 		var view: CardView = CardControl.new()
 		var card: Dictionary = battle.definition(instance.card_id)
 		view.combo_lit = battle.combo_ready(card, 0)
+		view.escalation_lit = battle.escalation_ready(card, 0)
 		view.configure(card, instance.uid, player.mana, instance.uid == selected_card, not _player_can_act())
 		view.pressed.connect(_select_card.bind(int(instance.uid)))
 		view.mouse_entered.connect(_inspect_card.bind(int(instance.uid)))
@@ -1033,6 +1037,7 @@ func _refresh_compact_hand() -> void:
 		button.compact = true
 		button.hotkey_number = index
 		button.combo_lit = battle.combo_ready(card, 0)
+		button.escalation_lit = battle.escalation_ready(card, 0)
 		button.configure(card, instance.uid, battle.players[0].mana, selected_card == instance.uid, not _player_can_act())
 		button.pressed.connect(_select_card.bind(int(instance.uid)))
 		button.mouse_entered.connect(_inspect_card.bind(int(instance.uid)))
@@ -1101,6 +1106,8 @@ func _select_card(uid: int) -> void:
 	else:
 		message = "选择青色空格部署「%s」；可紧邻任意己方部队。" % card.name if card.type == "unit" else "「%s」：选择赤色框内的合法目标。" % card.name
 		if card.type == "trap": message = "从手牌伏设「%s」：选择%s。己方最多2张伏设，对手只知道数量；右键取消。" % [card.name, "范围内空格" if card.trigger == "step" else "受保护友军"]
+		if card.get("effect", "") == "choice": message = "选择友军或敌军作为军令中心，指向目标可预览对应效果。"
+		if card.get("effect", "") == "muster": message = "选择邻接己方部队的空格，指向落点可查看到场部队。"
 		if card.id == "reveal_traps": message = "选择侦查中心：探查目标格及相邻四格；空查仍支付1法力并消耗卡牌。"
 		if battle.card_targets(uid, 0).is_empty(): message = "「%s」当前没有合法目标。" % card.name
 		if card.get("effect", "") == "redeploy":
@@ -1413,6 +1420,8 @@ func _update_info() -> void:
 		info_body.text = "[color=#d0b579]%s  /  %d 法力[/color]\n\n%s\n\n" % [card.tag, card.cost, card.text]
 		if card.has("combo"):
 			info_body.text += "[color=#70d3ba]%s[/color]\n\n" % _combo_status(card)
+		if card.has("escalation"):
+			info_body.text += "[color=#70d3ba]%s[/color]\n\n" % _escalation_status(card)
 		if card.type == "unit":
 			var ready_tip: String = "达成卡面条件，便可在部署当回合先遣移动一次。" if card.get("entry", {}).get("vanguard", false) else "部队下个己方回合可行动。"
 			info_body.text += "攻击 [b]%d[/b]     生命 [b]%d[/b]\n防御 %d       移动 %d\n射程 %d\n\n[color=#70d3ba]部署在友军上下左右的空地。%s[/color]" % [card.atk, card.hp, card.defense, card.move, card.range, ready_tip]
@@ -1421,6 +1430,8 @@ func _update_info() -> void:
 			var target_tip: String = "施法目标须在友军3格内，法师可延伸至4格。淡蓝为覆盖，赤框为合法目标。"
 			if Battle.is_global_card(card): target_tip = "这张牌不需要选择棋盘目标。"
 			elif card.effect == "redeploy": target_tip = "选择相邻空格重新部署。最多同时拥有6支普通部队。"
+			elif card.effect == "choice": target_tip = "在施法范围内选友军或敌军，执行该方对应的效果。"
+			elif card.effect == "muster": target_tip = "选择邻接友军的空格。指向格子可查看征召名单和落点。"
 			info_body.text += "[color=#8eaaa4]%s\n右键或 Esc 可取消。[/color]" % target_tip
 		return
 	var context: Dictionary = _attack_context()
@@ -1462,6 +1473,9 @@ func _position_battle_peek() -> void:
 func _combo_status(card: Dictionary) -> String:
 	return "连携已就绪。" if battle.combo_ready(card, 0) else "连携需先从手牌用出另一张牌。"
 
+func _escalation_status(card: Dictionary) -> String:
+	return "法力上限强化已就绪。" if battle.escalation_ready(card, 0) else "法力上限达到 %d 时强化。" % int(card.escalation.threshold)
+
 func _update_battle_peek() -> void:
 	if battle_peek == null: return
 	var uid: int = selected_card if selected_card != -1 else inspected_card
@@ -1470,6 +1484,7 @@ func _update_battle_peek() -> void:
 		var card: Dictionary = battle.definition(instance.card_id)
 		var body: String = card.text
 		if card.has("combo"): body += "\n" + _combo_status(card)
+		if card.has("escalation"): body += "\n" + _escalation_status(card)
 		if card.type == "unit":
 			var skill: Dictionary = battle.definition(card.kind).get("skill", {})
 			if not skill.is_empty(): body += "\n\n主动 · %s（1费）\n%s" % [skill.name, skill.text]

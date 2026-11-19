@@ -37,7 +37,7 @@ func verify_collection() -> void:
 	var costs: OptionButton = game.get_node("%LibraryCost")
 	var grid: GridContainer = game.get_node("%CardGrid")
 	var index: int = option_index(sets, "pilgrim")
-	check(dialog.visible and index >= 0 and game.get_node("%LibraryIntro").text.contains("200 种可组牌"), "full card count and series filter are visible")
+	check(dialog.visible and index >= 0 and game.get_node("%LibraryIntro").text.contains("%d 种可组牌" % (Battle.CATALOG.cards.size() - 1)), "full card count and series filter are visible")
 	if index < 0: return
 	sets.select(index)
 	sets.item_selected.emit(index)

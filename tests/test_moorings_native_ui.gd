@@ -37,7 +37,7 @@ func verify_library() -> void:
 	var costs: OptionButton = game.get_node("%LibraryCost")
 	var grid: GridContainer = game.get_node("%CardGrid")
 	var index: int = option_index(sets, "moorings")
-	check(dialog.visible and index >= 0 and game.get_node("%LibraryIntro").text.contains("200 种可组牌"), "visible collection count and new set filter")
+	check(dialog.visible and index >= 0 and game.get_node("%LibraryIntro").text.contains("%d 种可组牌" % (Battle.CATALOG.cards.size() - 1)), "visible collection count and new set filter")
 	if index < 0: return
 	sets.select(index)
 	sets.item_selected.emit(index)

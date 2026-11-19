@@ -1,6 +1,6 @@
 # 《纹章与誓约》Steam 商店素材候选包
 
-当前 Windows 预览为 0.52.0-dev。界面和剧情为简体中文，以下中英文文案供商店语言版本使用。本目录保留高分辨率游戏画面、商店及库用图片和内容披露底稿。
+当前 Windows 预览为 0.53.0-dev。界面和剧情为简体中文，以下中英文文案供商店语言版本使用。本目录保留高分辨率游戏画面、商店及库用图片和内容披露底稿。
 
 ## 中文简介
 
@@ -10,7 +10,7 @@
 
 在《纹章与誓约》中，牌从哪里打出和手上有什么同样重要。每名友军都能成为增援点。相邻格能接上新兵，森林和高地会改变防御、射程和移动费用。战线推进后，更多地格进入法师的施法范围。走得太紧凑，也给了对面的范围法术机会。
 
-- 在 200 种可组牌中挑选部队、法术、手牌陷阱与地形天气牌。用十九套预组开局，或编辑自己的 30 张牌组。先打低费牌启动连携，部署会在阵亡时反击的枪卫，再用高费军令重整阵线。
+- 在 248 种可组牌中挑选部队、法术、手牌陷阱与环境牌。用二十三套预组开局，或编辑自己的 30 张牌组。用低费牌抢位，按站位切换军令攻守，或在后期从牌库征召援军。
 - 可在战役出征前选择标准或剧情难度。剧情难度增加开局支援，在桥头、港口和部分关卡提供可争夺的驻守目标。战役可退出后继续，已通过的章节可从独立存档重走。
 - 攻下桥头、在盐布巷护送担架队，或按序接应撤离处。六种兵种各有主动技能，指挥官也有独立的主动与被动。
 - 在河门来信开始十八章单人战役。故事记录关于救济、修渠和同伴去留的选择，通向三个结局。随战役推进开放三个军备位，战前挑选哪几张牌随军。第四章起有 20 场简报可另选一张起手军需。
@@ -24,7 +24,7 @@ Play cards onto a tactical battlefield. Deploy beside allies, hide traps at cros
 
 In *Sigils & Oaths*, the ground determines what your hand can do. Every ally can anchor reinforcements. Forests and hills change defense, range, and movement. Advance a mage to extend your casting reach, or spread your forces before an enemy spell catches them together.
 
-- Build a thirty-card deck from 200 collectible cards or start with one of nineteen presets. Chain cards played in the same turn, set traps from hand, deploy troops that retaliate when defeated, and mark the ground with delayed orders.
+- Build a thirty-card deck from 248 collectible cards or start with one of twenty-three presets. Use cheap cards to claim ground, switch between offensive and defensive orders, set traps from hand, and call reinforcements directly from your deck.
 - Select Standard or Story difficulty before a campaign battle. Story difficulty offers extra opening resources and alternative objectives in several encounters. Resume saved battles or revisit a completed chapter in a separate save.
 - Fight over crossings, escort a stretcher crew across Saltcloth Lane, and reach evacuation points in order. Six unit roles have their own active abilities, and each commander has active and passive powers.
 - Begin with a letter from Rivergate and finish one of three endings in the eighteen-chapter solo campaign. Your choices affect relief, repairs, and the future of the company. Unlock three armory slots to bring chosen cards into upcoming battles. Requisition one opening-hand replacement in twenty engagements from chapter four onward.

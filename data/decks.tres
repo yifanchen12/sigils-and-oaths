@@ -95,4 +95,24 @@ decks = Array[Dictionary]([{
 "id": "bellfoundry_column", "name": "钟炉军列", "set_id": "pilgrim", "description": "低费部队打开夹击角度，让断辔合围返还法力。铺垒改变战线，再以岩哨封路和千阶裂阵处理成列敌军。",
 "cards": {"chalk_courier": 2, "kiln_sparks": 2, "ridge_listener": 2, "marl_shield": 2, "coalroad_broker": 2, "bracken_hussar": 1, "shale_lancer": 1, "bellfoundry_oracle": 1, "mage": 2, "granary_warden": 1, "ash_notary": 1, "ridge_archer": 1,
 "quarry_tithe": 1, "bridle_break": 1, "granite_dispatch": 1, "crucible_levy": 1, "citadel_forging": 1, "thousand_steps": 1, "waggon_cut": 1, "cairn_curtain": 1, "sleet_drums": 1, "parcel_seal": 1, "bolt": 1, "slate_grid": 1}
+}, {
+"id": "glassroad_vanguard", "name": "镜道先骑", "set_id": "glassroad", "description": "用低费骑兵和枪哨抢住路口，再以两用军令推进或破盾，部署钟路骑队长即可顺横列接力。",
+"cards": {"glassroad_runner": 3, "rook_pickets": 2, "reedglass_bow": 2, "saltband_surgeon": 1, "hinge_lancer": 2, "cinder_coxswain": 2, "quarry_bugler": 1, "bellroad_captain": 1, "archer": 2, "mage": 1,
+"crossroads_whistle": 2, "hinge_order": 1, "rain_notch": 1, "quay_signal": 2, "chain_landing": 1, "brass_works": 1, "sill_chalk": 1, "blueprint_slip": 1, "oath_of_breakers": 1, "twin_standard": 1,
+"saltgate_covenant": 1}
+}, {
+"id": "glassroad_reserve", "name": "盐路援军", "set_id": "glassroad", "description": "先用枪哨、弓手和医官稳住战线。保留部队位与合适的空格，从牌库征召下一列部队。",
+"cards": {"rook_pickets": 1, "glassroad_runner": 2, "reedglass_bow": 2, "saltband_surgeon": 1, "hinge_lancer": 2, "cinder_coxswain": 1, "copper_cistern": 1, "breakline_sappers": 2, "skylens_sentinel": 1,
+"sword": 3, "archer": 1, "mage": 1, "roadside_muster": 1, "towpath_convoy": 1, "quay_requisition": 1, "third_column": 1, "twin_rearguard": 1, "all_banner_call": 1,
+"mercy_manifest": 1, "lowglass_fog": 1, "bolt": 2, "quay_signal": 1, "shatter_bolt": 1}
+}, {
+"id": "glassroad_ambush", "name": "伏钟守桥", "set_id": "glassroad", "description": "用枪阵和地格伏设迫使敌军选路。留反制保护前阵，从弃牌堆收回陷阱或让阵亡守将返场。",
+"cards": {"sword": 3, "rook_pickets": 2, "reedglass_bow": 2, "saltband_surgeon": 2, "hinge_lancer": 2, "quarry_bugler": 1, "copper_cistern": 2, "breakline_sappers": 1, "silver_bulwark": 1, "mage": 2,
+"counterseal": 2, "iron_sluice": 1, "tollglass": 1, "false_beacon": 1, "blackridge_net": 1, "drowned_clapper": 1, "lowglass_fog": 1, "anchored_rain": 1, "inkglass_archive": 1, "lamp_ledger": 1,
+"mercy_manifest": 1}
+}, {
+"id": "glassroad_edict", "name": "双潮军令", "set_id": "glassroad", "description": "从低费灵活军令过渡到高费攻守两用牌。等敌军成列再破阵，或用天气、援护和续攻为下一轮抢先。",
+"cards": {"sword": 3, "glassroad_runner": 2, "rook_pickets": 1, "reedglass_bow": 2, "hinge_lancer": 2, "cinder_coxswain": 1, "copper_cistern": 1, "skylens_sentinel": 1, "mage": 1, "breakline_sappers": 1,
+"crossroads_whistle": 1, "hinge_order": 1, "rain_notch": 1, "highroad_edict": 1, "twin_standard": 1, "ebb_and_surge": 1, "glass_treaty": 1, "scour_fulcrum": 1, "winter_march": 1, "miller_alarm": 1,
+"hollow_hammer": 1, "storm_of_seals": 1, "bolt": 2, "quay_signal": 1}
 }])
