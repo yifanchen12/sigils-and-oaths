@@ -1,0 +1,40 @@
+{
+  "milestone": "0.22.0-dev",
+  "date": "2026-11-06",
+  "base_commit": "d80be28678a3203e92e1274b1e9f2aaa99a64bd5",
+  "source_hash_encoding": "UTF-8, LF normalized",
+  "source_sha256": {
+    "data/campaign.json": "3651138bfa3ebbac7ad5e4082c3571bbf17f2fd9a6afaa37487b26e4ece61a53",
+    "scripts/battle.gd": "0af795bb1b10690fa142cdbf7f3c826733d40fa993dde08485b128c0d05a1625",
+    "scripts/opponent.gd": "6f1af5e863a92546abe6e9e36e305128b90da18c78b66a34ffe514985f5c7524",
+    "scripts/objective_ai.gd": "7253472fb4f50b78a04a1f201002f27fdc9424721ff09628af5d7b10e532698a",
+    "scripts/tactical_ai.gd": "5619c6bbe49a3ef3d26c0761e3d7669b74614985a705c653b2ca2135ffa3f72b",
+    "scripts/battle_snapshot.gd": "68f59e7e933e59b116b893efdc409360e7404709ed12f6d479cfcd1404c65cdd",
+    "tests/fixtures/campaign_pilot.gd": "8e2a194d1d3f4bef5a74b81325871fa0fde489147a46f89b2044a4bda8c34431",
+    "tests/benchmark_campaign.gd": "3dc36605b1462f2e85c9384ca968be5a735974f2d4d6833128eb3e0280ae7f5e",
+    "tests/test_campaign_replays.gd": "f070f9b93088d2d4d27ffdb4d65f1aafbc8d56ad015c1022ba4e8dea44ddfe78"
+  },
+  "fixture": "tests/fixtures/campaign_v022_court.json",
+  "fixture_sha256": "e7da26d345117e985ef69106467972be476b2016885abe67573ebacbf930e87c",
+  "coverage": "selected_scenarios",
+  "scenario_ids": [
+    "c06_court"
+  ],
+  "policy": "cautious diagnostic player against production opponent",
+  "games": [
+    {
+      "actions": 206,
+      "decision_mean_ms": 46.118830097087375,
+      "decision_peak_ms": 171.412,
+      "illegal_action": "",
+      "max_control_streak": 0,
+      "reason": "commander",
+      "scenario": "c06_court",
+      "seed": 6317.0,
+      "streak_resets": 0,
+      "turn": 32,
+      "winner": 1
+    }
+  ],
+  "limitations": "One authored seed, normal opening resources and production opponent; a diagnostic player at 0.35-second action cadence loses. Full losing trace retained. No native battle victory, human difficulty or continuous campaign proof. Timings were measured alongside chapter validation, not as an isolated performance benchmark."
+}

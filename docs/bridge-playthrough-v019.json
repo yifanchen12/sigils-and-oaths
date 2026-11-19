@@ -1,0 +1,45 @@
+{
+  "coverage": "selected_scenarios",
+  "note": "Authored scenarios at fixed seeds, real initial resources and legal actions; fixed 0.35 s cadence. Not human balance or manual playthrough evidence.",
+  "policy": "focused left-bridge diagnostic player against production opponent",
+  "scenario_ids": [
+    "c01_bridge"
+  ],
+  "milestone": "0.19.0-dev",
+  "base_commit": "d64f2649a54add5bc8063cce1cfb4bcb8d74ddc3",
+  "source_sha256": {
+    "scripts/battle.gd": "0af795bb1b10690fa142cdbf7f3c826733d40fa993dde08485b128c0d05a1625",
+    "scripts/opponent.gd": "6f1af5e863a92546abe6e9e36e305128b90da18c78b66a34ffe514985f5c7524",
+    "scripts/objective_ai.gd": "7253472fb4f50b78a04a1f201002f27fdc9424721ff09628af5d7b10e532698a",
+    "scripts/tactical_ai.gd": "5619c6bbe49a3ef3d26c0761e3d7669b74614985a705c653b2ca2135ffa3f72b",
+    "tests/fixtures/bridge_focus_pilot.gd": "aaeca8a6e6d5185ae5e81defade4679006707fba31d18ce6fc320278fad721c2",
+    "tests/benchmark_campaign.gd": "3dc36605b1462f2e85c9384ca968be5a735974f2d4d6833128eb3e0280ae7f5e",
+    "data/campaign.json": "a9e0a53166b80583b681740f3b87e95b7f8c46c86e1593b9e91f55fbb32b56cb"
+  },
+  "hashing": "SHA256 of UTF-8 text with LF newlines",
+  "games": [
+    {
+      "actions": 260,
+      "decision_mean_ms": 57.0388,
+      "decision_peak_ms": 284.454,
+      "illegal_action": "",
+      "max_control_streak": 0,
+      "reason": "commander",
+      "scenario": "c01_bridge",
+      "seed": 1319.0,
+      "streak_resets": 0,
+      "turn": 37,
+      "winner": 0
+    }
+  ],
+  "native": {
+    "writer_checks": 69,
+    "reader_checks": 615,
+    "passed": true,
+    "exit_action_count": 23,
+    "exit_turn": 8,
+    "postbattle_line": "c01.w01",
+    "test": "tests/test_campaign_playthrough_ui.gd",
+    "note": "Two independent native processes, real mouse actions and production enemy AI. Earlier story battle uses a narrative fixture. Not a continuous campaign playthrough."
+  }
+}

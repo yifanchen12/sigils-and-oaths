@@ -1,10 +1,16 @@
 class_name WarCouncil
 extends Control
 
-signal start_requested(map_id: String, hero_id: String, deck_id: String)
+signal start_requested(map_id: String, hero_id: String, deck_id: String, opponent_id: String)
 signal resume_requested
 signal library_requested
 signal deck_editor_requested
+signal lore_requested
+signal new_campaign_requested
+signal continue_campaign_requested
+signal chapter_replay_requested
+signal training_requested
+signal settings_requested
 
 const BattleModel = preload("res://scripts/battle.gd")
 const Art = preload("res://scripts/art_library.gd")
@@ -15,13 +21,20 @@ const MUTED := Color("a5b8af")
 var selected_map: String = "greenwood"
 var selected_hero: String = "warden"
 var selected_deck: String = "balanced"
+var selected_opponent: String = ""
 var map_buttons: Array[Button] = []
 var hero_buttons: Array[Button] = []
 var start_button: Button
 var resume_button: Button
 var library_button: Button
 var editor_button: Button
+var lore_button: Button
+var campaign_notice: Label
+var replay_button: Button
+var training_button: Button
+var settings_button: Button
 var deck_choice: OptionButton
+var opponent_choice: OptionButton
 var background: Texture2D
 var map_options: Array[Dictionary] = []
 var custom_definition: Dictionary = {}
@@ -123,6 +136,46 @@ func _build() -> void:
 	left.add_child(hero_title)
 	left.add_child(hero_name)
 	left.add_child(hero_lore)
+	lore_button = Button.new()
+	lore_button.text = "共誓档案  ·  人物与世界"
+	lore_button.custom_minimum_size.y = 40
+	lore_button.pressed.connect(func() -> void: lore_requested.emit())
+	left.add_child(lore_button)
+	var campaign_row := HBoxContainer.new()
+	campaign_row.add_theme_constant_override("separation", 10)
+	left.add_child(campaign_row)
+	var new_campaign := Button.new()
+	new_campaign.text = "新战役 · 河门来信"
+	new_campaign.custom_minimum_size.y = 44
+	new_campaign.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	new_campaign.pressed.connect(func() -> void: new_campaign_requested.emit())
+	campaign_row.add_child(new_campaign)
+	var continue_campaign := Button.new()
+	continue_campaign.text = "继续战役"
+	continue_campaign.custom_minimum_size.y = 44
+	continue_campaign.pressed.connect(func() -> void: continue_campaign_requested.emit())
+	campaign_row.add_child(continue_campaign)
+	replay_button = Button.new()
+	replay_button.text = "章节重走"
+	replay_button.custom_minimum_size.y = 44
+	replay_button.pressed.connect(chapter_replay_requested.emit)
+	campaign_row.add_child(replay_button)
+	campaign_notice = _label("十八章战役 · 剧情选择与战斗进度自动保存", 13, MUTED, true)
+	left.add_child(campaign_notice)
+	var practice_row := HBoxContainer.new()
+	practice_row.add_theme_constant_override("separation", 10)
+	left.add_child(practice_row)
+	training_button = Button.new()
+	training_button.text = "实战教程"
+	training_button.tooltip_text = "四节不限时练习，可随时退出并返回原来的进度。"
+	training_button.custom_minimum_size.y = 39
+	training_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	training_button.pressed.connect(training_requested.emit)
+	practice_row.add_child(training_button)
+	settings_button = Button.new()
+	settings_button.text = "设置 F10"
+	settings_button.pressed.connect(settings_requested.emit)
+	practice_row.add_child(settings_button)
 	var heroes_row := HBoxContainer.new()
 	heroes_row.add_theme_constant_override("separation", 10)
 	left.add_child(heroes_row)
@@ -159,7 +212,7 @@ func _build() -> void:
 	layout.add_theme_constant_override("separation", 12)
 	sheet.add_child(layout)
 	layout.add_child(_label("作 战 准 备", 28, INK))
-	layout.add_child(_label("WAR COUNCIL     /     选择你的下一场战役", 12, GOLD))
+	layout.add_child(_label("WAR COUNCIL     /     自由对战", 12, GOLD))
 	layout.add_child(HSeparator.new())
 	layout.add_child(_label("01   战场 · 12 × 10", 17, GOLD))
 	var maps_row := GridContainer.new()
@@ -217,13 +270,28 @@ func _build() -> void:
 	editor_button.text = "编辑军势"
 	editor_button.pressed.connect(func() -> void: deck_editor_requested.emit())
 	deck_row.add_child(editor_button)
-	layout.add_child(_label("邻接友军即可增援  ·  地形制胜  ·  每回合90秒", 13, Color("a9bdc9")))
+	var opponent_row := HBoxContainer.new()
+	opponent_row.add_theme_constant_override("separation", 10)
+	layout.add_child(opponent_row)
+	opponent_row.add_child(_label("对手预组", 15, GOLD))
+	opponent_choice = OptionButton.new()
+	opponent_choice.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	opponent_choice.custom_minimum_size.y = 34
+	opponent_choice.add_item("自动匹配")
+	opponent_choice.set_item_metadata(0, "")
+	for deck: Dictionary in BattleModel.DECKS.decks:
+		opponent_choice.add_item(deck.name)
+		opponent_choice.set_item_metadata(opponent_choice.item_count - 1, deck.id)
+	opponent_choice.item_selected.connect(func(index: int) -> void:
+		selected_opponent = opponent_choice.get_item_metadata(index)
+		_update_opponent_description())
+	opponent_row.add_child(opponent_choice)
 	start_button = Button.new()
 	start_button.custom_minimum_size = Vector2(0, 64)
-	start_button.text = "率 军 出 征     →"
+	start_button.text = "自 由 对 战     →"
 	start_button.add_theme_font_size_override("font_size", 24)
 	start_button.add_theme_stylebox_override("normal", _style(Color("365a71"), GOLD))
-	start_button.pressed.connect(func() -> void: start_requested.emit(selected_map, selected_hero, selected_deck))
+	start_button.pressed.connect(func() -> void: start_requested.emit(selected_map, selected_hero, selected_deck, selected_opponent))
 	layout.add_child(start_button)
 	resume_button = Button.new()
 	resume_button.custom_minimum_size.y = 38
@@ -231,12 +299,16 @@ func _build() -> void:
 	resume_button.pressed.connect(func() -> void: resume_requested.emit())
 	layout.add_child(resume_button)
 
-func open(map_id: String, hero_id: String, can_resume: bool, deck_id: String = "balanced") -> void:
+func open(map_id: String, hero_id: String, can_resume: bool, deck_id: String = "balanced", opponent_id: String = "") -> void:
 	selected_map = map_id
 	selected_hero = hero_id
 	selected_deck = deck_id
 	for index: int in range(deck_choice.item_count):
 		if deck_choice.get_item_metadata(index) == deck_id: deck_choice.select(index)
+	selected_opponent = opponent_id
+	for index: int in range(opponent_choice.item_count):
+		if opponent_choice.get_item_metadata(index) == opponent_id: opponent_choice.select(index)
+	_update_opponent_description()
 	deck_choice.tooltip_text = _deck_description()
 	resume_button.visible = can_resume
 	_refresh_selection()
@@ -245,6 +317,9 @@ func open(map_id: String, hero_id: String, can_resume: bool, deck_id: String = "
 
 func _deck_description() -> String:
 	return custom_definition.description if selected_deck == "custom" and not custom_definition.is_empty() else BattleModel.DECKS.find(selected_deck).description
+
+func _update_opponent_description() -> void:
+	opponent_choice.tooltip_text = "使用与玩家相同的预组。玩家使用自定义军势时，对手使用均衡军势。" if selected_opponent.is_empty() else BattleModel.DECKS.find(selected_opponent).description
 
 func set_custom_deck(definition: Dictionary, choose: bool = false) -> void:
 	custom_definition = definition.duplicate(true)

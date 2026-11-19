@@ -1,0 +1,539 @@
+{
+  "version": 1,
+  "chapters": [
+    {
+      "id": "chapter_01",
+      "title": "第一章 · 河门来信",
+      "path": "res://data/narrative/chapters/chapter_01.json"
+    },
+    {
+      "id": "chapter_02",
+      "title": "第二章 · 两岸的粮单",
+      "path": "res://data/narrative/chapters/chapter_02.json"
+    },
+    {
+      "id": "chapter_03",
+      "title": "第三章 · 风过断脊",
+      "path": "res://data/narrative/chapters/chapter_03.json"
+    },
+    {
+      "id": "chapter_04",
+      "title": "第四章 · 港口不眠",
+      "path": "res://data/narrative/chapters/chapter_04.json"
+    },
+    {
+      "id": "chapter_05",
+      "title": "第五章 · 水从哪里来",
+      "path": "res://data/narrative/chapters/chapter_05.json"
+    },
+    {
+      "id": "chapter_06",
+      "title": "第六章 · 棋庭旧印",
+      "path": "res://data/narrative/chapters/chapter_06.json"
+    },
+    {
+      "id": "chapter_07",
+      "title": "第七章 · 未送达的名字",
+      "path": "res://data/narrative/chapters/chapter_07.json"
+    },
+    {
+      "id": "chapter_08",
+      "title": "第八章 · 长昼的第八夜",
+      "path": "res://data/narrative/chapters/chapter_08.json"
+    },
+    {
+      "id": "chapter_09",
+      "title": "第九章 · 谁来签字",
+      "path": "res://data/narrative/chapters/chapter_09.json"
+    },
+    {
+      "id": "chapter_10",
+      "title": "第十章 · 门前两次响声",
+      "path": "res://data/narrative/chapters/chapter_10.json"
+    },
+    {
+      "id": "chapter_11",
+      "title": "第十一章 · 北岸有回信",
+      "path": "res://data/narrative/chapters/chapter_11.json"
+    },
+    {
+      "id": "chapter_12",
+      "title": "第十二章 · 一根轴的归属",
+      "path": "res://data/narrative/chapters/chapter_12.json"
+    },
+    {
+      "id": "chapter_13",
+      "title": "第十三章 · 试转之夜",
+      "path": "res://data/narrative/chapters/chapter_13.json"
+    },
+    {
+      "id": "chapter_14",
+      "title": "第十四章 · 暗渠分水",
+      "path": "res://data/narrative/chapters/chapter_14.json"
+    },
+    {
+      "id": "chapter_15",
+      "title": "第十五章 · 阀下水痕",
+      "path": "res://data/narrative/chapters/chapter_15.json"
+    },
+    {
+      "id": "chapter_16",
+      "title": "第十六章 · 桥上空桶",
+      "path": "res://data/narrative/chapters/chapter_16.json"
+    },
+    {
+      "id": "chapter_17",
+      "title": "第十七章 · 三盏灯",
+      "path": "res://data/narrative/chapters/chapter_17.json"
+    },
+    {
+      "id": "chapter_18",
+      "title": "终章 · 水到门前",
+      "path": "res://data/narrative/chapters/chapter_18.json"
+    }
+  ],
+  "scenarios": {
+    "c07_saltlane_school": {
+      "requisition": {"replace": "hammer_sweep", "offers": ["lantern_stretcher", "stretcher_signal", "severed_pullcord"]},
+      "title": "盐布巷 · 低桥送担架",
+      "brief": "渠北金框的「担」是担架队。沿渠向西过低桥，再进南岸低廊。北晒场已有弩手，起手「一线微光」可给担架队与护卫加盾。",
+      "objective": "把担架队送到 C3 低廊，抵达立即获胜。8 个完整轮次内完成。担架队或我方指挥官倒下即败，担架队存活时击破对方指挥官也能获胜。",
+      "map": "saltlane",
+      "hero": "warden",
+      "enemy_class": "warden",
+      "deck": "lantern_convoy",
+      "enemy_deck": "balanced",
+      "seed": 7401,
+      "enemy_name": "晒场管事石简",
+      "enemy_portrait": "terrain_fort",
+      "bonus_card": "field_signals",
+      "control": {
+        "mode": "escort",
+        "cells": [[2, 9]],
+        "required": 1,
+        "round_limit": 8,
+        "escort_start": [7, 3],
+        "sentry_start": [8, 4]
+      }
+    },
+    "c07_saltlane_kiln": {
+      "requisition": {"replace": "sword", "offers": ["lantern_stretcher", "chalk_spike", "reed_watch"]},
+      "title": "盐布巷 · 窑场接应",
+      "brief": "担架队位于渠北，要穿过东桥去窑场石阶。起手有「磐石护盾」。提防弩手和手牌伏设，必要时用临桥木架另找落脚点。",
+      "objective": "把担架队送到 N3 石阶，抵达立即获胜。9 个完整轮次内完成。担架队或我方指挥官倒下即败，担架队存活时击破对方指挥官也能获胜。",
+      "map": "saltlane",
+      "hero": "warden",
+      "enemy_class": "warden",
+      "deck": "channel",
+      "enemy_deck": "ambush",
+      "seed": 7402,
+      "enemy_name": "晒场管事石简",
+      "enemy_portrait": "terrain_fort",
+      "bonus_card": "ward",
+      "control": {
+        "mode": "escort",
+        "cells": [[13, 9]],
+        "required": 1,
+        "round_limit": 9,
+        "escort_start": [9, 3],
+        "sentry_start": [8, 4],
+        "sentry_card": "mink_watcher"
+      }
+    },
+    "c01_road": {
+      "title": "军道扣车",
+      "brief": "沿军道抵达封锁哨，迫使扣车队停止向粮车推进。",
+      "objective": "击败敌方指挥官，打开军道检查站。",
+      "map": "greenwood",
+      "hero": "warden",
+      "enemy_class": "pyromancer",
+      "deck": "balanced",
+      "enemy_deck": "assault",
+      "seed": 1317,
+      "enemy_name": "军道扣车队长",
+      "enemy_portrait": "terrain_fort",
+      "story_brief": "先沿军道部署，再到高地北侧控制两处检查位。留友军互相接应，给粮车争出通行时间。",
+      "story_control": {"cells": [[5, 3], [6, 4]], "required": 1, "round_limit": 0}
+    },
+    "c01_river": {
+      "title": "芦滩接应",
+      "brief": "从河岸接回应召作证的税吏，夺下渡口的指挥位置。",
+      "objective": "击败敌方指挥官，解除渡口封锁。",
+      "map": "rivergate",
+      "hero": "warden",
+      "enemy_class": "warden",
+      "deck": "bastion",
+      "enemy_deck": "balanced",
+      "seed": 1318,
+      "enemy_name": "渡口督卫",
+      "enemy_portrait": "terrain_fort",
+      "story_brief": "沿西桥南端布置接应。站住桥面和岸边，税吏就能从芦滩赶到队伍后方。",
+      "story_control": {"cells": [[3, 5], [3, 6]], "required": 1, "round_limit": 0}
+    },
+    "c01_bridge": {
+      "title": "桥头的两道印",
+      "brief": "两支奉不同命令行事的队伍在桥头相遇。压制守备指挥，争取重新交涉的机会。\n\n作战建议\n沿一座桥集中推进，先处理能持续救治前排的医师；留意对方弓手的射程，不要让艾琳独自承受齐射。",
+      "objective": "击败敌方指挥官，控制桥头。",
+      "map": "rivergate",
+      "hero": "warden",
+      "enemy_class": "warden",
+      "deck": "balanced",
+      "enemy_deck": "balanced",
+      "seed": 1319,
+      "enemy_name": "河门守备官",
+      "enemy_portrait": "terrain_fort",
+      "story_brief": "先沿西桥推进。在桥面上安排相邻的两支部队，再挡住对方一回合，就能争取停火交涉。",
+      "story_control": {"cells": [[3, 4], [3, 5]], "required": 1, "round_limit": 0}
+    },
+    "c02_relief_bridge": {
+      "title": "先送一碗热汤",
+      "brief": "河门第二批货需分批过桥。沿两座桥各推进一条阵线，借前线部队在桥面部署援军；占住D5、I5后保护驻守者，连续守过两次己方回合开始的检查。",
+      "objective": "己方新回合开始时，D5、I5两格都有友军，连续两次即胜；开局不计。12个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击败敌指挥官也胜，己方指挥官倒下则败。",
+      "map": "rivergate",
+      "hero": "grove",
+      "enemy_class": "warden",
+      "deck": "bastion",
+      "enemy_deck": "balanced",
+      "seed": 2317,
+      "story_brief": "两座桥分别接应粮队。西桥向前走到北侧桥面，东桥留人在南侧桥面，让两路车队依次过渠。",
+      "story_control": {"cells": [[3, 4], [8, 5]], "required": 1, "round_limit": 15},
+      "enemy_name": "交接所桥路督卫",
+      "enemy_portrait": "terrain_fort",
+      "control": {
+        "cells": [
+          [
+            3,
+            5
+          ],
+          [
+            8,
+            5
+          ]
+        ],
+        "required": 2,
+        "round_limit": 12
+      }
+    },
+    "c02_seed_bridge": {
+      "title": "先送下一季的种子",
+      "brief": "河门第二批货需分批过桥。控制两座桥南端，给车队留下完整的通行间隙。",
+      "objective": "己方新回合开始时，D5、I5两格都有友军，连续两次即胜；开局不计。12个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击败敌指挥官也胜，己方指挥官倒下则败。",
+      "map": "rivergate",
+      "hero": "warden",
+      "enemy_class": "warden",
+      "deck": "balanced",
+      "enemy_deck": "bastion",
+      "seed": 2318,
+      "story_control": {"cells": [[3, 5], [8, 5]], "required": 1, "round_limit": 15},
+      "enemy_name": "交接所桥路督卫",
+      "enemy_portrait": "terrain_fort",
+      "control": {
+        "cells": [
+          [
+            3,
+            5
+          ],
+          [
+            8,
+            5
+          ]
+        ],
+        "required": 2,
+        "round_limit": 12
+      }
+    },
+    "c02_dispatch": {
+      "title": "柜门后的回执",
+      "brief": "粮队已通过双桥。沿桥头继续部署枪兵与医师，先稳住防线，再集中火力迫使护运队停手，查验分批回执并确保留院人员安全。",
+      "objective": "击败敌方指挥官，打开东岸交接所。",
+      "map": "rivergate",
+      "hero": "pyromancer",
+      "enemy_class": "warden",
+      "deck": "bastion",
+      "enemy_deck": "balanced",
+      "seed": 2319,
+      "enemy_name": "承包社护运队长",
+      "enemy_portrait": "terrain_fort",
+      "story_brief": "让枪兵与医师从东桥推进。桥上的两支友军互相照应，稳住桥面后，粮队就能到交接所查验回执。",
+      "story_control": {"cells": [[8, 4], [8, 5]], "required": 1, "round_limit": 0}
+    },
+    "c03_vent": {
+      "map": "ridgepass",
+      "hero": "warden",
+      "enemy_name": "掌运官杜骞",
+      "enemy_portrait": "terrain_fort",
+      "title": "风口的接应",
+      "brief": "上层检修廊下方的主井仍保持封闭。守住两个地表风口，让矿工卸下配重并撤出货物；战场范围为隘口地表。",
+      "objective": "己方新回合开始时，E6、H5两格都有友军，连续两次即胜；开局不计。10个完整轮次结束仍未达标则败，同时达标优先算胜。击败敌指挥官也胜，己方指挥官倒下则败。",
+      "enemy_class": "pyromancer",
+      "deck": "bastion",
+      "enemy_deck": "assault",
+      "seed": 3317,
+      "control": {
+        "cells": [
+          [
+            4,
+            4
+          ],
+          [
+            7,
+            5
+          ]
+        ],
+        "required": 2,
+        "round_limit": 10
+      }
+    },
+    "c03_ridge": {
+      "map": "ridgepass",
+      "hero": "warden",
+      "enemy_name": "掌运官杜骞",
+      "enemy_portrait": "terrain_fort",
+      "title": "山脊上的旗",
+      "brief": "工人撤出并封住检修廊。沿山脊与外坡推进，压制押运队指挥位。此战不需要驻守双点，也不设整局轮数期限；每行动回合仍为90秒。",
+      "objective": "击败敌方指挥官，取得外坡道路；己方指挥官倒下则败。",
+      "enemy_class": "warden",
+      "deck": "assault",
+      "enemy_deck": "bastion",
+      "seed": 3318
+    },
+    "c04_dock": {
+      "requisition": {"replace": "sun", "offers": ["cinder_runner", "severed_pullcord", "chalk_route"]},
+      "title": "返潮靠岸",
+      "brief": "北坞雇卫拒绝放下跳板。沿港口横桥推进，压制岸上的指挥位置，让被扣船工下船。",
+      "objective": "击败敌方指挥官，解除返潮所在岸位的封锁。",
+      "map": "harbor",
+      "hero": "warden",
+      "enemy_class": "warden",
+      "deck": "balanced",
+      "enemy_deck": "bastion",
+      "seed": 4317,
+      "enemy_name": "北坞雇卫长",
+      "enemy_portrait": "terrain_fort",
+      "story_brief": "北坞雇卫扣住了船工。占住南桥中段和东岸出口，给船工留一条从跳板撤回的路。",
+      "story_control": {"cells": [[6, 7], [8, 7]], "required": 1, "round_limit": 0}
+    },
+    "c04_pump": {
+      "requisition": {"replace": "insight", "offers": ["troop_receipt", "two_shore_claim", "reed_watch"]},
+      "title": "低坞夜班",
+      "brief": "雇卫封住泵房，不许工匠轮换抽水设备。利用岸边石垒接近守机阵线，夺下指挥位置。",
+      "objective": "击败敌方指挥官，让本地工匠接管泵房。",
+      "map": "harbor",
+      "hero": "pyromancer",
+      "enemy_class": "warden",
+      "deck": "assault",
+      "enemy_deck": "balanced",
+      "seed": 4318,
+      "enemy_name": "泵房守机队长",
+      "enemy_portrait": "terrain_fort"
+    },
+    "c05_nursery": {
+      "requisition": {"replace": "rain", "offers": ["dike_flagstones", "reed_watch", "anchor_snare"]},
+      "title": "林岗的夜班",
+      "brief": "先保高坡苗床，由队伍为下游运水。守住林间两处高坡岗，让本地工人从后侧接替分水口。",
+      "objective": "己方新回合开始时，F6、G5两格都有友军，连续两次即胜；开局不计。12个完整轮次结束仍未达标则败，同时达标优先算胜。击败敌指挥官也胜，己方指挥官倒下则败。",
+      "map": "greenwood",
+      "hero": "grove",
+      "enemy_class": "warden",
+      "deck": "bastion",
+      "enemy_deck": "balanced",
+      "seed": 5317,
+      "enemy_name": "渠首管事岑槐",
+      "enemy_portrait": "terrain_fort",
+      "control": {
+        "cells": [
+          [
+            5,
+            4
+          ],
+          [
+            6,
+            5
+          ]
+        ],
+        "required": 2,
+        "round_limit": 12
+      }
+    },
+    "c05_channel": {
+      "requisition": {"replace": "cavalry", "offers": ["lantern_bearer", "cinder_runner", "rain_saddle"]},
+      "title": "分水口前",
+      "brief": "先清下游支渠，高坡缺水苗另行割弃改种。借林地与高地夺下护渠队指挥位置，让工人上坡接管闸口。",
+      "objective": "击败渠首管事岑槐，解除分水口的武装封锁。",
+      "map": "greenwood",
+      "hero": "grove",
+      "enemy_class": "warden",
+      "deck": "balanced",
+      "enemy_deck": "assault",
+      "seed": 5318,
+      "enemy_name": "渠首管事岑槐",
+      "enemy_portrait": "terrain_fort",
+      "story_brief": "把护渠队挡在下游支渠外。一队沿林道接应，另一队占住高地，掩护工人接管闸口。",
+      "story_control": {"cells": [[3, 5], [6, 5]], "required": 1, "round_limit": 0}
+    },
+    "c06_court": {
+      "requisition": {"replace": "exchange", "offers": ["floodline_warning", "dawn_weir", "lantern_surgeon"]},
+      "title": "棋庭的留守者",
+      "brief": "陶因扣留工班并封住庭院。艾琳率队夺回石庭，让本地工班接手旧炉，档库留给共同见证者保管。",
+      "objective": "击败棋庭留守队长陶因，解除庭院的武装封锁。",
+      "map": "citadel",
+      "hero": "warden",
+      "enemy_class": "warden",
+      "deck": "bastion",
+      "enemy_deck": "balanced",
+      "seed": 6317,
+      "enemy_name": "留守队长陶因",
+      "enemy_portrait": "terrain_fort"
+    },
+    "c08_isolate": {
+      "requisition": {"replace": "healer", "offers": ["quay_salver", "dike_flagstones", "stretcher_signal"]},
+      "map": "sunspire",
+      "hero": "pyromancer",
+      "enemy_class": "warden",
+      "deck": "balanced",
+      "enemy_deck": "balanced",
+      "seed": 8317,
+      "enemy_name": "守机管事阮衡",
+      "enemy_portrait": "terrain_fort",
+      "title": "外台的两端",
+      "brief": "维洛率队夺取外台两处接应位置，阻止守机队继续压送。战后由工班隔离新支线，保留居民饮用支管。\n\n作战建议\n先从中央靠拢两座平台，让弓手与医师跟上前排。占点只是开始，留意敌方下一回合能打到守军的位置；先清除威胁，再补上第二处守军。",
+      "objective": "己方新回合开始时，E6、H5两格都有友军，连续两次即胜；开局不计。12个完整轮次结束仍未达标则败，同时达标优先算胜。击败敌指挥官也胜，己方指挥官倒下则败。",
+      "control": {
+        "cells": [
+          [
+            4,
+            4
+          ],
+          [
+            7,
+            5
+          ]
+        ],
+        "required": 2,
+        "round_limit": 12
+      }
+    },
+    "c08_buffer": {
+      "requisition": {"replace": "march", "offers": ["severed_pullcord", "first_wake", "troop_receipt"]},
+      "map": "sunspire",
+      "hero": "pyromancer",
+      "enemy_class": "warden",
+      "deck": "assault",
+      "enemy_deck": "balanced",
+      "seed": 8318,
+      "enemy_name": "守机管事阮衡",
+      "enemy_portrait": "terrain_fort",
+      "title": "调压院前",
+      "brief": "维洛沿军道夺取调压院的指挥位置，让工班拿回总闸手轮。胜利后工班才能清理冷却池，以其中寄存的旧模与料换取缓压空间。\n\n作战建议\n保持中央队形，别让前排独自追进两翼。优先处理能被集中击破的伤兵和敌方医师，留部队接应后方指挥官；这场战斗没有整局轮次期限，不必抢攻。",
+      "objective": "击败守机管事阮衡，解除调压院武装封锁；己方指挥官倒下则败。无整局轮数期限，每行动回合90秒。",
+      "story_brief": "维洛沿军道接近调压院。在院门外的两处路口留下守兵，为工班争取取回总闸手轮的时间。",
+      "story_control": {"cells": [[6, 3], [7, 4]], "required": 1, "round_limit": 0}
+    },
+    "c10_joint_gate": {
+      "requisition": {"replace": "repulse", "offers": ["mud_sluice", "field_muster", "rain_saddle"]},
+      "title": "共同轮值 · 双桥接管",
+      "brief": "艾琳带轻装接管队走两座石桥，本地水工和三方见证者在后方等候。先保护跨渠的前线，再在两处门前接应位各留一支部队，阻止守军继续按旧令锁住检修口。",
+      "objective": "己方新回合开始时，D9、K9两处门前接应位均有友军，连续两次即胜；开局不计。18个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击败敌指挥官也胜，己方指挥官倒下则败。",
+      "map": "towergate", "hero": "warden", "enemy_class": "warden", "deck": "assault", "enemy_deck": "balanced", "seed": 10341,
+      "enemy_name": "塔门值守长尹纾", "enemy_portrait": "terrain_fort",
+      "control": {"cells": [[3, 3], [10, 3]], "required": 2, "round_limit": 18}
+    },
+    "c10_split_gate": {
+      "requisition": {"replace": "repulse", "offers": ["severed_pullcord", "field_muster", "levee_brothers"]},
+      "title": "分段旁路 · 双桥开工",
+      "brief": "维洛率旁路工班从两桥接近外阀。材料车等候时间有限，先建立跨渠阵线，再同时占住两处门前接应位，夺回可复测的接口。",
+      "objective": "己方新回合开始时，D9、K9两处门前接应位均有友军，连续两次即胜；开局不计。16个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击败敌指挥官也胜，己方指挥官倒下则败。",
+      "map": "towergate", "hero": "pyromancer", "enemy_class": "warden", "deck": "assault", "enemy_deck": "balanced", "seed": 10342,
+      "enemy_name": "塔门值守长尹纾", "enemy_portrait": "terrain_fort",
+      "control": {"cells": [[3, 3], [10, 3]], "required": 2, "round_limit": 16}
+    },
+    "c10_hold_gate": {
+      "requisition": {"replace": "snow", "offers": ["dike_flagstones", "bell_winch", "reed_toll"]},
+      "title": "封池一季 · 守住饮水",
+      "brief": "赛菈护送饮水队抵达塔门，阻止旧令强行开池。给两座石桥各留一支守军，同时守住门前接应位，让工班取得封存检修口的时间。",
+      "objective": "己方新回合开始时，D9、K9两处门前接应位均有友军，连续两次即胜；开局不计。20个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击败敌指挥官也胜，己方指挥官倒下则败。",
+      "map": "towergate", "hero": "grove", "enemy_class": "warden", "deck": "balanced", "enemy_deck": "balanced", "seed": 10343,
+      "enemy_name": "塔门值守长尹纾", "enemy_portrait": "terrain_fort",
+      "control": {"cells": [[3, 3], [10, 3]], "required": 2, "round_limit": 20},
+      "story_brief": "赛菈护送饮水队抵达塔门。沿东桥推进，留两支部队在北段拦住守军，让工班开始封存检修口。",
+      "story_control": {"cells": [[9, 4], [10, 4]], "required": 1, "round_limit": 23}
+    },
+    "c12_joint_depot": {
+      "requisition": {"replace": "spear", "offers": ["ferry_pikeman", "bell_winch", "reed_toll"]},
+      "title": "共同轮值 · 北岸量轴",
+      "brief": "三方见证者在南侧等候。沿中央坡道和两翼缺口进入备件库前场，在F9测量位与K9装车口各留一支部队，保护工班的工作窗口。北岸守军会伏设陷阱，接近前先侦查。",
+      "objective": "己方新回合开始时，F9、K9两处作业位均有友军，连续两次即胜；开局不计。20个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击退敌指挥官也胜，己方指挥官倒下则败。战胜仅取得量轴机会，轴的归属在战后决定。",
+      "map": "northbank", "hero": "warden", "enemy_class": "warden", "deck": "ambush", "enemy_deck": "ambush", "seed": 12031,
+      "enemy_name": "北岸联防队长鲁苇", "enemy_portrait": "terrain_fort",
+      "control": {"cells": [[5, 3], [10, 3]], "required": 2, "round_limit": 20}
+    },
+    "c12_split_depot": {
+      "requisition": {"replace": "sun", "offers": ["recommission_crew", "dike_flagstones", "lantern_stretcher"]},
+      "title": "分段旁路 · 抢出测量时辰",
+      "brief": "维洛带轻装队由南侧上坡，必须为赶工的量轴组争出时间。在F9与K9各布一支部队并连续守住两个己方回合开始；北岸守军会伏设陷阱。",
+      "objective": "己方新回合开始时，F9、K9两处作业位均有友军，连续两次即胜；开局不计。18个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击退敌指挥官也胜，己方指挥官倒下则败。战胜仅取得量轴机会，轴的归属在战后决定。",
+      "map": "northbank", "hero": "pyromancer", "enemy_class": "warden", "deck": "assault", "enemy_deck": "ambush", "seed": 12032,
+      "enemy_name": "北岸联防队长鲁苇", "enemy_portrait": "terrain_fort",
+      "control": {"cells": [[5, 3], [10, 3]], "required": 2, "round_limit": 18}
+    },
+    "c12_hold_depot": {
+      "requisition": {"replace": "rain", "offers": ["dike_flagstones", "stretcher_signal", "reed_toll"]},
+      "title": "封池一季 · 留住北岸退路",
+      "brief": "赛菈率守望队保护两翼运水路，先看清北岸伏设，再为量轴组稳住F9和K9两处作业位。工班只在战后入场。",
+      "objective": "己方新回合开始时，F9、K9两处作业位均有友军，连续两次即胜；开局不计。22个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击退敌指挥官也胜，己方指挥官倒下则败。战胜仅取得量轴机会，轴的归属在战后决定。",
+      "map": "northbank", "hero": "grove", "enemy_class": "warden", "deck": "balanced", "enemy_deck": "ambush", "seed": 12033,
+      "enemy_name": "北岸联防队长鲁苇", "enemy_portrait": "terrain_fort",
+      "control": {"cells": [[5, 3], [10, 3]], "required": 2, "round_limit": 22},
+      "story_brief": "给量轴组留下退路。沿中央通道越过石墙，在北侧并排守住两处路口，等工班从后方接应。",
+      "story_control": {"cells": [[7, 4], [8, 4]], "required": 1, "round_limit": 25}
+    },
+    "c14_upstream_channel": {
+      "requisition": {"replace": "trail", "offers": ["mud_sluice", "reed_watch", "rain_saddle"]},
+      "title": "上游先查 · 架桥夺闸",
+      "brief": "赛菈与希弥昨夜量出暗渠石缝，工班带来一组临桥木架。南岸两座旧桥狭窄，可在己方施法范围内从岸边向河中接续架桥。保护南岸量槽，并跨河占住北岸闸位，连续守住两次己方回合开始。",
+      "objective": "己方新回合开始时，南岸量槽与北岸闸位都有友军，连续两次即胜；开局不计。22个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击退敌指挥官也胜，己方指挥官倒下则败。守住两处作业位只取得检查与封漏机会，不能擅自全面开闸。",
+      "map": "spillway", "hero": "grove", "enemy_class": "warden", "deck": "channel", "enemy_deck": "balanced", "seed": 14031,
+      "enemy_name": "暗渠守闸长孟绫", "enemy_portrait": "terrain_fort", "bonus_card": "span_kit",
+      "control": {"cells": [[5, 6], [10, 3]], "required": 2, "round_limit": 22},
+      "story_brief": "工班带来临桥木架。分兵保护南岸量槽，同时由东桥或临桥跨渠，控制北岸闸口前的桥头。",
+      "story_control": {"cells": [[5, 6], [12, 3]], "required": 1, "round_limit": 25}
+    },
+    "c14_tower_channel": {
+      "requisition": {"replace": "fog", "offers": ["reed_toll", "dike_flagstones", "lantern_stretcher"]},
+      "title": "塔内先查 · 护印夺闸",
+      "brief": "希弥昨夜标出回水槽的漏铆，桑岚预备了回流护印。南岸两座旧桥狭窄，工班的临桥木架可临时改变河面路线。保护南岸量槽，并跨河占住北岸闸位，连续守住两次己方回合开始。",
+      "objective": "己方新回合开始时，南岸量槽与北岸闸位都有友军，连续两次即胜；开局不计。22个完整轮次结束仍未达标则败，达标与期限同时发生算胜。击退敌指挥官也胜，己方指挥官倒下则败。守住两处作业位只取得检查与封漏机会，不能擅自全面开闸。",
+      "map": "spillway", "hero": "grove", "enemy_class": "warden", "deck": "channel", "enemy_deck": "bastion", "seed": 14032,
+      "enemy_name": "暗渠守闸长孟绫", "enemy_portrait": "terrain_fort", "bonus_card": "countercurrent_ward",
+      "control": {"cells": [[5, 6], [10, 3]], "required": 2, "round_limit": 22},
+      "story_brief": "桑岚预备了回流护印。分兵保护南岸量槽，从东桥跨渠，控制北岸闸口前的桥头。",
+      "story_control": {"cells": [[5, 6], [12, 3]], "required": 1, "round_limit": 25}
+    },
+    "c16_bridge": {
+      "requisition": {"replace": "anchor_snare", "offers": ["dike_lights", "dawn_weir", "lantern_surgeon"]},
+      "title": "东桥护车 · 解开封路",
+      "brief": "城东水车与北岸替件被押在南岸。护运队越过约定的查验线，扣住两座桥的北端。艾琳从南岸推进，借友军前线部署，控制桥头后击退护运队指挥官；受伤车夫已由米芮撤至战场外。",
+      "objective": "击败护运队指挥官，解除两桥封锁；己方指挥官倒下则败。桥面狭窄，枪兵援护与地格陷阱可保护推进路线。战胜只取得通行与查验机会，不能视为水塔验收。",
+      "map": "eastbridge", "hero": "warden", "enemy_class": "warden", "deck": "ambush", "enemy_deck": "bastion", "seed": 16031,
+      "enemy_name": "护运队长白祁", "enemy_portrait": "terrain_fort"
+    },
+    "c17_runner": {
+      "requisition": {"replace": "cavalry", "offers": ["cinder_runner", "lantern_stretcher", "troop_receipt"]},
+      "title": "三盏灯 · 先送灯手",
+      "brief": "先在西岸接应灯棚，再跨石桥到右岸高街。疾行军令已在手牌，可以用来迅速换防。每次接应成功后，这一格的部队可以离开。北侧窄桥可作侧路。",
+      "objective": "依次接应 E4 灯棚、I6 石桥、L8 高街。己方新回合开始时，当前点上有友军即可记一次，每回合只记一处。16 个完整轮次内通过三处即胜，击退敌指挥官也会解除封路。己方指挥官倒下或超时则败。",
+      "map": "lamplanding", "hero": "warden", "enemy_class": "warden", "deck": "assault", "enemy_deck": "balanced", "seed": 17031,
+      "enemy_name": "城巡队长裴照", "enemy_portrait": "terrain_fort", "bonus_card": "march",
+      "control": {"mode": "relay", "cells": [[4, 8], [8, 6], [11, 4]], "required": 3, "round_limit": 16}
+    },
+    "c17_screen": {
+      "requisition": {"replace": "onslaught", "offers": ["bell_winch", "stretcher_signal", "reed_toll"]},
+      "title": "三盏灯 · 护住担架",
+      "brief": "先在西岸接应灯棚，再跨石桥到右岸高街。回誓屏障已在手牌，可以先伏设在驻守者身上，防备敌军普通攻击。每次接应成功后，这一格的部队可以离开。北侧窄桥可作侧路。",
+      "objective": "依次接应 E4 灯棚、I6 石桥、L8 高街。己方新回合开始时，当前点上有友军即可记一次，每回合只记一处。16 个完整轮次内通过三处即胜，击退敌指挥官也会解除封路。己方指挥官倒下或超时则败。",
+      "map": "lamplanding", "hero": "warden", "enemy_class": "warden", "deck": "assault", "enemy_deck": "balanced", "seed": 17031,
+      "enemy_name": "城巡队长裴照", "enemy_portrait": "terrain_fort", "bonus_card": "oath_ward",
+      "control": {"mode": "relay", "cells": [[4, 8], [8, 6], [11, 4]], "required": 3, "round_limit": 16}
+    }
+  }
+}

@@ -1,0 +1,583 @@
+{
+	"active_side": 0,
+	"deck_size": 30,
+	"log": [
+		"苍蓝军团回合 · 法力 1/1",
+		"战斗开始：推进部队，即可向前延伸部署范围。"
+	],
+	"map_id": "northbank",
+	"match_seed": 77037,
+	"next_id": 64,
+	"objective": {},
+	"players": [
+		{
+			"card_total": 30,
+			"deck": [
+				{
+					"card_id": "sword",
+					"uid": 3
+				},
+				{
+					"card_id": "mage",
+					"uid": 14
+				},
+				{
+					"card_id": "ember_mine",
+					"uid": 27
+				},
+				{
+					"card_id": "ember_mine",
+					"uid": 28
+				},
+				{
+					"card_id": "archer",
+					"uid": 11
+				},
+				{
+					"card_id": "healer",
+					"uid": 16
+				},
+				{
+					"card_id": "shatter_bolt",
+					"uid": 19
+				},
+				{
+					"card_id": "sword",
+					"uid": 1
+				},
+				{
+					"card_id": "anchor_snare",
+					"uid": 25
+				},
+				{
+					"card_id": "healer",
+					"uid": 15
+				},
+				{
+					"card_id": "bolt",
+					"uid": 17
+				},
+				{
+					"card_id": "cleanse_root",
+					"uid": 22
+				},
+				{
+					"card_id": "cavalry",
+					"uid": 8
+				},
+				{
+					"card_id": "reveal_traps",
+					"uid": 23
+				},
+				{
+					"card_id": "archer",
+					"uid": 10
+				},
+				{
+					"card_id": "rally_heal",
+					"uid": 21
+				},
+				{
+					"card_id": "mage",
+					"uid": 12
+				},
+				{
+					"card_id": "spear",
+					"uid": 5
+				},
+				{
+					"card_id": "march",
+					"uid": 18
+				},
+				{
+					"card_id": "oath_ward",
+					"uid": 29
+				},
+				{
+					"card_id": "oath_ward",
+					"uid": 30
+				},
+				{
+					"card_id": "archer",
+					"uid": 9
+				},
+				{
+					"card_id": "spear",
+					"uid": 4
+				},
+				{
+					"card_id": "seedwood",
+					"uid": 24
+				},
+				{
+					"card_id": "sword",
+					"uid": 2
+				}
+			],
+			"deck_counts": {
+				"anchor_snare": 2,
+				"archer": 3,
+				"bolt": 1,
+				"cavalry": 2,
+				"cleanse_root": 1,
+				"ember_mine": 2,
+				"healer": 2,
+				"mage": 3,
+				"march": 1,
+				"oath_ward": 2,
+				"rally_heal": 1,
+				"reveal_traps": 1,
+				"seedwood": 1,
+				"shatter_bolt": 2,
+				"spear": 3,
+				"sword": 3
+			},
+			"deck_id": "ambush",
+			"discard": [],
+			"fatigue": 0,
+			"hand": [
+				{
+					"card_id": "anchor_snare",
+					"uid": 26
+				},
+				{
+					"card_id": "mage",
+					"uid": 13
+				},
+				{
+					"card_id": "shatter_bolt",
+					"uid": 20
+				},
+				{
+					"card_id": "cavalry",
+					"uid": 7
+				},
+				{
+					"card_id": "spear",
+					"uid": 6
+				}
+			],
+			"hero_id": "warden",
+			"identity": {},
+			"mana": 1,
+			"max_mana": 1,
+			"skill_cooldown": 0,
+			"spell_boost_used": false
+		},
+		{
+			"card_total": 31,
+			"deck": [
+				{
+					"card_id": "archer",
+					"uid": 41
+				},
+				{
+					"card_id": "mage",
+					"uid": 44
+				},
+				{
+					"card_id": "ember_mine",
+					"uid": 58
+				},
+				{
+					"card_id": "cleanse_root",
+					"uid": 53
+				},
+				{
+					"card_id": "seedwood",
+					"uid": 55
+				},
+				{
+					"card_id": "rally_heal",
+					"uid": 52
+				},
+				{
+					"card_id": "mage",
+					"uid": 43
+				},
+				{
+					"card_id": "sword",
+					"uid": 32
+				},
+				{
+					"card_id": "anchor_snare",
+					"uid": 56
+				},
+				{
+					"card_id": "ember_mine",
+					"uid": 59
+				},
+				{
+					"card_id": "bolt",
+					"uid": 48
+				},
+				{
+					"card_id": "march",
+					"uid": 49
+				},
+				{
+					"card_id": "spear",
+					"uid": 35
+				},
+				{
+					"card_id": "healer",
+					"uid": 46
+				},
+				{
+					"card_id": "archer",
+					"uid": 40
+				},
+				{
+					"card_id": "sword",
+					"uid": 34
+				},
+				{
+					"card_id": "oath_ward",
+					"uid": 60
+				},
+				{
+					"card_id": "spear",
+					"uid": 36
+				},
+				{
+					"card_id": "anchor_snare",
+					"uid": 57
+				},
+				{
+					"card_id": "shatter_bolt",
+					"uid": 51
+				},
+				{
+					"card_id": "cavalry",
+					"uid": 38
+				},
+				{
+					"card_id": "cavalry",
+					"uid": 39
+				},
+				{
+					"card_id": "reveal_traps",
+					"uid": 54
+				},
+				{
+					"card_id": "shatter_bolt",
+					"uid": 50
+				},
+				{
+					"card_id": "mage",
+					"uid": 45
+				}
+			],
+			"deck_counts": {
+				"anchor_snare": 2,
+				"archer": 3,
+				"bolt": 1,
+				"cavalry": 2,
+				"cleanse_root": 1,
+				"ember_mine": 2,
+				"healer": 2,
+				"mage": 3,
+				"march": 1,
+				"oath_ward": 2,
+				"rally_heal": 1,
+				"reveal_traps": 1,
+				"seedwood": 1,
+				"shatter_bolt": 2,
+				"spear": 3,
+				"sword": 3
+			},
+			"deck_id": "ambush",
+			"discard": [],
+			"fatigue": 0,
+			"hand": [
+				{
+					"card_id": "oath_ward",
+					"uid": 61
+				},
+				{
+					"card_id": "healer",
+					"uid": 47
+				},
+				{
+					"card_id": "archer",
+					"uid": 42
+				},
+				{
+					"card_id": "sword",
+					"uid": 33
+				},
+				{
+					"card_id": "spear",
+					"uid": 37
+				},
+				{
+					"card_id": "initiative",
+					"uid": 63
+				}
+			],
+			"hero_id": "warden",
+			"identity": {},
+			"mana": 0,
+			"max_mana": 0,
+			"skill_cooldown": 0,
+			"spell_boost_used": false
+		}
+	],
+	"rng_seed": "77037",
+	"rng_state": "7991353819241138109",
+	"rules": "678de18075dc7b55040701b59eb8d7704a7695461353554ca9cbbe173986a750",
+	"terrain": [
+		"mountain",
+		"mountain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"road",
+		"road",
+		"road",
+		"road",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"mountain",
+		"mountain",
+		"mountain",
+		"mountain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"fort",
+		"road",
+		"road",
+		"fort",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"mountain",
+		"mountain",
+		"plain",
+		"plain",
+		"plain",
+		"forest",
+		"plain",
+		"fort",
+		"plain",
+		"road",
+		"road",
+		"plain",
+		"fort",
+		"plain",
+		"forest",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"forest",
+		"road",
+		"road",
+		"road",
+		"road",
+		"road",
+		"road",
+		"road",
+		"road",
+		"forest",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"forest",
+		"road",
+		"road",
+		"plain",
+		"road",
+		"road",
+		"plain",
+		"road",
+		"road",
+		"hill",
+		"plain",
+		"plain",
+		"plain",
+		"water",
+		"water",
+		"water",
+		"mountain",
+		"hill",
+		"mountain",
+		"mountain",
+		"road",
+		"road",
+		"mountain",
+		"mountain",
+		"hill",
+		"mountain",
+		"mountain",
+		"mountain",
+		"mountain",
+		"water",
+		"water",
+		"water",
+		"plain",
+		"road",
+		"road",
+		"plain",
+		"road",
+		"road",
+		"plain",
+		"road",
+		"road",
+		"forest",
+		"forest",
+		"forest",
+		"forest",
+		"water",
+		"water",
+		"water",
+		"hill",
+		"road",
+		"road",
+		"plain",
+		"road",
+		"road",
+		"plain",
+		"road",
+		"road",
+		"forest",
+		"forest",
+		"forest",
+		"forest",
+		"plain",
+		"plain",
+		"plain",
+		"forest",
+		"road",
+		"road",
+		"road",
+		"road",
+		"road",
+		"road",
+		"road",
+		"road",
+		"forest",
+		"forest",
+		"forest",
+		"forest",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"road",
+		"forest",
+		"plain",
+		"road",
+		"road",
+		"plain",
+		"forest",
+		"road",
+		"forest",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"road",
+		"road",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"road",
+		"road",
+		"road",
+		"road",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain"
+	],
+	"time_remaining": 90.0,
+	"traps": [],
+	"turn": 1,
+	"turn_time_limit": 90.0,
+	"units": [
+		{
+			"atk": 3,
+			"attacked": false,
+			"defense": 1,
+			"guarding": false,
+			"hp": 20,
+			"id": 31,
+			"kind": "commander",
+			"last_move_distance": 0,
+			"max_hp": 20,
+			"move": 0,
+			"moved": false,
+			"name": "艾琳 · 破晓",
+			"pos": [
+				7,
+				11
+			],
+			"range": 1,
+			"rooted_turns": 0,
+			"shield": 0,
+			"short": "誓",
+			"side": 0,
+			"skill_used": false,
+			"summoning": false
+		},
+		{
+			"atk": 3,
+			"attacked": false,
+			"defense": 1,
+			"guarding": false,
+			"hp": 20,
+			"id": 62,
+			"kind": "commander",
+			"last_move_distance": 0,
+			"max_hp": 20,
+			"move": 0,
+			"moved": false,
+			"name": "艾琳 · 破晓",
+			"pos": [
+				8,
+				0
+			],
+			"range": 1,
+			"rooted_turns": 0,
+			"shield": 0,
+			"short": "誓",
+			"side": 1,
+			"skill_used": false,
+			"summoning": false
+		}
+	],
+	"version": 3,
+	"weather": "clear",
+	"weather_remaining": 0,
+	"winner": -1
+}

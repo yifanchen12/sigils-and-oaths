@@ -113,8 +113,26 @@ static func _road(canvas: CanvasItem, game: Battle, cell: Vector2i, rect: Rect2)
 		var offset: Vector2 = Vector2(sin(float(cell.x * 17 + cell.y * 11 + stone * 7)) * width * 0.2, (stone - 1) * rect.size.x * 0.12)
 		canvas.draw_line(at + offset - Vector2(width * 0.12, 0), at + offset + Vector2(width * 0.16, -1), Color(Color("efe1bb"), 0.75), maxf(1, rect.size.x * 0.025), true)
 
+static func _bank_span(game: Battle, cell: Vector2i, axis: Vector2i) -> int:
+	var span := 0
+	for sign_value: int in [-1, 1]:
+		var probe := cell + axis * sign_value
+		while game.inside(probe):
+			var symbol: String = game.map_definition.rows[probe.y][probe.x]
+			if symbol != "b" and symbol != "w": break
+			span += 1
+			probe += axis * sign_value
+		if not game.inside(probe): return game.width + game.height + 1
+	return span
+
+static func bridge_is_vertical(game: Battle, cell: Vector2i) -> bool:
+	var north_south := _bank_span(game, cell, Vector2i.DOWN)
+	var east_west := _bank_span(game, cell, Vector2i.RIGHT)
+	if north_south != east_west: return north_south < east_west
+	return game.ground(cell + Vector2i.LEFT) == "water" or game.ground(cell + Vector2i.RIGHT) == "water"
+
 static func _bridge(canvas: CanvasItem, game: Battle, cell: Vector2i, rect: Rect2) -> void:
-	var vertical: bool = game.ground(cell + Vector2i.LEFT) == "water" or game.ground(cell + Vector2i.RIGHT) == "water"
+	var vertical := bridge_is_vertical(game, cell)
 	var forward: Vector2 = Vector2.DOWN if vertical else Vector2.RIGHT
 	var side: Vector2 = Vector2.RIGHT if vertical else Vector2.DOWN
 	var at: Vector2 = rect.get_center()

@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "milestone": "0.38.0-dev",
+  "date": "2026-11-07",
+  "passed": true,
+  "chapter_sha256": {
+    "chapter_14": "17a253d47c179075ec64263109ec0a79238057879d20bc86812898755693ef0c"
+  },
+  "catalogue_test": "tests/test_chapter_fourteen_catalog_ui.gd",
+  "catalogue_checks": 597,
+  "catalogue_body_paragraphs": 58,
+  "catalogue_scope": "All 56 chapter-fourteen dialogue paragraphs, two ending pages, the water-order choice and the battle briefing rendered in native Godot StoryView. Small 1008x700 layout and a native screenshot were checked. Catalogue routes start from earned chapter-thirteen outcomes; the battle win is supplied only to render postbattle pages.",
+  "earned_test": "tests/test_chapter_fourteen_earned.gd",
+  "earned_checks": 578,
+  "earned_games": 2,
+  "earned_scope": "Two chapter-thirteen earned saves, one per night-watch choice, entered the new battle and won using legal timed actions against production AI. Both builds and wards were used; a midbattle save was reloaded exactly. These are two specified diagnostic policies, not a continuous campaign or human playtest.",
+  "limitations": "The aggregate authored Chinese body text remains below 100000 Han and a single route is shorter. No human balance, broad seed coverage, complete story ending or Steam acceptance has been established."
+}

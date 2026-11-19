@@ -1,0 +1,613 @@
+{
+	"active_side": 1,
+	"deck_size": 30,
+	"hand_played_this_turn": true,
+	"log": [
+		"苍蓝军团回合 · 法力 1/1",
+		"战斗开始：推进部队，即可向前延伸部署范围。",
+		"苍蓝军团使用了「手炉学徒」。",
+		"赤曜军团回合 · 法力 1/1",
+		"赤曜军团使用了「战术先机」。",
+		"赤曜军团使用了「暮林游侠」。",
+		"苍蓝军团回合 · 法力 2/2",
+		"艾琳 · 破晓发动「圣盾赐福」。",
+		"手炉学徒推进至 G3。",
+		"赤曜军团回合 · 法力 2/2",
+		"挑灯巡堤人结算进场效果。",
+		"赤曜军团使用了「挑灯巡堤人」。"
+	],
+	"map_id": "rivergate",
+	"match_seed": 5307,
+	"next_id": 67,
+	"objective": {},
+	"pending_orders": [],
+	"players": [
+		{
+			"card_total": 30,
+			"deck": [
+				{
+					"card_id": "citadel_forging",
+					"uid": 29
+				},
+				{
+					"card_id": "bridle_break",
+					"uid": 26
+				},
+				{
+					"card_id": "kiln_sparks",
+					"uid": 17
+				},
+				{
+					"card_id": "coalroad_broker",
+					"uid": 11
+				},
+				{
+					"card_id": "chalk_courier",
+					"uid": 8
+				},
+				{
+					"card_id": "shale_lancer",
+					"uid": 13
+				},
+				{
+					"card_id": "cairn_curtain",
+					"uid": 22
+				},
+				{
+					"card_id": "crucible_levy",
+					"uid": 28
+				},
+				{
+					"card_id": "granite_dispatch",
+					"uid": 27
+				},
+				{
+					"card_id": "coalroad_broker",
+					"uid": 12
+				},
+				{
+					"card_id": "ash_notary",
+					"uid": 5
+				},
+				{
+					"card_id": "waggon_cut",
+					"uid": 25
+				},
+				{
+					"card_id": "ridge_listener",
+					"uid": 9
+				},
+				{
+					"card_id": "ridge_listener",
+					"uid": 10
+				},
+				{
+					"card_id": "thousand_steps",
+					"uid": 30
+				},
+				{
+					"card_id": "mage",
+					"uid": 1
+				},
+				{
+					"card_id": "bellfoundry_oracle",
+					"uid": 15
+				},
+				{
+					"card_id": "granary_warden",
+					"uid": 20
+				},
+				{
+					"card_id": "slate_grid",
+					"uid": 6
+				},
+				{
+					"card_id": "quarry_tithe",
+					"uid": 21
+				},
+				{
+					"card_id": "chalk_courier",
+					"uid": 7
+				},
+				{
+					"card_id": "marl_shield",
+					"uid": 19
+				},
+				{
+					"card_id": "parcel_seal",
+					"uid": 24
+				},
+				{
+					"card_id": "bolt",
+					"uid": 3
+				}
+			],
+			"deck_counts": {
+				"ash_notary": 1,
+				"bellfoundry_oracle": 1,
+				"bolt": 1,
+				"bracken_hussar": 1,
+				"bridle_break": 1,
+				"cairn_curtain": 1,
+				"chalk_courier": 2,
+				"citadel_forging": 1,
+				"coalroad_broker": 2,
+				"crucible_levy": 1,
+				"granary_warden": 1,
+				"granite_dispatch": 1,
+				"kiln_sparks": 2,
+				"mage": 2,
+				"marl_shield": 2,
+				"parcel_seal": 1,
+				"quarry_tithe": 1,
+				"ridge_archer": 1,
+				"ridge_listener": 2,
+				"shale_lancer": 1,
+				"slate_grid": 1,
+				"sleet_drums": 1,
+				"thousand_steps": 1,
+				"waggon_cut": 1
+			},
+			"deck_id": "bellfoundry_column",
+			"discard": [],
+			"fatigue": 0,
+			"hand": [
+				{
+					"card_id": "ridge_archer",
+					"uid": 4
+				},
+				{
+					"card_id": "marl_shield",
+					"uid": 18
+				},
+				{
+					"card_id": "bracken_hussar",
+					"uid": 14
+				},
+				{
+					"card_id": "sleet_drums",
+					"uid": 23
+				},
+				{
+					"card_id": "mage",
+					"uid": 2
+				}
+			],
+			"hero_id": "warden",
+			"identity": {},
+			"mana": 0,
+			"max_mana": 2,
+			"skill_cooldown": 3,
+			"spell_boost_used": false
+		},
+		{
+			"card_total": 31,
+			"deck": [
+				{
+					"card_id": "undertread_receipt",
+					"uid": 55
+				},
+				{
+					"card_id": "cracked_threshold",
+					"uid": 56
+				},
+				{
+					"card_id": "cairn_colossus",
+					"uid": 45
+				},
+				{
+					"card_id": "linen_lantern",
+					"uid": 39
+				},
+				{
+					"card_id": "archer",
+					"uid": 33
+				},
+				{
+					"card_id": "shale_lancer",
+					"uid": 42
+				},
+				{
+					"card_id": "whitecord_marshal",
+					"uid": 46
+				},
+				{
+					"card_id": "cairn_curtain",
+					"uid": 54
+				},
+				{
+					"card_id": "granary_warden",
+					"uid": 49
+				},
+				{
+					"card_id": "tin_ward",
+					"uid": 53
+				},
+				{
+					"card_id": "lamp_patrol",
+					"uid": 37
+				},
+				{
+					"card_id": "linen_lantern",
+					"uid": 40
+				},
+				{
+					"card_id": "bellglass_cover",
+					"uid": 57
+				},
+				{
+					"card_id": "river_wasp",
+					"uid": 47
+				},
+				{
+					"card_id": "night_convoy_order",
+					"uid": 61
+				},
+				{
+					"card_id": "lampwave",
+					"uid": 59
+				},
+				{
+					"card_id": "tin_ward",
+					"uid": 52
+				},
+				{
+					"card_id": "quarry_tithe",
+					"uid": 51
+				},
+				{
+					"card_id": "lampwave",
+					"uid": 60
+				},
+				{
+					"card_id": "gate_veteran",
+					"uid": 36
+				},
+				{
+					"card_id": "clear_skies",
+					"uid": 34
+				},
+				{
+					"card_id": "gate_veteran",
+					"uid": 35
+				},
+				{
+					"card_id": "shale_lancer",
+					"uid": 43
+				}
+			],
+			"deck_counts": {
+				"archer": 2,
+				"bellglass_cover": 1,
+				"cairn_colossus": 1,
+				"cairn_curtain": 1,
+				"clear_skies": 1,
+				"cracked_threshold": 1,
+				"dusk_serein": 1,
+				"gate_veteran": 2,
+				"granary_warden": 2,
+				"lamp_patrol": 2,
+				"lampwave": 2,
+				"linen_lantern": 3,
+				"night_convoy_order": 1,
+				"quarry_tithe": 1,
+				"river_wasp": 2,
+				"shale_lancer": 3,
+				"tin_ward": 2,
+				"undertread_receipt": 1,
+				"whitecord_marshal": 1
+			},
+			"deck_id": "cairn_watch",
+			"discard": [
+				{
+					"card_id": "initiative",
+					"uid": 63
+				}
+			],
+			"fatigue": 0,
+			"hand": [
+				{
+					"card_id": "granary_warden",
+					"uid": 50
+				},
+				{
+					"card_id": "river_wasp",
+					"uid": 48
+				},
+				{
+					"card_id": "shale_lancer",
+					"uid": 44
+				},
+				{
+					"card_id": "linen_lantern",
+					"uid": 41
+				},
+				{
+					"card_id": "dusk_serein",
+					"uid": 58
+				}
+			],
+			"hero_id": "grove",
+			"identity": {},
+			"mana": 0,
+			"max_mana": 2,
+			"skill_cooldown": 0,
+			"spell_boost_used": false
+		}
+	],
+	"rng_seed": "5307",
+	"rng_state": "-6447301860328748253",
+	"rules": "9fac5a46063f400f109b6b2bf3817e9d612e977f9dbff71a38f6006553b27a9f",
+	"terrain": [
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"hill",
+		"plain",
+		"road",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"forest",
+		"plain",
+		"road",
+		"road",
+		"road",
+		"road",
+		"road",
+		"forest",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"road",
+		"road",
+		"road",
+		"road",
+		"plain",
+		"plain",
+		"road",
+		"road",
+		"plain",
+		"plain",
+		"ruins",
+		"forest",
+		"forest",
+		"road",
+		"plain",
+		"plain",
+		"hill",
+		"plain",
+		"road",
+		"plain",
+		"plain",
+		"plain",
+		"water",
+		"water",
+		"water",
+		"bridge",
+		"water",
+		"water",
+		"water",
+		"water",
+		"bridge",
+		"water",
+		"water",
+		"water",
+		"water",
+		"water",
+		"water",
+		"bridge",
+		"water",
+		"water",
+		"water",
+		"water",
+		"bridge",
+		"water",
+		"water",
+		"water",
+		"plain",
+		"plain",
+		"plain",
+		"road",
+		"plain",
+		"hill",
+		"plain",
+		"plain",
+		"road",
+		"forest",
+		"forest",
+		"ruins",
+		"plain",
+		"plain",
+		"road",
+		"road",
+		"plain",
+		"plain",
+		"road",
+		"road",
+		"road",
+		"road",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"forest",
+		"road",
+		"road",
+		"road",
+		"road",
+		"road",
+		"plain",
+		"forest",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"plain",
+		"road",
+		"plain",
+		"hill",
+		"plain",
+		"plain",
+		"plain",
+		"plain"
+	],
+	"time_remaining": 81.75,
+	"traps": [],
+	"turn": 4,
+	"turn_time_limit": 90.0,
+	"units": [
+		{
+			"atk": 3,
+			"attacked": false,
+			"defense": 1,
+			"guarding": false,
+			"hp": 20,
+			"id": 31,
+			"kind": "commander",
+			"last_move_distance": 0,
+			"max_hp": 20,
+			"move": 0,
+			"moved": false,
+			"name": "艾琳 · 破晓",
+			"pos": [
+				5,
+				9
+			],
+			"range": 1,
+			"rooted_turns": 0,
+			"shield": 3,
+			"short": "誓",
+			"side": 0,
+			"skill_used": false,
+			"summoning": false
+		},
+		{
+			"atk": 2,
+			"attacked": false,
+			"defense": 0,
+			"guarding": false,
+			"hp": 20,
+			"id": 62,
+			"kind": "commander",
+			"last_move_distance": 0,
+			"max_hp": 20,
+			"move": 0,
+			"moved": false,
+			"name": "赛菈 · 月祷",
+			"pos": [
+				6,
+				0
+			],
+			"range": 2,
+			"rooted_turns": 0,
+			"shield": 0,
+			"short": "月",
+			"side": 1,
+			"skill_used": false,
+			"summoning": false
+		},
+		{
+			"atk": 1,
+			"attacked": false,
+			"card": {
+				"card_id": "kiln_sparks",
+				"uid": 16,
+				"unit_id": 64
+			},
+			"defense": 0,
+			"guarding": false,
+			"hp": 3,
+			"id": 64,
+			"kind": "mage",
+			"last_move_distance": 2,
+			"max_hp": 3,
+			"move": 2,
+			"moved": true,
+			"name": "手炉学徒",
+			"pos": [
+				6,
+				7
+			],
+			"range": 2,
+			"rooted_turns": 0,
+			"shield": 0,
+			"short": "法",
+			"side": 0,
+			"skill_used": false,
+			"summoning": false
+		},
+		{
+			"atk": 3,
+			"attacked": false,
+			"card": {
+				"card_id": "archer",
+				"uid": 32,
+				"unit_id": 65
+			},
+			"defense": 0,
+			"guarding": false,
+			"hp": 4,
+			"id": 65,
+			"kind": "archer",
+			"last_move_distance": 0,
+			"max_hp": 4,
+			"move": 2,
+			"moved": false,
+			"name": "暮林游侠",
+			"pos": [
+				5,
+				0
+			],
+			"range": 3,
+			"rooted_turns": 0,
+			"shield": 0,
+			"short": "弓",
+			"side": 1,
+			"skill_used": false,
+			"summoning": false
+		},
+		{
+			"atk": 2,
+			"attacked": true,
+			"card": {
+				"card_id": "lamp_patrol",
+				"uid": 38,
+				"unit_id": 66
+			},
+			"defense": 0,
+			"guarding": false,
+			"hp": 4,
+			"id": 66,
+			"kind": "sword",
+			"last_move_distance": 0,
+			"max_hp": 4,
+			"move": 2,
+			"moved": true,
+			"name": "挑灯巡堤人",
+			"pos": [
+				4,
+				0
+			],
+			"range": 1,
+			"rooted_turns": 0,
+			"shield": 2,
+			"short": "步",
+			"side": 1,
+			"skill_used": false,
+			"summoning": true
+		}
+	],
+	"version": 11,
+	"weather": "clear",
+	"weather_remaining": 0,
+	"winner": -1
+}

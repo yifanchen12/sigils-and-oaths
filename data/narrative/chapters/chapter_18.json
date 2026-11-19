@@ -1,0 +1,826 @@
+{
+  "version": 1,
+  "id": "chapter_18",
+  "title": "终章 · 水到门前",
+  "start": "house",
+  "inherits": [
+    "route",
+    "witness_present",
+    "seal_copy",
+    "relief",
+    "public_ledger",
+    "priority",
+    "receipt_method",
+    "dispatch_receipts",
+    "clerk_safe",
+    "letter_reply",
+    "letter_delivered",
+    "pass_route",
+    "supply_route",
+    "mine_cargo",
+    "harbor_shelter",
+    "foundry_terms",
+    "crew_safe",
+    "harbor_pump",
+    "pump_route_known",
+    "water_plan",
+    "water_released",
+    "grove_mandate",
+    "charter_copy",
+    "evidence_council",
+    "court_access",
+    "father_trail",
+    "letter_company",
+    "camp_company",
+    "pressure_plan",
+    "sunspire_stable",
+    "governance_plan",
+    "tower_gate_secured",
+    "northbank_access",
+    "shaft_custody",
+    "night_watch",
+    "channel_secured",
+    "channel_order",
+    "repair_plan",
+    "escort_terms",
+    "bridge_open",
+    "rescue_kit",
+    "evacuation_complete"
+  ],
+  "defaults": {
+    "route": "none",
+    "witness_present": false,
+    "seal_copy": false,
+    "relief": "none",
+    "public_ledger": false,
+    "priority": "none",
+    "receipt_method": "none",
+    "dispatch_receipts": false,
+    "clerk_safe": false,
+    "letter_reply": "none",
+    "letter_delivered": false,
+    "pass_route": "none",
+    "supply_route": "none",
+    "mine_cargo": false,
+    "harbor_shelter": "none",
+    "foundry_terms": "none",
+    "crew_safe": false,
+    "harbor_pump": false,
+    "pump_route_known": false,
+    "water_plan": "none",
+    "water_released": false,
+    "grove_mandate": "none",
+    "charter_copy": false,
+    "evidence_council": "none",
+    "court_access": false,
+    "father_trail": false,
+    "letter_company": "none",
+    "camp_company": "none",
+    "pressure_plan": "none",
+    "sunspire_stable": false,
+    "governance_plan": "none",
+    "tower_gate_secured": false,
+    "northbank_access": false,
+    "shaft_custody": "none",
+    "night_watch": "none",
+    "channel_secured": false,
+    "channel_order": "none",
+    "repair_plan": "none",
+    "escort_terms": "none",
+    "bridge_open": false,
+    "rescue_kit": "none",
+    "evacuation_complete": false,
+    "covenant": "none"
+  },
+  "speakers": {
+    "narrator": "旁白",
+    "warden": "艾琳",
+    "pyromancer": "维洛",
+    "grove": "赛菈",
+    "sword": "洛恩",
+    "spear": "芙蕾",
+    "cavalry": "莉希",
+    "archer": "希弥",
+    "mage": "伊瑟",
+    "healer": "米芮",
+    "clerk": "赫姆",
+    "qin": "秦婶",
+    "yubai": "余白",
+    "tangsui": "唐穗",
+    "foreman": "工班长",
+    "sang": "桑岚",
+    "ruan": "阮衡",
+    "chair": "轮值主持者",
+    "court_delegate": "议庭代表",
+    "forge_delegate": "赤曜勘料员",
+    "forest_delegate": "林社代表",
+    "porter": "旧担架手",
+    "gate_captain": "尹纾",
+    "luoming": "罗明",
+    "mengling": "守闸长孟绫",
+    "runner": "北岸信使",
+    "captain_north": "鲁苇",
+    "miller": "磨坊管事祁栎",
+    "cart_driver": "车夫阿起",
+    "apprentice": "学徒阿澄",
+    "baiqi": "护运队长白祁",
+    "pei": "城巡队长裴照",
+    "boy": "小舟",
+    "mother": "艾琳的母亲",
+    "senan": "瑟南",
+    "rosser": "罗瑟",
+    "qu": "曲汀",
+    "sister": "莉珊"
+  },
+  "nodes": {
+    "house": {
+      "type": "dialogue",
+      "background": "scene_return_morning",
+      "lines": [
+        {
+          "id": "c18.house.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.house.02",
+          "speaker": "yubai"
+        },
+        {
+          "id": "c18.house.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.house.04",
+          "speaker": "qin"
+        },
+        {
+          "id": "c18.house.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.house.06",
+          "speaker": "pei"
+        },
+        {
+          "id": "c18.house.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.house.08",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "claims"
+    },
+    "claims": {
+      "type": "dialogue",
+      "background": "scene_eaststreet",
+      "lines": [
+        {
+          "id": "c18.claims.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.claims.02",
+          "speaker": "baiqi"
+        },
+        {
+          "id": "c18.claims.03",
+          "speaker": "qu"
+        },
+        {
+          "id": "c18.claims.04",
+          "speaker": "narrator",
+          "when": {
+            "foundry_terms": "sale"
+          }
+        },
+        {
+          "id": "c18.claims.05",
+          "speaker": "narrator",
+          "when": {
+            "foundry_terms": "lease"
+          }
+        },
+        {
+          "id": "c18.claims.06",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c18.claims.07",
+          "speaker": "qu"
+        },
+        {
+          "id": "c18.claims.08",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.claims.09",
+          "speaker": "narrator",
+          "when": {
+            "escort_terms": "hearing"
+          }
+        },
+        {
+          "id": "c18.claims.10",
+          "speaker": "narrator",
+          "when": {
+            "escort_terms": "service"
+          }
+        },
+        {
+          "id": "c18.claims.11",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.claims.12",
+          "speaker": "clerk"
+        }
+      ],
+      "next": "ferry"
+    },
+    "ferry": {
+      "type": "dialogue",
+      "background": "scene_northbank_memorial",
+      "lines": [
+        {
+          "id": "c18.ferry.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.ferry.02",
+          "speaker": "mother"
+        },
+        {
+          "id": "c18.ferry.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.ferry.04",
+          "speaker": "mother"
+        },
+        {
+          "id": "c18.ferry.05",
+          "speaker": "narrator",
+          "when": {
+            "letter_company": "alone"
+          }
+        },
+        {
+          "id": "c18.ferry.06",
+          "speaker": "narrator",
+          "when": {
+            "letter_company": "companions"
+          }
+        },
+        {
+          "id": "c18.ferry.07",
+          "speaker": "warden"
+        },
+        {
+          "id": "c18.ferry.08",
+          "speaker": "mother"
+        },
+        {
+          "id": "c18.ferry.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.ferry.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.ferry.11",
+          "speaker": "rosser"
+        },
+        {
+          "id": "c18.ferry.12",
+          "speaker": "mother"
+        },
+        {
+          "id": "c18.ferry.13",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "camp"
+    },
+    "camp": {
+      "type": "dialogue",
+      "background": "scene_return_morning",
+      "lines": [
+        {
+          "id": "c18.camp.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.camp.02",
+          "speaker": "narrator",
+          "when": {
+            "camp_company": "bridge"
+          }
+        },
+        {
+          "id": "c18.camp.03",
+          "speaker": "sword",
+          "when": {
+            "camp_company": "bridge"
+          }
+        },
+        {
+          "id": "c18.camp.04",
+          "speaker": "spear",
+          "when": {
+            "camp_company": "bridge"
+          }
+        },
+        {
+          "id": "c18.camp.05",
+          "speaker": "narrator",
+          "when": {
+            "camp_company": "bridge"
+          }
+        },
+        {
+          "id": "c18.camp.06",
+          "speaker": "narrator",
+          "when": {
+            "camp_company": "clinic"
+          }
+        },
+        {
+          "id": "c18.camp.07",
+          "speaker": "mage",
+          "when": {
+            "camp_company": "clinic"
+          }
+        },
+        {
+          "id": "c18.camp.08",
+          "speaker": "healer",
+          "when": {
+            "camp_company": "clinic"
+          }
+        },
+        {
+          "id": "c18.camp.09",
+          "speaker": "narrator",
+          "when": {
+            "camp_company": "clinic"
+          }
+        },
+        {
+          "id": "c18.camp.10",
+          "speaker": "narrator",
+          "when": {
+            "camp_company": "watch"
+          }
+        },
+        {
+          "id": "c18.camp.11",
+          "speaker": "cavalry",
+          "when": {
+            "camp_company": "watch",
+            "letter_reply": "return"
+          }
+        },
+        {
+          "id": "c18.camp.12",
+          "speaker": "cavalry",
+          "when": {
+            "camp_company": "watch",
+            "letter_reply": "unscheduled"
+          }
+        },
+        {
+          "id": "c18.camp.13",
+          "speaker": "archer",
+          "when": {
+            "camp_company": "watch"
+          }
+        },
+        {
+          "id": "c18.camp.14",
+          "speaker": "narrator",
+          "when": {
+            "camp_company": "watch"
+          }
+        },
+        {
+          "id": "c18.camp.15",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "table"
+    },
+    "table": {
+      "type": "dialogue",
+      "background": "scene_council_terrace",
+      "lines": [
+        {
+          "id": "c18.table.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.table.02",
+          "speaker": "senan"
+        },
+        {
+          "id": "c18.table.03",
+          "speaker": "narrator",
+          "when": {
+            "grove_mandate": "shared"
+          }
+        },
+        {
+          "id": "c18.table.04",
+          "speaker": "narrator",
+          "when": {
+            "grove_mandate": "witness"
+          }
+        },
+        {
+          "id": "c18.table.05",
+          "speaker": "narrator",
+          "when": {
+            "governance_plan": "joint"
+          }
+        },
+        {
+          "id": "c18.table.06",
+          "speaker": "narrator",
+          "when": {
+            "governance_plan": "split"
+          }
+        },
+        {
+          "id": "c18.table.07",
+          "speaker": "narrator",
+          "when": {
+            "governance_plan": "hold"
+          }
+        },
+        {
+          "id": "c18.table.08",
+          "speaker": "sang"
+        },
+        {
+          "id": "c18.table.09",
+          "speaker": "forge_delegate"
+        },
+        {
+          "id": "c18.table.10",
+          "speaker": "qin"
+        },
+        {
+          "id": "c18.table.11",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.table.12",
+          "speaker": "court_delegate"
+        },
+        {
+          "id": "c18.table.13",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "covenant"
+    },
+    "covenant": {
+      "type": "choice",
+      "background": "scene_council_terrace",
+      "prompt": "c18.covenant.prompt",
+      "options": [
+        {
+          "id": "joint",
+          "text": "c18.covenant.joint",
+          "set": {
+            "covenant": "joint"
+          },
+          "next": "joint"
+        },
+        {
+          "id": "split",
+          "text": "c18.covenant.split",
+          "set": {
+            "covenant": "split"
+          },
+          "next": "split"
+        },
+        {
+          "id": "hold",
+          "text": "c18.covenant.hold",
+          "set": {
+            "covenant": "hold"
+          },
+          "next": "hold"
+        }
+      ]
+    },
+    "joint": {
+      "type": "dialogue",
+      "background": "scene_return_morning",
+      "lines": [
+        {
+          "id": "c18.joint.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.joint.02",
+          "speaker": "qin"
+        },
+        {
+          "id": "c18.joint.03",
+          "speaker": "narrator",
+          "when": {
+            "repair_plan": "recast"
+          }
+        },
+        {
+          "id": "c18.joint.04",
+          "speaker": "narrator",
+          "when": {
+            "repair_plan": "sleeve"
+          }
+        },
+        {
+          "id": "c18.joint.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.joint.06",
+          "speaker": "miller"
+        },
+        {
+          "id": "c18.joint.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.joint.08",
+          "speaker": "apprentice"
+        },
+        {
+          "id": "c18.joint.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.joint.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.joint.11",
+          "speaker": "warden"
+        },
+        {
+          "id": "c18.joint.12",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "joint_end"
+    },
+    "joint_end": {
+      "type": "end",
+      "background": "scene_return_morning",
+      "ending": "shared_lanterns",
+      "text": "c18.joint_end.text",
+      "title": "结局 · 共掌一灯"
+    },
+    "split": {
+      "type": "dialogue",
+      "background": "scene_return_morning",
+      "lines": [
+        {
+          "id": "c18.split.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.split.02",
+          "speaker": "qu"
+        },
+        {
+          "id": "c18.split.03",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c18.split.04",
+          "speaker": "narrator",
+          "when": {
+            "repair_plan": "recast"
+          }
+        },
+        {
+          "id": "c18.split.05",
+          "speaker": "narrator",
+          "when": {
+            "repair_plan": "sleeve"
+          }
+        },
+        {
+          "id": "c18.split.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.split.07",
+          "speaker": "mage"
+        },
+        {
+          "id": "c18.split.08",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.split.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.split.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.split.11",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c18.split.12",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "split_end"
+    },
+    "split_end": {
+      "type": "end",
+      "background": "scene_return_morning",
+      "ending": "streams_apart",
+      "text": "c18.split_end.text",
+      "title": "结局 · 各守一渠"
+    },
+    "hold": {
+      "type": "dialogue",
+      "background": "scene_return_morning",
+      "lines": [
+        {
+          "id": "c18.hold.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.hold.02",
+          "speaker": "narrator",
+          "when": {
+            "repair_plan": "recast"
+          }
+        },
+        {
+          "id": "c18.hold.03",
+          "speaker": "narrator",
+          "when": {
+            "repair_plan": "sleeve"
+          }
+        },
+        {
+          "id": "c18.hold.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.hold.05",
+          "speaker": "qin"
+        },
+        {
+          "id": "c18.hold.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.hold.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.hold.08",
+          "speaker": "senan"
+        },
+        {
+          "id": "c18.hold.09",
+          "speaker": "grove"
+        },
+        {
+          "id": "c18.hold.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c18.hold.11",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "hold_end"
+    },
+    "hold_end": {
+      "type": "end",
+      "background": "scene_return_morning",
+      "ending": "quiet_reservoir",
+      "text": "c18.hold_end.text",
+      "title": "结局 · 留水过冬"
+    }
+  },
+  "strings": {
+    "c18.house.01": "迁上高街的第一张床太长，怎么都转不进门。余白在门口量了半天，最后动锯把床腿截短。他长久舍不得动的那副船架仍卡在深渠里，今日摸到木屑时，手却比昨天稳。屋里的人闻见新木气，开了扇严严实实钉过的侧窗。",
+    "c18.house.02": "低了也好，脚踩得到地。等水线退到第三道砖，你们谁见着我的刨子，可以从我屋里拿走烘。借去就记得回来还人。",
+    "c18.house.03": "秦婶搬来的两只盆一大一小，大的搁在檐角盛雨水，小的借给学校洗手。学校已经把临时病房退回两间，识字的孩子坐在另两间门外写数，写到三户不能回来的时候，把那个三字写得和房门一样大。",
+    "c18.house.04": "低巷继续让桶车进，别抬床下去。有人家在干墙上画了十七道线，最后那道还用的孩子落下的红笔。谁要勘房，量那道线，先叫一声门里的人。",
+    "c18.house.05": "艾琳把巡棚里带出来的湿绳放在一块砖上晒。三份旧巡令有一份只剩红色布边，裴照认得那是自己昨夜举过的。他把布边压到砖底，再将案上另一份干的巡令推过来，把留下哪些通道写得很慢。",
+    "c18.house.06": "我等着看见我弟弟的帽子，再叫你们先过。这句话你们可以记。有个拿弩的孩子听我喊的第二句就动了，他要自己讲，我也在这儿讲我的。",
+    "c18.house.07": "门外站着小舟和他姥姥。他姥姥听完，把手里拣出的两枚发黑的米放回碗。小舟再往裴照那边探头，老人轻轻握住他的袖缝，留下足够的空让孩子自己走过去，问湿了的灯什么时候还他。",
+    "c18.house.08": "城巡的旧哨交回清点处，裴照在复查前只能随桶车走。有人绕着作证棚转了两回，觉得这样罚轻了。秦婶端出一凳，叫那人坐在昨日伤者会走进来的位置。她自己把最先赶来的车夫领去看旧石槛。一条路到底是谁给谁让出来的，车夫要先看看自己的轮印。",
+    "c18.claims.01": "曲汀到的时候把饭盒留在门外。她带来的两册绳订账相贴，潮气把里面几笔细数染开了。白祁认出其中一册原来一直由他夜里抱着，皮封上留着滴下去的一团蜡。他问的是弓手的去处。曲汀说她见过那人，见证人已经让他把自己动手的经过讲完了。",
+    "c18.claims.02": "护运队的旗该送到哪里？西岸的人还当我能叫他们领饷，我夜里听着都没敢出去。",
+    "c18.claims.03": "送到城里的见证棚。先清三笔钱。有人给了，我从中拿去抵了船台，剩下的你们去找我，不用去问守塔的人。",
+    "c18.claims.04": "维洛在账册第一页划了条线，把港口出让炉线时签过的那些名字翻过去。白祁要拿来比照，曲汀把册子停在自己押过字的页上。那三笔护运钱来自后来单独雇过的一班人，已经付清的炉工份额仍锁在他们领走的那一页。",
+    "c18.claims.05": "维洛把随身册摊开，剥掉夹在里头的碎银纸。三人挨个报过名，谁领半份、谁没等到下一次兑银各自核遍。他把自己承诺的日前欠款分别分到三只碗里，租息尚未结清的一笔仍留着由收钱本人签。曲汀伸手替维洛拢银，维洛把自己的袋挪给她拿，给人的碗留在原地。",
+    "c18.claims.06": "船台那个窟窿你当初没写给我。我拿过你的钱，也拿过你的笔，现在你把两笔分开给他们看。",
+    "c18.claims.07": "你会看到我的名字。要我把它念出来，我的嘴能动。你先把自己的手从第三页抬一抬。",
+    "c18.claims.08": "白祁挪开椅子让先前的护卫来坐。护卫看见他手指往旧册上移，抬头等了一等。白祁最终只把手放在自己膝上，听他说那个车销拴在什么位置，自己隔了多远看见。白祁从今往后领不到守桥的旗。射轮弓手由日陨见证席另处，阿起把裂轮和修轮费用一并交来。",
+    "c18.claims.09": "昨夜临时找来的车夫丢了一只胶轮，走得慢，下一班还愿意来。他把那张晚到的收票塞在秦婶门缝里。她给他开门，让他找阿起腾出一辆高些的车，在候工的人里挑能把桶绑紧的。",
+    "c18.claims.10": "那名自愿搬桶的护卫把昨日的工钱攒成三枚铜片，问还有没有家里带孩子也能做的活。阿起叫他明天带个人来试，只认桶车把手，腰上空着的位置不拴别的东西。秦婶在一旁用鞋底掸掉车踏板上的泥，没有插话。",
+    "c18.claims.11": "赫姆最后一个起身。他把河门当年补过的交讫和这两夜抄下的到门时刻分别交给管事。有人认得他，在墙脚把啐出去的那口话又咽了回去。赫姆一手拿着收回来的账，一手替一个看不清字的车夫挪了挪灯，先让他念自己那一行。",
+    "c18.claims.12": "我年底还到河门，要是他们叫我站柜外，我就站柜外。今天我帮阿起写旧轮值多少钱，他自己讲。",
+    "c18.ferry.01": "艾琳等到旧渡口能下脚才领母亲去。石面上前日没有擦干的水珠缩成几颗，倒映着一片打翻了的天。母亲下坡走得快，翻到平石上却突然停住，抬手把两片旧辫往后并了一把，叫艾琳也过来扶她一下。",
+    "c18.ferry.02": "你爹下雨天走这条路喜欢踩最白的石。我说石头白是给水冲滑了。你十二岁那会儿信他，学他从左边踏，回来有一个月不肯脱袜子让我看膝盖。",
+    "c18.ferry.03": "罗明等在柳树下。孟绫带了上回用过的那根索带，搁在两人都能看清的位置。母亲没去看索扣，问两位亲眼见他最后在哪里，水到何处，送他上岸时身边还有谁。她听完把艾琳袖子上的一个松线头拽了下来，绕在手指上。",
+    "c18.ferry.04": "你把退信给我，今晚我在自己床头看。你爹的家书读了没有？有些话你若已经读了，我就不用担心我们两个人都找不到那句话。",
+    "c18.ferry.05": "艾琳点点头。她记得独自读信时，自己用粗布把膝盖裹起来，灯下把父亲最后写的半截字猜错了两次。她从内袋取出家书，把折角展平，给母亲看当年那件蓝衣的地方。",
+    "c18.ferry.06": "艾琳把家书那一面摊平，想起维洛与赛菈当时一左一右留着灯，谁也没叫她继续念。她指给母亲看蓝衣那行，自己读到了一半。母亲用拇指跟着字往下走，艾琳在一处墨团前停住，两人一起把折缝打开。",
+    "c18.ferry.07": "母亲，当年你把衣裳改小了吗？",
+    "c18.ferry.08": "改到第三寸，听见关门的铃就停了。后来你的袖子又长了一寸，我索性把那匹布裁给两个淋湿的人。你若要找给小时候的你穿的衣服，我还有一件，过了这么多年也该漏风。",
+    "c18.ferry.09": "母亲把家书和罗明的退信分别塞进两边袋子。她对着无名石站了一会儿，问艾琳借笔。她在一块细木片上写丈夫的全名，下面又写「请先问其余家人」。她把木片拿回手里，说将来若找得到另外几家的同意，就在石边另立铭牌。原石暂从雨里留着。",
+    "c18.ferry.10": "罗瑟在渡头上面等，手中那根旧木杖少了一段皮。他向母亲说自己后来知道车没接到人，说字是他签的，说这十七年里他离河门最近的那个月只住在外营。母亲等他说完，起身把一块快要垫不住的石头踢到他脚边，让他下去时踩稳。",
+    "c18.ferry.11": "庭讯还在等我回去。你的信当年该送到你手上，回去我会当着常芷的面把经过再说一遍。",
+    "c18.ferry.12": "我的信已经到了。你先沿路回去。下去那三步你走慢些，它很滑。",
+    "c18.ferry.13": "艾琳在岸上放开母亲的手，看她沿台阶和孟绫并着往上走。罗瑟走的是另一条路，木杖在石地上总敲不到同一个拍子。女儿回过头，摸到自己腰边的备用钥匙，忽然发觉从这里看，故乡的桥比小时候高。",
+    "c18.camp.01": "撤到高街的那一夜留下了一个空屋。这天有人送来两条晒干的毯子和一锅饭。煮饭的人照着人数放勺子，放着放着多放了一只，拿回去一想，又把它塞在窗台上。",
+    "c18.camp.02": "洛恩把盾挂到窗洞底下。盾背那张港口房租收据泡了水，干的时候卷成一只小筒。他从压缝里捏出来，想用料绳把它绕回去，芙蕾先把常用的几块压布石放到桌上。",
+    "c18.camp.03": "房东托人说，隔壁屋子现在拿来晒船布。赶回去怕抢不上那面能放盾的墙。我可以先回去问一问，有窗就行。你那一半要不要留？",
+    "c18.camp.04": "留窗边。你要去和房东讲价，先写你那一半。我得在断脊待一周，回来再填我的。",
+    "c18.camp.05": "芙蕾去关窗，洛恩等她把右手伸不高的那扇推给自己，才接过来。收据四角被石头压平，有两行细字已经辨不出，洛恩在旁另添一行归来的日期，那个数没有再涂掉。",
+    "c18.camp.06": "伊瑟拎着两只碗进屋，险些把几个月来的图稿全塞到米芮坐的地方。他在矮桌上找空，挨着她药箱只找到半个脚印那么大的空。木碗放上去不晃，他就没有再挪药。",
+    "c18.camp.07": "账里那处峰值要他们和我的稿一块挂出来。我如果明早还在院里，你可以去敲窗。两下吧，第一下我多半听不见。",
+    "c18.camp.08": "两下都听不见，我就进去把你叫起来。你把碗吃空再跟我说峰值。我手上那盒药拿错了，你帮我把它放到右边第三格。",
+    "c18.camp.09": "他把药移到原位，碗中最后一勺分给门口坐着的小帮手。米芮看见他犹豫，把窗台上的空勺递给他，又掰半块面饼放过去。等他张口说谢，她手掌一侧，把沾药粉的指头在门外弹干净。",
+    "c18.camp.10": "希弥在马鞍架上找到一把吹不出长音的哨。莉希拿过去含住，吹出一声短得像鞋跟踢到砖的响动，两个人都笑了。笑完，莉希翻出袖里给姐姐预留的信封，背面还粘着一根碎马鬃。",
+    "c18.camp.11": "给莉珊的前一封我说了会回来。这一封写我能回去的日子，给马留三天，给自己也留一天。你若去的话，留到几日由你说。",
+    "c18.camp.12": "上次我不肯说哪天回。现在我可以写，马休三天，我们走慢一点。你能不能同行一站？我让姐姐留张矮凳。",
+    "c18.camp.13": "送到她家门口。她若问你小时候为什么摔进井沿，我先听完，晚一顿再走。",
+    "c18.camp.14": "希弥用拇指把信封沿压平，等莉希肯把笔放下来才替她塞进鞍袋。一批驮粮的马经过窗前，她俩站得近，谁也没急着把悬在架上的那把哨拿回来。",
+    "c18.camp.15": "天色过午，等签字的人已经到院子里。小孩踩在向阳的墙头偷看，大人伸手只摸到他的衣角。他问接下来的水还往不往旧街走。没有哪个站在墙边的人能先替桌边报答案。",
+    "c18.table.01": "孟绫把一根从磨坊拆下来的木尺立在桌角，尖端被虫咬过，量水一向只认刻痕。桑岚在旁边摆上封住主池的牌，牌不大，翻过来有书记给以往每场停供印上去的细圆圈。瑟南把手从牌面挪开，试着在空处放下林社的第一袋种。",
+    "c18.table.02": "这袋拿去给东街的苗床。放到墙角别烘。我们那边今年缺的数，还是写缺，拿出一袋也不会变成余下两袋。",
+    "c18.table.03": "赛菈在母亲身侧把三村量水人的记号逐个对完。去年送走她的几户今天愿意派一个人来守夜，有一户把自己的名字圈去，要先看头一轮水量再补。这次赛菈没有隔着桌子替他把印盖上。",
+    "c18.table.04": "林社席留给三村推来的人。赛菈搬了自己的凳子绕到母亲背后，把量过的三道水痕送进代表手里。对方看了第二道，追问是不是记错。她把窗下的湿木片横过来放，等所有人都看见才坐下。",
+    "c18.table.05": "上次商议过的三张轮班薄条已经贴到塔门。如今巡更一看就知道谁该到，却有两张没人按下指印，昨天夜里更没人能拿出接替人的地址。秦婶让桑岚留着薄条，叫第一夜真肯接班的人站出来。",
+    "c18.table.06": "上次商议过的旁路已有一段测过坡。低巷那头接出了预留口，材料若真能到，至少不必再把湿墙打开一遍。维洛用指头沿桌面将剩下的支线比了一尺，到最后两寸时，朝曲汀要了她的算盘。",
+    "c18.table.07": "上次肯封池的人已经把北井护栏加高，留出了车道。雨里从这口井送走四辆车，第二辆是东街常嫌慢的那对马。瑟南说这积下来的力气能供住现在的人，问谁肯把整个下一季搬到高处来过。",
+    "c18.table.08": "我可以签有人盯表的低流量，阀若动过，还得复测。高压今天没有名字能签。主池若封，北井和桶车能走，留双人巡查；要做旁路，六天起步，图上的气温若比今天低，还要再等。",
+    "c18.table.09": "我手上能给料三批。赤曜的两间炉房正等第一批管，等不到，他们会停一班。三条路里要舍哪一份，写出来，工人能自己看得懂。",
+    "c18.table.10": "先把住户有几只桶写给我看。谁家的桶一整天都等不到，管子修得再快，那天还是白过。我叫迟来的两户站在这儿，等你们给说出时候。",
+    "c18.table.11": "议庭代表接过罗瑟旧签时用过的长盒，抽出副本里关于非常取水的那份。这份用过一次的令曾把林社的字放进它没有同意的地方。代表已经拿到收回它的书面权限，他把合法的通行凭件放在另一个盘里。",
+    "c18.table.12": "棋庭只护送粮车、药车和工班来路。旧令从今天起凭不得进入水塔。档馆留原件，城里贴这张撤废副本。我可以在这一条署名，有人以后拿旧印来，你把他领到我门下。",
+    "c18.table.13": "艾琳把剑从长凳上取了下来，把空出来的那截木面让给守夜工班。她问每个桌边的人能答应怎样一份日子。候工的人在门口争了一次先后，阿澄第一个退开，把所能守的半班写在最下头。瑟南将桌边的种袋换了只空手拿，示意艾琳把第一份提案说出来。",
+    "c18.covenant.prompt": "三案都保住北井饮水和撤离通道。你将先提交哪一份新约，由工班、日陨住户和三方代表分别签下各自承担的事？",
+    "c18.covenant.joint": "共同轮值。内阀复测后低流量短时开塔，三方和日陨一起派人守班。",
+    "c18.covenant.split": "分段旁路。主塔留停，优先造独立旁路，城里和赤曜承担材料与工钱。",
+    "c18.covenant.hold": "封池一季。保饮水支路与桶车，把预算移去高街安置，留下停工和限水。",
+    "c18.joint.01": "共同轮值头一天开不成。顶班的人在下游病倒，棋庭有两个肯派来的人谁也认不出怎样记水痕。日陨的午钟响了四声，等开水的窗户从一扇开到三扇，阿起把原打算停在高街的桶车又赶下去，卸在各家能看见的地方。",
+    "c18.joint.02": "这一次我拿车次去找人。开塔头班要是找不齐，可以不开。拿我家的梯子去，第三阶松了，踩第四阶。",
+    "c18.joint.03": "桑岚在第二个清晨复查了重铸件，再次把压力限制在试验线下。阿澄带来前一张有油痕的纸。桑岚让他把两张并排贴上，哪一回是雨中停的，谁若要问，都能从那道长长的印上看见。",
+    "c18.joint.04": "短套一直挂在晒料房外。塔工从赤曜接来一批可重铸的料，等了四日才用新的内阀试出低流量。东街水车多跑了四日，堆在秦婶窗下的空桶逐日交回，没人拿那试坏的套筒硬顶进塔里。",
+    "c18.joint.05": "第三次排班把日陨的本地手也算进去。北岸盯水的人一位在塔下，一位仍在磨坊，分别负责报退水和报停工。钥匙一把留工班，一把留城里，第三把由上游值班人带来。到近午，孟绫等来当班人站到窗下，比出三根手指，才叫桑岚按今天重新量出的数走水。",
+    "c18.joint.06": "首班的水我能借你们一刻。到时候渠尺若低一寸，我敲短铃。我的轮子先走，塔那边劳驾你替我盯着。",
+    "c18.joint.07": "第一股走偏的水从高街一只接缝冒出来。小舟穿着姥姥裁小的布鞋在旁边蹲下，等阿澄把拥过去的人往后请，才从门前递来一只缺口盆。他拿盆的手势和上回递灯相同，阿澄双手接过去，放在两块垫脚砖之间。",
+    "c18.joint.08": "从这里往前两条巷，能装上今天早上的量。娘家那边晚一点有车，不用在这儿数到几碗。",
+    "c18.joint.09": "低处两户在第六天搬回。第三户的墙撑还没拆，榻抬到门口又被余白拖回高街。屋主想拿自己手上那份新约叫工班通融，余白递给他一块掉灰的梁皮，问要不要亲手捏捏看。下一班轮值的人路过，把他家的桶先搬上坡。",
+    "c18.joint.10": "晚班交还钥匙时，艾琳陪一名未学过司钟的女工去看自己的座位。女工怕路滑把钥匙系在手腕上，走到第二阶时停下，把绳子重新挽得高一点。艾琳抬起手，女工把灯递给她，从侧面自己扶稳了栏杆。",
+    "c18.joint.11": "带得动就走你自己的步子。我在下面照一会儿。",
+    "c18.joint.12": "上游晚了一刻才见到回水。赛菈把种袋捎回磨坊，走前把窗打开，城里的灯隔着湿雾已经有些看不清。艾琳升到半阶，将手中的灯换给次班的工人，自己退到屋檐外。她从前总想站在能看见三把钥匙的地方。今夜是别人的班。",
+    "c18.joint_end.text": "限流复测后，日陨高街和两条支巷轮班接水。磨坊的水位保住了，暂不能返家的住户继续在高街领水。看到有一户门开着，小舟把缺口盆放上门槛，跑去找下一班提灯的人。",
+    "c18.split.01": "分段旁路的第六天，半条旧街都在等赤曜的车。车比保函晚到一日，曲汀亲自坐在第一辆旁，把一根新漆的管子按在膝上。维洛叫人卸到坡脚，她指着车单摇头，说第二辆车之后已经没有料，替给日陨的这一批回来还得补上。",
+    "c18.split.02": "你签的六天是架管的最短日子。从人开始等到今天，第七天。我让车夫把尾款带走之前，先由你给他说明搬运算几趟。",
+    "c18.split.03": "一条街等着装管，他们再等也没有饭吃。搬的当日结。后装的那段另定价，让给磨坊的两根写在我的追加份里，别塞到赤曜别家的旧账里。",
+    "c18.split.04": "内阀新件留在关着的主塔。伊瑟给它另挂了一块牌，清洗、封存，下次拆动后须复查。炉工来问那两夜的煤还算不算，维洛从棚里摸出工钱分单，见上面已签了三个人，第四个人这天仍蹲在管坡上，于是把单递到了本人手里。",
+    "c18.split.05": "短套得了一份料票，料票下面记着拆除时辰。桑岚把它移到室内上架，木样搁在旁边。两样此后都可叫学徒借走看；新旁路的接头从另一条线起，压住旧内阀的牌没拔下。",
+    "c18.split.06": "第八天桥北上了第一段管，试水时接出半碗浑的。米芮举起茶盏照给人看，再亲手倒进做灰浆的木槽里。西段流到第二处时很清，左右两头的走水声却对不上，伊瑟沿已铺好的砖慢慢走了一遍。他在窗下同维洛撞了一肩，两个都停下来，听见屋里有人拨诵书的钟。",
+    "c18.split.07": "我漏算低处那口旧井。今夜先开西段给高街，东端得量清再接。你若要骂，等我把这两碗水分给住户看。",
+    "c18.split.08": "维洛没去拿他手里的碗。他下了半段石阶，问哪一户愿意在墙上多砌一圈防冻砖。第二家有一名老人给了个能放砖的空处，提的条件是不用再每月替别家的漏水停一整条街。维洛在门后量了一次宽度，让老人把自己的椅子往门里拉。",
+    "c18.split.09": "东段迟两日通水，四户拿到了新管口。曾坏船架的余白用余料做了只耐湿的脚凳，放在能接水的坡上，归谁先到就给谁用。秦婶打来新油，把脚凳在日头底下抹过；她家留了两只桶，最晚搬回的那户仍靠车。",
+    "c18.split.10": "维洛给赤曜送回的是两份收票和一袋磨坊粉，不再附一句「从总账扣除」。他把原来师父教他用的旧尺交给阿澄。尺子有一段歪，阿澄看了一眼，便在同一张纸上画了根直线，拿去给他量。",
+    "c18.split.11": "尺寸照你的算。坏尺留我炉边吧，还能压住夜班的饭票。",
+    "c18.split.12": "铺下的管子在石阶拐角敲了两声。艾琳本以为有人在扣关，走近看到是阿澄拿着扳手讨借一块布。两人守在同一株掉叶的树下面，等到来取水的人沿坡一一走过，才把收下的钥匙分别送回东街与上游。",
+    "c18.split_end.text": "独立旁路分段通水，主塔继续封停。日陨和赤曜付清新增工班与运料费用，北岸磨坊留出自己的水道。回家的老人沿巷敲了敲新管，隔壁回他，说水已经到自己门前。",
+    "c18.hold.01": "主池封存当天，塔下没有一声哨。桑岚站在两个人中间把门及侧门各关一次，叫先来的人看清哪一把能打开北井，哪一把这一季不用带出柜。主池墙上留一处能给工人照看的窗口，湿气沿窗上铁沿缓缓往下走。",
+    "c18.hold.02": "重铸的新阀没动过第二次压。安排封池前，阿澄把工班做出的试样抹油，搁进箱子的第一格。两夜的班收工了，最后一次补贴有家属来领。从炉边搬走那桶余煤时，维洛搁回去一半，让另一个班拿去暖拆下来的旧床。",
+    "c18.hold.03": "拆下的短套不再送回塔上。阿澄把它翻到有一道白渍的那面，挨着木样画了个圈。北岸替件已经交到能看见磨轮的棚里，试短套用过的工具则由各家归还，少的那把钳子第二天在新病房里找到了。",
+    "c18.hold.04": "第一周，豆腐铺将两口铁锅搬到高街，再去领煮豆的水时少了一桶。掌柜气得把炉门踹变了形，回屋让伙计一人领一张停工单，叫谁开炉也用不上那么多人。秦婶磨破了脚上的软鞋，从北井护栏抄回一张招工纸，塞到低处还住着人的几扇门下。",
+    "c18.hold.05": "高街今晚要有人铺床脚。干木匠活的，再不找开炉的催一声，先来抬石板，拿这一天工钱回去。别叫孩子跟着抬。",
+    "c18.hold.06": "余白把自己卸下的旧船板拖到三户安置房之间，给各处留足能抬床的门宽。米芮沿坡领两名老人先去坐，看等桶的人会不会踩到别人要睡的地方。有户年轻人看见床腿齐全，很快把一半行李搬上来，另一半系在自己低巷门上，钥匙仍贴身带。",
+    "c18.hold.07": "瑟南给林社带回的数少了一栏工坊需求，多了一栏饮水车。她下井看过一回，又绕到磨坊外面试了块土。祁栎把开春备着的第三只麦袋重新捆起来，愿意按新水数把两户的麦留后磨，最早那一家今晚可以开轮。",
+    "c18.hold.08": "你看这地面。手指按下去，起来不带黄泥，能播一小畦。城里你已经给了多少袋？跟我说个准数，第三村的妇人等着我从井边回去报。",
+    "c18.hold.09": "一袋给了东街。一袋我想分给手磨的两户，过你们的秤再打开。最后那点我留着，我请小舟姥姥来看长不长。",
+    "c18.hold.10": "母亲把手往干围裙上一擦，把带来的细篓放到赛菈手边。两人拿同一袋种试那只篓结不结实，先各拉了一下。晨光照在井栏的绳头上，靠得近能看见先前取水的人用湿手打了两个不同的结。",
+    "c18.hold.11": "新住的那三户到月末还未下高街。楼顶炊烟起来时，艾琳常听见有人在咳，有人把车夫的名喊错。塔外守夜的人点着一盏寻常灯，灯火落不到井口。她去给巷边的门安下能从屋里推开的插销，听见秦婶在叫人添饭，便把剩的两枚钉子放进袖口。",
+    "c18.hold_end.text": "主池封存一季，北井与桶车照常走。工坊只开一部分，三户低巷居民在高街过季。赛菈把发了第一片叶的苗送来，秦婶给她搬来一把空凳，两人都在等今晚最后一辆水车。"
+  }
+}

@@ -395,6 +395,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 7
+alignment = 1
 
 [node name="HandPanel" type="PanelContainer" parent="Margin/Layout"]
 unique_name_in_owner = true
@@ -538,13 +539,30 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12
 
-[node name="LibraryIntro" type="Label" parent="CardsDialog/Content"]
+[node name="Header" type="HBoxContainer" parent="CardsDialog/Content"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="LibraryIntro" type="Label" parent="CardsDialog/Content/Header"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 16
-text = "24 种可组牌 · 1 张后手专属牌 / 悬停或点击查看规则"
+clip_text = true
+text = "悬停或点击卡牌查看规则"
+
+[node name="LibrarySet" type="OptionButton" parent="CardsDialog/Content/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+
+[node name="LibraryCost" type="OptionButton" parent="CardsDialog/Content/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(105, 0)
+layout_mode = 2
 
 [node name="Scroll" type="ScrollContainer" parent="CardsDialog/Content"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0

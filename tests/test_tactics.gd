@@ -72,7 +72,7 @@ func run() -> void:
 					break
 				steps += 1
 			check(game.winner != -1, "deck-map match terminates: " + deck.id + "/" + map.id)
-	print("TACTICS CHECKS: %d | FAILURES: %d | DECK/MAP MATCHES: 9" % [checks, failures])
+	print("TACTICS CHECKS: %d | FAILURES: %d | DECK/MAP MATCHES: %d" % [checks, failures, BattleModel.DECKS.decks.size() * BattleModel.MAPS.maps.size()])
 	quit(0 if failures == 0 else 1)
 
 func test_repulse() -> void:

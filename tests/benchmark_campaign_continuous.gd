@@ -1,0 +1,219 @@
+extends SceneTree
+## Start at the first line and let real, unmodified battle outcomes gate the
+## story. Stop at the first defeat; never insert victory or jump to a chapter.
+const Session = preload("res://scripts/campaign_session.gd")
+const AI = preload("res://scripts/opponent.gd")
+const HarborPilot = preload("res://tests/fixtures/harbor_court_pilot.gd")
+const FocusPilot = preload("res://tests/fixtures/bridge_focus_pilot.gd")
+const ChannelPilot = preload("res://tests/fixtures/channel_push_pilot.gd")
+const Snapshot = preload("res://scripts/battle_snapshot.gd")
+const Replay = preload("res://tests/test_campaign_replays.gd")
+const SAVE: String = "res://.tools/continuous_diagnostic_save.json"
+var checks: int = 0
+var failures: int = 0
+var session: RefCounted
+var pump_focus: bool = false
+var nursery_focus: bool = false
+var court_focus: bool = false
+var late_route_focus: bool = false
+var saltlane: String = "skip"
+var difficulty: String = Session.Difficulty.STANDARD
+var requisitions: Dictionary = {}
+var armory_plan: Dictionary = {}
+var armory_overrides: Dictionary = {}
+var decisions: Dictionary = {}
+var requisition_report: String = ""
+var save_path: String = SAVE
+var report: Dictionary = {"policy": "production opponent on both sides", "coverage": "continuous_campaign", "note": "New campaign, first visible choices (except the declared opening route and priority), real battle results and save/reload. Stops at first defeat. Automated diagnostic, not a human playthrough or balance verdict.", "route": "road", "priority": "relief", "choices": [], "chapters_entered": [], "dialogue_ids": [], "games": [], "reached_authored_end": false, "stop": ""}
+
+func _initialize() -> void: call_deferred("run")
+func check(value: bool, label: String) -> bool:
+	checks += 1
+	if not value: failures += 1; push_error(label)
+	return value
+
+func reload_exact() -> bool:
+	var progress: Dictionary = session.campaign.snapshot()
+	var encounter: Dictionary = Snapshot.capture(session.encounter) if session.encounter != null else {}
+	if not check(session.save().ok, "continuous route saves through the real coordinator"): return false
+	var fresh: RefCounted = Session.new(save_path)
+	if not check(fresh.load_campaign().ok, "fresh session reads the same disk save"): return false
+	if not check(fresh.campaign.snapshot() == progress, "all story flags, choices, history, attempts and cursors survive reload"): return false
+	if not check((Snapshot.capture(fresh.encounter) if fresh.encounter != null else {}) == encounter, "battle including cards, RNG and precise clock survives reload"): return false
+	session = fresh
+	return true
+
+func fight() -> bool:
+	var scenario: String = session.current().scenario
+	if session.campaign.difficulty != difficulty and not check(session.choose_difficulty(difficulty, session.token()).ok, "choose the declared campaign difficulty at its briefing"): return false
+	var recruited: String = requisitions.get(scenario, "")
+	if not recruited.is_empty() and not check(session.choose_requisition(recruited, session.token()).ok, "select an offered campaign requisition"): return false
+	var picks: Dictionary = {}
+	for slot: Dictionary in Session.Campaign.Armory.SLOTS:
+		if session.campaign.completed.size() >= int(slot.unlock_after) and armory_plan.has(slot.id):
+			picks[slot.id] = armory_plan[slot.id]
+	if armory_overrides.has(scenario): picks = armory_overrides[scenario]
+	if (not armory_plan.is_empty() or not armory_overrides.is_empty()) and not check(session.configure_armory(picks, session.token()).ok, "equip the declared unlocked campaign cards"): return false
+	var before: Dictionary = session.campaign.snapshot()
+	if not check(session.begin_battle(session.token()).ok, "begin actual encountered battle " + scenario): return false
+	var row: Dictionary = {"scenario": scenario, "story_before": before, "trace": [], "reload_at_action": -1}
+	var played_requisition: bool = false
+	var gear_uids: Dictionary = {}
+	if not picks.is_empty():
+		var pile: Array = session.encounter.players[0].deck
+		for slot: Dictionary in Session.Campaign.Armory.SLOTS:
+			if not picks.has(slot.id): continue
+			var instance: Dictionary = pile[-int(slot.draw)]
+			if not check(instance.card_id == picks[slot.id], "chosen card occupies the promised draw slot"): return false
+			gear_uids[instance.uid] = instance.card_id
+	var seen_gear: Array[String] = []
+	var played_gear: Dictionary = {}
+	var restored: bool = false
+	while session.encounter.winner == -1 and row.trace.size() < 1000:
+		var b: Battle = session.encounter
+		var side: int = b.active_side
+		var actor: Script = AI
+		if side == 0 and pump_focus and scenario == "c04_pump": actor = HarborPilot
+		if side == 0 and nursery_focus and scenario == "c05_nursery": actor = FocusPilot
+		if side == 0 and court_focus and scenario == "c06_court": actor = HarborPilot
+		if side == 0 and late_route_focus and scenario == "c12_depot": actor = FocusPilot
+		if side == 0 and late_route_focus and scenario == "c14_channel": actor = ChannelPilot
+		var action: Dictionary = actor.choose(b)
+		for instance: Dictionary in b.players[0].hand:
+			if gear_uids.has(instance.uid) and not seen_gear.has(instance.card_id):
+				seen_gear.append(instance.card_id)
+		if side == 0 and action.type == "play" and gear_uids.has(action.card_uid):
+			var played_id: String = gear_uids[action.card_uid]
+			played_gear[played_id] = int(played_gear.get(played_id, 0)) + 1
+		if not recruited.is_empty() and side == 0 and action.type == "play" and b.hand_card(side, action.card_uid).card_id == recruited:
+			played_requisition = true
+		b.advance_clock(0.35)
+		if not check(side == b.active_side and b.apply_action(action).ok, "continuous battle action is legal and within the actual clock"): return false
+		var portable: Dictionary = action.duplicate(true)
+		if portable.get("target") is Vector2i: portable.target = [portable.target.x, portable.target.y]
+		row.trace.append({"side": side, "turn_after": b.turn, "elapsed": 0.35, "action": portable})
+		var reload_turn: int = 3 if b.ControlObjective.is_escort(b.objective) else 8
+		if not restored and b.turn >= reload_turn and b.winner == -1:
+			row.reload_at_action = row.trace.size()
+			if not reload_exact(): return false
+			restored = true
+		await process_frame
+	var battle: Battle = session.encounter
+	row.final = Snapshot.capture(battle)
+	row.winner = battle.winner; row.turn = battle.turn; row.actions = row.trace.size()
+	if not check(battle.winner in [0, 1, 2], "continuous battle reaches a real terminal result before the action cap"): return false
+	if not check(session.finish_battle(battle).ok, "only the authoritative battle result advances the story"): return false
+	row.story_after = session.campaign.snapshot()
+	if not recruited.is_empty():
+		row["requisition"] = recruited
+		row["played_requisition"] = played_requisition
+		if row.winner == 0 and not check(session.campaign.requisition.is_empty(), "winning resets the preparation for later missions"): return false
+	if not picks.is_empty():
+		row["armory"] = picks
+		row["armory_seen"] = seen_gear
+		row["armory_plays"] = played_gear
+		if not check(session.campaign.armory == picks, "battle outcome preserves permanent equipment"): return false
+	report.games.append(row)
+	if not reload_exact(): return false
+	print("CONTINUOUS %s | WINNER %d | TURN %d | ACTIONS %d" % [scenario, row.winner, row.turn, row.actions])
+	if row.winner != 0:
+		check(session.current().type == "battle" and session.current().scenario == scenario, "defeat stays at its own encounter without granting a later chapter")
+		check(session.campaign.story.state.flags == before.story.flags, "defeat grants no victory flags")
+		check(session.campaign.story.state.history == before.story.history, "defeat invents no unread story history")
+		check(session.campaign.story.state.attempts.get(before.story.node, 0) == int(before.story.attempts.get(before.story.node, 0)) + 1, "defeat is persisted exactly once")
+		report.stop = "defeat" if row.winner == 1 else "draw"
+		return false
+	return true
+
+func run() -> void:
+	for arg: String in OS.get_cmdline_user_args():
+		if arg.begins_with("--route="): report.route = arg.trim_prefix("--route=")
+		if arg.begins_with("--priority="): report.priority = arg.trim_prefix("--priority=")
+		if arg.begins_with("--saltlane="): saltlane = arg.trim_prefix("--saltlane=")
+		if arg.begins_with("--difficulty="): difficulty = arg.trim_prefix("--difficulty=")
+		if arg == "--pump-focus": pump_focus = true
+		if arg == "--nursery-focus": nursery_focus = true
+		if arg == "--court-focus": court_focus = true
+		if arg == "--late-route-focus": late_route_focus = true
+		if arg.begins_with("--requisitions="):
+			var path: String = arg.trim_prefix("--requisitions=")
+			var selection: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+			if not check(selection is Dictionary, "requisition plan defines scenario-to-card selections"): quit(1); return
+			for choice: Variant in selection.values():
+				if not check(choice is String, "plan uses card identifiers"): quit(1); return
+			requisitions = selection
+		if arg.begins_with("--requisition-report="): requisition_report = arg.trim_prefix("--requisition-report=")
+		if arg.begins_with("--armory="):
+			var path: String = arg.trim_prefix("--armory=")
+			var equipped: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+			if not check(Session.Campaign.Armory.validate(equipped, 18).is_empty(), "armory plan contains valid slot-to-card selections"): quit(1); return
+			armory_plan = equipped
+		if arg.begins_with("--armory-overrides="):
+			var path: String = arg.trim_prefix("--armory-overrides=")
+			var configured: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+			if not check(configured is Dictionary, "armory overrides map encounter IDs to loadouts"): quit(1); return
+			for override: Variant in configured.values():
+				if not check(Session.Campaign.Armory.validate(override, 18).is_empty(), "valid override loadout"): quit(1); return
+			armory_overrides = configured
+		if arg.begins_with("--decisions="):
+			var path: String = arg.trim_prefix("--decisions=")
+			var configured: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+			if not check(configured is Dictionary, "decision plan maps chapter and node to visible options"): quit(1); return
+			decisions = configured
+	if pump_focus or nursery_focus or court_focus or late_route_focus:
+		var selected_policies: Array[String] = []
+		if pump_focus: selected_policies.append("c04_pump harbor focus player")
+		if nursery_focus: selected_policies.append("c05_nursery wounded/support focus player")
+		if court_focus: selected_policies.append("c06_court central-formation focus player")
+		if late_route_focus: selected_policies.append("c12_depot formation focus and c14_channel bridge focus player")
+		report.policy = "production on both sides except " + ", ".join(selected_policies)
+		report.note = "Actual new campaign with real battle results. Focus policies use visible positions, health and terrain; no hidden cards, RNG peek, fixture victory or chapter jump. Stops at first defeat. Not human balance evidence."
+	if not check(report.route in ["road", "river"], "opening route is explicit and recognized"): quit(1); return
+	if not check(report.priority in ["relief", "seed"], "chapter-two priority is explicit and recognized"): quit(1); return
+	if not check(saltlane in ["school", "kiln", "skip"], "optional escort route is recognized"): quit(1); return
+	if not check(Session.Difficulty.is_valid(difficulty), "campaign difficulty is recognized"): quit(1); return
+	report["difficulty"] = difficulty
+	report["saltlane"] = saltlane
+	if saltlane != "skip": save_path = "res://.tools/continuous_diagnostic_saltlane_" + saltlane + ".json"
+	if not requisition_report.is_empty(): save_path = requisition_report + ".save"
+	for suffix: String in ["", ".bak", ".tmp"]:
+		if FileAccess.file_exists(save_path + suffix): DirAccess.remove_absolute(save_path + suffix)
+	session = Session.new(save_path)
+	if not check(session.new_campaign().ok, "start a genuine new campaign"): quit(1); return
+	var pages: int = 0
+	while failures == 0 and pages < 5000:
+		pages += 1
+		var chapter: String = session.campaign.story.graph.id
+		if not report.chapters_entered.has(chapter): report.chapters_entered.append(chapter)
+		var page: Dictionary = session.current()
+		match String(page.type):
+			"dialogue":
+				if not report.dialogue_ids.has(page.line_id): report.dialogue_ids.append(page.line_id)
+				check(session.advance(session.token()).ok, "advance one actual dialogue page")
+			"choice":
+				var option: String = report.route if chapter == "chapter_01" and page.node == "route" else (report.priority if chapter == "chapter_02" and page.node == "priority" else page.options[0].id)
+				if page.node == "saltlane_call" and saltlane != "skip": option = "answer_call"
+				if page.node == "saltlane_route": option = saltlane
+				option = str(decisions.get(chapter + "." + page.node, option))
+				report.choices.append({"chapter": chapter, "node": page.node, "option": option})
+				check(session.choose(option, session.token()).ok, "choose a currently displayed option")
+			"battle":
+				if not await fight(): break
+			"end":
+				if session.campaign.next_chapter().is_empty(): report.reached_authored_end = true; report.stop = "authored_end"; break
+				check(session.next_chapter(session.token()).ok, "next chapter inherits the earned story outcome")
+				if not reload_exact(): break
+	check(pages < 5000, "continuous narrative finishes or stops without a graph loop")
+	if report.reached_authored_end:
+		for key: String in decisions:
+			check(report.choices.any(func(choice: Dictionary) -> bool: return choice.chapter + "." + choice.node == key and choice.option == decisions[key]), "declared choice was reached and applied: " + key)
+	if failures > 0: report.stop = "invalid"
+	report.progress = session.campaign.snapshot()
+	var destination: String = "res://.tools/continuous-campaign-" + report.route + ("-seed" if report.priority == "seed" else "") + ("-pump-focus" if pump_focus else "") + ("-nursery-focus" if nursery_focus else "") + ("-court-focus" if court_focus else "") + ("-late-route-focus" if late_route_focus else "") + ("-saltlane-" + saltlane if saltlane != "skip" else "") + ".json"
+	if not requisition_report.is_empty(): destination = requisition_report
+	var file := FileAccess.open(destination, FileAccess.WRITE)
+	if not check(file != null, "write complete continuous diagnostic including defeat"): quit(1); return
+	report.checks = checks; report.failures = failures
+	file.store_string(JSON.stringify(report, "\t", true, true)); file.close()
+	print("CONTINUOUS CAMPAIGN CHECKS: %d | FAILURES: %d | GAMES: %d | DIALOGUES: %d | STOP: %s | AUTHORED_END: %s" % [checks, failures, report.games.size(), report.dialogue_ids.size(), report.stop, report.reached_authored_end])
+	quit(0 if failures == 0 else 1)

@@ -1,0 +1,819 @@
+{
+  "version": 1,
+  "id": "chapter_13",
+  "title": "第十三章 · 试转之夜",
+  "start": "mill_dawn",
+  "inherits": [
+    "route",
+    "witness_present",
+    "seal_copy",
+    "relief",
+    "public_ledger",
+    "priority",
+    "receipt_method",
+    "dispatch_receipts",
+    "clerk_safe",
+    "letter_reply",
+    "letter_delivered",
+    "pass_route",
+    "supply_route",
+    "mine_cargo",
+    "harbor_shelter",
+    "foundry_terms",
+    "crew_safe",
+    "harbor_pump",
+    "pump_route_known",
+    "water_plan",
+    "water_released",
+    "grove_mandate",
+    "charter_copy",
+    "evidence_council",
+    "court_access",
+    "father_trail",
+    "letter_company",
+    "camp_company",
+    "pressure_plan",
+    "sunspire_stable",
+    "governance_plan",
+    "tower_gate_secured",
+    "northbank_access",
+    "shaft_custody"
+  ],
+  "defaults": {
+    "route": "none",
+    "witness_present": false,
+    "seal_copy": false,
+    "relief": "none",
+    "public_ledger": false,
+    "priority": "none",
+    "receipt_method": "none",
+    "dispatch_receipts": false,
+    "clerk_safe": false,
+    "letter_reply": "none",
+    "letter_delivered": false,
+    "pass_route": "none",
+    "supply_route": "none",
+    "mine_cargo": false,
+    "harbor_shelter": "none",
+    "foundry_terms": "none",
+    "crew_safe": false,
+    "harbor_pump": false,
+    "pump_route_known": false,
+    "water_plan": "none",
+    "water_released": false,
+    "grove_mandate": "none",
+    "charter_copy": false,
+    "evidence_council": "none",
+    "court_access": false,
+    "father_trail": false,
+    "letter_company": "none",
+    "camp_company": "none",
+    "pressure_plan": "none",
+    "sunspire_stable": false,
+    "governance_plan": "none",
+    "tower_gate_secured": false,
+    "northbank_access": false,
+    "shaft_custody": "none",
+    "night_watch": "none"
+  },
+  "speakers": {
+    "narrator": "旁白",
+    "warden": "艾琳",
+    "pyromancer": "维洛",
+    "grove": "赛菈",
+    "sword": "洛恩",
+    "spear": "芙蕾",
+    "cavalry": "莉希",
+    "archer": "希弥",
+    "mage": "伊瑟",
+    "healer": "米芮",
+    "clerk": "赫姆",
+    "qin": "秦婶",
+    "yubai": "余白",
+    "tangsui": "唐穗",
+    "foreman": "工班长",
+    "sang": "桑岚",
+    "ruan": "阮衡",
+    "chair": "轮值主持者",
+    "court_delegate": "议庭代表",
+    "forge_delegate": "赤曜勘料员",
+    "forest_delegate": "林社代表",
+    "porter": "旧担架手",
+    "gate_captain": "尹纾",
+    "luoming": "罗明",
+    "mengling": "孟绫",
+    "runner": "北岸信使",
+    "captain_north": "鲁苇",
+    "miller": "磨坊管事祁栎",
+    "cart_driver": "车夫阿起",
+    "apprentice": "学徒阿澄"
+  },
+  "nodes": {
+    "mill_dawn": {
+      "type": "dialogue",
+      "background": "scene_northbank_mill",
+      "lines": [
+        {
+          "id": "c13.mill_dawn.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c13.mill_dawn.02",
+          "speaker": "narrator",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.mill_dawn.03",
+          "speaker": "miller",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.mill_dawn.04",
+          "speaker": "narrator",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.mill_dawn.05",
+          "speaker": "miller",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.mill_dawn.06",
+          "speaker": "warden"
+        },
+        {
+          "id": "c13.mill_dawn.07",
+          "speaker": "cart_driver",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.mill_dawn.08",
+          "speaker": "cart_driver",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.mill_dawn.09",
+          "speaker": "spear"
+        },
+        {
+          "id": "c13.mill_dawn.10",
+          "speaker": "sword"
+        },
+        {
+          "id": "c13.mill_dawn.11",
+          "speaker": "narrator",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.mill_dawn.12",
+          "speaker": "warden",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.mill_dawn.13",
+          "speaker": "narrator",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.mill_dawn.14",
+          "speaker": "grove",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.mill_dawn.15",
+          "speaker": "miller"
+        }
+      ],
+      "next": "road"
+    },
+    "road": {
+      "type": "dialogue",
+      "background": "scene_northbank_mill",
+      "lines": [
+        {
+          "id": "c13.road.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c13.road.02",
+          "speaker": "captain_north"
+        },
+        {
+          "id": "c13.road.03",
+          "speaker": "archer"
+        },
+        {
+          "id": "c13.road.04",
+          "speaker": "captain_north"
+        },
+        {
+          "id": "c13.road.05",
+          "speaker": "narrator",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.road.06",
+          "speaker": "captain_north",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.road.07",
+          "speaker": "narrator",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.road.08",
+          "speaker": "captain_north",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.road.09",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c13.road.10",
+          "speaker": "archer"
+        },
+        {
+          "id": "c13.road.11",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c13.road.12",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "east_queue"
+    },
+    "east_queue": {
+      "type": "dialogue",
+      "background": "scene_eaststreet",
+      "lines": [
+        {
+          "id": "c13.east_queue.01",
+          "speaker": "narrator",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.east_queue.02",
+          "speaker": "qin",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.east_queue.03",
+          "speaker": "warden",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.east_queue.04",
+          "speaker": "narrator",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.east_queue.05",
+          "speaker": "qin",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.east_queue.06",
+          "speaker": "healer"
+        },
+        {
+          "id": "c13.east_queue.07",
+          "speaker": "sword",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.east_queue.08",
+          "speaker": "healer"
+        },
+        {
+          "id": "c13.east_queue.09",
+          "speaker": "sword"
+        },
+        {
+          "id": "c13.east_queue.10",
+          "speaker": "grove",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.east_queue.11",
+          "speaker": "qin",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.east_queue.12",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "forge_floor"
+    },
+    "forge_floor": {
+      "type": "dialogue",
+      "background": "scene_foundry",
+      "lines": [
+        {
+          "id": "c13.forge_floor.01",
+          "speaker": "narrator",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.forge_floor.02",
+          "speaker": "apprentice",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.forge_floor.03",
+          "speaker": "sang",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.forge_floor.04",
+          "speaker": "narrator",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.forge_floor.05",
+          "speaker": "apprentice",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.forge_floor.06",
+          "speaker": "pyromancer",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.forge_floor.07",
+          "speaker": "pyromancer",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.forge_floor.08",
+          "speaker": "pyromancer",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.forge_floor.09",
+          "speaker": "warden"
+        },
+        {
+          "id": "c13.forge_floor.10",
+          "speaker": "sang"
+        },
+        {
+          "id": "c13.forge_floor.11",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c13.forge_floor.12",
+          "speaker": "apprentice"
+        },
+        {
+          "id": "c13.forge_floor.13",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c13.forge_floor.14",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "crew_break"
+    },
+    "crew_break": {
+      "type": "dialogue",
+      "background": "scene_foundry",
+      "lines": [
+        {
+          "id": "c13.crew_break.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c13.crew_break.02",
+          "speaker": "sang"
+        },
+        {
+          "id": "c13.crew_break.03",
+          "speaker": "warden",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.crew_break.04",
+          "speaker": "pyromancer",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.crew_break.05",
+          "speaker": "warden",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.crew_break.06",
+          "speaker": "grove",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.crew_break.07",
+          "speaker": "spear"
+        },
+        {
+          "id": "c13.crew_break.08",
+          "speaker": "sword"
+        },
+        {
+          "id": "c13.crew_break.09",
+          "speaker": "spear"
+        },
+        {
+          "id": "c13.crew_break.10",
+          "speaker": "sword"
+        },
+        {
+          "id": "c13.crew_break.11",
+          "speaker": "healer"
+        },
+        {
+          "id": "c13.crew_break.12",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "school_note"
+    },
+    "school_note": {
+      "type": "dialogue",
+      "background": "scene_school_day",
+      "lines": [
+        {
+          "id": "c13.school_note.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c13.school_note.02",
+          "speaker": "qin"
+        },
+        {
+          "id": "c13.school_note.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c13.school_note.04",
+          "speaker": "qin"
+        },
+        {
+          "id": "c13.school_note.05",
+          "speaker": "warden"
+        },
+        {
+          "id": "c13.school_note.06",
+          "speaker": "narrator",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.school_note.07",
+          "speaker": "narrator",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.school_note.08",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c13.school_note.09",
+          "speaker": "warden"
+        },
+        {
+          "id": "c13.school_note.10",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c13.school_note.11",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "trial"
+    },
+    "trial": {
+      "type": "dialogue",
+      "background": "scene_pump_open",
+      "lines": [
+        {
+          "id": "c13.trial.01",
+          "speaker": "narrator",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.trial.02",
+          "speaker": "sang",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.trial.03",
+          "speaker": "narrator",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.trial.04",
+          "speaker": "sang",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.trial.05",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c13.trial.06",
+          "speaker": "grove"
+        },
+        {
+          "id": "c13.trial.07",
+          "speaker": "pyromancer",
+          "when": {
+            "shaft_custody": "loaned"
+          }
+        },
+        {
+          "id": "c13.trial.08",
+          "speaker": "pyromancer",
+          "when": {
+            "shaft_custody": "northbank"
+          }
+        },
+        {
+          "id": "c13.trial.09",
+          "speaker": "warden"
+        },
+        {
+          "id": "c13.trial.10",
+          "speaker": "spear"
+        },
+        {
+          "id": "c13.trial.11",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "night_watch"
+    },
+    "night_watch": {
+      "type": "choice",
+      "background": "scene_pump_open",
+      "prompt": "c13.night_watch.prompt",
+      "options": [
+        {
+          "id": "upstream",
+          "text": "c13.night_watch.upstream",
+          "set": {
+            "night_watch": "upstream"
+          },
+          "next": "upstream"
+        },
+        {
+          "id": "tower",
+          "text": "c13.night_watch.tower",
+          "set": {
+            "night_watch": "tower"
+          },
+          "next": "tower"
+        }
+      ]
+    },
+    "upstream": {
+      "type": "dialogue",
+      "background": "scene_waterpass",
+      "lines": [
+        {
+          "id": "c13.upstream.01",
+          "speaker": "grove"
+        },
+        {
+          "id": "c13.upstream.02",
+          "speaker": "archer"
+        },
+        {
+          "id": "c13.upstream.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c13.upstream.04",
+          "speaker": "grove"
+        }
+      ],
+      "next": "end_upstream"
+    },
+    "tower": {
+      "type": "dialogue",
+      "background": "scene_pump_open",
+      "lines": [
+        {
+          "id": "c13.tower.01",
+          "speaker": "warden"
+        },
+        {
+          "id": "c13.tower.02",
+          "speaker": "grove"
+        },
+        {
+          "id": "c13.tower.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c13.tower.04",
+          "speaker": "archer"
+        }
+      ],
+      "next": "end_tower"
+    },
+    "end_upstream": {
+      "type": "end",
+      "background": "scene_waterpass",
+      "ending": "pressure_wait_upstream",
+      "text": "c13.end_upstream"
+    },
+    "end_tower": {
+      "type": "end",
+      "background": "scene_pump_open",
+      "ending": "pressure_wait_tower",
+      "text": "c13.end_tower"
+    }
+  },
+  "strings": {
+    "c13.mill_dawn.01": "天亮的时候，北岸的水还没有涨。磨坊门前却比前一天多了五辆车。最前头的车夫卸下空麻袋，站在车辕旁等磨坊开门；后面有人把孩子抱上石阶，替她避开车轮。艾琳从堤路走来，认出昨日那块写了三村名字的木牌。它被挪到磨坊门口，下面多了一行今晨的时辰。",
+    "c13.mill_dawn.02": "大轮不转，水从轮缘下流过。祁栎昨夜把能磨的最后一斗麦磨完，轴已上了进城的车。南村的一车面粉在路上，写在借据上的第二车还没出城。",
+    "c13.mill_dawn.03": "我叫他们先别卸麦。有人半夜排了队，怕今天晚来就排不上。你昨天说的第一车，我看见了；第二车呢？孩子吃的不是借据，昨天那几袋也不够三村分。",
+    "c13.mill_dawn.04": "大轮转得很慢，却还在碾房里发出熟悉的震动。借出的只是尺寸，轴留在箱中，今晨照旧给南村的石碾用。粮车排队等卸麦，城里送水的车反倒要在堤外绕行。",
+    "c13.mill_dawn.05": "面能磨，我不会假装这事跟城里没关系。昨晚你的人来问我们能否腾出运粮车装水，三村自己的粮还没走。别因为轴留下来，就把我们能走的路也算作空路。",
+    "c13.mill_dawn.06": "阿起，你驾的是城里的第二车？",
+    "c13.mill_dawn.07": "是。还没装面。粮仓说要先拿到你们签的领票，赤曜的人又说，昨天借轴的车占了送货的马。我跑了两个院子，现在只有这辆空车和一个不肯再等的马夫。",
+    "c13.mill_dawn.08": "不是粮车，是昨天接轴那匹马。我来还木托。城里运水的车要借我的骡子，东街又说桶还没装满。两头都喊快，骡子倒比人先算出路不够。",
+    "c13.mill_dawn.09": "先把队伍挪到石墙内侧。车还得过，孩子别站在轮后。洛恩，找块绳把石沿围起来，别碰人家的磨具。",
+    "c13.mill_dawn.10": "有绳。昨天拿来捆担架，洗过了。小姑娘，你坐上阶，别替大人看车。",
+    "c13.mill_dawn.11": "艾琳从衣袋里取出借据，找到自己签名下的交货时刻。她没有请祁栎改成‘路上耽搁’，只在原处写了一句：第二车未到，由城里军仓先拨今日中午的份，差额记到自己的补给账。祁栎接过去看了一遍，先问军仓守门人肯不肯认。",
+    "c13.mill_dawn.12": "我带人去开仓，你不必信这句话会自己变成面粉。阿起，空车跟我走；这次到了磨坊，我再回来签收。",
+    "c13.mill_dawn.13": "赛菈蹲下摸了摸磨坊下游的泥。田里下一轮播种要用这股水，不能把轮旁的支流整夜抽进城。她把指上的泥擦在草茎上，向祁栎问了两处水位。",
+    "c13.mill_dawn.14": "今晚我再来量一次。若上游先关小口，这里水轮可能慢半班；你能不能磨完南村那车麦，我得听你说，不能替你算。",
+    "c13.mill_dawn.15": "慢半班可以，停一夜不行。我拿木楔标水位，你来时看楔没被谁移过。把名字记着：祁栎。等城里的新轴过了压，也轮到我问你们要读数。",
+    "c13.road.01": "出磨坊时，鲁苇正在帮一辆满载麦袋的车倒转。她仍穿北岸守备的灰披肩，肩下新换的绷带露出一角。昨日两边的伤兵还分在不同车上，今天他们在同一条窄路等车轮退开。没人提谁让了谁的道，车夫只抬头看有没有空隙。",
+    "c13.road.02": "你的人昨晚把林路的线挖出来了。还剩两根，希弥说日落前收。我留一个弓手带路；他知道自己埋过什么，不用你们猜。",
+    "c13.road.03": "我只挖到第一根，第二根被水冲到树根后。带路的人若真知道，叫他别走在我后面指方向。",
+    "c13.road.04": "我去叫。他不愿跟你走，也得跟我走。孩子会先踩上那条路。",
+    "c13.road.05": "鲁苇把磨坊门前的时辰板重新挂直。艾琳看见上头有一笔新记号：第二车面粉仍空着；城里军仓代拨还没有实数。鲁苇看她一眼，没有追问战后会议会怎么说。",
+    "c13.road.06": "人要是中午还没到，我带两辆车去你军仓门前。先说好，来的是车，不是兵。",
+    "c13.road.07": "鲁苇把北岸到东街的堤路用石子在地上划了一遍，避开两段会陷车的软土。她留轴并不等于答应再借三村的车。",
+    "c13.road.08": "有一辆空车下午能回城，车夫自己愿意走，我给他开路。若你们要雇，请当面给钱；我不签‘北岸已供车’。",
+    "c13.road.09": "我去城里报到，来回两个时辰。马昨夜歇够了，沿东堤走。若路口封了，我不再绕第三条路硬赶；我会先在东堤给你们留信。",
+    "c13.road.10": "你从东堤走，我不在那里。别向林里喊我。我清完线会去找你。",
+    "c13.road.11": "知道。你上回也说过。",
+    "c13.road.12": "希弥没有应声，拿一截红线扎在最矮的枝头。莉希走到马旁时回头，看见她把线结打在能被路过的人发现的一面，才上鞍。",
+    "c13.east_queue.01": "东街的桶排到了学堂门外。排在前面的人听说城里借到了轴，把空桶抬高了一些；他们不知道轴要先做衬套，接到塔里后还得试压。秦兰把昨日的送水时刻钉在门框，今天的纸只写到了午前。",
+    "c13.east_queue.02": "有人问是不是今天就有水。我说今天还是送桶，塔还没开。你们带回来的那根轴呢？孩子比我消息快，已经说它装进去了。",
+    "c13.east_queue.03": "在赤曜工坊。端槽浅，衬套没做好，桑岚不会放它进塔。今天的桶数照旧，我会把下午那栏补上。",
+    "c13.east_queue.04": "东街的桶排到了学堂门外。昨天有人听见北岸留轴，便把‘留’误听成城里放弃修塔。秦兰在门框上钉了新的送水时刻，最后一栏仍留白。",
+    "c13.east_queue.05": "我跟他们说你们带回了尺寸，会另铸。他们问几天。我没有编，写了‘工坊未定试压日’。这样的纸看着难看，起码能知道今晚还得提桶。",
+    "c13.east_queue.06": "前排那个老人昨天来诊室，今天又等水。我有一桶能先给药房，不用她站两遍。但孩子们洗手的那点别替我挪走，药房也洗得了自己的布。",
+    "c13.east_queue.07": "我去军仓取面。送到磨坊的车我亲自点数，别在我这边写成‘已交’。",
+    "c13.east_queue.08": "你先吃。你一夜只喝了汤，扛袋子的时候会晕。",
+    "c13.east_queue.09": "我在路上吃。给我一块能拿的，不把这点事做成誓言。",
+    "c13.east_queue.10": "上游水车本来答应的是午前两车，没有第三车。东街晚间的缺口，议庭要自己调仓；林社可以把水位报来，不能从下一季的田里挖。",
+    "c13.east_queue.11": "我会在这张纸上写明白。有人抱怨，你让他们来找我；他们若问水从哪儿来，我就叫他们去看那条田。",
+    "c13.east_queue.12": "艾琳补完下午那一栏，没有在‘预计开塔’处落笔。等在门口的孩子看见她的手停着，问她要不要把那个空格画成一扇门。艾琳让她画在纸背，纸正面留给明天的水工。",
+    "c13.forge_floor.01": "赤曜工坊的炉门开着，地上却没有前夜那种急促的脚步。维洛叫人把两个木架分开：一边放北岸借来的轴与待做的衬套，另一边放为三村准备的新坯。阿澄在两个架子中间写车号，写到一半，停笔去看轴端的旧漆。",
+    "c13.forge_floor.02": "它有一条旧线，昨天的样纸上没画。是不是要磨掉？",
+    "c13.forge_floor.03": "先别磨。那是装配时留下的位置，量它和端槽的相对角度。我们借来的是能用的东西，不是给我们试错的废料。",
+    "c13.forge_floor.04": "赤曜工坊的炉门开着，样纸平铺在长桌上。城里没有现成的轴，维洛把新坯的出炉时刻写在木牌上，旁边留下两个空格，分别等退火与试压。阿澄给模具添泥，手上沾的灰与北岸带回的样纸颜色不同。",
+    "c13.forge_floor.05": "师傅，照样纸铸可以。端槽那半指怎么留？一炉出来后再磨，会不会把外皮全削掉？",
+    "c13.forge_floor.06": "别喊我师傅，我自己也没摸到那根旧轴。桑岚来定留量；我管炉温，不拿一张纸给你保证它不会裂。",
+    "c13.forge_floor.07": "旧账的工钱付了。今天加班的人另算，不把昨日的伤员写进能上炉的名单。还有，谁把‘午后试压’贴到城门去的？我只说衬套午后出模。",
+    "c13.forge_floor.08": "新坯今晚出炉，退火得过一整夜。谁问明早能不能装，我给他看这块还烫的木牌。你来得正好，艾琳，城门口的传话比炉子跑得快。",
+    "c13.forge_floor.09": "我去改。桑岚，你的尺寸还能反推回北岸旧轴的负荷吗？",
+    "c13.forge_floor.10": "只能估上下限。借来的那根偏心半指，若转到高压，塔里坏的内阀会跟着受力。留在北岸的那根也一样；城里新铸的更要验。今晚先做低压空转，不能有人站在裂纹正对的廊里。",
+    "c13.forge_floor.11": "我昨夜誊了两份数，发现自己把北端和南端的凿痕画反了。宽度没错，方向错了。我已经在两份图上划改，北岸那份请鲁苇重签；阿澄，你别照旧图削模。",
+    "c13.forge_floor.12": "旧图上盖着红印，我还以为那张更准。拿给我，我把模架上写的角度也擦掉。",
+    "c13.forge_floor.13": "好，今天少报一件‘已完工’，省得明天给断轴找解释。",
+    "c13.forge_floor.14": "桑岚拆开工班的旧值班表。两名水工在塔里守了一夜，另一个从北岸赶来只睡了三刻。她把三人划出今夜的试转名单，维洛没有争。炉边的阿澄看见师傅的名字也被划掉，才敢把自己的手套摘下来。",
+    "c13.crew_break.01": "午间停炉，工人们坐在墙根吃饼。艾琳拿着城门口那张写错时刻的告示来，想把它贴在炉门旁以免又有人抄错。桑岚把告示压在桌下，先递给她一碗热水。",
+    "c13.crew_break.02": "你先坐下。那张纸下午去改，不会因为你站着就早一点变真。",
+    "c13.crew_break.03": "北岸的第二车还没到。我签了军仓先拨，不知道他们会不会把这笔从下一班兵粮里扣。",
+    "c13.crew_break.04": "粮仓会扣。你得去跟他们吵，我去吵，他们会先翻我的欠账。面粉要送到磨坊门口才算，不要让洛恩一个人跟三车同跑。",
+    "c13.crew_break.05": "东街的水表今晚还缺一栏。赛菈说林社不能再出车，我得从城里的储水里挪。",
+    "c13.crew_break.06": "那一栏从塔南旧池出。池里够今天，不够你写到下周。你要找谁清池，我可以叫两个人来；他们明日要回田。",
+    "c13.crew_break.07": "塔内廊今晚我带两个人守。水工退的时候我们先退，不让他们回头来拉士兵。洛恩，你说要帮忙，站外门，不要一有声音就冲进去。",
+    "c13.crew_break.08": "我听见了。外门。你别每次都说得像我昨天没听见。",
+    "c13.crew_break.09": "昨天你听见了，脚没听见。",
+    "c13.crew_break.10": "那我今天把脚绑在门槛上。绳是新的，米芮检查过。",
+    "c13.crew_break.11": "我只检查过你的肩，绳归芙蕾。你今晚若守门，白天就去睡。伤员登记我和秦兰能做，不会因为你少帮一次便丢人。",
+    "c13.crew_break.12": "洛恩想再说一句，嘴里还有半块饼。芙蕾把自己的水碗推过去，没等他接就去检查外门那条撤路。艾琳抬眼看见维洛在桌角把夜班的工钱重新加了一遍；他没把桑岚划掉的人添回去。",
+    "c13.school_note.01": "学堂午后收了课。门口的水桶被孩子们画成三种颜色，满桶用蓝粉，空桶用灰粉，明天可能来的桶没有颜色。艾琳从城门回到这里，秦兰正把借来的木板拆下来当临时台阶。",
+    "c13.school_note.02": "我问过家长，今天先不开晚课。不是因为一根轴吓着孩子，是他们要排水。若明天还这样，我就在队里教字，板拿到桶旁边去。",
+    "c13.school_note.03": "昨天你叫我亲口告诉他们，我父亲没回来。我回家说过了。母亲没有让我在饭桌上讲北岸那场仗，问的是：他的那封信我读完没有。",
+    "c13.school_note.04": "你读了吗？",
+    "c13.school_note.05": "只读到他写旧渡头的雨。后半页是写给母亲的，我放回去了。她今天自己拿出来读，不需要我替他解释。",
+    "c13.school_note.06": "秦兰把木板靠墙，没问信里写什么。窗里有孩子在临摹水车的轮子，画歪了又接上，一圈比一圈大。艾琳站在门外，看着那只纸轮，想起早上磨坊里不动的石轮。",
+    "c13.school_note.07": "秦兰把木板靠墙，没问信里写什么。窗里有孩子在临摹水车的轮子，画歪了又接上，一圈比一圈大。艾琳站在门外，看着纸上的轮子，想起北岸仍在转的磨坊和城里封着的塔门。",
+    "c13.school_note.08": "北岸传来了新水位。东堤没封，我只跑这一趟。母亲让我带点热饭给你，她说你不回去可以，别叫信也替你挨饿。",
+    "c13.school_note.09": "放这里。谢谢。",
+    "c13.school_note.10": "那我走了。希弥还在林路，我去接她，不替你猜她什么时候回来。",
+    "c13.school_note.11": "艾琳接过饭盒，没立刻打开。她在城门告示的背面写了今晚试转的两道退路，写完才发现用的是父亲旧日教她在桥上记车位的办法。字不是他的，手却记得线应该先划在哪边。",
+    "c13.trial.01": "夜班点灯时，借来的轴已套上临时衬环。桑岚叫两名水工隔着护栏做低压空转，第三人站在门外看回水槽。石廊里有新旧两种金属的声响，听得人想往里走近一步。芙蕾把外门的绳横在众人膝前。",
+    "c13.trial.02": "别进。转一圈只说明它肯转，不能说明高压时不会把裂纹扯开。先停，摸轴承温度；明早把衬环拆下看磨痕。",
+    "c13.trial.03": "新坯还在赤曜的退火槽里，塔内今晚没有能换上的轴。桑岚让水工试的是封闭内阀和旧轴的低压回水，确认明早送水表能按实际流量写。远处的炉火映在廊口，艾琳第一次觉得隔着一条街的等待也会有声音。",
+    "c13.trial.04": "停。旧轴没长出新裂纹，但那不是明日可以加压的意思。城里先按今天的桶数送，等新坯退火、加工、试压。有人问起，给他们看水表，别给他们看炉火。",
+    "c13.trial.05": "回水槽比白天低了一指。我记了开关时刻，明早复测。若差数来自上游，桑岚的轴不该替河水背锅。",
+    "c13.trial.06": "我去上游看闸口。今天田边的标记还在，水位却低了。可能是夜里换水，也可能有人借暗渠，我只说眼前这一指；查明之前不让任何人把田里的水当成现成的。",
+    "c13.trial.07": "北岸替件的模已经合上，我给鲁苇留了炉次和工钱。借来的轴要是拆下，按原漆线归还；别让我师傅那套‘能转就算交货’的旧话又回来。",
+    "c13.trial.08": "城里这根还得看退火后的孔。若有缩裂，重铸。你们可以骂我慢，不能叫阿澄把没过的件装进塔。",
+    "c13.trial.09": "芙蕾，外门人够吗？",
+    "c13.trial.10": "够。洛恩在我划的线外，今天他和脚都听见了。天亮前换班，谁也不在这道门熬第二夜。",
+    "c13.trial.11": "塔门外有人听见试转的响动，已经朝东街跑去。艾琳追到台阶上，把那人叫回来，让他带一句准确的话：低压试过，塔还没开。她把写给秦兰的纸交到对方手里，亲眼看着他在灯下读完。",
+    "c13.night_watch.prompt": "回水槽低了一指，只能派出一支熟路小队。今夜先查哪里？",
+    "c13.night_watch.upstream": "赛菈与希弥沿上游闸口查水，塔门留原班守卫",
+    "c13.night_watch.tower": "希弥留塔查回水槽，赛菈天亮再去上游",
+    "c13.upstream.01": "希弥跟我走，带一盏遮光灯。芙蕾守塔门，听见我们从上游回来再开侧门。若水在田边掉的，我们明早先去叫祁栎，别让他在空轮旁等一整天。",
+    "c13.upstream.02": "我有灯。上游的桥板湿，赛菈你走我后面。我的眼睛看夜路，你看水痕，谁也别装自己两样都行。",
+    "c13.upstream.03": "她们沿田埂找到一处被冲开的旧石缝，缝里卡着新鲜的木屑。赛菈没把木屑当成有人开闸的证据，先在两岸各插一根标杆，记下刻度。再走半里，闸门是锁着的；水从石缝下方往废渠流。",
+    "c13.upstream.04": "闸锁没动，旁边的石缝漏着。我们现在堵会把下游冲浑，天亮带砂袋来。艾琳，明早让工班先量这处，别只盯塔里的轴。",
+    "c13.tower.01": "希弥留下。赛菈，你和北岸约的水位明早再看；今晚先让她在回水槽旁找漏，水工能指给她看哪一段刚修过。",
+    "c13.tower.02": "我明早去，先告诉祁栎他不用等我夜里到。我怕少这一夜会少看一道痕，但你塔里有刚试过的回水，也该有人盯。",
+    "c13.tower.03": "希弥蹲到槽边，看到一个新的铆钉没有压平。她让水工停机，手伸不进护栏，就用箭尾在石壁上划出位置。水工取来小镜，才看见铆钉旁有细流往旧暗槽渗。它不足以解释上游所有失水，却能解释今夜这一指中的一部分。",
+    "c13.tower.04": "先别拧。让桑岚看。我们知道它漏，不知道你拧紧后会把水送进哪条旧缝。上游那一指仍欠赛菈一个答案。",
+    "c13.end_upstream": "借轴路线仍欠北岸面粉与替代件，留轴路线仍须为城里延长送水；低压空转没有解除高压试验。赛菈与希弥在上游发现漏向废渠的旧石缝，闸锁未动，待天亮带砂袋和工班复测。塔内回水槽未得细查。",
+    "c13.end_tower": "借轴路线仍欠北岸面粉与替代件，留轴路线仍须为城里延长送水；低压空转没有解除高压试验。希弥在塔内发现未压平的铆钉向旧暗槽渗水，桑岚明早复查；上游闸口仍待赛菈天亮核验。"
+  }
+}

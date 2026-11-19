@@ -1,0 +1,38 @@
+{
+  "milestone": "0.22.0-dev",
+  "date": "2026-11-06",
+  "scenario": "c05_channel",
+  "fixture": "tests/fixtures/campaign_v021_grove.json",
+  "fixture_sha256": "fe7739875c2c40ba616bfaa5c77037f64b3f934d0e24eb6990cde24d513289aa",
+  "source_sha256": {
+    "data/campaign.json": "3651138bfa3ebbac7ad5e4082c3571bbf17f2fd9a6afaa37487b26e4ece61a53",
+    "scripts/battle.gd": "0af795bb1b10690fa142cdbf7f3c826733d40fa993dde08485b128c0d05a1625",
+    "scripts/opponent.gd": "6f1af5e863a92546abe6e9e36e305128b90da18c78b66a34ffe514985f5c7524",
+    "scripts/tactical_ai.gd": "5619c6bbe49a3ef3d26c0761e3d7669b74614985a705c653b2ca2135ffa3f72b",
+    "tests/test_campaign_playthrough_ui.gd": "7fa794c872c346de00dd74678c6606202ca25d30d57b15e28ee4ad9711549723"
+  },
+  "hashing": "SHA256 of UTF-8 text with LF newlines",
+  "game": {
+    "actions": 135,
+    "decision_mean_ms": 47.254659259259256,
+    "decision_peak_ms": 198.483,
+    "illegal_action": "",
+    "max_control_streak": 0,
+    "reason": "commander",
+    "scenario": "c05_channel",
+    "seed": 5318.0,
+    "streak_resets": 0,
+    "turn": 21,
+    "winner": 0
+  },
+  "native": {
+    "writer_checks": 75,
+    "reader_checks": 346,
+    "passed": true,
+    "exit_action_count": 23,
+    "exit_turn": 8,
+    "postbattle_line": "c05.after_water.01",
+    "test": "tests/test_campaign_playthrough_ui.gd",
+    "note": "Two independent native processes; real pointer events and production enemy AI. Starts with original units, resources and card order. Earlier story encounters use victory fixtures, so this is a single encounter, not continuous campaign proof."
+  }
+}

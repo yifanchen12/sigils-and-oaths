@@ -1,0 +1,431 @@
+{
+  "version": "0.50.0-dev",
+  "route": "road",
+  "saltlane": "school",
+  "policy": "production on both sides except c04_pump harbor focus player, c05_nursery wounded/support focus player, c06_court central-formation focus player, c12_depot formation focus and c14_channel bridge focus player",
+  "method": "Full routes start from a new save. Both use the same visible story choices. The equipping plan was selected after inspecting the authored-scenario samples.",
+  "decisions": {
+    "chapter_09.governance": "split",
+    "chapter_17.kit": "screen",
+    "chapter_18.covenant": "split"
+  },
+  "default_armory": {
+    "vanguard": "quiet_net",
+    "company": "shoal_arbalest",
+    "reserve": "copper_boltline"
+  },
+  "armory_overrides": {
+    "c04_dock": {},
+    "c08_isolate": {
+      "vanguard": "saltfield_runner",
+      "company": "cress_ribbon",
+      "reserve": "crownless_vanguard"
+    },
+    "c14_channel": {
+      "vanguard": "saltfield_runner",
+      "company": "cress_ribbon",
+      "reserve": "crownless_vanguard"
+    },
+    "c16_bridge": {
+      "vanguard": "seam_shot",
+      "company": "levee_echo",
+      "reserve": "unbroken_ember_line"
+    },
+    "c17_screen": {
+      "vanguard": "bank_pikeman",
+      "company": "sluice_flags",
+      "reserve": "sunken_weir_breach"
+    }
+  },
+  "standard": {
+    "ending": "split_end",
+    "chapters": 18,
+    "dialogues": 1550,
+    "choices": 25,
+    "checks": 5177,
+    "actions": 3331,
+    "equipped_battles": 0,
+    "card_plays": {},
+    "games": [
+      {
+        "scenario": "c01_road",
+        "actions": 151,
+        "winner": 0,
+        "turn": 25,
+        "reload_at_action": 27
+      },
+      {
+        "scenario": "c01_bridge",
+        "actions": 448,
+        "winner": 0,
+        "turn": 62,
+        "reload_at_action": 25
+      },
+      {
+        "scenario": "c02_relief_bridge",
+        "actions": 128,
+        "winner": 0,
+        "turn": 21,
+        "reload_at_action": 21
+      },
+      {
+        "scenario": "c02_dispatch",
+        "actions": 454,
+        "winner": 0,
+        "turn": 62,
+        "reload_at_action": 21
+      },
+      {
+        "scenario": "c03_vent",
+        "actions": 55,
+        "winner": 0,
+        "turn": 13,
+        "reload_at_action": 28
+      },
+      {
+        "scenario": "c04_dock",
+        "actions": 269,
+        "winner": 0,
+        "turn": 43,
+        "reload_at_action": 25
+      },
+      {
+        "scenario": "c04_pump",
+        "actions": 90,
+        "winner": 0,
+        "turn": 17,
+        "reload_at_action": 16
+      },
+      {
+        "scenario": "c05_nursery",
+        "actions": 132,
+        "winner": 0,
+        "turn": 25,
+        "reload_at_action": 21
+      },
+      {
+        "scenario": "c06_court",
+        "actions": 445,
+        "winner": 0,
+        "turn": 62,
+        "reload_at_action": 26
+      },
+      {
+        "scenario": "c07_saltlane_school",
+        "actions": 27,
+        "winner": 0,
+        "turn": 7,
+        "reload_at_action": 8
+      },
+      {
+        "scenario": "c08_isolate",
+        "actions": 116,
+        "winner": 0,
+        "turn": 21,
+        "reload_at_action": 23
+      },
+      {
+        "scenario": "c10_gate",
+        "actions": 98,
+        "winner": 0,
+        "turn": 19,
+        "reload_at_action": 27
+      },
+      {
+        "scenario": "c12_depot",
+        "actions": 109,
+        "winner": 0,
+        "turn": 23,
+        "reload_at_action": 20
+      },
+      {
+        "scenario": "c14_channel",
+        "actions": 240,
+        "winner": 0,
+        "turn": 37,
+        "reload_at_action": 21
+      },
+      {
+        "scenario": "c16_bridge",
+        "actions": 472,
+        "winner": 0,
+        "turn": 64,
+        "reload_at_action": 21
+      },
+      {
+        "scenario": "c17_screen",
+        "actions": 97,
+        "winner": 0,
+        "turn": 19,
+        "reload_at_action": 20
+      }
+    ]
+  },
+  "equipped": {
+    "ending": "split_end",
+    "chapters": 18,
+    "dialogues": 1550,
+    "choices": 25,
+    "checks": 5166,
+    "actions": 3260,
+    "equipped_battles": 11,
+    "card_plays": {
+      "quiet_net": 6,
+      "shoal_arbalest": 4,
+      "saltfield_runner": 2,
+      "copper_boltline": 2,
+      "cress_ribbon": 1,
+      "levee_echo": 1,
+      "seam_shot": 2,
+      "unbroken_ember_line": 1,
+      "bank_pikeman": 1
+    },
+    "games": [
+      {
+        "scenario": "c01_road",
+        "actions": 151,
+        "winner": 0,
+        "turn": 25,
+        "reload_at_action": 27
+      },
+      {
+        "scenario": "c01_bridge",
+        "actions": 448,
+        "winner": 0,
+        "turn": 62,
+        "reload_at_action": 25
+      },
+      {
+        "scenario": "c02_relief_bridge",
+        "actions": 128,
+        "winner": 0,
+        "turn": 21,
+        "reload_at_action": 21
+      },
+      {
+        "scenario": "c02_dispatch",
+        "actions": 454,
+        "winner": 0,
+        "turn": 62,
+        "reload_at_action": 21
+      },
+      {
+        "scenario": "c03_vent",
+        "actions": 87,
+        "winner": 0,
+        "turn": 17,
+        "reload_at_action": 27,
+        "armory": {
+          "vanguard": "quiet_net"
+        },
+        "armory_seen": [
+          "quiet_net"
+        ],
+        "armory_plays": {
+          "quiet_net": 1
+        }
+      },
+      {
+        "scenario": "c04_dock",
+        "actions": 269,
+        "winner": 0,
+        "turn": 43,
+        "reload_at_action": 25
+      },
+      {
+        "scenario": "c04_pump",
+        "actions": 190,
+        "winner": 0,
+        "turn": 31,
+        "reload_at_action": 17,
+        "armory": {
+          "vanguard": "quiet_net"
+        },
+        "armory_seen": [
+          "quiet_net"
+        ],
+        "armory_plays": {
+          "quiet_net": 1
+        }
+      },
+      {
+        "scenario": "c05_nursery",
+        "actions": 127,
+        "winner": 0,
+        "turn": 25,
+        "reload_at_action": 21,
+        "armory": {
+          "company": "shoal_arbalest",
+          "vanguard": "quiet_net"
+        },
+        "armory_seen": [
+          "quiet_net",
+          "shoal_arbalest"
+        ],
+        "armory_plays": {
+          "quiet_net": 1,
+          "shoal_arbalest": 1
+        }
+      },
+      {
+        "scenario": "c06_court",
+        "actions": 411,
+        "winner": 0,
+        "turn": 60,
+        "reload_at_action": 26,
+        "armory": {
+          "company": "shoal_arbalest",
+          "vanguard": "quiet_net"
+        },
+        "armory_seen": [
+          "quiet_net",
+          "shoal_arbalest"
+        ],
+        "armory_plays": {
+          "quiet_net": 1,
+          "shoal_arbalest": 1
+        }
+      },
+      {
+        "scenario": "c07_saltlane_school",
+        "actions": 27,
+        "winner": 0,
+        "turn": 7,
+        "reload_at_action": 8,
+        "armory": {
+          "company": "shoal_arbalest",
+          "vanguard": "quiet_net"
+        },
+        "armory_seen": [
+          "quiet_net"
+        ],
+        "armory_plays": {}
+      },
+      {
+        "scenario": "c08_isolate",
+        "actions": 51,
+        "winner": 0,
+        "turn": 13,
+        "reload_at_action": 24,
+        "armory": {
+          "company": "cress_ribbon",
+          "reserve": "crownless_vanguard",
+          "vanguard": "saltfield_runner"
+        },
+        "armory_seen": [
+          "saltfield_runner",
+          "cress_ribbon"
+        ],
+        "armory_plays": {
+          "saltfield_runner": 1
+        }
+      },
+      {
+        "scenario": "c10_gate",
+        "actions": 114,
+        "winner": 0,
+        "turn": 21,
+        "reload_at_action": 27,
+        "armory": {
+          "company": "shoal_arbalest",
+          "reserve": "copper_boltline",
+          "vanguard": "quiet_net"
+        },
+        "armory_seen": [
+          "quiet_net",
+          "shoal_arbalest",
+          "copper_boltline"
+        ],
+        "armory_plays": {
+          "copper_boltline": 1,
+          "quiet_net": 1,
+          "shoal_arbalest": 1
+        }
+      },
+      {
+        "scenario": "c12_depot",
+        "actions": 157,
+        "winner": 0,
+        "turn": 31,
+        "reload_at_action": 20,
+        "armory": {
+          "company": "shoal_arbalest",
+          "reserve": "copper_boltline",
+          "vanguard": "quiet_net"
+        },
+        "armory_seen": [
+          "quiet_net",
+          "shoal_arbalest",
+          "copper_boltline"
+        ],
+        "armory_plays": {
+          "copper_boltline": 1,
+          "quiet_net": 1,
+          "shoal_arbalest": 1
+        }
+      },
+      {
+        "scenario": "c14_channel",
+        "actions": 99,
+        "winner": 0,
+        "turn": 19,
+        "reload_at_action": 21,
+        "armory": {
+          "company": "cress_ribbon",
+          "reserve": "crownless_vanguard",
+          "vanguard": "saltfield_runner"
+        },
+        "armory_seen": [
+          "saltfield_runner",
+          "cress_ribbon",
+          "crownless_vanguard"
+        ],
+        "armory_plays": {
+          "cress_ribbon": 1,
+          "saltfield_runner": 1
+        }
+      },
+      {
+        "scenario": "c16_bridge",
+        "actions": 492,
+        "winner": 0,
+        "turn": 66,
+        "reload_at_action": 21,
+        "armory": {
+          "company": "levee_echo",
+          "reserve": "unbroken_ember_line",
+          "vanguard": "seam_shot"
+        },
+        "armory_seen": [
+          "seam_shot",
+          "levee_echo",
+          "unbroken_ember_line"
+        ],
+        "armory_plays": {
+          "levee_echo": 1,
+          "seam_shot": 2,
+          "unbroken_ember_line": 1
+        }
+      },
+      {
+        "scenario": "c17_screen",
+        "actions": 55,
+        "winner": 0,
+        "turn": 13,
+        "reload_at_action": 21,
+        "armory": {
+          "company": "sluice_flags",
+          "reserve": "sunken_weir_breach",
+          "vanguard": "bank_pikeman"
+        },
+        "armory_seen": [
+          "bank_pikeman",
+          "sluice_flags"
+        ],
+        "armory_plays": {
+          "bank_pikeman": 1
+        }
+      }
+    ]
+  }
+}

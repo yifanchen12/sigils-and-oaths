@@ -1,0 +1,575 @@
+{
+  "version": 1,
+  "id": "chapter_12",
+  "title": "第十二章 · 一根轴的归属",
+  "start": "arrival",
+  "inherits": [
+    "route",
+    "witness_present",
+    "seal_copy",
+    "relief",
+    "public_ledger",
+    "priority",
+    "receipt_method",
+    "dispatch_receipts",
+    "clerk_safe",
+    "letter_reply",
+    "letter_delivered",
+    "pass_route",
+    "supply_route",
+    "mine_cargo",
+    "harbor_shelter",
+    "foundry_terms",
+    "crew_safe",
+    "harbor_pump",
+    "pump_route_known",
+    "water_plan",
+    "water_released",
+    "grove_mandate",
+    "charter_copy",
+    "evidence_council",
+    "court_access",
+    "father_trail",
+    "letter_company",
+    "camp_company",
+    "pressure_plan",
+    "sunspire_stable",
+    "governance_plan",
+    "tower_gate_secured"
+  ],
+  "defaults": {
+    "route": "none",
+    "witness_present": false,
+    "seal_copy": false,
+    "relief": "none",
+    "public_ledger": false,
+    "priority": "none",
+    "receipt_method": "none",
+    "dispatch_receipts": false,
+    "clerk_safe": false,
+    "letter_reply": "none",
+    "letter_delivered": false,
+    "pass_route": "none",
+    "supply_route": "none",
+    "mine_cargo": false,
+    "harbor_shelter": "none",
+    "foundry_terms": "none",
+    "crew_safe": false,
+    "harbor_pump": false,
+    "pump_route_known": false,
+    "water_plan": "none",
+    "water_released": false,
+    "grove_mandate": "none",
+    "charter_copy": false,
+    "evidence_council": "none",
+    "court_access": false,
+    "father_trail": false,
+    "letter_company": "none",
+    "camp_company": "none",
+    "pressure_plan": "none",
+    "sunspire_stable": false,
+    "governance_plan": "none",
+    "tower_gate_secured": false,
+    "northbank_access": false,
+    "shaft_custody": "none"
+  },
+  "speakers": {
+    "narrator": "旁白",
+    "warden": "艾琳",
+    "pyromancer": "维洛",
+    "grove": "赛菈",
+    "sword": "洛恩",
+    "spear": "芙蕾",
+    "cavalry": "莉希",
+    "archer": "希弥",
+    "mage": "伊瑟",
+    "healer": "米芮",
+    "clerk": "赫姆",
+    "qin": "秦婶",
+    "yubai": "余白",
+    "tangsui": "唐穗",
+    "foreman": "工班长",
+    "sang": "桑岚",
+    "ruan": "阮衡",
+    "chair": "轮值主持者",
+    "court_delegate": "议庭代表",
+    "forge_delegate": "赤曜勘料员",
+    "forest_delegate": "林社代表",
+    "porter": "旧担架手",
+    "gate_captain": "尹纾",
+    "luoming": "罗明",
+    "mengling": "孟绫",
+    "runner": "北岸信使",
+    "captain_north": "鲁苇",
+    "miller": "磨坊管事祁栎"
+  },
+  "nodes": {
+    "arrival": {
+      "type": "dialogue",
+      "background": "battlefield_northbank",
+      "lines": [
+        {
+          "id": "c12.arrival.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c12.arrival.02",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c12.arrival.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c12.arrival.04",
+          "speaker": "sang"
+        },
+        {
+          "id": "c12.arrival.05",
+          "speaker": "spear"
+        },
+        {
+          "id": "c12.arrival.06",
+          "speaker": "sword"
+        },
+        {
+          "id": "c12.arrival.07",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "cart"
+    },
+    "cart": {
+      "type": "dialogue",
+      "background": "battlefield_northbank",
+      "lines": [
+        {
+          "id": "c12.cart.01",
+          "speaker": "captain_north"
+        },
+        {
+          "id": "c12.cart.02",
+          "speaker": "warden"
+        },
+        {
+          "id": "c12.cart.03",
+          "speaker": "captain_north"
+        },
+        {
+          "id": "c12.cart.04",
+          "speaker": "miller"
+        },
+        {
+          "id": "c12.cart.05",
+          "speaker": "grove"
+        },
+        {
+          "id": "c12.cart.06",
+          "speaker": "miller"
+        },
+        {
+          "id": "c12.cart.07",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "measure_request"
+    },
+    "measure_request": {
+      "type": "dialogue",
+      "background": "battlefield_northbank",
+      "lines": [
+        {
+          "id": "c12.measure_request.01",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c12.measure_request.02",
+          "speaker": "captain_north"
+        },
+        {
+          "id": "c12.measure_request.03",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c12.measure_request.04",
+          "speaker": "gate_captain"
+        },
+        {
+          "id": "c12.measure_request.05",
+          "speaker": "captain_north"
+        },
+        {
+          "id": "c12.measure_request.06",
+          "speaker": "warden"
+        },
+        {
+          "id": "c12.measure_request.07",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "plans"
+    },
+    "plans": {
+      "type": "dialogue",
+      "background": "battlefield_northbank",
+      "lines": [
+        {
+          "id": "c12.plans.01",
+          "speaker": "narrator",
+          "when": {
+            "governance_plan": "joint"
+          }
+        },
+        {
+          "id": "c12.plans.02",
+          "speaker": "warden",
+          "when": {
+            "governance_plan": "joint"
+          }
+        },
+        {
+          "id": "c12.plans.03",
+          "speaker": "narrator",
+          "when": {
+            "governance_plan": "split"
+          }
+        },
+        {
+          "id": "c12.plans.04",
+          "speaker": "pyromancer",
+          "when": {
+            "governance_plan": "split"
+          }
+        },
+        {
+          "id": "c12.plans.05",
+          "speaker": "narrator",
+          "when": {
+            "governance_plan": "hold"
+          }
+        },
+        {
+          "id": "c12.plans.06",
+          "speaker": "grove",
+          "when": {
+            "governance_plan": "hold"
+          }
+        },
+        {
+          "id": "c12.plans.07",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "depot_battle"
+    },
+    "depot_battle": {
+      "type": "battle",
+      "background": "battlefield_northbank",
+      "scenario": "c12_depot",
+      "win": "after",
+      "win_set": {
+        "northbank_access": true
+      }
+    },
+    "after": {
+      "type": "dialogue",
+      "background": "battlefield_northbank",
+      "lines": [
+        {
+          "id": "c12.after.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c12.after.02",
+          "speaker": "captain_north"
+        },
+        {
+          "id": "c12.after.03",
+          "speaker": "healer"
+        },
+        {
+          "id": "c12.after.04",
+          "speaker": "sword"
+        },
+        {
+          "id": "c12.after.05",
+          "speaker": "captain_north"
+        },
+        {
+          "id": "c12.after.06",
+          "speaker": "warden"
+        },
+        {
+          "id": "c12.after.07",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "open_box"
+    },
+    "open_box": {
+      "type": "dialogue",
+      "background": "battlefield_northbank",
+      "lines": [
+        {
+          "id": "c12.open_box.01",
+          "speaker": "mengling"
+        },
+        {
+          "id": "c12.open_box.02",
+          "speaker": "sang"
+        },
+        {
+          "id": "c12.open_box.03",
+          "speaker": "captain_north"
+        },
+        {
+          "id": "c12.open_box.04",
+          "speaker": "mage"
+        },
+        {
+          "id": "c12.open_box.05",
+          "speaker": "sang"
+        },
+        {
+          "id": "c12.open_box.06",
+          "speaker": "miller"
+        },
+        {
+          "id": "c12.open_box.07",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "measure"
+    },
+    "measure": {
+      "type": "dialogue",
+      "background": "battlefield_northbank",
+      "lines": [
+        {
+          "id": "c12.measure.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c12.measure.02",
+          "speaker": "forge_delegate"
+        },
+        {
+          "id": "c12.measure.03",
+          "speaker": "forest_delegate"
+        },
+        {
+          "id": "c12.measure.04",
+          "speaker": "qin"
+        },
+        {
+          "id": "c12.measure.05",
+          "speaker": "miller"
+        },
+        {
+          "id": "c12.measure.06",
+          "speaker": "warden"
+        }
+      ],
+      "next": "custody"
+    },
+    "custody": {
+      "type": "choice",
+      "background": "battlefield_northbank",
+      "prompt": "c12.custody.prompt",
+      "options": [
+        {
+          "id": "loaned",
+          "text": "c12.custody.loaned",
+          "set": {
+            "shaft_custody": "loaned"
+          },
+          "next": "loaned"
+        },
+        {
+          "id": "northbank",
+          "text": "c12.custody.northbank",
+          "set": {
+            "shaft_custody": "northbank"
+          },
+          "next": "northbank"
+        }
+      ]
+    },
+    "loaned": {
+      "type": "dialogue",
+      "background": "battlefield_northbank",
+      "lines": [
+        {
+          "id": "c12.loaned.01",
+          "speaker": "warden"
+        },
+        {
+          "id": "c12.loaned.02",
+          "speaker": "captain_north"
+        },
+        {
+          "id": "c12.loaned.03",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c12.loaned.04",
+          "speaker": "grove"
+        },
+        {
+          "id": "c12.loaned.05",
+          "speaker": "miller"
+        },
+        {
+          "id": "c12.loaned.06",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "return_road"
+    },
+    "northbank": {
+      "type": "dialogue",
+      "background": "battlefield_northbank",
+      "lines": [
+        {
+          "id": "c12.northbank.01",
+          "speaker": "warden"
+        },
+        {
+          "id": "c12.northbank.02",
+          "speaker": "captain_north"
+        },
+        {
+          "id": "c12.northbank.03",
+          "speaker": "sang"
+        },
+        {
+          "id": "c12.northbank.04",
+          "speaker": "grove"
+        },
+        {
+          "id": "c12.northbank.05",
+          "speaker": "miller"
+        },
+        {
+          "id": "c12.northbank.06",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "return_road"
+    },
+    "return_road": {
+      "type": "dialogue",
+      "background": "scene_waterpass",
+      "lines": [
+        {
+          "id": "c12.return_road.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c12.return_road.02",
+          "speaker": "spear"
+        },
+        {
+          "id": "c12.return_road.03",
+          "speaker": "cavalry"
+        },
+        {
+          "id": "c12.return_road.04",
+          "speaker": "archer"
+        },
+        {
+          "id": "c12.return_road.05",
+          "speaker": "healer"
+        },
+        {
+          "id": "c12.return_road.06",
+          "speaker": "mage"
+        },
+        {
+          "id": "c12.return_road.07",
+          "speaker": "warden"
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end",
+      "background": "scene_pump_open",
+      "ending": "northbank_measured",
+      "text": "c12.end"
+    }
+  },
+  "strings": {
+    "c12.arrival.01": "库房的红瓦在堤背露出一角，先映入眼帘的是三辆等着卸粮的车。车夫把马头朝南，留出了倒车的地方；一张昨天钉上的木牌写着‘磨坊联用备件’，下面三行村名被雨打得发胀。艾琳让自己的队伍停在车辙外，没有越过排队的人。",
+    "c12.arrival.02": "库门在北面，石脊有三处能上去。中路宽，够推一辆空车；两边只够人走。上次我来时右边还堆着木料，今天清了，说明这里昨夜有人想过怎么退。",
+    "c12.arrival.03": "先让车队过。桑岚，尺别拿给我。你和孟绫量，谁写下数字，谁负责说它来自哪一面。我去问牌子是谁挂的。",
+    "c12.arrival.04": "我带两把。若这根轴的端槽不合，今天不拆塔里的旧件。别人愿意把车让给我们，是另一回事，不能让那份好意替尺寸作证。",
+    "c12.arrival.05": "南侧可以留撤伤道。洛恩，你带人把兵车往坡下挪半截；村里的粮车不用给我们让路。那块林带能藏人，我先去看树根有没有新挖的土。",
+    "c12.arrival.06": "我挪。车后那孩子数的是袋子，不是我们的枪。他要是问，我说我们来量一根轴，不说今天就把它带走。",
+    "c12.arrival.07": "木牌另一面钉着值班表，每行只有一人签字。第三行的墨还没干，写字的人从北侧下来，靴上沾着灰白石粉；她先看见桑岚手里的尺，随后才看见艾琳的盾。",
+    "c12.cart.01": "我叫鲁苇。你们昨天的口信我收到了，没收到把十几个人排成队走上仓坡的许可信。把车挪开，我给两位工匠开门；士兵留在下面。",
+    "c12.cart.02": "我可以让士兵退到白石后。可你的弓手已在林里架弦，左坡还有新盖的伏土。我的工匠走进来，谁负责她们能从原路回去？",
+    "c12.cart.03": "左坡的土是旧索柱，昨夜补过。林里的弓是护粮的。你们城里上个月把三村的应急水车借走两辆，今天拿公文要量库里的最后一根轴；我不能只靠你说‘量完就走’。",
+    "c12.cart.04": "祁栎，磨坊管事。春粮还没磨完，南村的石碾今早裂了一道。我们三村轮用这根轴，不是拿来摆在库里吓人。你若要它入城，请告诉我石碾停几天、谁送面粉。",
+    "c12.cart.05": "林社的两车水已经走向东街，今天不能再写作可借。若北岸磨坊停了，先是面粉断，不是表上少一笔。祁栎，把你们各村还能撑的天数给我，我不替别人先答应赔。",
+    "c12.cart.06": "北村两天，中村一天半，南村若今天不上石碾，明早就得买面。表在我怀里，纸边有磨粉，给你看；不要拿我的话回城改成‘三村同意借轴’。",
+    "c12.cart.07": "鲁苇把一页仓册摊在石沿，手指压住‘最后一根’四字。她身后的人没有上前，弓也没有放下。艾琳把队伍停在堤边，等桑岚把两把尺并排放好，才请鲁苇翻到型号那栏。",
+    "c12.measure_request.01": "封条有换过的痕，但箱上车号是我上月见的那个。我看不到里头，不说‘轴在’。至少让我把封绳两侧的结拍下样，开箱时由你的人也看着。",
+    "c12.measure_request.02": "我可以开箱。可库前卸货道是三村的，今早磨坊来车要占它。你们要用两处平石做量轴台，就得有人把车队错开。城里兵压在我的仓门前，村里谁还敢把粮车倒上来？",
+    "c12.measure_request.03": "我看过那张旧接头图。若端槽一样，我们还得查受力面和裂纹。新钢坯能铸，退火、试压都要时辰。让我量到实物，才好把两个工期摆在桌上；空谈谁先有权没用。",
+    "c12.measure_request.04": "北岸守军认我的旧值班印，我今天带的是空白交接簿。鲁苇，你不信我能替城里担保，我也不替你担保。工班可不可以先在两处平石上放尺，谁退到哪条线，当场写。",
+    "c12.measure_request.05": "你上回把塔门交出去，今天来让我交库门？不行。箱可以在我眼前开，卸货道却要先归我管。南村车快到了，你们的士兵挡在车头，我就让他们从另一边走。",
+    "c12.measure_request.06": "另一路是林地，埋了触线。车走进去比人更难回头。我们先让车停到南侧空地，士兵只守量台和装车口，不碰仓册。等你看见两处都能撤人，工班再进。",
+    "c12.measure_request.07": "祁栎看着已经排队的车，说倒一辆车要比纸上多花一刻。他愿意帮忙喊停，却不愿拿村里那袋麦子做谈判的筹码。艾琳把这句记在空白簿边，连同各村存粮的天数写在同一页。",
+    "c12.plans.01": "共同轮值的三名见证者没有跨过堤线。艾琳请每人只看自己能看到的：仓册、车队、工班的尺。她带伏设队先走中坡，东侧交给芙蕾，不让见证者替士兵试陷阱。",
+    "c12.plans.02": "两处作业位，先站稳，再叫工班。谁探到伏设，报地格；不许用‘前面大概安全’把人往里带。",
+    "c12.plans.03": "维洛把接头车留在堤南，车夫还惦记城里那道十六轮的木牌。他让人重新算从这里到塔门的路程：就算今日拿到轴，也赶不上不验就装的时辰。",
+    "c12.plans.04": "我的人走中央坡。后车不跟，桑岚也不跟。先拿到量台，再让她告诉我哪一面要重测；我不想靠一场冲锋把铸造试压省掉。",
+    "c12.plans.05": "赛菈把南侧运水车排成能让粮车掉头的角度，叫林社来人记下车上还有多少桶。她走右坡守林缘；这趟水已答应东街，不能因仓场起冲突便当成自己可再分的储备。",
+    "c12.plans.06": "别追过北门。我们只要两块平石前能站人，让工班看得到轴，也让粮车有路回村。树下的线有人动过，先查再踏。",
+    "c12.plans.07": "鲁苇吹了一声短哨，坡上两队人分别后退，露出中路。她没有叫弓手先射，艾琳也没有让工班上坡。两边的手都还在武器旁，石脊下却已经没有可供谈判的空地。",
+    "c12.after.01": "两块平石前都有人守住，鲁苇的队伍沿库墙退到北侧。她先让一名受伤的弓手下坡，才走到石沿把仓册收起来。艾琳叫自己的兵给粮车让出中路，工班长见到信号，带着桑岚与孟绫上来。",
+    "c12.after.02": "你赢了作业位，我认。箱子还得在我眼前开；若里面不是那根轴，你不能把我们的车也带走。医师在哪儿？我的人腿上有箭擦伤。",
+    "c12.after.03": "在这儿。你的人先坐，不用报哪边的。伤口浅，但石粉沾进去会发热。我让洛恩抬水来，艾琳，你的队伍也有两人要包手。",
+    "c12.after.04": "我去。刚才西坡有个年轻兵把枪横过来，我没追。他站得太近粮车，真打起来袋子会先掉水里。先让车过去，谁的伤等会儿写在两张名册上。",
+    "c12.after.05": "那人是我侄子，昨夜是他补的索柱。你们把那处当伏土，他怕你们先踩断绳。林里的陷阱我确实布了；我不把每一条新土都推给他。",
+    "c12.after.06": "按各自看到的写。工班先开箱，士兵离两步；祁栎跟我们一起看。若量不合，我今天不会把箱往车上搬。",
+    "c12.after.07": "祁栎把磨坊的钥匙挂回腰间，走到箱前。他先摸封绳，找出自己去年打的反扣，才把刀递给孟绫。鲁苇守在箱的另一侧，眼睛一直看着那枚铜制车号牌。",
+    "c12.open_box.01": "是它。端头的旧漆磨掉一半，长槽右边有我去年刻的两点。箱底干，没泡过水；先抬一端，别把中间木托抽了。",
+    "c12.open_box.02": "外径合，端槽比塔里旧轴浅半指。换装要另配衬套，不能把这半指填在纸上。伊瑟，把受力面照亮；鲁苇，你的人若知道旧轴曾装在哪座磨坊，请留下来指给我们看。",
+    "c12.open_box.03": "它去年短装过西岸磨坊三个月。拆下来后铁匠磨过两端，我不知道磨掉多少。那铁匠今天在南村，若你要问，我给你路，不替他说没问题。",
+    "c12.open_box.04": "我把两端都量了，右端偏心比左端多一点。塔里的旧套筒不能原样抱住它。桑岚，我们还要查裂纹，不是轴能放进槽就能承压。",
+    "c12.open_box.05": "写‘可加工备件’，不是‘可立即换装’。先做衬套、低压试转，再按班升压。城里那条裂纹还在，封池方案和送水表照旧，谁也别因为开了箱就撤掉监测。",
+    "c12.open_box.06": "磨坊也要新套筒。你拿走这根，我们不能让南村那座石碾空着等试压；你不拿，我们的铁匠可以先磨一只样件给你看。两个办法都要车、料和人，别把其中一个叫免费。",
+    "c12.open_box.07": "孟绫在账页上画了轴的两端，祁栎照磨坊旧账补上最近一次使用日期。两张纸的数字有一处不合，她们在箱边复量一遍才划掉。艾琳站在阴影外，等她们把笔放下，没有催着把‘合格’两个字写上去。",
+    "c12.measure.01": "中午前，三村的车都从库前过了一遍。艾琳把两种办法写在板上：借轴进城，北岸磨坊需在替代件到前分批停磨并有面粉、运水补给；轴留北岸，城里只能拿尺寸另铸，塔门要延长封闭和送水班。",
+    "c12.measure.02": "赤曜能供料，工时不虚报。借轴就先做衬套，另给北岸铸一根替代轴；留轴则先给城里铸，北岸保留现件。两边都要试压，今日只能排炉，不能交货。",
+    "c12.measure.03": "林社今天只能续前约的两车水。若北岸停磨，面粉可以从上游买，价和车次要记在城里的账上；若城里延迟换轴，东街明天的桶数也得先公布。",
+    "c12.measure.04": "东街还等着消息。我来这里不是催你拿走它，只要你告诉我今晚先按哪张表送桶。学堂明早开门，孩子们不能在门前等一个还没试过压的承诺。",
+    "c12.measure.05": "南村今夜能分一车粉给北村，第二车要先知道谁补。我的印在这里，只签我看见的数量；不管你选哪条路，明早有人要到磨坊照单点货。",
+    "c12.measure.06": "我来定轴的去向，也把随之来的账写在我名下。鲁苇和祁栎都留在桌边，桑岚的‘可加工’不能被我改成‘可装’，城里两班送水表也不能消失。",
+    "c12.custody.prompt": "这根经复量的备用轴下一步怎么安排？两条路都需加工与试压。",
+    "c12.custody.loaned": "借轴入城；先签北岸磨坊补给、替代件和归还条件",
+    "c12.custody.northbank": "轴留北岸；带尺寸回城另铸，延长城内送水与封闭",
+    "c12.loaned.01": "轴先借入城。鲁苇，你和祁栎在车号旁签你们确实见它离库；我签明日第一车面粉、北岸替代轴的炉次和这根轴的归还条件。若试压失败，它仍是北岸的备件，不会变成城里没人认领的废铁。",
+    "c12.loaned.02": "我签出库，不签它能救塔。南村今夜那车粉先给北村，第二车由你们明早送到；迟了我会来城里找你，不让祁栎一个人堵门。",
+    "c12.loaned.03": "我把衬套排到第一炉，但旧账上的工钱要先付。砂模今晚做，低压试转最快明日午后；谁要我在纸上写‘明早可用’，就把炉子和人一块搬到他院里。",
+    "c12.loaned.04": "林社能借一辆空车运面，水仍照原表送东街。我们不是又多了一车水。你给北岸的补给明天有明天的出处，我会跟着车看，别让三村在账上先吃饱。",
+    "c12.loaned.05": "轴上车了。我先去磨坊告诉三村：今晚磨完现有的粮，明早按新表分粉。你们若错了车次，写信给我，不要让南村守夜的人从空仓听见。",
+    "c12.loaned.06": "孟绫和桑岚把轴垫在两块木托之间，留出旧漆那一侧便于复查。鲁苇没有替他们推车，等车轮出库，她才把备用件一栏划成‘借出待验’，把借据钉在值班牌下。",
+    "c12.northbank.01": "轴留在这里。桑岚与孟绫带走两端尺寸和旧套筒的差数；赤曜先为城里另铸。鲁苇，你的仓册继续记三村轮用，今日开箱和复量的数字另给我们一份，不许后来只剩口说。",
+    "c12.northbank.02": "我以为你打到库前就要抬走。别因为留下它，明日又派一队人来讨；你要借，先拿出铸好的替件和磨坊补给。今天的量尺纸我签，祁栎留一份。",
+    "c12.northbank.03": "我按新尺寸画模，城里旧轴继续低压运行，内廊不开放。若裂纹跳过第二个铆钉，先停机，不等新铸件。我要两班水工和各一名见证者在场，不用任何人拿这场胜利替我改读数。",
+    "c12.northbank.04": "北岸的面粉不用因我们停磨，但城里送水要多撑些日子。我回去把林社还能给的水按真实桶数写出，先问上游住户能不能承受，再给议庭答复。",
+    "c12.northbank.05": "这根轴会留在箱里，明早仍可借给南村石碾。你把尺寸带走，就让赤曜的铁匠跟我们的铁匠见一面；若城里那根试压失败，别羞于回来再量。",
+    "c12.northbank.06": "箱盖合上前，孟绫把刚画的两端样线给鲁苇看。鲁苇认得去年的刻痕，却没有认错那半指的偏差；她在样线旁签字，祁栎把属于磨坊的那页带回村。",
+    "c12.return_road.01": "堤上的粮车已经走远，库前只剩两条不同深浅的新辙。洛恩把最后一个伤员扶上车，芙蕾按鲁苇的名册点过人数。谁都没有留一面旗在库墙上，北岸的值班牌仍朝着三村的路。",
+    "c12.return_road.02": "我得回桥上交这班的人。洛恩刚才让出撤伤道，鲁苇那边也跟着让了；这件事要记在两边的交接本，不用写成某个人忽然变好了。",
+    "c12.return_road.03": "我先去河门给艾琳母亲报个平安，只说她今天人在北岸，会回去当面讲父亲的事。信封我不带，谁也别叫我替她在路上拆。马若明天还要跑，今晚得先歇。",
+    "c12.return_road.04": "我留半天看北岸的林路，跟鲁苇的人把踩过的伏线一一标出来。村里的孩子平时会走这边，不该等到下一场仗才有人想起清它。",
+    "c12.return_road.05": "你手腕那处旧伤又被盾带磨红。回去换布，别在诊室门口说自己还要先开会。秦兰今天能帮我清点纱布，她愿意留一班，不必被叫成谁收编来的兵。",
+    "c12.return_road.06": "我把偏心数誊清，塔门与北岸各留一份。桑岚说她要先吃饭再复测，我也去；上次我们连着两班不睡，第二把尺差了半指，这次不靠意志把它量对。",
+    "c12.return_road.07": "我们赢到的是能把箱打开的时辰。轴会不会合用，工班还要试；北岸能否继续磨粮、城里能否继续供水，也得照单交付。回去先贴今晚的桶数，明早再核第一车。",
+    "c12.end": "北岸备件库的箱已在鲁苇、祁栎与工班面前打开。轴的外径和端槽复量有据，偏心与衬套差数也写进两份账；塔门内阀的裂纹仍在，修复尚未完成。\n艾琳带着轴的去向和各方签名回城。下一班水车与磨坊粮车将同时上路，纸上的次序要交给真正驾车的人检验。"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "milestone": "0.26.0-dev",
+  "date": "2026-11-06",
+  "passed": true,
+  "test": "tests/test_campaign_ui.gd",
+  "checks": 10806,
+  "dialogue_paragraphs": 1023,
+  "ending_paragraphs": 8,
+  "chapter_sha256": {
+    "chapter_01": "5aea819e93dc327a18c02448f86b9344ded8e91118e82fac168f3bb6906e2fae",
+    "chapter_02": "f588d6350dca6f0448d4965d74659624fb716fa14f4d1703a3108ca62a763204",
+    "chapter_03": "0e9ea23d41dfa15f0a665af1a49bf55d23706276d82c45892409f36e9f786f4b",
+    "chapter_04": "f332fbfc0ac4af810a9af7c625de7c41e81e550c739b4399cdd14de84b53269c",
+    "chapter_05": "e35be830811819e1253827e7f44a636cf6e82856e64b0d465ff1a7b3bf5c2826",
+    "chapter_06": "5fbc3d35db6b320ef8274084098832e25a92dfc4190981f896616c8ecc0dd458",
+    "chapter_07": "f1ac45ab841f38845a4e470e337019481ad63875281369d3b69d132985c6246e",
+    "chapter_08": "b19b2c2dc9db36390c121c032fc6de1274d979aae4b8b19ffbc8487df198f882"
+  },
+  "scope": "Windows native renderer opens all eight chapters and every conditional paragraph ID. Expanded objective-first briefings checked at 1008x700; existing cross-chapter, choice, save and art regressions passed. Narrative catalogue uses victory fixtures, not a continuous ten-encounter playthrough. Separate actual Sunspire encounters are documented in docs/sunspire-playthrough-v026.json.",
+  "hashing": "SHA256 of UTF-8 chapter source after newline normalization to LF",
+  "presentation_sha256": {
+    "scripts/story_view.gd": "c7ee2995ef4f0edc555d90c2a1300e88674f586ccadd6bdfb002698c5aa4d228",
+    "scripts/story_runner.gd": "7079bed330174cafb46ee5eeba91753e24f2d089cacaa4d0233cd9719b5548c7",
+    "scripts/art_library.gd": "41aa16c0072eb03881d15a21b794c815e78e730d8ffa2dc876f1cbf041eb47e3",
+    "tests/test_campaign_ui.gd": "529405ca134e3ed49ecb66b4e0e203ff7a93a53b86737a4f4d32926a6cfe0781"
+  },
+  "art_evidence": "docs/narrative-art-v020.md",
+  "chapter_05_evidence": "docs/narrative/chapter-05-review.md",
+  "chapter_06_evidence": "docs/narrative/chapter-06-review.md",
+  "additional_art_evidence": "assets/art/narrative/warden-dialogue-source.json",
+  "chapter_07_evidence": "docs/narrative/chapter-07-review.md",
+  "chapter_07_art_evidence": "assets/art/narrative/chapter07-sources.json",
+  "chapter_08_evidence": "docs/narrative/chapter-08-review.md",
+  "chapter_08_art_evidence": "assets/art/narrative/chapter08-sources.json",
+  "battle_briefing_evidence": "docs/sunspire-playthrough.md"
+}

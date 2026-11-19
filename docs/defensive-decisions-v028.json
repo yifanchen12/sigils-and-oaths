@@ -1,0 +1,406 @@
+{
+  "milestone": "0.28.0-dev",
+  "date": "2026-11-06",
+  "base_commit": "379994112968214164f30b6590a8577079b4b056",
+  "hashing": "SHA256 of UTF-8 text normalized to LF; PNG bytes preserved",
+  "source_sha256": {
+    "project.godot": "294d853523a3f7ec0f1ce40cf4565f359b82cf915c9bb03829ad875166c77890",
+    "data/campaign.json": "5c68b08bc4e08f192a59c8a6069e0ef34e34117bd6fd2c597898d2445185f4d5",
+    "scripts/opponent.gd": "0990c67294cedc5e636b5341472e81db32d8961358431291d9ba2ddf0677de97",
+    "scripts/tactical_ai.gd": "6dda96b310d08400155d6753babe0d7f326367c236f12e8343da143be9eefcac",
+    "scripts/objective_ai.gd": "7253472fb4f50b78a04a1f201002f27fdc9424721ff09628af5d7b10e532698a",
+    "scripts/battle.gd": "7cfaeb3a9122baf008125196defb4b74f12fbc7e214ede7ab94e17535d889057",
+    "scripts/battle_snapshot.gd": "68f59e7e933e59b116b893efdc409360e7404709ed12f6d479cfcd1404c65cdd",
+    "scripts/campaign_session.gd": "74770621b42d1dc19f1f11c9237b6a6ad120069166d8f730aaffda086686052e",
+    "scripts/story_view.gd": "c7ee2995ef4f0edc555d90c2a1300e88674f586ccadd6bdfb002698c5aa4d228",
+    "data/cards.tres": "bb8cd2a74d382ddd809e073a5e805f30f6ddc2136fe6e5552043a6bb72a72a4f",
+    "data/heroes.tres": "a4b1f67a06643a06f423797b9b3745c6e7c4110b027e45f9ed42a0c204e79a3a",
+    "data/decks.tres": "f13aeaa4b604de31b9109ed156c136f56389826f5d727dbc71e4e0616b3bd89f",
+    "data/maps.tres": "573d6b8e214d92c54d449a7fcbd6f9a5c8fcf99afd31177e1e20294b96b8a5a5",
+    "tests/test_defensive_ai.gd": "69426ce122555c81907db7d22078e06420c7d1a942b0fc3f6ede4ff55438004c",
+    "tests/test_opponent.gd": "d3f21626d373ead9a3a5dc4688b24cdde2318f96147b4c6a5ada2a7f51d4ddcd",
+    "tests/test_sunspire_pilot.gd": "a5087e46230af80e8a9ecfc9a21c20444bd58e75696387a4e46a2bc11570d698",
+    "tests/test_campaign_playthrough_ui.gd": "4cfa023e6fb76095370972ffad208dcfcc6130d97c8ab101e1ee83b1acb9cfcf",
+    "tests/test_campaign_replays.gd": "f070f9b93088d2d4d27ffdb4d65f1aafbc8d56ad015c1022ba4e8dea44ddfe78",
+    "tests/benchmark_campaign.gd": "a6ac4764351aee9e79cfb8c790ed665fa1889baa4df7b8d5028048462f2dce97",
+    "tests/fixtures/campaign_pilot.gd": "561f6c1fc15bae7e59111d488ca6f90e95e5e46bdb6989069d8620e06677c96b",
+    "tests/fixtures/bridge_focus_pilot.gd": "371515c6314153d1cdeaf8028c4831d609096f652a673e0372f64e3893b3618a",
+    "tests/fixtures/sunspire_focus_pilot.gd": "5516853cff00be9c7af78498213764ece3e21fa283f625ce94aa2973c77f5afd",
+    "tests/fixtures/harbor_court_pilot.gd": "68dc1eb292525751c0ae30c71cf820279279de0facad28636f211302ffa1e9ce"
+  },
+  "fixture_sha256": {
+    "tests/fixtures/campaign_v028_selfplay.json": "dee2d51d5239d0d8372cd58ef26c2dd4ce254f0e7676058bcee54a720669fc9c",
+    "tests/fixtures/campaign_v028_harbor.json": "66b04194bccea32f4faa0ab7dc299eceb156756a946ee34da2b6097a1e25a638",
+    "tests/fixtures/campaign_v028_sunspire.json": "716f0dfe7d2dd149f4a341b230d75d605ab4772b0ea07fb048f85e92ef0167bc"
+  },
+  "groups": {
+    "selfplay": {
+      "coverage": "all_scenarios",
+      "note": "Authored scenarios at fixed seeds, real initial resources and legal actions; fixed 0.35 s cadence. Not human balance or manual playthrough evidence.",
+      "policy": "production opponent on both sides",
+      "games": [
+        {
+          "actions": 151,
+          "decision_mean_ms": 14.02776821192053,
+          "decision_peak_ms": 77.496,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c01_road",
+          "seed": 1317.0,
+          "streak_resets": 0,
+          "turn": 25,
+          "winner": 0
+        },
+        {
+          "actions": 397,
+          "decision_mean_ms": 13.668876574307305,
+          "decision_peak_ms": 58.397,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c01_river",
+          "seed": 1318.0,
+          "streak_resets": 0,
+          "turn": 60,
+          "winner": 0
+        },
+        {
+          "actions": 425,
+          "decision_mean_ms": 13.46569411764706,
+          "decision_peak_ms": 47.793,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c01_bridge",
+          "seed": 1319.0,
+          "streak_resets": 0,
+          "turn": 63,
+          "winner": 1
+        },
+        {
+          "actions": 156,
+          "decision_mean_ms": 16.91100641025641,
+          "decision_peak_ms": 50.089,
+          "illegal_action": "",
+          "max_control_streak": 1,
+          "reason": "deadline",
+          "scenario": "c02_relief_bridge",
+          "seed": 2317.0,
+          "streak_resets": 0,
+          "turn": 25,
+          "winner": 1
+        },
+        {
+          "actions": 87,
+          "decision_mean_ms": 21.23471264367816,
+          "decision_peak_ms": 59.742,
+          "illegal_action": "",
+          "max_control_streak": 2,
+          "reason": "control",
+          "scenario": "c02_seed_bridge",
+          "seed": 2318.0,
+          "streak_resets": 0,
+          "turn": 15,
+          "winner": 0
+        },
+        {
+          "actions": 380,
+          "decision_mean_ms": 17.514650000000003,
+          "decision_peak_ms": 63.806,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c02_dispatch",
+          "seed": 2319.0,
+          "streak_resets": 0,
+          "turn": 59,
+          "winner": 1
+        },
+        {
+          "actions": 55,
+          "decision_mean_ms": 10.544654545454545,
+          "decision_peak_ms": 35.129,
+          "illegal_action": "",
+          "max_control_streak": 2,
+          "reason": "control",
+          "scenario": "c03_vent",
+          "seed": 3317.0,
+          "streak_resets": 0,
+          "turn": 13,
+          "winner": 0
+        },
+        {
+          "actions": 468,
+          "decision_mean_ms": 11.457916666666666,
+          "decision_peak_ms": 35.591,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c03_ridge",
+          "seed": 3318.0,
+          "streak_resets": 0,
+          "turn": 65,
+          "winner": 1
+        },
+        {
+          "actions": 269,
+          "decision_mean_ms": 12.410561338289963,
+          "decision_peak_ms": 37.392,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c04_dock",
+          "seed": 4317.0,
+          "streak_resets": 0,
+          "turn": 43,
+          "winner": 0
+        },
+        {
+          "actions": 353,
+          "decision_mean_ms": 12.622518413597735,
+          "decision_peak_ms": 81.462,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c04_pump",
+          "seed": 4318.0,
+          "streak_resets": 0,
+          "turn": 59,
+          "winner": 1
+        },
+        {
+          "actions": 155,
+          "decision_mean_ms": 25.84282580645161,
+          "decision_peak_ms": 94.605,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "deadline",
+          "scenario": "c05_nursery",
+          "seed": 5317.0,
+          "streak_resets": 0,
+          "turn": 25,
+          "winner": 1
+        },
+        {
+          "actions": 168,
+          "decision_mean_ms": 14.678779761904762,
+          "decision_peak_ms": 70.724,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c05_channel",
+          "seed": 5318.0,
+          "streak_resets": 0,
+          "turn": 27,
+          "winner": 0
+        },
+        {
+          "actions": 104,
+          "decision_mean_ms": 18.472076923076923,
+          "decision_peak_ms": 61.759,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c06_court",
+          "seed": 6317.0,
+          "streak_resets": 0,
+          "turn": 18,
+          "winner": 1
+        },
+        {
+          "actions": 137,
+          "decision_mean_ms": 17.532744525547447,
+          "decision_peak_ms": 79.115,
+          "illegal_action": "",
+          "max_control_streak": 1,
+          "reason": "deadline",
+          "scenario": "c08_isolate",
+          "seed": 8317.0,
+          "streak_resets": 1,
+          "turn": 25,
+          "winner": 1
+        },
+        {
+          "actions": 258,
+          "decision_mean_ms": 19.624647286821705,
+          "decision_peak_ms": 92.123,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c08_buffer",
+          "seed": 8318.0,
+          "streak_resets": 0,
+          "turn": 38,
+          "winner": 1
+        }
+      ]
+    },
+    "harbor": {
+      "coverage": "selected_scenarios",
+      "note": "Authored scenarios at fixed seeds, real initial resources and legal actions; fixed 0.35 s cadence. Not human balance or manual playthrough evidence.",
+      "policy": "harbor focus and central court diagnostic player against production opponent",
+      "scenario_ids": [
+        "c04_dock",
+        "c04_pump",
+        "c06_court"
+      ],
+      "games": [
+        {
+          "actions": 352,
+          "decision_mean_ms": 11.948210227272728,
+          "decision_peak_ms": 42.219,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c04_dock",
+          "seed": 4317.0,
+          "streak_resets": 0,
+          "turn": 63,
+          "winner": 1
+        },
+        {
+          "actions": 90,
+          "decision_mean_ms": 10.688611111111111,
+          "decision_peak_ms": 38.144,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c04_pump",
+          "seed": 4318.0,
+          "streak_resets": 0,
+          "turn": 17,
+          "winner": 0
+        },
+        {
+          "actions": 445,
+          "decision_mean_ms": 22.646456179775278,
+          "decision_peak_ms": 77.752,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c06_court",
+          "seed": 6317.0,
+          "streak_resets": 0,
+          "turn": 62,
+          "winner": 0
+        }
+      ]
+    },
+    "sunspire": {
+      "coverage": "selected_scenarios",
+      "note": "Authored scenarios at fixed seeds, real initial resources and legal actions; fixed 0.35 s cadence. Not human balance or manual playthrough evidence.",
+      "policy": "central-formation diagnostic player against production opponent",
+      "scenario_ids": [
+        "c08_isolate",
+        "c08_buffer"
+      ],
+      "games": [
+        {
+          "actions": 136,
+          "decision_mean_ms": 19.471426470588234,
+          "decision_peak_ms": 71.823,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "deadline",
+          "scenario": "c08_isolate",
+          "seed": 8317.0,
+          "streak_resets": 0,
+          "turn": 25,
+          "winner": 1
+        },
+        {
+          "actions": 130,
+          "decision_mean_ms": 17.310469230769232,
+          "decision_peak_ms": 53.83,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c08_buffer",
+          "seed": 8318.0,
+          "streak_resets": 0,
+          "turn": 22,
+          "winner": 1
+        }
+      ]
+    }
+  },
+  "previous_groups": {
+    "selfplay": {
+      "fixture": "tests/fixtures/campaign_v027_selfplay.json",
+      "sha256": "2ab5eb180106d0ea2099fb20116135cb0bafb0ef5f8309e4e68c89943b816858"
+    },
+    "harbor": {
+      "fixture": "tests/fixtures/campaign_v027_harbor.json",
+      "sha256": "ef2c4a5d036332ade577df78810d9437c538e84d22361e167a40bfa5c82faece"
+    },
+    "sunspire": {
+      "fixture": "tests/fixtures/campaign_v027_sunspire.json",
+      "sha256": "579663c4ac49470edaf6146c2a4862d15941e10982dcdabad24ecac84add8871"
+    }
+  },
+  "models": {
+    "test_opponent": 23,
+    "test_battle": 76,
+    "test_objective_ai": 29,
+    "test_unit_skills": 54,
+    "test_effect_forecast": 134,
+    "test_control_objective": 32,
+    "test_casting_clock": 28,
+    "test_battle_snapshot": 190,
+    "test_campaign_session": 204,
+    "test_tactical_ai": 170,
+    "test_defensive_ai": 59
+  },
+  "public_information": {
+    "sunspire": {
+      "checks": 118,
+      "positions": 23
+    },
+    "harbor": {
+      "checks": 359,
+      "positions": 71
+    }
+  },
+  "model_total": 1476,
+  "replays": {
+    "campaign_v027_selfplay": 7210,
+    "campaign_v027_harbor": 1824,
+    "campaign_v027_sunspire": 477,
+    "campaign_v028_selfplay": 7188,
+    "campaign_v028_harbor": 1792,
+    "campaign_v028_sunspire": 545
+  },
+  "replay_total": 19036,
+  "native": {
+    "scenario": "c04_dock",
+    "writer_checks": 76,
+    "reader_checks": 643,
+    "total": 719,
+    "exit_action_count": 25,
+    "exit_turn": 8,
+    "actions": 269,
+    "turn": 43,
+    "rounds": 22,
+    "blue_commander_hp": 20,
+    "fatigue": [
+      0,
+      0
+    ],
+    "postbattle_line": "c04.ashore.01",
+    "passed": true
+  },
+  "screenshot_sha256": {
+    "docs/screenshots/v028-c04_dock-before-exit.png": "44ba223317928e95a00025a69dd0856d5ebe03f1c364600cdfbd42936bb8bb6f",
+    "docs/screenshots/v028-c04_dock-victory.png": "1e1a4eb883f6a1bfd1dc8b9a8199ad49da1f5f75139186e677440bc5eb4badff",
+    "docs/screenshots/v028-c04_dock-story.png": "8c02272a6e2b18ce4576ba9629993f9531bb1f6e9d90511161028ced7d24aad0"
+  },
+  "limitations": [
+    "Defense valuation is a public-board heuristic, not a complete enemy-turn search. It does not plan hidden cards, future weather changes or multi-action combos.",
+    "All diagnostics use authored fixed seeds. Production self-play has 6 wins and 9 losses, not a human win rate.",
+    "The previous Sunspire player policy loses both current encounters. Current continuous ten-battle campaign completion is not proven.",
+    "Dock ends earlier in this sample, but total production-suite actions only change from 3574 to 3563; general pacing improvement is not established.",
+    "The native dock test uses earlier narrative victory fixtures. No continuous campaign or human playtest claim.",
+    "No rules, card values, scenario resources, prose or art changed. Historical native results remain version-specific."
+  ]
+}

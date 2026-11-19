@@ -3,20 +3,23 @@ config_version=5
 
 [application]
 config/name="纹章与誓约 · 卡牌战棋"
-config/version="0.11.0"
+config/version="0.55.0-dev"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/description="前线增援、地形与环境博弈的原创卡牌战棋"
+config/icon="res://assets/art/lantern-icon.png"
 
 [display]
 window/size/viewport_width=1440
 window/size/viewport_height=1000
 window/size/window_width_override=1296
+window/size/window_width_override.movie=1920
 window/size/window_height_override=900
+window/size/window_height_override.movie=1080
 window/size/min_width=1008
 window/size/min_height=672
 window/stretch/mode="canvas_items"
-window/stretch/aspect="keep"
+window/stretch/aspect="expand"
 
 [rendering]
 renderer/rendering_method="gl_compatibility"

@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "generator": "native image_gen",
+  "model_version": "not exposed by runtime",
+  "usage": "Original card illustrations generated for Sigils & Oaths. No third-party game assets were supplied or copied.",
+  "processing": "Original PNG bytes retained. Godot reads source regions at runtime; no pixel edits were made.",
+  "sources": [
+    {
+      "file": "spells-v1.png",
+      "bytes": 2717712,
+      "sha256": "fd5903bbde7e74dd94c35953890ea723211a4c4b6e7a14591183c8a1488a18ac",
+      "size": [1254, 1254],
+      "regions_xywh": [[2, 2, 623, 595], [629, 2, 623, 595], [2, 601, 623, 651], [629, 601, 623, 651]],
+      "cards": ["shatter_bolt", "rally_heal", "cleanse_root", "reveal_traps"]
+    },
+    {
+      "file": "traps-forest-v1.png",
+      "bytes": 3054767,
+      "sha256": "e89c1c99b711e0c233702ab7d66d6bcac35792070dbabc30f770a2820f4e05db",
+      "size": [1254, 1254],
+      "regions_xywh": [[0, 0, 627, 627], [627, 0, 627, 627], [0, 627, 627, 627], [627, 627, 627, 627]],
+      "cards": ["anchor_snare", "ember_mine", "oath_ward", "seedwood"]
+    }
+  ],
+  "prompt_file": "prompts.json"
+}

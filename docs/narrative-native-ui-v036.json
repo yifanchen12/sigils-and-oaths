@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "milestone": "0.36.0-dev",
+  "date": "2026-11-07",
+  "passed": true,
+  "chapter_sha256": {
+    "chapter_12": "7310a21fcab2ecce8e940d3ce2943964d1f12a002f54f181cd30f5b1ff5bb0b6"
+  },
+  "catalogue_test": "tests/test_chapter_twelve_catalog_ui.gd",
+  "catalogue_checks": 840,
+  "catalogue_body_paragraphs": 68,
+  "catalogue_rendered_pages": 73,
+  "catalogue_scope": "All conditional chapter-twelve body text and six ending presentations rendered in native Godot StoryView; 1008x700 layout checked. Prior victories in catalogue routes are explicit fixtures.",
+  "model_test": "tests/test_chapter_twelve.gd",
+  "model_checks": 29881,
+  "model_routes": 48,
+  "earned_test": "tests/test_chapter_twelve_earned.gd",
+  "earned_results": "docs/chapter12-earned-results.json",
+  "earned_checks": 624,
+  "earned_plans": ["joint", "split", "hold"],
+  "earned_scope": "Three actual chapter-eleven ending saves each entered twelfth chapter, played a real legal-action depot battle with production opponent, reloaded in battle, chose custody and reloaded the ending. These are separate continuations of previously earned histories, not one new continuous twelve-battle trace.",
+  "limitations": "No human playtest or statistically representative balance result. One custody option per plan in earned runs; the model test covers both options for every inherited route. Single-route 100000-character and Steam readiness targets remain open."
+}

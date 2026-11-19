@@ -1,0 +1,623 @@
+{
+  "version": 1,
+  "id": "chapter_02",
+  "title": "第二章 · 两岸的粮单",
+  "start": "morning",
+  "inherits": [
+    "route",
+    "witness_present",
+    "seal_copy",
+    "relief",
+    "public_ledger"
+  ],
+  "defaults": {
+    "route": "none",
+    "witness_present": false,
+    "seal_copy": false,
+    "relief": "none",
+    "public_ledger": false,
+    "priority": "none",
+    "receipt_method": "none",
+    "dispatch_receipts": false,
+    "clerk_safe": false
+  },
+  "speakers": {
+    "narrator": "旁白",
+    "warden": "艾琳",
+    "pyromancer": "维洛",
+    "grove": "赛菈",
+    "sword": "洛恩",
+    "spear": "芙蕾",
+    "cavalry": "莉希",
+    "archer": "希弥",
+    "mage": "伊瑟",
+    "healer": "米芮",
+    "courier": "随队信使",
+    "clerk": "赫姆",
+    "guard": "河门守备官",
+    "miller": "磨坊主阿妲",
+    "dispatch": "交接所值守长"
+  },
+  "strings": {
+    "c02.morning.01": "第一辆车被推回来时，艾琳还没来得及睡。车夫抓着断开的缰绳，问她昨晚说开了桥算不算数。\n桥门仍开着，门后的路却换了一队人守。昨日的守备官站在一旁，袖子里挂着米芮替他缠的绷带。\n“他们接管了交接所。”他说。",
+    "c02.morning.02": "四辆随队粮车昨晚已经卸清。眼前这几车，是河门储仓所余中还能拨出的救济麦粮、医院细粉和北坡寄存的种粮。桥工刚换完横梁，只许重车间隔通行。两列车堵在南岸，一列盖白布，一列袋口缝着各家的姓。",
+    "c02.morning.03": "细粉先走。昨天抬进医院的那几个人，咽不下干饼。别再给我一袋麦粒，我现在找不到空磨。",
+    "c02.morning.04": "种粮也得走。你摸摸袋子，已经热了！今天送不到北坡，我拿什么往地里撒？明春再来你这儿排队？",
+    "c02.morning.05": "米芮伸手探进袋口，手心沾上一层潮气。阿妲是东岸磨坊主，手指勒得破了皮，仍把种袋往自己身边拖。\n“医院等不了明春。”米芮说。\n“我知道。”\n“那你松手。”\n阿妲没松。",
+    "c02.morning.06": "昨夜先开的那车口粮让厨房还有东西下锅。洛恩去问医院能不能先领一份，回来时手里空着。\n“有粥，太粗，得再磨。”\n阿妲听见了，指向河上的水轮：“磨在那边。”\n水轮慢慢转着，桥路却过不去。",
+    "c02.morning.07": "军粮昨晚分了出去，伙夫把补领的空袋铺到车边。芙蕾叫人先拿回来，留出医院车的位置。队里有人低声问，又要让吗？她回头，那人挺直了背。\n“我听见了。”她说，“你跟我去厨房，把剩的分清。”",
+    "c02.morning.08": "赫姆坐在桥阶上替人看领取条，遇到一张北坡的就翻看背面。伊瑟问他找什么。\n“缺的那一联。”\n“哪一联？”\n赫姆把纸递回去，指着东岸交接所，说进柜就能找到。伊瑟在册子里夹住这一页，没有再翻。",
+    "c02.morning.09": "希弥送来裹在布里的口信。赫姆被留在交接所后院，转押暂缓。送水人替他带话：先找柜里按班次扎的底联，别只看桌上的总单。艾琳问能不能先把人带出来，希弥摇头，将布上被揉碎的湿封泥递给她。",
+    "c02.morning.10": "昨天看过公告的人拿着自家收条来找赫姆，听说桥路又封了，几个搬运工扛起木杠，跟在粮车后面。他们要一起去，看看自己的粮到底被谁推了回来。芙蕾拦了两次，才让人退到盾队后。",
+    "c02.morning.11": "有人喊，三个指挥官昨晚说好了话，今天先把自己的粮领走了。洛恩掀开空军粮袋给他看，对方反问，谁知道你们藏在哪？洛恩把袋子甩到肩上，想顶一句，被芙蕾叫去搬车。那人还站在原处，没有相信。",
+    "c02.morning.12": "北岸有人把通行旗卷起，换成绣麦穗的窄旗。维洛站在阶下，看得比别人久。\n“认识？”艾琳问。\n“护运的。”\n“我问你认不认识。”\n他拉好袖口，走上台阶：“先让车退开。”",
+    "c02.morning.13": "别往一座桥挤。两处南桥头都得站稳，不然他们从另一座绕过来，车尾就是靶子。车分批走，人先把两边接起来。",
+    "c02.morning.14": "先过桥的一批，主队护送。另一批退回储仓院，留人照看。今晚的饭和下一季的种子，我不能答应同时送到。现在就定。",
+    "c02.priority.prompt": "桥梁承重有限，两批货必须分开。医院先行，种粮需临时摊晒；种粮先行，医院靠现有余粮继续等。先稳住两处桥头，再分批放车。",
+    "c02.priority.relief": "医院与救济粮先行：赛菈带守备军势护桥，后队摊晒种粮。",
+    "c02.priority.seed": "种粮先行：艾琳带均衡军势开路，后队照看医院与厨房。",
+    "c02.relief_brief.01": "“先送医院。”\n阿妲将袋口扎回去，没看艾琳。赛菈接过指挥旗，叫自己的枪卫到两处桥头换班。一个林社队员望向种粮车，她朝他点头，直到他离开才把旗握紧。",
+    "c02.relief_brief.02": "轻车先走，重车隔开。枪卫守南端，弓手看北坡。两边稳住再放车；窗口错过就退回储仓，别把车夫堵在桥心。",
+    "c02.relief_brief.03": "阿妲找人借篷布，借来的都在遮伤员。莉希拆下栗雨身后的雨披，铺到院里。\n“这一块够吗？”\n“不够。”\n莉希又去找第二块。阿妲叫住她，让她先把布边垫高，别让地上的水倒灌。",
+    "c02.relief_brief.04": "两桥之间有弓位。先看他们换箭的人，别跟着退兵往坡上追。你追一队，我得替你看三处空位。",
+    "c02.relief_brief.05": "米芮把最后一袋粉系上，洛恩正往车厢里收她的量碗。\n“这个跟我走。”\n“你两只手已经满了。”\n“那你腾一只。”\n洛恩解下工具袋，用备用衬布裹住碗，挂到自己盾带里侧，试了试走动会不会碰到。",
+    "c02.seed_brief.01": "“种粮先走。”\n米芮把细粉单折进衣袋，转身去找伙夫。艾琳叫住她，想说车一过就回来。米芮看了一眼桥，没有等她把话补完。芙蕾递过指挥旗，艾琳接住，换了更短的命令。",
+    "c02.seed_brief.02": "盾队开路，枪卫接应。两处南桥头都留人。车夫要完整的通行间隙，谁先冲过河都不算完。若能打退对面指挥，停在接应线内，别追散了。",
+    "c02.seed_brief.03": "维洛拿茶砖去换面，店家记得昨晚那枚金扣，不肯再赊。他拆开最厚的一块，把里面裹的银片递过去。米芮接过两小袋面，没问他为何藏钱。\n“能撑多久？”\n“撑到你们回来。”\n她这回看了艾琳一眼。",
+    "c02.seed_brief.04": "打结的这袋先卸，受潮最重。到北坡也别压到最底下。你替我再念一次——对，先卸。我得听见你记住了，才敢让车走。",
+    "c02.seed_brief.05": "栗雨不拉车，我的队伍接桥外的路。缺口先报给我。别三个人都觉得另两个人会去，最后让我追着车辙找。",
+    "c02.bridge_after.01": "北岸的号角收住，拒马被拖离路心。芙蕾沿两处南桥头各走一遍，才举旗。车夫先牵着骡子踏上桥板，听到木头吃力的声响，停下来等了片刻。后车没有催，隔出一段空桥才跟上去。",
+    "c02.bridge_after.02": "医院车卸下第一袋粉时，米芮已经找来干净木板，蹲着分份。洛恩把量碗还给她，碗口多了一道白痕。她看见了，没说话，舀出第一碗。南岸院里，阿妲仍在翻动麦粒，一块借来的篷布终于被晒干。",
+    "c02.bridge_after.03": "种粮车离桥就向北坡走，阿妲跟了十几步，直到车夫回头喊“先卸打结的”。她才停下来。米芮在桥边接过伙夫递来的空粉袋，问医院车排到哪里。艾琳指向正在上桥的那辆，自己走过去接缰绳。",
+    "c02.bridge_after.04": "断了旗杆的护运兵坐在桥栏边，洛恩替他递布。他没接，却冲维洛喊了一声执政官。\n维洛脚步停了。\n“你知道他们是谁。”艾琳说。\n“我雇过。”\n“什么时候？”\n“还没结清钱。”",
+    "c02.bridge_after.05": "护运兵指向东岸灰屋，门口挂着秤，后院通往守备营。那里便是交接所。两名短甲兵正往车上搬柜子，另有人把几条长凳绑到一起，给不能快走的人坐。河门守备官今晨要求留存的回执，就在柜里。",
+    "c02.bridge_after.06": "那笔钱是诸城欠他们的。我担了保，他们拿它养人。现在谁接下欠款，谁就能给他们活干。我会去谈。你要骂，等把柜和人留下再骂。",
+    "c02.bridge_after.07": "艾琳从他身边走过去：“这回一起。”\n维洛想拦，赛菈将路边捡起的调运铅封放进他掌心。缺口落在麦穗下，与昨夜那张草图同样歪了一点。他把铅封握住，没有再走到前面。",
+    "c02.dispatch_intro.01": "交接所值守长挡在柜前，腰间钥匙碰着秤盘。队长让他退开，他偏偏将身子往柜上一靠。\n“东西你们能搬，里面十六个人不能算货。”\n“我连你也没算货。”队长回答，“所以别逼我绑你。”",
+    "c02.dispatch_intro.02": "艾琳，先别拔剑。后院有抄单的、看仓的，还有昨晚替你们送过水的人。你们昨天打完就走，他们还要在这里干下去。把他们一并带走，我上哪儿找？",
+    "c02.dispatch_intro.03": "人不走，柜留下。把谁雇你们、要送去哪说清楚。你们欠的钱可以另外谈，不能拿院里的人凑。",
+    "c02.dispatch_intro.04": "赫姆从艾琳身后露面。一个夜班学徒看见他，猛地缩回门里。\n“老赫姆，还敢来？”队长笑了一声，“你自己签的东西，也要他们替你拿？”\n赫姆望向柜子，没看艾琳。伊瑟合上了正在记的册子。",
+    "c02.dispatch_intro.05": "后院翻倒了水盆。希弥从侧门看见赫姆，袖子被撕开，正被拉去车边。\n“老赫姆，别费劲。”队长朝后面喊，“那几笔是你签的，到了地方自己讲。”\n艾琳看向值守长。他握住钥匙，手背绷出青筋。",
+    "c02.dispatch_intro.06": "艾琳拿出军道的封锁令。队长只扫一眼，便说可以让她带走。\n“你要这个，拿着。我们搬的是收货底账。”\n伊瑟把两张纸并在一起，封粮的令与补填的收据，果然是不同班次。他刚想追问，队长已伸手合柜。",
+    "c02.dispatch_intro.07": "赫姆隔着人群指出柜顶的裂口，说自己的登记底联放在第二层。队长让人去取，他又忽然改口：“下面那一层也要。”\n伊瑟看着他：“你到底在找哪张？”\n“拿出来就知道了。”\n老人把手藏回袖中。",
+    "c02.dispatch_intro.08": "维洛叫队长的旧职衔，对方转身，目光先扫过他缺了一枚扣子的袖口。\n“上回你也说会付。”\n“我现在替你签保。”\n“我拿你的保，给孩子煮饭？”\n搬柜的两人已经套上绳。队长让他们继续。",
+    "c02.dispatch_intro.09": "停手。柜里若有旧炉坊的印，你们送走它，雇主不会让你们知道送到了谁手上。先把人放了，我留下。你要债，就找我。",
+    "c02.dispatch_intro.10": "艾琳猛地转头。队长也愣了一下，随后让弓手上坡，将两条出路都堵住。\n“那就连你一起带。”\n一名杂役从车旁跑下来，被枪杆打倒。芙蕾把他拽进盾后，洛恩已顶到坡道前。维洛伸出的手慢慢收紧。",
+    "c02.dispatch_intro.11": "院里的人往秤棚后退。盾队跟我，先打开坡口！别对柜房用火——维洛，我在跟你说。",
+    "c02.receipts.01": "柜子从车上抬回屋内，值守长用钥匙试了两次才开。伊瑟伸手接账，翻到一半，纸从指间滑下去。刚才钉在他身旁的箭还留在墙上。他看了眼墙，再去拾纸，另一只手一直抠着袖口的破洞。",
+    "c02.receipts.02": "先别念，我这行写反了。让灯离远一点……好。赫姆，你坐下。这张收讫是你的字，对吗？",
+    "c02.receipts.03": "赫姆终于从后院出来，先看见那名帮他传话的送水人躺在秤棚旁。米芮正替他包扎小腿。老人想走过去，送水人别过脸，叫他先去把自己的事说清。赫姆站了一会，才回到桌边。",
+    "c02.receipts.04": "夜班学徒被带进来时，先把赫姆的茶推到一旁。\n“我照你写的抄。我没多添。”\n赫姆说知道，学徒却把两只手摊给他看。手指沾满黑墨，连袖口也是。老人找了块布递过去，对方没有接。",
+    "c02.receipts.05": "两批货共用一个转运总号，第一批是港口来粮，第二批是储仓的余货。伊瑟将它们分开，总数仍没合上。\n“这一栏收到了？”\n赫姆盯着自己的签名。\n“他们说车第二天到。”\n屋里只剩一声很轻的秤盘碰响。",
+    "c02.receipts.06": "没到。我先填了收讫。空着这一栏，下批就不给发，我想先把后面的粮催过来。后来又晚一天，我又替它填了一回……别看那孩子，他只替我抄字。",
+    "c02.receipts.07": "艾琳把笔推到赫姆面前：“从哪一张开始，指出来。”\n他点了三张。维洛忽然抽出第四张，指尖停在边角的旧印上。\n“这张也补过？”\n赫姆摇头：“经断脊矿道转来的，另一班收。我拿到的就只剩抄本。”",
+    "c02.receipts.08": "门外的人听见了“没到”，挤上来要看自己的收条。阿妲把刚带回的签收压在桌上，问昨天许给北坡的到底有多少。值守长拿钥匙碰了碰柜门，想问还能不能封。米芮拦住从人缝里溜走的学徒，把他留在身后。",
+    "c02.receipts.09": "赫姆得回答，不能叫学徒替他站出去。现在开桌，就请两岸各派人来，想署名的自己署；要先封柜，也得把已查出的缺口报出去。门外的人不会再肯只听一句等着。",
+    "c02.inspection.prompt": "赫姆承认提前补填过收讫；另有经过封闭矿道、尚缺原联的回执。公开核验能让两岸当面追问，署名者也会被认出；封存比对能暂留姓名，等待的人会继续质疑。",
+    "c02.inspection.open": "当场开验，两岸代表一起查。赫姆说明自己经手的部分，其他人自行决定是否署名。",
+    "c02.inspection.sealed": "封存原始底联，两岸各派代表比对。先公布数量和缺项，暂留证人姓名。",
+    "c02.open_check.01": "洛恩搬来两条长凳拼桌，阿妲坐到赫姆对面。他刚说出第一张的日期，就被她打断。\n“那天我来领，你说没有我的份。”\n“那车……”\n“你刚才说，你还没看见车。”\n赫姆低下头，将第一张翻了过去。",
+    "c02.open_check.02": "一个妇人冲上来抓学徒的衣领，认定自己的条是他退的。米芮扣住她的手，叫她报出家人的名字。报到第二个，妇人自己先哭了。\n学徒仍僵在原处。洛恩替他拉平领口，把水放到他够得到的地方。",
+    "c02.open_check.03": "有人把昨天的公告揭下来，摊到艾琳面前，问她为何信赫姆。她指着当时核对过的登记条，刚说两句，便被截住：“我问的是粮。”\n她停了，拿起今天查出的那三张。\n“这几批没到。今天写进去。”",
+    "c02.open_check.04": "昨天骂过三方私分粮食的挑水人也来了，认出维洛，叫他先把自己的账拿出来。维洛把欠护运队的债单放到桌边。\n“还没还。”\n人群静了一阵。那人把债单推回去，让他念出实际送到的货。",
+    "c02.open_check.05": "我签。那三张是我补的，不用给我留空白。学徒的名字别替他写，他要说什么，让他自己来。",
+    "c02.open_check.06": "暮色里，赫姆的签名又贴上了墙，这次下面列着补填过的批次。有人读完便走，有人留下继续问。阿妲只在种粮实到的那一栏按了手印。赫姆喊住她，想说一句抱歉，她扛起空袋，先去找还没回来的车。",
+    "c02.sealed_check.01": "两岸各选了一人进屋。阿妲让北坡记账员留下，自己坐到门外，叫他每核完一批就出来报。东岸的修秤匠进门先试砝码，拒绝拿旧抄本上的袋重直接顶数。赫姆把三个补填过的日期写出来，笔尖刮破最后一个字。",
+    "c02.sealed_check.02": "门板被拍得一震。\n“刚才都听见了，还关门？”\n洛恩扶住门，向里面看。艾琳走出来，报了正在查的三批货，说其他还没定。人群有人骂她护短，她没有让士兵清场，只让洛恩再搬一条凳子。",
+    "c02.sealed_check.03": "昨天的公告还挂着，今天新增的名字没有贴上去。一个老人拿旧公告问夜班学徒是不是在里面，想当面认人。米芮说在，也说他此刻不会出来。老人将纸一折，塞回衣袋，留在门口等。",
+    "c02.sealed_check.04": "两岸代表轮流到门外报数，报到第三批才有人肯把挤住的门让开。阿妲从头听完，问还要多久。代表说不准。她便把已经收好的针线又拿出来，坐在门边补空袋，等下一次有人出来。",
+    "c02.sealed_check.05": "修秤匠坚持重称样袋。北坡记账员嫌慢，直到一袋多出近半碗的重量，才自己去取第二袋。两个人越称越安静。赫姆将写过总数的一页挪开，逐一指出自己没有亲见的收货处，没人替他接话。",
+    "c02.sealed_check.06": "封柜以前，两位代表在缝口各留一道记号。赫姆签的证词留在里面，公开的表只列实到数量与缺项。出门时，他听见人问谁敢担保里面没换过。艾琳正要回答，北坡记账员先举起染墨的手，让门外的人记住自己的脸。",
+    "c02.evening.01": "芙蕾在桥边找到洛恩，他正用钉子修自己的护臂，皮带原来的扣眼已经崩了。\n“你旧带子呢？”\n“给那个旗手了。”\n她抓过护臂，翻到内侧。洛恩还想说能用，她把断口举到他鼻子前。",
+    "c02.evening.02": "明天冲上去以前，先把它扣好。我叫你回来，是让你回来，不是让你回头冲我笑一下。手伸过来，别乱动。",
+    "c02.evening.03": "洛恩伸手，芙蕾绕好备用带，问紧不紧。\n“再紧一点。”\n她抬头，他便收了笑。\n“这回真的。”\n远处米芮叫人领汤。两人一前一后过去，洛恩替她端了碗，她将自己的枪靠在他坐着的车轮旁。",
+    "c02.evening.04": "医院的细粉及时送到，留在南岸的种粮却挑出一小袋坏粒。阿妲让赛菈看袋底结块的地方，说这些明春不会发芽。赛菈伸手抓了一把，松开时麦粒黏在掌纹上。\n“我会回北坡。”她说。\n阿妲把袋口系上：“到时候你得真来。”",
+    "c02.evening.05": "北坡的种粮已经卸清，医院的粉后半日才到。米芮捧着空碗，在灶边坐了很久。艾琳走来问病人怎样，她先说都还在，过了一会又说，有两个人下午一直问下一碗什么时候来。艾琳坐在她旁边，听她把那两个人的名字念完。",
+    "c02.evening.06": "莉希封好了给姐姐的信，又将封口揭开。希弥看着她，等到那张纸快被折破才问收信处。\n“断脊镇。修马具那家铺子，现在是她在管。”\n“那还顺路。”\n莉希把信重新塞回去，按住封口：“所以更麻烦。”",
+    "c02.evening.07": "我陪你到门口。你进去，我牵马。门槛高也没事，栗雨比你肯停下来。",
+    "c02.evening.08": "伊瑟把矿道回执带到火边。驿站记载，货在封路之后仍从矿道运出；若真绕行，下一处收货时刻便早了整整一夜。他拿炭在地图上画出两条路，画到闭塞的山线时，芙蕾突然握住了他的手。",
+    "c02.evening.09": "港口还要去。可先到断脊，问问货怎么穿过那道山。昨天我只想找那枚印，护运队的事没告诉你们。往后我的旧账要是挡路，我先说。你们信不信，到了那里再看。",
+    "c02.evening.10": "艾琳让维洛把欠护运队的担保留一份给守备官，接着安排河门的留守。赫姆自愿同行，值守长叫他回来后再处理那三张补单。老人应了两次。送水人坐在担架旁，接过他递来的水，仍没有和他说别的话。",
+    "c02.evening.11": "芙蕾，你刚才拦伊瑟，拦的是哪条路？……好，我不替你问下去了。你先指出入口，到了地方，我们听你说怎么走。",
+    "c02.evening.12": "芙蕾没碰炭笔，用指甲在地图上压出一点。长枪上的旧工衣饰带滑下来，盖住那条山线。\n莉希想说自己认得路，看到她的手，又把信收回马袋。主队的行李已经绑好，桥后开始有人赶早集。",
+    "c02.end": "“这条道封的时候，我在下面。”芙蕾说。\n伊瑟看向那张还在记收货的抄单。她把旧饰带绕回枪杆，一圈比一圈紧。"
+  },
+  "nodes": {
+    "morning": {
+      "type": "dialogue",
+      "background": "battlefield_rivergate",
+      "lines": [
+        {
+          "id": "c02.morning.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.morning.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.morning.03",
+          "speaker": "healer"
+        },
+        {
+          "id": "c02.morning.04",
+          "speaker": "miller"
+        },
+        {
+          "id": "c02.morning.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.morning.06",
+          "speaker": "narrator",
+          "when": {
+            "relief": "open"
+          }
+        },
+        {
+          "id": "c02.morning.07",
+          "speaker": "narrator",
+          "when": {
+            "relief": "ration"
+          }
+        },
+        {
+          "id": "c02.morning.08",
+          "speaker": "narrator",
+          "when": {
+            "witness_present": true
+          }
+        },
+        {
+          "id": "c02.morning.09",
+          "speaker": "narrator",
+          "when": {
+            "witness_present": false
+          }
+        },
+        {
+          "id": "c02.morning.10",
+          "speaker": "narrator",
+          "when": {
+            "public_ledger": true
+          }
+        },
+        {
+          "id": "c02.morning.11",
+          "speaker": "narrator",
+          "when": {
+            "public_ledger": false
+          }
+        },
+        {
+          "id": "c02.morning.12",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.morning.13",
+          "speaker": "spear"
+        },
+        {
+          "id": "c02.morning.14",
+          "speaker": "warden"
+        }
+      ],
+      "next": "priority"
+    },
+    "priority": {
+      "type": "choice",
+      "background": "battlefield_rivergate",
+      "prompt": "c02.priority.prompt",
+      "options": [
+        {
+          "id": "relief",
+          "text": "c02.priority.relief",
+          "set": {
+            "priority": "relief"
+          },
+          "next": "relief_brief"
+        },
+        {
+          "id": "seed",
+          "text": "c02.priority.seed",
+          "set": {
+            "priority": "seed"
+          },
+          "next": "seed_brief"
+        }
+      ]
+    },
+    "relief_brief": {
+      "type": "dialogue",
+      "background": "battlefield_rivergate",
+      "lines": [
+        {
+          "id": "c02.relief_brief.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.relief_brief.02",
+          "speaker": "grove"
+        },
+        {
+          "id": "c02.relief_brief.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.relief_brief.04",
+          "speaker": "archer"
+        },
+        {
+          "id": "c02.relief_brief.05",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "relief_battle"
+    },
+    "relief_battle": {
+      "type": "battle",
+      "scenario": "c02_relief_bridge",
+      "win": "bridge_after",
+      "win_set": {}
+    },
+    "seed_brief": {
+      "type": "dialogue",
+      "background": "battlefield_rivergate",
+      "lines": [
+        {
+          "id": "c02.seed_brief.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.seed_brief.02",
+          "speaker": "warden"
+        },
+        {
+          "id": "c02.seed_brief.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.seed_brief.04",
+          "speaker": "miller"
+        },
+        {
+          "id": "c02.seed_brief.05",
+          "speaker": "cavalry"
+        }
+      ],
+      "next": "seed_battle"
+    },
+    "seed_battle": {
+      "type": "battle",
+      "scenario": "c02_seed_bridge",
+      "win": "bridge_after",
+      "win_set": {}
+    },
+    "bridge_after": {
+      "type": "dialogue",
+      "background": "battlefield_rivergate",
+      "lines": [
+        {
+          "id": "c02.bridge_after.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.bridge_after.02",
+          "speaker": "narrator",
+          "when": {
+            "priority": "relief"
+          }
+        },
+        {
+          "id": "c02.bridge_after.03",
+          "speaker": "narrator",
+          "when": {
+            "priority": "seed"
+          }
+        },
+        {
+          "id": "c02.bridge_after.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.bridge_after.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.bridge_after.06",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c02.bridge_after.07",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "dispatch_intro"
+    },
+    "dispatch_intro": {
+      "type": "dialogue",
+      "background": "battlefield_rivergate",
+      "lines": [
+        {
+          "id": "c02.dispatch_intro.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.dispatch_intro.02",
+          "speaker": "dispatch"
+        },
+        {
+          "id": "c02.dispatch_intro.03",
+          "speaker": "warden"
+        },
+        {
+          "id": "c02.dispatch_intro.04",
+          "speaker": "narrator",
+          "when": {
+            "witness_present": true
+          }
+        },
+        {
+          "id": "c02.dispatch_intro.05",
+          "speaker": "narrator",
+          "when": {
+            "witness_present": false
+          }
+        },
+        {
+          "id": "c02.dispatch_intro.06",
+          "speaker": "narrator",
+          "when": {
+            "seal_copy": true
+          }
+        },
+        {
+          "id": "c02.dispatch_intro.07",
+          "speaker": "narrator",
+          "when": {
+            "seal_copy": false
+          }
+        },
+        {
+          "id": "c02.dispatch_intro.08",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.dispatch_intro.09",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c02.dispatch_intro.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.dispatch_intro.11",
+          "speaker": "spear"
+        }
+      ],
+      "next": "dispatch_battle"
+    },
+    "dispatch_battle": {
+      "type": "battle",
+      "scenario": "c02_dispatch",
+      "win": "receipts",
+      "win_set": {
+        "dispatch_receipts": true,
+        "clerk_safe": true
+      }
+    },
+    "receipts": {
+      "type": "dialogue",
+      "background": "battlefield_rivergate",
+      "lines": [
+        {
+          "id": "c02.receipts.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.receipts.02",
+          "speaker": "mage"
+        },
+        {
+          "id": "c02.receipts.03",
+          "speaker": "narrator",
+          "when": {
+            "witness_present": false
+          }
+        },
+        {
+          "id": "c02.receipts.04",
+          "speaker": "narrator",
+          "when": {
+            "witness_present": true
+          }
+        },
+        {
+          "id": "c02.receipts.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.receipts.06",
+          "speaker": "clerk"
+        },
+        {
+          "id": "c02.receipts.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.receipts.08",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.receipts.09",
+          "speaker": "grove"
+        }
+      ],
+      "next": "inspection"
+    },
+    "inspection": {
+      "type": "choice",
+      "background": "battlefield_rivergate",
+      "prompt": "c02.inspection.prompt",
+      "options": [
+        {
+          "id": "open",
+          "text": "c02.inspection.open",
+          "set": {
+            "receipt_method": "open"
+          },
+          "next": "open_check"
+        },
+        {
+          "id": "sealed",
+          "text": "c02.inspection.sealed",
+          "set": {
+            "receipt_method": "sealed"
+          },
+          "next": "sealed_check"
+        }
+      ]
+    },
+    "open_check": {
+      "type": "dialogue",
+      "background": "battlefield_rivergate",
+      "lines": [
+        {
+          "id": "c02.open_check.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.open_check.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.open_check.03",
+          "speaker": "narrator",
+          "when": {
+            "public_ledger": true
+          }
+        },
+        {
+          "id": "c02.open_check.04",
+          "speaker": "narrator",
+          "when": {
+            "public_ledger": false
+          }
+        },
+        {
+          "id": "c02.open_check.05",
+          "speaker": "clerk"
+        },
+        {
+          "id": "c02.open_check.06",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "evening"
+    },
+    "sealed_check": {
+      "type": "dialogue",
+      "background": "battlefield_rivergate",
+      "lines": [
+        {
+          "id": "c02.sealed_check.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.sealed_check.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.sealed_check.03",
+          "speaker": "narrator",
+          "when": {
+            "public_ledger": true
+          }
+        },
+        {
+          "id": "c02.sealed_check.04",
+          "speaker": "narrator",
+          "when": {
+            "public_ledger": false
+          }
+        },
+        {
+          "id": "c02.sealed_check.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.sealed_check.06",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "evening"
+    },
+    "evening": {
+      "type": "dialogue",
+      "background": "battlefield_rivergate",
+      "lines": [
+        {
+          "id": "c02.evening.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.evening.02",
+          "speaker": "spear"
+        },
+        {
+          "id": "c02.evening.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.evening.04",
+          "speaker": "narrator",
+          "when": {
+            "priority": "relief"
+          }
+        },
+        {
+          "id": "c02.evening.05",
+          "speaker": "narrator",
+          "when": {
+            "priority": "seed"
+          }
+        },
+        {
+          "id": "c02.evening.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.evening.07",
+          "speaker": "archer"
+        },
+        {
+          "id": "c02.evening.08",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.evening.09",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c02.evening.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c02.evening.11",
+          "speaker": "grove"
+        },
+        {
+          "id": "c02.evening.12",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end",
+      "background": "battlefield_rivergate",
+      "ending": "two_banks_accounts",
+      "text": "c02.end"
+    }
+  }
+}

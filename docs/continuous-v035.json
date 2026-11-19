@@ -1,0 +1,100 @@
+{
+  "milestone": "0.35.0-dev",
+  "date": "2026-11-07",
+  "route": "road / relief / isolate / joint",
+  "source": "New Campaign, fixed-seed model with real unmodified battle results; three chapter-eleven native continuations separately use actual chapter-ten winning saves",
+  "model_checks": 3802,
+  "model_failures": 0,
+  "chapters_entered": 11,
+  "battles_won": 11,
+  "legal_battle_actions": 2500,
+  "dialogue_ids_read": 1110,
+  "choices_made": 16,
+  "route_han_characters": 60044,
+  "counting_method": "Distinct displayed dialogue IDs only, U+4E00 through U+9FFF; excludes chapter ends, codex, UI and unchosen alternatives.",
+  "stop": "current authored chapter-eleven end after gate victory and witness testimony",
+  "player_policy": "Production AI except declared public-information diagnostic policies in the pump house, nursery and citadel court; enemy always production AI.",
+  "battles": [
+    {
+      "id": "c01_road",
+      "winner": 0,
+      "actions": 151,
+      "turn": 25
+    },
+    {
+      "id": "c01_bridge",
+      "winner": 0,
+      "actions": 448,
+      "turn": 62
+    },
+    {
+      "id": "c02_relief_bridge",
+      "winner": 0,
+      "actions": 128,
+      "turn": 21
+    },
+    {
+      "id": "c02_dispatch",
+      "winner": 0,
+      "actions": 454,
+      "turn": 62
+    },
+    {
+      "id": "c03_vent",
+      "winner": 0,
+      "actions": 55,
+      "turn": 13
+    },
+    {
+      "id": "c04_dock",
+      "winner": 0,
+      "actions": 269,
+      "turn": 43
+    },
+    {
+      "id": "c04_pump",
+      "winner": 0,
+      "actions": 90,
+      "turn": 17
+    },
+    {
+      "id": "c05_nursery",
+      "winner": 0,
+      "actions": 132,
+      "turn": 25
+    },
+    {
+      "id": "c06_court",
+      "winner": 0,
+      "actions": 445,
+      "turn": 62
+    },
+    {
+      "id": "c08_isolate",
+      "winner": 0,
+      "actions": 115,
+      "turn": 21
+    },
+    {
+      "id": "c10_gate",
+      "winner": 0,
+      "actions": 213,
+      "turn": 37
+    }
+  ],
+  "native_chapter_eleven": {
+    "actual_prior_wins": 11,
+    "plans_checked": [
+      "joint",
+      "split",
+      "hold"
+    ],
+    "body_paragraphs_per_plan": 112,
+    "catalogue_checks": 1361,
+    "writer_checks": 717,
+    "reader_checks": 18,
+    "failures": 0,
+    "source": "docs/narrative-native-ui-v035.json"
+  },
+  "limits": "One fixed full route plus native witness continuations from three prior earned gate victories. Automated policies do not establish human difficulty, all branching battle win rates, the story conclusion or Steam readiness."
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+  <Package Name="纹章与誓约 - Sigils and Oaths" Manufacturer="Sigils and Oaths"
+           Version="$(var.ProductVersion)" UpgradeCode="9B6B5C43-E52F-4C9B-AC7A-913B6750C4A7"
+           Scope="perUser" InstallerVersion="500" Language="2052" Codepage="936">
+    <MajorUpgrade Schedule="afterInstallInitialize" AllowSameVersionUpgrades="yes"
+                  DowngradeErrorMessage="已安装更高版本的《纹章与誓约》。" />
+    <MediaTemplate EmbedCab="yes" CompressionLevel="medium" />
+    <Icon Id="GameIcon.ico" SourceFile="$(var.GameIcon)" />
+    <Property Id="ARPPRODUCTICON" Value="GameIcon.ico" />
+    <Property Id="ARPURLINFOABOUT" Value="https://github.com/yifanchen12/sigils-and-oaths" />
+    <SetProperty Id="ARPINSTALLLOCATION" Value="[INSTALLFOLDER]" After="CostFinalize" Sequence="execute" />
+    <Property Id="INSTALLFOLDER" Secure="yes">
+      <RegistrySearch Id="PreviousInstallFolder" Root="HKCU" Key="Software\SigilsAndOaths"
+                      Name="InstallPath" Type="raw" Bitness="always64" />
+    </Property>
+
+    <StandardDirectory Id="LocalAppDataFolder">
+      <Directory Id="UserProgramsFolder" Name="Programs">
+        <Directory Id="INSTALLFOLDER" Name="Sigils and Oaths">
+          <Component Id="GamePayload" Guid="6645525C-15B5-4700-8522-7FBF0B6655DC" Bitness="always64">
+            <File Id="GameExecutable" Source="$(var.GamePayload)\SigilsAndOaths.exe" />
+            <File Id="GameData" Source="$(var.GamePayload)\SigilsAndOaths.pck" />
+            <File Id="ReleaseInfo" Source="$(var.GamePayload)\RELEASE_INFO.json" />
+            <File Id="GameLicense" Source="$(var.GamePayload)\LICENSE.txt" />
+            <RegistryValue Root="HKCU" Key="Software\SigilsAndOaths" Name="InstallPath"
+                           Type="string" Value="[INSTALLFOLDER]" KeyPath="yes" />
+          </Component>
+          <Directory Id="NoticesFolder" Name="licenses">
+            <Component Id="EngineNotices" Guid="6A2C9779-362A-4A27-8858-18A44B08D96A" Bitness="always64">
+              <File Id="GodotLicense" Source="$(var.GamePayload)\licenses\Godot-LICENSE.txt" />
+              <File Id="GodotCopyright" Source="$(var.GamePayload)\licenses\Godot-COPYRIGHT.txt" />
+              <RegistryValue Root="HKCU" Key="Software\SigilsAndOaths" Name="EngineNotices"
+                             Type="integer" Value="1" KeyPath="yes" />
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+    </StandardDirectory>
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="GameMenuFolder" Name="Sigils and Oaths">
+        <Component Id="GameShortcut" Guid="D20A430C-5CAD-4597-A257-87FF77A0BC5D">
+          <Shortcut Id="LaunchGame" Name="纹章与誓约" Description="启动《纹章与誓约》"
+                    Target="[#GameExecutable]" WorkingDirectory="INSTALLFOLDER" Icon="GameIcon.ico" />
+          <RemoveFolder Id="RemoveGameMenuFolder" On="uninstall" />
+          <RegistryValue Root="HKCU" Key="Software\SigilsAndOaths" Name="StartMenuShortcut"
+                         Type="integer" Value="1" KeyPath="yes" />
+        </Component>
+      </Directory>
+    </StandardDirectory>
+    <Feature Id="Game" Title="纹章与誓约" Level="1" Display="hidden">
+      <ComponentRef Id="GamePayload" />
+      <ComponentRef Id="EngineNotices" />
+      <ComponentRef Id="GameShortcut" />
+    </Feature>
+
+    <ui:WixUI Id="WixUI_InstallDir" InstallDirectory="INSTALLFOLDER" />
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.LicenseRtf)" />
+  </Package>
+</Wix>

@@ -1,0 +1,2269 @@
+{
+  "version": "0.44.0-dev",
+  "comparison": "Production AI in both seats with equal commanders, natural mana and draws, and both seat orders. 0.43 used its published PCK. 0.44 used the final preset files. Selection matches were also used for tuning. The Grove sample used fresh seeds chosen after locking both presets.",
+  "groups": [
+    {
+      "id": "wardens",
+      "conditions": "Main sample. Warden, standard maps, base seed 6067.",
+      "pairs": [
+        {
+          "deck": "frost_engine",
+          "opponent": "balanced",
+          "old": {
+            "draws": 0,
+            "losses": 1,
+            "wins": 11
+          },
+          "new": {
+            "draws": 0,
+            "losses": 6,
+            "wins": 6
+          },
+          "matches": [
+            {
+              "map": "greenwood",
+              "seed": 6067,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 27,
+                "actions": 158
+              },
+              "new": {
+                "winner": 0,
+                "turn": 27,
+                "actions": 152
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6067,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 38,
+                "actions": 245
+              },
+              "new": {
+                "winner": 1,
+                "turn": 42,
+                "actions": 264
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6146,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 37,
+                "actions": 259
+              },
+              "new": {
+                "winner": 1,
+                "turn": 56,
+                "actions": 349
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6146,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 44,
+                "actions": 323
+              },
+              "new": {
+                "winner": 1,
+                "turn": 20,
+                "actions": 125
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6225,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 47,
+                "actions": 327
+              },
+              "new": {
+                "winner": 1,
+                "turn": 59,
+                "actions": 374
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6225,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 34,
+                "actions": 185
+              },
+              "new": {
+                "winner": 1,
+                "turn": 40,
+                "actions": 228
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6304,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 37,
+                "actions": 258
+              },
+              "new": {
+                "winner": 1,
+                "turn": 51,
+                "actions": 334
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6304,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 16,
+                "actions": 79
+              },
+              "new": {
+                "winner": 1,
+                "turn": 24,
+                "actions": 128
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6383,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 43,
+                "actions": 281
+              },
+              "new": {
+                "winner": 1,
+                "turn": 59,
+                "actions": 368
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6383,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 42,
+                "actions": 278
+              },
+              "new": {
+                "winner": 0,
+                "turn": 51,
+                "actions": 334
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6462,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 37,
+                "actions": 223
+              },
+              "new": {
+                "winner": 0,
+                "turn": 56,
+                "actions": 306
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6462,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 52,
+                "actions": 334
+              },
+              "new": {
+                "winner": 0,
+                "turn": 56,
+                "actions": 303
+              }
+            }
+          ]
+        },
+        {
+          "deck": "frost_engine",
+          "opponent": "relay_watch",
+          "old": {
+            "draws": 0,
+            "losses": 2,
+            "wins": 10
+          },
+          "new": {
+            "draws": 0,
+            "losses": 5,
+            "wins": 7
+          },
+          "matches": [
+            {
+              "map": "greenwood",
+              "seed": 6067,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 37,
+                "actions": 254
+              },
+              "new": {
+                "winner": 0,
+                "turn": 21,
+                "actions": 122
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6067,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 23,
+                "actions": 152
+              },
+              "new": {
+                "winner": 0,
+                "turn": 33,
+                "actions": 205
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6146,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 19,
+                "actions": 122
+              },
+              "new": {
+                "winner": 1,
+                "turn": 42,
+                "actions": 280
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6146,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 38,
+                "actions": 289
+              },
+              "new": {
+                "winner": 1,
+                "turn": 43,
+                "actions": 286
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6225,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 29,
+                "actions": 188
+              },
+              "new": {
+                "winner": 0,
+                "turn": 50,
+                "actions": 297
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6225,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 28,
+                "actions": 162
+              },
+              "new": {
+                "winner": 0,
+                "turn": 39,
+                "actions": 223
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6304,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 27,
+                "actions": 163
+              },
+              "new": {
+                "winner": 1,
+                "turn": 32,
+                "actions": 177
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6304,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 24,
+                "actions": 152
+              },
+              "new": {
+                "winner": 1,
+                "turn": 22,
+                "actions": 130
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6383,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 47,
+                "actions": 314
+              },
+              "new": {
+                "winner": 1,
+                "turn": 44,
+                "actions": 292
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6383,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 43,
+                "actions": 285
+              },
+              "new": {
+                "winner": 1,
+                "turn": 53,
+                "actions": 350
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6462,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 23,
+                "actions": 110
+              },
+              "new": {
+                "winner": 0,
+                "turn": 50,
+                "actions": 306
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6462,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 26,
+                "actions": 144
+              },
+              "new": {
+                "winner": 1,
+                "turn": 32,
+                "actions": 191
+              }
+            }
+          ]
+        },
+        {
+          "deck": "frost_engine",
+          "opponent": "hearth_compact",
+          "old": {
+            "draws": 0,
+            "losses": 3,
+            "wins": 9
+          },
+          "new": {
+            "draws": 0,
+            "losses": 10,
+            "wins": 2
+          },
+          "matches": [
+            {
+              "map": "greenwood",
+              "seed": 6067,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 42,
+                "actions": 302
+              },
+              "new": {
+                "winner": 0,
+                "turn": 13,
+                "actions": 60
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6067,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 43,
+                "actions": 280
+              },
+              "new": {
+                "winner": 0,
+                "turn": 43,
+                "actions": 255
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6146,
+              "expansion_side": 0,
+              "old": {
+                "winner": 1,
+                "turn": 51,
+                "actions": 332
+              },
+              "new": {
+                "winner": 1,
+                "turn": 40,
+                "actions": 247
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6146,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 52,
+                "actions": 369
+              },
+              "new": {
+                "winner": 0,
+                "turn": 43,
+                "actions": 249
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6225,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 48,
+                "actions": 326
+              },
+              "new": {
+                "winner": 0,
+                "turn": 31,
+                "actions": 165
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6225,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 43,
+                "actions": 265
+              },
+              "new": {
+                "winner": 0,
+                "turn": 49,
+                "actions": 283
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6304,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 39,
+                "actions": 278
+              },
+              "new": {
+                "winner": 1,
+                "turn": 40,
+                "actions": 244
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6304,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 22,
+                "actions": 103
+              },
+              "new": {
+                "winner": 0,
+                "turn": 31,
+                "actions": 176
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6383,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 48,
+                "actions": 329
+              },
+              "new": {
+                "winner": 1,
+                "turn": 48,
+                "actions": 281
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6383,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 42,
+                "actions": 299
+              },
+              "new": {
+                "winner": 0,
+                "turn": 43,
+                "actions": 273
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6462,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 43,
+                "actions": 281
+              },
+              "new": {
+                "winner": 1,
+                "turn": 52,
+                "actions": 304
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6462,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 30,
+                "actions": 169
+              },
+              "new": {
+                "winner": 0,
+                "turn": 35,
+                "actions": 162
+              }
+            }
+          ]
+        },
+        {
+          "deck": "frost_engine",
+          "opponent": "lantern_convoy",
+          "old": {
+            "draws": 0,
+            "losses": 4,
+            "wins": 8
+          },
+          "new": {
+            "draws": 0,
+            "losses": 6,
+            "wins": 6
+          },
+          "matches": [
+            {
+              "map": "greenwood",
+              "seed": 6067,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 27,
+                "actions": 157
+              },
+              "new": {
+                "winner": 0,
+                "turn": 17,
+                "actions": 81
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6067,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 30,
+                "actions": 194
+              },
+              "new": {
+                "winner": 0,
+                "turn": 27,
+                "actions": 155
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6146,
+              "expansion_side": 0,
+              "old": {
+                "winner": 1,
+                "turn": 53,
+                "actions": 339
+              },
+              "new": {
+                "winner": 1,
+                "turn": 53,
+                "actions": 344
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6146,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 52,
+                "actions": 359
+              },
+              "new": {
+                "winner": 1,
+                "turn": 36,
+                "actions": 228
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6225,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 20,
+                "actions": 95
+              },
+              "new": {
+                "winner": 0,
+                "turn": 33,
+                "actions": 195
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6225,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 52,
+                "actions": 341
+              },
+              "new": {
+                "winner": 1,
+                "turn": 32,
+                "actions": 178
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6304,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 23,
+                "actions": 120
+              },
+              "new": {
+                "winner": 1,
+                "turn": 49,
+                "actions": 303
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6304,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 18,
+                "actions": 88
+              },
+              "new": {
+                "winner": 0,
+                "turn": 41,
+                "actions": 238
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6383,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 23,
+                "actions": 119
+              },
+              "new": {
+                "winner": 1,
+                "turn": 40,
+                "actions": 268
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6383,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 52,
+                "actions": 359
+              },
+              "new": {
+                "winner": 0,
+                "turn": 47,
+                "actions": 279
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6462,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 37,
+                "actions": 243
+              },
+              "new": {
+                "winner": 0,
+                "turn": 54,
+                "actions": 343
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6462,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 44,
+                "actions": 299
+              },
+              "new": {
+                "winner": 1,
+                "turn": 59,
+                "actions": 381
+              }
+            }
+          ]
+        },
+        {
+          "deck": "lantern_convoy",
+          "opponent": "balanced",
+          "old": {
+            "draws": 0,
+            "losses": 7,
+            "wins": 5
+          },
+          "new": {
+            "draws": 0,
+            "losses": 6,
+            "wins": 6
+          },
+          "matches": [
+            {
+              "map": "greenwood",
+              "seed": 6067,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 57,
+                "actions": 379
+              },
+              "new": {
+                "winner": 0,
+                "turn": 52,
+                "actions": 369
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6067,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 32,
+                "actions": 199
+              },
+              "new": {
+                "winner": 1,
+                "turn": 46,
+                "actions": 298
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6146,
+              "expansion_side": 0,
+              "old": {
+                "winner": 1,
+                "turn": 57,
+                "actions": 401
+              },
+              "new": {
+                "winner": 0,
+                "turn": 58,
+                "actions": 387
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6146,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 50,
+                "actions": 391
+              },
+              "new": {
+                "winner": 0,
+                "turn": 56,
+                "actions": 396
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6225,
+              "expansion_side": 0,
+              "old": {
+                "winner": 1,
+                "turn": 57,
+                "actions": 419
+              },
+              "new": {
+                "winner": 1,
+                "turn": 38,
+                "actions": 250
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6225,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 51,
+                "actions": 332
+              },
+              "new": {
+                "winner": 1,
+                "turn": 52,
+                "actions": 384
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6304,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 53,
+                "actions": 364
+              },
+              "new": {
+                "winner": 0,
+                "turn": 43,
+                "actions": 307
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6304,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 32,
+                "actions": 206
+              },
+              "new": {
+                "winner": 0,
+                "turn": 21,
+                "actions": 118
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6383,
+              "expansion_side": 0,
+              "old": {
+                "winner": 1,
+                "turn": 57,
+                "actions": 377
+              },
+              "new": {
+                "winner": 1,
+                "turn": 56,
+                "actions": 386
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6383,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 49,
+                "actions": 356
+              },
+              "new": {
+                "winner": 1,
+                "turn": 30,
+                "actions": 192
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6462,
+              "expansion_side": 0,
+              "old": {
+                "winner": 1,
+                "turn": 55,
+                "actions": 393
+              },
+              "new": {
+                "winner": 1,
+                "turn": 55,
+                "actions": 382
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6462,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 54,
+                "actions": 421
+              },
+              "new": {
+                "winner": 0,
+                "turn": 54,
+                "actions": 390
+              }
+            }
+          ]
+        },
+        {
+          "deck": "lantern_convoy",
+          "opponent": "relay_watch",
+          "old": {
+            "draws": 0,
+            "losses": 4,
+            "wins": 8
+          },
+          "new": {
+            "draws": 0,
+            "losses": 2,
+            "wins": 10
+          },
+          "matches": [
+            {
+              "map": "greenwood",
+              "seed": 6067,
+              "expansion_side": 0,
+              "old": {
+                "winner": 1,
+                "turn": 42,
+                "actions": 295
+              },
+              "new": {
+                "winner": 0,
+                "turn": 26,
+                "actions": 189
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6067,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 48,
+                "actions": 350
+              },
+              "new": {
+                "winner": 0,
+                "turn": 17,
+                "actions": 78
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6146,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 52,
+                "actions": 377
+              },
+              "new": {
+                "winner": 0,
+                "turn": 50,
+                "actions": 366
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6146,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 36,
+                "actions": 291
+              },
+              "new": {
+                "winner": 1,
+                "turn": 49,
+                "actions": 390
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6225,
+              "expansion_side": 0,
+              "old": {
+                "winner": 1,
+                "turn": 44,
+                "actions": 307
+              },
+              "new": {
+                "winner": 0,
+                "turn": 50,
+                "actions": 344
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6225,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 44,
+                "actions": 301
+              },
+              "new": {
+                "winner": 1,
+                "turn": 40,
+                "actions": 277
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6304,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 44,
+                "actions": 327
+              },
+              "new": {
+                "winner": 1,
+                "turn": 26,
+                "actions": 173
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6304,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 31,
+                "actions": 212
+              },
+              "new": {
+                "winner": 1,
+                "turn": 43,
+                "actions": 347
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6383,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 54,
+                "actions": 403
+              },
+              "new": {
+                "winner": 0,
+                "turn": 19,
+                "actions": 93
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6383,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 45,
+                "actions": 326
+              },
+              "new": {
+                "winner": 1,
+                "turn": 55,
+                "actions": 361
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6462,
+              "expansion_side": 0,
+              "old": {
+                "winner": 1,
+                "turn": 49,
+                "actions": 350
+              },
+              "new": {
+                "winner": 0,
+                "turn": 52,
+                "actions": 349
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6462,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 49,
+                "actions": 324
+              },
+              "new": {
+                "winner": 1,
+                "turn": 51,
+                "actions": 403
+              }
+            }
+          ]
+        },
+        {
+          "deck": "lantern_convoy",
+          "opponent": "hearth_compact",
+          "old": {
+            "draws": 0,
+            "losses": 7,
+            "wins": 5
+          },
+          "new": {
+            "draws": 0,
+            "losses": 5,
+            "wins": 7
+          },
+          "matches": [
+            {
+              "map": "greenwood",
+              "seed": 6067,
+              "expansion_side": 0,
+              "old": {
+                "winner": 1,
+                "turn": 42,
+                "actions": 314
+              },
+              "new": {
+                "winner": 1,
+                "turn": 42,
+                "actions": 308
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6067,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 39,
+                "actions": 285
+              },
+              "new": {
+                "winner": 0,
+                "turn": 37,
+                "actions": 239
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6146,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 52,
+                "actions": 362
+              },
+              "new": {
+                "winner": 0,
+                "turn": 56,
+                "actions": 427
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6146,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 57,
+                "actions": 424
+              },
+              "new": {
+                "winner": 1,
+                "turn": 55,
+                "actions": 393
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6225,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 50,
+                "actions": 371
+              },
+              "new": {
+                "winner": 0,
+                "turn": 52,
+                "actions": 379
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6225,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 41,
+                "actions": 241
+              },
+              "new": {
+                "winner": 0,
+                "turn": 56,
+                "actions": 383
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6304,
+              "expansion_side": 0,
+              "old": {
+                "winner": 1,
+                "turn": 55,
+                "actions": 406
+              },
+              "new": {
+                "winner": 1,
+                "turn": 48,
+                "actions": 368
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 6304,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 25,
+                "actions": 147
+              },
+              "new": {
+                "winner": 0,
+                "turn": 27,
+                "actions": 177
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6383,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 50,
+                "actions": 367
+              },
+              "new": {
+                "winner": 0,
+                "turn": 54,
+                "actions": 375
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 6383,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 37,
+                "actions": 236
+              },
+              "new": {
+                "winner": 1,
+                "turn": 24,
+                "actions": 138
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6462,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 58,
+                "actions": 407
+              },
+              "new": {
+                "winner": 0,
+                "turn": 56,
+                "actions": 359
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 6462,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 56,
+                "actions": 364
+              },
+              "new": {
+                "winner": 1,
+                "turn": 22,
+                "actions": 105
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pyromancers",
+      "conditions": "Map and commander sample. Pyromancer, Sunspire, Harbor, Citadel, base seed 9127.",
+      "pairs": [
+        {
+          "deck": "frost_engine",
+          "opponent": "relay_watch",
+          "old": {
+            "draws": 0,
+            "losses": 0,
+            "wins": 6
+          },
+          "new": {
+            "draws": 0,
+            "losses": 3,
+            "wins": 3
+          },
+          "matches": [
+            {
+              "map": "sunspire",
+              "seed": 9127,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 21,
+                "actions": 116
+              },
+              "new": {
+                "winner": 1,
+                "turn": 36,
+                "actions": 223
+              }
+            },
+            {
+              "map": "sunspire",
+              "seed": 9127,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 25,
+                "actions": 137
+              },
+              "new": {
+                "winner": 1,
+                "turn": 16,
+                "actions": 80
+              }
+            },
+            {
+              "map": "harbor",
+              "seed": 9206,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 44,
+                "actions": 312
+              },
+              "new": {
+                "winner": 0,
+                "turn": 21,
+                "actions": 108
+              }
+            },
+            {
+              "map": "harbor",
+              "seed": 9206,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 22,
+                "actions": 116
+              },
+              "new": {
+                "winner": 0,
+                "turn": 37,
+                "actions": 212
+              }
+            },
+            {
+              "map": "citadel",
+              "seed": 9285,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 33,
+                "actions": 200
+              },
+              "new": {
+                "winner": 0,
+                "turn": 44,
+                "actions": 245
+              }
+            },
+            {
+              "map": "citadel",
+              "seed": 9285,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 19,
+                "actions": 88
+              },
+              "new": {
+                "winner": 0,
+                "turn": 37,
+                "actions": 214
+              }
+            }
+          ]
+        },
+        {
+          "deck": "frost_engine",
+          "opponent": "hearth_compact",
+          "old": {
+            "draws": 0,
+            "losses": 3,
+            "wins": 3
+          },
+          "new": {
+            "draws": 0,
+            "losses": 4,
+            "wins": 2
+          },
+          "matches": [
+            {
+              "map": "sunspire",
+              "seed": 9127,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 17,
+                "actions": 82
+              },
+              "new": {
+                "winner": 1,
+                "turn": 46,
+                "actions": 266
+              }
+            },
+            {
+              "map": "sunspire",
+              "seed": 9127,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 48,
+                "actions": 276
+              },
+              "new": {
+                "winner": 0,
+                "turn": 45,
+                "actions": 245
+              }
+            },
+            {
+              "map": "harbor",
+              "seed": 9206,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 44,
+                "actions": 281
+              },
+              "new": {
+                "winner": 0,
+                "turn": 46,
+                "actions": 261
+              }
+            },
+            {
+              "map": "harbor",
+              "seed": 9206,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 46,
+                "actions": 298
+              },
+              "new": {
+                "winner": 1,
+                "turn": 47,
+                "actions": 246
+              }
+            },
+            {
+              "map": "citadel",
+              "seed": 9285,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 15,
+                "actions": 52
+              },
+              "new": {
+                "winner": 1,
+                "turn": 50,
+                "actions": 261
+              }
+            },
+            {
+              "map": "citadel",
+              "seed": 9285,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 47,
+                "actions": 313
+              },
+              "new": {
+                "winner": 0,
+                "turn": 37,
+                "actions": 217
+              }
+            }
+          ]
+        },
+        {
+          "deck": "lantern_convoy",
+          "opponent": "relay_watch",
+          "old": {
+            "draws": 0,
+            "losses": 3,
+            "wins": 3
+          },
+          "new": {
+            "draws": 0,
+            "losses": 4,
+            "wins": 2
+          },
+          "matches": [
+            {
+              "map": "sunspire",
+              "seed": 9127,
+              "expansion_side": 0,
+              "old": {
+                "winner": 1,
+                "turn": 26,
+                "actions": 147
+              },
+              "new": {
+                "winner": 1,
+                "turn": 27,
+                "actions": 173
+              }
+            },
+            {
+              "map": "sunspire",
+              "seed": 9127,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 17,
+                "actions": 76
+              },
+              "new": {
+                "winner": 0,
+                "turn": 17,
+                "actions": 66
+              }
+            },
+            {
+              "map": "harbor",
+              "seed": 9206,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 52,
+                "actions": 329
+              },
+              "new": {
+                "winner": 0,
+                "turn": 43,
+                "actions": 312
+              }
+            },
+            {
+              "map": "harbor",
+              "seed": 9206,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 49,
+                "actions": 330
+              },
+              "new": {
+                "winner": 1,
+                "turn": 40,
+                "actions": 260
+              }
+            },
+            {
+              "map": "citadel",
+              "seed": 9285,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 41,
+                "actions": 295
+              },
+              "new": {
+                "winner": 1,
+                "turn": 20,
+                "actions": 99
+              }
+            },
+            {
+              "map": "citadel",
+              "seed": 9285,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 19,
+                "actions": 105
+              },
+              "new": {
+                "winner": 0,
+                "turn": 19,
+                "actions": 105
+              }
+            }
+          ]
+        },
+        {
+          "deck": "lantern_convoy",
+          "opponent": "hearth_compact",
+          "old": {
+            "draws": 0,
+            "losses": 1,
+            "wins": 5
+          },
+          "new": {
+            "draws": 0,
+            "losses": 3,
+            "wins": 3
+          },
+          "matches": [
+            {
+              "map": "sunspire",
+              "seed": 9127,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 52,
+                "actions": 335
+              },
+              "new": {
+                "winner": 0,
+                "turn": 19,
+                "actions": 89
+              }
+            },
+            {
+              "map": "sunspire",
+              "seed": 9127,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 48,
+                "actions": 320
+              },
+              "new": {
+                "winner": 0,
+                "turn": 31,
+                "actions": 166
+              }
+            },
+            {
+              "map": "harbor",
+              "seed": 9206,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 46,
+                "actions": 319
+              },
+              "new": {
+                "winner": 1,
+                "turn": 36,
+                "actions": 235
+              }
+            },
+            {
+              "map": "harbor",
+              "seed": 9206,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 45,
+                "actions": 300
+              },
+              "new": {
+                "winner": 1,
+                "turn": 53,
+                "actions": 360
+              }
+            },
+            {
+              "map": "citadel",
+              "seed": 9285,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 29,
+                "actions": 170
+              },
+              "new": {
+                "winner": 0,
+                "turn": 35,
+                "actions": 219
+              }
+            },
+            {
+              "map": "citadel",
+              "seed": 9285,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 45,
+                "actions": 312
+              },
+              "new": {
+                "winner": 0,
+                "turn": 44,
+                "actions": 299
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "grove_holdout",
+      "conditions": "Fresh after final card lists. Grove, all six maps, base seed 15073.",
+      "pairs": [
+        {
+          "deck": "frost_engine",
+          "opponent": "hearth_compact",
+          "old": {
+            "draws": 0,
+            "losses": 3,
+            "wins": 9
+          },
+          "new": {
+            "draws": 0,
+            "losses": 6,
+            "wins": 6
+          },
+          "matches": [
+            {
+              "map": "greenwood",
+              "seed": 15073,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 21,
+                "actions": 136
+              },
+              "new": {
+                "winner": 0,
+                "turn": 19,
+                "actions": 100
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 15073,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 41,
+                "actions": 280
+              },
+              "new": {
+                "winner": 0,
+                "turn": 41,
+                "actions": 266
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 15152,
+              "expansion_side": 0,
+              "old": {
+                "winner": 1,
+                "turn": 39,
+                "actions": 234
+              },
+              "new": {
+                "winner": 0,
+                "turn": 50,
+                "actions": 296
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 15152,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 50,
+                "actions": 323
+              },
+              "new": {
+                "winner": 1,
+                "turn": 17,
+                "actions": 73
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 15231,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 19,
+                "actions": 91
+              },
+              "new": {
+                "winner": 1,
+                "turn": 41,
+                "actions": 273
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 15231,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 51,
+                "actions": 339
+              },
+              "new": {
+                "winner": 0,
+                "turn": 52,
+                "actions": 293
+              }
+            },
+            {
+              "map": "sunspire",
+              "seed": 15310,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 45,
+                "actions": 313
+              },
+              "new": {
+                "winner": 0,
+                "turn": 15,
+                "actions": 69
+              }
+            },
+            {
+              "map": "sunspire",
+              "seed": 15310,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 45,
+                "actions": 287
+              },
+              "new": {
+                "winner": 0,
+                "turn": 25,
+                "actions": 139
+              }
+            },
+            {
+              "map": "harbor",
+              "seed": 15389,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 27,
+                "actions": 155
+              },
+              "new": {
+                "winner": 0,
+                "turn": 41,
+                "actions": 259
+              }
+            },
+            {
+              "map": "harbor",
+              "seed": 15389,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 47,
+                "actions": 293
+              },
+              "new": {
+                "winner": 0,
+                "turn": 43,
+                "actions": 279
+              }
+            },
+            {
+              "map": "citadel",
+              "seed": 15468,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 23,
+                "actions": 115
+              },
+              "new": {
+                "winner": 0,
+                "turn": 13,
+                "actions": 56
+              }
+            },
+            {
+              "map": "citadel",
+              "seed": 15468,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 22,
+                "actions": 129
+              },
+              "new": {
+                "winner": 0,
+                "turn": 41,
+                "actions": 245
+              }
+            }
+          ]
+        },
+        {
+          "deck": "lantern_convoy",
+          "opponent": "relay_watch",
+          "old": {
+            "draws": 0,
+            "losses": 6,
+            "wins": 6
+          },
+          "new": {
+            "draws": 0,
+            "losses": 5,
+            "wins": 7
+          },
+          "matches": [
+            {
+              "map": "greenwood",
+              "seed": 15073,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 29,
+                "actions": 210
+              },
+              "new": {
+                "winner": 0,
+                "turn": 19,
+                "actions": 111
+              }
+            },
+            {
+              "map": "greenwood",
+              "seed": 15073,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 19,
+                "actions": 108
+              },
+              "new": {
+                "winner": 1,
+                "turn": 34,
+                "actions": 252
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 15152,
+              "expansion_side": 0,
+              "old": {
+                "winner": 1,
+                "turn": 18,
+                "actions": 77
+              },
+              "new": {
+                "winner": 1,
+                "turn": 18,
+                "actions": 79
+              }
+            },
+            {
+              "map": "rivergate",
+              "seed": 15152,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 45,
+                "actions": 328
+              },
+              "new": {
+                "winner": 0,
+                "turn": 27,
+                "actions": 172
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 15231,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 39,
+                "actions": 299
+              },
+              "new": {
+                "winner": 0,
+                "turn": 21,
+                "actions": 125
+              }
+            },
+            {
+              "map": "ridgepass",
+              "seed": 15231,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 48,
+                "actions": 350
+              },
+              "new": {
+                "winner": 1,
+                "turn": 44,
+                "actions": 332
+              }
+            },
+            {
+              "map": "sunspire",
+              "seed": 15310,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 48,
+                "actions": 342
+              },
+              "new": {
+                "winner": 0,
+                "turn": 27,
+                "actions": 175
+              }
+            },
+            {
+              "map": "sunspire",
+              "seed": 15310,
+              "expansion_side": 1,
+              "old": {
+                "winner": 1,
+                "turn": 22,
+                "actions": 147
+              },
+              "new": {
+                "winner": 0,
+                "turn": 37,
+                "actions": 286
+              }
+            },
+            {
+              "map": "harbor",
+              "seed": 15389,
+              "expansion_side": 0,
+              "old": {
+                "winner": 0,
+                "turn": 48,
+                "actions": 348
+              },
+              "new": {
+                "winner": 0,
+                "turn": 19,
+                "actions": 131
+              }
+            },
+            {
+              "map": "harbor",
+              "seed": 15389,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 21,
+                "actions": 122
+              },
+              "new": {
+                "winner": 0,
+                "turn": 15,
+                "actions": 76
+              }
+            },
+            {
+              "map": "citadel",
+              "seed": 15468,
+              "expansion_side": 0,
+              "old": {
+                "winner": 1,
+                "turn": 28,
+                "actions": 175
+              },
+              "new": {
+                "winner": 1,
+                "turn": 34,
+                "actions": 241
+              }
+            },
+            {
+              "map": "citadel",
+              "seed": 15468,
+              "expansion_side": 1,
+              "old": {
+                "winner": 0,
+                "turn": 29,
+                "actions": 208
+              },
+              "new": {
+                "winner": 1,
+                "turn": 49,
+                "actions": 362
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "early_profile_v043": {
+    "frost_engine": {
+      "median_finish_round": 16.0,
+      "mean_friendly_troop_margin_after_round": {
+        "5": -0.583,
+        "8": 0.25
+      },
+      "games": 24
+    },
+    "lantern_convoy": {
+      "median_finish_round": 25.0,
+      "mean_friendly_troop_margin_after_round": {
+        "5": -0.833,
+        "8": -0.083
+      },
+      "games": 24
+    }
+  },
+  "played_games": 264,
+  "legal_actions": 66421,
+  "games_per_version": 132,
+  "totals": {
+    "frost_engine": {
+      "old": {
+        "draws": 0,
+        "losses": 16,
+        "wins": 56
+      },
+      "new": {
+        "draws": 0,
+        "losses": 40,
+        "wins": 32
+      }
+    },
+    "lantern_convoy": {
+      "old": {
+        "draws": 0,
+        "losses": 28,
+        "wins": 32
+      },
+      "new": {
+        "draws": 0,
+        "losses": 25,
+        "wins": 35
+      }
+    }
+  },
+  "frost_eight_and_ten_plays": {
+    "old": {
+      "signal_torrent": 57,
+      "last_hearth": 55
+    },
+    "new": {
+      "last_hearth": 58,
+      "signal_torrent": 56
+    }
+  }
+}

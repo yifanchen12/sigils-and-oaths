@@ -1,0 +1,90 @@
+{
+  "milestone": "0.26.0-dev",
+  "date": "2026-11-06",
+  "base_commit": "3edcab0828ec66ee9495b980408c884cbdcab0eb",
+  "hashing": "SHA256 of UTF-8 text with LF newlines",
+  "source_sha256": {
+    "data/campaign.json": "5c68b08bc4e08f192a59c8a6069e0ef34e34117bd6fd2c597898d2445185f4d5",
+    "data/cards.tres": "bb8cd2a74d382ddd809e073a5e805f30f6ddc2136fe6e5552043a6bb72a72a4f",
+    "data/heroes.tres": "a4b1f67a06643a06f423797b9b3745c6e7c4110b027e45f9ed42a0c204e79a3a",
+    "data/decks.tres": "f13aeaa4b604de31b9109ed156c136f56389826f5d727dbc71e4e0616b3bd89f",
+    "data/maps.tres": "573d6b8e214d92c54d449a7fcbd6f9a5c8fcf99afd31177e1e20294b96b8a5a5",
+    "scripts/battle.gd": "7cfaeb3a9122baf008125196defb4b74f12fbc7e214ede7ab94e17535d889057",
+    "scripts/opponent.gd": "6f1af5e863a92546abe6e9e36e305128b90da18c78b66a34ffe514985f5c7524",
+    "scripts/tactical_ai.gd": "16f928c382c7edce669f4c9fc61857bbf28d87f57110aabb112a5f804d4d854e",
+    "scripts/objective_ai.gd": "7253472fb4f50b78a04a1f201002f27fdc9424721ff09628af5d7b10e532698a",
+    "scripts/control_objective.gd": "9c27f865db02530ad060b2a8dbfaa2a11795ace2a1f1aa104153c8b14a5f1185",
+    "scripts/battle_snapshot.gd": "68f59e7e933e59b116b893efdc409360e7404709ed12f6d479cfcd1404c65cdd",
+    "scripts/story_view.gd": "c7ee2995ef4f0edc555d90c2a1300e88674f586ccadd6bdfb002698c5aa4d228",
+    "tests/fixtures/bridge_focus_pilot.gd": "aaeca8a6e6d5185ae5e81defade4679006707fba31d18ce6fc320278fad721c2",
+    "tests/fixtures/sunspire_focus_pilot.gd": "b88337ba02a5d9b1ffcc38349b38e4b70d187437ed4a2d3cb460b6aba785ba98",
+    "tests/benchmark_campaign.gd": "bd7c8162fd9419caca3987f849ec4cb4e3a6ab10f6a0aa5883a444717abcc00c",
+    "tests/test_sunspire_pilot.gd": "31538199225fa2c1e0720803475d0620408aca9aea98bc819b556423bde74bc8",
+    "tests/test_campaign_playthrough_ui.gd": "b51cbecceab92d261e353d5dbac1603bae7de0041575a26ee9cfab0484dd6f66",
+    "tests/test_campaign_replays.gd": "f070f9b93088d2d4d27ffdb4d65f1aafbc8d56ad015c1022ba4e8dea44ddfe78"
+  },
+  "fixture": "tests/fixtures/campaign_v026_sunspire.json",
+  "fixture_sha256": "ea77dd12aa0d8e7fe730155d26680ca0e5bde51e5ec83b4f79854fc4a3a7523e",
+  "policy": "central-formation diagnostic player against production opponent",
+  "games": [
+    {
+      "actions": 108,
+      "decision_mean_ms": 16.356592592592595,
+      "decision_peak_ms": 67.473,
+      "illegal_action": "",
+      "max_control_streak": 2,
+      "reason": "control",
+      "scenario": "c08_isolate",
+      "seed": 8317.0,
+      "streak_resets": 0,
+      "turn": 23,
+      "winner": 0
+    },
+    {
+      "actions": 266,
+      "decision_mean_ms": 17.36348872180451,
+      "decision_peak_ms": 84.603,
+      "illegal_action": "",
+      "max_control_streak": 0,
+      "reason": "commander",
+      "scenario": "c08_buffer",
+      "seed": 8318.0,
+      "streak_resets": 0,
+      "turn": 41,
+      "winner": 0
+    }
+  ],
+  "native": [
+    {
+      "scenario": "c08_isolate",
+      "writer_checks": 76,
+      "reader_checks": 250,
+      "passed": true,
+      "exit_action_count": 23,
+      "exit_turn": 8,
+      "postbattle_line": "c08.after.01",
+      "test": "tests/test_campaign_playthrough_ui.gd"
+    },
+    {
+      "scenario": "c08_buffer",
+      "writer_checks": 77,
+      "reader_checks": 677,
+      "passed": true,
+      "exit_action_count": 24,
+      "exit_turn": 8,
+      "postbattle_line": "c08.after.01",
+      "test": "tests/test_campaign_playthrough_ui.gd"
+    }
+  ],
+  "native_checks": 1080,
+  "model_checks": 1914,
+  "new_replay_checks": 761,
+  "historical_loss_replay_checks": 1294,
+  "public_information_checks": {
+    "checks": 163,
+    "sampled_player_turn_positions": 32,
+    "passed": true
+  },
+  "native_page_checks": 10806,
+  "limitations": "Each native encounter starts from its authored resources and card order. Previous encounters use narrative victory fixtures. The player uses legal pointer inputs from a recorded public-information diagnostic policy; production enemy AI runs live. No human balance evaluation or continuous ten-encounter campaign proof. Two authored seeds do not establish general strategy strength. Four previous losses remain public and replayed. Local diagnostic timing is not an isolated performance benchmark."
+}

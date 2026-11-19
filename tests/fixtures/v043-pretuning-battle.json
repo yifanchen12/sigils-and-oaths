@@ -1,0 +1,733 @@
+{
+  "active_side": 0,
+  "deck_size": 30,
+  "log": [
+    "苍蓝军团回合 · 法力 1/1",
+    "战斗开始：推进部队，即可向前延伸部署范围。",
+    "赤曜军团回合 · 法力 1/1",
+    "赤曜军团使用了「誓约步兵」。",
+    "赤曜军团使用了「战术先机」。",
+    "赤曜军团使用了「一线微光」。",
+    "苍蓝军团回合 · 法力 2/2",
+    "芦滩前哨结算进场效果。",
+    "苍蓝军团使用了「芦滩前哨」。",
+    "赤曜军团回合 · 法力 2/2",
+    "艾琳 · 破晓发动「圣盾赐福」。",
+    "誓约步兵推进至 F8。",
+    "苍蓝军团回合 · 法力 3/3",
+    "芦滩前哨结算进场效果。",
+    "苍蓝军团使用了「芦滩前哨」。",
+    "苍蓝军团使用了「誓约步兵」。",
+    "芦滩前哨推进至 H2。",
+    "赤曜军团回合 · 法力 3/3",
+    "守桥老枪结算进场效果。",
+    "赤曜军团使用了「守桥老枪」。",
+    "誓约步兵推进至 E7。",
+    "苍蓝军团回合 · 法力 4/4",
+    "苍蓝军团使用了「星火术士」。",
+    "芦滩前哨推进至 I4。",
+    "芦滩前哨推进至 E3。",
+    "誓约步兵推进至 F3。",
+    "赤曜军团回合 · 法力 4/4",
+    "守桥老枪结算进场效果。",
+    "赤曜军团使用了「守桥老枪」。",
+    "誓约步兵推进至 D6。",
+    "守桥老枪推进至 G7。",
+    "誓约步兵发动「誓约坚守」。",
+    "苍蓝军团回合 · 法力 5/5"
+  ],
+  "map_id": "rivergate",
+  "match_seed": 43161,
+  "next_id": 71,
+  "objective": {},
+  "players": [
+    {
+      "card_total": 30,
+      "deck": [
+        {
+          "card_id": "second_watch",
+          "uid": 27
+        },
+        {
+          "card_id": "warder_hymn",
+          "uid": 25
+        },
+        {
+          "card_id": "spear",
+          "uid": 5
+        },
+        {
+          "card_id": "breakwater_guard",
+          "uid": 20
+        },
+        {
+          "card_id": "clear_skies",
+          "uid": 14
+        },
+        {
+          "card_id": "hammer_sweep",
+          "uid": 26
+        },
+        {
+          "card_id": "mist_spike",
+          "uid": 23
+        },
+        {
+          "card_id": "tidal_oath",
+          "uid": 30
+        },
+        {
+          "card_id": "mist_spike",
+          "uid": 22
+        },
+        {
+          "card_id": "spear",
+          "uid": 4
+        },
+        {
+          "card_id": "dispatch_bundle",
+          "uid": 21
+        },
+        {
+          "card_id": "ward",
+          "uid": 11
+        },
+        {
+          "card_id": "archer",
+          "uid": 8
+        },
+        {
+          "card_id": "scribe_warden",
+          "uid": 19
+        },
+        {
+          "card_id": "mage",
+          "uid": 10
+        },
+        {
+          "card_id": "cavalry",
+          "uid": 6
+        },
+        {
+          "card_id": "last_hearth",
+          "uid": 29
+        },
+        {
+          "card_id": "sword",
+          "uid": 2
+        },
+        {
+          "card_id": "frostbind",
+          "uid": 13
+        }
+      ],
+      "deck_counts": {
+        "archer": 2,
+        "breakwater_guard": 1,
+        "cavalry": 1,
+        "clear_skies": 1,
+        "dispatch_bundle": 1,
+        "fog": 1,
+        "frostbind": 1,
+        "hammer_sweep": 1,
+        "kiln_lance": 1,
+        "last_hearth": 1,
+        "mage": 2,
+        "mist_spike": 2,
+        "reed_scout": 2,
+        "ridge_archer": 1,
+        "scribe_warden": 1,
+        "second_watch": 1,
+        "shore_medic": 1,
+        "signal_torrent": 1,
+        "spear": 2,
+        "sword": 3,
+        "tidal_oath": 1,
+        "ward": 1,
+        "warder_hymn": 1
+      },
+      "deck_id": "frost_engine",
+      "discard": [],
+      "fatigue": 0,
+      "hand": [
+        {
+          "card_id": "shore_medic",
+          "uid": 18
+        },
+        {
+          "card_id": "ridge_archer",
+          "uid": 17
+        },
+        {
+          "card_id": "signal_torrent",
+          "uid": 28
+        },
+        {
+          "card_id": "sword",
+          "uid": 1
+        },
+        {
+          "card_id": "archer",
+          "uid": 7
+        },
+        {
+          "card_id": "fog",
+          "uid": 12
+        },
+        {
+          "card_id": "kiln_lance",
+          "uid": 24
+        }
+      ],
+      "hero_id": "warden",
+      "identity": {},
+      "mana": 5,
+      "max_mana": 5,
+      "skill_cooldown": 0,
+      "spell_boost_used": false
+    },
+    {
+      "card_total": 31,
+      "deck": [
+        {
+          "card_id": "warder_hymn",
+          "uid": 52
+        },
+        {
+          "card_id": "warder_hymn",
+          "uid": 53
+        },
+        {
+          "card_id": "sword",
+          "uid": 33
+        },
+        {
+          "card_id": "field_signals",
+          "uid": 50
+        },
+        {
+          "card_id": "shore_medic",
+          "uid": 43
+        },
+        {
+          "card_id": "archer",
+          "uid": 34
+        },
+        {
+          "card_id": "breakwater_guard",
+          "uid": 46
+        },
+        {
+          "card_id": "breakwater_guard",
+          "uid": 47
+        },
+        {
+          "card_id": "mage",
+          "uid": 37
+        },
+        {
+          "card_id": "healer",
+          "uid": 38
+        },
+        {
+          "card_id": "mage",
+          "uid": 36
+        },
+        {
+          "card_id": "reed_roads",
+          "uid": 61
+        },
+        {
+          "card_id": "healer",
+          "uid": 39
+        },
+        {
+          "card_id": "fallback_horn",
+          "uid": 57
+        },
+        {
+          "card_id": "night_muster",
+          "uid": 60
+        },
+        {
+          "card_id": "night_muster",
+          "uid": 59
+        },
+        {
+          "card_id": "archer",
+          "uid": 35
+        },
+        {
+          "card_id": "gate_veteran",
+          "uid": 40
+        },
+        {
+          "card_id": "shore_medic",
+          "uid": 45
+        },
+        {
+          "card_id": "hammer_sweep",
+          "uid": 54
+        },
+        {
+          "card_id": "bronze_watch",
+          "uid": 48
+        }
+      ],
+      "deck_counts": {
+        "archer": 2,
+        "breakwater_guard": 2,
+        "bronze_watch": 1,
+        "detach_line": 1,
+        "fallback_horn": 2,
+        "field_signals": 2,
+        "gate_veteran": 3,
+        "hammer_sweep": 1,
+        "healer": 2,
+        "mage": 2,
+        "night_muster": 2,
+        "reed_roads": 1,
+        "shore_medic": 3,
+        "silt_snare": 1,
+        "sword": 2,
+        "tidal_oath": 1,
+        "warder_hymn": 2
+      },
+      "deck_id": "lantern_convoy",
+      "discard": [
+        {
+          "card_id": "initiative",
+          "uid": 63
+        },
+        {
+          "card_id": "field_signals",
+          "uid": 49
+        }
+      ],
+      "fatigue": 0,
+      "hand": [
+        {
+          "card_id": "tidal_oath",
+          "uid": 58
+        },
+        {
+          "card_id": "shore_medic",
+          "uid": 44
+        },
+        {
+          "card_id": "fallback_horn",
+          "uid": 56
+        },
+        {
+          "card_id": "detach_line",
+          "uid": 51
+        },
+        {
+          "card_id": "silt_snare",
+          "uid": 55
+        }
+      ],
+      "hero_id": "warden",
+      "identity": {},
+      "mana": 0,
+      "max_mana": 4,
+      "skill_cooldown": 1,
+      "spell_boost_used": false
+    }
+  ],
+  "rng_seed": "43161",
+  "rng_state": "-1146756286123733031",
+  "rules": "55f0e8b73aa8e3920366647790fe0bef49917b1690f908cb14b5eda41fc3bccc",
+  "terrain": [
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "hill",
+    "plain",
+    "road",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "forest",
+    "plain",
+    "road",
+    "road",
+    "road",
+    "road",
+    "road",
+    "forest",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "road",
+    "road",
+    "road",
+    "road",
+    "plain",
+    "plain",
+    "road",
+    "road",
+    "plain",
+    "plain",
+    "ruins",
+    "forest",
+    "forest",
+    "road",
+    "plain",
+    "plain",
+    "hill",
+    "plain",
+    "road",
+    "plain",
+    "plain",
+    "plain",
+    "water",
+    "water",
+    "water",
+    "bridge",
+    "water",
+    "water",
+    "water",
+    "water",
+    "bridge",
+    "water",
+    "water",
+    "water",
+    "water",
+    "water",
+    "water",
+    "bridge",
+    "water",
+    "water",
+    "water",
+    "water",
+    "bridge",
+    "water",
+    "water",
+    "water",
+    "plain",
+    "plain",
+    "plain",
+    "road",
+    "plain",
+    "hill",
+    "plain",
+    "plain",
+    "road",
+    "forest",
+    "forest",
+    "ruins",
+    "plain",
+    "plain",
+    "road",
+    "road",
+    "plain",
+    "plain",
+    "road",
+    "road",
+    "road",
+    "road",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "forest",
+    "road",
+    "road",
+    "road",
+    "road",
+    "road",
+    "plain",
+    "forest",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "plain",
+    "road",
+    "plain",
+    "hill",
+    "plain",
+    "plain",
+    "plain",
+    "plain"
+  ],
+  "time_remaining": 90.0,
+  "traps": [],
+  "turn": 9,
+  "turn_time_limit": 90.0,
+  "units": [
+    {
+      "atk": 3,
+      "attacked": false,
+      "defense": 1,
+      "guarding": false,
+      "hp": 20,
+      "id": 31,
+      "kind": "commander",
+      "last_move_distance": 0,
+      "max_hp": 20,
+      "move": 0,
+      "moved": false,
+      "name": "艾琳 · 破晓",
+      "pos": [
+        5,
+        9
+      ],
+      "range": 1,
+      "rooted_turns": 0,
+      "shield": 0,
+      "short": "誓",
+      "side": 0,
+      "skill_used": false,
+      "summoning": false
+    },
+    {
+      "atk": 3,
+      "attacked": false,
+      "defense": 1,
+      "guarding": false,
+      "hp": 20,
+      "id": 62,
+      "kind": "commander",
+      "last_move_distance": 0,
+      "max_hp": 20,
+      "move": 0,
+      "moved": false,
+      "name": "艾琳 · 破晓",
+      "pos": [
+        6,
+        0
+      ],
+      "range": 1,
+      "rooted_turns": 0,
+      "shield": 4,
+      "short": "誓",
+      "side": 1,
+      "skill_used": false,
+      "summoning": false
+    },
+    {
+      "atk": 3,
+      "attacked": true,
+      "card": {
+        "card_id": "sword",
+        "uid": 32,
+        "unit_id": 64
+      },
+      "defense": 1,
+      "guarding": false,
+      "hp": 5,
+      "id": 64,
+      "kind": "sword",
+      "last_move_distance": 2,
+      "max_hp": 5,
+      "move": 2,
+      "moved": true,
+      "name": "誓约步兵",
+      "pos": [
+        3,
+        4
+      ],
+      "range": 1,
+      "rooted_turns": 0,
+      "shield": 3,
+      "short": "步",
+      "side": 1,
+      "skill_used": true,
+      "summoning": false
+    },
+    {
+      "atk": 2,
+      "attacked": false,
+      "card": {
+        "card_id": "reed_scout",
+        "uid": 15,
+        "unit_id": 65
+      },
+      "defense": 0,
+      "guarding": false,
+      "hp": 4,
+      "id": 65,
+      "kind": "sword",
+      "last_move_distance": 0,
+      "max_hp": 4,
+      "move": 3,
+      "moved": false,
+      "name": "芦滩前哨",
+      "pos": [
+        8,
+        6
+      ],
+      "range": 1,
+      "rooted_turns": 0,
+      "shield": 0,
+      "short": "步",
+      "side": 0,
+      "skill_used": false,
+      "summoning": false
+    },
+    {
+      "atk": 2,
+      "attacked": false,
+      "card": {
+        "card_id": "reed_scout",
+        "uid": 16,
+        "unit_id": 66
+      },
+      "defense": 0,
+      "guarding": false,
+      "hp": 4,
+      "id": 66,
+      "kind": "sword",
+      "last_move_distance": 0,
+      "max_hp": 4,
+      "move": 3,
+      "moved": false,
+      "name": "芦滩前哨",
+      "pos": [
+        4,
+        7
+      ],
+      "range": 1,
+      "rooted_turns": 0,
+      "shield": 0,
+      "short": "步",
+      "side": 0,
+      "skill_used": false,
+      "summoning": false
+    },
+    {
+      "atk": 3,
+      "attacked": false,
+      "card": {
+        "card_id": "sword",
+        "uid": 3,
+        "unit_id": 67
+      },
+      "defense": 1,
+      "guarding": false,
+      "hp": 5,
+      "id": 67,
+      "kind": "sword",
+      "last_move_distance": 0,
+      "max_hp": 5,
+      "move": 2,
+      "moved": false,
+      "name": "誓约步兵",
+      "pos": [
+        5,
+        7
+      ],
+      "range": 1,
+      "rooted_turns": 0,
+      "shield": 0,
+      "short": "步",
+      "side": 0,
+      "skill_used": false,
+      "summoning": false
+    },
+    {
+      "atk": 2,
+      "attacked": false,
+      "card": {
+        "card_id": "gate_veteran",
+        "uid": 41,
+        "unit_id": 68
+      },
+      "defense": 1,
+      "guarding": false,
+      "hp": 6,
+      "id": 68,
+      "kind": "spear",
+      "last_move_distance": 1,
+      "max_hp": 6,
+      "move": 2,
+      "moved": true,
+      "name": "守桥老枪",
+      "pos": [
+        6,
+        3
+      ],
+      "range": 1,
+      "rooted_turns": 0,
+      "shield": 1,
+      "short": "枪",
+      "side": 1,
+      "skill_used": false,
+      "summoning": false
+    },
+    {
+      "atk": 5,
+      "attacked": false,
+      "card": {
+        "card_id": "mage",
+        "uid": 9,
+        "unit_id": 69
+      },
+      "defense": 0,
+      "guarding": false,
+      "hp": 4,
+      "id": 69,
+      "kind": "mage",
+      "last_move_distance": 0,
+      "max_hp": 4,
+      "move": 2,
+      "moved": false,
+      "name": "星火术士",
+      "pos": [
+        6,
+        6
+      ],
+      "range": 2,
+      "rooted_turns": 0,
+      "shield": 0,
+      "short": "法",
+      "side": 0,
+      "skill_used": false,
+      "summoning": false
+    },
+    {
+      "atk": 2,
+      "attacked": true,
+      "card": {
+        "card_id": "gate_veteran",
+        "uid": 42,
+        "unit_id": 70
+      },
+      "defense": 1,
+      "guarding": true,
+      "hp": 6,
+      "id": 70,
+      "kind": "spear",
+      "last_move_distance": 0,
+      "max_hp": 6,
+      "move": 2,
+      "moved": true,
+      "name": "守桥老枪",
+      "pos": [
+        5,
+        0
+      ],
+      "range": 1,
+      "rooted_turns": 0,
+      "shield": 1,
+      "short": "枪",
+      "side": 1,
+      "skill_used": false,
+      "summoning": true
+    }
+  ],
+  "version": 5,
+  "weather": "clear",
+  "weather_remaining": 0,
+  "winner": -1
+}

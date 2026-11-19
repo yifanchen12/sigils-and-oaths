@@ -8,6 +8,7 @@ const GOLD := Color("d0b579")
 const TEAL := Color("70d3ba")
 const CORAL := Color("f08b76")
 const Art = preload("res://scripts/art_library.gd")
+const Catalog = preload("res://data/cards.tres")
 
 var card: Dictionary = {}
 var card_uid: int = -1
@@ -19,12 +20,14 @@ var illustration: Texture2D
 var deck_copies: int = -1
 var compact: bool = false
 var hotkey_number: int = 0
+var combo_lit: bool = false
+var escalation_lit: bool = false
 var hover_blend: float = 0.0
 var hover_tween: Tween
 
 func _ready() -> void:
-	custom_minimum_size = Vector2(118, 104) if compact else Vector2(158, 168)
-	size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	custom_minimum_size = Vector2(158, 104) if compact else Vector2(158, 168)
+	size_flags_horizontal = Control.SIZE_SHRINK_CENTER if compact else Control.SIZE_EXPAND_FILL
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	font = get_theme_default_font()
 	flat = true
@@ -46,21 +49,32 @@ func _set_hover_blend(value: float) -> void:
 
 func configure(definition: Dictionary, uid: int, mana: int, selected: bool, locked: bool) -> void:
 	card = definition
-	illustration = Art.get_texture(str(card.get("kind", card.id)))
+	illustration = Art.get_texture(str(card.id))
 	card_uid = uid
 	affordable = int(card.cost) <= mana
 	chosen = selected
 	disabled = locked
 	tooltip_text = "%s · %d 费\n%s\n%s" % [card.name, card.cost, card.tag, card.text]
+	if combo_lit: tooltip_text += "\n连携已就绪。"
+	if escalation_lit: tooltip_text += "\n法力上限强化已就绪。"
 	if card.type == "unit":
 		tooltip_text += "\n攻击 %d · 生命 %d · 防御 %d · 移动 %d · 射程 %d" % [card.atk, card.hp, card.defense, card.move, card.range]
-	elif card.effect not in ["draw", "mana", "weather", "clear_weather"]:
-		tooltip_text += "\n施法范围：友军3格、法师4格；换位另限指挥官3格。"
+		var skill: Dictionary = Catalog.find(card.kind).get("skill", {})
+		if not skill.is_empty(): tooltip_text += "\n主动 · %s（1费，每回合一次）：%s" % [skill.name, skill.text]
+	elif card.effect in ["redeploy", "muster"]:
+		tooltip_text += "\n需要一处相邻空地和空余部队位。"
+	elif not Battle.is_global_card(card):
+		tooltip_text += "\n施法范围：友军3格、法师4格。"
+		if card.effect == "exchange": tooltip_text += "换位另限指挥官3格。"
+	if card.type == "trap":
+		tooltip_text += "\n每方最多2张伏设；对手只见数量。"
+		if card.trigger == "step": tooltip_text += "主动移动含骑兵再机动，不含部署、击退或换位。"
+		elif card.trigger == "spell": tooltip_text += "只在敌方伤害法术或技能命中保护对象前触发。"
 	queue_redraw()
 
 func _draw() -> void:
-	if card.is_empty() or font == null: return
-	var accent: Color = Color("63c5ca") if card.type == "unit" else (Color("a6b9ee") if card.type == "environment" else GOLD)
+	if card.is_empty() or font == null or size.x < 32 or size.y < 32: return
+	var accent: Color = Color("63c5ca") if card.type == "unit" else (Color("b5a0ed") if card.type == "trap" else (Color("a6b9ee") if card.type == "environment" else GOLD))
 	var lit: bool = chosen or hovered or has_focus()
 	var top: float = 0 if chosen else lerpf(4, 0, hover_blend)
 	var frame := Rect2(Vector2(0, top), size - Vector2(0, top + 2))
@@ -94,6 +108,10 @@ func _draw() -> void:
 	draw_circle(badge, 12, Color("172c40"))
 	draw_arc(badge, 12, 0, TAU, 32, GOLD, 1, true)
 	draw_symbol(self, str(card.get("kind", card.get("weather", card.get("terrain", card.get("effect", "draw"))))), badge, 8, accent)
+	if combo_lit or escalation_lit:
+		var ribbon := Rect2(art_rect.position.x + 4, art_rect.end.y - 21, 43, 17)
+		draw_rect(ribbon, Color("172c40"))
+		_center("连携" if combo_lit else "强化", ribbon.get_center() + Vector2(0, 4), 12, TEAL)
 	if hotkey_number > 0:
 		draw_rect(Rect2(Vector2(size.x - 23, art_rect.end.y - 21), Vector2(19, 20)), Color("172c40"))
 		_center(str(hotkey_number), Vector2(size.x - 14, art_rect.end.y - 5), 12, INK)

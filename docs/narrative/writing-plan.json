@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "title": "纹章与誓约",
+  "writingMode": "serial",
+  "status": "in_progress",
+  "source": "data/narrative/chapters/*.json",
+  "bible": "writing-bible.md",
+  "releaseTargetUniqueHan": 100000,
+  "editorialAcceptance": "Conflict, character motive, distinct dialogue, causal choices, continuity and actual branch reachability. Counts alone cannot pass prose quality.",
+  "chapters": [
+    {
+      "id": "chapter_01",
+      "title": "河门来信",
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "revision": "0.15.1-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false
+    },
+    {
+      "id": "chapter_02",
+      "title": "两岸的粮单",
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "revision": "0.15.1-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false
+    },
+    {
+      "id": "chapter_03",
+      "title": "风过断脊",
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "revision": "0.16.0-dev"
+    },
+    {
+      "id": "chapter_04",
+      "title": "港口不眠",
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "revision": "0.19.0-dev"
+    },
+    {
+      "id": "chapter_05",
+      "title": "水从哪里来",
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "revision": "0.21.0-dev",
+      "wordCount": 7290,
+      "wordCountPass": true
+    },
+    {
+      "id": "chapter_06",
+      "title": "棋庭旧印",
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "revision": "0.22.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 7109,
+      "wordCountPass": true
+    },
+    {
+      "id": "chapter_07",
+      "title": "未送达的名字",
+      "status": "escort_routes_verified_pending_reader_feedback",
+      "nativeValidated": true,
+      "revision": "0.46.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": true,
+      "wordCount": 12429,
+      "wordCountPass": true
+    },
+    {
+      "id": "chapter_08",
+      "title": "长昼的第八夜",
+      "status": "escort_followup_verified_pending_reader_feedback",
+      "nativeValidated": false,
+      "revision": "0.46.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": true,
+      "wordCount": 8278,
+      "wordCountPass": true
+    },
+    {
+      "id": "chapter_09",
+      "title": "谁来签字",
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "revision": "0.33.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 8749,
+      "wordCountPass": true
+    },
+    {
+      "id": "chapter_10",
+      "title": "门前两次响声",
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "revision": "0.34.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 4970,
+      "wordCountPass": false
+    },
+    {
+      "id": "chapter_11",
+      "title": "北岸有回信",
+      "status": "revised_pending_reader_feedback",
+      "nativeValidated": false,
+      "revision": "0.35.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 6933,
+      "wordCountPass": false
+    },
+    {
+      "id": "chapter_12",
+      "title": "一根轴的归属",
+      "status": "draft_pending_reader_feedback_and_continuous_playthrough",
+      "nativeValidated": false,
+      "revision": "0.36.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 4016,
+      "wordCountPass": false
+    },
+    {
+      "id": "chapter_13",
+      "title": "试转之夜",
+      "status": "draft_pending_reader_feedback_and_complete_story",
+      "nativeValidated": false,
+      "revision": "0.37.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 4675,
+      "wordCountPass": false
+    },
+    {
+      "id": "chapter_14",
+      "title": "暗渠分水",
+      "status": "draft_pending_reader_feedback_and_complete_story",
+      "nativeValidated": false,
+      "revision": "0.38.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 3382,
+      "wordCountPass": false
+    },
+    {
+      "id": "chapter_15",
+      "title": "阀下水痕",
+      "status": "draft_pending_reader_feedback_and_complete_story",
+      "nativeValidated": false,
+      "revision": "0.39.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 6885,
+      "wordCountPass": false
+    },
+    {
+      "id": "chapter_16",
+      "title": "桥上空桶",
+      "status": "draft_pending_reader_feedback_and_complete_story",
+      "nativeValidated": false,
+      "revision": "0.40.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": false,
+      "wordCount": 2456,
+      "wordCountPass": false
+    },
+    {
+      "id": "chapter_17",
+      "title": "三盏灯",
+      "status": "implemented_pending_external_reader_and_balance",
+      "nativeValidated": true,
+      "revision": "0.41.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": true,
+      "wordCount": 3973,
+      "wordCountPass": false
+    },
+    {
+      "id": "chapter_18",
+      "title": "水到门前",
+      "status": "three_endings_implemented_pending_external_reader",
+      "nativeValidated": true,
+      "revision": "0.41.0-dev",
+      "nativeRendered": true,
+      "playthroughValidated": true,
+      "wordCount": 6743,
+      "wordCountPass": false
+    }
+  ]
+}

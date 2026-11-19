@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "milestone": "0.33.0-dev",
+  "generated_on": "2026-11-07",
+  "tool": "native image_gen",
+  "model": "not exposed by runtime",
+  "rights_note": "Original project art with no third-party game images; retain for distribution and AI-content disclosure.",
+  "assets": [
+    {
+      "id": "scene_council_terrace",
+      "path": "assets/art/narrative/council-terrace-day-v1.png",
+      "source_filename": "exec-94092b9a-ab28-4844-b610-bab68efca675.png",
+      "reference_path": "assets/art/narrative/school-day-v1.png",
+      "prompt_key": "terrace",
+      "prompt_file": "assets/art/narrative/chapter09-prompts.json",
+      "size": [1536, 1024],
+      "mode": "RGB",
+      "sha256": "39d4a9e5a3218a813c5a3c5315c2b0315c2972b70414d2d9f453d0bbb62a0b2d",
+      "source_bytes_preserved": true,
+      "role": "Eye-level chapter-nine meeting backdrop; not simulated battle geometry.",
+      "processing": "Original PNG copied intact; Godot handles crop and dialogue overlay.",
+      "status": "source visual reviewed; rendered in chapter-nine native campaign and complete conditional page catalogue"
+    }
+  ]
+}

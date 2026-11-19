@@ -1,0 +1,40 @@
+{
+  "milestone": "0.34.0-dev",
+  "date": "2026-11-07",
+  "route": "road / relief / isolate / joint",
+  "source": "New Campaign, fixed-seed model with real unmodified battle results; chapter-ten native battle separately played from the actual prior ten-win native save for each governance plan",
+  "model_checks": 3685,
+  "model_failures": 0,
+  "chapters_entered": 10,
+  "battles_won": 11,
+  "legal_battle_actions": 2500,
+  "dialogue_ids_read": 998,
+  "choices_made": 16,
+  "route_han_characters": 53561,
+  "counting_method": "Distinct displayed dialogue IDs only, U+4E00 through U+9FFF; excludes chapter ends, codex, UI and unchosen alternatives.",
+  "stop": "current authored chapter-ten end after tower gate victory",
+  "player_policy": "Production AI except declared public-information diagnostic policies in the pump house, nursery and citadel court; enemy always production AI.",
+  "battles": [
+    {"id": "c01_road", "winner": 0, "actions": 151, "turn": 25},
+    {"id": "c01_bridge", "winner": 0, "actions": 448, "turn": 62},
+    {"id": "c02_relief_bridge", "winner": 0, "actions": 128, "turn": 21},
+    {"id": "c02_dispatch", "winner": 0, "actions": 454, "turn": 62},
+    {"id": "c03_vent", "winner": 0, "actions": 55, "turn": 13},
+    {"id": "c04_dock", "winner": 0, "actions": 269, "turn": 43},
+    {"id": "c04_pump", "winner": 0, "actions": 90, "turn": 17},
+    {"id": "c05_nursery", "winner": 0, "actions": 132, "turn": 25},
+    {"id": "c06_court", "winner": 0, "actions": 445, "turn": 62},
+    {"id": "c08_isolate", "winner": 0, "actions": 115, "turn": 21},
+    {"id": "c10_gate", "winner": 0, "actions": 213, "turn": 37}
+  ],
+  "native_chapter_ten": {
+    "actual_prior_wins": 10,
+    "plans_checked": ["joint", "split", "hold"],
+    "new_battle_actions": [213, 98, 165],
+    "writer_checks": 1495,
+    "reader_checks": 21,
+    "failures": 0,
+    "source": "docs/narrative-native-ui-v034.json"
+  },
+  "limits": "One fixed full route plus one fixed native gate opening per plan. The model and native routes use automated policies. They do not establish human difficulty, completion of all branching battles, the story conclusion or Steam readiness."
+}

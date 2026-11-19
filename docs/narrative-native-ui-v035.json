@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "milestone": "0.35.0-dev",
+  "date": "2026-11-07",
+  "passed": true,
+  "chapter_sha256": {
+    "chapter_11": "6bf6eec4a09dc4c2b6da11ca441629da1509c1fe9e2b8eafcf9276572fc42e9b"
+  },
+  "catalogue_test": "tests/test_chapter_eleven_catalog_ui.gd",
+  "catalogue_checks": 1361,
+  "catalogue_paragraphs": 119,
+  "catalogue_scope": "Every conditional eleventh-chapter body paragraph and its backdrop rendered in native Godot StoryView, including 1008x700 checks. Earlier victories in catalogue history are fixtures.",
+  "actual_save_test": "tests/test_chapter_eleven_ui.gd",
+  "actual_save_source": "Three verified 0.34 native saves after actual chapter-ten gate victories, each descended from an independently verified ten-win campaign save",
+  "actual_save_plans": ["joint", "split", "hold"],
+  "actual_save_paragraphs_per_plan": 112,
+  "actual_save_writer_checks": 717,
+  "actual_save_reader_checks": 18,
+  "actual_save_scope": "Three copies of earned gate-win saves entered and finished chapter eleven via native pointer input. A separate Godot process resumed each chapter-eleven end. No battle occurs in chapter eleven.",
+  "model_routes": 24,
+  "model_checks": 12627,
+  "model_test": "tests/test_chapter_eleven.gd",
+  "limitations": "One existing eleven-win route and three prior gate victories do not establish human balance or other branch win rates. Story conclusion and 100,000-character single-route target remain unfinished."
+}

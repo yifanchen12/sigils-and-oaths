@@ -1,0 +1,54 @@
+{
+  "milestone": "0.21.0-dev",
+  "date": "2026-11-06",
+  "base_commit": "12ccc0a5945396a26dceb545f114a29795fed113",
+  "source_hash_encoding": "UTF-8, LF normalized",
+  "source_sha256": {
+    "data/campaign.json": "f79d11348f1621ffc0d0468dacabfaa875966b9ae0308206dd1034eea7b53bce",
+    "scripts/battle.gd": "0af795bb1b10690fa142cdbf7f3c826733d40fa993dde08485b128c0d05a1625",
+    "scripts/opponent.gd": "6f1af5e863a92546abe6e9e36e305128b90da18c78b66a34ffe514985f5c7524",
+    "scripts/objective_ai.gd": "7253472fb4f50b78a04a1f201002f27fdc9424721ff09628af5d7b10e532698a",
+    "scripts/tactical_ai.gd": "5619c6bbe49a3ef3d26c0761e3d7669b74614985a705c653b2ca2135ffa3f72b",
+    "scripts/battle_snapshot.gd": "68f59e7e933e59b116b893efdc409360e7404709ed12f6d479cfcd1404c65cdd",
+    "tests/fixtures/campaign_pilot.gd": "8e2a194d1d3f4bef5a74b81325871fa0fde489147a46f89b2044a4bda8c34431",
+    "tests/benchmark_campaign.gd": "3dc36605b1462f2e85c9384ca968be5a735974f2d4d6833128eb3e0280ae7f5e",
+    "tests/test_campaign_replays.gd": "f070f9b93088d2d4d27ffdb4d65f1aafbc8d56ad015c1022ba4e8dea44ddfe78"
+  },
+  "fixture": "tests/fixtures/campaign_v021_grove.json",
+  "fixture_sha256": "fe7739875c2c40ba616bfaa5c77037f64b3f934d0e24eb6990cde24d513289aa",
+  "coverage": "selected_scenarios",
+  "scenario_ids": [
+    "c05_nursery",
+    "c05_channel"
+  ],
+  "policy": "cautious diagnostic player against production opponent",
+  "games": [
+    {
+      "actions": 117,
+      "decision_mean_ms": 103.18678632478633,
+      "decision_peak_ms": 427.127,
+      "illegal_action": "",
+      "max_control_streak": 0,
+      "reason": "deadline",
+      "scenario": "c05_nursery",
+      "seed": 5317.0,
+      "streak_resets": 0,
+      "turn": 25,
+      "winner": 1
+    },
+    {
+      "actions": 135,
+      "decision_mean_ms": 47.254659259259256,
+      "decision_peak_ms": 198.483,
+      "illegal_action": "",
+      "max_control_streak": 0,
+      "reason": "commander",
+      "scenario": "c05_channel",
+      "seed": 5318.0,
+      "streak_resets": 0,
+      "turn": 21,
+      "winner": 0
+    }
+  ],
+  "limitations": "Two authored fixed seeds; normal initial units, decks, resources and production opponent. Diagnostic player runs at 0.35 seconds per action. Both wins and losses retained. Not a human difficulty estimate, native battle playthrough or eight-encounter continuous campaign."
+}

@@ -54,7 +54,7 @@ func run() -> void:
 	test_environments()
 	test_initiative()
 	var reports: Array[Dictionary] = []
-	for map: Dictionary in BattleModel.MAPS.maps:
+	for map: Dictionary in BattleModel.MAPS.available():
 		for hero_index: int in range(BattleModel.HEROES.heroes.size()):
 			var blue_hero: String = BattleModel.HEROES.heroes[hero_index].id
 			var red_hero: String = BattleModel.HEROES.heroes[(hero_index + 1) % 3].id
@@ -84,7 +84,7 @@ func test_maps_and_paths() -> void:
 		for y: int in range(game.height):
 			for x: int in range(game.width):
 				if game.ground(Vector2i(x, y)) != game.ground(Vector2i(game.width - 1 - x, game.height - 1 - y)): symmetric = false
-		check(symmetric, "rotationally fair terrain: " + map.id)
+		if not map.get("campaign_only", false): check(symmetric, "rotationally fair terrain: " + map.id)
 		var distances: Dictionary = game.walk_distances(game.commander(0).pos, {"kind": "sword"})
 		var reachable: bool = false
 		for direction: Vector2i in game.DIRECTIONS:

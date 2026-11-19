@@ -1,0 +1,24 @@
+{
+	"checks": 1038,
+	"failures": 0,
+	"games": [
+		{
+			"actions": 472,
+			"reloaded": true,
+			"repair_plan": "recast",
+			"turn": 64,
+			"watch": "upstream",
+			"winner": 0
+		},
+		{
+			"actions": 472,
+			"reloaded": true,
+			"repair_plan": "sleeve",
+			"turn": 64,
+			"watch": "tower",
+			"winner": 0
+		}
+	],
+	"human_playtest": false,
+	"provenance": "two earned chapter-fifteen endings; production AI on both sides; legal timed actions"
+}

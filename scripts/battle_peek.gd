@@ -2,7 +2,20 @@ class_name BattlePeek
 extends PanelContainer
 ## Read-only inspection in the unused gutter of an expanded battlefield.
 
-var portrait: TextureRect
+class FocusedPortrait extends Control:
+	const Art = preload("res://scripts/art_library.gd")
+	var focus := Vector2(0.5, 0.24)
+	var texture: Texture2D:
+		set(value):
+			texture = value
+			queue_redraw()
+	func _ready() -> void:
+		mouse_filter = Control.MOUSE_FILTER_IGNORE
+		resized.connect(queue_redraw)
+	func _draw() -> void:
+		if texture != null: Art.draw_cover(self, texture, Rect2(Vector2.ZERO, size), focus)
+
+var portrait: FocusedPortrait
 var heading: Label
 var subtitle: Label
 var details: Label
@@ -25,10 +38,8 @@ func _ready() -> void:
 	stack.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	stack.add_theme_constant_override("separation", 9)
 	add_child(stack)
-	portrait = TextureRect.new()
+	portrait = FocusedPortrait.new()
 	portrait.custom_minimum_size = Vector2(0, 175)
-	portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	stack.add_child(portrait)
 	heading = _label(19, Color("233a50"))
@@ -44,7 +55,8 @@ func _label(font_size: int, color: Color) -> Label:
 	label.add_theme_color_override("font_color", color)
 	return label
 
-func present(texture: Texture2D, title: String, tag: String, body: String, accent: Color) -> void:
+func present(texture: Texture2D, title: String, tag: String, body: String, accent: Color, focus: Vector2 = Vector2(0.5, 0.24)) -> void:
+	portrait.focus = focus
 	portrait.texture = texture
 	heading.text = title
 	heading.add_theme_color_override("font_color", Color("214459") if accent.g > accent.r else Color("8d3c38"))

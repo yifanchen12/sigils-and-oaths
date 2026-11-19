@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "milestone": "0.41.0-dev",
+  "date": "2026-11-18",
+  "passed": true,
+  "chapter_sha256": {
+    "chapter_17": "d468f23d4ab185c872532802c0e8f2065a1e881e7b27f8ada1e2707a5aeb4f1b",
+    "chapter_18": "d3024a81fa64134e33af7e440b9944d82fd22a1654134885e51628fc0fc5490a"
+  },
+  "catalogue_test": "tests/test_finale_catalog_ui.gd",
+  "catalogue_checks": 1563,
+  "catalogue_body_pages": 163,
+  "catalogue_scope": "Every new body page, inherited conditional paragraph, and named ending rendered in native StoryView. The route choice, briefing, all endings and map were checked at 1008x700. Catalogue battle wins are fixtures used to render aftermath.",
+  "battle_and_ending_test": "tests/test_campaign_finale.gd -- --earned",
+  "battle_and_ending_checks": 569,
+  "battle_and_ending_scope": "Two chapter-sixteen ending saves earned on 0.40 each won the relay on normal resources against production AI, after a mid-relay save and reload. One separately played 16-round time-out loss reached the actual retry gate. Both earned victories could reach all three final pages and reload them from disk.",
+  "limitations": "Automated UI and gameplay verification. Human editorial review and playtesting are pending."
+}

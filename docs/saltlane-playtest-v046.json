@@ -1,0 +1,175 @@
+{
+  "version": "0.46.0-dev",
+  "coverage": "Three fixed new-campaign routes with lawful actions, saved battles, and one shared final ending; this is not three distinct ending variants.",
+  "policy": "production on both sides except c04_pump harbor focus player, c05_nursery wounded/support focus player, c06_court central-formation focus player, c12_depot formation focus and c14_channel bridge focus player",
+  "campaign_routes": {
+    "skip": {
+      "checks": 5208,
+      "battles": 15,
+      "actions": 3406,
+      "dialogue_pages": 1522,
+      "choices": 24,
+      "escort": null,
+      "ending": "joint_end"
+    },
+    "school": {
+      "checks": 5276,
+      "battles": 16,
+      "actions": 3434,
+      "dialogue_pages": 1550,
+      "choices": 25,
+      "escort": {
+        "scenario": "c07_saltlane_school",
+        "actions": 27,
+        "turn": 7,
+        "reload_at_action": 8
+      },
+      "ending": "joint_end"
+    },
+    "kiln": {
+      "checks": 5272,
+      "battles": 16,
+      "actions": 3429,
+      "dialogue_pages": 1551,
+      "choices": 25,
+      "escort": {
+        "scenario": "c07_saltlane_kiln",
+        "actions": 23,
+        "turn": 7,
+        "reload_at_action": 6
+      },
+      "ending": "joint_end"
+    }
+  },
+  "escort_seed_sample_method": "Two unchanged escort scenarios, eight seeds per scenario. Both players use the production decision policy. Only the seed changes.",
+  "escort_seed_sample": [
+    {
+      "actions": 27,
+      "escort_min_hp": 2,
+      "result": "delivered",
+      "route": "school",
+      "seed": 7401,
+      "turn": 7
+    },
+    {
+      "actions": 31,
+      "escort_min_hp": 2,
+      "result": "delivered",
+      "route": "school",
+      "seed": 7412,
+      "turn": 7
+    },
+    {
+      "actions": 47,
+      "escort_min_hp": 2,
+      "result": "delivered",
+      "route": "school",
+      "seed": 7423,
+      "turn": 11
+    },
+    {
+      "actions": 16,
+      "escort_min_hp": 0,
+      "result": "escort_lost",
+      "route": "school",
+      "seed": 7434,
+      "turn": 4
+    },
+    {
+      "actions": 29,
+      "escort_min_hp": 2,
+      "result": "delivered",
+      "route": "school",
+      "seed": 7445,
+      "turn": 7
+    },
+    {
+      "actions": 26,
+      "escort_min_hp": 2,
+      "result": "delivered",
+      "route": "school",
+      "seed": 7456,
+      "turn": 7
+    },
+    {
+      "actions": 25,
+      "escort_min_hp": 2,
+      "result": "delivered",
+      "route": "school",
+      "seed": 7467,
+      "turn": 7
+    },
+    {
+      "actions": 16,
+      "escort_min_hp": 0,
+      "result": "escort_lost",
+      "route": "school",
+      "seed": 7478,
+      "turn": 4
+    },
+    {
+      "actions": 23,
+      "escort_min_hp": 2,
+      "result": "delivered",
+      "route": "kiln",
+      "seed": 7402,
+      "turn": 7
+    },
+    {
+      "actions": 45,
+      "escort_min_hp": 2,
+      "result": "delivered",
+      "route": "kiln",
+      "seed": 7413,
+      "turn": 11
+    },
+    {
+      "actions": 23,
+      "escort_min_hp": 6,
+      "result": "delivered",
+      "route": "kiln",
+      "seed": 7424,
+      "turn": 7
+    },
+    {
+      "actions": 34,
+      "escort_min_hp": 2,
+      "result": "delivered",
+      "route": "kiln",
+      "seed": 7435,
+      "turn": 9
+    },
+    {
+      "actions": 25,
+      "escort_min_hp": 2,
+      "result": "delivered",
+      "route": "kiln",
+      "seed": 7446,
+      "turn": 7
+    },
+    {
+      "actions": 36,
+      "escort_min_hp": 4,
+      "result": "delivered",
+      "route": "kiln",
+      "seed": 7457,
+      "turn": 9
+    },
+    {
+      "actions": 23,
+      "escort_min_hp": 6,
+      "result": "delivered",
+      "route": "kiln",
+      "seed": 7468,
+      "turn": 7
+    },
+    {
+      "actions": 13,
+      "escort_min_hp": 0,
+      "result": "escort_lost",
+      "route": "kiln",
+      "seed": 7479,
+      "turn": 4
+    }
+  ]
+}

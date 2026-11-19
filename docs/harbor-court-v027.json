@@ -1,0 +1,627 @@
+{
+  "milestone": "0.27.0-dev",
+  "date": "2026-11-06",
+  "base_commit": "29aa36154848a5373ec7d5685182e8dbccff4418",
+  "hashing": "SHA256 of UTF-8 text normalized to LF; PNG bytes unmodified",
+  "source_sha256": {
+    "project.godot": "b86dfa14d4b3a3043fa46d8ff39de278f4f609b9d235469a829766d92cca1b88",
+    "data/campaign.json": "5c68b08bc4e08f192a59c8a6069e0ef34e34117bd6fd2c597898d2445185f4d5",
+    "data/cards.tres": "bb8cd2a74d382ddd809e073a5e805f30f6ddc2136fe6e5552043a6bb72a72a4f",
+    "data/heroes.tres": "a4b1f67a06643a06f423797b9b3745c6e7c4110b027e45f9ed42a0c204e79a3a",
+    "data/decks.tres": "f13aeaa4b604de31b9109ed156c136f56389826f5d727dbc71e4e0616b3bd89f",
+    "data/maps.tres": "573d6b8e214d92c54d449a7fcbd6f9a5c8fcf99afd31177e1e20294b96b8a5a5",
+    "scripts/battle.gd": "7cfaeb3a9122baf008125196defb4b74f12fbc7e214ede7ab94e17535d889057",
+    "scripts/opponent.gd": "713b2a70bf3f60f8f98bf3c57a0dad85ff931c37529be91510736096d7e5bdbf",
+    "scripts/objective_ai.gd": "7253472fb4f50b78a04a1f201002f27fdc9424721ff09628af5d7b10e532698a",
+    "scripts/tactical_ai.gd": "16f928c382c7edce669f4c9fc61857bbf28d87f57110aabb112a5f804d4d854e",
+    "scripts/battle_snapshot.gd": "68f59e7e933e59b116b893efdc409360e7404709ed12f6d479cfcd1404c65cdd",
+    "scripts/campaign_session.gd": "74770621b42d1dc19f1f11c9237b6a6ad120069166d8f730aaffda086686052e",
+    "scripts/story_view.gd": "c7ee2995ef4f0edc555d90c2a1300e88674f586ccadd6bdfb002698c5aa4d228",
+    "tests/benchmark_campaign.gd": "a6ac4764351aee9e79cfb8c790ed665fa1889baa4df7b8d5028048462f2dce97",
+    "tests/test_opponent.gd": "d3f21626d373ead9a3a5dc4688b24cdde2318f96147b4c6a5ada2a7f51d4ddcd",
+    "tests/test_sunspire_pilot.gd": "a56034de70e3c6f711e6ebd6f61814419b8e8ad8c0fcb2ab3da894e72fefafdc",
+    "tests/test_campaign_playthrough_ui.gd": "34ac267cbe810418ffed76e467bd0a7d48e05144eaf3f4e782f69b1fb4b69660",
+    "tests/test_campaign_replays.gd": "f070f9b93088d2d4d27ffdb4d65f1aafbc8d56ad015c1022ba4e8dea44ddfe78",
+    "tests/fixtures/bridge_focus_pilot.gd": "aaeca8a6e6d5185ae5e81defade4679006707fba31d18ce6fc320278fad721c2",
+    "tests/fixtures/sunspire_focus_pilot.gd": "b88337ba02a5d9b1ffcc38349b38e4b70d187437ed4a2d3cb460b6aba785ba98",
+    "tests/fixtures/harbor_court_pilot.gd": "4e9cddae071f98e8e73b9f90aef9521a04cc9b7251173067c755c3500d33a486"
+  },
+  "fixture_sha256": {
+    "tests/fixtures/campaign_v027_before.json": "780ffa4b9dab2139b647d6f1c550b545baeb0fa77a5ded5d174c8a1a663033e0",
+    "tests/fixtures/campaign_v027_selfplay.json": "2ab5eb180106d0ea2099fb20116135cb0bafb0ef5f8309e4e68c89943b816858",
+    "tests/fixtures/campaign_v027_harbor.json": "ef2c4a5d036332ade577df78810d9437c538e84d22361e167a40bfa5c82faece",
+    "tests/fixtures/campaign_v027_sunspire.json": "579663c4ac49470edaf6146c2a4862d15941e10982dcdabad24ecac84add8871"
+  },
+  "groups": {
+    "before": {
+      "policy": "pre-0.27 production opponent on both sides",
+      "coverage": "all_scenarios",
+      "note": "Historical groups assembled without changing any game row. Decision timings are historical observations, not a controlled performance comparison. All 15 traces are independently replayed with unchanged rules.",
+      "source_fixtures": {
+        "tests/fixtures/campaign_v023_selfplay.json": "fa17c5612157813fe534fce666f35a223d44cca517de4ac472e37357dab010f0",
+        "tests/fixtures/campaign_v025_sunspire.json": "3a289110c7ea2a9b0af5261f55f8f23540d4cfd761194cee5f70817c62e96ce8"
+      },
+      "opponent_sha256": "6f1af5e863a92546abe6e9e36e305128b90da18c78b66a34ffe514985f5c7524",
+      "games": [
+        {
+          "actions": 182,
+          "decision_mean_ms": 34.7405989010989,
+          "decision_peak_ms": 257.025,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c01_road",
+          "seed": 1317.0,
+          "streak_resets": 0,
+          "turn": 27,
+          "winner": 0
+        },
+        {
+          "actions": 493,
+          "decision_mean_ms": 93.69086004056794,
+          "decision_peak_ms": 313.036,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c01_river",
+          "seed": 1318.0,
+          "streak_resets": 0,
+          "turn": 62,
+          "winner": 0
+        },
+        {
+          "actions": 425,
+          "decision_mean_ms": 81.3423905882353,
+          "decision_peak_ms": 319.055,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c01_bridge",
+          "seed": 1319.0,
+          "streak_resets": 0,
+          "turn": 63,
+          "winner": 1
+        },
+        {
+          "actions": 145,
+          "decision_mean_ms": 91.86935172413793,
+          "decision_peak_ms": 294.716,
+          "illegal_action": "",
+          "max_control_streak": 1,
+          "reason": "deadline",
+          "scenario": "c02_relief_bridge",
+          "seed": 2317.0,
+          "streak_resets": 1,
+          "turn": 25,
+          "winner": 1
+        },
+        {
+          "actions": 88,
+          "decision_mean_ms": 127.23206818181818,
+          "decision_peak_ms": 378.035,
+          "illegal_action": "",
+          "max_control_streak": 2,
+          "reason": "control",
+          "scenario": "c02_seed_bridge",
+          "seed": 2318.0,
+          "streak_resets": 0,
+          "turn": 15,
+          "winner": 0
+        },
+        {
+          "actions": 393,
+          "decision_mean_ms": 100.43846819338422,
+          "decision_peak_ms": 403.92,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c02_dispatch",
+          "seed": 2319.0,
+          "streak_resets": 0,
+          "turn": 58,
+          "winner": 0
+        },
+        {
+          "actions": 56,
+          "decision_mean_ms": 53.753125,
+          "decision_peak_ms": 193.961,
+          "illegal_action": "",
+          "max_control_streak": 2,
+          "reason": "control",
+          "scenario": "c03_vent",
+          "seed": 3317.0,
+          "streak_resets": 0,
+          "turn": 13,
+          "winner": 0
+        },
+        {
+          "actions": 412,
+          "decision_mean_ms": 50.91752184466019,
+          "decision_peak_ms": 255.884,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c03_ridge",
+          "seed": 3318.0,
+          "streak_resets": 0,
+          "turn": 66,
+          "winner": 0
+        },
+        {
+          "actions": 413,
+          "decision_mean_ms": 67.62137772397095,
+          "decision_peak_ms": 208.148,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c04_dock",
+          "seed": 4317.0,
+          "streak_resets": 0,
+          "turn": 64,
+          "winner": 0
+        },
+        {
+          "actions": 377,
+          "decision_mean_ms": 72.82692572944298,
+          "decision_peak_ms": 424.657,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c04_pump",
+          "seed": 4318.0,
+          "streak_resets": 0,
+          "turn": 59,
+          "winner": 1
+        },
+        {
+          "actions": 127,
+          "decision_mean_ms": 112.14693700787402,
+          "decision_peak_ms": 439.498,
+          "illegal_action": "",
+          "max_control_streak": 2,
+          "reason": "control",
+          "scenario": "c05_nursery",
+          "seed": 5317.0,
+          "streak_resets": 0,
+          "turn": 23,
+          "winner": 0
+        },
+        {
+          "actions": 206,
+          "decision_mean_ms": 81.9990922330097,
+          "decision_peak_ms": 518.432,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c05_channel",
+          "seed": 5318.0,
+          "streak_resets": 0,
+          "turn": 31,
+          "winner": 0
+        },
+        {
+          "actions": 89,
+          "decision_mean_ms": 120.836,
+          "decision_peak_ms": 361.035,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c06_court",
+          "seed": 6317.0,
+          "streak_resets": 0,
+          "turn": 16,
+          "winner": 1
+        },
+        {
+          "actions": 123,
+          "decision_mean_ms": 15.313544715447154,
+          "decision_peak_ms": 64.843,
+          "illegal_action": "",
+          "max_control_streak": 1,
+          "reason": "deadline",
+          "scenario": "c08_isolate",
+          "seed": 8317.0,
+          "streak_resets": 1,
+          "turn": 25,
+          "winner": 1
+        },
+        {
+          "actions": 194,
+          "decision_mean_ms": 20.340025773195876,
+          "decision_peak_ms": 117.622,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c08_buffer",
+          "seed": 8318.0,
+          "streak_resets": 0,
+          "turn": 30,
+          "winner": 1
+        }
+      ]
+    },
+    "selfplay": {
+      "coverage": "all_scenarios",
+      "note": "Authored scenarios at fixed seeds, real initial resources and legal actions; fixed 0.35 s cadence. Not human balance or manual playthrough evidence.",
+      "policy": "production opponent on both sides",
+      "games": [
+        {
+          "actions": 182,
+          "decision_mean_ms": 14.37176923076923,
+          "decision_peak_ms": 50.398,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c01_road",
+          "seed": 1317.0,
+          "streak_resets": 0,
+          "turn": 27,
+          "winner": 0
+        },
+        {
+          "actions": 521,
+          "decision_mean_ms": 16.205165067178502,
+          "decision_peak_ms": 50.742,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c01_river",
+          "seed": 1318.0,
+          "streak_resets": 0,
+          "turn": 67,
+          "winner": 1
+        },
+        {
+          "actions": 246,
+          "decision_mean_ms": 11.746926829268292,
+          "decision_peak_ms": 43.67,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c01_bridge",
+          "seed": 1319.0,
+          "streak_resets": 0,
+          "turn": 37,
+          "winner": 0
+        },
+        {
+          "actions": 145,
+          "decision_mean_ms": 15.934793103448275,
+          "decision_peak_ms": 50.461,
+          "illegal_action": "",
+          "max_control_streak": 1,
+          "reason": "deadline",
+          "scenario": "c02_relief_bridge",
+          "seed": 2317.0,
+          "streak_resets": 1,
+          "turn": 25,
+          "winner": 1
+        },
+        {
+          "actions": 88,
+          "decision_mean_ms": 21.494386363636362,
+          "decision_peak_ms": 60.373,
+          "illegal_action": "",
+          "max_control_streak": 2,
+          "reason": "control",
+          "scenario": "c02_seed_bridge",
+          "seed": 2318.0,
+          "streak_resets": 0,
+          "turn": 15,
+          "winner": 0
+        },
+        {
+          "actions": 393,
+          "decision_mean_ms": 17.4751475826972,
+          "decision_peak_ms": 69.243,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c02_dispatch",
+          "seed": 2319.0,
+          "streak_resets": 0,
+          "turn": 58,
+          "winner": 0
+        },
+        {
+          "actions": 56,
+          "decision_mean_ms": 10.04592857142857,
+          "decision_peak_ms": 38.342,
+          "illegal_action": "",
+          "max_control_streak": 2,
+          "reason": "control",
+          "scenario": "c03_vent",
+          "seed": 3317.0,
+          "streak_resets": 0,
+          "turn": 13,
+          "winner": 0
+        },
+        {
+          "actions": 412,
+          "decision_mean_ms": 8.849912621359223,
+          "decision_peak_ms": 35.491,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c03_ridge",
+          "seed": 3318.0,
+          "streak_resets": 0,
+          "turn": 66,
+          "winner": 0
+        },
+        {
+          "actions": 413,
+          "decision_mean_ms": 11.87712832929782,
+          "decision_peak_ms": 36.687,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c04_dock",
+          "seed": 4317.0,
+          "streak_resets": 0,
+          "turn": 64,
+          "winner": 0
+        },
+        {
+          "actions": 378,
+          "decision_mean_ms": 12.815341269841271,
+          "decision_peak_ms": 74.163,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c04_pump",
+          "seed": 4318.0,
+          "streak_resets": 0,
+          "turn": 59,
+          "winner": 1
+        },
+        {
+          "actions": 127,
+          "decision_mean_ms": 21.150464566929134,
+          "decision_peak_ms": 72.134,
+          "illegal_action": "",
+          "max_control_streak": 2,
+          "reason": "control",
+          "scenario": "c05_nursery",
+          "seed": 5317.0,
+          "streak_resets": 0,
+          "turn": 23,
+          "winner": 0
+        },
+        {
+          "actions": 206,
+          "decision_mean_ms": 15.32881067961165,
+          "decision_peak_ms": 92.114,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c05_channel",
+          "seed": 5318.0,
+          "streak_resets": 0,
+          "turn": 31,
+          "winner": 0
+        },
+        {
+          "actions": 89,
+          "decision_mean_ms": 21.698539325842695,
+          "decision_peak_ms": 61.485,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c06_court",
+          "seed": 6317.0,
+          "streak_resets": 0,
+          "turn": 16,
+          "winner": 1
+        },
+        {
+          "actions": 123,
+          "decision_mean_ms": 15.42691056910569,
+          "decision_peak_ms": 62.57,
+          "illegal_action": "",
+          "max_control_streak": 1,
+          "reason": "deadline",
+          "scenario": "c08_isolate",
+          "seed": 8317.0,
+          "streak_resets": 1,
+          "turn": 25,
+          "winner": 1
+        },
+        {
+          "actions": 195,
+          "decision_mean_ms": 20.453251282051284,
+          "decision_peak_ms": 118.673,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c08_buffer",
+          "seed": 8318.0,
+          "streak_resets": 0,
+          "turn": 30,
+          "winner": 1
+        }
+      ]
+    },
+    "harbor": {
+      "coverage": "selected_scenarios",
+      "note": "Authored scenarios at fixed seeds, real initial resources and legal actions; fixed 0.35 s cadence. Not human balance or manual playthrough evidence.",
+      "policy": "harbor focus and central court diagnostic player against production opponent",
+      "scenario_ids": [
+        "c04_dock",
+        "c04_pump",
+        "c06_court"
+      ],
+      "games": [
+        {
+          "actions": 348,
+          "decision_mean_ms": 14.472425287356321,
+          "decision_peak_ms": 39.682,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c04_dock",
+          "seed": 4317.0,
+          "streak_resets": 0,
+          "turn": 49,
+          "winner": 1
+        },
+        {
+          "actions": 89,
+          "decision_mean_ms": 10.648955056179775,
+          "decision_peak_ms": 38.406,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c04_pump",
+          "seed": 4318.0,
+          "streak_resets": 0,
+          "turn": 17,
+          "winner": 0
+        },
+        {
+          "actions": 466,
+          "decision_mean_ms": 20.607349785407724,
+          "decision_peak_ms": 80.486,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c06_court",
+          "seed": 6317.0,
+          "streak_resets": 0,
+          "turn": 61,
+          "winner": 0
+        }
+      ]
+    },
+    "sunspire": {
+      "coverage": "selected_scenarios",
+      "note": "Authored scenarios at fixed seeds, real initial resources and legal actions; fixed 0.35 s cadence. Not human balance or manual playthrough evidence.",
+      "policy": "central-formation diagnostic player against production opponent",
+      "scenario_ids": [
+        "c08_isolate",
+        "c08_buffer"
+      ],
+      "games": [
+        {
+          "actions": 108,
+          "decision_mean_ms": 16.57159259259259,
+          "decision_peak_ms": 67.607,
+          "illegal_action": "",
+          "max_control_streak": 2,
+          "reason": "control",
+          "scenario": "c08_isolate",
+          "seed": 8317.0,
+          "streak_resets": 0,
+          "turn": 23,
+          "winner": 0
+        },
+        {
+          "actions": 124,
+          "decision_mean_ms": 20.434596774193547,
+          "decision_peak_ms": 63.44,
+          "illegal_action": "",
+          "max_control_streak": 0,
+          "reason": "commander",
+          "scenario": "c08_buffer",
+          "seed": 8318.0,
+          "streak_resets": 0,
+          "turn": 20,
+          "winner": 1
+        }
+      ]
+    }
+  },
+  "regressions": {
+    "models": {
+      "test_opponent": 23,
+      "test_battle": 76,
+      "test_objective_ai": 29,
+      "test_unit_skills": 54,
+      "test_effect_forecast": 134,
+      "test_control_objective": 32,
+      "test_casting_clock": 28,
+      "test_battle_snapshot": 190,
+      "test_campaign_session": 204,
+      "test_tactical_ai": 170
+    },
+    "public_information": {
+      "sunspire": {
+        "checks": 108,
+        "positions": 21
+      },
+      "harbor": {
+        "checks": 324,
+        "positions": 64
+      }
+    },
+    "model_total": 1372,
+    "replays": {
+      "campaign_v027_before": 7508,
+      "campaign_v027_selfplay": 7210,
+      "campaign_v027_harbor": 1824,
+      "campaign_v027_sunspire": 477,
+      "campaign_v025_sunspire": 647,
+      "campaign_v026_sunspire": 761
+    },
+    "new_replay_total": 9511,
+    "replay_total": 18427
+  },
+  "native": [
+    {
+      "scenario": "c04_dock",
+      "fixture": "tests/fixtures/campaign_v027_selfplay.json",
+      "actions": 413,
+      "turn": 64,
+      "postbattle_line": "c04.ashore.01",
+      "passed": true,
+      "write_checks": 76,
+      "read_checks": 1011,
+      "exit_action_count": 25,
+      "exit_turn": 8
+    },
+    {
+      "scenario": "c04_pump",
+      "fixture": "tests/fixtures/campaign_v027_harbor.json",
+      "actions": 89,
+      "turn": 17,
+      "postbattle_line": "c04.after_pump.01",
+      "passed": true,
+      "write_checks": 43,
+      "read_checks": 232,
+      "exit_action_count": 16,
+      "exit_turn": 8
+    },
+    {
+      "scenario": "c06_court",
+      "fixture": "tests/fixtures/campaign_v027_harbor.json",
+      "actions": 466,
+      "turn": 61,
+      "postbattle_line": "c06.after_court.01",
+      "passed": true,
+      "write_checks": 83,
+      "read_checks": 1167,
+      "exit_action_count": 26,
+      "exit_turn": 8
+    }
+  ],
+  "native_total": 2612,
+  "screenshot_sha256": {
+    "docs/screenshots/v027-c04_dock-before-exit.png": "44ba223317928e95a00025a69dd0856d5ebe03f1c364600cdfbd42936bb8bb6f",
+    "docs/screenshots/v027-c04_dock-victory.png": "4a71fad18ed8b5dbcf48b6f97572a64913a98ac7b41613624ca22b2a505e6185",
+    "docs/screenshots/v027-c04_dock-story.png": "8c02272a6e2b18ce4576ba9629993f9531bb1f6e9d90511161028ced7d24aad0",
+    "docs/screenshots/v027-c04_pump-before-exit.png": "878d056d85c3e98440ddd859f1c283e66522f90e89eb13c9626687f1ab0171e1",
+    "docs/screenshots/v027-c04_pump-victory.png": "f5cbcbb01eaff68175d05d0fb69a3cea3efc0cebac9423bdf892cdd9667dbe00",
+    "docs/screenshots/v027-c04_pump-story.png": "77a8f709d5443908c25218ecc048bcb2176af339ae82e0bcd18292332361359d",
+    "docs/screenshots/v027-c06_court-before-exit.png": "9d91a270dd2b307c96283234881b317cf58c4daac23414bc695c34a557753fbc",
+    "docs/screenshots/v027-c06_court-victory.png": "9e5b024d72c1e82e16ae4cacbda5a09bac63a46ef7ea3d32de1ab7115cf8e4a9",
+    "docs/screenshots/v027-c06_court-story.png": "8935b40dd72d8e7e6d109c47620e6f8be8a9c6a037fa7310d3badfacdf07ed51"
+  },
+  "limitations": [
+    "Fixed authored seeds and diagnostic players, not human win rates or final balance.",
+    "Court takes 31 rounds; dock takes 32 rounds and ends from enemy fatigue. Long-game pacing remains unresolved.",
+    "Previous Sunspire buffer victory is historical: the same diagnostic player loses against the updated opponent.",
+    "Native encounters use earlier narrative victory fixtures, not a continuous ten-battle campaign.",
+    "No rule values, resources, scenarios, prose or art changed. AI-only change preserves the save schema but changes future decisions.",
+    "Historical baseline rows are assembled unchanged from the 0.23 and 0.25 fixtures; their timings are not a controlled performance baseline."
+  ]
+}

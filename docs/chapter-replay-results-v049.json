@@ -1,0 +1,133 @@
+{
+  "version": "0.49.0-dev",
+  "started_new_campaign": true,
+  "route": "road",
+  "saltlane": "school",
+  "chapters_entered": 18,
+  "dialogue_pages": 1550,
+  "choices": 25,
+  "declared_choices": {
+    "chapter_09.governance": "split",
+    "chapter_17.kit": "screen",
+    "chapter_18.covenant": "split"
+  },
+  "policy": "production on both sides except c04_pump harbor focus player, c05_nursery wounded/support focus player, c06_court central-formation focus player, c12_depot formation focus and c14_channel bridge focus player",
+  "checks": 5177,
+  "failures": 0,
+  "total_legal_actions": 3331,
+  "ending": "split_end",
+  "games": [
+    {
+      "scenario": "c01_road",
+      "winner": 0,
+      "turn": 25,
+      "actions": 151,
+      "reload_at_action": 27
+    },
+    {
+      "scenario": "c01_bridge",
+      "winner": 0,
+      "turn": 62,
+      "actions": 448,
+      "reload_at_action": 25
+    },
+    {
+      "scenario": "c02_relief_bridge",
+      "winner": 0,
+      "turn": 21,
+      "actions": 128,
+      "reload_at_action": 21
+    },
+    {
+      "scenario": "c02_dispatch",
+      "winner": 0,
+      "turn": 62,
+      "actions": 454,
+      "reload_at_action": 21
+    },
+    {
+      "scenario": "c03_vent",
+      "winner": 0,
+      "turn": 13,
+      "actions": 55,
+      "reload_at_action": 28
+    },
+    {
+      "scenario": "c04_dock",
+      "winner": 0,
+      "turn": 43,
+      "actions": 269,
+      "reload_at_action": 25
+    },
+    {
+      "scenario": "c04_pump",
+      "winner": 0,
+      "turn": 17,
+      "actions": 90,
+      "reload_at_action": 16
+    },
+    {
+      "scenario": "c05_nursery",
+      "winner": 0,
+      "turn": 25,
+      "actions": 132,
+      "reload_at_action": 21
+    },
+    {
+      "scenario": "c06_court",
+      "winner": 0,
+      "turn": 62,
+      "actions": 445,
+      "reload_at_action": 26
+    },
+    {
+      "scenario": "c07_saltlane_school",
+      "winner": 0,
+      "turn": 7,
+      "actions": 27,
+      "reload_at_action": 8
+    },
+    {
+      "scenario": "c08_isolate",
+      "winner": 0,
+      "turn": 21,
+      "actions": 116,
+      "reload_at_action": 23
+    },
+    {
+      "scenario": "c10_gate",
+      "winner": 0,
+      "turn": 19,
+      "actions": 98,
+      "reload_at_action": 27
+    },
+    {
+      "scenario": "c12_depot",
+      "winner": 0,
+      "turn": 23,
+      "actions": 109,
+      "reload_at_action": 20
+    },
+    {
+      "scenario": "c14_channel",
+      "winner": 0,
+      "turn": 37,
+      "actions": 240,
+      "reload_at_action": 21
+    },
+    {
+      "scenario": "c16_bridge",
+      "winner": 0,
+      "turn": 64,
+      "actions": 472,
+      "reload_at_action": 21
+    },
+    {
+      "scenario": "c17_screen",
+      "winner": 0,
+      "turn": 19,
+      "actions": 97,
+      "reload_at_action": 20
+    }
+  ]
+}

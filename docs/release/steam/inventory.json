@@ -1,0 +1,224 @@
+{
+  "version": "0.55.0-dev",
+  "images": [
+    {
+      "path": "key-art-v1.png",
+      "pixels": [
+        1672,
+        941
+      ],
+      "format": "PNG",
+      "mode": "RGB",
+      "bytes": 2559185,
+      "sha256": "8b6aaef4a3d45b1ad7e229fe618c06d061f0584e54a532b193ae86e6f1f44ca1"
+    },
+    {
+      "path": "graphics/store-header.jpg",
+      "pixels": [
+        920,
+        430
+      ],
+      "format": "JPEG",
+      "mode": "RGB",
+      "bytes": 203804,
+      "sha256": "11172a5475cc51cec5c7769f624e4f7d5720ddb615ee239160b596ee985742be"
+    },
+    {
+      "path": "graphics/store-small.jpg",
+      "pixels": [
+        462,
+        174
+      ],
+      "format": "JPEG",
+      "mode": "RGB",
+      "bytes": 48464,
+      "sha256": "0882686c88ae3c173f8bd49bd7ec3dd9bbd23a0628380b4b2a4e4762a6c893e7"
+    },
+    {
+      "path": "graphics/store-main.jpg",
+      "pixels": [
+        1232,
+        706
+      ],
+      "format": "JPEG",
+      "mode": "RGB",
+      "bytes": 403267,
+      "sha256": "28e064298d7adee0552eb859b013a45250eb79b3b7782a9816299e9b9ddbd5a7"
+    },
+    {
+      "path": "graphics/store-vertical.jpg",
+      "pixels": [
+        748,
+        896
+      ],
+      "format": "JPEG",
+      "mode": "RGB",
+      "bytes": 329743,
+      "sha256": "936ebcd3fb510e549506a2e20e89a2530d0060eefce2f58cd024be6bb85c3918"
+    },
+    {
+      "path": "graphics/library-capsule.jpg",
+      "pixels": [
+        600,
+        900
+      ],
+      "format": "JPEG",
+      "mode": "RGB",
+      "bytes": 275274,
+      "sha256": "6720c8005b2b694ec7671424363d8be5776a7a77a3d427dbb05dce4317b04ea6"
+    },
+    {
+      "path": "graphics/library-header.jpg",
+      "pixels": [
+        920,
+        430
+      ],
+      "format": "JPEG",
+      "mode": "RGB",
+      "bytes": 203804,
+      "sha256": "11172a5475cc51cec5c7769f624e4f7d5720ddb615ee239160b596ee985742be"
+    },
+    {
+      "path": "graphics/library-hero.jpg",
+      "pixels": [
+        3840,
+        1240
+      ],
+      "format": "JPEG",
+      "mode": "RGB",
+      "bytes": 1142380,
+      "sha256": "42a167abfeeebe034fdb2ee1bdbaaedebf03545cd1b2158f9525b4dd6d7ea6ad"
+    },
+    {
+      "path": "graphics/library-logo.png",
+      "pixels": [
+        1280,
+        390
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 99033,
+      "sha256": "2046111346e4073134fdbb383aa78a84222789bc117e1a9e46957537e5eea184"
+    },
+    {
+      "path": "graphics/app-icon.jpg",
+      "pixels": [
+        184,
+        184
+      ],
+      "format": "JPEG",
+      "mode": "RGB",
+      "bytes": 18121,
+      "sha256": "41abd2987d2c9134b24520b48ef97aaca6725c7dfaeab00d5b466bb2ff8e969c"
+    },
+    {
+      "path": "graphics/shortcut-icon.png",
+      "pixels": [
+        512,
+        512
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 46114,
+      "sha256": "99747e3a0247e74364813e1188e966d1b98b6b658e701d89cad115728a351c7e"
+    },
+    {
+      "path": "gameplay/01-local-spell.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1459495,
+      "sha256": "c347541d7637d61431ad617ba5a5003c466980755998eeae4f3c01af5f4e0628",
+      "capture": "Normal Frost Engine vs Balanced Host skirmish on the Blender-rendered Greenwood, seed 4107, before a legal ten-mana cast on side turn 21."
+    },
+    {
+      "path": "gameplay/02-bridge-engagement.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1328501,
+      "sha256": "dc6afebba87020bcd27ebac985e1bf0cb0fea590ea6aceffa76444cd73287809",
+      "capture": "Normal Reed Legion vs Balanced Host skirmish, Rivergate seed 4186, attack preview on side turn 13."
+    },
+    {
+      "path": "gameplay/03-rivergate-story.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 2641206,
+      "sha256": "eb004ab7d7a4e8143810767c723619e459aa18ce34a1afc3fa763a99c983bbea",
+      "capture": "The opening chapter's actual c01.a03 dialogue page reached by reading from New Campaign."
+    },
+    {
+      "path": "gameplay/04-guard-drill.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1112071,
+      "sha256": "1903e070bc019204e4a05004bd2fa6362db82ef4269f34bd7a5bb55b8ca5324d",
+      "capture": "The playable second tutorial, with the hand trap selected on the actual training board."
+    },
+    {
+      "path": "gameplay/05-three-lamps-mission.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1659113,
+      "sha256": "884cda437f67b598a3750dbf568cd693498aeb38697848409e9fee3c45fadde2",
+      "capture": "The authored c17_runner objective and opening cards loaded in the production battlefield scene."
+    },
+    {
+      "path": "gameplay/06-glassroad-muster.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1407672,
+      "sha256": "ed04fa95408354314302264c99a5ea7bb88546d954997aa515d7124b14474a2c",
+      "capture": "Salt Road Reserves vs Twin-Tide Orders, Greenwood seed 5423. Two legal reserve landings on side turn 21 after 103 legal actions."
+    },
+    {
+      "path": "gameplay/07-glassroad-dual-order.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1301022,
+      "sha256": "cb12643b28d934bd01404aa608450badbca970691d6d55d885c002be4183568a",
+      "capture": "Twin-Tide Orders vs Bell Ambush on the Blender-rendered Rivergate map, seed 5479. Enemy branch of Glassroad Treaty on side turn 19 after 94 legal actions."
+    },
+    {
+      "path": "gameplay/08-harbor-crossing.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1344426,
+      "sha256": "ec90aecc201223fae4f22cb1cde5d76553c8fbe6fa0107282f3701005ddc39f3",
+      "capture": "Reed Legion vs Balanced Host on Harbor, seed 5501, side turn 13 after 57 legal actions. A healer on the southern drawbridge previews an attack on a spearman on the east bank."
+    }
+  ],
+  "viewport_screenshots": 8,
+  "store_and_library_graphics_including_icons": 10
+}

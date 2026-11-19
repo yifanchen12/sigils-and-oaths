@@ -19,4 +19,100 @@ decks = Array[Dictionary]([{
 "cards": {"sword": 3, "spear": 4, "cavalry": 1, "archer": 4, "mage": 2, "healer": 4,
 "bolt": 1, "heal": 2, "ward": 2, "rampart": 2,
 "rain": 1, "fog": 1, "frostbind": 1, "dispel": 1, "exchange": 1}
+}, {
+"id": "ambush", "name": "誓痕伏阵", "description": "从手牌伏设地格与护军陷阱，以探查、解缚和群疗争夺前线。",
+"cards": {"sword": 3, "spear": 3, "cavalry": 2, "archer": 3, "mage": 3, "healer": 2,
+"anchor_snare": 2, "ember_mine": 2, "oath_ward": 2, "shatter_bolt": 2, "rally_heal": 1,
+"cleanse_root": 1, "reveal_traps": 1, "seedwood": 1, "bolt": 1, "march": 1}
+}, {
+"id": "channel", "name": "暗渠工班", "description": "在水域前用临桥木架延伸阵线，以回流护印防术击，适合河谷与运水渠战场。",
+"cards": {"sword": 3, "spear": 3, "cavalry": 2, "archer": 4, "mage": 3, "healer": 3,
+"span_kit": 2, "countercurrent_ward": 2, "reveal_traps": 1, "anchor_snare": 1, "oath_ward": 1,
+"shatter_bolt": 1, "rally_heal": 1, "heal": 1, "fog": 1, "trail": 1}
+}, {
+"id": "reed_legion", "name": "逐岸先锋", "set_id": "warfront", "description": "低费前哨开路，枪卫进场援护。靠传令骑和疾风扩大部署，再用换班再击夺回节奏。",
+"cards": {"reed_scout": 3, "gate_veteran": 3, "ridge_courier": 3, "ridge_archer": 2, "shore_medic": 2, "breakwater_guard": 2, "bronze_watch": 1, "sword": 2,
+"field_signals": 2, "detach_line": 2, "dispatch_bundle": 1, "march": 2, "second_watch": 1, "open_wind": 1, "reed_roads": 1, "silt_snare": 1, "bolt": 1}
+}, {
+"id": "frost_engine", "name": "断阵重术", "set_id": "warfront", "description": "用巡弓清出落脚点，以临桥木架接续施法线。预留法力给崩纹破盾、八费澜潮或十费坠火。",
+"cards": {"sword": 1, "spear": 2, "archer": 2, "mage": 2, "reed_scout": 2, "cavalry": 1, "quay_lantern": 2, "mink_watcher": 3,
+"mist_spike": 1, "warder_hymn": 1, "hammer_sweep": 1, "signal_torrent": 1, "last_hearth": 1, "frostbind": 2, "clear_skies": 1, "fog": 1, "ward": 1, "second_watch": 1,
+"open_wind": 1, "span_kit": 1, "split_sentence": 1, "shatter_bolt": 1}
+}, {
+"id": "lantern_convoy", "name": "灯曜守队", "set_id": "warfront", "description": "用枪兵援护和术击伏设稳住阵线。临时桥梁可打开另一条进路，三巡接灯为指挥官身旁的伤兵争取恢复时间。",
+"cards": {"sword": 2, "gate_veteran": 2, "healer": 2, "shore_medic": 2, "breakwater_guard": 2, "bronze_watch": 1, "mage": 2, "archer": 2, "quay_lantern": 1, "spear": 1,
+"field_signals": 2, "warder_hymn": 1, "fallback_horn": 2, "tidal_oath": 1, "night_muster": 1, "reed_roads": 1, "detach_line": 1, "silt_snare": 1, "hammer_sweep": 1,
+"lamplight_shift": 1, "span_kit": 1}
+}, {
+"id": "relay_watch", "name": "回灯前哨", "set_id": "afterglow", "description": "前哨、巡弓和枪夫抢桥。以折回哨令重复进场效果，靠沉链封渡和层台换哨争取夹击。",
+"cards": {"sword": 2, "reed_scout": 2, "lantern_bearer": 3, "mink_watcher": 2, "ferry_pikeman": 3, "cavalry": 2,
+"quartermaster": 2, "moth_cavalry": 1, "carriage_cloak": 1, "copper_gate_requiem": 1,
+"recall_writ": 2, "drawwire": 1, "triage_writ": 1, "split_sentence": 2, "ford_lock": 1, "open_wind": 1,
+"terrace_relay": 1, "bolt": 1, "salt_marker": 1}
+}, {
+"id": "hearth_compact", "name": "余火公议", "set_id": "afterglow", "description": "以退场补给和受击反制消耗对手。轮换军医扛住中场，靠两灯合议续战、再鸣铜钟保护反攻。",
+"cards": {"sword": 2, "quay_lantern": 3, "lantern_bearer": 2, "ferry_pikeman": 2, "willow_outlook": 2, "ash_notary": 2,
+"kiln_wardens": 1, "last_bridge_clinic": 1, "mage": 1, "gate_veteran": 1,
+"quiet_veil": 2, "salt_marker": 1, "mirror_anchor": 1, "dew_wall": 1, "lamplight_shift": 1, "coast_drizzle": 1,
+"last_bell": 1, "oath_deliberation": 1, "valley_reckoner": 1, "return_manifest": 1, "bolt": 2}
+}, {
+"id": "tideline_raiders", "name": "折潮快旗", "set_id": "tidegate", "description": "先遣部队部署即抢位，再用两面夹击和暗格破盾。留一张静潮断甲令收拾密集的敌阵。",
+"cards": {"sword": 1, "cinder_runner": 2, "ridge_pioneer": 3, "reed_harrier": 2, "byway_guard": 1, "kiln_outrider": 2, "storm_saddle": 1, "sunbreak_column": 1, "night_surveyor": 1, "archer": 2,
+"first_wake": 1, "two_shore_claim": 2, "stragglers_writ": 1, "lantern_stretcher": 1, "split_the_pier": 1, "open_the_ranks": 1, "tidewall_verdict": 1,
+"copper_buckle": 1, "chalk_spike": 1, "mud_sluice": 1, "seagate_sting": 1, "turning_bastion": 1, "wind_banner": 1}
+}, {
+"id": "reserve_company", "name": "回港后备军", "set_id": "tidegate", "description": "用枪卫殿后、军医牵回和手牌伏设稳住阵线。随后取回阵亡部队，或让它们在前沿重新部署。",
+"cards": {"spear": 2, "mage": 1, "quay_salver": 2, "byway_guard": 2, "sandbar_physician": 1, "night_surveyor": 1, "levee_marshal": 1, "indigo_gate_mage": 1, "sword": 2, "archer": 1, "cavalry": 1,
+"sealed_roll": 1, "field_muster": 1, "remember_the_company": 1, "slate_grid": 1, "last_rollcall": 1, "split_sentence": 1, "first_wake": 1, "lantern_stretcher": 1, "ward": 1,
+"rain_cloak": 1, "iron_undertow": 1, "watchtower_cage": 1, "camp_screen": 1, "rain_break": 1, "winter_watch": 1}
+}, {
+"id": "weir_breakers", "name": "决水军列", "set_id": "levee", "description": "沿军道抢占施法位。伏索截掉攻击机会，再用洪线和高费军令封退路。",
+"cards": {"lamp_patrol": 2, "reed_watch": 3, "rain_saddle": 2, "levee_brothers": 2, "cinder_runner": 2, "mink_watcher": 2, "bell_winch": 1, "archer": 2, "sword": 1,
+"chalk_route": 1, "troop_receipt": 1, "recommission_crew": 2, "floodline_warning": 2, "dawn_weir": 1, "severed_pullcord": 2, "bolt": 2, "march": 1, "first_wake": 1}
+}, {
+"id": "levee_relief", "name": "护堤轮班", "set_id": "levee", "description": "以工事、援护和双灯救援接住压力。靠阵亡补给和灯夜调入后续部队。",
+"cards": {"lamp_patrol": 2, "slate_quartermaster": 2, "bell_winch": 3, "rising_oath_watch": 1, "lantern_surgeon": 1, "spear": 2, "reed_watch": 2, "mink_watcher": 2, "quay_salver": 2,
+"stretcher_signal": 2, "dike_flagstones": 1, "reed_toll": 1, "dike_lights": 1, "ward": 2, "bolt": 2, "rally_heal": 1, "reveal_traps": 1, "troop_receipt": 1, "severed_pullcord": 1}
+}, {
+"id": "breakwater_line", "name": "横潮截线", "set_id": "moorings", "description": "低费斥候插进树林和遗迹，桥头巡枪接应。用横射和纵列破据点逼敌人错开站位，最后标记十字洪线。",
+"cards": {"saltfield_runner": 2, "bank_pikeman": 2, "bastion_driller": 1, "shrike_saddler": 2, "shoal_arbalest": 2, "undertow_knight": 1, "crownless_vanguard": 1,
+"reed_scout": 2, "ridge_pioneer": 1, "ridge_archer": 1, "mage": 2, "wayfinder_writ": 1, "seam_shot": 2, "scour_the_rakes": 1, "sluice_flags": 1, "quiet_net": 1, "ridge_marking": 1,
+"copper_boltline": 1, "sunken_weir_breach": 1, "bolt": 2, "span_kit": 1, "cress_ribbon": 1}
+}, {
+"id": "ember_quarter", "name": "续阵军备", "set_id": "moorings", "description": "枪卫、巡医和受击陷阱负责守线。让用过的军资从弃牌堆回到手里，靠九费疾风或十费三路回收补足后续行动。",
+"cards": {"saltfield_runner": 2, "bank_pikeman": 2, "bastion_driller": 1, "reed_watch": 1, "sill_physician": 2, "oathroad_mender": 1, "undertow_knight": 1, "claywatch_sage": 1,
+"gate_veteran": 1, "ridge_pioneer": 2, "mage": 2, "healer": 1, "wayfinder_writ": 1, "ledger_patch": 1, "sluice_flags": 1, "cress_ribbon": 2, "levee_echo": 1,
+"narrow_ford_calendar": 1, "driftglass_standing": 1, "unbroken_ember_line": 1, "quiet_net": 1, "bolt": 2, "copper_boltline": 1}
+}, {
+"id": "chalkline_vanguard", "name": "粉径先遣", "set_id": "pilgrim", "description": "低费递骑、学徒和补给连续出牌。连携抢位、挖出后续法术，再把已经走过的部队送上前线。",
+"cards": {"chalk_courier": 2, "kiln_sparks": 2, "ridge_listener": 1, "marl_shield": 1, "coalroad_broker": 1, "bracken_hussar": 2, "cinder_runner": 1, "ridge_pioneer": 1, "shoal_arbalest": 1, "sword": 3, "mage": 2, "spear": 1,
+"page_of_ash": 1, "whetstone_order": 1, "petal_signal": 1, "cedar_keel": 1, "parcel_seal": 1, "waggon_cut": 1, "wicker_ceasefire": 1, "sleet_drums": 1, "twine_knot": 1, "bolt": 1, "bridle_break": 1, "thousand_steps": 1}
+}, {
+"id": "cairn_watch", "name": "界碑守望", "set_id": "pilgrim", "description": "把援护和手牌伏设叠在同一条防线上。阵亡反击惩罚贴身换子，以白绳枪帅和夜车接应令重整队形。",
+"cards": {"linen_lantern": 3, "shale_lancer": 3, "river_wasp": 2, "cairn_colossus": 1, "granary_warden": 2, "whitecord_marshal": 1, "archer": 2, "lamp_patrol": 2, "gate_veteran": 2,
+"tin_ward": 2, "undertread_receipt": 1, "bellglass_cover": 1, "cracked_threshold": 1, "dusk_serein": 1, "lampwave": 2, "night_convoy_order": 1, "clear_skies": 1, "cairn_curtain": 1, "quarry_tithe": 1}
+}, {
+"id": "bellfoundry_column", "name": "钟炉军列", "set_id": "pilgrim", "description": "低费部队打开夹击角度，让断辔合围返还法力。铺垒改变战线，再以岩哨封路和千阶裂阵处理成列敌军。",
+"cards": {"chalk_courier": 2, "kiln_sparks": 2, "ridge_listener": 2, "marl_shield": 2, "coalroad_broker": 2, "bracken_hussar": 1, "shale_lancer": 1, "bellfoundry_oracle": 1, "mage": 2, "granary_warden": 1, "ash_notary": 1, "ridge_archer": 1,
+"quarry_tithe": 1, "bridle_break": 1, "granite_dispatch": 1, "crucible_levy": 1, "citadel_forging": 1, "thousand_steps": 1, "waggon_cut": 1, "cairn_curtain": 1, "sleet_drums": 1, "parcel_seal": 1, "bolt": 1, "slate_grid": 1}
+}, {
+"id": "glassroad_vanguard", "name": "镜道先骑", "set_id": "glassroad", "description": "用低费骑兵和枪哨抢住路口，再以两用军令推进或破盾，部署钟路骑队长即可顺横列接力。",
+"cards": {"glassroad_runner": 3, "rook_pickets": 2, "reedglass_bow": 2, "saltband_surgeon": 1, "hinge_lancer": 2, "cinder_coxswain": 2, "quarry_bugler": 1, "bellroad_captain": 1, "archer": 2, "mage": 1,
+"crossroads_whistle": 2, "hinge_order": 1, "rain_notch": 1, "quay_signal": 2, "chain_landing": 1, "brass_works": 1, "sill_chalk": 1, "blueprint_slip": 1, "oath_of_breakers": 1, "twin_standard": 1,
+"saltgate_covenant": 1}
+}, {
+"id": "glassroad_reserve", "name": "盐路援军", "set_id": "glassroad", "description": "先用枪哨、弓手和医官稳住战线。保留部队位与合适的空格，从牌库征召下一列部队。",
+"cards": {"rook_pickets": 1, "glassroad_runner": 2, "reedglass_bow": 2, "saltband_surgeon": 1, "hinge_lancer": 2, "cinder_coxswain": 1, "copper_cistern": 1, "breakline_sappers": 2, "skylens_sentinel": 1,
+"sword": 3, "archer": 1, "mage": 1, "roadside_muster": 1, "towpath_convoy": 1, "quay_requisition": 1, "third_column": 1, "twin_rearguard": 1, "all_banner_call": 1,
+"mercy_manifest": 1, "lowglass_fog": 1, "bolt": 2, "quay_signal": 1, "shatter_bolt": 1}
+}, {
+"id": "glassroad_ambush", "name": "伏钟守桥", "set_id": "glassroad", "description": "用枪阵和地格伏设迫使敌军选路。留反制保护前阵，从弃牌堆收回陷阱或让阵亡守将返场。",
+"cards": {"sword": 3, "rook_pickets": 2, "reedglass_bow": 2, "saltband_surgeon": 2, "hinge_lancer": 2, "quarry_bugler": 1, "copper_cistern": 2, "breakline_sappers": 1, "silver_bulwark": 1, "mage": 2,
+"counterseal": 2, "iron_sluice": 1, "tollglass": 1, "false_beacon": 1, "blackridge_net": 1, "drowned_clapper": 1, "lowglass_fog": 1, "anchored_rain": 1, "inkglass_archive": 1, "lamp_ledger": 1,
+"mercy_manifest": 1}
+}, {
+"id": "glassroad_edict", "name": "双潮军令", "set_id": "glassroad", "description": "从低费灵活军令过渡到高费攻守两用牌。等敌军成列再破阵，或用天气、援护和续攻为下一轮抢先。",
+"cards": {"sword": 3, "glassroad_runner": 2, "rook_pickets": 1, "reedglass_bow": 2, "hinge_lancer": 2, "cinder_coxswain": 1, "copper_cistern": 1, "skylens_sentinel": 1, "mage": 1, "breakline_sappers": 1,
+"crossroads_whistle": 1, "hinge_order": 1, "rain_notch": 1, "highroad_edict": 1, "twin_standard": 1, "ebb_and_surge": 1, "glass_treaty": 1, "scour_fulcrum": 1, "winter_march": 1, "miller_alarm": 1,
+"hollow_hammer": 1, "storm_of_seals": 1, "bolt": 2, "quay_signal": 1}
 }])

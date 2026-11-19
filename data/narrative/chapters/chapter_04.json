@@ -1,0 +1,739 @@
+{
+  "version": 1,
+  "id": "chapter_04",
+  "title": "第四章 · 港口不眠",
+  "start": "home",
+  "inherits": [
+    "route",
+    "witness_present",
+    "seal_copy",
+    "relief",
+    "public_ledger",
+    "priority",
+    "receipt_method",
+    "dispatch_receipts",
+    "clerk_safe",
+    "letter_reply",
+    "letter_delivered",
+    "pass_route",
+    "supply_route",
+    "mine_cargo"
+  ],
+  "defaults": {
+    "route": "none",
+    "witness_present": false,
+    "seal_copy": false,
+    "relief": "none",
+    "public_ledger": false,
+    "priority": "none",
+    "receipt_method": "none",
+    "dispatch_receipts": false,
+    "clerk_safe": false,
+    "letter_reply": "none",
+    "letter_delivered": false,
+    "pass_route": "none",
+    "supply_route": "none",
+    "mine_cargo": false,
+    "harbor_shelter": "none",
+    "foundry_terms": "none",
+    "crew_safe": false,
+    "harbor_pump": false,
+    "pump_route_known": false
+  },
+  "speakers": {
+    "narrator": "旁白",
+    "warden": "艾琳",
+    "pyromancer": "维洛",
+    "grove": "赛菈",
+    "sword": "洛恩",
+    "spear": "芙蕾",
+    "cavalry": "莉希",
+    "archer": "希弥",
+    "mage": "伊瑟",
+    "healer": "米芮",
+    "clerk": "赫姆",
+    "sister": "莉珊",
+    "miner": "钟叔",
+    "hauler": "杜骞",
+    "sailor": "杜棠",
+    "creditor": "曲汀"
+  },
+  "strings": {
+    "c04.home.01": "“门板留下。”\n洛恩抱着拆下的旧门，愣在货棚口。里面有人咳嗽，隔着两排挂起来的床单。他认得门后那道量身高的刻痕，最高的一道是去年春天添的，现在被一只药瓶挡住。",
+    "c04.home.02": "我没要拿走。我想把底下刨平，原来一到雨天就卡。……我租的那间呢？靠窗，窗外有棵歪树。",
+    "c04.home.03": "米芮掀起最里面的床单。靠窗摆着两张床，歪树的一根枝条穿进破玻璃，挂了三条洗净的绷带。她的旧诊室就在缆仓后面，进门时要侧身避开地上的铺盖。一个替她看诊棚的女人递来水壶，没问她何时回来。\n“先喝。喝完帮我把这个人翻过去。”",
+    "c04.home.04": "他们从断脊下山，换过两次驿马，走到港口时已是第三天下午。先来的信使留在东堤等，返潮还没走。洛恩想先借货棚放盾，米芮却已把药箱放在第二张床边，手伸向绷带下露出来的脚踝。\n货棚侧间还堆着没清走的空筐，是邻人答应给洛恩和队员腾铺的地方。他将行李放在筐上，没有挤进靠窗的床间。",
+    "c04.home.05": "伤口别碰水。你说能走，走到门口给我看看。不是现在，我先把椅子挪开。洛恩，门板靠这边，别挡人。",
+    "c04.home.06": "棚里一名少年认出洛恩，撑着拐杖挪到门边，问他球带回来没有。洛恩摸了摸腰后，那里只有磨薄的盾套。少年把拐杖夹进腋下，先笑起来。\n“你别又说下一船。现在我们也没地方踢。”",
+    "c04.home.07": "球没有。钱还在，没拿去赌，也没买酒。等你腿好了……行，我不说等了。门先修，我会这个。",
+    "c04.home.08": "少年把一块翘起的木楔踢到他脚边。洛恩蹲下去捡，见旁边还有半圈用炭画出的球门，被一张床脚压住。他将木楔装进口袋，起身时没有擦掉。",
+    "c04.home.09": "赛菈带来的种粮口信在港口驿棚补上了收讫：河门送出的那批已分去晒场，坏粒另装。她读完，把阿妲的小布袋系回腰间，向货棚里的病人借了一只空凳。",
+    "c04.home.10": "米芮接到河门医院的回信，细粉已经用上，信角沾着一小块干浆。她叫人把那页给后来的随队医师传看，自己重新数了药箱里的止泻粉。",
+    "c04.home.11": "先去东堤。这里留下两个人帮忙，药箱留一半。要是船上还有病人，我们得知道往哪儿送。",
+    "c04.home.12": "先别答应都送这里。你看见门口了，两副担架没法错身。",
+    "c04.eastbank.01": "卖饼的摊子已经收火，先行信使坐在板车旁替摊主削木签。他把那片刻着返潮的木牌还给莉希，说送水的人找到了，船也看过，没上去。摊主听见他们要找杜骞的弟弟，先问带没带干净水。",
+    "c04.eastbank.02": "返潮泊在北坞第三根桩旁，舷边的旧漆褪成灰白色。气窗伸出一只手，接住摊主用长杆递来的水壶，没来得及喝，便传向里面。岸上两名护卫挪开跳板，只给货筐留下一条绳路。",
+    "c04.eastbank.03": "杜骞呢？他让你们来的？那块牌给我看。上面的两道，是我刻的，不是说船坏了两回，是欠了两回工钱。",
+    "c04.eastbank.04": "他留在断脊。拆绞盘、伤了人，镇里要他交代。你的口信他托我们带到了。你叫什么，里面多少人？",
+    "c04.eastbank.05": "杜棠。十一人。两个烧着，一个起不来。别叫他再去拆别人的东西，我们要的是下船，不是把他的账也背上。",
+    "c04.eastbank.06": "米芮贴近气窗，叫杜棠把病人的脸转向亮处。窗格太低，只看得见一截发青的嘴唇。她将自己的水囊绑上长杆，让里面的人少量喝，拿到第二囊时却被护卫扣住杆梢。\n“来谈赎货的，上面请。拿人走，不行。”",
+    "c04.eastbank.07": "水留下。你扣他干活，至少让他今天还站得起来。",
+    "c04.eastbank.08": "护卫松开手，目光转向维洛。另一个人已跑向坞门，朝高处喊执政官到了。维洛站在船影里，刚把手伸向内袋，又拿出来，示意艾琳和他一起上去。\n岸边有人认出洛恩，叫他灰渡家的小子。他应了一声，没有回头。",
+    "c04.credit.01": "曲汀在坞台上等，面前摆着一只没开封的饭盒。她把维洛的旧保函夹在两指间，边角已经被翻得起毛。\n“见到本人，我总算能少收几封‘由经办人答复’。”\n维洛看一眼饭盒，问她等了多久。\n“从这盒还热的时候。不是从去年。去年的事，得另算。”",
+    "c04.credit.02": "铸管线的尾款，我签过。返潮运的泵也是我的抵押物。人不是。先把舱开了，曲汀，别让我在这里跟你逐字念。",
+    "c04.credit.03": "你签的货款没到，炉工的薪钱照欠。我若让船带着泵走，抵押物就只剩几间漏雨的棚。人说下船，不再开回来，雇卫就把门锁了。我知道你会来问，已经吵过一遍。",
+    "c04.credit.04": "钥匙谁拿着？",
+    "c04.credit.05": "曲汀指向下层坞门。雇卫长在那里收紧拖船的绳，身侧挂着一串铜钥匙。他听见艾琳叫人，没有上楼，只让弓手把箭从地上拾起来。\n“开门后谁守泵？谁保证他们不拆船？你们的人已经在断脊拆过一架。”",
+    "c04.credit.06": "我的份额还在。你可以扣铸管线，今晚找评价的人来。船先停在这里，别动。",
+    "c04.credit.07": "“份额早抵给两家了。”曲汀把另一张纸推来，维洛看见自己去年留下的签押。他伸出手指，压住第二个名字。\n“这家上个月结清了。”\n“钱没有结到我这里。”\n楼下响起玻璃碎裂声。气窗里伸出一截缠着布的手臂，米芮喊人别再敲，先退开窗下。",
+    "c04.credit.08": "我能等你把钱找出来，下面的人未必肯。雇卫拿的是保住抵押货的佣金。你现在带兵，他们会把你当来抢货的。",
+    "c04.credit.09": "拖船的绳已离开岸桩，返潮被牵着横过去。船再进内坞，长杆便够不到气窗。洛恩踏上一块垫木，芙蕾拽住他的盾带。\n“报位置。”\n“下层门，离岸三步。有两张弓。”\n“我听见了。等口令。”",
+    "c04.credit.10": "曲汀，离开坞台。我们要岸上的指挥位置。洛恩和芙蕾走南桥，弓队看住对岸，别向舱窗放箭。维洛，跟着我，你的账等人下来再算。",
+    "c04.credit.11": "曲汀抱起饭盒和两张纸，从侧梯下去。雇卫长没有交出钥匙，反而将近岸的队伍并到堡垒前。港内的两道横桥暴露在弓手视线里，桥边的石垒却能遮住整队的人。艾琳等对岸箭声停下一瞬，举起了纹章。",
+    "c04.ashore.01": "坞门的弓落了，雇卫长坐在台阶下，用另一只手压着受伤的前臂。曲汀从他腰上解下钥匙，先试错一把，第二把才转动。舱门一开，潮热的气味扑出来，洛恩侧过身，让米芮先下。",
+    "c04.ashore.02": "杜棠背出那个起不来的人，走到跳板中央膝盖一软。洛恩在岸上接住肩，芙蕾把长枪横过来作扶杆。这次洛恩没有顺着跳板往里抢，等杜棠退开才接第二个。最后一名船工下来时，米芮还在舱里找鞋。",
+    "c04.ashore.03": "十一人，数齐了。发热的两个人跟我，剩下的别围着他们。那双鞋不是给我穿，病人光着脚，你背到哪里都得放下来。",
+    "c04.ashore.04": "泵留船上。你们要拿它抵多少，去找该找的人。我明天不回这条船，后天也不回。哥哥的话我只听到出港，这回够了。",
+    "c04.ashore.05": "曲汀问他是否愿意把拆过的泵接头位置告诉修理工。杜棠举起肿大的手指，说可以指，不能再拧。她没再把返工两个字说出来。艾琳让自己的枪卫接过岸桩，交代曲汀留下看货，任何人拖船都先停住。",
+    "c04.ashore.06": "米芮的诊室能收两个重病号，其余九人还没去处。洛恩拿出货棚的钥匙，说能把自己和队员的铺位挤出来，一起守夜。杜棠却望向灯已亮起的东街，那边有几户愿意收留他们的熟人。",
+    "c04.ashore.07": "我想去我舅家。躺着能看见街，不用再听别人锁门。但有两个人在这儿谁也不认识，你们别让他们单独找地方。",
+    "c04.ashore.08": "住一起，我能按时看完，洛恩的人得另找铺。分开也行，能认门的人先带路，我今晚多走几趟。留门牌给我就够了，别交给催工钱的人。",
+    "c04.shelter.prompt": "两名重病船工留在米芮诊室。其余九人需要今晚的住处：旧货棚便于照看和守夜，会挤掉洛恩与队员的铺位；分住熟人家更合部分船工心意，但米芮要往返巡诊，无亲友者仍由队伍接应。",
+    "c04.shelter.warehouse": "把旧货棚腾给船工，队员另找铺位，集中守夜。",
+    "c04.shelter.households": "照船工意愿分住熟人家，安排引路与夜间巡诊。",
+    "c04.warehouse.01": "洛恩沿货棚外墙挪开自己的行李，把盾放进漏风的门廊。杜棠看见他铺开毯子，先说自己可以去舅家。洛恩抬手拦了一下，又放下。\n“今晚米芮得找得到你。明早你睡醒了，自己去。我们在这儿值班，不关你的门。”",
+    "c04.warehouse.02": "原先想回来睡三天，谁叫也不起。现在先借你一晚。枕头底下要是摸到一枚铜片，那是我的，别当床钱付出去。",
+    "c04.warehouse.03": "杜棠没笑，捏着那枚找出来的铜片站了片刻，才放到洛恩盾上。芙蕾拿来两根木条，把门板翘起的底边垫平。米芮给九个人分好喝水的碗，嘱咐值夜的人看见谁发冷就叫她。",
+    "c04.warehouse.04": "那个拄拐的少年从床下找出半块炭，在被占去的球门旁添了一道线，说以后门总得画宽些。洛恩看了看，没叫他擦掉。港口的第一阵夜钟响时，门廊里已多出三副靠墙的盾。",
+    "c04.households.01": "杜棠先领两名同伴去舅家，走前把屋后的蓝水桶画在米芮纸上。另四人随卖饼的摊主离开，剩下三人住进旧货棚。洛恩派出的队员只记各自领了谁，米芮将巡诊纸折进药箱，没有给曲汀抄第二份。",
+    "c04.households.02": "先东街，再井边，最后回来。谁要挪地方，留个人告诉我。我不会隔着整条街听见你们咳嗽。",
+    "c04.households.03": "洛恩把靠窗的铺位又挪开一尺，好让第三张床能进去。芙蕾问他今晚睡哪儿，他指指门廊，说那里的风能吹走臭靴味。她转身去拿木条，回来时连他的盾一起推到屋檐更深的地方。",
+    "c04.households.04": "没说不冷。说出来也不会多一间房。我去东街替米芮认门，回来给你带饼。要是关摊了，带热水，别等我变出一口锅。",
+    "c04.foundry.01": "夜班炉工没点主炉，围在冷却槽边吃饭。曲汀带维洛过来时，他们把凳子向内挪了一圈，不给他留位置。有人从工具柜取出铸模，放在他脚前，缺角的纹样正朝上。\n“你找这个。我们找工钱。先看哪一件？”",
+    "c04.foundry.02": "钱。以前没付到的也算。拿凳子来，站着我容易说得太快。",
+    "c04.foundry.03": "炉工终于让出一张矮凳，维洛坐下，膝盖几乎碰到下巴。曲汀核过港内的回款：他以为结清的那笔，被拿去填了另一处受损船台。剩下的铸管线份额仍可处置，抵掉先前的债后，恰够这批船工与炉工的欠饷。卖出去，他便拿不回修复款，也再不能用这条线抵借。",
+    "c04.foundry.04": "还有一条路。把三年的租息让出来，我先垫一半，另一半按月给工人。他们自己选收不收，我不替他们签。你留名下的份额，三年里分不到这里的钱。",
+    "c04.foundry.05": "有人立刻说要现钱，也有人追问份额若卖给别家，会不会停掉炉线。曲汀将两种办法的数写在槽边木板上，临时找来的炉工代表逐一去问。维洛起初想纠正利息，听见隔壁一人说家里已经卖掉了炊锅，便把话咽回去。",
+    "c04.foundry.06": "伊瑟趁他们算账时将新套管放到铸模旁，两道退火槽严丝合缝。炉工从工具柜底取出一册油污发黑的修复图。维洛认出封皮上那片火烧痕，伸手翻到第六页，缺角纹样旁有一行他自己的旧批注。",
+    "c04.foundry.07": "是我留下的。修旧泵，照原来接头做，连工号一并保留。师父用的那枚模子熔了，图没烧。我让他们照图翻新模，省得每座城重新配接口。",
+    "c04.foundry.08": "河门纸上的缺口和这个一样，编号顺序也能从图里抄。可这一页只有泵和管子，没有关闸的授权。给工匠的图，怎么上了封路令？",
+    "c04.foundry.09": "维洛用拇指拨开粘住的纸页，下一页仍是接头，没有他想找的名字。炉工指给他们看领图的去处：港口维修台来人取过拓本，上游水站也拿过一份。图在这里摆了几年，从没锁过。维洛把手收回膝上，指尖留着一层黑油。",
+    "c04.foundry.10": "我以为认出这个，便能找到当年签字的人。结果先找到我自己。……别替我擦，油等会儿洗。曲汀，回到钱上来。",
+    "c04.terms.prompt": "维洛愿意拿自己剩余的铸管线权益结欠饷。直接转让可在本次交割付清这批欠饷，他失去份额与修复款；让出三年租息则先付一半、余款按月给付，工人有权拒绝分期，后续仍需逐人兑现。",
+    "c04.terms.sale": "转让剩余份额，交割后付清本批欠饷。",
+    "c04.terms.lease": "让出三年租息，先垫半数，再与工人逐人确认余款。",
+    "c04.sale.01": "维洛将印戒压在转让书上，第一遍蜡太凉，边缘没留下完整纹路。他叫曲汀再烧一点，重新压了一次。她把废掉的那页划穿，通知受让人带钱来，当面分袋。炉工仍坐着，没有谁起身向他道谢。",
+    "c04.sale.02": "铸管线归谁，以后向谁要。今天以前欠的，从我这份里扣清。别把修复款另开一张欠条给我，已经算进去了。",
+    "c04.sale.03": "钱送来时，维洛还在逐项核工时。一位炉工数完袋子，抽出两枚旧铜币退回去，说自己多记了半天。维洛让他把那半天划掉，袋子仍推回原位。\n“那半天你来找了三次。我见过你，没下楼。”\n对方把袋口扎紧，这回没有推回来。",
+    "c04.lease.01": "维洛在租息栏写下三年，曲汀让他把起止月份补全。炉工代表将名字分成两列，有人愿意等，有人急着付房钱，不愿再领半份。维洛看着短一些的那一列，问曲汀能不能把自己的随身银兑开。",
+    "c04.lease.02": "不肯分期的，先从我这儿补。我带得不够，差额还挂我的名下，别写成工人自愿等。愿意分期的那几位，每月到这里领，迟一次就来找我留下的人。",
+    "c04.lease.03": "曲汀叫人去兑银，几张不肯收的分期单没有盖印。维洛将那几笔另抄进随身册子，把原先记宴席的两页撕下来包银片。到了散饭时，仍有一名炉工攥着半袋钱坐在冷却槽边，等他把余款日期写清。",
+    "c04.lease.04": "艾琳在门口等，没有催。维洛写完，留下可以找到他的港口经办人姓名与住处。那名炉工念了一遍地址，问人是否还活在那条街。曲汀说今天才见过，会带他去。",
+    "c04.pump.01": "杜棠来时扶着门框，手里拎一只从舱底捞出的木勺。米芮跟在后面，一脸不耐。\n“说完回去。你不是好了，是退烧了。”\n杜棠把勺放进冷却槽，一层灰白盐痕沾在木柄上。他说船上粮袋发热以前，舱底就积过这样的水。",
+    "c04.pump.02": "我们喊过抽水。泵没坏，带子接到别处了。维修的人叫我们等下一班，我值了三班也没见换回来。后面有人拿新袋套旧袋，说外头看不见湿。",
+    "c04.pump.03": "他认出伊瑟摊开的图，指向两部共用动力的泵：旧泵排船舱与低坞的积水，新泵从淡水池取水，送往山侧的调候管线。两部不能同时带足，接头却一直锁在新泵那边。洛恩说他们小时候涨潮便关低坞，退潮再排，没见过连着几班都不给排水。",
+    "c04.pump.04": "这样接不是图里的轮换。旧泵停得越久，粮在低处泡得越久。上游那一端若一直取水……我得看出口，不能只在纸上算。",
+    "c04.pump.05": "曲汀带他们去泵房，炉工提着换带子的工具跟来。到了门前，众人先听到机器空敲的响声，接着才看见持弩的护卫。剩余雇卫正按另一份守机合同看着新泵，头目把铁栅合上，说欠饷结的是船，不是这份差事。",
+    "c04.pump.06": "低坞再泡一晚，明天要赔的比你们佣金多。把机让给工人，原先的带子他们会换。",
+    "c04.pump.07": "“停这部，违约先算我头上。”头目指着仍在转的传动轮，“水站的人说，送不满就扣整旬。你替我付？”\n维洛问能不能轮换半夜。头目摇头，手里的弩没有放下。炉工一脚踢上铁栅，弩箭射在他脚边，木箱里的扳手滚了一地。",
+    "c04.pump.08": "赛菈从铁栅外看见淡水池壁上的刻线，已经降到最底一划。管线往北，朝她来时的支流方向去了。她叫伊瑟把带回来的水文簿拿来，对到那一页，却没继续念，先把站在栅前的炉工拉回石墙后。",
+    "c04.pump.09": "他们要的是上游水。现在先把这几个人带出来，等机器交到工匠手上，我带你们去水站。那条支流不归港口管。",
+    "c04.pump.10": "守住外墙，别砸传动轮。我们压住看守的指挥位，让工人接手。洛恩，报你那边的位置。",
+    "c04.pump.11": "南桥口，两面都有弩。我退到石垒后，芙蕾看得见我。可以开始。",
+    "c04.after_pump.01": "泵房铁栅被抬起来时，炉工没有马上碰机器。他先等最后一名持弩的人离开，叫两个人守在停机柄边，才拆开带罩。维洛照着他指的位置压住接头，不再给指令。皮带换回旧轮，最初几圈只吐出黑水，随后水槽里响起了连续的流声。",
+    "c04.after_pump.02": "低坞的水慢慢往下退，贴在墙上的粮壳露出来，已经发软。杜棠捡起一把，摊给米芮看，又自己倒回泥里。她蹲在石阶上替他拆手上的湿布，叫他别再用那只手捞东西。",
+    "c04.after_pump.03": "这批不能喂人。挑掉坏的也不行，里面已经热过。你要跟他们说，就这样说，别说我检查了几袋便担保整船。",
+    "c04.after_pump.04": "曲汀叫人把相邻仓位也空出来。赫姆拿着河门带来的粮布站在仓门旁，核过两个运记，自己摇了摇头：不是他补填过的那一批。他将布重新包好，帮工人把泡湿的袋与未开封的袋分开。",
+    "c04.after_pump.05": "伊瑟沿新泵的出口找到一只锁阀。阀牌写着暮林北支流蓄池，下一班还要向那里补水。赛菈认得地名，认不出如今标下的水量。她把阀牌拓到自己的簿上，问看守有没有见过林社来的人。对方说没见过，领钱只去港口维修台。",
+    "c04.after_pump.06": "明早我往北走。这座泵今晚留给低坞，但我不能隔着山叫那边开闸。艾琳，你的人愿不愿意跟？到了那里，没人会认这身旗就让路。",
+    "c04.after_pump.07": "愿意。先把这里的夜班交清楚。人和路都写给米芮，别让她再找一遍。",
+    "c04.night.01": "旧货棚的门终于合上，不再磨地。洛恩从里面试了两遍，又从外面推开，确认没有插闩。芙蕾在门廊里卷起备用绷带，看见他把最后一枚木楔敲进去，才问那间靠窗的房还要不要留。",
+    "c04.night.02": "要。等他们搬走，我还想住。不是非得拿回来踢球，能坐着脱靴子就行。你要是……你来港口的话，先寄信，别照我吹过的大小找。",
+    "c04.night.03": "芙蕾抬起右手，想把高处翘出的钉子按回去，抬到一半便停了。洛恩没有伸手扶她，只接过锤子站到门边。\n“这里？”\n“左一点。你那间有几扇窗？”\n“一扇，树还占半扇。”\n“够了。”\n她没再往下说，他也没问够什么。",
+    "c04.night.04": "货棚里有人喊洛恩，杜棠找到了另一枚铜片，问是不是又落下的床钱。他把锤子交回芙蕾，进去取。九只水碗沿床头摆开，没人去插门闩；米芮巡完这一排，转进自己的诊室，那里还有两个今晚离不开人的病号。",
+    "c04.night.05": "米芮从东街回来，靴面沾着井边的泥。杜棠托她带了一小包舅家烤的饼，饼压在药箱上，已经凉了。洛恩拿水壶温了一遍，给刚认完最后一处住址的队员留出半份。米芮没坐下，转进自己的诊室，那两个重病号仍要她守着。",
+    "c04.night.06": "莉希在驿棚把姐姐给的空函纸写满，先写栗雨还在轮休，又写已到港口、母亲的茶确实比以前淡。港口以后的归期，她留了一行，最后划掉，改成下一处收信地址。",
+    "c04.night.07": "莉希向驿棚买了张函纸，写到旧站钥匙时停了一阵，问姐姐新接夜班的人是否顺手。她想添一句需要人就叫自己回来，笔在纸上悬着，最终只写新胸带没有再磨伤栗雨。",
+    "c04.night.08": "检修廊背下来的轻药箱在傍晚送到，箱底蹭着黑油。米芮收了药，叫信使回断脊时把空箱也带上，工人还要靠它们背下一批。",
+    "c04.night.09": "绕外路的辎重还隔着一站。莉希按原先排好的轮换送去接应，没再催栗雨加跑。米芮向旧诊室借了两包药，给明日送到的箱留出位置。",
+    "c04.night.10": "维洛将铸管线旧钥匙交给曲汀，对方数过，少了一把。他从腰带内侧摸出来，掂了掂才放下。散工的人已领到这一批钱，厂门里仍有人问下一旬的活归谁安排；曲汀去答，没有再请维洛跟上。",
+    "c04.night.11": "维洛留了一名经办人在港口，拿自己的册子逐笔交代尚未付完的数。对方问他若上游又急需借款怎么办，他让那人先把三年的租息从可用收入里划去。划完后，纸上空了一大块。",
+    "c04.night.12": "伊瑟把拓好的新模图放到维洛身边，又放下从断脊带来的套管。维洛将两样对齐，直到缺角不再看起来像两处不同的伤。\n“你师父的名字，还查吗？”\n“查。”\n“明早带哪个？”\n维洛把套管推给他，自己收图。\n“两个都带。这回别让我一个人保管。”",
+    "c04.night.13": "夜快尽时，泵房接班的工人来取热水，顺便把米芮配的药送回棚里。洛恩借了最后一碗，站在门廊喝。他盾内的房租收据被潮气泡开一角，芙蕾递来干布，他压平纸角，留着它慢慢干。",
+    "c04.end": "北支流来的林社信使在天亮前赶到港口，裤腿还结着过浅滩的泥。他先确认赛菈在，再从怀里取出一截被盐水灼白的树根，放在她的水文簿上。\n“上回你说等三方一起答复。我们等了。”\n赛菈伸手去碰，那截细根在指腹下断了一点。\n“长者叫我带你回去，”信使说，“带行李。代行者的席位，三日后重新议。”"
+  },
+  "nodes": {
+    "home": {
+      "type": "dialogue",
+      "background": "scene_clinic_day",
+      "lines": [
+        {
+          "id": "c04.home.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.home.02",
+          "speaker": "sword"
+        },
+        {
+          "id": "c04.home.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.home.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.home.05",
+          "speaker": "healer"
+        },
+        {
+          "id": "c04.home.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.home.07",
+          "speaker": "sword"
+        },
+        {
+          "id": "c04.home.08",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.home.09",
+          "speaker": "narrator",
+          "when": {
+            "priority": "seed"
+          }
+        },
+        {
+          "id": "c04.home.10",
+          "speaker": "narrator",
+          "when": {
+            "priority": "relief"
+          }
+        },
+        {
+          "id": "c04.home.11",
+          "speaker": "warden"
+        },
+        {
+          "id": "c04.home.12",
+          "speaker": "healer"
+        }
+      ],
+      "next": "eastbank"
+    },
+    "eastbank": {
+      "type": "dialogue",
+      "background": "scene_harbor_locked",
+      "lines": [
+        {
+          "id": "c04.eastbank.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.eastbank.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.eastbank.03",
+          "speaker": "sailor"
+        },
+        {
+          "id": "c04.eastbank.04",
+          "speaker": "warden"
+        },
+        {
+          "id": "c04.eastbank.05",
+          "speaker": "sailor"
+        },
+        {
+          "id": "c04.eastbank.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.eastbank.07",
+          "speaker": "healer"
+        },
+        {
+          "id": "c04.eastbank.08",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "credit"
+    },
+    "credit": {
+      "type": "dialogue",
+      "background": "scene_harbor_locked",
+      "lines": [
+        {
+          "id": "c04.credit.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.credit.02",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c04.credit.03",
+          "speaker": "creditor"
+        },
+        {
+          "id": "c04.credit.04",
+          "speaker": "warden"
+        },
+        {
+          "id": "c04.credit.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.credit.06",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c04.credit.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.credit.08",
+          "speaker": "creditor"
+        },
+        {
+          "id": "c04.credit.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.credit.10",
+          "speaker": "warden"
+        },
+        {
+          "id": "c04.credit.11",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "dock_battle"
+    },
+    "dock_battle": {
+      "type": "battle",
+      "scenario": "c04_dock",
+      "win": "ashore",
+      "win_set": {
+        "crew_safe": true
+      },
+      "background": "scene_harbor_locked"
+    },
+    "ashore": {
+      "type": "dialogue",
+      "background": "scene_harbor_open",
+      "lines": [
+        {
+          "id": "c04.ashore.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.ashore.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.ashore.03",
+          "speaker": "healer"
+        },
+        {
+          "id": "c04.ashore.04",
+          "speaker": "sailor"
+        },
+        {
+          "id": "c04.ashore.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.ashore.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.ashore.07",
+          "speaker": "sailor"
+        },
+        {
+          "id": "c04.ashore.08",
+          "speaker": "healer"
+        }
+      ],
+      "next": "shelter"
+    },
+    "shelter": {
+      "type": "choice",
+      "background": "scene_harbor_open",
+      "prompt": "c04.shelter.prompt",
+      "options": [
+        {
+          "id": "warehouse",
+          "text": "c04.shelter.warehouse",
+          "next": "warehouse",
+          "set": {
+            "harbor_shelter": "warehouse"
+          }
+        },
+        {
+          "id": "households",
+          "text": "c04.shelter.households",
+          "next": "households",
+          "set": {
+            "harbor_shelter": "households"
+          }
+        }
+      ]
+    },
+    "warehouse": {
+      "type": "dialogue",
+      "background": "scene_clinic_day",
+      "lines": [
+        {
+          "id": "c04.warehouse.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.warehouse.02",
+          "speaker": "sword"
+        },
+        {
+          "id": "c04.warehouse.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.warehouse.04",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "foundry"
+    },
+    "households": {
+      "type": "dialogue",
+      "background": "scene_clinic_day",
+      "lines": [
+        {
+          "id": "c04.households.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.households.02",
+          "speaker": "healer"
+        },
+        {
+          "id": "c04.households.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.households.04",
+          "speaker": "sword"
+        }
+      ],
+      "next": "foundry"
+    },
+    "foundry": {
+      "type": "dialogue",
+      "background": "scene_foundry",
+      "lines": [
+        {
+          "id": "c04.foundry.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.foundry.02",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c04.foundry.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.foundry.04",
+          "speaker": "creditor"
+        },
+        {
+          "id": "c04.foundry.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.foundry.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.foundry.07",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c04.foundry.08",
+          "speaker": "mage"
+        },
+        {
+          "id": "c04.foundry.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.foundry.10",
+          "speaker": "pyromancer"
+        }
+      ],
+      "next": "terms"
+    },
+    "terms": {
+      "type": "choice",
+      "background": "scene_foundry",
+      "prompt": "c04.terms.prompt",
+      "options": [
+        {
+          "id": "sale",
+          "text": "c04.terms.sale",
+          "next": "sale",
+          "set": {
+            "foundry_terms": "sale"
+          }
+        },
+        {
+          "id": "lease",
+          "text": "c04.terms.lease",
+          "next": "lease",
+          "set": {
+            "foundry_terms": "lease"
+          }
+        }
+      ]
+    },
+    "sale": {
+      "type": "dialogue",
+      "background": "scene_foundry",
+      "lines": [
+        {
+          "id": "c04.sale.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.sale.02",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c04.sale.03",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "pump"
+    },
+    "lease": {
+      "type": "dialogue",
+      "background": "scene_foundry",
+      "lines": [
+        {
+          "id": "c04.lease.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.lease.02",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c04.lease.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.lease.04",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "pump"
+    },
+    "pump": {
+      "type": "dialogue",
+      "background": "scene_foundry",
+      "lines": [
+        {
+          "id": "c04.pump.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.pump.02",
+          "speaker": "sailor"
+        },
+        {
+          "id": "c04.pump.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.pump.04",
+          "speaker": "mage"
+        },
+        {
+          "id": "c04.pump.05",
+          "speaker": "narrator",
+          "background": "scene_pump_closed"
+        },
+        {
+          "id": "c04.pump.06",
+          "speaker": "creditor",
+          "background": "scene_pump_closed"
+        },
+        {
+          "id": "c04.pump.07",
+          "speaker": "narrator",
+          "background": "scene_pump_closed"
+        },
+        {
+          "id": "c04.pump.08",
+          "speaker": "narrator",
+          "background": "scene_pump_closed"
+        },
+        {
+          "id": "c04.pump.09",
+          "speaker": "grove",
+          "background": "scene_pump_closed"
+        },
+        {
+          "id": "c04.pump.10",
+          "speaker": "warden",
+          "background": "scene_pump_closed"
+        },
+        {
+          "id": "c04.pump.11",
+          "speaker": "sword",
+          "background": "scene_pump_closed"
+        }
+      ],
+      "next": "pump_battle"
+    },
+    "pump_battle": {
+      "type": "battle",
+      "scenario": "c04_pump",
+      "win": "after_pump",
+      "win_set": {
+        "harbor_pump": true,
+        "pump_route_known": true
+      },
+      "background": "scene_pump_closed"
+    },
+    "after_pump": {
+      "type": "dialogue",
+      "background": "scene_pump_open",
+      "lines": [
+        {
+          "id": "c04.after_pump.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.after_pump.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.after_pump.03",
+          "speaker": "healer"
+        },
+        {
+          "id": "c04.after_pump.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.after_pump.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.after_pump.06",
+          "speaker": "grove"
+        },
+        {
+          "id": "c04.after_pump.07",
+          "speaker": "warden"
+        }
+      ],
+      "next": "night"
+    },
+    "night": {
+      "type": "dialogue",
+      "background": "scene_clinic_night",
+      "lines": [
+        {
+          "id": "c04.night.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.night.02",
+          "speaker": "sword"
+        },
+        {
+          "id": "c04.night.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.night.04",
+          "speaker": "narrator",
+          "when": {
+            "harbor_shelter": "warehouse"
+          }
+        },
+        {
+          "id": "c04.night.05",
+          "speaker": "narrator",
+          "when": {
+            "harbor_shelter": "households"
+          }
+        },
+        {
+          "id": "c04.night.06",
+          "speaker": "narrator",
+          "when": {
+            "letter_reply": "return"
+          }
+        },
+        {
+          "id": "c04.night.07",
+          "speaker": "narrator",
+          "when": {
+            "letter_reply": "unscheduled"
+          }
+        },
+        {
+          "id": "c04.night.08",
+          "speaker": "narrator",
+          "when": {
+            "supply_route": "maintenance"
+          }
+        },
+        {
+          "id": "c04.night.09",
+          "speaker": "narrator",
+          "when": {
+            "supply_route": "long_road"
+          }
+        },
+        {
+          "id": "c04.night.10",
+          "speaker": "narrator",
+          "when": {
+            "foundry_terms": "sale"
+          }
+        },
+        {
+          "id": "c04.night.11",
+          "speaker": "narrator",
+          "when": {
+            "foundry_terms": "lease"
+          }
+        },
+        {
+          "id": "c04.night.12",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c04.night.13",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end",
+      "ending": "harbor_awake",
+      "background": "scene_clinic_night",
+      "text": "c04.end"
+    }
+  }
+}

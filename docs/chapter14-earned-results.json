@@ -1,0 +1,240 @@
+{
+	"checks": 578,
+	"failures": 0,
+	"games": [
+		{
+			"actions": 240,
+			"blue_hp": 20,
+			"blue_units": [
+				{
+					"hp": 20,
+					"kind": "commander",
+					"pos": [
+						7,
+						11
+					]
+				},
+				{
+					"hp": 5,
+					"kind": "sword",
+					"pos": [
+						5,
+						6
+					]
+				},
+				{
+					"hp": 4,
+					"kind": "archer",
+					"pos": [
+						8,
+						6
+					]
+				},
+				{
+					"hp": 5,
+					"kind": "healer",
+					"pos": [
+						6,
+						7
+					]
+				},
+				{
+					"hp": 1,
+					"kind": "spear",
+					"pos": [
+						9,
+						3
+					]
+				},
+				{
+					"hp": 7,
+					"kind": "spear",
+					"pos": [
+						10,
+						3
+					]
+				}
+			],
+			"bridges_built": 2,
+			"red_hp": 20,
+			"red_units": [
+				{
+					"hp": 20,
+					"kind": "commander",
+					"pos": [
+						8,
+						0
+					]
+				},
+				{
+					"hp": 5,
+					"kind": "sword",
+					"pos": [
+						9,
+						1
+					]
+				},
+				{
+					"hp": 4,
+					"kind": "archer",
+					"pos": [
+						8,
+						2
+					]
+				},
+				{
+					"hp": 5,
+					"kind": "cavalry",
+					"pos": [
+						4,
+						5
+					]
+				},
+				{
+					"hp": 7,
+					"kind": "spear",
+					"pos": [
+						7,
+						2
+					]
+				}
+			],
+			"reloaded": true,
+			"streak": 2,
+			"turn": 37,
+			"wards_armed": 1,
+			"watch": "upstream",
+			"winner": 0
+		},
+		{
+			"actions": 231,
+			"blue_hp": 20,
+			"blue_units": [
+				{
+					"hp": 20,
+					"kind": "commander",
+					"pos": [
+						7,
+						11
+					]
+				},
+				{
+					"hp": 3,
+					"kind": "spear",
+					"pos": [
+						5,
+						6
+					]
+				},
+				{
+					"hp": 5,
+					"kind": "healer",
+					"pos": [
+						12,
+						1
+					]
+				},
+				{
+					"hp": 4,
+					"kind": "mage",
+					"pos": [
+						9,
+						1
+					]
+				},
+				{
+					"hp": 4,
+					"kind": "archer",
+					"pos": [
+						10,
+						1
+					]
+				},
+				{
+					"hp": 4,
+					"kind": "sword",
+					"pos": [
+						10,
+						3
+					]
+				},
+				{
+					"hp": 4,
+					"kind": "archer",
+					"pos": [
+						11,
+						0
+					]
+				}
+			],
+			"bridges_built": 2,
+			"red_hp": 11,
+			"red_units": [
+				{
+					"hp": 11,
+					"kind": "commander",
+					"pos": [
+						7,
+						1
+					]
+				},
+				{
+					"hp": 4,
+					"kind": "archer",
+					"pos": [
+						3,
+						6
+					]
+				},
+				{
+					"hp": 4,
+					"kind": "archer",
+					"pos": [
+						5,
+						3
+					]
+				},
+				{
+					"hp": 7,
+					"kind": "spear",
+					"pos": [
+						7,
+						2
+					]
+				},
+				{
+					"hp": 5,
+					"kind": "healer",
+					"pos": [
+						5,
+						1
+					]
+				},
+				{
+					"hp": 5,
+					"kind": "sword",
+					"pos": [
+						4,
+						1
+					]
+				},
+				{
+					"hp": 4,
+					"kind": "mage",
+					"pos": [
+						6,
+						3
+					]
+				}
+			],
+			"reloaded": true,
+			"streak": 2,
+			"turn": 33,
+			"wards_armed": 2,
+			"watch": "tower",
+			"winner": 0
+		}
+	],
+	"human_playtest": false,
+	"provenance": "earned chapter-thirteen saves; test-only focus pilot and production opponent; legal timed actions"
+}

@@ -1,0 +1,5337 @@
+{
+  "coverage": "selected_scenarios",
+  "games": [
+    {
+      "actions": 123,
+      "decision_mean_ms": 15.313544715447154,
+      "decision_peak_ms": 64.843,
+      "final": {
+        "active_side": 0,
+        "deck_size": 30,
+        "log": [
+          "铁壁枪卫推进至 G3。",
+          "暮林游侠推进至 D5。",
+          "守机管事阮衡所部回合 · 法力 8/8",
+          "暮林游侠推进至 F8。",
+          "暮林游侠攻击晨光医师，造成 3 点伤害。",
+          "晨光医师反击，造成 1 点伤害。",
+          "暮林游侠发动「精准射击」。",
+          "暮林游侠推进至 F7。",
+          "暮林游侠攻击晨光医师，造成 2 点伤害。",
+          "晨光医师倒下了。",
+          "晨光医师推进至 E8。",
+          "据点连续驻守 0/2 · 已过 8/12 轮。",
+          "苍蓝军团回合 · 法力 9/9",
+          "星火术士推进至 I3。",
+          "星火术士推进至 H4。",
+          "铁壁枪卫推进至 G4。",
+          "铁壁枪卫发动「铁壁援护」。",
+          "暮林游侠推进至 E5。",
+          "暮林游侠攻击暮林游侠，造成 4 点伤害。",
+          "暮林游侠发动「精准射击」。",
+          "暮林游侠倒下了。",
+          "守机管事阮衡所部回合 · 法力 9/9",
+          "暮林游侠攻击暮林游侠，造成 4 点伤害。",
+          "暮林游侠倒下了。",
+          "守机管事阮衡所部使用了「铁壁枪卫」。",
+          "晨光医师推进至 E7。",
+          "据点连续驻守 0/2 · 已过 9/12 轮。",
+          "苍蓝军团回合 · 法力 10/10",
+          "星火术士推进至 H5。",
+          "星火术士推进至 I5。",
+          "F1变为工事。",
+          "苍蓝军团使用了「战地工事」。",
+          "铁壁枪卫推进至 E4。",
+          "守机管事阮衡所部回合 · 法力 10/10",
+          "守机管事阮衡所部使用了「铁壁枪卫」。",
+          "铁壁枪卫发动「铁壁援护」。",
+          "守机管事阮衡发动「圣盾赐福」。",
+          "暮林游侠推进至 G7。",
+          "暮林游侠攻击星火术士，造成 3 点伤害。",
+          "星火术士反击，造成 6 点伤害。",
+          "暮林游侠发动「精准射击」。",
+          "晨光医师发动「战地急救」。",
+          "守机管事阮衡所部使用了「坚冰锁链」。",
+          "据点连续驻守 0/2 · 已过 10/12 轮。",
+          "苍蓝军团回合 · 法力 10/10",
+          "铁壁枪卫援护暮林游侠，代为承受攻击。",
+          "星火术士攻击铁壁枪卫，造成 4 点伤害。",
+          "苍蓝军团使用了「逐风骑士」。",
+          "星火术士推进至 H6。",
+          "铁壁枪卫援护暮林游侠，代为承受攻击。",
+          "星火术士攻击铁壁枪卫，造成 3 点伤害。",
+          "铁壁枪卫倒下了。",
+          "守机管事阮衡所部回合 · 法力 10/10",
+          "暮林游侠攻击星火术士，造成 2 点伤害。",
+          "星火术士倒下了。",
+          "守机管事阮衡所部使用了「星火术士」。",
+          "铁壁枪卫发动「铁壁援护」。",
+          "晨光医师推进至 E8。",
+          "环境变为暴雨，持续 4 个行动回合（双方回合都计时）。",
+          "守机管事阮衡所部使用了「骤雨将至」。",
+          "据点连续驻守 0/2 · 已过 11/12 轮。",
+          "苍蓝军团回合 · 法力 10/10",
+          "星火术士推进至 H5。",
+          "星火术士攻击暮林游侠，造成 6 点伤害。",
+          "暮林游侠倒下了。",
+          "铁壁枪卫推进至 E5。",
+          "铁壁枪卫攻击铁壁枪卫，造成 1 点伤害。",
+          "铁壁枪卫反击，造成 2 点伤害。",
+          "逐风骑士推进至 D4。",
+          "逐风骑士发动「疾风再动」。",
+          "逐风骑士攻击星火术士，造成 4 点伤害。",
+          "星火术士倒下了。",
+          "苍蓝军团使用了「晨曦祷言」。",
+          "守机管事阮衡所部回合 · 法力 10/10",
+          "铁壁枪卫攻击逐风骑士，造成 6 点伤害（兵种克制 +2）。",
+          "逐风骑士倒下了。",
+          "守机管事阮衡所部使用了「晨光医师」。",
+          "晨光医师发动「战地急救」。",
+          "驻守期限已到，未能稳住两处据点，本次驻守任务失败。",
+          "苍蓝军团回合 · 法力 10/10"
+        ],
+        "map_id": "sunspire",
+        "match_seed": 8317,
+        "next_id": 82,
+        "objective": {
+          "cells": [
+            [
+              4,
+              4
+            ],
+            [
+              7,
+              5
+            ]
+          ],
+          "last_check": 25,
+          "required": 2,
+          "round_limit": 12,
+          "streak": 0
+        },
+        "players": [
+          {
+            "card_total": 30,
+            "deck": [
+              {
+                "card_id": "archer",
+                "uid": 10
+              },
+              {
+                "card_id": "mage",
+                "uid": 14
+              },
+              {
+                "card_id": "cavalry",
+                "uid": 9
+              },
+              {
+                "card_id": "ward",
+                "uid": 22
+              },
+              {
+                "card_id": "healer",
+                "uid": 18
+              },
+              {
+                "card_id": "spear",
+                "uid": 6
+              },
+              {
+                "card_id": "sword",
+                "uid": 3
+              },
+              {
+                "card_id": "healer",
+                "uid": 16
+              },
+              {
+                "card_id": "sword",
+                "uid": 1
+              },
+              {
+                "card_id": "insight",
+                "uid": 24
+              },
+              {
+                "card_id": "trail",
+                "uid": 30
+              },
+              {
+                "card_id": "archer",
+                "uid": 12
+              },
+              {
+                "card_id": "nova",
+                "uid": 20
+              }
+            ],
+            "deck_counts": {
+              "archer": 3,
+              "bolt": 1,
+              "cavalry": 3,
+              "fog": 1,
+              "heal": 1,
+              "healer": 3,
+              "insight": 1,
+              "mage": 3,
+              "march": 1,
+              "nova": 1,
+              "rain": 1,
+              "rampart": 1,
+              "snow": 1,
+              "spear": 3,
+              "sun": 1,
+              "sword": 3,
+              "trail": 1,
+              "ward": 1
+            },
+            "deck_id": "balanced",
+            "discard": [
+              {
+                "card_id": "bolt",
+                "uid": 19
+              },
+              {
+                "card_id": "sun",
+                "uid": 27
+              },
+              {
+                "card_id": "spear",
+                "uid": 5,
+                "unit_id": 69
+              },
+              {
+                "card_id": "sword",
+                "uid": 2,
+                "unit_id": 64
+              },
+              {
+                "card_id": "cavalry",
+                "uid": 8,
+                "unit_id": 72
+              },
+              {
+                "card_id": "healer",
+                "uid": 17,
+                "unit_id": 67
+              },
+              {
+                "card_id": "archer",
+                "uid": 11,
+                "unit_id": 66
+              },
+              {
+                "card_id": "rampart",
+                "uid": 29
+              },
+              {
+                "card_id": "mage",
+                "uid": 15,
+                "unit_id": 76
+              },
+              {
+                "card_id": "heal",
+                "uid": 21
+              },
+              {
+                "card_id": "cavalry",
+                "uid": 7,
+                "unit_id": 79
+              }
+            ],
+            "fatigue": 0,
+            "hand": [
+              {
+                "card_id": "rain",
+                "uid": 25
+              },
+              {
+                "card_id": "fog",
+                "uid": 26
+              },
+              {
+                "card_id": "snow",
+                "uid": 28
+              },
+              {
+                "card_id": "march",
+                "uid": 23
+              }
+            ],
+            "hero_id": "pyromancer",
+            "identity": {},
+            "mana": 10,
+            "max_mana": 10,
+            "skill_cooldown": 0,
+            "spell_boost_used": false
+          },
+          {
+            "card_total": 31,
+            "deck": [
+              {
+                "card_id": "ward",
+                "uid": 54
+              },
+              {
+                "card_id": "healer",
+                "uid": 46
+              },
+              {
+                "card_id": "rampart",
+                "uid": 58
+              },
+              {
+                "card_id": "spear",
+                "uid": 38
+              },
+              {
+                "card_id": "archer",
+                "uid": 42
+              },
+              {
+                "card_id": "sword",
+                "uid": 34
+              },
+              {
+                "card_id": "healer",
+                "uid": 48
+              },
+              {
+                "card_id": "heal",
+                "uid": 51
+              },
+              {
+                "card_id": "mage",
+                "uid": 44
+              },
+              {
+                "card_id": "fog",
+                "uid": 56
+              },
+              {
+                "card_id": "sword",
+                "uid": 32
+              },
+              {
+                "card_id": "spear",
+                "uid": 35
+              },
+              {
+                "card_id": "archer",
+                "uid": 43
+              }
+            ],
+            "deck_counts": {
+              "archer": 4,
+              "bolt": 1,
+              "cavalry": 1,
+              "dispel": 1,
+              "exchange": 1,
+              "fog": 1,
+              "frostbind": 1,
+              "heal": 2,
+              "healer": 4,
+              "mage": 2,
+              "rain": 1,
+              "rampart": 2,
+              "spear": 4,
+              "sword": 3,
+              "ward": 2
+            },
+            "deck_id": "bastion",
+            "discard": [
+              {
+                "card_id": "initiative",
+                "uid": 63
+              },
+              {
+                "card_id": "rampart",
+                "uid": 57
+              },
+              {
+                "card_id": "cavalry",
+                "uid": 39,
+                "unit_id": 68
+              },
+              {
+                "card_id": "bolt",
+                "uid": 50
+              },
+              {
+                "card_id": "ward",
+                "uid": 53
+              },
+              {
+                "card_id": "sword",
+                "uid": 33,
+                "unit_id": 71
+              },
+              {
+                "card_id": "heal",
+                "uid": 52
+              },
+              {
+                "card_id": "archer",
+                "uid": 41,
+                "unit_id": 65
+              },
+              {
+                "card_id": "frostbind",
+                "uid": 59
+              },
+              {
+                "card_id": "spear",
+                "uid": 36,
+                "unit_id": 77
+              },
+              {
+                "card_id": "rain",
+                "uid": 55
+              },
+              {
+                "card_id": "archer",
+                "uid": 40,
+                "unit_id": 70
+              },
+              {
+                "card_id": "mage",
+                "uid": 45,
+                "unit_id": 80
+              }
+            ],
+            "fatigue": 0,
+            "hand": [
+              {
+                "card_id": "dispel",
+                "uid": 60
+              },
+              {
+                "card_id": "exchange",
+                "uid": 61
+              }
+            ],
+            "hero_id": "warden",
+            "identity": {
+              "name": "守机管事阮衡",
+              "portrait": "terrain_fort"
+            },
+            "mana": 6,
+            "max_mana": 10,
+            "skill_cooldown": 1,
+            "spell_boost_used": false
+          }
+        ],
+        "rng_seed": "8317",
+        "rng_state": "2529442503183746701",
+        "rules": "a7bac19af17335364e1d3286a974a75e16f6d3a2c6c32cafa2fc0387d97be52a",
+        "terrain": [
+          "mountain",
+          "plain",
+          "plain",
+          "road",
+          "road",
+          "plain",
+          "fort",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "mountain",
+          "plain",
+          "hill",
+          "plain",
+          "road",
+          "road",
+          "plain",
+          "road",
+          "plain",
+          "forest",
+          "forest",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "road",
+          "road",
+          "plain",
+          "hill",
+          "road",
+          "road",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "forest",
+          "road",
+          "fort",
+          "plain",
+          "plain",
+          "road",
+          "plain",
+          "road",
+          "hill",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "ruins",
+          "road",
+          "hill",
+          "plain",
+          "plain",
+          "road",
+          "road",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "road",
+          "road",
+          "plain",
+          "plain",
+          "hill",
+          "road",
+          "ruins",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "hill",
+          "road",
+          "plain",
+          "road",
+          "plain",
+          "plain",
+          "fort",
+          "road",
+          "forest",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "road",
+          "road",
+          "hill",
+          "plain",
+          "road",
+          "road",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "forest",
+          "forest",
+          "plain",
+          "road",
+          "plain",
+          "road",
+          "road",
+          "plain",
+          "hill",
+          "plain",
+          "mountain",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "fort",
+          "plain",
+          "road",
+          "road",
+          "plain",
+          "plain",
+          "mountain"
+        ],
+        "time_remaining": 90.0,
+        "turn": 25,
+        "turn_time_limit": 90.0,
+        "units": [
+          {
+            "atk": 2,
+            "attacked": false,
+            "defense": 0,
+            "guarding": false,
+            "hp": 20,
+            "id": 31,
+            "kind": "commander",
+            "last_move_distance": 0,
+            "max_hp": 20,
+            "move": 0,
+            "moved": false,
+            "name": "维洛 · 赤烬",
+            "pos": [
+              5,
+              9
+            ],
+            "range": 2,
+            "rooted_turns": 0,
+            "shield": 0,
+            "short": "烬",
+            "side": 0,
+            "skill_used": false,
+            "summoning": false
+          },
+          {
+            "atk": 3,
+            "attacked": false,
+            "defense": 1,
+            "guarding": false,
+            "hp": 20,
+            "id": 62,
+            "kind": "commander",
+            "last_move_distance": 0,
+            "max_hp": 20,
+            "move": 0,
+            "moved": false,
+            "name": "守机管事阮衡",
+            "pos": [
+              6,
+              0
+            ],
+            "range": 1,
+            "rooted_turns": 0,
+            "shield": 3,
+            "short": "守",
+            "side": 1,
+            "skill_used": false,
+            "summoning": false
+          },
+          {
+            "atk": 2,
+            "attacked": true,
+            "card": {
+              "card_id": "healer",
+              "uid": 47,
+              "unit_id": 73
+            },
+            "defense": 0,
+            "guarding": false,
+            "hp": 5,
+            "id": 73,
+            "kind": "healer",
+            "last_move_distance": 0,
+            "max_hp": 5,
+            "move": 2,
+            "moved": true,
+            "name": "晨光医师",
+            "pos": [
+              4,
+              2
+            ],
+            "range": 2,
+            "rooted_turns": 0,
+            "shield": 0,
+            "short": "医",
+            "side": 1,
+            "skill_used": true,
+            "summoning": false
+          },
+          {
+            "atk": 5,
+            "attacked": false,
+            "card": {
+              "card_id": "mage",
+              "uid": 13,
+              "unit_id": 74
+            },
+            "defense": 0,
+            "guarding": false,
+            "hp": 4,
+            "id": 74,
+            "kind": "mage",
+            "last_move_distance": 0,
+            "max_hp": 4,
+            "move": 2,
+            "moved": false,
+            "name": "星火术士",
+            "pos": [
+              7,
+              5
+            ],
+            "range": 2,
+            "rooted_turns": 0,
+            "shield": 0,
+            "short": "法",
+            "side": 0,
+            "skill_used": false,
+            "summoning": false
+          },
+          {
+            "atk": 3,
+            "attacked": false,
+            "card": {
+              "card_id": "spear",
+              "uid": 4,
+              "unit_id": 75
+            },
+            "defense": 2,
+            "guarding": false,
+            "hp": 7,
+            "id": 75,
+            "kind": "spear",
+            "last_move_distance": 0,
+            "max_hp": 7,
+            "move": 2,
+            "moved": false,
+            "name": "铁壁枪卫",
+            "pos": [
+              4,
+              5
+            ],
+            "range": 1,
+            "rooted_turns": 0,
+            "shield": 0,
+            "short": "枪",
+            "side": 0,
+            "skill_used": false,
+            "summoning": false
+          },
+          {
+            "atk": 3,
+            "attacked": true,
+            "card": {
+              "card_id": "spear",
+              "uid": 37,
+              "unit_id": 78
+            },
+            "defense": 2,
+            "guarding": false,
+            "hp": 7,
+            "id": 78,
+            "kind": "spear",
+            "last_move_distance": 0,
+            "max_hp": 7,
+            "move": 2,
+            "moved": true,
+            "name": "铁壁枪卫",
+            "pos": [
+              4,
+              4
+            ],
+            "range": 1,
+            "rooted_turns": 0,
+            "shield": 0,
+            "short": "枪",
+            "side": 1,
+            "skill_used": false,
+            "summoning": false
+          },
+          {
+            "atk": 2,
+            "attacked": true,
+            "card": {
+              "card_id": "healer",
+              "uid": 49,
+              "unit_id": 81
+            },
+            "defense": 0,
+            "guarding": false,
+            "hp": 5,
+            "id": 81,
+            "kind": "healer",
+            "last_move_distance": 0,
+            "max_hp": 5,
+            "move": 2,
+            "moved": true,
+            "name": "晨光医师",
+            "pos": [
+              5,
+              2
+            ],
+            "range": 2,
+            "rooted_turns": 0,
+            "shield": 0,
+            "short": "医",
+            "side": 1,
+            "skill_used": false,
+            "summoning": true
+          }
+        ],
+        "version": 2,
+        "weather": "rain",
+        "weather_remaining": 1,
+        "winner": 1
+      },
+      "illegal_action": "",
+      "max_control_streak": 1,
+      "reason": "deadline",
+      "scenario": "c08_isolate",
+      "seed": 8317.0,
+      "streak_resets": 1,
+      "trace": [
+        {
+          "action": {
+            "card_uid": 2,
+            "target": [
+              6,
+              9
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 1
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 2
+        },
+        {
+          "action": {
+            "card_uid": 63,
+            "target": [
+              -1,
+              -1
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 2
+        },
+        {
+          "action": {
+            "card_uid": 41,
+            "target": [
+              5,
+              0
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 2
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 3
+        },
+        {
+          "action": {
+            "card_uid": 11,
+            "target": [
+              6,
+              8
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 3
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              8
+            ],
+            "type": "move",
+            "unit_id": 64
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 3
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 4
+        },
+        {
+          "action": {
+            "card_uid": 57,
+            "target": [
+              6,
+              0
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 4
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              1
+            ],
+            "type": "move",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 4
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 5
+        },
+        {
+          "action": {
+            "card_uid": 17,
+            "target": [
+              6,
+              7
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 5
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              6
+            ],
+            "type": "move",
+            "unit_id": 64
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 5
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              7
+            ],
+            "type": "move",
+            "unit_id": 66
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 5
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 6
+        },
+        {
+          "action": {
+            "card_uid": 39,
+            "target": [
+              5,
+              1
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 6
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              2
+            ],
+            "type": "move",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 6
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 7
+        },
+        {
+          "action": {
+            "card_uid": 5,
+            "target": [
+              7,
+              5
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 7
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              6
+            ],
+            "type": "unit_skill",
+            "unit_id": 64
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 7
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              6
+            ],
+            "type": "move",
+            "unit_id": 67
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 7
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              6
+            ],
+            "type": "move",
+            "unit_id": 66
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 7
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 8
+        },
+        {
+          "action": {
+            "card_uid": 40,
+            "target": [
+              6,
+              2
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 8
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              5
+            ],
+            "type": "unit_skill",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 8
+        },
+        {
+          "action": {
+            "card_uid": 33,
+            "target": [
+              4,
+              1
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 8
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              3
+            ],
+            "type": "move",
+            "unit_id": 68
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 8
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 9
+        },
+        {
+          "action": {
+            "card_uid": 19,
+            "target": [
+              5,
+              3
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 9
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              5
+            ],
+            "type": "unit_skill",
+            "unit_id": 69
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 9
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              5
+            ],
+            "type": "move",
+            "unit_id": 64
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 9
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              5
+            ],
+            "type": "move",
+            "unit_id": 67
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 9
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              5
+            ],
+            "type": "move",
+            "unit_id": 66
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 9
+        },
+        {
+          "action": {
+            "card_uid": 27,
+            "target": [
+              -1,
+              -1
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 9
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 10
+        },
+        {
+          "action": {
+            "card_uid": 50,
+            "target": [
+              7,
+              5
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 10
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              5
+            ],
+            "type": "unit_skill",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 10
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              3
+            ],
+            "type": "move",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 10
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              5
+            ],
+            "type": "unit_skill",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 10
+        },
+        {
+          "action": {
+            "card_uid": 53,
+            "target": [
+              6,
+              0
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 10
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              3
+            ],
+            "type": "move",
+            "unit_id": 71
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 10
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              4
+            ],
+            "type": "move",
+            "unit_id": 67
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "card_uid": 8,
+            "target": [
+              7,
+              5
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              3
+            ],
+            "type": "unit_skill",
+            "unit_id": 66
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              3
+            ],
+            "type": "attack",
+            "unit_id": 67
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              3
+            ],
+            "type": "move",
+            "unit_id": 64
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              3
+            ],
+            "type": "attack",
+            "unit_id": 64
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 12
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              3
+            ],
+            "type": "attack",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 12
+        },
+        {
+          "action": {
+            "card_uid": 47,
+            "target": [
+              5,
+              0
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 12
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              2
+            ],
+            "type": "move",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 12
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              5
+            ],
+            "type": "unit_skill",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 12
+        },
+        {
+          "action": {
+            "card_uid": 52,
+            "target": [
+              7,
+              3
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 12
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 13
+        },
+        {
+          "action": {
+            "card_uid": 13,
+            "target": [
+              6,
+              9
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 13
+        },
+        {
+          "action": {
+            "card_uid": 4,
+            "target": [
+              6,
+              8
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 13
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              3
+            ],
+            "type": "move",
+            "unit_id": 66
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 13
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 14
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              5
+            ],
+            "type": "attack",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 14
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              2
+            ],
+            "type": "hero"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 14
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              2
+            ],
+            "type": "move",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 14
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              1
+            ],
+            "type": "move",
+            "unit_id": 73
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 14
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 15
+        },
+        {
+          "action": {
+            "card_uid": 15,
+            "target": [
+              7,
+              8
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 15
+        },
+        {
+          "action": {
+            "target": [
+              8,
+              9
+            ],
+            "type": "move",
+            "unit_id": 74
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 15
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              7
+            ],
+            "type": "move",
+            "unit_id": 75
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 15
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              5
+            ],
+            "type": "move",
+            "unit_id": 66
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 15
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 16
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              2
+            ],
+            "type": "move",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 16
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              4
+            ],
+            "type": "unit_skill",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 16
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              3
+            ],
+            "type": "move",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 16
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              4
+            ],
+            "type": "attack",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 16
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              2
+            ],
+            "type": "move",
+            "unit_id": 73
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 16
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 17
+        },
+        {
+          "action": {
+            "target": [
+              8,
+              7
+            ],
+            "type": "move",
+            "unit_id": 74
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 17
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              6
+            ],
+            "type": "move",
+            "unit_id": 76
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 17
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              6
+            ],
+            "type": "move",
+            "unit_id": 75
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 17
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              6
+            ],
+            "type": "unit_skill",
+            "unit_id": 75
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 17
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              5
+            ],
+            "type": "move",
+            "unit_id": 66
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 17
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              3
+            ],
+            "type": "unit_skill",
+            "unit_id": 66
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 17
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 18
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              5
+            ],
+            "type": "attack",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 18
+        },
+        {
+          "action": {
+            "card_uid": 36,
+            "target": [
+              5,
+              3
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 18
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              3
+            ],
+            "type": "move",
+            "unit_id": 73
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 18
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 19
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              5
+            ],
+            "type": "move",
+            "unit_id": 76
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 19
+        },
+        {
+          "action": {
+            "target": [
+              8,
+              5
+            ],
+            "type": "move",
+            "unit_id": 74
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 19
+        },
+        {
+          "action": {
+            "card_uid": 29,
+            "target": [
+              5,
+              9
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 19
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              6
+            ],
+            "type": "move",
+            "unit_id": 75
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 19
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "card_uid": 37,
+            "target": [
+              4,
+              4
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              3
+            ],
+            "type": "unit_skill",
+            "unit_id": 77
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              2
+            ],
+            "type": "hero"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              3
+            ],
+            "type": "move",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              5
+            ],
+            "type": "unit_skill",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              3
+            ],
+            "type": "unit_skill",
+            "unit_id": 73
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "card_uid": 59,
+            "target": [
+              4,
+              6
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 21
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              3
+            ],
+            "type": "attack",
+            "unit_id": 76
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 21
+        },
+        {
+          "action": {
+            "card_uid": 7,
+            "target": [
+              5,
+              8
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 21
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              4
+            ],
+            "type": "move",
+            "unit_id": 74
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 21
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              3
+            ],
+            "type": "attack",
+            "unit_id": 74
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 21
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 22
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              5
+            ],
+            "type": "attack",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 22
+        },
+        {
+          "action": {
+            "card_uid": 45,
+            "target": [
+              3,
+              3
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 22
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              4
+            ],
+            "type": "unit_skill",
+            "unit_id": 78
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 22
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              2
+            ],
+            "type": "move",
+            "unit_id": 73
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 22
+        },
+        {
+          "action": {
+            "card_uid": 55,
+            "target": [
+              -1,
+              -1
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 22
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 23
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              5
+            ],
+            "type": "move",
+            "unit_id": 74
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 23
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              3
+            ],
+            "type": "attack",
+            "unit_id": 74
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 23
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              5
+            ],
+            "type": "move",
+            "unit_id": 75
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 23
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              4
+            ],
+            "type": "attack",
+            "unit_id": 75
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 23
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              6
+            ],
+            "type": "move",
+            "unit_id": 79
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 23
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              4
+            ],
+            "type": "unit_skill",
+            "unit_id": 79
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 23
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              3
+            ],
+            "type": "attack",
+            "unit_id": 79
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 23
+        },
+        {
+          "action": {
+            "card_uid": 21,
+            "target": [
+              4,
+              5
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 23
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 24
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              4
+            ],
+            "type": "attack",
+            "unit_id": 78
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 24
+        },
+        {
+          "action": {
+            "card_uid": 49,
+            "target": [
+              5,
+              2
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 24
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              4
+            ],
+            "type": "unit_skill",
+            "unit_id": 73
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 24
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 25
+        }
+      ],
+      "turn": 25,
+      "winner": 1
+    },
+    {
+      "actions": 194,
+      "decision_mean_ms": 20.340025773195876,
+      "decision_peak_ms": 117.622,
+      "final": {
+        "active_side": 1,
+        "deck_size": 30,
+        "log": [
+          "苍蓝军团回合 · 法力 10/10",
+          "维洛 · 赤烬攻击逐风骑士，造成 2 点伤害。",
+          "逐风骑士倒下了。",
+          "星火术士推进至 G4。",
+          "苍蓝军团使用了「逐风骑士」。",
+          "铁壁枪卫推进至 G2。",
+          "铁壁枪卫攻击誓约步兵，造成 2 点伤害。",
+          "誓约步兵反击，造成 3 点伤害。",
+          "守机管事阮衡所部回合 · 法力 10/10",
+          "誓约步兵攻击维洛 · 赤烬，造成 3 点伤害。",
+          "维洛 · 赤烬反击，造成 1 点伤害。",
+          "誓约步兵倒下了。",
+          "守机管事阮衡所部使用了「逐风骑士」。",
+          "暮林游侠推进至 E7。",
+          "铁壁枪卫推进至 B5。",
+          "星火术士推进至 G8。",
+          "星火术士推进至 D4。",
+          "苍蓝军团回合 · 法力 10/10",
+          "星火术士推进至 F4。",
+          "星火术士攻击星火术士，造成 5 点伤害。",
+          "星火术士倒下了。",
+          "苍蓝军团使用了「逐风骑士」。",
+          "逐风骑士推进至 I5。",
+          "逐风骑士发动「疾风再动」。",
+          "铁壁枪卫推进至 G3。",
+          "守机管事阮衡所部回合 · 法力 10/10",
+          "逐风骑士推进至 G6。",
+          "逐风骑士攻击逐风骑士，造成 6 点伤害。",
+          "逐风骑士倒下了。",
+          "暮林游侠推进至 E6。",
+          "暮林游侠攻击星火术士，造成 4 点伤害。",
+          "星火术士倒下了。",
+          "守机管事阮衡所部使用了「战地谋略」。",
+          "守机管事阮衡所部使用了「逐风骑士」。",
+          "铁壁枪卫推进至 B3。",
+          "星火术士推进至 H7。",
+          "I4变为军道。",
+          "守机管事阮衡所部使用了「开辟军道」。",
+          "苍蓝军团回合 · 法力 10/10",
+          "逐风骑士推进至 G5。",
+          "逐风骑士攻击逐风骑士，造成 6 点伤害。",
+          "逐风骑士倒下了。",
+          "苍蓝军团使用了「誓约步兵」。",
+          "铁壁枪卫发动「铁壁援护」。",
+          "守机管事阮衡所部回合 · 法力 10/10",
+          "暮林游侠攻击逐风骑士，造成 5 点伤害。",
+          "暮林游侠发动「精准射击」。",
+          "逐风骑士倒下了。",
+          "守机管事阮衡所部使用了「星火术士」。",
+          "逐风骑士推进至 E3。",
+          "逐风骑士发动「疾风再动」。",
+          "逐风骑士攻击维洛 · 赤烬，造成 6 点伤害。",
+          "维洛 · 赤烬反击，造成 2 点伤害。",
+          "铁壁枪卫推进至 C2。",
+          "守机管事阮衡发动「圣盾赐福」。",
+          "星火术士推进至 G6。",
+          "苍蓝军团回合 · 法力 10/10",
+          "誓约步兵推进至 G2。",
+          "誓约步兵攻击逐风骑士，造成 3 点伤害。",
+          "逐风骑士倒下了。",
+          "维洛 · 赤烬发动「烈焰裁决」。",
+          "铁壁枪卫倒下了。",
+          "铁壁枪卫发动「铁壁援护」。",
+          "守机管事阮衡所部回合 · 法力 10/10",
+          "星火术士推进至 G4。",
+          "星火术士攻击铁壁枪卫，造成 2 点伤害。",
+          "铁壁枪卫反击，造成 4 点伤害。",
+          "星火术士推进至 E3。",
+          "星火术士攻击铁壁枪卫，造成 2 点伤害。",
+          "铁壁枪卫倒下了。",
+          "守机管事阮衡所部使用了「暮林游侠」。",
+          "暮林游侠推进至 F5。",
+          "苍蓝军团回合 · 法力 10/10",
+          "誓约步兵推进至 G3。",
+          "誓约步兵攻击星火术士，造成 4 点伤害。",
+          "星火术士倒下了。",
+          "守机管事阮衡所部回合 · 法力 10/10",
+          "守机管事阮衡所部使用了「陨火之环」。",
+          "维洛 · 赤烬倒下了。",
+          "守机管事阮衡所部取得胜利！"
+        ],
+        "map_id": "sunspire",
+        "match_seed": 8318,
+        "next_id": 89,
+        "objective": {},
+        "players": [
+          {
+            "card_total": 30,
+            "deck": [
+              {
+                "card_id": "repulse",
+                "uid": 27
+              },
+              {
+                "card_id": "bolt",
+                "uid": 19
+              },
+              {
+                "card_id": "insight",
+                "uid": 24
+              },
+              {
+                "card_id": "cavalry",
+                "uid": 8
+              },
+              {
+                "card_id": "sword",
+                "uid": 3
+              },
+              {
+                "card_id": "archer",
+                "uid": 12
+              },
+              {
+                "card_id": "archer",
+                "uid": 13
+              },
+              {
+                "card_id": "mage",
+                "uid": 14
+              },
+              {
+                "card_id": "nova",
+                "uid": 21
+              },
+              {
+                "card_id": "bolt",
+                "uid": 20
+              },
+              {
+                "card_id": "mage",
+                "uid": 15
+              }
+            ],
+            "deck_counts": {
+              "archer": 3,
+              "bolt": 2,
+              "cavalry": 4,
+              "clear_skies": 1,
+              "exchange": 1,
+              "healer": 2,
+              "insight": 1,
+              "mage": 3,
+              "march": 2,
+              "nova": 1,
+              "onslaught": 1,
+              "repulse": 1,
+              "spear": 2,
+              "sun": 1,
+              "sword": 4,
+              "trail": 1
+            },
+            "deck_id": "assault",
+            "discard": [
+              {
+                "card_id": "archer",
+                "uid": 11,
+                "unit_id": 66
+              },
+              {
+                "card_id": "onslaught",
+                "uid": 29
+              },
+              {
+                "card_id": "sword",
+                "uid": 2,
+                "unit_id": 64
+              },
+              {
+                "card_id": "cavalry",
+                "uid": 9,
+                "unit_id": 72
+              },
+              {
+                "card_id": "march",
+                "uid": 23
+              },
+              {
+                "card_id": "sun",
+                "uid": 25
+              },
+              {
+                "card_id": "spear",
+                "uid": 6,
+                "unit_id": 74
+              },
+              {
+                "card_id": "trail",
+                "uid": 26
+              },
+              {
+                "card_id": "healer",
+                "uid": 17,
+                "unit_id": 68
+              },
+              {
+                "card_id": "sword",
+                "uid": 1,
+                "unit_id": 73
+              },
+              {
+                "card_id": "healer",
+                "uid": 18,
+                "unit_id": 79
+              },
+              {
+                "card_id": "cavalry",
+                "uid": 7,
+                "unit_id": 82
+              },
+              {
+                "card_id": "mage",
+                "uid": 16,
+                "unit_id": 70
+              },
+              {
+                "card_id": "cavalry",
+                "uid": 10,
+                "unit_id": 84
+              },
+              {
+                "card_id": "spear",
+                "uid": 5,
+                "unit_id": 80
+              }
+            ],
+            "fatigue": 0,
+            "hand": [
+              {
+                "card_id": "clear_skies",
+                "uid": 30
+              },
+              {
+                "card_id": "march",
+                "uid": 22
+              },
+              {
+                "card_id": "exchange",
+                "uid": 28
+              }
+            ],
+            "hero_id": "pyromancer",
+            "identity": {},
+            "mana": 10,
+            "max_mana": 10,
+            "skill_cooldown": 2,
+            "spell_boost_used": false
+          },
+          {
+            "card_total": 31,
+            "deck": [
+              {
+                "card_id": "healer",
+                "uid": 47
+              },
+              {
+                "card_id": "archer",
+                "uid": 41
+              },
+              {
+                "card_id": "spear",
+                "uid": 35
+              },
+              {
+                "card_id": "fog",
+                "uid": 57
+              },
+              {
+                "card_id": "snow",
+                "uid": 59
+              },
+              {
+                "card_id": "march",
+                "uid": 54
+              },
+              {
+                "card_id": "spear",
+                "uid": 36
+              },
+              {
+                "card_id": "sword",
+                "uid": 32
+              }
+            ],
+            "deck_counts": {
+              "archer": 3,
+              "bolt": 1,
+              "cavalry": 3,
+              "fog": 1,
+              "heal": 1,
+              "healer": 3,
+              "insight": 1,
+              "mage": 3,
+              "march": 1,
+              "nova": 1,
+              "rain": 1,
+              "rampart": 1,
+              "snow": 1,
+              "spear": 3,
+              "sun": 1,
+              "sword": 3,
+              "trail": 1,
+              "ward": 1
+            },
+            "deck_id": "balanced",
+            "discard": [
+              {
+                "card_id": "initiative",
+                "uid": 63
+              },
+              {
+                "card_id": "bolt",
+                "uid": 50
+              },
+              {
+                "card_id": "heal",
+                "uid": 52
+              },
+              {
+                "card_id": "sword",
+                "uid": 34,
+                "unit_id": 67
+              },
+              {
+                "card_id": "healer",
+                "uid": 48,
+                "unit_id": 69
+              },
+              {
+                "card_id": "rampart",
+                "uid": 60
+              },
+              {
+                "card_id": "ward",
+                "uid": 53
+              },
+              {
+                "card_id": "healer",
+                "uid": 49,
+                "unit_id": 76
+              },
+              {
+                "card_id": "cavalry",
+                "uid": 39,
+                "unit_id": 75
+              },
+              {
+                "card_id": "sword",
+                "uid": 33,
+                "unit_id": 78
+              },
+              {
+                "card_id": "mage",
+                "uid": 44,
+                "unit_id": 81
+              },
+              {
+                "card_id": "insight",
+                "uid": 55
+              },
+              {
+                "card_id": "trail",
+                "uid": 61
+              },
+              {
+                "card_id": "cavalry",
+                "uid": 40,
+                "unit_id": 83
+              },
+              {
+                "card_id": "cavalry",
+                "uid": 38,
+                "unit_id": 85
+              },
+              {
+                "card_id": "spear",
+                "uid": 37,
+                "unit_id": 65
+              },
+              {
+                "card_id": "mage",
+                "uid": 46,
+                "unit_id": 71
+              },
+              {
+                "card_id": "nova",
+                "uid": 51
+              }
+            ],
+            "fatigue": 0,
+            "hand": [
+              {
+                "card_id": "sun",
+                "uid": 58
+              },
+              {
+                "card_id": "rain",
+                "uid": 56
+              }
+            ],
+            "hero_id": "warden",
+            "identity": {
+              "name": "守机管事阮衡",
+              "portrait": "terrain_fort"
+            },
+            "mana": 6,
+            "max_mana": 10,
+            "skill_cooldown": 1,
+            "spell_boost_used": true
+          }
+        ],
+        "rng_seed": "8318",
+        "rng_state": "8023548627571544290",
+        "rules": "a7bac19af17335364e1d3286a974a75e16f6d3a2c6c32cafa2fc0387d97be52a",
+        "terrain": [
+          "mountain",
+          "plain",
+          "plain",
+          "road",
+          "road",
+          "plain",
+          "fort",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "mountain",
+          "plain",
+          "hill",
+          "plain",
+          "road",
+          "road",
+          "plain",
+          "road",
+          "plain",
+          "forest",
+          "forest",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "road",
+          "road",
+          "plain",
+          "hill",
+          "road",
+          "road",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "forest",
+          "road",
+          "road",
+          "plain",
+          "plain",
+          "road",
+          "plain",
+          "road",
+          "hill",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "ruins",
+          "road",
+          "hill",
+          "plain",
+          "plain",
+          "road",
+          "road",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "road",
+          "road",
+          "plain",
+          "plain",
+          "hill",
+          "road",
+          "ruins",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "hill",
+          "road",
+          "plain",
+          "road",
+          "plain",
+          "plain",
+          "road",
+          "road",
+          "forest",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "road",
+          "road",
+          "hill",
+          "plain",
+          "road",
+          "road",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "forest",
+          "forest",
+          "plain",
+          "road",
+          "plain",
+          "road",
+          "road",
+          "plain",
+          "hill",
+          "plain",
+          "mountain",
+          "plain",
+          "plain",
+          "plain",
+          "plain",
+          "road",
+          "plain",
+          "road",
+          "road",
+          "plain",
+          "plain",
+          "mountain"
+        ],
+        "time_remaining": 89.65,
+        "turn": 30,
+        "turn_time_limit": 90.0,
+        "units": [
+          {
+            "atk": 3,
+            "attacked": false,
+            "defense": 1,
+            "guarding": false,
+            "hp": 20,
+            "id": 62,
+            "kind": "commander",
+            "last_move_distance": 0,
+            "max_hp": 20,
+            "move": 0,
+            "moved": false,
+            "name": "守机管事阮衡",
+            "pos": [
+              6,
+              0
+            ],
+            "range": 1,
+            "rooted_turns": 0,
+            "shield": 5,
+            "short": "守",
+            "side": 1,
+            "skill_used": false,
+            "summoning": false
+          },
+          {
+            "atk": 3,
+            "attacked": false,
+            "card": {
+              "card_id": "archer",
+              "uid": 43,
+              "unit_id": 77
+            },
+            "defense": 0,
+            "guarding": false,
+            "hp": 2,
+            "id": 77,
+            "kind": "archer",
+            "last_move_distance": 0,
+            "max_hp": 4,
+            "move": 2,
+            "moved": false,
+            "name": "暮林游侠",
+            "pos": [
+              5,
+              5
+            ],
+            "range": 3,
+            "rooted_turns": 0,
+            "shield": 0,
+            "short": "弓",
+            "side": 1,
+            "skill_used": false,
+            "summoning": false
+          },
+          {
+            "atk": 3,
+            "attacked": true,
+            "card": {
+              "card_id": "sword",
+              "uid": 4,
+              "unit_id": 86
+            },
+            "defense": 1,
+            "guarding": false,
+            "hp": 5,
+            "id": 86,
+            "kind": "sword",
+            "last_move_distance": 1,
+            "max_hp": 5,
+            "move": 2,
+            "moved": true,
+            "name": "誓约步兵",
+            "pos": [
+              6,
+              7
+            ],
+            "range": 1,
+            "rooted_turns": 0,
+            "shield": 0,
+            "short": "步",
+            "side": 0,
+            "skill_used": false,
+            "summoning": false
+          },
+          {
+            "atk": 5,
+            "attacked": false,
+            "card": {
+              "card_id": "mage",
+              "uid": 45,
+              "unit_id": 87
+            },
+            "defense": 0,
+            "guarding": false,
+            "hp": 4,
+            "id": 87,
+            "kind": "mage",
+            "last_move_distance": 0,
+            "max_hp": 4,
+            "move": 2,
+            "moved": false,
+            "name": "星火术士",
+            "pos": [
+              4,
+              7
+            ],
+            "range": 2,
+            "rooted_turns": 0,
+            "shield": 0,
+            "short": "法",
+            "side": 1,
+            "skill_used": false,
+            "summoning": false
+          },
+          {
+            "atk": 3,
+            "attacked": false,
+            "card": {
+              "card_id": "archer",
+              "uid": 42,
+              "unit_id": 88
+            },
+            "defense": 0,
+            "guarding": false,
+            "hp": 4,
+            "id": 88,
+            "kind": "archer",
+            "last_move_distance": 0,
+            "max_hp": 4,
+            "move": 2,
+            "moved": false,
+            "name": "暮林游侠",
+            "pos": [
+              3,
+              7
+            ],
+            "range": 3,
+            "rooted_turns": 0,
+            "shield": 0,
+            "short": "弓",
+            "side": 1,
+            "skill_used": false,
+            "summoning": false
+          }
+        ],
+        "version": 2,
+        "weather": "clear",
+        "weather_remaining": 0,
+        "winner": 1
+      },
+      "illegal_action": "",
+      "max_control_streak": 0,
+      "reason": "commander",
+      "scenario": "c08_buffer",
+      "seed": 8318.0,
+      "streak_resets": 0,
+      "trace": [
+        {
+          "action": {
+            "card_uid": 2,
+            "target": [
+              6,
+              9
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 1
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 2
+        },
+        {
+          "action": {
+            "card_uid": 63,
+            "target": [
+              -1,
+              -1
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 2
+        },
+        {
+          "action": {
+            "card_uid": 37,
+            "target": [
+              5,
+              0
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 2
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 3
+        },
+        {
+          "action": {
+            "card_uid": 11,
+            "target": [
+              6,
+              8
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 3
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              8
+            ],
+            "type": "move",
+            "unit_id": 64
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 3
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 4
+        },
+        {
+          "action": {
+            "card_uid": 34,
+            "target": [
+              5,
+              1
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 4
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              1
+            ],
+            "type": "move",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 4
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 5
+        },
+        {
+          "action": {
+            "card_uid": 17,
+            "target": [
+              6,
+              7
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 5
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              6
+            ],
+            "type": "move",
+            "unit_id": 64
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 5
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              7
+            ],
+            "type": "move",
+            "unit_id": 66
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 5
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 6
+        },
+        {
+          "action": {
+            "card_uid": 48,
+            "target": [
+              4,
+              2
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 6
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              2
+            ],
+            "type": "move",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 6
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              2
+            ],
+            "type": "move",
+            "unit_id": 67
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 6
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 7
+        },
+        {
+          "action": {
+            "card_uid": 16,
+            "target": [
+              6,
+              6
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 7
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              5
+            ],
+            "type": "move",
+            "unit_id": 64
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 7
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              6
+            ],
+            "type": "move",
+            "unit_id": 66
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 7
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              6
+            ],
+            "type": "move",
+            "unit_id": 68
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 7
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 8
+        },
+        {
+          "action": {
+            "card_uid": 46,
+            "target": [
+              5,
+              0
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 8
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              3
+            ],
+            "type": "move",
+            "unit_id": 69
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 8
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              2
+            ],
+            "type": "move",
+            "unit_id": 67
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 8
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              2
+            ],
+            "type": "move",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 8
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 9
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              5
+            ],
+            "type": "move",
+            "unit_id": 66
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 9
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              2
+            ],
+            "type": "unit_skill",
+            "unit_id": 66
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 9
+        },
+        {
+          "action": {
+            "card_uid": 9,
+            "target": [
+              6,
+              5
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 9
+        },
+        {
+          "action": {
+            "card_uid": 1,
+            "target": [
+              8,
+              5
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 9
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              3
+            ],
+            "type": "move",
+            "unit_id": 64
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 9
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              2
+            ],
+            "type": "attack",
+            "unit_id": 64
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 9
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              6
+            ],
+            "type": "move",
+            "unit_id": 68
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 9
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              6
+            ],
+            "type": "move",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 9
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 10
+        },
+        {
+          "action": {
+            "card_uid": 50,
+            "target": [
+              4,
+              5
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 10
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              2
+            ],
+            "type": "unit_skill",
+            "unit_id": 69
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 10
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              3
+            ],
+            "type": "attack",
+            "unit_id": 67
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 10
+        },
+        {
+          "action": {
+            "card_uid": 52,
+            "target": [
+              7,
+              2
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 10
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              3
+            ],
+            "type": "move",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 10
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              5
+            ],
+            "type": "move",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              2
+            ],
+            "type": "attack",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              4
+            ],
+            "type": "move",
+            "unit_id": 72
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              3
+            ],
+            "type": "attack",
+            "unit_id": 72
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "card_uid": 29,
+            "target": [
+              3,
+              4
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              3
+            ],
+            "type": "attack",
+            "unit_id": 72
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              4
+            ],
+            "type": "unit_skill",
+            "unit_id": 68
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "card_uid": 6,
+            "target": [
+              8,
+              3
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              4
+            ],
+            "type": "move",
+            "unit_id": 73
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              3
+            ],
+            "type": "move",
+            "unit_id": 64
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              3
+            ],
+            "type": "attack",
+            "unit_id": 64
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 11
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 12
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              3
+            ],
+            "type": "move",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 12
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              4
+            ],
+            "type": "attack",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 12
+        },
+        {
+          "action": {
+            "card_uid": 39,
+            "target": [
+              5,
+              1
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 12
+        },
+        {
+          "action": {
+            "card_uid": 49,
+            "target": [
+              5,
+              2
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 12
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              1
+            ],
+            "type": "move",
+            "unit_id": 71
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 12
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 13
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              5
+            ],
+            "type": "move",
+            "unit_id": 68
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 13
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              3
+            ],
+            "type": "attack",
+            "unit_id": 68
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 13
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              4
+            ],
+            "type": "unit_skill",
+            "unit_id": 73
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 13
+        },
+        {
+          "action": {
+            "target": [
+              8,
+              1
+            ],
+            "type": "move",
+            "unit_id": 74
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 13
+        },
+        {
+          "action": {
+            "card_uid": 23,
+            "target": [
+              8,
+              1
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 13
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              0
+            ],
+            "type": "move",
+            "unit_id": 74
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 13
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              0
+            ],
+            "type": "attack",
+            "unit_id": 74
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 13
+        },
+        {
+          "action": {
+            "card_uid": 25,
+            "target": [
+              -1,
+              -1
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 13
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 14
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              0
+            ],
+            "type": "move",
+            "unit_id": 71
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 14
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              0
+            ],
+            "type": "attack",
+            "unit_id": 71
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 14
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              1
+            ],
+            "type": "move",
+            "unit_id": 76
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 14
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              0
+            ],
+            "type": "unit_skill",
+            "unit_id": 76
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 14
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              4
+            ],
+            "type": "move",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 14
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              5
+            ],
+            "type": "attack",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 14
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              0
+            ],
+            "type": "attack",
+            "unit_id": 62
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 14
+        },
+        {
+          "action": {
+            "card_uid": 43,
+            "target": [
+              5,
+              2
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 14
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              0
+            ],
+            "type": "hero"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 14
+        },
+        {
+          "action": {
+            "card_uid": 60,
+            "target": [
+              6,
+              0
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 14
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              3
+            ],
+            "type": "move",
+            "unit_id": 75
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 14
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 15
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              6
+            ],
+            "type": "move",
+            "unit_id": 68
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 15
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              0
+            ],
+            "type": "attack",
+            "unit_id": 74
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 15
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              4
+            ],
+            "type": "attack",
+            "unit_id": 68
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 15
+        },
+        {
+          "action": {
+            "target": [
+              8,
+              4
+            ],
+            "type": "move",
+            "unit_id": 73
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 15
+        },
+        {
+          "action": {
+            "card_uid": 26,
+            "target": [
+              3,
+              3
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 15
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              6
+            ],
+            "type": "move",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 15
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 16
+        },
+        {
+          "action": {
+            "target": [
+              2,
+              6
+            ],
+            "type": "move",
+            "unit_id": 75
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 16
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              6
+            ],
+            "type": "attack",
+            "unit_id": 75
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 16
+        },
+        {
+          "action": {
+            "card_uid": 33,
+            "target": [
+              2,
+              7
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 16
+        },
+        {
+          "action": {
+            "card_uid": 53,
+            "target": [
+              6,
+              0
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 16
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              4
+            ],
+            "type": "move",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 16
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              1
+            ],
+            "type": "move",
+            "unit_id": 71
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 16
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              2
+            ],
+            "type": "move",
+            "unit_id": 76
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 16
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              3
+            ],
+            "type": "move",
+            "unit_id": 77
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 16
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 17
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              5
+            ],
+            "type": "move",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 17
+        },
+        {
+          "action": {
+            "card_uid": 18,
+            "target": [
+              6,
+              9
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 17
+        },
+        {
+          "action": {
+            "target": [
+              8,
+              2
+            ],
+            "type": "move",
+            "unit_id": 73
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 17
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 18
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              2
+            ],
+            "type": "move",
+            "unit_id": 77
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 18
+        },
+        {
+          "action": {
+            "target": [
+              8,
+              2
+            ],
+            "type": "unit_skill",
+            "unit_id": 77
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 18
+        },
+        {
+          "action": {
+            "target": [
+              8,
+              2
+            ],
+            "type": "attack",
+            "unit_id": 76
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 18
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              4
+            ],
+            "type": "move",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 18
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              7
+            ],
+            "type": "move",
+            "unit_id": 75
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 18
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              8
+            ],
+            "type": "unit_skill",
+            "unit_id": 75
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 18
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              9
+            ],
+            "type": "attack",
+            "unit_id": 75
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 18
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              8
+            ],
+            "type": "move",
+            "unit_id": 78
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 18
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              8
+            ],
+            "type": "unit_skill",
+            "unit_id": 78
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 18
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              1
+            ],
+            "type": "move",
+            "unit_id": 71
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 18
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 19
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              4
+            ],
+            "type": "move",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 19
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              2
+            ],
+            "type": "attack",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 19
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              9
+            ],
+            "type": "unit_skill",
+            "unit_id": 79
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 19
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              2
+            ],
+            "type": "move",
+            "unit_id": 73
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 19
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              2
+            ],
+            "type": "attack",
+            "unit_id": 73
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 19
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              8
+            ],
+            "type": "hero"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 19
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              8
+            ],
+            "type": "attack",
+            "unit_id": 31
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 19
+        },
+        {
+          "action": {
+            "card_uid": 5,
+            "target": [
+              7,
+              9
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 19
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              1
+            ],
+            "type": "move",
+            "unit_id": 71
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              2
+            ],
+            "type": "move",
+            "unit_id": 77
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              2
+            ],
+            "type": "attack",
+            "unit_id": 71
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              8
+            ],
+            "type": "move",
+            "unit_id": 75
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              9
+            ],
+            "type": "attack",
+            "unit_id": 75
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              8
+            ],
+            "type": "move",
+            "unit_id": 78
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              9
+            ],
+            "type": "attack",
+            "unit_id": 78
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "target": [
+              2,
+              4
+            ],
+            "type": "move",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "card_uid": 44,
+            "target": [
+              2,
+              5
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              1
+            ],
+            "type": "hero"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 20
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 21
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              8
+            ],
+            "type": "attack",
+            "unit_id": 31
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 21
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              6
+            ],
+            "type": "move",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 21
+        },
+        {
+          "action": {
+            "card_uid": 7,
+            "target": [
+              7,
+              6
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 21
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              8
+            ],
+            "type": "move",
+            "unit_id": 80
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 21
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              8
+            ],
+            "type": "attack",
+            "unit_id": 80
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 21
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 22
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              9
+            ],
+            "type": "attack",
+            "unit_id": 78
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 22
+        },
+        {
+          "action": {
+            "card_uid": 40,
+            "target": [
+              3,
+              4
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 22
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              3
+            ],
+            "type": "move",
+            "unit_id": 77
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 22
+        },
+        {
+          "action": {
+            "target": [
+              1,
+              5
+            ],
+            "type": "move",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 22
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              2
+            ],
+            "type": "move",
+            "unit_id": 71
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 22
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              6
+            ],
+            "type": "move",
+            "unit_id": 81
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 22
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 23
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              6
+            ],
+            "type": "move",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 23
+        },
+        {
+          "action": {
+            "target": [
+              3,
+              6
+            ],
+            "type": "attack",
+            "unit_id": 70
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 23
+        },
+        {
+          "action": {
+            "card_uid": 10,
+            "target": [
+              8,
+              6
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 23
+        },
+        {
+          "action": {
+            "target": [
+              8,
+              5
+            ],
+            "type": "move",
+            "unit_id": 82
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 23
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              4
+            ],
+            "type": "unit_skill",
+            "unit_id": 82
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 23
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              7
+            ],
+            "type": "move",
+            "unit_id": 80
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 23
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 24
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              4
+            ],
+            "type": "move",
+            "unit_id": 83
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 24
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              4
+            ],
+            "type": "attack",
+            "unit_id": 83
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 24
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              4
+            ],
+            "type": "move",
+            "unit_id": 77
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 24
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              6
+            ],
+            "type": "attack",
+            "unit_id": 77
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 24
+        },
+        {
+          "action": {
+            "card_uid": 55,
+            "target": [
+              -1,
+              -1
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 24
+        },
+        {
+          "action": {
+            "card_uid": 38,
+            "target": [
+              2,
+              5
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 24
+        },
+        {
+          "action": {
+            "target": [
+              1,
+              7
+            ],
+            "type": "move",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 24
+        },
+        {
+          "action": {
+            "target": [
+              7,
+              3
+            ],
+            "type": "move",
+            "unit_id": 71
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 24
+        },
+        {
+          "action": {
+            "card_uid": 61,
+            "target": [
+              8,
+              6
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 24
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 25
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              5
+            ],
+            "type": "move",
+            "unit_id": 84
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 25
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              4
+            ],
+            "type": "attack",
+            "unit_id": 84
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 25
+        },
+        {
+          "action": {
+            "card_uid": 4,
+            "target": [
+              7,
+              7
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 25
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              7
+            ],
+            "type": "unit_skill",
+            "unit_id": 80
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 25
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 26
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              5
+            ],
+            "type": "unit_skill",
+            "unit_id": 77
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 26
+        },
+        {
+          "action": {
+            "card_uid": 45,
+            "target": [
+              2,
+              7
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 26
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              7
+            ],
+            "type": "move",
+            "unit_id": 85
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 26
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              8
+            ],
+            "type": "unit_skill",
+            "unit_id": 85
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 26
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              9
+            ],
+            "type": "attack",
+            "unit_id": 85
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 26
+        },
+        {
+          "action": {
+            "target": [
+              2,
+              8
+            ],
+            "type": "move",
+            "unit_id": 65
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 26
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              0
+            ],
+            "type": "hero"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 26
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              4
+            ],
+            "type": "move",
+            "unit_id": 71
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 26
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 27
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              8
+            ],
+            "type": "move",
+            "unit_id": 86
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 27
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              8
+            ],
+            "type": "attack",
+            "unit_id": 86
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 27
+        },
+        {
+          "action": {
+            "target": [
+              2,
+              8
+            ],
+            "type": "hero"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 27
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              7
+            ],
+            "type": "unit_skill",
+            "unit_id": 80
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 27
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 28
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              6
+            ],
+            "type": "move",
+            "unit_id": 71
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 28
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              7
+            ],
+            "type": "attack",
+            "unit_id": 71
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 28
+        },
+        {
+          "action": {
+            "target": [
+              4,
+              7
+            ],
+            "type": "move",
+            "unit_id": 87
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 28
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              7
+            ],
+            "type": "attack",
+            "unit_id": 87
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 28
+        },
+        {
+          "action": {
+            "card_uid": 42,
+            "target": [
+              3,
+              7
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 28
+        },
+        {
+          "action": {
+            "target": [
+              5,
+              5
+            ],
+            "type": "move",
+            "unit_id": 77
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 28
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 29
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              7
+            ],
+            "type": "move",
+            "unit_id": 86
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 29
+        },
+        {
+          "action": {
+            "target": [
+              6,
+              6
+            ],
+            "type": "attack",
+            "unit_id": 86
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 29
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "elapsed": 0.35,
+          "side": 0,
+          "turn_after": 30
+        },
+        {
+          "action": {
+            "card_uid": 51,
+            "target": [
+              5,
+              9
+            ],
+            "type": "play"
+          },
+          "elapsed": 0.35,
+          "side": 1,
+          "turn_after": 30
+        }
+      ],
+      "turn": 30,
+      "winner": 1
+    }
+  ],
+  "note": "Authored scenarios at fixed seeds, real initial resources and legal actions; fixed 0.35 s cadence. Not human balance or manual playthrough evidence.",
+  "policy": "production opponent on both sides",
+  "scenario_ids": [
+    "c08_isolate",
+    "c08_buffer"
+  ]
+}

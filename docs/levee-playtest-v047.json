@@ -1,0 +1,2431 @@
+{
+  "build": "0.47.0-dev",
+  "scenario": "Normal skirmish start, standard mana, same Warden commander on both sides. Production AI chooses both sides. Two seeds per map with seats swapped for each of seven preset pairs. Card and order totals count both sides' copies of Levee Orders.",
+  "scope": "AI vs AI at these maps and seeds. This does not establish human balance.",
+  "maps": [
+    "greenwood",
+    "rivergate",
+    "ridgepass"
+  ],
+  "matches": 84,
+  "legal_actions": 23603,
+  "failed_matches": 0,
+  "distinct_expansion_cards": 18,
+  "expansion_plays": 1517,
+  "high_cost_by_mana": {
+    "7": 175,
+    "8": 45,
+    "9": 45,
+    "10": 84
+  },
+  "resolved_orders": {
+    "dawn_weir": 39,
+    "floodline_warning": 70,
+    "stretcher_signal": 83
+  },
+  "per_card_plays": {
+    "bell_winch": 170,
+    "chalk_route": 28,
+    "dawn_weir": 39,
+    "dike_flagstones": 42,
+    "dike_lights": 45,
+    "floodline_warning": 72,
+    "lamp_patrol": 147,
+    "lantern_surgeon": 45,
+    "levee_brothers": 87,
+    "rain_saddle": 89,
+    "recommission_crew": 88,
+    "reed_toll": 47,
+    "reed_watch": 198,
+    "rising_oath_watch": 45,
+    "severed_pullcord": 125,
+    "slate_quartermaster": 82,
+    "stretcher_signal": 86,
+    "troop_receipt": 82
+  },
+  "pairings": [
+    {
+      "preset": "weir_breakers",
+      "against": "balanced",
+      "draws": 0,
+      "losses": 2,
+      "wins": 10,
+      "matches": [
+        {
+          "map": "greenwood",
+          "seed": 4701,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 39,
+          "actions": 247,
+          "card_plays": {
+            "bell_winch": 1,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 1,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 2,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4701,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 36,
+          "actions": 218,
+          "card_plays": {
+            "bell_winch": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 1,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 3,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "floodline_warning",
+            "dawn_weir",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 4780,
+          "preset_seat": 0,
+          "winner_seat": 1,
+          "turn": 55,
+          "actions": 340,
+          "card_plays": {
+            "bell_winch": 1,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 3,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 4780,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 36,
+          "actions": 212,
+          "card_plays": {
+            "bell_winch": 1,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 1,
+            "lamp_patrol": 1,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 2,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "floodline_warning",
+            "dawn_weir"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 4859,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 35,
+          "actions": 224,
+          "card_plays": {
+            "bell_winch": 1,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 1,
+            "recommission_crew": 2,
+            "reed_watch": 2,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 4859,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 51,
+          "actions": 335,
+          "card_plays": {
+            "bell_winch": 1,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 3,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4938,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 31,
+          "actions": 181,
+          "card_plays": {
+            "bell_winch": 1,
+            "floodline_warning": 1,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 1,
+            "reed_watch": 1,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4938,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 38,
+          "actions": 224,
+          "card_plays": {
+            "dawn_weir": 1,
+            "floodline_warning": 1,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 3,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 5017,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 33,
+          "actions": 186,
+          "card_plays": {
+            "bell_winch": 1,
+            "floodline_warning": 1,
+            "lamp_patrol": 1,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 3,
+            "severed_pullcord": 1
+          },
+          "high_cost_plays": 4,
+          "resolved_orders": [
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 5017,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 52,
+          "actions": 335,
+          "card_plays": {
+            "bell_winch": 1,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 3,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "floodline_warning",
+            "dawn_weir",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 5096,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 43,
+          "actions": 276,
+          "card_plays": {
+            "bell_winch": 1,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 2,
+            "severed_pullcord": 1,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 5096,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 32,
+          "actions": 177,
+          "card_plays": {
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 1,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning"
+          ],
+          "error": ""
+        }
+      ]
+    },
+    {
+      "preset": "weir_breakers",
+      "against": "tideline_raiders",
+      "draws": 0,
+      "losses": 6,
+      "wins": 6,
+      "matches": [
+        {
+          "map": "greenwood",
+          "seed": 4701,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 33,
+          "actions": 191,
+          "card_plays": {
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 1,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 2,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4701,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 27,
+          "actions": 134,
+          "card_plays": {
+            "bell_winch": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 1,
+            "levee_brothers": 1,
+            "rain_saddle": 2,
+            "recommission_crew": 1,
+            "reed_watch": 2,
+            "severed_pullcord": 2
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "floodline_warning",
+            "dawn_weir",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 4780,
+          "preset_seat": 0,
+          "winner_seat": 1,
+          "turn": 50,
+          "actions": 278,
+          "card_plays": {
+            "bell_winch": 1,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 3,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "floodline_warning",
+            "floodline_warning",
+            "dawn_weir"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 4780,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 34,
+          "actions": 193,
+          "card_plays": {
+            "bell_winch": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 3,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "floodline_warning",
+            "dawn_weir",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 4859,
+          "preset_seat": 0,
+          "winner_seat": 1,
+          "turn": 36,
+          "actions": 225,
+          "card_plays": {
+            "bell_winch": 1,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 1,
+            "recommission_crew": 2,
+            "reed_watch": 2,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "floodline_warning",
+            "dawn_weir",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 4859,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 52,
+          "actions": 311,
+          "card_plays": {
+            "bell_winch": 1,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 3,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "floodline_warning",
+            "dawn_weir",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4938,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 27,
+          "actions": 140,
+          "card_plays": {
+            "bell_winch": 1,
+            "floodline_warning": 1,
+            "lamp_patrol": 1,
+            "levee_brothers": 2,
+            "rain_saddle": 1,
+            "reed_watch": 3,
+            "severed_pullcord": 1,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 2,
+          "resolved_orders": [
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4938,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 51,
+          "actions": 305,
+          "card_plays": {
+            "bell_winch": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 3,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 5017,
+          "preset_seat": 0,
+          "winner_seat": 1,
+          "turn": 59,
+          "actions": 335,
+          "card_plays": {
+            "bell_winch": 1,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 3,
+            "severed_pullcord": 2
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "floodline_warning",
+            "dawn_weir",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 5017,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 30,
+          "actions": 170,
+          "card_plays": {
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 1,
+            "lamp_patrol": 2,
+            "levee_brothers": 1,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 1,
+            "severed_pullcord": 1,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 4,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 5096,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 27,
+          "actions": 140,
+          "card_plays": {
+            "bell_winch": 1,
+            "chalk_route": 1,
+            "floodline_warning": 1,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 1,
+            "reed_watch": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 5096,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 54,
+          "actions": 296,
+          "card_plays": {
+            "bell_winch": 1,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 3,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning",
+            "floodline_warning"
+          ],
+          "error": ""
+        }
+      ]
+    },
+    {
+      "preset": "weir_breakers",
+      "against": "reserve_company",
+      "draws": 0,
+      "losses": 4,
+      "wins": 8,
+      "matches": [
+        {
+          "map": "greenwood",
+          "seed": 4701,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 19,
+          "actions": 87,
+          "card_plays": {
+            "chalk_route": 1,
+            "lamp_patrol": 1,
+            "levee_brothers": 2,
+            "rain_saddle": 1,
+            "recommission_crew": 2,
+            "reed_watch": 2
+          },
+          "high_cost_plays": 4,
+          "resolved_orders": [],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4701,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 38,
+          "actions": 263,
+          "card_plays": {
+            "bell_winch": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 3,
+            "severed_pullcord": 2
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 4780,
+          "preset_seat": 0,
+          "winner_seat": 1,
+          "turn": 30,
+          "actions": 175,
+          "card_plays": {
+            "bell_winch": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 1,
+            "levee_brothers": 1,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 3,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 4,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 4780,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 54,
+          "actions": 329,
+          "card_plays": {
+            "bell_winch": 1,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 1,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 3,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 4859,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 23,
+          "actions": 114,
+          "card_plays": {
+            "bell_winch": 1,
+            "lamp_patrol": 1,
+            "levee_brothers": 1,
+            "rain_saddle": 1,
+            "recommission_crew": 2,
+            "reed_watch": 1,
+            "severed_pullcord": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 4859,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 36,
+          "actions": 226,
+          "card_plays": {
+            "bell_winch": 1,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 1,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 2,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "floodline_warning",
+            "dawn_weir",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4938,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 29,
+          "actions": 165,
+          "card_plays": {
+            "bell_winch": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 1,
+            "lamp_patrol": 1,
+            "levee_brothers": 2,
+            "rain_saddle": 1,
+            "recommission_crew": 1,
+            "reed_watch": 1,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 4,
+          "resolved_orders": [
+            "floodline_warning",
+            "dawn_weir"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4938,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 26,
+          "actions": 141,
+          "card_plays": {
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 1,
+            "levee_brothers": 1,
+            "rain_saddle": 2,
+            "recommission_crew": 1,
+            "reed_watch": 2,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 5017,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 29,
+          "actions": 162,
+          "card_plays": {
+            "bell_winch": 1,
+            "floodline_warning": 1,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 3,
+            "severed_pullcord": 1
+          },
+          "high_cost_plays": 4,
+          "resolved_orders": [
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 5017,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 53,
+          "actions": 358,
+          "card_plays": {
+            "bell_winch": 1,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 3,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 5096,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 21,
+          "actions": 115,
+          "card_plays": {
+            "bell_winch": 1,
+            "lamp_patrol": 1,
+            "levee_brothers": 1,
+            "rain_saddle": 1,
+            "recommission_crew": 1,
+            "reed_watch": 2,
+            "severed_pullcord": 1,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 2,
+          "resolved_orders": [],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 5096,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 50,
+          "actions": 319,
+          "card_plays": {
+            "bell_winch": 1,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 2,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_watch": 3,
+            "severed_pullcord": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "floodline_warning",
+            "dawn_weir",
+            "floodline_warning"
+          ],
+          "error": ""
+        }
+      ]
+    },
+    {
+      "preset": "levee_relief",
+      "against": "balanced",
+      "draws": 0,
+      "losses": 6,
+      "wins": 6,
+      "matches": [
+        {
+          "map": "greenwood",
+          "seed": 4701,
+          "preset_seat": 0,
+          "winner_seat": 1,
+          "turn": 40,
+          "actions": 287,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_lights": 1,
+            "lamp_patrol": 1,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 1,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4701,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 40,
+          "actions": 245,
+          "card_plays": {
+            "bell_winch": 1,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 1,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 4780,
+          "preset_seat": 0,
+          "winner_seat": 1,
+          "turn": 30,
+          "actions": 188,
+          "card_plays": {
+            "bell_winch": 2,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 2,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 4780,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 41,
+          "actions": 290,
+          "card_plays": {
+            "bell_winch": 2,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 1,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 4859,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 62,
+          "actions": 439,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 4859,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 56,
+          "actions": 394,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 1,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 1,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4938,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 39,
+          "actions": 268,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 1,
+            "lantern_surgeon": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4938,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 52,
+          "actions": 362,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 1,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 1,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 5017,
+          "preset_seat": 0,
+          "winner_seat": 1,
+          "turn": 61,
+          "actions": 435,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 1,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 2,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 5017,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 43,
+          "actions": 313,
+          "card_plays": {
+            "bell_winch": 1,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 1,
+            "rising_oath_watch": 1,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 5096,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 53,
+          "actions": 407,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 1,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 1,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 5096,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 52,
+          "actions": 375,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 2,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        }
+      ]
+    },
+    {
+      "preset": "levee_relief",
+      "against": "tideline_raiders",
+      "draws": 0,
+      "losses": 8,
+      "wins": 4,
+      "matches": [
+        {
+          "map": "greenwood",
+          "seed": 4701,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 41,
+          "actions": 270,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 1,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4701,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 27,
+          "actions": 142,
+          "card_plays": {
+            "bell_winch": 2,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 1,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 4780,
+          "preset_seat": 0,
+          "winner_seat": 1,
+          "turn": 63,
+          "actions": 391,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 4780,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 58,
+          "actions": 380,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 4859,
+          "preset_seat": 0,
+          "winner_seat": 1,
+          "turn": 63,
+          "actions": 398,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 4859,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 52,
+          "actions": 332,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4938,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 60,
+          "actions": 355,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4938,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 29,
+          "actions": 167,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_lights": 1,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 1,
+            "stretcher_signal": 1,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 5017,
+          "preset_seat": 0,
+          "winner_seat": 1,
+          "turn": 61,
+          "actions": 390,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 5017,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 25,
+          "actions": 129,
+          "card_plays": {
+            "bell_winch": 2,
+            "dike_flagstones": 1,
+            "lamp_patrol": 2,
+            "reed_toll": 1,
+            "rising_oath_watch": 1,
+            "slate_quartermaster": 1,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 1,
+          "resolved_orders": [
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 5096,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 53,
+          "actions": 345,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 5096,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 55,
+          "actions": 346,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        }
+      ]
+    },
+    {
+      "preset": "levee_relief",
+      "against": "reserve_company",
+      "draws": 0,
+      "losses": 6,
+      "wins": 6,
+      "matches": [
+        {
+          "map": "greenwood",
+          "seed": 4701,
+          "preset_seat": 0,
+          "winner_seat": 1,
+          "turn": 42,
+          "actions": 293,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 1,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4701,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 48,
+          "actions": 383,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 1,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 4780,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 58,
+          "actions": 392,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 4780,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 56,
+          "actions": 410,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 4859,
+          "preset_seat": 0,
+          "winner_seat": 1,
+          "turn": 57,
+          "actions": 405,
+          "card_plays": {
+            "bell_winch": 2,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 1,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 1,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 4859,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 53,
+          "actions": 377,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4938,
+          "preset_seat": 0,
+          "winner_seat": 1,
+          "turn": 57,
+          "actions": 416,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4938,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 59,
+          "actions": 444,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 5017,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 62,
+          "actions": 465,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 1,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 5017,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 21,
+          "actions": 100,
+          "card_plays": {
+            "bell_winch": 1,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "reed_toll": 1,
+            "rising_oath_watch": 1,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 2,
+          "resolved_orders": [],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 5096,
+          "preset_seat": 0,
+          "winner_seat": 1,
+          "turn": 57,
+          "actions": 399,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 5096,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 53,
+          "actions": 375,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 1,
+            "lantern_surgeon": 1,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 3,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        }
+      ]
+    },
+    {
+      "preset": "weir_breakers",
+      "against": "levee_relief",
+      "draws": 0,
+      "losses": 8,
+      "wins": 4,
+      "matches": [
+        {
+          "map": "greenwood",
+          "seed": 4701,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 25,
+          "actions": 143,
+          "card_plays": {
+            "bell_winch": 2,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "dike_lights": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_toll": 1,
+            "reed_watch": 3,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 2,
+            "slate_quartermaster": 2
+          },
+          "high_cost_plays": 8,
+          "resolved_orders": [
+            "dawn_weir"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4701,
+          "preset_seat": 1,
+          "winner_seat": 1,
+          "turn": 24,
+          "actions": 137,
+          "card_plays": {
+            "bell_winch": 3,
+            "dawn_weir": 1,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_toll": 1,
+            "reed_watch": 2,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 3,
+            "slate_quartermaster": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "dawn_weir"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 4780,
+          "preset_seat": 0,
+          "winner_seat": 1,
+          "turn": 51,
+          "actions": 351,
+          "card_plays": {
+            "bell_winch": 4,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 4,
+            "lantern_surgeon": 1,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_toll": 1,
+            "reed_watch": 5,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 3,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 2
+          },
+          "high_cost_plays": 8,
+          "resolved_orders": [
+            "floodline_warning",
+            "dawn_weir",
+            "stretcher_signal",
+            "floodline_warning",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 4780,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 52,
+          "actions": 369,
+          "card_plays": {
+            "bell_winch": 4,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "floodline_warning": 1,
+            "lamp_patrol": 4,
+            "lantern_surgeon": 1,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_toll": 1,
+            "reed_watch": 5,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 3,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 2
+          },
+          "high_cost_plays": 8,
+          "resolved_orders": [
+            "stretcher_signal",
+            "dawn_weir",
+            "stretcher_signal",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 4859,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 48,
+          "actions": 348,
+          "card_plays": {
+            "bell_winch": 4,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 4,
+            "lantern_surgeon": 1,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_toll": 1,
+            "reed_watch": 5,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 3,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 2
+          },
+          "high_cost_plays": 8,
+          "resolved_orders": [
+            "floodline_warning",
+            "stretcher_signal",
+            "stretcher_signal",
+            "dawn_weir",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 4859,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 54,
+          "actions": 350,
+          "card_plays": {
+            "bell_winch": 4,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 3,
+            "lantern_surgeon": 1,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_toll": 1,
+            "reed_watch": 5,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 3,
+            "slate_quartermaster": 1,
+            "stretcher_signal": 2,
+            "troop_receipt": 2
+          },
+          "high_cost_plays": 8,
+          "resolved_orders": [
+            "floodline_warning",
+            "dawn_weir",
+            "floodline_warning",
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4938,
+          "preset_seat": 0,
+          "winner_seat": 1,
+          "turn": 52,
+          "actions": 330,
+          "card_plays": {
+            "bell_winch": 4,
+            "dawn_weir": 1,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 4,
+            "lantern_surgeon": 1,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_toll": 1,
+            "reed_watch": 5,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 3,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 2
+          },
+          "high_cost_plays": 8,
+          "resolved_orders": [
+            "floodline_warning",
+            "dawn_weir",
+            "floodline_warning",
+            "stretcher_signal",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "greenwood",
+          "seed": 4938,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 56,
+          "actions": 357,
+          "card_plays": {
+            "bell_winch": 4,
+            "dawn_weir": 1,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 4,
+            "lantern_surgeon": 1,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_toll": 1,
+            "reed_watch": 5,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 3,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 2
+          },
+          "high_cost_plays": 8,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning",
+            "stretcher_signal",
+            "floodline_warning",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 5017,
+          "preset_seat": 0,
+          "winner_seat": 0,
+          "turn": 29,
+          "actions": 172,
+          "card_plays": {
+            "bell_winch": 3,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "floodline_warning": 1,
+            "lamp_patrol": 1,
+            "lantern_surgeon": 1,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_toll": 1,
+            "reed_watch": 1,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 7,
+          "resolved_orders": [
+            "stretcher_signal",
+            "stretcher_signal",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "rivergate",
+          "seed": 5017,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 35,
+          "actions": 209,
+          "card_plays": {
+            "bell_winch": 4,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "dike_flagstones": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 3,
+            "lantern_surgeon": 1,
+            "levee_brothers": 1,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_toll": 1,
+            "reed_watch": 3,
+            "severed_pullcord": 1,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 1,
+            "troop_receipt": 1
+          },
+          "high_cost_plays": 5,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning",
+            "floodline_warning",
+            "stretcher_signal"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 5096,
+          "preset_seat": 0,
+          "winner_seat": 1,
+          "turn": 51,
+          "actions": 331,
+          "card_plays": {
+            "bell_winch": 4,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 4,
+            "lantern_surgeon": 1,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_toll": 1,
+            "reed_watch": 5,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 3,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 2
+          },
+          "high_cost_plays": 8,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning",
+            "stretcher_signal",
+            "stretcher_signal",
+            "floodline_warning"
+          ],
+          "error": ""
+        },
+        {
+          "map": "ridgepass",
+          "seed": 5096,
+          "preset_seat": 1,
+          "winner_seat": 0,
+          "turn": 42,
+          "actions": 272,
+          "card_plays": {
+            "bell_winch": 3,
+            "chalk_route": 1,
+            "dawn_weir": 1,
+            "dike_flagstones": 1,
+            "dike_lights": 1,
+            "floodline_warning": 2,
+            "lamp_patrol": 2,
+            "lantern_surgeon": 1,
+            "levee_brothers": 2,
+            "rain_saddle": 2,
+            "recommission_crew": 2,
+            "reed_toll": 1,
+            "reed_watch": 4,
+            "rising_oath_watch": 1,
+            "severed_pullcord": 3,
+            "slate_quartermaster": 2,
+            "stretcher_signal": 2,
+            "troop_receipt": 2
+          },
+          "high_cost_plays": 8,
+          "resolved_orders": [
+            "dawn_weir",
+            "floodline_warning",
+            "stretcher_signal",
+            "floodline_warning"
+          ],
+          "error": ""
+        }
+      ]
+    }
+  ]
+}

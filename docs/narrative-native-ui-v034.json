@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "milestone": "0.34.0-dev",
+  "date": "2026-11-07",
+  "passed": true,
+  "chapter_sha256": {
+    "chapter_10": "80ade1f8dfb72be03803f55163c9193e5a52a036afba38afc6e855f158ca8e6c"
+  },
+  "catalogue_test": "tests/test_chapter_ten_catalog_ui.gd",
+  "catalogue_checks": 1050,
+  "catalogue_paragraphs": 88,
+  "catalogue_scope": "Every conditional tenth-chapter body paragraph and its backdrop rendered in native Godot StoryView. The 1008x700 gate briefing shows exact D9 and K9 objectives. Earlier victories in the catalogue are narrative fixtures, not battle results.",
+  "actual_save_test": "tests/test_chapter_ten_ui.gd",
+  "actual_save_source": "Copies of three separately verified 0.33 native campaign saves after ten real consecutive wins and their chapter-nine governance decisions",
+  "actual_save_plans": ["joint", "split", "hold"],
+  "actual_save_battle_actions": [213, 98, 165],
+  "actual_save_writer_checks": 1495,
+  "actual_save_reader_checks": 21,
+  "actual_save_scope": "All three plans entered the authored tenth chapter from actual prior campaign saves. Native pointer actions played each gate battle from untouched initial resources to victory; an independent Godot process resumed each earned chapter ending. The player actions replay fixed-seed production-AI winning traces, not human input.",
+  "model_routes": 24,
+  "model_checks": 8308,
+  "model_test": "tests/test_chapter_ten.gd",
+  "limitations": "One fixed opening per plan has a native winning trace. Other histories, human difficulty, full story ending and the 100,000-character target remain unverified or unfinished."
+}

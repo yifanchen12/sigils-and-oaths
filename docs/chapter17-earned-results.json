@@ -1,0 +1,59 @@
+{
+	"checks": 569,
+	"earned_0_40_sources": true,
+	"endings": [
+		{
+			"ending": "shared_lanterns",
+			"kit": "runner",
+			"plan": "joint"
+		},
+		{
+			"ending": "streams_apart",
+			"kit": "runner",
+			"plan": "split"
+		},
+		{
+			"ending": "quiet_reservoir",
+			"kit": "runner",
+			"plan": "hold"
+		},
+		{
+			"ending": "shared_lanterns",
+			"kit": "screen",
+			"plan": "joint"
+		},
+		{
+			"ending": "streams_apart",
+			"kit": "screen",
+			"plan": "split"
+		},
+		{
+			"ending": "quiet_reservoir",
+			"kit": "screen",
+			"plan": "hold"
+		}
+	],
+	"failures": 0,
+	"games": [
+		{
+			"actions": 120,
+			"defeat_then_retry": false,
+			"kit": "runner",
+			"opening_card": "march",
+			"reloaded": true,
+			"stations": 3,
+			"turn": 21,
+			"winner": 0
+		},
+		{
+			"actions": 97,
+			"defeat_then_retry": true,
+			"kit": "screen",
+			"opening_card": "oath_ward",
+			"reloaded": true,
+			"stations": 3,
+			"turn": 19,
+			"winner": 0
+		}
+	]
+}

@@ -1,0 +1,37 @@
+{
+  "milestone": "0.33.0-dev",
+  "date": "2026-11-07",
+  "route": "road / relief / isolate / joint",
+  "source": "New Campaign, fixed-seed model; chapter-nine native entry checked separately from an actual ten-win native save",
+  "model_checks": 3382,
+  "model_failures": 0,
+  "chapters_entered": 9,
+  "battles_won": 10,
+  "legal_battle_actions": 2287,
+  "dialogue_ids_read": 924,
+  "choices_made": 16,
+  "route_han_characters": 49401,
+  "stop": "current authored chapter-nine end, before any chapter-ten battle",
+  "player_policy": "Production AI except declared public-information diagnostic policies in the pump house, nursery and citadel court; enemy always production AI.",
+  "battles": [
+    {"id": "c01_road", "winner": 0, "actions": 151, "turn": 25},
+    {"id": "c01_bridge", "winner": 0, "actions": 448, "turn": 62},
+    {"id": "c02_relief_bridge", "winner": 0, "actions": 128, "turn": 21},
+    {"id": "c02_dispatch", "winner": 0, "actions": 454, "turn": 62},
+    {"id": "c03_vent", "winner": 0, "actions": 55, "turn": 13},
+    {"id": "c04_dock", "winner": 0, "actions": 269, "turn": 43},
+    {"id": "c04_pump", "winner": 0, "actions": 90, "turn": 17},
+    {"id": "c05_nursery", "winner": 0, "actions": 132, "turn": 25},
+    {"id": "c06_court", "winner": 0, "actions": 445, "turn": 62},
+    {"id": "c08_isolate", "winner": 0, "actions": 115, "turn": 21}
+  ],
+  "native_chapter_nine": {
+    "actual_prior_wins": 10,
+    "plans_checked": ["joint", "split", "hold"],
+    "writer_checks": 418,
+    "reader_checks": 18,
+    "failures": 0,
+    "source": "docs/narrative-native-ui-v033.json"
+  },
+  "limits": "The model route is one fixed path, and the chapter-nine native test resumes a separately verified earlier native save. Neither is a human full-playthrough or evidence that every branch is balanced."
+}

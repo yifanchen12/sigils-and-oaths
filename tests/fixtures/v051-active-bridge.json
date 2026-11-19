@@ -1,0 +1,633 @@
+{
+	"encounter": {
+		"battle": {
+			"active_side": 0,
+			"deck_size": 30,
+			"hand_played_this_turn": true,
+			"log": [
+				"苍蓝军团回合 · 法力 1/1",
+				"战斗开始：推进部队，即可向前延伸部署范围。",
+				"苍蓝军团使用了「誓约步兵」。"
+			],
+			"map_id": "rivergate",
+			"match_seed": 1319,
+			"next_id": 65,
+			"objective": {},
+			"pending_orders": [],
+			"players": [
+				{
+					"card_total": 30,
+					"deck": [
+						{
+							"card_id": "cavalry",
+							"uid": 8
+						},
+						{
+							"card_id": "archer",
+							"uid": 11
+						},
+						{
+							"card_id": "heal",
+							"uid": 21
+						},
+						{
+							"card_id": "healer",
+							"uid": 17
+						},
+						{
+							"card_id": "healer",
+							"uid": 18
+						},
+						{
+							"card_id": "bolt",
+							"uid": 19
+						},
+						{
+							"card_id": "march",
+							"uid": 23
+						},
+						{
+							"card_id": "archer",
+							"uid": 12
+						},
+						{
+							"card_id": "cavalry",
+							"uid": 9
+						},
+						{
+							"card_id": "rain",
+							"uid": 25
+						},
+						{
+							"card_id": "spear",
+							"uid": 5
+						},
+						{
+							"card_id": "sword",
+							"uid": 1
+						},
+						{
+							"card_id": "mage",
+							"uid": 14
+						},
+						{
+							"card_id": "snow",
+							"uid": 28
+						},
+						{
+							"card_id": "cavalry",
+							"uid": 7
+						},
+						{
+							"card_id": "sun",
+							"uid": 27
+						},
+						{
+							"card_id": "sword",
+							"uid": 3
+						},
+						{
+							"card_id": "mage",
+							"uid": 13
+						},
+						{
+							"card_id": "insight",
+							"uid": 24
+						},
+						{
+							"card_id": "trail",
+							"uid": 30
+						},
+						{
+							"card_id": "nova",
+							"uid": 20
+						},
+						{
+							"card_id": "ward",
+							"uid": 22
+						},
+						{
+							"card_id": "spear",
+							"uid": 6
+						},
+						{
+							"card_id": "archer",
+							"uid": 10
+						},
+						{
+							"card_id": "fog",
+							"uid": 26
+						}
+					],
+					"deck_counts": {
+						"archer": 3,
+						"bolt": 1,
+						"cavalry": 3,
+						"fog": 1,
+						"heal": 1,
+						"healer": 3,
+						"insight": 1,
+						"mage": 3,
+						"march": 1,
+						"nova": 1,
+						"rain": 1,
+						"rampart": 1,
+						"snow": 1,
+						"spear": 3,
+						"sun": 1,
+						"sword": 3,
+						"trail": 1,
+						"ward": 1
+					},
+					"deck_id": "balanced",
+					"discard": [],
+					"fatigue": 0,
+					"hand": [
+						{
+							"card_id": "spear",
+							"uid": 4
+						},
+						{
+							"card_id": "healer",
+							"uid": 16
+						},
+						{
+							"card_id": "mage",
+							"uid": 15
+						},
+						{
+							"card_id": "rampart",
+							"uid": 29
+						}
+					],
+					"hero_id": "warden",
+					"identity": {},
+					"mana": 0,
+					"max_mana": 1,
+					"skill_cooldown": 0,
+					"spell_boost_used": false
+				},
+				{
+					"card_total": 31,
+					"deck": [
+						{
+							"card_id": "snow",
+							"uid": 59
+						},
+						{
+							"card_id": "bolt",
+							"uid": 50
+						},
+						{
+							"card_id": "archer",
+							"uid": 43
+						},
+						{
+							"card_id": "sword",
+							"uid": 33
+						},
+						{
+							"card_id": "spear",
+							"uid": 37
+						},
+						{
+							"card_id": "healer",
+							"uid": 49
+						},
+						{
+							"card_id": "fog",
+							"uid": 57
+						},
+						{
+							"card_id": "archer",
+							"uid": 41
+						},
+						{
+							"card_id": "nova",
+							"uid": 51
+						},
+						{
+							"card_id": "healer",
+							"uid": 47
+						},
+						{
+							"card_id": "ward",
+							"uid": 53
+						},
+						{
+							"card_id": "march",
+							"uid": 54
+						},
+						{
+							"card_id": "sword",
+							"uid": 34
+						},
+						{
+							"card_id": "heal",
+							"uid": 52
+						},
+						{
+							"card_id": "sword",
+							"uid": 32
+						},
+						{
+							"card_id": "spear",
+							"uid": 35
+						},
+						{
+							"card_id": "rampart",
+							"uid": 60
+						},
+						{
+							"card_id": "cavalry",
+							"uid": 40
+						},
+						{
+							"card_id": "trail",
+							"uid": 61
+						},
+						{
+							"card_id": "insight",
+							"uid": 55
+						},
+						{
+							"card_id": "rain",
+							"uid": 56
+						},
+						{
+							"card_id": "sun",
+							"uid": 58
+						},
+						{
+							"card_id": "mage",
+							"uid": 44
+						},
+						{
+							"card_id": "healer",
+							"uid": 48
+						},
+						{
+							"card_id": "cavalry",
+							"uid": 38
+						}
+					],
+					"deck_counts": {
+						"archer": 3,
+						"bolt": 1,
+						"cavalry": 3,
+						"fog": 1,
+						"heal": 1,
+						"healer": 3,
+						"insight": 1,
+						"mage": 3,
+						"march": 1,
+						"nova": 1,
+						"rain": 1,
+						"rampart": 1,
+						"snow": 1,
+						"spear": 3,
+						"sun": 1,
+						"sword": 3,
+						"trail": 1,
+						"ward": 1
+					},
+					"deck_id": "balanced",
+					"discard": [],
+					"fatigue": 0,
+					"hand": [
+						{
+							"card_id": "spear",
+							"uid": 36
+						},
+						{
+							"card_id": "mage",
+							"uid": 45
+						},
+						{
+							"card_id": "archer",
+							"uid": 42
+						},
+						{
+							"card_id": "cavalry",
+							"uid": 39
+						},
+						{
+							"card_id": "mage",
+							"uid": 46
+						},
+						{
+							"card_id": "initiative",
+							"uid": 63
+						}
+					],
+					"hero_id": "warden",
+					"identity": {
+						"name": "河门守备官",
+						"portrait": "terrain_fort"
+					},
+					"mana": 0,
+					"max_mana": 0,
+					"skill_cooldown": 0,
+					"spell_boost_used": false
+				}
+			],
+			"rng_seed": "1319",
+			"rng_state": "-2210566351918213377",
+			"rules": "9fac5a46063f400f109b6b2bf3817e9d612e977f9dbff71a38f6006553b27a9f",
+			"terrain": [
+				"plain",
+				"plain",
+				"plain",
+				"plain",
+				"hill",
+				"plain",
+				"road",
+				"plain",
+				"plain",
+				"plain",
+				"plain",
+				"plain",
+				"plain",
+				"plain",
+				"forest",
+				"plain",
+				"road",
+				"road",
+				"road",
+				"road",
+				"road",
+				"forest",
+				"plain",
+				"plain",
+				"plain",
+				"plain",
+				"road",
+				"road",
+				"road",
+				"road",
+				"plain",
+				"plain",
+				"road",
+				"road",
+				"plain",
+				"plain",
+				"ruins",
+				"forest",
+				"forest",
+				"road",
+				"plain",
+				"plain",
+				"hill",
+				"plain",
+				"road",
+				"plain",
+				"plain",
+				"plain",
+				"water",
+				"water",
+				"water",
+				"bridge",
+				"water",
+				"water",
+				"water",
+				"water",
+				"bridge",
+				"water",
+				"water",
+				"water",
+				"water",
+				"water",
+				"water",
+				"bridge",
+				"water",
+				"water",
+				"water",
+				"water",
+				"bridge",
+				"water",
+				"water",
+				"water",
+				"plain",
+				"plain",
+				"plain",
+				"road",
+				"plain",
+				"hill",
+				"plain",
+				"plain",
+				"road",
+				"forest",
+				"forest",
+				"ruins",
+				"plain",
+				"plain",
+				"road",
+				"road",
+				"plain",
+				"plain",
+				"road",
+				"road",
+				"road",
+				"road",
+				"plain",
+				"plain",
+				"plain",
+				"plain",
+				"forest",
+				"road",
+				"road",
+				"road",
+				"road",
+				"road",
+				"plain",
+				"forest",
+				"plain",
+				"plain",
+				"plain",
+				"plain",
+				"plain",
+				"plain",
+				"plain",
+				"road",
+				"plain",
+				"hill",
+				"plain",
+				"plain",
+				"plain",
+				"plain"
+			],
+			"time_remaining": 85.75,
+			"traps": [],
+			"turn": 1,
+			"turn_time_limit": 90.0,
+			"units": [
+				{
+					"atk": 3,
+					"attacked": false,
+					"defense": 1,
+					"guarding": false,
+					"hp": 20,
+					"id": 31,
+					"kind": "commander",
+					"last_move_distance": 0,
+					"max_hp": 20,
+					"move": 0,
+					"moved": false,
+					"name": "艾琳 · 破晓",
+					"pos": [
+						5,
+						9
+					],
+					"range": 1,
+					"rooted_turns": 0,
+					"shield": 0,
+					"short": "誓",
+					"side": 0,
+					"skill_used": false,
+					"summoning": false
+				},
+				{
+					"atk": 3,
+					"attacked": false,
+					"defense": 1,
+					"guarding": false,
+					"hp": 20,
+					"id": 62,
+					"kind": "commander",
+					"last_move_distance": 0,
+					"max_hp": 20,
+					"move": 0,
+					"moved": false,
+					"name": "河门守备官",
+					"pos": [
+						6,
+						0
+					],
+					"range": 1,
+					"rooted_turns": 0,
+					"shield": 0,
+					"short": "守",
+					"side": 1,
+					"skill_used": false,
+					"summoning": false
+				},
+				{
+					"atk": 3,
+					"attacked": true,
+					"card": {
+						"card_id": "sword",
+						"uid": 2,
+						"unit_id": 64
+					},
+					"defense": 1,
+					"guarding": false,
+					"hp": 5,
+					"id": 64,
+					"kind": "sword",
+					"last_move_distance": 0,
+					"max_hp": 5,
+					"move": 2,
+					"moved": true,
+					"name": "誓约步兵",
+					"pos": [
+						6,
+						9
+					],
+					"range": 1,
+					"rooted_turns": 0,
+					"shield": 0,
+					"short": "步",
+					"side": 0,
+					"skill_used": false,
+					"summoning": true
+				}
+			],
+			"version": 11,
+			"weather": "clear",
+			"weather_remaining": 0,
+			"winner": -1
+		},
+		"revision": 51,
+		"scenario": "c01_bridge"
+	},
+	"progress": {
+		"chapter_id": "chapter_01",
+		"completed": [],
+		"story": {
+			"attempts": {
+				"road_battle": 1
+			},
+			"decisions": {
+				"route": "road",
+				"supplies": "open"
+			},
+			"flags": {
+				"public_ledger": false,
+				"relief": "open",
+				"route": "road",
+				"seal_copy": true,
+				"witness_present": false
+			},
+			"history": [
+				"c01.a01",
+				"c01.a02",
+				"c01.a03",
+				"c01.a04",
+				"c01.a05",
+				"c01.a06",
+				"c01.a07",
+				"c01.a08",
+				"c01.a09",
+				"c01.a10",
+				"c01.a11",
+				"c01.route.prompt",
+				"c01.route.road",
+				"c01.r01",
+				"c01.r02",
+				"c01.r03",
+				"c01.r04",
+				"c01.r05",
+				"c01.r06",
+				"c01.r07",
+				"c01.r08",
+				"c01.r09",
+				"c01.r10",
+				"c01.ra01",
+				"c01.ra02",
+				"c01.ra03",
+				"c01.ra04",
+				"c01.ra05",
+				"c01.m01",
+				"c01.m02",
+				"c01.m02r",
+				"c01.m03",
+				"c01.m04",
+				"c01.m05",
+				"c01.m06",
+				"c01.m07",
+				"c01.m08",
+				"c01.m10",
+				"c01.m11",
+				"c01.m12",
+				"c01.supply.prompt",
+				"c01.supply.open",
+				"c01.o01",
+				"c01.o03",
+				"c01.o04",
+				"c01.o05",
+				"c01.b01",
+				"c01.b02",
+				"c01.b03",
+				"c01.b04",
+				"c01.b05",
+				"c01.b06"
+			],
+			"last_outcome": "",
+			"line": 0,
+			"line_id": "",
+			"node": "bridge_battle",
+			"revision": 51
+		}
+	},
+	"version": 5
+}

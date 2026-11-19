@@ -1,0 +1,959 @@
+{
+  "version": 1,
+  "id": "chapter_05",
+  "title": "第五章 · 水从哪里来",
+  "start": "arrival",
+  "inherits": [
+    "route",
+    "witness_present",
+    "seal_copy",
+    "relief",
+    "public_ledger",
+    "priority",
+    "receipt_method",
+    "dispatch_receipts",
+    "clerk_safe",
+    "letter_reply",
+    "letter_delivered",
+    "pass_route",
+    "supply_route",
+    "mine_cargo",
+    "harbor_shelter",
+    "foundry_terms",
+    "crew_safe",
+    "harbor_pump",
+    "pump_route_known"
+  ],
+  "defaults": {
+    "route": "none",
+    "witness_present": false,
+    "seal_copy": false,
+    "relief": "none",
+    "public_ledger": false,
+    "priority": "none",
+    "receipt_method": "none",
+    "dispatch_receipts": false,
+    "clerk_safe": false,
+    "letter_reply": "none",
+    "letter_delivered": false,
+    "pass_route": "none",
+    "supply_route": "none",
+    "mine_cargo": false,
+    "harbor_shelter": "none",
+    "foundry_terms": "none",
+    "crew_safe": false,
+    "harbor_pump": false,
+    "pump_route_known": false,
+    "water_plan": "none",
+    "water_released": false,
+    "grove_mandate": "none",
+    "charter_copy": false
+  },
+  "speakers": {
+    "narrator": "旁白",
+    "warden": "艾琳",
+    "pyromancer": "维洛",
+    "grove": "赛菈",
+    "sword": "洛恩",
+    "spear": "芙蕾",
+    "cavalry": "莉希",
+    "archer": "希弥",
+    "mage": "伊瑟",
+    "healer": "米芮",
+    "clerk": "赫姆",
+    "sister": "莉珊",
+    "miner": "钟叔",
+    "hauler": "杜骞",
+    "sailor": "杜棠",
+    "creditor": "曲汀",
+    "mother": "瑟南",
+    "nurser": "榆汀",
+    "sluice_keeper": "岑槐"
+  },
+  "strings": {
+    "c05.arrival.01": "“那桶别碰。”\n赛菈的手停在提梁上。沟边的女人把桶拖回脚旁，水晃出去一些，她立刻蹲下，用空碗接住桶沿最后一线。赛菈叫了她的名字。榆汀没有应，先把碗里的水倒回去。",
+    "c05.arrival.02": "人喝的。你拿去浇了，今晚我们喝什么？那排苗已经不行了，别试。",
+    "c05.arrival.03": "队伍沿北支流走了两日，来使把他们带到苗圃时，离重议席位还有一个上午。树荫下的苗床用绳分成十二畦，最外一畦已拔空。白根搭在篱笆上，根尖结着硬壳。赛菈带回来的那一截，原本还算轻的。",
+    "c05.arrival.04": "我带了两车清水，留在上坡。先分给你们。饮水井也坏了？",
+    "c05.arrival.05": "老井还能汲，就是一天只够汲两回。你的人可以喝，桶别带进苗床。",
+    "c05.arrival.06": "赛菈让洛恩去卸车，自己蹲到空畦前。土表是湿的，捏开却有一层刺手的白粒。她取下腰间阿妲给的布袋，袋口碰上泥，又赶紧挪开。榆汀看见了那袋坏种，认出河门晒场的结法。",
+    "c05.arrival.07": "种子带回来，有地方下吗？我们原先还指望苗床空出后种那一批。你走时说等你答复，我们连旧排沟都没敢开。",
+    "c05.arrival.08": "我说等核清两份关闸令，不是让你们一直堵着。……口信没到？",
+    "c05.arrival.09": "榆汀擦了擦手，取出缝在围裙内层的纸。赛菈认出自己的字，最后一行仍是“请暂缓自行开闸”。准备从河门寄出的第二封还夹在她水文簿里，写完了分粮次序，没有写上游该怎么办。她将那封拿出来，放到第一封旁边。",
+    "c05.arrival.10": "是我没写。你们拿到的只有这一封。",
+    "c05.arrival.11": "榆汀把纸收回去，叫人替两车水找阴凉处。苗圃入口悬着的代行旗已经卷下，旗杆横在一辆空车上。跟来的林社枪卫想去取，希弥挡住他的手，指向还没卸完的水桶。",
+    "c05.arrival.12": "先干这个。杆子又不会渴。",
+    "c05.roots.01": "伊瑟走进苗床，第一脚就陷到踝边。他扶住篱笆，拔出来时靴底带起一块灰泥。榆汀指出白痕从哪头开始：不是河边，而是高坡后的一条维修沟。那条沟只在大修时排水，平日孩子会在沟底找掉落的铁钉。",
+    "c05.roots.02": "港口送来的淡水先进高位池，再从这里下来。淡水本身不会留下这些。我得看看池底，或它冲过什么。",
+    "c05.roots.03": "岑槐说在清旧池。我让他别把冲洗水送进支渠，他答应分开。",
+    "c05.roots.04": "榆汀拿起铁锹，拨开草边的一块木板。两股水在板下汇到一起，较浑的那股很慢，泥却已堆到草茎上。她将锹刃插进去，刃上挂出一片薄薄的黑皮。\n“分开的板子就在这儿。昨晚我自己找见的。”",
+    "c05.roots.05": "我去过渠首。他说没这股水，高坡的苗也要干。那就让他过来看下面，不要隔着窗问我还活几畦。",
+    "c05.roots.06": "先把孩子和狗拦到另一头，谁也别再进沟里捡东西。洛恩，借两块门板，放桶就行，别拆人家正在用的门。",
+    "c05.roots.07": "洛恩应了一声，走了几步又折回，问空车上那两块能不能拿。榆汀点头。他把卷下来的旗轻轻拨到一边，和队员一起抬板。芙蕾留在上坡看车，按住一个想沿沟抄近路的新兵。",
+    "c05.roots.08": "走干地。你一滑，我们得再派两个人拉你。",
+    "c05.roots.09": "赛菈走向母亲家时，手上还留着一块洗不掉的灰。希弥跟了两步，她说自己知道路。希弥便停在井边，接过榆汀递来的桶，问哪家还有走不了的人。两人说话的声音一直传到屋檐下。",
+    "c05.house.01": "母亲正在拆旧药架。最上层的木头已被虫蛀空，扳下来时一截砸到脚背，她骂了一声，没骂完，看见女儿站在门口。赛菈上前接架子，母亲让了，却没有松开另一头。\n“往外抬。别又堵门。”",
+    "c05.house.02": "阿妈，你在搬家？",
+    "c05.house.03": "换个架子。这屋我交过租，还没打算让给谁。你的东西在西边那只筐，别问我收在哪里。",
+    "c05.house.04": "瑟南把一块折好的布扔给她擦手，弯腰去找落在木屑里的钉。母亲后来重新被本社推回议席，仍不肯换掉这张旧桌。赛菈看见桌边摊着十二份议事条，母亲那一份压着颗黑石子。收回代行权的一栏，比旁边“原任续期”四个字写得深。",
+    "c05.house.05": "你也投这个？",
+    "c05.house.06": "嗯。还没正式投，午后我会带去。",
+    "c05.house.07": "赛菈将布拧得很紧，灰水滴在母亲刚扫出的地方。母亲递过木盆，她接住，想把布铺平，折了几次都没找到原来的边。门外有人喊瑟南，说借来的锅太浅。母亲叫那人先把水留着，等她过去看。",
+    "c05.house.08": "十七年前，他们让你别去下游。你去了，回来丢掉席位。你知道那种时候，我不能只待在这里。",
+    "c05.house.09": "我知道。可你没有叫别人接你的班。上周东坡来问，我拿着你那句话也不知道能不能开。你要走，我不拦；别把所有门都留在你一个人的手里。",
+    "c05.house.10": "赛菈抬起头。母亲已坐到断了一角的凳上，把脚背伸出来，那里正在发青。她要去取药，母亲拉住她的袖口。\n“先把话听完。我当年也以为带走半车就够，没叫人补家里的药。回来那天，隔壁的人拿着空罐子等我。”",
+    "c05.house.11": "那一车我还是会送。可空罐子也得有人管。你小时候总拿前半截和他们吵，后半截不爱听。",
+    "c05.house.12": "我今天把水路接班的人定下来。席位的事，下午再说。",
+    "c05.house.13": "瑟南没有答应支持她，只将药匣推到桌沿。赛菈给她敷上脚背，绷带绕过踝骨时，母亲嫌紧，她松了一圈。临走前她去看西边的筐，里面放着旧雨衣、一双补好的鞋，还有一只空花盆。她把花盆留在原处。",
+    "c05.upperworks.01": "高位池外的木闸比赛菈走时高了一截。新横梁上还留着斧痕，岑槐站在梁后，身旁两排护渠队穿着林社的绿布甲。他看见赛菈，先让人把通往苗圃的小门打开，转头却将检修口的横闩又推紧。",
+    "c05.upperworks.02": "苗可以看，池底不能进。刚停了港口补水，沉下来的东西一翻，全池都得重洗。你们在下面动过泵，怎么没先派个人问我？",
+    "c05.upperworks.03": "低坞连着几班不排水，你也没问住船底的人。我们让两边轮换，不是把补水管砸了。你的这班还有多少水，先报实数。",
+    "c05.upperworks.04": "岑槐从木墙上取下一根带刻线的竹条，递给赛菈。她没接，叫伊瑟拿。伊瑟把竹条贴到池边湿痕，顶端差了半掌。岑槐说夜里蒸掉了，伊瑟又摸到一截埋在泥下的细管。管口还在出水，流向已经干涸的工地。",
+    "c05.upperworks.05": "这支先关。没有工人在用，开着只会漏。我不会碰主闸，先请你的人关这一支。",
+    "c05.upperworks.06": "岑槐看着身边的工头，工头没有等他再说，拧紧了小阀。池壁上用炭画出的水位总算不再明显往下落。希弥沿坡绕过一圈，回来说维修沟过去接着一个废泥坑，现在被挖出的土堵满，水便走了苗圃那边。",
+    "c05.upperworks.07": "堵坑的土很新。车辙从你这边下去，回来压在另一条上。谁运的，你认得。",
+    "c05.upperworks.08": "是我叫填的。原来那块地答应给工人起屋，雨一下就塌，得垫高。不用那块，往哪里住？",
+    "c05.upperworks.09": "他带众人去看池后。旧蓄能池内壁结着厚壳，新套管嵌进石缝，工人曾用淡水把多年留下的盐泥冲下来。修屋的地就在废泥坑上，四周刚埋下木桩，还没有屋顶。赛菈蹲到桩旁，拔出一截灰白的草根。",
+    "c05.upperworks.10": "你让下面接冲洗水，却只说是补来的淡水。榆汀问过，你也不告诉她。",
+    "c05.upperworks.11": "告诉她，她就来堵沟。上面十几户靠这片苗过冬，工人的屋子再拖一旬又要涨钱。我把坑挪了，想着等冲完这一批就拆回去。谁知道港口会停？",
+    "c05.upperworks.12": "它没停也一样。盐已经在下面，继续补只是冲得更多。木板要把冲洗沟重新接回废坑，苗圃那支先断开。还有旧闸，我们得把干净的河水引下来。",
+    "c05.upperworks.13": "岑槐将竹条收回。他说岑家的苗也在高坡，自己没有多引半桶；护渠队中一人低声说，他家今年借的种也在那边。艾琳看向赛菈，等她先开口，手没有按到剑柄。",
+    "c05.upperworks.14": "苗床和你借的钱，下午都能说。现在把板换回去。我在这里看着，不让工人的屋地白拆。",
+    "c05.upperworks.15": "你先给我一句，高坡今晚有水。给不了，谁也别开闸。你带着外城的兵回来，不是来听我们的。",
+    "c05.upperworks.16": "赛菈要回答，伊瑟在她身后轻轻摇头。他把量出的水深画在掌心，又指向河闸后的窄渠。眼下能放下来的清水有限，夜里下一轮补水才到，先浇高坡的苗，就不够同时清开下游支渠。艾琳叫人把饮用的两车水单独留出，桌上只剩两条能走的路。",
+    "c05.water.prompt": "饮水车单独保留。今晚可调的河水只够先浇高坡苗床，或先清下游支渠。先保苗，队伍须为下游再运一夜水；先清渠，高坡一部分苗将缺水，需割弃改种。两路都必须先解除分水口的武装封锁。",
+    "c05.water.nursery": "先保高坡苗床，队伍为下游多运一夜水。",
+    "c05.water.channel": "先清下游支渠，高坡割弃缺水苗、改种。",
+    "c05.mandate.prompt": "分水安排已开始执行，林社仍要重议赛菈的代表权。她可以争取有期限、需共签的续任，也可以交回代行印，以亲历者身份继续同行。战斗获胜不能取消表决，留守水务须另有人接班。",
+    "c05.mandate.shared": "争取限期续任，由三处林社共签涉及水路的承诺。",
+    "c05.mandate.witness": "交回代行印，以见证者身份继续追查关闸来源。",
+    "c05.nursery.01": "高坡先浇。榆汀，我知道你们又要等，今晚的桶车我去押。护卫一半留这里，你让人带他们认井，不必客气。",
+    "c05.nursery.02": "我可以等一夜，不能拿明晚当后天的借口。你若去开会，押车换谁？",
+    "c05.nursery.03": "赛菈看了看身后的队员，洛恩举起刚绑好桶绳的手。她报出他的名字，又让本地两个挑水人站到他身旁，挑水人说西坡的石泉还干净，来回近一个时辰。赛菈说车归他们指路，不归外来军士抢先。芙蕾把自己的夜班挪到井边，拿掉了洛恩原本排在前头的巡坡班。",
+    "c05.nursery.04": "我押车，她看井。路不认得，听你们的。明早要是少一趟，来找我，别去找一个又出门的人。",
+    "c05.nursery.05": "岑槐起先松了一口气，听到仍要拆回排水板、挖开屋地，手又扣住木闩。他要求浇完苗再议，工头却已拿起锹，问空屋地先从哪边开。岑槐抢过一根拉绳，把人推回墙内，护渠队顺势封住下坡的两条道。",
+    "c05.nursery.06": "我不能让他们拆了就走。屋地在这里，一拆，钱就白花。先把带来的兵撤下去，我自己跟林社谈。",
+    "c05.nursery.07": "今晚谁看苗，谁看沟，刚才都叫到面前了。你没有问过他们，就把两条道关上。现在让开。",
+    "c05.nursery.08": "第一根弩矢钉进车板，装水的桶跳了一下。赛菈拽住想去扶桶的队员，将他推到石后。艾琳指向林中的两处高坡岗，等赛菈点头，才把自己的护卫分过去。守住两岗便能让本地工人从后侧接替分水口，没必要一直追着退兵上山。",
+    "c05.channel.01": "先清支渠。高坡来不及浇的那几畦，算进缺额，我去一户一户说。不能让下面每天掀开板子猜流下来什么。",
+    "c05.channel.02": "你嘴一张，我这年的苗没了。你给我种？你们这些要走的人，出了林子还记不记得哪一畦是谁的？",
+    "c05.channel.03": "我留在这里。我家也有两畦高坡的，割哪一畦先让我看。别拿我的苗替你把门一直锁着。",
+    "c05.channel.04": "榆汀将围裙解下，折在石边。她跟岑槐借割刀，岑槐没递，刀鞘被他握得咯响。赛菈取下自己腰间的小刀，递过去柄端。榆汀试了试刃，说只够割软茎，转身叫人去借长镰。",
+    "c05.channel.05": "先退到车后。等路通了，再带人上去。护渠队只要撤出分水口，我们不进他们家里的苗圃。",
+    "c05.channel.06": "岑槐把横梁推到头。护渠队中有人喊自家的苗还在，他朝那人指出赛菈身后的外城旗，叫他们看清是谁下令。希弥听见弩机上弦，让众人离开直道。赛菈把自己的代行印压在腰带下，向林间发出布阵的短哨。",
+    "c05.channel.07": "这道令是我下的。放下弩，跟榆汀去看你家的畦。若还要占着闸口逼下面的人等，我们就在这里打。",
+    "c05.channel.08": "岑槐退到高岗后的指挥位，没有撤掉瞄着车道的弩。赛菈叫队员借林地往两翼展开。高坡上的苗床留在阵线之外；这场交战要夺的是护渠队的指挥位置，让留在坡下的工人能上去动闸。",
+    "c05.after_water.01": "护渠队退下时，岑槐的左袖被血浸透。他还想带走分水轮的扳手，工头站在他面前，没有伸手抢，只一直摊着掌心。过了很久，岑槐将扳手放进去，跟着两名林社巡卫下坡。",
+    "c05.after_water.02": "绷紧就来叫我，手指凉了也叫。别拿这只手提东西。问话可以等他坐稳，血不会等。",
+    "c05.after_water.03": "米芮替他扎好伤口，转身去看沟边摔倒的工人。赛菈想再向岑槐问一句，他侧过脸。榆汀先领她去找排沟的木板，板上压着一页被油布包好的施工令，边角已有水迹。",
+    "c05.after_water.04": "伊瑟认出了河门令上同一条调候附款：必要时，得封闭支流以保全主塔供水。赛菈从水文簿内页取出一张旧议定条，删除那一款的日期早于这次施工。岑槐的令却把旧款完整抄回来，落款指向古堡棋庭的代管会签处。",
+    "c05.after_water.05": "这张留原件在林社，我做副本。我们已经知道是哪处送出的令，还没见到那里保存的会签页。别把这张擦干净，改过的字旁边还有铅笔印。",
+    "c05.after_water.06": "工头说原件不能带离工地，榆汀从屋里搬来一只带盖的木匣，让两人一起装进去。她没给匣子上锁，只请隔壁值夜的人坐到桌旁。赛菈把删款的议定条也留下，自己带走拓抄的那一份。",
+    "c05.after_water.07": "高坡先得了水。工人沿苗床走，水到哪畦就把木片往后移一格，没有开满整条沟。下坡的洛恩一夜走了四趟，第三趟鞋带断了，便拿捆桶的短绳扎上。赛菈想替他背最后一桶，被芙蕾指到空车后去推。",
+    "c05.after_water.08": "西沟明早还要再冲一回。今天留下的车先别卸绳，你们要走，也得等接班的人认过这条路。",
+    "c05.after_water.09": "支渠先流过一层灰白的水，工人将它引向重新挖开的废泥坑，守在岔口，没让它进井渠。高坡传来割草的声音，榆汀抱下两捆蔫苗，放在岑槐家那一畦旁。她分得出能再育的根，将其中几株另捆成一小把。",
+    "c05.after_water.10": "这些还留，剩下的别埋回苗床。后面换短季的豆，我把种留给割得最多的人。你别答应下一旬就能补齐，根长不到那么快。",
+    "c05.after_water.11": "夜班最后一轮，伊瑟把盛着新水的两只瓶摆在石上，旁边是早先的浑水。他没让任何人尝，叫米芮将饮水车再留到井口复查之后。她替他握住快要熄的灯，等他把最后一条读数记完，才指向他一直站着的那只脚。",
+    "c05.after_water.12": "鞋脱了。我从傍晚叫你到现在，泥还在袜子里。",
+    "c05.after_water.13": "伊瑟坐到石阶上，袜口留下深深一道印。他在空白页画了个浅底小船，想说明明天怎样运桶，画到一半，米芮把一块干布压在船头。\n“先擦。船不会跑。”\n他握着笔没动，随后把纸推到她够得着的地方。",
+    "c05.assembly.01": "午后的议事场设在晒场。夜班的人轮流补觉，十二张椅子先空着四张，等远处代表的车。赛菈比约定迟了一刻，衣摆还有推水车溅上的泥。她走向从前那把椅子，见母亲把包放在上面，便站到桌外。",
+    "c05.assembly.02": "你的包，在西边。这个位置先空着，今天要议的是坐它的人。",
+    "c05.assembly.03": "最后一辆车到了，车夫从坐垫下捧出一小束还能救的苗，放到榆汀面前。榆汀不在十二席里，先坐到下首，等人问夜班的事。岑槐也来了，左臂吊在胸前；他的椅子靠近出口，两名巡卫坐在门边，没有将他挡在场外。",
+    "c05.assembly.04": "我挪过排水坑，也瞒过下面。我认。可她让外城人过来占住分水口，这个以后怎么算？今天开的是水闸，下次呢？",
+    "c05.assembly.05": "人是赛菈准许我们带来的。我带的队伍，夜班交接后撤到驿棚。谁家的车板坏了，记在我名下。",
+    "c05.assembly.06": "别替我答完。岑槐问的是，下次我还会不会先叫人过来。",
+    "c05.assembly.07": "艾琳将要说的话停住，退回桌外。赛菈把代行印解下来，印带磨损的地方沾着泥。一个北坡代表提醒她，原先的授权是核对三方水路，没让她带军队决定谁家的苗先干。",
+    "c05.assembly.08": "我知道。也不能让大家再拿着我那封“等一等”守下去。今天我做了选择，哪几畦损失、哪条沟多等，榆汀都在这里。我先听她说完。",
+    "c05.assembly.09": "榆汀说高坡保住了多数苗，下面的水桶却排到夜里，洛恩最后一趟回来时，一户人家的孩子已抱着空碗睡着。她把准备给夜班的饼分了一半给推车的人，自己没吃。代表问车明晚还在不在，她看向赛菈。",
+    "c05.assembly.10": "今天先教会本地接班的人，车留两辆，队员留到第二个夜班结束。之后按三处井轮值。我不能只说人会在，名字我现在就给你们。",
+    "c05.assembly.11": "榆汀报了割弃的畦数。有人不肯把自家那一畦算进总数，说去年没分到好苗，今年才补上。她将那人的绳结从捆好的苗上解下来，放在他掌心，说明另留的种从哪里匀，哪一户也会因此少一份。",
+    "c05.assembly.12": "种从我家留的那份先出。还差的不能只压给下面，我挨户问，愿意匀多少就记多少。没有答应的，我不替他们按手印。",
+    "c05.assembly.13": "瑟南把脚挪到椅下，听完也没抹掉议事条上的黑石子。一名长者请她说话，她摇头，让尚未开口的西沟代表先讲。赛菈盯着那颗石子看了一会儿，终于将目光移到说话的人身上。",
+    "c05.assembly.14": "西沟代表只有一个要求：代行者出了林子，管水的人不能再等一封迟迟不到的回信。榆汀愿意留守分水口，却拒绝独自管十二社的事。三处轮值、各自留人，在座的人逐个报出能接班的姓名。等话回到赛菈面前，她的印还没放回腰带。",
+    "c05.assembly.15": "棋庭那份旧款，我还得去问。有一件事先在这里定：我这次出去，是带着怎样的权力。",
+    "c05.shared.01": "给我到下一次月会的期限。我要追会签页，但不能再拿代行印替你们一并答应。今后涉及开闸、征粮、借兵的承诺，都得有留守三处的人共签；没有他们的答复，就只是我个人的话。",
+    "c05.shared.02": "有人问若三处意见不合怎么办。赛菈没有说自己裁断，指着桌边已排出的轮值条，提议先按这次定下的最低放水班次执行，变更再由十二社议。北坡代表要把“最低”写清楚，榆汀将量水竹条横在桌上，按三处井的余量一格格核。",
+    "c05.shared.03": "这格以下，先停苗床，不停给人提水的那条。你记住，回来也一样，不许因为是你站在田里就换。",
+    "c05.shared.04": "赛菈点头，把这一句补进交接条。表决开始，黑白石子落进浅盘，有人捏着很久才松手。结果以七票同意、五票反对通过。瑟南投了黑石，赛菈看见，抬起的手又放下，没有追着她问。",
+    "c05.shared.05": "代行印换上三股不同颜色的系绳，赛菈保留出席河岸议会与查问旧令的资格，水务和借兵须受新约束。岑槐的旧护渠委任被收回，另行核他的赔付与工人屋地，不因续任表决一起抹去。",
+    "c05.shared.06": "我收下这个期限。到月会我回来；路上若走不成，也让信先回来。要撤我的权，不用等我亲自坐到这张椅子上。",
+    "c05.shared.07": "榆汀替她系好最后一股绳，结打得很紧。赛菈低头试了一下，没解开。母亲已拄着短杖往外走，她将印放回腰带，追到门外，只来得及问那只脚还疼不疼。",
+    "c05.witness.01": "印留下。我不能再让十二社的事追着我的行程跑。棋庭我仍然去，带亲眼见过的水和抄件；他们问暮林答不答应，我请他们回来问你们。",
+    "c05.witness.02": "她把印放到浅盘里，系绳绕了半圈，还挂在自己指上。瑟南坐着没动，直到赛菈自己将最后一截松开。一名代表担心三方议会不再让她入席，艾琳上前半步，问赛菈能否同意由她列为同行证人。",
+    "c05.witness.03": "可以。是证人，不是你替暮林找来的新代行者。",
+    "c05.witness.04": "写清楚。我也不能替你们补那一席。",
+    "c05.witness.05": "十二社继续表决，由三处留守代表轮流主持水务，到下次月会再选新的代行者。榆汀接过分水口的值守条，没有接那枚印。印被收进公匣，钥匙交给另外两社保管；她松了口气，拿起自己的苗绳，先去找等在门口的人。",
+    "c05.witness.06": "岑槐的旧护渠委任另行收回，排水坑与工人屋地的账留到次日逐户核。有人问赛菈会不会因此不回来了，她说家里的种还欠着几户，不能只让母亲去还。瑟南听见，敲了敲杖头，叫她先把人名报对。",
+    "c05.witness.07": "我报，你听。有不肯等的，今天就去见。明早出门前，把能交的先交完。",
+    "c05.witness.08": "空盘被收走，桌面留下一圈淡淡的金属印痕。赛菈摸到腰间原来放印的位置，只碰到一段剪短的绳头。她没有把它藏起来，走到门口时，榆汀喊她帮忙抬一筐苗，她答应了，伸手去接较重的那一头。",
+    "c05.evening.01": "傍晚母女一起坐在门槛上挑种。瑟南认出布袋来自河门，问磨坊主还缺不缺修袋子的粗线。赛菈说下次驿车可以带一捆，话出口便停了，先起身将线放到门边，写好阿妲的名字，托明早回河门的车夫来取。",
+    "c05.evening.02": "你方才看见我投了什么。",
+    "c05.evening.03": "看见了。我还想问你，为什么不能先信我这一次。",
+    "c05.evening.04": "你下回来再问。现在我怕一说，你又把今晚都花在我身上。",
+    "c05.evening.05": "赛菈将一粒完好的种子放到母亲手里，没有急着接话。屋里传来水沸的声音，她要起身，瑟南伸杖拦了拦，叫她把门边的筐看完。等水壶自己慢慢停响，她才发现有人早已从另一扇门进去，帮着将壶提下来。",
+    "c05.evening.06": "那是希弥。她把壶放到两人中间，问赛菈的薄荷要不要带走。花盆里的旧土干得发白，母亲从窗下剪了一小段新枝，插进湿布。赛菈接过去，说盆太大，只带这段。",
+    "c05.evening.07": "行。你自己拿，别再放到军用药箱里，米芮每次都要多点一遍。",
+    "c05.evening.08": "莉希在井旁给栗雨卸鞍，换走用了两日的胸带。希弥把缰绳接过来，让她去吃还热的那份饭。莉希要解释自己没忘，希弥先递给她一只空碗。她看了看马，又看了看碗，这次没有再把饭推到明天。",
+    "c05.evening.09": "港口的经办人托夜驿送来一页账，维洛那笔转让的钱已交割，本批炉工欠饷结清，后面空着的铸管份额不再算他的。他在页角画掉原先准备抵押的记号，把这一页翻过来，问林社修屋还缺多少木料。",
+    "c05.evening.10": "港口经办人送来的账仍有未付余款，维洛对着日期补写回信，叫对方先兑现已经说过的几笔。林社工头问他能不能再垫木料钱，他将空下来的收入一栏给对方看，说明只能介绍木商，不能替尚未收进的钱签保。",
+    "c05.evening.11": "走检修廊送来的轻药箱早已在港口用上，这次北行只分出够途中使用的一份。米芮把最后两包换成林社常用的药叶，问清本地看诊的人姓名，把井口复查的瓶子交到对方手里。",
+    "c05.evening.12": "绕外路的辎重终于到港，分装的药沿驿路送上来，整整落后队伍一班。米芮清点后留下一半，写明旧诊室借药的归还安排，再把井口复查的瓶子交给本地看诊的人。",
+    "c05.evening.13": "洛恩留在井边教第二班人绑桶，芙蕾在车板上划掉已经走熟的路口。赛菈将两人的班次抄到本地轮值条背面，交给榆汀；自己名字旁的那一栏终于不再从早写到夜。",
+    "c05.evening.14": "榆汀带人将还能育的根移到阴地，空出的畦铺上干草，等重新养土。赛菈逐户交过愿意匀出的种，最后一户没有收，说想等岑槐先给个说法。她将那份带回来，单独留好，没有填成已经分完。",
+    "c05.evening.15": "晒场散会后，棋庭的骑使终于找到艾琳。他前一晚到过林社，听说她在渠首，便把马留在驿棚等；午后又被请到晒场外，不许佩剑入内。此时他将剑留在门边，只带一封落款清楚的信。",
+    "c05.evening.16": "你们想叫我回河门受审，还是去棋庭？",
+    "c05.evening.17": "骑使说只负责将信交到本人手里。艾琳接过，看到封缄上的旧盾纹，认出曾教她排守备阵线的罗瑟总监。信里要求三方带上相抵触的关闸令，到古堡棋庭核对原始会签；另有一行，直接点她的名字。",
+    "c05.evening.18": "维洛凑过来，艾琳将信平放，没有遮。赛菈把带三色绳的印压在自己的水文副本旁，先写信请三处留守代表推选一人赴棋庭；自己不能替那人答应任何新取水条件。",
+    "c05.evening.19": "维洛凑过来，艾琳将信平放，没有遮。赛菈从行囊取出水文副本，腰边已经没有代行印。艾琳在同行名单上写下她的名字，身份一栏留给她自己填，她写了“见证”，将笔交还。",
+    "c05.end": "艾琳把信读到最后。罗瑟在正式落款之后又添了一行，用的是她受训时批改课卷的细笔：你父亲当年的停职令，由我签发。原件与交班名册，仍在棋庭。\n钥匙抵着衣内的锁骨，她伸手取出来，放到那一行旁边。骑使站在门外等回话，远处水车的木轮响了一声。\n“告诉他，”艾琳说，“我们去。原件留在那里，别替我誊一份新的。”",
+    "c05.after_water.14": "原定午后赴会的代表赶到渠首，见分水轮已经打开，便在坡下先议交接。榆汀要求让夜班跑完，再听两边的人说。瑟南将议事条收回袋里，和其他代表约好翌日午后正式表决；今晚谁也不能先把代行旗挂回去。",
+    "c05.evening.20": "你把印留下，我不替你说值不值。明天出了门，别总回头看人家怎样用。",
+    "c05.evening.21": "我以为交出去就会轻一点。现在一听见院里有人争吵，手还是先往腰上摸。",
+    "c05.evening.22": "摸就摸吧。手空了，总还能拿别的。把门边那筐看完，别让好种也跟着坏的丢了。"
+  },
+  "nodes": {
+    "arrival": {
+      "type": "dialogue",
+      "background": "battlefield_greenwood",
+      "lines": [
+        {
+          "id": "c05.arrival.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.arrival.02",
+          "speaker": "nurser"
+        },
+        {
+          "id": "c05.arrival.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.arrival.04",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.arrival.05",
+          "speaker": "nurser"
+        },
+        {
+          "id": "c05.arrival.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.arrival.07",
+          "speaker": "nurser"
+        },
+        {
+          "id": "c05.arrival.08",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.arrival.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.arrival.10",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.arrival.11",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.arrival.12",
+          "speaker": "archer"
+        }
+      ],
+      "next": "roots"
+    },
+    "roots": {
+      "type": "dialogue",
+      "background": "battlefield_greenwood",
+      "lines": [
+        {
+          "id": "c05.roots.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.roots.02",
+          "speaker": "mage"
+        },
+        {
+          "id": "c05.roots.03",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.roots.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.roots.05",
+          "speaker": "nurser"
+        },
+        {
+          "id": "c05.roots.06",
+          "speaker": "healer"
+        },
+        {
+          "id": "c05.roots.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.roots.08",
+          "speaker": "spear"
+        },
+        {
+          "id": "c05.roots.09",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "house"
+    },
+    "house": {
+      "type": "dialogue",
+      "background": "battlefield_greenwood",
+      "lines": [
+        {
+          "id": "c05.house.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.house.02",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.house.03",
+          "speaker": "mother"
+        },
+        {
+          "id": "c05.house.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.house.05",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.house.06",
+          "speaker": "mother"
+        },
+        {
+          "id": "c05.house.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.house.08",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.house.09",
+          "speaker": "mother"
+        },
+        {
+          "id": "c05.house.10",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.house.11",
+          "speaker": "mother"
+        },
+        {
+          "id": "c05.house.12",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.house.13",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "upperworks"
+    },
+    "upperworks": {
+      "type": "dialogue",
+      "background": "battlefield_greenwood",
+      "lines": [
+        {
+          "id": "c05.upperworks.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.upperworks.02",
+          "speaker": "sluice_keeper"
+        },
+        {
+          "id": "c05.upperworks.03",
+          "speaker": "pyromancer"
+        },
+        {
+          "id": "c05.upperworks.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.upperworks.05",
+          "speaker": "mage"
+        },
+        {
+          "id": "c05.upperworks.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.upperworks.07",
+          "speaker": "archer"
+        },
+        {
+          "id": "c05.upperworks.08",
+          "speaker": "sluice_keeper"
+        },
+        {
+          "id": "c05.upperworks.09",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.upperworks.10",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.upperworks.11",
+          "speaker": "sluice_keeper"
+        },
+        {
+          "id": "c05.upperworks.12",
+          "speaker": "mage"
+        },
+        {
+          "id": "c05.upperworks.13",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.upperworks.14",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.upperworks.15",
+          "speaker": "sluice_keeper"
+        },
+        {
+          "id": "c05.upperworks.16",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "water"
+    },
+    "water": {
+      "type": "choice",
+      "background": "battlefield_greenwood",
+      "prompt": "c05.water.prompt",
+      "options": [
+        {
+          "id": "nursery",
+          "text": "c05.water.nursery",
+          "set": {
+            "water_plan": "nursery"
+          },
+          "next": "nursery"
+        },
+        {
+          "id": "channel",
+          "text": "c05.water.channel",
+          "set": {
+            "water_plan": "channel"
+          },
+          "next": "channel"
+        }
+      ]
+    },
+    "nursery": {
+      "type": "dialogue",
+      "background": "battlefield_greenwood",
+      "lines": [
+        {
+          "id": "c05.nursery.01",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.nursery.02",
+          "speaker": "nurser"
+        },
+        {
+          "id": "c05.nursery.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.nursery.04",
+          "speaker": "sword"
+        },
+        {
+          "id": "c05.nursery.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.nursery.06",
+          "speaker": "sluice_keeper"
+        },
+        {
+          "id": "c05.nursery.07",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.nursery.08",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "nursery_battle"
+    },
+    "channel": {
+      "type": "dialogue",
+      "background": "battlefield_greenwood",
+      "lines": [
+        {
+          "id": "c05.channel.01",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.channel.02",
+          "speaker": "sluice_keeper"
+        },
+        {
+          "id": "c05.channel.03",
+          "speaker": "nurser"
+        },
+        {
+          "id": "c05.channel.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.channel.05",
+          "speaker": "warden"
+        },
+        {
+          "id": "c05.channel.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.channel.07",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.channel.08",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "channel_battle"
+    },
+    "nursery_battle": {
+      "type": "battle",
+      "background": "battlefield_greenwood",
+      "scenario": "c05_nursery",
+      "win": "after_water",
+      "win_set": {
+        "water_released": true,
+        "charter_copy": true
+      }
+    },
+    "channel_battle": {
+      "type": "battle",
+      "background": "battlefield_greenwood",
+      "scenario": "c05_channel",
+      "win": "after_water",
+      "win_set": {
+        "water_released": true,
+        "charter_copy": true
+      }
+    },
+    "after_water": {
+      "type": "dialogue",
+      "background": "battlefield_greenwood",
+      "lines": [
+        {
+          "id": "c05.after_water.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.after_water.02",
+          "speaker": "healer"
+        },
+        {
+          "id": "c05.after_water.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.after_water.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.after_water.05",
+          "speaker": "mage"
+        },
+        {
+          "id": "c05.after_water.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.after_water.14",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.after_water.07",
+          "speaker": "narrator",
+          "when": {
+            "water_plan": "nursery"
+          }
+        },
+        {
+          "id": "c05.after_water.08",
+          "speaker": "nurser",
+          "when": {
+            "water_plan": "nursery"
+          }
+        },
+        {
+          "id": "c05.after_water.09",
+          "speaker": "narrator",
+          "when": {
+            "water_plan": "channel"
+          }
+        },
+        {
+          "id": "c05.after_water.10",
+          "speaker": "nurser",
+          "when": {
+            "water_plan": "channel"
+          }
+        },
+        {
+          "id": "c05.after_water.11",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.after_water.12",
+          "speaker": "healer"
+        },
+        {
+          "id": "c05.after_water.13",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "assembly"
+    },
+    "assembly": {
+      "type": "dialogue",
+      "background": "battlefield_greenwood",
+      "lines": [
+        {
+          "id": "c05.assembly.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.assembly.02",
+          "speaker": "mother"
+        },
+        {
+          "id": "c05.assembly.03",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.assembly.04",
+          "speaker": "sluice_keeper"
+        },
+        {
+          "id": "c05.assembly.05",
+          "speaker": "warden"
+        },
+        {
+          "id": "c05.assembly.06",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.assembly.07",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.assembly.08",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.assembly.09",
+          "speaker": "narrator",
+          "when": {
+            "water_plan": "nursery"
+          }
+        },
+        {
+          "id": "c05.assembly.10",
+          "speaker": "grove",
+          "when": {
+            "water_plan": "nursery"
+          }
+        },
+        {
+          "id": "c05.assembly.11",
+          "speaker": "narrator",
+          "when": {
+            "water_plan": "channel"
+          }
+        },
+        {
+          "id": "c05.assembly.12",
+          "speaker": "grove",
+          "when": {
+            "water_plan": "channel"
+          }
+        },
+        {
+          "id": "c05.assembly.13",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.assembly.14",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.assembly.15",
+          "speaker": "grove"
+        }
+      ],
+      "next": "mandate"
+    },
+    "mandate": {
+      "type": "choice",
+      "background": "battlefield_greenwood",
+      "prompt": "c05.mandate.prompt",
+      "options": [
+        {
+          "id": "shared",
+          "text": "c05.mandate.shared",
+          "set": {
+            "grove_mandate": "shared"
+          },
+          "next": "shared"
+        },
+        {
+          "id": "witness",
+          "text": "c05.mandate.witness",
+          "set": {
+            "grove_mandate": "witness"
+          },
+          "next": "witness"
+        }
+      ]
+    },
+    "shared": {
+      "type": "dialogue",
+      "background": "battlefield_greenwood",
+      "lines": [
+        {
+          "id": "c05.shared.01",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.shared.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.shared.03",
+          "speaker": "nurser"
+        },
+        {
+          "id": "c05.shared.04",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.shared.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.shared.06",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.shared.07",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "evening"
+    },
+    "witness": {
+      "type": "dialogue",
+      "background": "battlefield_greenwood",
+      "lines": [
+        {
+          "id": "c05.witness.01",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.witness.02",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.witness.03",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.witness.04",
+          "speaker": "warden"
+        },
+        {
+          "id": "c05.witness.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.witness.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.witness.07",
+          "speaker": "grove"
+        },
+        {
+          "id": "c05.witness.08",
+          "speaker": "narrator"
+        }
+      ],
+      "next": "evening"
+    },
+    "evening": {
+      "type": "dialogue",
+      "background": "battlefield_greenwood",
+      "lines": [
+        {
+          "id": "c05.evening.01",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.evening.02",
+          "speaker": "mother",
+          "when": {
+            "grove_mandate": "shared"
+          }
+        },
+        {
+          "id": "c05.evening.03",
+          "speaker": "grove",
+          "when": {
+            "grove_mandate": "shared"
+          }
+        },
+        {
+          "id": "c05.evening.04",
+          "speaker": "mother",
+          "when": {
+            "grove_mandate": "shared"
+          }
+        },
+        {
+          "id": "c05.evening.20",
+          "speaker": "mother",
+          "when": {
+            "grove_mandate": "witness"
+          }
+        },
+        {
+          "id": "c05.evening.21",
+          "speaker": "grove",
+          "when": {
+            "grove_mandate": "witness"
+          }
+        },
+        {
+          "id": "c05.evening.22",
+          "speaker": "mother",
+          "when": {
+            "grove_mandate": "witness"
+          }
+        },
+        {
+          "id": "c05.evening.05",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.evening.06",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.evening.07",
+          "speaker": "archer"
+        },
+        {
+          "id": "c05.evening.08",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.evening.09",
+          "speaker": "narrator",
+          "when": {
+            "foundry_terms": "sale"
+          }
+        },
+        {
+          "id": "c05.evening.10",
+          "speaker": "narrator",
+          "when": {
+            "foundry_terms": "lease"
+          }
+        },
+        {
+          "id": "c05.evening.11",
+          "speaker": "narrator",
+          "when": {
+            "supply_route": "maintenance"
+          }
+        },
+        {
+          "id": "c05.evening.12",
+          "speaker": "narrator",
+          "when": {
+            "supply_route": "long_road"
+          }
+        },
+        {
+          "id": "c05.evening.13",
+          "speaker": "narrator",
+          "when": {
+            "water_plan": "nursery"
+          }
+        },
+        {
+          "id": "c05.evening.14",
+          "speaker": "narrator",
+          "when": {
+            "water_plan": "channel"
+          }
+        },
+        {
+          "id": "c05.evening.15",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.evening.16",
+          "speaker": "warden"
+        },
+        {
+          "id": "c05.evening.17",
+          "speaker": "narrator"
+        },
+        {
+          "id": "c05.evening.18",
+          "speaker": "narrator",
+          "when": {
+            "grove_mandate": "shared"
+          }
+        },
+        {
+          "id": "c05.evening.19",
+          "speaker": "narrator",
+          "when": {
+            "grove_mandate": "witness"
+          }
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end",
+      "ending": "water_returns",
+      "background": "battlefield_greenwood",
+      "text": "c05.end"
+    }
+  }
+}
