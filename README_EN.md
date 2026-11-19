@@ -112,9 +112,11 @@ The gold frame marks the stretcher crew. The teal square marks the kiln evacuati
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
 | Learn and adjust | Four untimed drills. F10 opens display, reading size, motion, music and effects settings |
 
-## 0.54 · Windows installer
+## 0.54 · Rivergate and the Windows installer
 
 Open the Simplified Chinese MSI to install for the current Windows account, then launch from the Start menu. The portable ZIP still opens directly from the extracted EXE. Both use the same campaign saves, custom deck and preferences. Uninstall removes the program and shortcut while preserving player data. [Installer and verification](docs/release/v054.md)
+
+Rivergate's bridges, groves, shallows and slopes were modeled in Blender and rendered into a 2160×1800 battlefield image. Play still uses the original flat 12×10 board. [Rivergate in game](docs/release/steam/gameplay/07-glassroad-dual-order.png)
 
 ## 0.53 · Glassroad Orders
 

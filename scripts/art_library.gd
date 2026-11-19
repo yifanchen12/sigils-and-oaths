@@ -136,7 +136,11 @@ static func get_texture(asset_id: String) -> Texture2D:
 	if NARRATIVE_SCENES.has(asset_id): path = "res://assets/art/narrative/%s.png" % NARRATIVE_SCENES[asset_id]
 	if asset_id == "menu" and ResourceLoader.exists("res://assets/art/menu_cel.png"): path = "res://assets/art/menu_cel.png"
 	if asset_id == "trail" and ResourceLoader.exists("res://assets/art/trail_cel.png"): path = "res://assets/art/trail_cel.png"
-	if asset_id.begins_with("battlefield_"): path = "res://assets/art/battlefields/%s-v2.png" % asset_id.trim_prefix("battlefield_")
+	if asset_id.begins_with("battlefield_"):
+		var map_id: String = asset_id.trim_prefix("battlefield_")
+		path = "res://assets/art/battlefields/%s-v2.png" % map_id
+		if map_id == "rivergate" and ResourceLoader.exists("res://assets/art/battlefields/rivergate-relief-v1.png"):
+			path = "res://assets/art/battlefields/rivergate-relief-v1.png"
 	var texture: Texture2D = null
 	for atlas_id: String in SPELL_ATLASES:
 		var index: int = SPELL_ATLASES[atlas_id].find(asset_id)

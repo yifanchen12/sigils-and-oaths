@@ -20,6 +20,7 @@
 | 回澜契令卡面 | 24 张开发期生成插画，由四张固定 PNG 提供 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/moorings-source.md) |
 | 石岭行军卡面 | 36 张开发期生成插画，由四张固定 PNG 提供 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/pilgrim-source.md) |
 | 镜道兵书卡面 | 48 张开发期生成插画，由四张固定 PNG 提供，棋盘部队沿用兵种战斗造型 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/glassroad-source.md) |
+| 双桥河谷底图 | 在 Blender 中用脚本建模桥梁、地形和植被，再以正交相机渲染本地 PNG | 保留可编辑模型、建模脚本和图像 SHA-256。 [美术清单](../../../assets/art/manifest.json) |
 | 章节重走背景 | 一张开发期生成的档案室场景图 | 保留生成提示、来源文件名和 SHA-256。 [档案室生成记录](../../../assets/art/narrative/chapter-replay-source.md) |
 | 战役军备背景 | 一张开发期生成的港口军备库场景图 | 保留生成提示、来源文件名和 SHA-256。 [军备库生成记录](../../../assets/art/narrative/campaign-armory-source.md) |
 | 战前军需的军需桌 | 一张开发期生成插画，选牌后显示原有对应卡图 | 保留生成提示、源图和 SHA-256。 [军需配图来源](../../../assets/art/narrative/quartermaster-desk-source.md) |

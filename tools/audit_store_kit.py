@@ -27,7 +27,7 @@ SCREENSHOTS = {
     "04-guard-drill.png": "The playable second tutorial, with the hand trap selected on the actual training board.",
     "05-three-lamps-mission.png": "The authored c17_runner objective and opening cards loaded in the production battlefield scene.",
     "06-glassroad-muster.png": "Salt Road Reserves vs Twin-Tide Orders, Greenwood seed 5423. Two legal reserve landings on side turn 21 after 103 legal actions.",
-    "07-glassroad-dual-order.png": "Twin-Tide Orders vs Bell Ambush, Rivergate seed 5479. Enemy branch of Glassroad Treaty on side turn 19 after 94 legal actions.",
+    "07-glassroad-dual-order.png": "Twin-Tide Orders vs Bell Ambush on the Blender-rendered Rivergate map, seed 5479. Enemy branch of Glassroad Treaty on side turn 19 after 94 legal actions.",
 }
 
 

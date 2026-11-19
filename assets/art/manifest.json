@@ -1,9 +1,9 @@
 {
   "project": "纹章与誓约 / Sigils & Oaths",
   "generated_on": "2026-10-25",
-  "tool": "native image_gen",
+  "tool": "native image_gen and Blender",
   "model": "not exposed by the runtime",
-  "provenance_note": "Original AI-generated art produced for this project. Raw PNGs were copied intact; no third-party game art was used. Generation records are kept separately from any future distribution or store disclosure review.",
+  "provenance_note": "Original art produced for this project with native image generation and Blender. Each entry records its source and processing. Distribution and store disclosure records are kept separately.",
   "assets": [
     {
       "id": "menu",
@@ -2349,6 +2349,20 @@
       "role": "Twelve Glassroad hand trap and weather illustrations.",
       "processing": "Original generated PNG. Godot crops four columns by three rows with a two-pixel inset.",
       "validation": "tests/test_glassroad_cards.gd and tests/test_glassroad_native_ui.gd"
+    },
+    {
+      "id": "rivergate-relief-v1",
+      "path": "assets/art/battlefields/rivergate-relief-v1.png",
+      "source_path": "assets/art/model_sources/rivergate-relief-v1.blend",
+      "build_script": "tools/render_rivergate.py",
+      "tool": "Blender 4.5.16 LTS, Cycles CPU",
+      "size": [2160, 1800],
+      "mode": "RGB",
+      "sha256": "00f9133320fee970d589b4c9945a0d8f0e2fd1031e7ba5f2c98bf9fc94f9b6fa",
+      "source_sha256": "d0de21ce7af6c9ef416030f76d6247af9383a4c4c94ab0a7228d29b6f886d842",
+      "role": "Full orthographic battlefield artwork for the original 12 by 10 Rivergate grid.",
+      "processing": "Original procedural meshes, pigments, materials and lighting rendered directly from the Blender scene.",
+      "validation": "Five camera projection anchors and native Godot movement, spell previews and terrain changes."
     }
   ]
 }

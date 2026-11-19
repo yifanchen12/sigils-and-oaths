@@ -90,6 +90,8 @@ func _initialize() -> void:
     entries.sort()
     for path in entries:
         var relative = path.trim_prefix("res://")
+        if relative.begins_with("assets/art/model_sources/") or relative.ends_with(".blend"):
+            problems.append("editable Blender source should not be in the Windows game pack: " + path)
         if not (relative.begins_with("assets/") or relative.begins_with("data/") or relative.begins_with("scripts/") or relative.begins_with("scenes/") or relative.begins_with(".godot/imported/") or relative.begins_with(".godot/exported/") or relative in ["project.binary", ".godot/global_script_class_cache.cfg", ".godot/uid_cache.bin"]):
             problems.append("unexpected resource: " + path)
     var campaign = JSON.parse_string(FileAccess.get_file_as_string("res://data/campaign.json"))
@@ -122,6 +124,7 @@ func _initialize() -> void:
         "res://assets/art/expansion/pilgrim-wards-v1.png", "res://assets/art/expansion/pilgrim-salvos-v1.png",
         "res://assets/art/expansion/glassroad-company-v1.png", "res://assets/art/expansion/glassroad-edicts-v1.png",
         "res://assets/art/expansion/glassroad-reserves-v1.png", "res://assets/art/expansion/glassroad-ambush-v1.png",
+        "res://assets/art/battlefields/rivergate-relief-v1.png",
         "res://assets/art/battlefields/lamplanding-v2.png", "res://assets/art/narrative/return-morning-v1.png",
         "res://assets/art/battlefields/saltlane-v2.png", "res://assets/art/narrative/saltlane-yard-v1.png",
         "res://assets/art/narrative/quartermaster-desk-v1.png", "res://scripts/campaign_requisition.gd",
