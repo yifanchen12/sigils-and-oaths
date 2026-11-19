@@ -7,11 +7,13 @@
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
 <p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.11.0" src="https://img.shields.io/badge/version-0.11.0-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
+**试玩 0.56.0-dev 开发预览。** 在六张平面战场上出牌，可以看到星火箭从友军飞向目标，枪兵展开盾光援护身旁的同伴。Windows 提供免安装便携版和安装包。 [下载游戏](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.56.0-dev) · [看 10.5 秒实机演示](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.56.0-dev/SigilsAndOaths-0.56.0-dev-Casts.mp4) · [开发分支持续更新的玩法说明](https://github.com/yifanchen12/sigils-and-oaths/blob/codex/unit-skills-combat-animation/README.md)
+
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法研究参考《炉石传说》的卡牌资源节奏与《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡面、美术与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。当前是可玩的 **0.11.0 开发版**，面向 Windows 桌面单机对战 AI。
+玩法研究参考《炉石传说》的卡牌资源节奏与《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡面、美术与地图布局为本项目制作；未使用上述游戏的角色、图像、音频或其他素材。下文介绍主分支的 **0.11.0 开发版**，面向 Windows 桌面单机对战 AI。
 
 ## 实机画面
 
