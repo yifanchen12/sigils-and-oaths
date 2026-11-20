@@ -2,7 +2,7 @@
 
 面向 Windows 0.60.0-dev。此表用于核对送审版本实际文件和商店页面。提交内容调查和确定地区评级需要发行方查看最终构建与 Steamworks 表单。Steamworks 把开发期间生成并交付给玩家的内容与运行中生成的内容分别调查。 [Steamworks 内容调查](https://partner.steamgames.com/doc/gettingstarted/contentsurvey)
 
-0.60 新增吊锤透明原画、独立锤击音和两首署名配乐。12 张地形绘制参考、1 张人物草稿和 23 份美术制作记录已从游戏数据包移出，源仓库保留制作材料。 [本版来源和音乐许可](../../../assets/audio/MUSIC-CREDITS.txt) · [美术提示词](../../../assets/art/actions/hollow-hammer.md)
+0.60 的 Windows 数据包中实读出 177 项内容，共 178 份底层资源。两首授权录音、25 个事件音效、吊锤原画及游戏内音乐署名均已对应到构建提交。包外另附四份许可或版权声明。12 张地形绘制参考、1 张人物草稿和 23 份美术制作记录已从游戏数据包移出，源仓库保留制作材料。 [本版逐项清单](packed-sources-v060.json) · [音乐来源与许可](../../../assets/audio/MUSIC-CREDITS.txt) · [美术提示词](../../../assets/art/actions/hollow-hammer.md)
 
 上一版从 0.59 的 Windows 游戏包读出 210 项美术、音频、叙事、游戏数据和制作记录，并逐项对应到发行提交中的源文件和制作依据。灯笼图标既有原图又有导入版本，共读出 211 份资源数据。其中有 12 张地形绘制参考、1 张人物草稿和 23 份美术制作记录。它们包含在这一版下载中。 [实际打包清单与文件校验值](packed-sources-v059.json)
 
@@ -18,7 +18,7 @@
 | --- | --- | --- |
 | Godot 引擎与内含依赖 | 官方 Windows x64 导出模板。游戏包附带引擎许可及第三方版权汇总 | 以保留的 `licenses/Godot-LICENSE.txt` 和 `licenses/Godot-COPYRIGHT.txt` 为准。 [Godot 项目许可证](https://github.com/godotengine/godot/blob/4.7.2-stable/LICENSE.txt) |
 | 游戏源码与构建 | 游戏仓库含项目许可证和源码 | 出版者须确认其发行授权覆盖游戏包、美术和叙事。 [项目许可证](../../../LICENSE) |
-| 角色、地图、卡面与剧情插画 | 开发期生成的插画、正交渲染的地形及项目绘制的图标随包载入 | 已核对包内资源、提交中的源文件、现有制作记录和七份立体地形渲染的模型来源。发行方仍需确认商业使用授权范围。 [工程美术清单](../../../assets/art/manifest.json) · [逐项核对结果](packed-sources-v059.json) |
+| 角色、地图、卡面与剧情插画 | 开发期生成的插画、正交渲染的地形及项目绘制的图标随包载入 | 已核对包内资源、提交中的源文件、现有制作记录和七份立体地形渲染的模型来源。发行方仍需确认商业使用授权范围。 [工程美术清单](../../../assets/art/manifest.json) · [逐项核对结果](packed-sources-v060.json) |
 | 潮门后备卡面 | 36 张开发期生成插画，由三张固定 PNG 提供，战斗动作沿用原有兵种素材 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/tidegate-source.md) |
 | 堤灯军令卡面 | 18 张开发期生成插画，由两张固定 PNG 提供 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/levee-source.md) |
 | 回澜契令卡面 | 24 张开发期生成插画，由四张固定 PNG 提供 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/moorings-source.md) |
@@ -35,7 +35,7 @@
 | 盐布巷地图与对话背景 | 两张开发期生成图，战场地形和可通行范围由游戏规则数据决定 | 保留生成提示、源图编号和 SHA-256。 [盐布巷美术记录](../../../assets/art/narrative/saltlane-source.md) |
 | 叙事与翻译 | 十八章剧情、档案、游戏规则和商店文案。部分文字在开发过程中经 AI 辅助编写和场景编辑 | 游戏正文在已提交的叙事数据中。发行方确认最终编辑与公开文案，真人整篇审读仍待开展。 [正文源](../../../data/narrative) |
 | 音乐及音效 | 《Evening》和《Angevin》由 Kevin MacLeod 作曲并以 CC BY 4.0 授权。25 个游戏事件音效由项目合成。 | [配乐署名、来源与编辑说明](../../../assets/audio/MUSIC-CREDITS.txt) · [音效源码](../../../tools/compose_audio.py) |
-| 字体 | 游戏数据包中没有单独的字体文件，中文使用系统后备字体。商店图片用 Noto Serif SC 成像。Godot 随引擎的第三方声明另列有 Noto Sans 和 Droid Sans 等字体 | Windows 下载附带引擎第三方声明。 [Noto Serif SC 来源和许可证](https://github.com/google/fonts/tree/main/ofl/notoserifsc) · [已分发声明及校验值](packed-sources-v059.json) |
+| 字体 | 游戏数据包中没有单独的字体文件，中文使用系统后备字体。商店图片用 Noto Serif SC 成像。Godot 随引擎的第三方声明另列有 Noto Sans 和 Droid Sans 等字体 | Windows 下载附带引擎第三方声明。 [Noto Serif SC 来源和许可证](https://github.com/google/fonts/tree/main/ofl/notoserifsc) · [已分发声明及校验值](packed-sources-v060.json) |
 | 商店主视觉与图标 | 原图为开发期图像生成，字标和灯笼图标由本地排版脚本完成 | 图像源、提示词和哈希单独留存。 [主视觉记录](key-art-source.md) |
 
 ## 当前可见内容
