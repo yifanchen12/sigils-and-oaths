@@ -1,0 +1,3321 @@
+{
+  "version": "0.59.0-dev",
+  "commit": "cbd67ba71ef28d2a692adb8f5b881c8ef4825ee0",
+  "release_payload_sha256": {
+    "SigilsAndOaths.exe": "e82e591082797516d7d9f91431b7d91b4df1e94fe79d1097045ad7fcdc33f395",
+    "SigilsAndOaths.pck": "ef65188fc6ffdd8c562e853cf5bcc8a2650d44b0854ef12e0130022c3e22d185"
+  },
+  "scope": "Resources found in the Windows PCK, matched to source at the release commit. Packed hashes cover the actual imported bytes. Production records describe creation; commercial authorization and platform review remain with the publisher.",
+  "counts": {
+    "Blender render with project materials": 7,
+    "art production record": 23,
+    "fixed narrative text, development-time AI assistance disclosed": 19,
+    "pre-generated illustration": 115,
+    "pre-generated portrait draft": 1,
+    "project game data": 5,
+    "project-drawn lantern icon": 2,
+    "synthesized music": 2,
+    "synthesized sound effect": 24,
+    "terrain guide rendered from game data": 12
+  },
+  "authoring_references_in_pack": 36,
+  "standalone_font_files_in_pack": [],
+  "distributed_notices": [
+    {
+      "component": "project",
+      "file": "LICENSE.txt",
+      "sha256": "1704fa43fa479dd3b16165c258f43c8070cd5849605e294ddb681e2bcce3f641"
+    },
+    {
+      "component": "Godot",
+      "file": "licenses/Godot-LICENSE.txt",
+      "sha256": "b0435e3b3e4e55238f05f4b306f30524a1b2e20147810d436eaa554fa6855c80"
+    },
+    {
+      "component": "Godot and bundled third parties",
+      "file": "licenses/Godot-COPYRIGHT.txt",
+      "sha256": "cb1980c88089573bcacd7221d777c689bb8bbd778799f24c27fca0fe5f774d6d"
+    }
+  ],
+  "resources": [
+    {
+      "source": "assets/art/actions/archer-v2.png",
+      "source_sha256": "35801f103b8bb1b920d0804bed1fd4b39b2c96a065bfdf4ec8052086029a9d0d",
+      "packed": [
+        {
+          "path": ".godot/imported/archer-v2.png-49a98bf69b0d3bc32afe1b5fe3ef3fb4.ctex",
+          "sha256": "af1e6d54985bf8a5c90ab47d542c28572b2a6d00c5d2bc48e87ccd75f046f7f7"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "action_archer",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-action-archer-v1.txt",
+        "assets/art/prompt-action-archer-v2.txt"
+      ]
+    },
+    {
+      "source": "assets/art/actions/cast-seals-v1.png",
+      "source_sha256": "39340d643038671ff4e320a8ebda546883c6feab86de8f2e2106e1d8ef2ce31a",
+      "packed": [
+        {
+          "path": ".godot/imported/cast-seals-v1.png-5610db533ccca9abe42a8d08306b146e.ctex",
+          "sha256": "a8769b1d05b7e027753efc01debac9352eca3fc24f8e6c9d6f004f4331abec25"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "cast-seals-v1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/battlefields/highlands-and-casts-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/actions/cavalry-v2.png",
+      "source_sha256": "0b233e5e6005cf2906d6c6bc23d8527a3e07ea467a670906a4e5e6eb0e97034f",
+      "packed": [
+        {
+          "path": ".godot/imported/cavalry-v2.png-52d628f236e6fb6a315d2badbcacabca.ctex",
+          "sha256": "742974ec46a231ce372dbe8b9b9ff76a3cd23c50e91138536ebf1c4e36c7e613"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "action_cavalry",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-action-cavalry-v1.txt",
+        "assets/art/prompt-action-cavalry-v2.txt"
+      ]
+    },
+    {
+      "source": "assets/art/actions/field-strokes-v1.png",
+      "source_sha256": "6a0942efe9f674d3211d4b660c4045eb96e14babbcc9ff573ef48af672663c94",
+      "packed": [
+        {
+          "path": ".godot/imported/field-strokes-v1.png-bec6bee0da7c797961ef5652887b23b4.ctex",
+          "sha256": "a0026ddea8d3757c50aed0a4980d11cdffe85622b8ec44f22a1746db39040eda"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "field-strokes-v1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/actions/field-strokes.md"
+      ]
+    },
+    {
+      "source": "assets/art/actions/grove-v2.png",
+      "source_sha256": "64d06242501c16f51efb4fbb0b6f3f1e3f1675f01925886dd0164e8e544dc8f0",
+      "packed": [
+        {
+          "path": ".godot/imported/grove-v2.png-9b89172edc0ff2c4c43c916161eb9968.ctex",
+          "sha256": "f9d38ba0d4cdb3858e233919aaa68a758b8162318e7cfc36724989a5602af1a8"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "action_grove",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-action-grove-v1.txt",
+        "assets/art/prompt-action-grove-v2.txt"
+      ]
+    },
+    {
+      "source": "assets/art/actions/healer-v2.png",
+      "source_sha256": "5e5aa4b4986b8faaf127c87614d0013bad651d123dba4e4154ef4ec233cfe2ab",
+      "packed": [
+        {
+          "path": ".godot/imported/healer-v2.png-af01cd69c57d4fe234514707a2a3ea6d.ctex",
+          "sha256": "056ed6ab1ef1cab5b3086cdd5b1ee241dfe78845565cc68b619d7b2fefeea4a2"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "action_healer",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-action-healer-v1.txt",
+        "assets/art/prompt-action-healer-v2.txt"
+      ]
+    },
+    {
+      "source": "assets/art/actions/mage-v2.png",
+      "source_sha256": "7b9a87cfc0731d66b867c96b7a9cc5f7449b55da83cb729c81e113b2954f4800",
+      "packed": [
+        {
+          "path": ".godot/imported/mage-v2.png-44c7b0ff7ec7f567013d453efa342dfc.ctex",
+          "sha256": "078b365f6b39d3e44940e2e8d5b3acc27740435c1d71929959c8ea319edc6319"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "action_mage",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-action-mage-v1.txt",
+        "assets/art/prompt-action-mage-v2.txt"
+      ]
+    },
+    {
+      "source": "assets/art/actions/pyromancer-v2.png",
+      "source_sha256": "03c5ee888a0d8338ff273588fe7e3de55cba8248cd00ae3d239b902657c07b2e",
+      "packed": [
+        {
+          "path": ".godot/imported/pyromancer-v2.png-da0a9127fd2074bb280f666ba48ef5b9.ctex",
+          "sha256": "93ec25c9be4b604c9ace4c41415eda167db767552752afdd27c707948a85e1d8"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "action_pyromancer",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-action-pyromancer-v1.txt",
+        "assets/art/prompt-action-pyromancer-v2.txt"
+      ]
+    },
+    {
+      "source": "assets/art/actions/river-signatures-v1.png",
+      "source_sha256": "c760cfe0151c2c8a992836e6ed9da3f766ea7ab747928505529401c4d137e3df",
+      "packed": [
+        {
+          "path": ".godot/imported/river-signatures-v1.png-3aa4ccfdb06779778fadb142925d30ec.ctex",
+          "sha256": "ea1d239b9f50c7530b81377491c7c34bcec08ddc6acd7f9dcb1b34961cfeedf6"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "evidence": [
+        "assets/art/actions/river-signatures.md"
+      ]
+    },
+    {
+      "source": "assets/art/actions/sources.json",
+      "source_sha256": "32577a50341b6fb3ada6d5277b3d78a852346d6a9f4f8192f2f7c1410dea2535",
+      "packed": [
+        {
+          "path": "assets/art/actions/sources.json",
+          "sha256": "f51cdd381b5acb7c3fe0aedee773728aee8b2e9ef1875692e6ab3393b4228d54"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "text_equivalence": "line endings only",
+      "evidence": [
+        "assets/art/actions/sources.json"
+      ]
+    },
+    {
+      "source": "assets/art/actions/spear-v2.png",
+      "source_sha256": "e8c66b0041ca30ef2c90702fa2536dcc621c391b1ac0e9bb8b67b9e1dfd76d3d",
+      "packed": [
+        {
+          "path": ".godot/imported/spear-v2.png-dbf56b282a8e04af9ac513f82d88c459.ctex",
+          "sha256": "4c5ff524adabd547641cab14fa5b7992647d1bf2db76b02b301903055fd0f6ab"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "action_spear",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-action-spear-v1.txt",
+        "assets/art/prompt-action-spear-v2.txt"
+      ]
+    },
+    {
+      "source": "assets/art/actions/sword-v2.png",
+      "source_sha256": "c658d0741e367e9cc80cd7f6b4aa9944f65949542319da75fc10f324b27cdf26",
+      "packed": [
+        {
+          "path": ".godot/imported/sword-v2.png-c5c4436907e60933f175200abadcfb8a.ctex",
+          "sha256": "65a73ae79afdd1f4116ea6828dcba013e4efcaa06b487f50f9380392983417c8"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "action_sword",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-action-sword-v1.txt",
+        "assets/art/prompt-action-sword-v2.txt"
+      ]
+    },
+    {
+      "source": "assets/art/actions/warden-v2.png",
+      "source_sha256": "ac21527a350fbed4be30cb0c81baab7f3a9852e41ae8b5757ff0ad62a96fcf17",
+      "packed": [
+        {
+          "path": ".godot/imported/warden-v2.png-9f7915c47807145b3af119cbf840917e.ctex",
+          "sha256": "818f11d8923136b48608b0cc9e0dc1eb0dfd01ce7159e5bb967b975fe38f006c"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "action_warden",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-action-warden-v1.txt",
+        "assets/art/prompt-action-warden-v2.txt"
+      ]
+    },
+    {
+      "source": "assets/art/actions/weather-cels-v1.png",
+      "source_sha256": "d2856e53f8fa32f314d45f78cb09c1ba3d75368e63fccbfa448c28c3f78d112f",
+      "packed": [
+        {
+          "path": ".godot/imported/weather-cels-v1.png-f08c4183050f16e0ad0c43ed10240b0e.ctex",
+          "sha256": "918bdc9be95dcd13563e056a21b7c6f0a28823eaea380451206161d41a96964b"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "weather-cels-v1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/actions/weather-cels.md"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/citadel-relief-v1.png",
+      "source_sha256": "7f209576fc38ceefdd4590486942468f55a23bb60c38e7243afb5b3c80895573",
+      "packed": [
+        {
+          "path": ".godot/imported/citadel-relief-v1.png-03c10871a3db310ad767321ee5239f07.ctex",
+          "sha256": "a896dba0d1ac6803a59e968bcd1721b256605e1eaabc4bffd25c9f3276feafdc"
+        }
+      ],
+      "method": "Blender render with project materials",
+      "record_id": "citadel-relief-v1",
+      "model_sha256": "abc0133d40b002350f0faaa85db20f0324f5f47768bdefae2d76542a3297a3f0",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/model_sources/citadel-relief-v1.blend",
+        "tools/render_highlands.py"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/citadel-v2.png",
+      "source_sha256": "ba1ad147e7aa7a6b7d876f6da78235623bffd3353b47fd9b7b4a0de3fce83666",
+      "packed": [
+        {
+          "path": ".godot/imported/citadel-v2.png-8e844b1d5625b1d8a19cd4d52ac6fa28.ctex",
+          "sha256": "31f171e3bade23ce0a9648c3b2609f7aecd1756904b76d1358201154a9f1cb29"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "battlefield_citadel",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-battlefield-citadel-single-guide.txt"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/eastbridge-v2.png",
+      "source_sha256": "2b635bbaf263d981fc15187b39450d0652a009e785549d300820a8db9abb7402",
+      "packed": [
+        {
+          "path": ".godot/imported/eastbridge-v2.png-c7794c6299d2306700bc121980b20af7.ctex",
+          "sha256": "0d1548158fcf113347a31b2a0b3a9476b954b463e8f78df51f9203dc07a6ff07"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "battlefield_eastbridge",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/battlefields/eastbridge-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/greenwood-relief-v1.png",
+      "source_sha256": "41620f17f13842b2bc6ec9f8603c3afd3f9dd942b79b32bbbe215bd1f07e5bdf",
+      "packed": [
+        {
+          "path": ".godot/imported/greenwood-relief-v1.png-cd95b4994c932dc02df78e5c7c43d7ce.ctex",
+          "sha256": "bb77425aeaa55adbffb25bd8875ac2a4a0c0a9c1120d659c4aee2be74b77f2b8"
+        }
+      ],
+      "method": "Blender render with project materials",
+      "record_id": "greenwood-relief-v1",
+      "model_sha256": "8e37e60f4d697bc6bad2b5e4fac158979318be47650d164a0c738de99be1fabe",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/model_sources/greenwood-relief-v1.blend",
+        "tools/render_frontier.py"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/greenwood-v2.png",
+      "source_sha256": "f0e9b1a99de40f8f43fac79f7b2bcce981cc816af1af0d1b59ea354fd75e13d7",
+      "packed": [
+        {
+          "path": ".godot/imported/greenwood-v2.png-6a654c6eb735012b514f3d4bcbcf1271.ctex",
+          "sha256": "6cfbe69a3be9147ab2af1df1ddf86062aca12851bf808116f28843677313cc9b"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "battlefield_greenwood",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-battlefield-greenwood-v2.txt",
+        "assets/art/prompt-battlefield-greenwood-edge-fix.txt"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/harbor-empty-moorings-v1.png",
+      "source_sha256": "47a0aab959945b2eae93427092a6d5b664c9ce8409298ef4531b284630ae3115",
+      "packed": [
+        {
+          "path": ".godot/imported/harbor-empty-moorings-v1.png-7bb36cef865712e6a23ad0eceddeb098.ctex",
+          "sha256": "5329f519ffce4dadd1e92ea91b1cda051e8d849e5f979a1a0eb750efbfe0eb4e"
+        }
+      ],
+      "method": "Blender render with project materials",
+      "record_id": "harbor-empty-moorings-v1",
+      "model_sha256": "3c2f061185260e821fac4fa63131066f5c943f1687cccc6e6d79948a0514b558",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/model_sources/harbor-relief-v1.blend",
+        "tools/crop_harbor_moorings.py"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/harbor-relief-v1.png",
+      "source_sha256": "9f5f3e8265f43cbf89752df243b0394f13dcd5df8e2b782d65cef1ff8eab7fff",
+      "packed": [
+        {
+          "path": ".godot/imported/harbor-relief-v1.png-c5bf107f9a8c430791162673d823f7b1.ctex",
+          "sha256": "1046b52f98c0f1082cdf149b5a9d6da04e7cc3d39188e2efc87fed3251677f43"
+        }
+      ],
+      "method": "Blender render with project materials",
+      "record_id": "harbor-relief-v1",
+      "model_sha256": "3c2f061185260e821fac4fa63131066f5c943f1687cccc6e6d79948a0514b558",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/model_sources/harbor-relief-v1.blend",
+        "tools/render_frontier.py"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/harbor-v2.png",
+      "source_sha256": "a4d5c5a81c4d08b9cde89968cf87ca32906646118dbef707869f6015b2f816c7",
+      "packed": [
+        {
+          "path": ".godot/imported/harbor-v2.png-1601e5ce437280cf9d8dcfdedb990cee.ctex",
+          "sha256": "9bcbacd9d64c244c5dde830299ce6004bcb6d1694502ed18555783338cb1952d"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "battlefield_harbor",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-battlefield-harbor-single-guide.txt"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/lamplanding-v2.png",
+      "source_sha256": "ff8234abd5de47c525527bff1ed7c4d2bc49b6cee7a7f6931949c017fdf8f317",
+      "packed": [
+        {
+          "path": ".godot/imported/lamplanding-v2.png-be67582bdf8a5efe858016c055dcc5bb.ctex",
+          "sha256": "006ffb03aa29aef38284864934c34f47e766f61b117ab97086748d1cf0fc8701"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "battlefield_lamplanding",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/chapter17-18-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/northbank-v2.png",
+      "source_sha256": "d2fa663ef5cef0ffd1622e8532bf83b5c3b4cee36c08eecff2f558d7133fa58a",
+      "packed": [
+        {
+          "path": ".godot/imported/northbank-v2.png-9f8900da51e3671b6946d29a55757bb9.ctex",
+          "sha256": "539acfa9bf396a2eb58a3b30c99c647dbafbe190e11bfa5cc0aa8bfbc1580182"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "battlefield_northbank",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/battlefields/northbank-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/ridgepass-relief-v1.png",
+      "source_sha256": "6d9041a82dd86bd8812aa7b190568cd2cf5c6ef8996702324bf1cc7109a57ded",
+      "packed": [
+        {
+          "path": ".godot/imported/ridgepass-relief-v1.png-1189d55491ca4a8b158e757c2ba7c499.ctex",
+          "sha256": "5adf59283c6c267b20b895ea2b2c0b718f1ab64db2be53929b2db876e0646959"
+        }
+      ],
+      "method": "Blender render with project materials",
+      "record_id": "ridgepass-relief-v1",
+      "model_sha256": "dca0f8ff7334cb08a1ff0cf495298e8f5ae7d261b1323cf03f7b28595f9ce203",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/model_sources/ridgepass-relief-v1.blend",
+        "tools/render_highlands.py"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/ridgepass-v2.png",
+      "source_sha256": "fc6c592d96531a79b1d14ea1c8786882fe914d640d1c58381261552986b7ec4b",
+      "packed": [
+        {
+          "path": ".godot/imported/ridgepass-v2.png-af7ac74d283c569201b7db757457ed1b.ctex",
+          "sha256": "cc6d1005acc077923f6a9a1131937e8482df5f98977ca8d20291d86a021b7d8f"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "battlefield_ridgepass",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-battlefield-ridgepass-schematic.txt",
+        "assets/art/prompt-battlefield-ridgepass-top-road-fix.txt"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/rivergate-relief-v1.png",
+      "source_sha256": "00f9133320fee970d589b4c9945a0d8f0e2fd1031e7ba5f2c98bf9fc94f9b6fa",
+      "packed": [
+        {
+          "path": ".godot/imported/rivergate-relief-v1.png-03375e9dda4177c35e96bc0fda40bfe2.ctex",
+          "sha256": "fcfd537f9a3a35635990eb28099295cb620d31bd8ec009690670e63b85d4fa12"
+        }
+      ],
+      "method": "Blender render with project materials",
+      "record_id": "rivergate-relief-v1",
+      "model_sha256": "7452a147e1ee85b501ed10d4fb87229843b90e60cac9cee576b579252909e268",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/model_sources/rivergate-relief-v1.blend",
+        "tools/render_rivergate.py"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/rivergate-v2.png",
+      "source_sha256": "b2bfa6fcabdde0690c48d6a06ca7cf66dcc3475a1b883404cbb652ac9c9fd3a3",
+      "packed": [
+        {
+          "path": ".godot/imported/rivergate-v2.png-8abd7ba958020990a6f05efe91365577.ctex",
+          "sha256": "a0e5d3acc2c2966703a495346384a11090aeaee2538f399159e94da3f2f1cebb"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "battlefield_rivergate",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-battlefield-rivergate-v2.txt",
+        "assets/art/prompt-battlefield-rivergate-bank-fix.txt"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/saltlane-v2.png",
+      "source_sha256": "3c5427e25d148420445bd483b98ee2ae674e80358b02c6cf4e559dec94066abb",
+      "packed": [
+        {
+          "path": ".godot/imported/saltlane-v2.png-76e79941bbb1fa88575a884d76ea8304.ctex",
+          "sha256": "a7bb375b972302c4879f1c6eb6659b6bf72fe0373cfdd55dd99671c8abd38f92"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "battlefield_saltlane",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/saltlane-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/sources.json",
+      "source_sha256": "dbd2b66339355561b872b3b617850191159eb75563df0d8fe2c826995e107153",
+      "packed": [
+        {
+          "path": "assets/art/battlefields/sources.json",
+          "sha256": "2f1cd395a5f186c9178a98f57b736fb098b2f6eec1ad6411188be7815ba94d26"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "text_equivalence": "line endings only",
+      "evidence": [
+        "assets/art/battlefields/sources.json"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/spillway-v2.png",
+      "source_sha256": "cf5818b693c4f26a6e6a0daf6db5def8adbbc5a30a6ccaba9b64c82d4517fc94",
+      "packed": [
+        {
+          "path": ".godot/imported/spillway-v2.png-c42bad76778f7096a5f14a54c4a4ee22.ctex",
+          "sha256": "4c79809789111398c5d43c1071d2daf827cefb53d68070ad888f2c700e31bea7"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "battlefield_spillway",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/battlefields/spillway-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/sunspire-relief-v1.png",
+      "source_sha256": "e01626219b48f13d745f470ab2ccd051c6e7a59fa7b0971de5c734d2f187b8fa",
+      "packed": [
+        {
+          "path": ".godot/imported/sunspire-relief-v1.png-14ed287c558f1cd480e33a05bd89bbed.ctex",
+          "sha256": "b23508233e31385912e00120a6c56b8833a6856b452f657ff8301369a6b83227"
+        }
+      ],
+      "method": "Blender render with project materials",
+      "record_id": "sunspire-relief-v1",
+      "model_sha256": "bd93ef19331d98ab2e56630298ba95157e9eff636cad927081a8da75d518998a",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/model_sources/sunspire-relief-v1.blend",
+        "tools/render_highlands.py"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/sunspire-v2.png",
+      "source_sha256": "a098f8244258ee27623071c8594a2640412a23623cbb6f1ea137c4bc65220dde",
+      "packed": [
+        {
+          "path": ".godot/imported/sunspire-v2.png-e0ac9c6d34b18811f3dcc77817fb94d9.ctex",
+          "sha256": "3c27e67fa25e99f3f792d6af10461c143dc1141284226376f58d4e2438b4472a"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "battlefield_sunspire",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-battlefield-sunspire-schematic.txt"
+      ]
+    },
+    {
+      "source": "assets/art/battlefields/towergate-v2.png",
+      "source_sha256": "e11e19b927847342199c165613ba39243643ce01a91f22aa3898532139936dd4",
+      "packed": [
+        {
+          "path": ".godot/imported/towergate-v2.png-01923acb2bcd88b5922b01c211cacd0e.ctex",
+          "sha256": "2df20faf475a3f954ca30fbb3eca9773d3e5722fbd49dd11287f918942da9ae1"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "battlefield_towergate",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/battlefields/towergate-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/afterglow-spells-v1.png",
+      "source_sha256": "2fd5ef5e7e5bc3d5adf41b4d2b37c49813c48b6d2c15785873b12f42be97136d",
+      "packed": [
+        {
+          "path": ".godot/imported/afterglow-spells-v1.png-0ec42ef54eb1fa94d61a9752a879e8b2.ctex",
+          "sha256": "4322a942839a90dd047a0ba6b5005c8402d5b5afa46f491da29ce48444292fa2"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "afterglow_spells",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/afterglow-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/afterglow-traps-weather-v1.png",
+      "source_sha256": "59ea0103638cc4da99065dce2ccd7c700ab654689c84e4aa87926b6626cf6723",
+      "packed": [
+        {
+          "path": ".godot/imported/afterglow-traps-weather-v1.png-d29243e3b75ea2a5542ee6c833870890.ctex",
+          "sha256": "1b78b07314a4a14022a6f9ef53b5fb93f5c4f3e8d08c199a58d10b3417e88771"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "afterglow_traps_weather",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/afterglow-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/afterglow-units-v1.png",
+      "source_sha256": "86a115838ce1a29273649c8ef57bc04a033766850ee45389cecfdd7a6e106067",
+      "packed": [
+        {
+          "path": ".godot/imported/afterglow-units-v1.png-620797c6d45da433015135c17da72690.ctex",
+          "sha256": "4160c934ab32e3e744f63a785831b8e985c835c318de29d59b89a4d4cf338abf"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "afterglow_units",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/afterglow-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/countercurrent-ward-v1.png",
+      "source_sha256": "2d49983190106407fe49a7f321d3a3d081636df668138f6317172e718da5222d",
+      "packed": [
+        {
+          "path": ".godot/imported/countercurrent-ward-v1.png-86070efdb4a39edb7ed183cf0ff30e15.ctex",
+          "sha256": "1d967f30e2deb4e31e43c4444d7ddd5a3dd2b722b09a6fbbf79e30b5ff464a78"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "countercurrent_ward",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/channel-card-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/glassroad-ambush-v1.png",
+      "source_sha256": "40c7c06df5aa4a5d6bd4436bca96850fb8b0670ff84c1981d98dd84cf8d9897d",
+      "packed": [
+        {
+          "path": ".godot/imported/glassroad-ambush-v1.png-3c02c2aac0d8507b8af78a0c3f53655d.ctex",
+          "sha256": "9699dce1f612ece44fc7f6b229cb79ad17f4eaf5e6feb38c3dae0a3b64e6f2cf"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "glassroad-ambush-v1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/glassroad-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/glassroad-company-v1.png",
+      "source_sha256": "78dfa8b0656061da568ca4b8f79cd8a79bfeea8bb585b4749546ae62cd8fd1be",
+      "packed": [
+        {
+          "path": ".godot/imported/glassroad-company-v1.png-f866670efc3aa117d226c44f902403ca.ctex",
+          "sha256": "713032c6f70cd917b8a0448f8daf6a0357488ff11548827cdccb22cb9d6cb6bf"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "glassroad-company-v1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/glassroad-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/glassroad-edicts-v1.png",
+      "source_sha256": "3ba80ddd06b4cd92ea799eacc0f54f1ddf9dfb095004c1bb48d325ba8c57cbbb",
+      "packed": [
+        {
+          "path": ".godot/imported/glassroad-edicts-v1.png-5b65af73754813ac047230abead47289.ctex",
+          "sha256": "1da1594fee5db690a11810f1451dfe47313af051fba2c5bd1804d0dde8d16436"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "glassroad-edicts-v1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/glassroad-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/glassroad-reserves-v1.png",
+      "source_sha256": "b9d8b2b72e6f60a2fd05a7bb9b22b1044c7a40e1330fcee967333d2d58daf020",
+      "packed": [
+        {
+          "path": ".godot/imported/glassroad-reserves-v1.png-ae87e0d7b3c3263de3c8f21518b8ae3a.ctex",
+          "sha256": "c05e2d803b7026e7f0b1da772e353607e7698effdcfd1a9faea50844277484ad"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "glassroad-reserves-v1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/glassroad-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/levee-orders-v1.png",
+      "source_sha256": "31ef22dd11cdc330c2219c06b13fe8ccd3bdde56cdd516953eb912537151ff7f",
+      "packed": [
+        {
+          "path": ".godot/imported/levee-orders-v1.png-91f042e1b16e442ffa84cdd5fcf05984.ctex",
+          "sha256": "93d89b194f5e5f0fad953dd51c0417fad3412a98305683fbd675bd208d1c5100"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "levee_orders",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/levee-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/levee-watch-v1.png",
+      "source_sha256": "a85c3f7856e33cae60d2215914993722cfe0cf97c4308bb85aa69389910d72f6",
+      "packed": [
+        {
+          "path": ".godot/imported/levee-watch-v1.png-0046b51fbad41364a53d8c0243f745e4.ctex",
+          "sha256": "92be385422b5a88185f2be50beee68715f268f5e10af8361b308435c719664bd"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "levee_watch",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/levee-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/moorings-scouts-v1.png",
+      "source_sha256": "c512bc37de07f2aa348b177e96c78eb8fd466f3473b590ef330663e5a632a5e5",
+      "packed": [
+        {
+          "path": ".godot/imported/moorings-scouts-v1.png-9fd8fd370af9b5ed455e9172dd322edb.ctex",
+          "sha256": "ff4225780d45de1a08d8c2b5a9513acabf00f25e05a2d8654be6aac305c31cfa"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "moorings-scouts-v1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/moorings-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/moorings-tides-v1.png",
+      "source_sha256": "7432214cc4086db6b96e14282f970032a07e2d3c7875db60bea0ca4a830b19a6",
+      "packed": [
+        {
+          "path": ".godot/imported/moorings-tides-v1.png-13809faba6a4b278b6d3001f08971c30.ctex",
+          "sha256": "8b36c1e3ce721fd9297caefcb9f92d56ad40ead3ef53a09dd830f6aaddde6b85"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "moorings-tides-v1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/moorings-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/moorings-veterans-v1.png",
+      "source_sha256": "83d5399f5669d81ab51dbc7f9fd28922f4339613fab1b272c138155978a7d5c3",
+      "packed": [
+        {
+          "path": ".godot/imported/moorings-veterans-v1.png-d239da9ba46822493571d19e6af2f659.ctex",
+          "sha256": "3310ab656f150fe353c8b158a86d3e9e6c41621acd4b3bd9a5ce77fdd6863afe"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "moorings-veterans-v1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/moorings-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/moorings-works-v1.png",
+      "source_sha256": "2acb7d54fefbc493d14de4357f6c8a4f220b9335a5d2bbfccb12636c17af8577",
+      "packed": [
+        {
+          "path": ".godot/imported/moorings-works-v1.png-7b48541e5a955c03d03898cfa586e0f2.ctex",
+          "sha256": "bb123a668b1bbe4f514dc75ada2de35056b252181e2f8804f82bb88666a3f8fb"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "moorings-works-v1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/moorings-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/pilgrim-marches-v1.png",
+      "source_sha256": "ddb6614c71dd73a0d528f1b8d6ff1249a39563d3c6628dc77eb22d41974d3a51",
+      "packed": [
+        {
+          "path": ".godot/imported/pilgrim-marches-v1.png-d38a98e5a14379a9b8837f333de4e630.ctex",
+          "sha256": "f543347c8d4fb6c981dc3278b5d746bada3ea553bb6f44bbdee66e20ec9bfd52"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "pilgrim-marches-v1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/pilgrim-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/pilgrim-salvos-v1.png",
+      "source_sha256": "5e2b709d9170a9f1d13b0188ecebddf7cb352fb92d402ea635a9e16f0d6fe2d7",
+      "packed": [
+        {
+          "path": ".godot/imported/pilgrim-salvos-v1.png-e66c35e9f50711a3303ad85ab05fe9bd.ctex",
+          "sha256": "592b435d4886dd1ffc905c79363fc263bddbd3e3480f3c9336b7bb6151ca4e52"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "pilgrim-salvos-v1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/pilgrim-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/pilgrim-wards-v1.png",
+      "source_sha256": "417280242c965759b72ccd60ea05b8103cc3c10605d1ef645c8b726b64ecaadc",
+      "packed": [
+        {
+          "path": ".godot/imported/pilgrim-wards-v1.png-dcb8200e835f7e862a9da0012c51b4b6.ctex",
+          "sha256": "f9566fabbc50383c3957b53705c7c6573b18e6c35224cc8c7a954e81e219ac45"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "pilgrim-wards-v1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/pilgrim-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/pilgrim-watch-v1.png",
+      "source_sha256": "12be714149745490eeaa4fb181c943689794c8f4b383022d6a6c9332416027b9",
+      "packed": [
+        {
+          "path": ".godot/imported/pilgrim-watch-v1.png-1a932e2be183153123be2559656d01ed.ctex",
+          "sha256": "ad486dff1f37c8c3a0c6c569d86d24be625a892627154c792900545d3c3b9008"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "pilgrim-watch-v1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/pilgrim-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/prompts.json",
+      "source_sha256": "dfda2d635ffcae4bb793a591cf35541856b9e1c0b5f669d9f0f5885d02bee56f",
+      "packed": [
+        {
+          "path": "assets/art/expansion/prompts.json",
+          "sha256": "dfda2d635ffcae4bb793a591cf35541856b9e1c0b5f669d9f0f5885d02bee56f"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/expansion/prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/sources.json",
+      "source_sha256": "c7e0b9b8d189af62f058d3aa8c5dcca006c11a448e99ad70be4ad1bd3f6802e1",
+      "packed": [
+        {
+          "path": "assets/art/expansion/sources.json",
+          "sha256": "c7e0b9b8d189af62f058d3aa8c5dcca006c11a448e99ad70be4ad1bd3f6802e1"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/expansion/sources.json"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/span-kit-v1.png",
+      "source_sha256": "6b9d29fa4f729dab16ec6552d4f697a4c0a4e4324a8e26910a22290e0daaa0b5",
+      "packed": [
+        {
+          "path": ".godot/imported/span-kit-v1.png-6139740a9c2a2afde63d92e6246bec85.ctex",
+          "sha256": "4c84a1ed628957b60f66e6605d15ca543b180086264ac10cea9790b6f6b2c683"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "span_kit",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/channel-card-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/spells-v1.png",
+      "source_sha256": "fd5903bbde7e74dd94c35953890ea723211a4c4b6e7a14591183c8a1488a18ac",
+      "packed": [
+        {
+          "path": ".godot/imported/spells-v1.png-7997aea574602e3f83fa8f3f84023644.ctex",
+          "sha256": "b53275e8de541d7e1d87e2c791554fb998af985e031d82f04bc02247a9631cc8"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "evidence": [
+        "assets/art/expansion/sources.json",
+        "assets/art/expansion/prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/tidegate-spells-v1.png",
+      "source_sha256": "4862a744bef9cf724bcb75d42f5a176aea4b0bd365f8de513a209582291ea995",
+      "packed": [
+        {
+          "path": ".godot/imported/tidegate-spells-v1.png-0cd9715abc6a9f0e15a7e5d192659537.ctex",
+          "sha256": "7c785cc7f31ea8c0224b7a23d1d4970e30ee1aa6c87dd7b145b368f86e032f99"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "tidegate_spells",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/tidegate-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/tidegate-traps-weather-v1.png",
+      "source_sha256": "2b29bdc1b7830301204189664e530a351b62e45ad7d240c0d411205469ab9529",
+      "packed": [
+        {
+          "path": ".godot/imported/tidegate-traps-weather-v1.png-6626eb53c701e0a4252b09598c17b98e.ctex",
+          "sha256": "2692643328cfe91df531329594d8f3032387e2f5bd055780efe38785c001fe1b"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "tidegate_traps_weather",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/tidegate-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/tidegate-units-v1.png",
+      "source_sha256": "d9e2ac931698b887ab2e6ed273f6219dec71f402265e815de4024f0097db9b1a",
+      "packed": [
+        {
+          "path": ".godot/imported/tidegate-units-v1.png-7c4012391c8b75ba2da238bb52521d5d.ctex",
+          "sha256": "91ad8a78971718b8a14da5ea56904c2313a5bc258f93a3871faf6438ae5144f0"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "tidegate_units",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/tidegate-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/traps-forest-v1.png",
+      "source_sha256": "e89c1c99b711e0c233702ab7d66d6bcac35792070dbabc30f770a2820f4e05db",
+      "packed": [
+        {
+          "path": ".godot/imported/traps-forest-v1.png-3c2f219691cfdda601e759ee6e1a2a29.ctex",
+          "sha256": "686b16cf425c050c25a2ba6fb9e059257cf09a405b990ac597393a46e46a0659"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "evidence": [
+        "assets/art/expansion/sources.json",
+        "assets/art/expansion/prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/warfront-effects-v1.png",
+      "source_sha256": "bfe6d20f638d421d4555c9dd1912e8541f6b4b2eccbaf1f02c11f0043eac14c1",
+      "packed": [
+        {
+          "path": ".godot/imported/warfront-effects-v1.png-393fb30d43947417efe762b6f656db75.ctex",
+          "sha256": "943fd10ec221c20ab9df528f1eb7733466681ecc8a8fd740a940ed0bf99039f6"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "warfront_effects",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/warfront-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/expansion/warfront-units-v1.png",
+      "source_sha256": "879c4b17fef17f53976a460e569de58329ba3c6770a846c53e8e53fadf2eb06e",
+      "packed": [
+        {
+          "path": ".godot/imported/warfront-units-v1.png-4e237a1856e2678c97a089be00d6929e.ctex",
+          "sha256": "a6cca4d133dd67d064c9b773bcbc6515f05cdb3f684f33550721ca10444c7cfe"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "warfront_units",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/expansion/warfront-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/hero_sprites.png",
+      "source_sha256": "c9444bc3ea25d9c4786ce74dfeaf2da04ab337a63ddc0dae1157918d83d66c9a",
+      "packed": [
+        {
+          "path": ".godot/imported/hero_sprites.png-1fd27484632b670177f33c6fe4ee70ae.ctex",
+          "sha256": "86cccf786c81720c06593a5ca62f1616ad99375b1478f19efce71ff5b01ca1f6"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "hero_sprites",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-hero-sprites.txt"
+      ]
+    },
+    {
+      "source": "assets/art/hero_sprites_cel.png",
+      "source_sha256": "0b6a05aa2ab45f81a6f94f637e05eb95089dba0492e2bacbd440ecafdea453fb",
+      "packed": [
+        {
+          "path": ".godot/imported/hero_sprites_cel.png-a5651610d0330409fa32c9518048aeb7.ctex",
+          "sha256": "f58b46602f9c9637b1676bcb7403aa15bb09b70f1e15a302607921f09fa2915b"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "hero_sprites_cel",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-hero-sprites-cel.txt"
+      ]
+    },
+    {
+      "source": "assets/art/hero_sprites_mature.png",
+      "source_sha256": "2b229d60851077e534a08de7e14a60563caa256d3c077b42bf8830eda841e43b",
+      "packed": [
+        {
+          "path": ".godot/imported/hero_sprites_mature.png-dfe7792cc8831a73086f7d4c0898942b.ctex",
+          "sha256": "699ab1a1f7c2a3694fdbaed4bbea84945685a7a32b337ca7e9553a184878a433"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "hero_sprites_mature",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-mature-hero-sprites-v2.txt"
+      ]
+    },
+    {
+      "source": "assets/art/heroes.png",
+      "source_sha256": "33403a6af0cbbcbe49f451c6e4b9feaad315abb3b717a10df43c4128a17f25f0",
+      "packed": [
+        {
+          "path": ".godot/imported/heroes.png-cd629deca5e16783f16fce853529b526.ctex",
+          "sha256": "58f9ffb742f80af9b318f949f3dae7d8c11831cb20cf18a46329d3c5c6b356df"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "heroes",
+      "evidence": [
+        "assets/art/manifest.json"
+      ]
+    },
+    {
+      "source": "assets/art/heroes_cel.png",
+      "source_sha256": "b9b105a8208315edf7f7ca1545440e96a3996ca5526db48bd59835cca611a611",
+      "packed": [
+        {
+          "path": ".godot/imported/heroes_cel.png-2874d6e0be19355a7a7603c36d842c48.ctex",
+          "sha256": "2c8f99005bd4e3fb48eafa61a849d2a7a88a3374e329e964b617d1ce222ec6e6"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "heroes_cel",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-heroes-cel.txt"
+      ]
+    },
+    {
+      "source": "assets/art/heroes_mature.png",
+      "source_sha256": "e06bcec9e26324697456cf4974fa5c68254057fa9f4c4457f1a71894112d34e9",
+      "packed": [
+        {
+          "path": ".godot/imported/heroes_mature.png-abdc4bb26239c997247980f3cf0a449f.ctex",
+          "sha256": "950aff6f25a654c6508f7d2fff7bd9d6d290e93390e2d26820a031d2257be40e"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "heroes_mature",
+      "evidence": [
+        "assets/art/manifest.json"
+      ]
+    },
+    {
+      "source": "assets/art/lantern-icon.png",
+      "source_sha256": "99747e3a0247e74364813e1188e966d1b98b6b658e701d89cad115728a351c7e",
+      "packed": [
+        {
+          "path": ".godot/imported/lantern-icon.png-8952a09ecc4e246c67c73b3207698742.ctex",
+          "sha256": "e6955c616f5fa35a6c103bac0a3f7c0a7d1979fc5febd469599268fca9d7f48d"
+        },
+        {
+          "path": "assets/art/lantern-icon.png",
+          "sha256": "99747e3a0247e74364813e1188e966d1b98b6b658e701d89cad115728a351c7e"
+        }
+      ],
+      "method": "project-drawn lantern icon",
+      "evidence": [
+        "tools/prepare_store_art.py"
+      ]
+    },
+    {
+      "source": "assets/art/lantern-windows.ico",
+      "source_sha256": "9e9957217a8db10ca4ff955495f4d418960a2ce6f6a3d8c4fd52ec1ed08be766",
+      "packed": [
+        {
+          "path": "assets/art/lantern-windows.ico",
+          "sha256": "9e9957217a8db10ca4ff955495f4d418960a2ce6f6a3d8c4fd52ec1ed08be766"
+        }
+      ],
+      "method": "project-drawn lantern icon",
+      "evidence": [
+        "tools/prepare_store_art.py"
+      ]
+    },
+    {
+      "source": "assets/art/manifest.json",
+      "source_sha256": "7b867cd948f44f93b08f492be6365b7be0517b7094c99516a16bdaeffe8b0e91",
+      "packed": [
+        {
+          "path": "assets/art/manifest.json",
+          "sha256": "7b867cd948f44f93b08f492be6365b7be0517b7094c99516a16bdaeffe8b0e91"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/manifest.json"
+      ]
+    },
+    {
+      "source": "assets/art/map-guides/citadel.png",
+      "source_sha256": "4b683b4b86dc10cc053de7e230dcf5e63e42f0924ff7f3938de190116e642078",
+      "packed": [
+        {
+          "path": ".godot/imported/citadel.png-bf4dccbbca0a314a47b26150ba2af699.ctex",
+          "sha256": "00945c8cf345f556367d7e2e8afddbd0e856bd5cf3fd562ed4f6dd8f65bc453b"
+        }
+      ],
+      "method": "terrain guide rendered from game data",
+      "authoring_reference": true,
+      "evidence": [
+        "tools/export_map_guides.gd",
+        "data/maps.tres"
+      ]
+    },
+    {
+      "source": "assets/art/map-guides/greenwood.png",
+      "source_sha256": "b1f77337b24a77f99e138a522569741bacb810f23e0c8af28771ce41d9c49754",
+      "packed": [
+        {
+          "path": ".godot/imported/greenwood.png-68514381faf5aeca4fe5c5eaab4415db.ctex",
+          "sha256": "0d4a10a2ecadabe55a8549aa198ef8b39e7e540977e493c04c4b727d1b887615"
+        }
+      ],
+      "method": "terrain guide rendered from game data",
+      "authoring_reference": true,
+      "evidence": [
+        "tools/export_map_guides.gd",
+        "data/maps.tres"
+      ]
+    },
+    {
+      "source": "assets/art/map-guides/harbor.png",
+      "source_sha256": "9ef0a5c520ce2f7ec24a03d562f327b34202b7f3fe849316c4f9f51d27dd1286",
+      "packed": [
+        {
+          "path": ".godot/imported/harbor.png-f002ec49029a245d935f89d609efb8ae.ctex",
+          "sha256": "9237b0efceb7d66d58222ef14f0e462ef79e6fd4f3bb4c98c22bfaa7b6d758d5"
+        }
+      ],
+      "method": "terrain guide rendered from game data",
+      "authoring_reference": true,
+      "evidence": [
+        "tools/export_map_guides.gd",
+        "data/maps.tres"
+      ]
+    },
+    {
+      "source": "assets/art/map-guides/ridgepass.png",
+      "source_sha256": "3313770b700c30a9fa66a2ee14859852c4643b3d59105e0bf83c7ec5ddedf3dd",
+      "packed": [
+        {
+          "path": ".godot/imported/ridgepass.png-b994ad6c58ec221a418f56f6173e1622.ctex",
+          "sha256": "78c1a949b45bd7f6d11d8e3bc04ecda6438593b98aed3448e147fc7520b544e0"
+        }
+      ],
+      "method": "terrain guide rendered from game data",
+      "authoring_reference": true,
+      "evidence": [
+        "tools/export_map_guides.gd",
+        "data/maps.tres"
+      ]
+    },
+    {
+      "source": "assets/art/map-guides/rivergate.png",
+      "source_sha256": "e4276492f1aa7eff8a4589684938ffd2d8a9351bbebba14cc4c6d5da00b65799",
+      "packed": [
+        {
+          "path": ".godot/imported/rivergate.png-88ce0ca3b9e7bfded689e1b6742a3589.ctex",
+          "sha256": "1a2c57b1cf9e131a2de53e1a8fa4ef11b4711dac9935cc6d8e4c1fd4e9559569"
+        }
+      ],
+      "method": "terrain guide rendered from game data",
+      "authoring_reference": true,
+      "evidence": [
+        "tools/export_map_guides.gd",
+        "data/maps.tres"
+      ]
+    },
+    {
+      "source": "assets/art/map-guides/schematic/citadel.png",
+      "source_sha256": "960c88866d0d228fc3d88f27dbe2e9c465568dd156552a8565c85d8244ead536",
+      "packed": [
+        {
+          "path": ".godot/imported/citadel.png-0b90fd4d37947fe611e8d28ca0241dd4.ctex",
+          "sha256": "0b0aabd204901ec2edbd1e3e910dae262860ffc618591e12a7cde6f90b8de46a"
+        }
+      ],
+      "method": "terrain guide rendered from game data",
+      "authoring_reference": true,
+      "evidence": [
+        "tools/export_map_guides.gd",
+        "data/maps.tres"
+      ]
+    },
+    {
+      "source": "assets/art/map-guides/schematic/greenwood.png",
+      "source_sha256": "5d22aea618bd19472865b819d09cb09ca34e7e665a915e7bd6c4d30d5b73522b",
+      "packed": [
+        {
+          "path": ".godot/imported/greenwood.png-f42f737a7c3000ce60e1d7e2e2ba3c23.ctex",
+          "sha256": "fc03b9f6bc005e01c48f719e01ef30583c272f6b28726ded546a652490dab52a"
+        }
+      ],
+      "method": "terrain guide rendered from game data",
+      "authoring_reference": true,
+      "evidence": [
+        "tools/export_map_guides.gd",
+        "data/maps.tres"
+      ]
+    },
+    {
+      "source": "assets/art/map-guides/schematic/harbor.png",
+      "source_sha256": "241028375a07042e22e720f5ab9aa66e2230eeada2be8a4a3e82b7d95fd48f26",
+      "packed": [
+        {
+          "path": ".godot/imported/harbor.png-89e0a31aed84ad9b54f8cf6fb834c06b.ctex",
+          "sha256": "379c48509b8853c915e28464339fee84f346261e5fb35396f88c044e8f03614e"
+        }
+      ],
+      "method": "terrain guide rendered from game data",
+      "authoring_reference": true,
+      "evidence": [
+        "tools/export_map_guides.gd",
+        "data/maps.tres"
+      ]
+    },
+    {
+      "source": "assets/art/map-guides/schematic/ridgepass.png",
+      "source_sha256": "5912e975a6c31093d93f6d01dc7550aaa9d7bc75acd3cc079d8898c56421cdbf",
+      "packed": [
+        {
+          "path": ".godot/imported/ridgepass.png-664775fc84aa325e7a20e4d13a2ea508.ctex",
+          "sha256": "8c2ad3130be3f2e1bed596131bb4eae95533edcc203fdd1cf5075a46253105f8"
+        }
+      ],
+      "method": "terrain guide rendered from game data",
+      "authoring_reference": true,
+      "evidence": [
+        "tools/export_map_guides.gd",
+        "data/maps.tres"
+      ]
+    },
+    {
+      "source": "assets/art/map-guides/schematic/rivergate.png",
+      "source_sha256": "f3dfba83af229c30ca71e6db8d118486150c1182bcbd4174154b2d0dfb9c166e",
+      "packed": [
+        {
+          "path": ".godot/imported/rivergate.png-e09d0cc5b5083f051441a877cc7e3973.ctex",
+          "sha256": "2d8e4138f15747ab1ab23b574ae923105670234084112524d66dcb4c6f0e06bf"
+        }
+      ],
+      "method": "terrain guide rendered from game data",
+      "authoring_reference": true,
+      "evidence": [
+        "tools/export_map_guides.gd",
+        "data/maps.tres"
+      ]
+    },
+    {
+      "source": "assets/art/map-guides/schematic/sunspire.png",
+      "source_sha256": "be08eb71edc26044e2cf490cfdb5dcda0729343950a6530e771686f2db98d690",
+      "packed": [
+        {
+          "path": ".godot/imported/sunspire.png-da9922ccce07dc223d8d5ff753169d41.ctex",
+          "sha256": "ac138f71443a351a2ac50291237fcdcae5c06db95eab9f1ee2b673645f91b9c3"
+        }
+      ],
+      "method": "terrain guide rendered from game data",
+      "authoring_reference": true,
+      "evidence": [
+        "tools/export_map_guides.gd",
+        "data/maps.tres"
+      ]
+    },
+    {
+      "source": "assets/art/map-guides/sunspire.png",
+      "source_sha256": "ed2ae0be2046397f0c6b02100250770368aa2b51a25d4c8f37dc0ef7f63b8fad",
+      "packed": [
+        {
+          "path": ".godot/imported/sunspire.png-0dc4c9be80ffdbd56f7bca2331b0cdc5.ctex",
+          "sha256": "508b82ca15245f9f3b902d40051e792d838d7a7b2a8c2a82bceb6f5e98b247d7"
+        }
+      ],
+      "method": "terrain guide rendered from game data",
+      "authoring_reference": true,
+      "evidence": [
+        "tools/export_map_guides.gd",
+        "data/maps.tres"
+      ]
+    },
+    {
+      "source": "assets/art/map_biome_props.png",
+      "source_sha256": "96257d2462b32ac33412ecfa5b1ff12e613bc36c228c7bde0de789cce1230e6f",
+      "packed": [
+        {
+          "path": ".godot/imported/map_biome_props.png-6bd64b36f65c90ce21f64823d10fd3fb.ctex",
+          "sha256": "b7c589778a68ab52d20829f2bcc439c5f56229271c892e2a8fc8f907e9461f82"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "map_biome_props",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-map-biome-props.txt"
+      ]
+    },
+    {
+      "source": "assets/art/map_ground.png",
+      "source_sha256": "59baed5b789baef072b5c2c58116a4b144f589c106f0eafe2658d60fcd044c99",
+      "packed": [
+        {
+          "path": ".godot/imported/map_ground.png-ac6119b59de32fa782fbda8de0449d41.ctex",
+          "sha256": "f16844e452e9693b85596902e056e4d7e77d49120bd9989f2a568106ac3a7847"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "map_ground",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompts-jrpg.json"
+      ]
+    },
+    {
+      "source": "assets/art/map_landforms.png",
+      "source_sha256": "9ffe67352299e7e594251eda7fdd93013f84b6395b96feb5ac5823264e3cfa10",
+      "packed": [
+        {
+          "path": ".godot/imported/map_landforms.png-66fe94e13ee2407144f68eef0d7ae895.ctex",
+          "sha256": "4af717d24d9d511e2b4ee37193a874e3d265064f6e63a91d043914692d7f5823"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "map_landforms",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-map-landforms.txt"
+      ]
+    },
+    {
+      "source": "assets/art/map_props.png",
+      "source_sha256": "1dd0f580dd73ac86655164221438f1e160d0904a98d676041dc9254ca0ac2a89",
+      "packed": [
+        {
+          "path": ".godot/imported/map_props.png-15d7a9424637829576b5c3986ab60c16.ctex",
+          "sha256": "dfbdb33563719c3703f6409e79f94f6043097abee8facbff8d8cb92be2346d90"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "map_props",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-map-props.txt"
+      ]
+    },
+    {
+      "source": "assets/art/map_props_extra.png",
+      "source_sha256": "49a2b1861707fded86c643d5e5b565cfb630d0793d5a85949693402384070157",
+      "packed": [
+        {
+          "path": ".godot/imported/map_props_extra.png-a8c4f50b12d87bbd6a2c496ec467b226.ctex",
+          "sha256": "d5f03f859447d47d844c43f3216a6b52c24e0f59fc3f2c403dd83bed92c00f8c"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "map_props_extra",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-map-props-extra.txt"
+      ]
+    },
+    {
+      "source": "assets/art/menu.png",
+      "source_sha256": "142377ce813fbeb8d6e706e0850836bd4eef9499bb58e562d09357d397bebc79",
+      "packed": [
+        {
+          "path": ".godot/imported/menu.png-72ad240bdc71efc8d31a7b94105447b7.ctex",
+          "sha256": "b286c7794965a9b66bf30ac15ed8fc77a71986178c91be79cfd8899429860df2"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "menu",
+      "evidence": [
+        "assets/art/manifest.json"
+      ]
+    },
+    {
+      "source": "assets/art/menu_cel.png",
+      "source_sha256": "930642c13a84fce747372ee675924ceabae12b7776915c54adffd306cb855262",
+      "packed": [
+        {
+          "path": ".godot/imported/menu_cel.png-9e9c2a96cc4b23e2e42073e5aa136683.ctex",
+          "sha256": "33e50cba96c443ba75966dc9a4f4c1361381000fa41b789a99f4df1c21e76203"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "menu_cel",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-menu-cel.txt"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/campaign-armory-v1.png",
+      "source_sha256": "5d293f80e066cf363b0d52ccacd2c9822aa8657acbfb46e10df490cd8234b723",
+      "packed": [
+        {
+          "path": ".godot/imported/campaign-armory-v1.png-25e319b81974109e3fddcd67a86a5429.ctex",
+          "sha256": "7392d2f12ffd09fe9f71754f4742b83dc5558a09d8209e244914f33a0449bb63"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "campaign_armory",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/campaign-armory-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/chapter-replay-archive-v1.png",
+      "source_sha256": "ee7abc085c3f6ca7ed9f992b7802f8d179814b709b24530fc1a7ec7506ada721",
+      "packed": [
+        {
+          "path": ".godot/imported/chapter-replay-archive-v1.png-51fd56409c0c41dc7347850a9dc5f07a.ctex",
+          "sha256": "b133205a5abc80552f97edf9a883dda27fb33383dbfc29e594a521ef2543fba4"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "chapter_replay_archive",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/chapter-replay-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/chapter07-prompts.json",
+      "source_sha256": "307931840082cf08317286d06373bedb2ec83594d5428b49ac281363cc39e236",
+      "packed": [
+        {
+          "path": "assets/art/narrative/chapter07-prompts.json",
+          "sha256": "307931840082cf08317286d06373bedb2ec83594d5428b49ac281363cc39e236"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/narrative/chapter07-prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/chapter07-sources.json",
+      "source_sha256": "3789f14941fd07ae17ddeedfd89b37b05ebd66d86f61578301d5b4f23cab255d",
+      "packed": [
+        {
+          "path": "assets/art/narrative/chapter07-sources.json",
+          "sha256": "3789f14941fd07ae17ddeedfd89b37b05ebd66d86f61578301d5b4f23cab255d"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/narrative/chapter07-sources.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/chapter08-prompts.json",
+      "source_sha256": "6c040b1c6718c15caea12c1c76431a17a0470b10e125ffec1ad708a7a03e07ad",
+      "packed": [
+        {
+          "path": "assets/art/narrative/chapter08-prompts.json",
+          "sha256": "6c040b1c6718c15caea12c1c76431a17a0470b10e125ffec1ad708a7a03e07ad"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/narrative/chapter08-prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/chapter08-sources.json",
+      "source_sha256": "3bfb6db6dab085dc66af34eb157d0f63b3a10906548ad7a9b0c941a28d4e9d7f",
+      "packed": [
+        {
+          "path": "assets/art/narrative/chapter08-sources.json",
+          "sha256": "3bfb6db6dab085dc66af34eb157d0f63b3a10906548ad7a9b0c941a28d4e9d7f"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/narrative/chapter08-sources.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/chapter09-prompts.json",
+      "source_sha256": "ee47cc1d2a4a5822a515ec76c4e03493e0b504d758936708a74f0f5f29d770c2",
+      "packed": [
+        {
+          "path": "assets/art/narrative/chapter09-prompts.json",
+          "sha256": "ee47cc1d2a4a5822a515ec76c4e03493e0b504d758936708a74f0f5f29d770c2"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/narrative/chapter09-prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/chapter09-sources.json",
+      "source_sha256": "6174971357fe929a01c1e1453cdf76232d36686947b27112a9c6063aa80791d6",
+      "packed": [
+        {
+          "path": "assets/art/narrative/chapter09-sources.json",
+          "sha256": "6174971357fe929a01c1e1453cdf76232d36686947b27112a9c6063aa80791d6"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/narrative/chapter09-sources.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/chapter11-prompts.json",
+      "source_sha256": "c82f3f35792c1011732cbfd0d719e8483e92beb94da08c9de689df184e9757bd",
+      "packed": [
+        {
+          "path": "assets/art/narrative/chapter11-prompts.json",
+          "sha256": "c82f3f35792c1011732cbfd0d719e8483e92beb94da08c9de689df184e9757bd"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/narrative/chapter11-prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/chapter11-sources.json",
+      "source_sha256": "d16d72ef1872db73e489552f4f2baf25dfea61961b4fe72f49a7e42991cd19b1",
+      "packed": [
+        {
+          "path": "assets/art/narrative/chapter11-sources.json",
+          "sha256": "d16d72ef1872db73e489552f4f2baf25dfea61961b4fe72f49a7e42991cd19b1"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/narrative/chapter11-sources.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/clinic-day-v1.png",
+      "source_sha256": "acd2419d62c3a2cdb1941893fd4d4156d51aad031d077793839742ed8c8abbc8",
+      "packed": [
+        {
+          "path": ".godot/imported/clinic-day-v1.png-0300e5298c98fbf115ec7bde7ec343f8.ctex",
+          "sha256": "705146cfaa2d10296b4d72080db5e4997dfaf26dc42d65bbdb44ff43cb33a316"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_clinic_day",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/clinic-night-v1.png",
+      "source_sha256": "222586e6be0459551b0447cbdd7f1958dbecfb086b06eb4f30191c9e2b0f22c6",
+      "packed": [
+        {
+          "path": ".godot/imported/clinic-night-v1.png-17f37b4f5fe731ea9d176707a436d73a.ctex",
+          "sha256": "ec825f7f9dbd35fa5d4fae135b859bd2d76f73b203fa81f5daf39feb2146d00f"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_clinic_night",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/council-terrace-day-v1.png",
+      "source_sha256": "39d4a9e5a3218a813c5a3c5315c2b0315c2972b70414d2d9f453d0bbb62a0b2d",
+      "packed": [
+        {
+          "path": ".godot/imported/council-terrace-day-v1.png-355f837f965f77edc41b1d6d58c1dafe.ctex",
+          "sha256": "a1e25f5dc161d9980686db82ff6b55555af9d910afd3c43e85eed103913788bc"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_council_terrace",
+      "evidence": [
+        "assets/art/narrative/chapter09-sources.json",
+        "assets/art/narrative/chapter09-prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/eaststreet-day-v1.png",
+      "source_sha256": "fc22a6299e488690f586353f79d4dd8f5e4116f9f9e7392c9ff8c21cb56afa4d",
+      "packed": [
+        {
+          "path": ".godot/imported/eaststreet-day-v1.png-4cf752e0dcc08cc934531435b021359f.ctex",
+          "sha256": "531ca3cea3654c09c4cde76728a42b0ce23996b9127e2b0db52e025a59449e3e"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_eaststreet",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/chapter07-prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/foundry-night-v1.png",
+      "source_sha256": "a4c0ea53d665f65a23c0e2f4406a771dde13f47303e8a46ab73c05e03328c222",
+      "packed": [
+        {
+          "path": ".godot/imported/foundry-night-v1.png-16ff24e37650fc9059fd565ad2103d25.ctex",
+          "sha256": "23b79cbf739d36d7acf3db664e17d4b00b9a0830f6bc90b86fcfc108ae60cb84"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_foundry",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/harbor-locked-v1.png",
+      "source_sha256": "4fc2d7df4b5fa6672a8710a858b955eda049d649e6d84fb7489d3538b2f6a60b",
+      "packed": [
+        {
+          "path": ".godot/imported/harbor-locked-v1.png-5b077098609f5d1e62fdd953fe3aa710.ctex",
+          "sha256": "6e87d10bd20b1c712911d9d4eb3cfde137d5578b95526dcf2a0f8396e9f2b56a"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_harbor_locked",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/harbor-open-v1.png",
+      "source_sha256": "4e36cb355f15955ce03bec6f54d62d82bf76641e2f631a5242eed3108c11b1a5",
+      "packed": [
+        {
+          "path": ".godot/imported/harbor-open-v1.png-3cd9c9e449d6152cb87019d40f79ea41.ctex",
+          "sha256": "724ef0bcf27effe5c98d0e3f10fb2e378a52cdea6685b18149ad6922dc442484"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_harbor_open",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/northbank-memorial-v1.png",
+      "source_sha256": "f812ba56636daa6470ac4afc998a6b6a80c08ba9dc9dd311fe9c19b13f8dee0e",
+      "packed": [
+        {
+          "path": ".godot/imported/northbank-memorial-v1.png-1a671b076da164f1c62734aa9b291793.ctex",
+          "sha256": "2edb959e835c9c9e1cf4c0f3fc4c2f40c1ed5578499b1fcd8e50481ff8007a5f"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_northbank_memorial",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/chapter11-prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/northbank-mill-morning-v1.png",
+      "source_sha256": "813f8c3b94a1b01283b6b00891e284f3043601098eda76bf1bee64c0ce115379",
+      "packed": [
+        {
+          "path": ".godot/imported/northbank-mill-morning-v1.png-f5a1289c1b0bf17c90f57d1787da7c11.ctex",
+          "sha256": "0c7fa6ee3c1668b0929940aa614439f011fba6c0ceb81e5b90b41cd03378e0e7"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_northbank_mill_morning",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/chapter15-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/northbank-mill-v1.png",
+      "source_sha256": "c1b58ac847322690894d3929bff972c76d56f705eba9fbdc391d1b618aa17be8",
+      "packed": [
+        {
+          "path": ".godot/imported/northbank-mill-v1.png-e36012ba9f7718827e879f1223059bd9.ctex",
+          "sha256": "964e5e22b50ac97db170ef7df696a94fb1e01a419d38122edb058f9aba22343f"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_northbank_mill",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/chapter13-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/oldfurnace-day-v1.png",
+      "source_sha256": "74b0b814b006639a5371da727c8b419c48a6c894498f34b68f557e6f67d350db",
+      "packed": [
+        {
+          "path": ".godot/imported/oldfurnace-day-v1.png-6ce5edd4c2a661f90e8702ba869256d9.ctex",
+          "sha256": "91e283080db218bcde8ff9da5aaba3b3236a6493d5c1e3ca267557c80346d203"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_oldfurnace",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/chapter08-prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/prompts.json",
+      "source_sha256": "5f32bcb78b1133b8543c74d2ad94cd71431118dd9b4d3d303f80c61144f2554b",
+      "packed": [
+        {
+          "path": "assets/art/narrative/prompts.json",
+          "sha256": "5f32bcb78b1133b8543c74d2ad94cd71431118dd9b4d3d303f80c61144f2554b"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/narrative/prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/pump-closed-v1.png",
+      "source_sha256": "ea1a5eb71e9a9c3ca9ac850be1c47cc1fd247c49b9d903943f967af5fafcee97",
+      "packed": [
+        {
+          "path": ".godot/imported/pump-closed-v1.png-a833bfe57f861496946ea406e239058f.ctex",
+          "sha256": "53fffd944a74645da385f0a0e60a3333caaaa754523a6d7af056a731f03cbce7"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_pump_closed",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/pump-open-v1.png",
+      "source_sha256": "e093a7c466155388548cbc229644d06acc020c25169f6d4845b7279bcc4e7242",
+      "packed": [
+        {
+          "path": ".godot/imported/pump-open-v1.png-6ef9350955069b023ac9bbf21725a983.ctex",
+          "sha256": "faf9b473ef405325553442fa8b3574cc5edbbdd075a822d76bcd33cb20701d7e"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_pump_open",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/quartermaster-desk-v1.png",
+      "source_sha256": "98447efe3629323d62fa2872728276c9dab3dc20025bc9c7d4a45c907d18ff82",
+      "packed": [
+        {
+          "path": ".godot/imported/quartermaster-desk-v1.png-699212eee88c8e52873e6f4e719897b8.ctex",
+          "sha256": "4b20b0c986f939d9e05d7eea5cdb3b1e44c75f6bb7d1d7c5f75d4f1d2cac16cc"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "requisition_desk",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/quartermaster-desk-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/redroof-day-v1.png",
+      "source_sha256": "d9ba5ce281670bd58097f9854648f3c09f607a0f4ba0bd89363c2f34f8c06370",
+      "packed": [
+        {
+          "path": ".godot/imported/redroof-day-v1.png-9792d3912d8a0f15d9f6d36e2ace3b18.ctex",
+          "sha256": "1186a918109a8a9c1c266dadc2cb1b063ff790113dd195677fe108c6f9b97c5f"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_redroof",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/chapter11-prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/return-morning-v1.png",
+      "source_sha256": "5650b295d68c25709657decafa389ca0b913f11af555ad9a886885aa783e0f6c",
+      "packed": [
+        {
+          "path": ".godot/imported/return-morning-v1.png-eaf8f8cf849369b87abc4e68f9a923a6.ctex",
+          "sha256": "99a20aa645ee79dd2cd60350f174d9af42221a647158f2f43f006815256c4fe9"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_return_morning",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/chapter17-18-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/saltlane-yard-v1.png",
+      "source_sha256": "ca125c5dd5b182deacd8ec60bb7a927f04e69e7cd0e3825aace81251741dabe9",
+      "packed": [
+        {
+          "path": ".godot/imported/saltlane-yard-v1.png-af6b26d7abbc6a3c8e03f96c21fd4962.ctex",
+          "sha256": "a8c27bed92c7d31246ad875ff88a6b6ae1e10131e01d255fbb305d94aea7f5da"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_saltlane_yard",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/saltlane-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/school-day-v1.png",
+      "source_sha256": "44d9618f252ad4e2ab4dffc8e2351cfd1a89cc9a2c25071962f163387becec72",
+      "packed": [
+        {
+          "path": ".godot/imported/school-day-v1.png-9bcb1f867a2139b1c4a5bac6823977b4.ctex",
+          "sha256": "67e9b34d69fb2f384531127301b9910ed76a77279c8e0d246485daf8c889299a"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_school_day",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/chapter07-prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/school-night-v1.png",
+      "source_sha256": "a1b4cc295edee64a5ac8b77dc98f70a8d57bdcf15055ca43180af499700328f1",
+      "packed": [
+        {
+          "path": ".godot/imported/school-night-v1.png-125a08ec9b9b2ce0413134e594884d00.ctex",
+          "sha256": "54cf7e495951bc6899e83de342648dcdc50128083daf6445deabfbbda4b6e717"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_sunspire_camp",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/chapter07-prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/school-ward-night-v1.png",
+      "source_sha256": "7e12bde6cdf40be535b2c950f04d98f1ea93939272e558f2e3f011570e1e7a70",
+      "packed": [
+        {
+          "path": ".godot/imported/school-ward-night-v1.png-dcab3e37041551d7d272d498c4f9dceb.ctex",
+          "sha256": "8e0a8ceb6b3a90e8ea666a7f89ca35033e0542e55a5cf9c0082fe55942e19ad4"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_school_ward",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/chapter07-prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/sources.json",
+      "source_sha256": "cd6b0f5c814f3374233e9d4e326a5bdf9070dd52dc273ab629a1f80f83165d2b",
+      "packed": [
+        {
+          "path": "assets/art/narrative/sources.json",
+          "sha256": "cd6b0f5c814f3374233e9d4e326a5bdf9070dd52dc273ab629a1f80f83165d2b"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/narrative/sources.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/tower-valve-v1.png",
+      "source_sha256": "f8e78b1971900085dc1cfbe6336d52c26168c712381066bbe3adab7ff0f2f159",
+      "packed": [
+        {
+          "path": ".godot/imported/tower-valve-v1.png-0f871942b774959ea94bf144ce5e834e.ctex",
+          "sha256": "3e88e40112c5565cbf761323a414bd8bdab9a5f6e37089a64e657cea8371b21e"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_tower_valve",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/chapter15-source.md"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/warden-dialogue-prompts.json",
+      "source_sha256": "98338d303071c4ebc11f7661b0c4e5682d369705d1ee289f9e3db3f31f8eb577",
+      "packed": [
+        {
+          "path": "assets/art/narrative/warden-dialogue-prompts.json",
+          "sha256": "98338d303071c4ebc11f7661b0c4e5682d369705d1ee289f9e3db3f31f8eb577"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/narrative/warden-dialogue-prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/warden-dialogue-source.json",
+      "source_sha256": "c8c2edf18aebb8ae62ed3484656b92bd2a703fa09ee74762a81460cf88f421ee",
+      "packed": [
+        {
+          "path": "assets/art/narrative/warden-dialogue-source.json",
+          "sha256": "c8c2edf18aebb8ae62ed3484656b92bd2a703fa09ee74762a81460cf88f421ee"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/narrative/warden-dialogue-source.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/warden-dialogue-v1.png",
+      "source_sha256": "5812ae3dd23e264946a299a68aa2fb8d9c31b2080134af0a756238571cac2eea",
+      "packed": [
+        {
+          "path": ".godot/imported/warden-dialogue-v1.png-69c3e8862d0217d02b8910667fe5903b.ctex",
+          "sha256": "c566098540767c8e7079e2755cdb0bbc3120eb60bb13ce1d21887aeed833f798"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "narrative_warden",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/warden-dialogue-prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/narrative/waterpass-day-v1.png",
+      "source_sha256": "6b5a64e3c77de1992d3d1db6a3d0436c2e1d82e92911906792d5b0575eeda8a2",
+      "packed": [
+        {
+          "path": ".godot/imported/waterpass-day-v1.png-451a27536a828f839148050775dac09e.ctex",
+          "sha256": "d6ec27c9f20c05d8b2e1ee83152e055436ee90df110bdac90ba027f8197f493e"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "scene_waterpass",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/narrative/chapter08-prompts.json"
+      ]
+    },
+    {
+      "source": "assets/art/prompts-battlefields-v2.json",
+      "source_sha256": "9715c0c78b21dc38cb3f07acb06ce6f1abf2abb10df2f5a4adfacf45d7d2b225",
+      "packed": [
+        {
+          "path": "assets/art/prompts-battlefields-v2.json",
+          "sha256": "4a0ff7722b5f0ec8f99305ae2137a1c3ee0056604436d6f6c365f497f421e42c"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "text_equivalence": "line endings only",
+      "evidence": [
+        "assets/art/prompts-battlefields-v2.json"
+      ]
+    },
+    {
+      "source": "assets/art/prompts-cel-spells.json",
+      "source_sha256": "f268f394777fdd1bec3614d752a0b8df79a24373a497d20c3f04f0d12f013afb",
+      "packed": [
+        {
+          "path": "assets/art/prompts-cel-spells.json",
+          "sha256": "f268f394777fdd1bec3614d752a0b8df79a24373a497d20c3f04f0d12f013afb"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/prompts-cel-spells.json"
+      ]
+    },
+    {
+      "source": "assets/art/prompts-jrpg.json",
+      "source_sha256": "5ce7ba6da181e675a9e404f6979690b444a0c1b895a2f6ee263bdc0850cd210e",
+      "packed": [
+        {
+          "path": "assets/art/prompts-jrpg.json",
+          "sha256": "5ce7ba6da181e675a9e404f6979690b444a0c1b895a2f6ee263bdc0850cd210e"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/prompts-jrpg.json"
+      ]
+    },
+    {
+      "source": "assets/art/prompts-mature-characters.json",
+      "source_sha256": "74a7bf97856e353f865bff830c5ad62fcb120e4fa79acc90ffe75eb999d008f7",
+      "packed": [
+        {
+          "path": "assets/art/prompts-mature-characters.json",
+          "sha256": "f95bfdd1be7d9ea4a750faf9c686229c57e3e09154fbba042d888b9fe25cb6f6"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "text_equivalence": "line endings only",
+      "evidence": [
+        "assets/art/prompts-mature-characters.json"
+      ]
+    },
+    {
+      "source": "assets/art/prompts-spells-2.json",
+      "source_sha256": "2c29fcf3b8f339cca8df3174470b4604786e9830a02711b6dc6d28c87073e2e6",
+      "packed": [
+        {
+          "path": "assets/art/prompts-spells-2.json",
+          "sha256": "2c29fcf3b8f339cca8df3174470b4604786e9830a02711b6dc6d28c87073e2e6"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/prompts-spells-2.json"
+      ]
+    },
+    {
+      "source": "assets/art/prompts-spells.json",
+      "source_sha256": "0055f1ff85aca48bb5e4ea24424edaf5444e490654951067bc57805aa8a2cc31",
+      "packed": [
+        {
+          "path": "assets/art/prompts-spells.json",
+          "sha256": "0055f1ff85aca48bb5e4ea24424edaf5444e490654951067bc57805aa8a2cc31"
+        }
+      ],
+      "method": "art production record",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/prompts-spells.json"
+      ]
+    },
+    {
+      "source": "assets/art/spells_1.png",
+      "source_sha256": "cbb932e79b38567053f6df198c120230ad7a1b3822325f8a109b422010163b7f",
+      "packed": [
+        {
+          "path": ".godot/imported/spells_1.png-b695d8d3bc0413803eb28d545f9ed336.ctex",
+          "sha256": "8afa2ec4aa9f7e3b8547f8f4e6b8d4896f8fad3b1804b5ab82bc091d316fc762"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "spells_1",
+      "evidence": [
+        "assets/art/manifest.json"
+      ]
+    },
+    {
+      "source": "assets/art/spells_1_cel.png",
+      "source_sha256": "d105eeb6ea59abb0d2e5ad3b702cd6eada1de5543984d33d258a16de8ebc3623",
+      "packed": [
+        {
+          "path": ".godot/imported/spells_1_cel.png-566bdb5f54e81d179bbaa270e75faaa6.ctex",
+          "sha256": "3e94cacc9daee966b87f9aa92b7f8b5e8730d98fc898bc0c66be0b102a2a1972"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "spells_1_cel",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompts-cel-spells.json"
+      ]
+    },
+    {
+      "source": "assets/art/spells_2.png",
+      "source_sha256": "c51829fc3c4eb6a79081bf70af4dea1eb7d8579cde65a06aecbb5646a607150b",
+      "packed": [
+        {
+          "path": ".godot/imported/spells_2.png-48cea683f558f6a29f541617c328b52c.ctex",
+          "sha256": "017b209a654eac55f8f04ec3d477de8b5839c5a6f448a940473f80dc8a70c758"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "spells_2",
+      "evidence": [
+        "assets/art/manifest.json"
+      ]
+    },
+    {
+      "source": "assets/art/spells_2_cel.png",
+      "source_sha256": "ea5c65a2dd60f1e0bf83ad135933c69b2257dca9e13a51c4100209c22db1cd99",
+      "packed": [
+        {
+          "path": ".godot/imported/spells_2_cel.png-eacf1add1f00cc7e26ca9942a8d0e2a5.ctex",
+          "sha256": "8ebf085c8f39e1647360d8e8db73645880d98803f80856f5923359d12fb55c8a"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "spells_2_cel",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompts-cel-spells.json"
+      ]
+    },
+    {
+      "source": "assets/art/tactics_1.png",
+      "source_sha256": "c2e71a5ca687b1770c0dc17eb0ee91402afbb5e9f8b0bdf0922d70b7f05c3054",
+      "packed": [
+        {
+          "path": ".godot/imported/tactics_1.png-da5d3d2c0b828e73a7e40fa6248415f2.ctex",
+          "sha256": "91907c0e4aa8611ab9823aa81f048d507ba6bd8bbcb242985a758e9646f25374"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "tactics_1",
+      "evidence": [
+        "assets/art/manifest.json"
+      ]
+    },
+    {
+      "source": "assets/art/tactics_1_cel.png",
+      "source_sha256": "d6a28c86cdca7897d4f1cf299e4d01d3d499a3c9c8b15ed5a5da07d4c7bac797",
+      "packed": [
+        {
+          "path": ".godot/imported/tactics_1_cel.png-e722b088237664a1e070abf5f8f4bcb6.ctex",
+          "sha256": "203f29437cbb7dea62e4d1426246502e3613031b47f403b54a395595266c4a0b"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "tactics_1_cel",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompts-cel-spells.json"
+      ]
+    },
+    {
+      "source": "assets/art/tactics_2.png",
+      "source_sha256": "0825476f278027a423e951b62b22299144c1e04dcb04957c4f3b969e79aac53d",
+      "packed": [
+        {
+          "path": ".godot/imported/tactics_2.png-19c88cce3a7e7b6e0a7ece07232d594d.ctex",
+          "sha256": "8c067a2dfbe36d87e09c5f50e48789021ff51323e1a9e4baa2514d76fa3853fb"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "tactics_2",
+      "evidence": [
+        "assets/art/manifest.json"
+      ]
+    },
+    {
+      "source": "assets/art/tactics_2_cel.png",
+      "source_sha256": "f3c08e9c103e2a8868456a13367bd61825c1a1d690c83d293e02592163067850",
+      "packed": [
+        {
+          "path": ".godot/imported/tactics_2_cel.png-7b4e4272e27fe6d63fde7b77931dd82c.ctex",
+          "sha256": "ef6c852086563ee36c19a964681e869a4d4aadbd98b8ee4e347a2728bbf81840"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "tactics_2_cel",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-tactics-cel-2-retry.txt"
+      ]
+    },
+    {
+      "source": "assets/art/terrain_1.png",
+      "source_sha256": "a5921551697603200399b820f775dfc1b04b7249b193152c35e1b29bb9a9a181",
+      "packed": [
+        {
+          "path": ".godot/imported/terrain_1.png-10e6325686a6a7605ced994461246ae7.ctex",
+          "sha256": "639e815fad2f75432d2109e72b1a09a0d1eba2a03951aa50cd62697f5014d48b"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "terrain_1",
+      "evidence": [
+        "assets/art/manifest.json"
+      ]
+    },
+    {
+      "source": "assets/art/terrain_2.png",
+      "source_sha256": "b736985e8c636d68d706f8ebf0b752aa711ace2d427e6e124ee1f3ac0d454b37",
+      "packed": [
+        {
+          "path": ".godot/imported/terrain_2.png-667e272d02c6b10b99c1ea7174429ce1.ctex",
+          "sha256": "671a4e4b638a7e64837b2597a1a67d0433387905c8ec24a471ac9a64aac63dbc"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "terrain_2",
+      "evidence": [
+        "assets/art/manifest.json"
+      ]
+    },
+    {
+      "source": "assets/art/terrain_3.png",
+      "source_sha256": "f0e1eea8f11bf9ba04d8579d54165512a414d6edd086d2d0989fafe675757509",
+      "packed": [
+        {
+          "path": ".godot/imported/terrain_3.png-f0a3b1cc8a5641482fc5a45142bc47f8.ctex",
+          "sha256": "7ab79780f5b4b5335cfb7120ae56442b2e3d127cd7310fa3f6d762c188a09f4c"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "terrain_3",
+      "evidence": [
+        "assets/art/manifest.json"
+      ]
+    },
+    {
+      "source": "assets/art/trail_cel.png",
+      "source_sha256": "4867f54b02c6e98e4c7aa0d540a2797f3a848ceda9c9ffcb715f5a9665d4141a",
+      "packed": [
+        {
+          "path": ".godot/imported/trail_cel.png-a53300f4270aa9418e6366d6c06b2a94.ctex",
+          "sha256": "2c1d463fecedfa646d45f6193db3eb741505eefe6d0349b436dfa98e8200dd73"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "trail_cel",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-trail-cel.txt"
+      ]
+    },
+    {
+      "source": "assets/art/unit_portraits_1.png",
+      "source_sha256": "cb6ce177b9ef3312e25f40dd00251bb211eb6902034b2e1023c4132536f03505",
+      "packed": [
+        {
+          "path": ".godot/imported/unit_portraits_1.png-36902a56396f915d15c60dbd054c378f.ctex",
+          "sha256": "4edad373699057071a33a69da0fbdd7f6f9b26d41d6891c32a6422721a93e58e"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "unit_portraits_1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-mature-unit-group1-v2.txt"
+      ]
+    },
+    {
+      "source": "assets/art/unit_portraits_2.png",
+      "source_sha256": "cde5225b717c1fc64c30e9d31d5e5ef3e8a3ee538615a28a8797f23921dfe8cf",
+      "packed": [
+        {
+          "path": ".godot/imported/unit_portraits_2.png-c856978329b05c4669a7737d0b734ab9.ctex",
+          "sha256": "a3c1946ad272a48ae7a3ce2ac10375f4177c05de60dc91e6bac6c6474777aa79"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "unit_portraits_2",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-mature-unit-group2-v2.txt"
+      ]
+    },
+    {
+      "source": "assets/art/unit_portraits_cel_1.png",
+      "source_sha256": "c1ad73d4d23df96499028a901d082da27f09160a57e3cc640c0a88a28f9a5f4e",
+      "packed": [
+        {
+          "path": ".godot/imported/unit_portraits_cel_1.png-0375fe89abcd70014a29942befde5b9f.ctex",
+          "sha256": "18ab8bd21ac8d28e53249d4b9d35b3093cc70f69332bf726b8c6f6c21f4e213a"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "unit_portraits_cel_1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-unit-portraits-cel-1.txt"
+      ]
+    },
+    {
+      "source": "assets/art/unit_portraits_cel_2.png",
+      "source_sha256": "239b424a1eefc7744d1079bb675f0eed0ecabb241cb3a1ec688ca8c31d362184",
+      "packed": [
+        {
+          "path": ".godot/imported/unit_portraits_cel_2.png-2cf2cb4ae86c1d482aa4a140c782d98f.ctex",
+          "sha256": "baa83fc8a063e29cf50c6613943bdb96225e625fe906fc746f33bcf6dba96406"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "unit_portraits_cel_2",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-cel-mage-distinction.txt"
+      ]
+    },
+    {
+      "source": "assets/art/unit_portraits_cel_2_draft.png",
+      "source_sha256": "8b418ca66d51fd81c7f8ec6990ab101bc8874b0c6d97ae468d594b4d73c0119c",
+      "packed": [
+        {
+          "path": ".godot/imported/unit_portraits_cel_2_draft.png-c801213aa6738824f70bbe0c34fe2beb.ctex",
+          "sha256": "1d420dc1de3c9ce77bec2425b0687abed4e34a51a34a23ac5922b1aa16cf8a00"
+        }
+      ],
+      "method": "pre-generated portrait draft",
+      "authoring_reference": true,
+      "evidence": [
+        "assets/art/generation-record.md",
+        "assets/art/manifest.json"
+      ]
+    },
+    {
+      "source": "assets/art/unit_sprites.png",
+      "source_sha256": "3f0c0d3bfc3561116e09f622bdbd6f582c10e292b90e76d80a982e13e73ee7cf",
+      "packed": [
+        {
+          "path": ".godot/imported/unit_sprites.png-03fcbfff351193e336d4ff5d1781c203.ctex",
+          "sha256": "898de06abf2b468fbd90b39fd01a6a2a833e5bebc397b0a063f1282166ff0d74"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "unit_sprites",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompts-jrpg.json"
+      ]
+    },
+    {
+      "source": "assets/art/unit_sprites_cel_1.png",
+      "source_sha256": "f16e733ed2735c22634ecb2e44ea151209945d771cfd870ac893155f6fa63182",
+      "packed": [
+        {
+          "path": ".godot/imported/unit_sprites_cel_1.png-6edb716cebc01e7905ce3343c14fb5a8.ctex",
+          "sha256": "b23e4571b295f96b2c3745ae50d4c4f684754e8aab9ae6a42051b1f25f0d0c83"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "unit_sprites_cel_1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-unit-sprites-cel-1-retry.txt"
+      ]
+    },
+    {
+      "source": "assets/art/unit_sprites_cel_2.png",
+      "source_sha256": "e0cdc569b17fccef9d4034435fb8df277002230ec6a3067e7473bc963277ba88",
+      "packed": [
+        {
+          "path": ".godot/imported/unit_sprites_cel_2.png-7b72af8e4b5c859d7fcf73781b8fa57d.ctex",
+          "sha256": "31677a544f1c0108e1ffe9abf0cd8e60523ea9e751aa6df572f395026b0b54d1"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "unit_sprites_cel_2",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-unit-sprites-cel-2.txt"
+      ]
+    },
+    {
+      "source": "assets/art/unit_sprites_mature_1.png",
+      "source_sha256": "5156a29ff8b031c1a3060497f2e1fc8a00803de77def34aee239ece18478ca3b",
+      "packed": [
+        {
+          "path": ".godot/imported/unit_sprites_mature_1.png-0936eef1fc9fd072b5298ba05a37ab67.ctex",
+          "sha256": "244843658305d9c988aa1d930a2cf7c72858606efe610a91bab9e2f7ceb1176f"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "unit_sprites_mature_1",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-mature-sprites-group1.txt"
+      ]
+    },
+    {
+      "source": "assets/art/unit_sprites_mature_2.png",
+      "source_sha256": "56cab51ac1a542b67d6c725449012ad26fde7efef6ec72369e8ad36573750922",
+      "packed": [
+        {
+          "path": ".godot/imported/unit_sprites_mature_2.png-1ee27693472fd687c206fdb18c09e880.ctex",
+          "sha256": "64f28b4436b69ee0b01b87f130dd5e6152ed866933cdf44032653d9564815564"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "unit_sprites_mature_2",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompt-mature-sprites-group2.txt"
+      ]
+    },
+    {
+      "source": "assets/art/units.png",
+      "source_sha256": "230dac50907c74c7c8561a347efe60bd9432236cbad477eb11011c5d2bead172",
+      "packed": [
+        {
+          "path": ".godot/imported/units.png-4ff1f00cc85bacde4608ba94ab5fe2a1.ctex",
+          "sha256": "95074f88a9261846fe7d4d648312bc3dd726a59dd445e23f45b7f55c4becb1be"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "units",
+      "evidence": [
+        "assets/art/manifest.json"
+      ]
+    },
+    {
+      "source": "assets/art/weather_1.png",
+      "source_sha256": "a30d51e4ad9bc167e7af8a7e23228e8ebfda23bf3421b8a939c55a8a26777877",
+      "packed": [
+        {
+          "path": ".godot/imported/weather_1.png-4f9bdbe1c2fd3b5c309a896a488eae19.ctex",
+          "sha256": "86c47ee031ea8035e457f5f16e4ed19e839ed7930c91e68f8b10cc7ae01514cb"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "weather_1",
+      "evidence": [
+        "assets/art/manifest.json"
+      ]
+    },
+    {
+      "source": "assets/art/weather_1_cel.png",
+      "source_sha256": "b94bdf36974afbe90bebf650aa01dc73af3830d05383a38575128aa9b77cf936",
+      "packed": [
+        {
+          "path": ".godot/imported/weather_1_cel.png-31ba0e5d02f7eba75f177b91622dafd9.ctex",
+          "sha256": "e4bc0162703ec5aafa2751b1af9c10d6893175a95d61cc4df53015917c4d3cae"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "weather_1_cel",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompts-cel-spells.json"
+      ]
+    },
+    {
+      "source": "assets/art/weather_2.png",
+      "source_sha256": "6a69baf682cf683bfe057c86904ea1d7b0a1052ab1033de63d7c38915fc6d415",
+      "packed": [
+        {
+          "path": ".godot/imported/weather_2.png-1deb5b25238617fa998cc75fd960d6c6.ctex",
+          "sha256": "03df389b8bd35b19c3e08d79d251aa3eeed6042093783cba00d37955c82b464f"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "weather_2",
+      "evidence": [
+        "assets/art/manifest.json"
+      ]
+    },
+    {
+      "source": "assets/art/weather_2_cel.png",
+      "source_sha256": "5597e3c555450953d9f25a3a2cee6578b7e689580cf781072fa93c3d698f87cd",
+      "packed": [
+        {
+          "path": ".godot/imported/weather_2_cel.png-c48a56c84bc08e016df4ecbda724c139.ctex",
+          "sha256": "10aa9e739286bbca63e0a57048506a85953ef38246633c811b9d3071f11ba8fa"
+        }
+      ],
+      "method": "pre-generated illustration",
+      "record_id": "weather_2_cel",
+      "evidence": [
+        "assets/art/manifest.json",
+        "assets/art/prompts-cel-spells.json"
+      ]
+    },
+    {
+      "source": "assets/audio/attack.wav",
+      "source_sha256": "89cfc01fe2d0116ea496f9f4e0a6c049bc29f3e22b3bbcf3f1b059e789d83062",
+      "packed": [
+        {
+          "path": ".godot/imported/attack.wav-825b62c1f9509f7d19a957a51a526957.sample",
+          "sha256": "4af531ab0e04692a946d7b5adcd316ce41fd672de6e35cf1205435efdf77f22f"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/battle.ogg",
+      "source_sha256": "a95754eb5599b9c5f771897eb6cdf820440c35c5c154f579b41c8cd270057211",
+      "packed": [
+        {
+          "path": ".godot/imported/battle.ogg-a043ea78b7a28efbd1168cafaf9846a9.oggvorbisstr",
+          "sha256": "b2d696a6fc30cc957b749c413d8bc621e916abd5c2fa47ac02f08f3a763232b4"
+        }
+      ],
+      "method": "synthesized music",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/bowstring.wav",
+      "source_sha256": "65508f6c5c82db040d9fcdc1113624a295539b5a015cd85bcf3afef792b2bc72",
+      "packed": [
+        {
+          "path": ".godot/imported/bowstring.wav-0bb2082817b293fc090c53f790b9f82f.sample",
+          "sha256": "578198312073bdea65036fa94db7a45e56304cdf70a480b0b0cbb49b17db9b93"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/bulwark.wav",
+      "source_sha256": "079994f939b0c24aa36081d8a3d128e2ceaacf27c00d8807bd66185aa099d117",
+      "packed": [
+        {
+          "path": ".godot/imported/bulwark.wav-822e4aa610ed8166fa171d0cc744a7e3.sample",
+          "sha256": "9ca5f2fddd0f0a485960df476fa0ce740dff6b35c84e76ca9f8a382f0b61274e"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/canter.wav",
+      "source_sha256": "927eef9ffe630f3eb0c3e15ec08f6f3d412eb318feb2628a541f8d1cdbf477a8",
+      "packed": [
+        {
+          "path": ".godot/imported/canter.wav-20e2b84714de6965ae7c2aaccce43c86.sample",
+          "sha256": "5bdf503328294a7b5e2126a6ed0b346f749be7416ceb8ec0b032c3626ba4b68c"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/cast.wav",
+      "source_sha256": "219caba3170b0d84b46095c44412d1445b2aa44bd948dfd6e221e9e002609d77",
+      "packed": [
+        {
+          "path": ".godot/imported/cast.wav-890e81f3fb16de54418f60cfbccbedfa.sample",
+          "sha256": "284b33bca55bc4a17e17076cbfc83c09c553dcb3075bf42219e3f0fdcdb4062a"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/clearair.wav",
+      "source_sha256": "491f14f68c9414f2a2cb25fd1b012f58a4f9336a11e83ae5eff96c33dd2214cd",
+      "packed": [
+        {
+          "path": ".godot/imported/clearair.wav-dfa2d95d8c0bb5939d17b1e8b9692475.sample",
+          "sha256": "cd4cd41a1672c9bcf05e5f6d8357ff211cc63e4d369d58c2ca998d6404a6396c"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/comet.wav",
+      "source_sha256": "e9f75f73a2b42b232241d61e4e6d0a99b979d8fd463ccacc1fefa61324540ac5",
+      "packed": [
+        {
+          "path": ".godot/imported/comet.wav-40c11ac5f3e4a5a90c142511a027ed22.sample",
+          "sha256": "2188373b0cf52d3826df5f9cd870132bab1af3eed5dc64e7a0242d28d3477b81"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/council.ogg",
+      "source_sha256": "5ddb802cb5ec90f659925c7ede69026299c0cd2ab7e400fd5e61c0688f5e0675",
+      "packed": [
+        {
+          "path": ".godot/imported/council.ogg-56d78096860750ee8e1e7237fccb4e94.oggvorbisstr",
+          "sha256": "8aa178700c40d23b92058b2343544f13304df9b68d0f24cd9dc7b26dea180111"
+        }
+      ],
+      "method": "synthesized music",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/defeat.wav",
+      "source_sha256": "03599492c3d43611bff8d92ceac5a1ad7200cb32338339d50559745c93156b99",
+      "packed": [
+        {
+          "path": ".godot/imported/defeat.wav-2c373cdad262b5fb9203b05423989caa.sample",
+          "sha256": "1841025b39674abc211e8b8c3b73799107c4ecf572035cca7f9c74c5b59cc799"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/deploy.wav",
+      "source_sha256": "cd1c55a8785ce336a91e51847ec481b3f9125ba99bfeb1e46c84b984b9bbe158",
+      "packed": [
+        {
+          "path": ".godot/imported/deploy.wav-1dbed48bcf8e5b4223d5b10201e87c68.sample",
+          "sha256": "f69377ea9bb62f5c6a895e5e08a16cda83defb705d1b2dbe40ff18e05a55339f"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/flare.wav",
+      "source_sha256": "8ec535e3e4469d3a1d1291ee7726347d7b5c78a3cb176841d25a1181a5205167",
+      "packed": [
+        {
+          "path": ".godot/imported/flare.wav-ca042124945e0589bfa985e4f53431ff.sample",
+          "sha256": "b338b754d1e546babced28c8601544b6198cedf7bca013d22e486d1cc4ced857"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/guard.wav",
+      "source_sha256": "4575b191d46e3bddabb492fff2218335c81bfb22931089ad0d6a722d354e9f03",
+      "packed": [
+        {
+          "path": ".godot/imported/guard.wav-7eb78cb53c969b4999f454e9d112e7af.sample",
+          "sha256": "f6e08762805c2c5aa7b3f63e3ec69f8d244cfe854737f6afef6188e3c738ec2d"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/mistroll.wav",
+      "source_sha256": "d64dda8525b639b0f198d8fa4fbab8de02749ccea660fb775bd5a337060659c0",
+      "packed": [
+        {
+          "path": ".godot/imported/mistroll.wav-a5e2762170dda20a689ef35c0eec9806.sample",
+          "sha256": "159571c046811ff1600b89cfcff9ed75aed5b8b9c5c001ca99f610965cbed935"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/move.wav",
+      "source_sha256": "eb54b3abd562fcbbc46b193edeaba1c95cffed3382a8bd52e5bf7d48d2ed437b",
+      "packed": [
+        {
+          "path": ".godot/imported/move.wav-bb24903c9a699e9f79b09a2a866951b5.sample",
+          "sha256": "d98f7970ed5c8cf82a041c010d927b5af8b48c58a1ee74cca191bdd5f5693273"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/paperlights.wav",
+      "source_sha256": "4041a89727d9611a21290fbd7be758f59d1b8793b294ee09f200486fac248b05",
+      "packed": [
+        {
+          "path": ".godot/imported/paperlights.wav-16ff7105630ee49df2e97def18fe12dc.sample",
+          "sha256": "4dc5305702cce2058822dedab590400f29ed959f941f141b34006c76fe94031c"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/rainfall.wav",
+      "source_sha256": "084b9e12e0b476385d7df75b7b7793b80b3b52343ffc4d40f3a289d6a967e899",
+      "packed": [
+        {
+          "path": ".godot/imported/rainfall.wav-f42bc41ae2fe5c24f2033efde570a70b.sample",
+          "sha256": "ad46d7fe5cce5334afcf84b6918a7dbf572e51b553cdc0dad1189a83395b305d"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/rime.wav",
+      "source_sha256": "067c7188c383c04288c754c808d72202e756d89082eebd4ada63bde7cd0a856b",
+      "packed": [
+        {
+          "path": ".godot/imported/rime.wav-906a1d02aefa723ffb510a2a345ee1cd.sample",
+          "sha256": "d035dbf35323d554663d5b7b58119579881155b27c6ab94910f478076a548e82"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/snowfall.wav",
+      "source_sha256": "d1b39878e682a8dcb013ec0a85ba69b8d87a23ba320e734bd85032a0cb76d69d",
+      "packed": [
+        {
+          "path": ".godot/imported/snowfall.wav-51d9f381cde585b2c3e472f739034f4a.sample",
+          "sha256": "7be739f36ec6cdec03a19dfd7d644163a4b66b532b9019be49eaf74620e08419"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/sprout.wav",
+      "source_sha256": "18e5c6374de64ac29e82417a425fd0ce59098782571cba6bbe22212d5d8ae092",
+      "packed": [
+        {
+          "path": ".godot/imported/sprout.wav-694bfece79923d7c16ec7200a3ef76e5.sample",
+          "sha256": "8ac7b71cc034592c37269573fb1853045e3877035ac9df2790f358f357c16962"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/sunbreak.wav",
+      "source_sha256": "869beb88442e86a0eb372b1ed8cb308b38fe82907e6881ec4c27bb47c139defc",
+      "packed": [
+        {
+          "path": ".godot/imported/sunbreak.wav-dfe7e5d3c575b329eab3b81a18a5ce95.sample",
+          "sha256": "41d4c632c06f1577cedc67beb991f906d334a155021b062366dc4d3d94096b89"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/trap.wav",
+      "source_sha256": "4591bd84d830a4316a1ed48fd72cf524ef34d0a31ea945414cb7b3136801dd95",
+      "packed": [
+        {
+          "path": ".godot/imported/trap.wav-d86ed52d54d7b4551feb7c481f29fe29.sample",
+          "sha256": "9418ab2d59a8da1deb90a16eef5bda64295eb93f100591499c8a91bd10c865c1"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/turn.wav",
+      "source_sha256": "3beb2658710d0aacb44480c046924643842f5881efa83706a3780d630c76a02a",
+      "packed": [
+        {
+          "path": ".godot/imported/turn.wav-e42ca8e229d279f19979a42626872605.sample",
+          "sha256": "12b648a89c75e5d2a2055d8e73bfe4454fccee5ea607cb345df18e60285994e3"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/victory.wav",
+      "source_sha256": "7ba458625d9275a93522080a5aa5fbd08024762b5297c0bbd016e712fd9347fa",
+      "packed": [
+        {
+          "path": ".godot/imported/victory.wav-d893d32ad919f27e15cf04d35e288b78.sample",
+          "sha256": "61891b0ed2c99772bd2c121b1ef920caa6e5788313f6c9c8058d38ec07b9dab1"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/willow.wav",
+      "source_sha256": "a5714b890f5ac78940350be1baf65fd29c096108c01890cec79608139dd54d48",
+      "packed": [
+        {
+          "path": ".godot/imported/willow.wav-60bd189fc4f9ece254a316760aee588a.sample",
+          "sha256": "51267f60e1860d9a751538b7fb6a2eb1280564ddf74bf861f5478fcff727b0e8"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "assets/audio/windrush.wav",
+      "source_sha256": "dd146dc9288aa0bbef21c6084536f0412507b15d7d1b4ae802acab1922077248",
+      "packed": [
+        {
+          "path": ".godot/imported/windrush.wav-31ce5023ce67f773cac9284faba62221.sample",
+          "sha256": "34d1a00de37334a7758cc3851f7da9a1d0094b44086fcd9e20662278434901bc"
+        }
+      ],
+      "method": "synthesized sound effect",
+      "evidence": [
+        "tools/compose_audio.py"
+      ]
+    },
+    {
+      "source": "data/campaign.json",
+      "source_sha256": "c603f9d8e79e0b1dd0ecedd02b723f621f05028cf0fe68b5cc87f79e6f1d1507",
+      "packed": [
+        {
+          "path": "data/campaign.json",
+          "sha256": "c603f9d8e79e0b1dd0ecedd02b723f621f05028cf0fe68b5cc87f79e6f1d1507"
+        }
+      ],
+      "method": "project game data",
+      "evidence": [
+        "data/campaign.json"
+      ]
+    },
+    {
+      "source": "data/cards.tres",
+      "source_sha256": "fc02ed07979d88d610510fc8f6c58976b34940e98b0af0f58cf1251c2ac62fea",
+      "packed": [
+        {
+          "path": ".godot/exported/133200997/export-ffe8a06e5eb4371818d051950543110a-cards.res",
+          "sha256": "ad83659d3e8a8f9bfe7335a20719d3f140802b09bc04b55895bacfe4ea336d27"
+        }
+      ],
+      "method": "project game data",
+      "evidence": [
+        "data/cards.tres"
+      ]
+    },
+    {
+      "source": "data/decks.tres",
+      "source_sha256": "de0426f2ee82b26eaf32995c5049fe8ecab5108e1f468e6e57c18800c231e1b9",
+      "packed": [
+        {
+          "path": ".godot/exported/133200997/export-b88cdecd4577b664ad60b626f6cd962b-decks.res",
+          "sha256": "cb31dfa887dd79ccb744f2f5439ffce38b9efdc3fd6c5b1996a4e3f802b4cc5b"
+        }
+      ],
+      "method": "project game data",
+      "evidence": [
+        "data/decks.tres"
+      ]
+    },
+    {
+      "source": "data/heroes.tres",
+      "source_sha256": "a4b1f67a06643a06f423797b9b3745c6e7c4110b027e45f9ed42a0c204e79a3a",
+      "packed": [
+        {
+          "path": ".godot/exported/133200997/export-4504d935c82919fd59ca5584c60948e8-heroes.res",
+          "sha256": "698b0806171cb877d6e73d866dc8af330b7e620c83c52a03ff430a4c108bda2a"
+        }
+      ],
+      "method": "project game data",
+      "evidence": [
+        "data/heroes.tres"
+      ]
+    },
+    {
+      "source": "data/maps.tres",
+      "source_sha256": "54c36f71b78f400ce33b006f578daa0602d23fb0b180e3edb357e5d559de216d",
+      "packed": [
+        {
+          "path": ".godot/exported/133200997/export-5c1d52abe7cbe0066a58f498a25f2c4b-maps.res",
+          "sha256": "d08de42bf664b2a9085c993313f3729825bd8250c54cd8e692a6b32da536b3d2"
+        }
+      ],
+      "method": "project game data",
+      "evidence": [
+        "data/maps.tres"
+      ]
+    },
+    {
+      "source": "data/narrative/chapters/chapter_01.json",
+      "source_sha256": "5aea819e93dc327a18c02448f86b9344ded8e91118e82fac168f3bb6906e2fae",
+      "packed": [
+        {
+          "path": "data/narrative/chapters/chapter_01.json",
+          "sha256": "43e32a955954e50c65566d1cd08f1ea4bd7e536af6673ec8a8605b0160e85085"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "text_equivalence": "line endings only",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    },
+    {
+      "source": "data/narrative/chapters/chapter_02.json",
+      "source_sha256": "f588d6350dca6f0448d4965d74659624fb716fa14f4d1703a3108ca62a763204",
+      "packed": [
+        {
+          "path": "data/narrative/chapters/chapter_02.json",
+          "sha256": "ecf2737fe65e7eba0a721c7429baa4c0d1b77185633dade32806acbec5ef6edd"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "text_equivalence": "line endings only",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    },
+    {
+      "source": "data/narrative/chapters/chapter_03.json",
+      "source_sha256": "0e9ea23d41dfa15f0a665af1a49bf55d23706276d82c45892409f36e9f786f4b",
+      "packed": [
+        {
+          "path": "data/narrative/chapters/chapter_03.json",
+          "sha256": "0e9ea23d41dfa15f0a665af1a49bf55d23706276d82c45892409f36e9f786f4b"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    },
+    {
+      "source": "data/narrative/chapters/chapter_04.json",
+      "source_sha256": "f332fbfc0ac4af810a9af7c625de7c41e81e550c739b4399cdd14de84b53269c",
+      "packed": [
+        {
+          "path": "data/narrative/chapters/chapter_04.json",
+          "sha256": "f332fbfc0ac4af810a9af7c625de7c41e81e550c739b4399cdd14de84b53269c"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    },
+    {
+      "source": "data/narrative/chapters/chapter_05.json",
+      "source_sha256": "e35be830811819e1253827e7f44a636cf6e82856e64b0d465ff1a7b3bf5c2826",
+      "packed": [
+        {
+          "path": "data/narrative/chapters/chapter_05.json",
+          "sha256": "e35be830811819e1253827e7f44a636cf6e82856e64b0d465ff1a7b3bf5c2826"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    },
+    {
+      "source": "data/narrative/chapters/chapter_06.json",
+      "source_sha256": "5fbc3d35db6b320ef8274084098832e25a92dfc4190981f896616c8ecc0dd458",
+      "packed": [
+        {
+          "path": "data/narrative/chapters/chapter_06.json",
+          "sha256": "5fbc3d35db6b320ef8274084098832e25a92dfc4190981f896616c8ecc0dd458"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    },
+    {
+      "source": "data/narrative/chapters/chapter_07.json",
+      "source_sha256": "ac550a719d925d70ba2c367cd7d7c1c5679cac4d51104aaa0cae7f331a7d1e3d",
+      "packed": [
+        {
+          "path": "data/narrative/chapters/chapter_07.json",
+          "sha256": "ac550a719d925d70ba2c367cd7d7c1c5679cac4d51104aaa0cae7f331a7d1e3d"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    },
+    {
+      "source": "data/narrative/chapters/chapter_08.json",
+      "source_sha256": "d2cb12bca5f7143e78b4957c6677e0bfdc2dbdbdb325dbde68b8a6f78052c34b",
+      "packed": [
+        {
+          "path": "data/narrative/chapters/chapter_08.json",
+          "sha256": "d2cb12bca5f7143e78b4957c6677e0bfdc2dbdbdb325dbde68b8a6f78052c34b"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    },
+    {
+      "source": "data/narrative/chapters/chapter_09.json",
+      "source_sha256": "009cff692b862cbb926f56c1dd70ef90d428d78d177c7a1cfb2dd1a4ab94a500",
+      "packed": [
+        {
+          "path": "data/narrative/chapters/chapter_09.json",
+          "sha256": "9ad9561feab2dceca7a34220df712b11720f55c3ec8b0282e135d5b3987884cd"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "text_equivalence": "line endings only",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    },
+    {
+      "source": "data/narrative/chapters/chapter_10.json",
+      "source_sha256": "80ade1f8dfb72be03803f55163c9193e5a52a036afba38afc6e855f158ca8e6c",
+      "packed": [
+        {
+          "path": "data/narrative/chapters/chapter_10.json",
+          "sha256": "c305333202d4ffcbd2156a558e9c327bb74fb3fe7d21820b54e29fc2b701da7a"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "text_equivalence": "line endings only",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    },
+    {
+      "source": "data/narrative/chapters/chapter_11.json",
+      "source_sha256": "6bf6eec4a09dc4c2b6da11ca441629da1509c1fe9e2b8eafcf9276572fc42e9b",
+      "packed": [
+        {
+          "path": "data/narrative/chapters/chapter_11.json",
+          "sha256": "669b588c492854260d5fa2a28bbf95c521f368e961e23fafb8e4bd9476d19e15"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "text_equivalence": "line endings only",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    },
+    {
+      "source": "data/narrative/chapters/chapter_12.json",
+      "source_sha256": "7310a21fcab2ecce8e940d3ce2943964d1f12a002f54f181cd30f5b1ff5bb0b6",
+      "packed": [
+        {
+          "path": "data/narrative/chapters/chapter_12.json",
+          "sha256": "4f3f8bf78c2d80989692b0bbf2d0c2edbf5e9ffecd22b740b736f3fde4c7e183"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "text_equivalence": "line endings only",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    },
+    {
+      "source": "data/narrative/chapters/chapter_13.json",
+      "source_sha256": "07e59a402b5fbbabb73c1a61c638cf7afb0db200efaab3907754ee8e27d8810a",
+      "packed": [
+        {
+          "path": "data/narrative/chapters/chapter_13.json",
+          "sha256": "1d50d81cce2b46d5c636debc51153353b68455d887155f2572d593d715103cea"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "text_equivalence": "line endings only",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    },
+    {
+      "source": "data/narrative/chapters/chapter_14.json",
+      "source_sha256": "17a253d47c179075ec64263109ec0a79238057879d20bc86812898755693ef0c",
+      "packed": [
+        {
+          "path": "data/narrative/chapters/chapter_14.json",
+          "sha256": "358b2e5d752575677fda366d6ac53c214540244e2364cb1d14c75944bcc0c36e"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "text_equivalence": "line endings only",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    },
+    {
+      "source": "data/narrative/chapters/chapter_15.json",
+      "source_sha256": "d9df4a1e099d4a8c6d8b812fca0c32578e85880d0493b1c2e583dd4e53e9eaef",
+      "packed": [
+        {
+          "path": "data/narrative/chapters/chapter_15.json",
+          "sha256": "c9bf51bd7196451fdad6a91342cecec51769b4ac0ba26d53147c9467747d0a86"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "text_equivalence": "line endings only",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    },
+    {
+      "source": "data/narrative/chapters/chapter_16.json",
+      "source_sha256": "b4dd7b874b8d0dafb38d64549782c2516790bbadfd26e9e746cb352eef0175fa",
+      "packed": [
+        {
+          "path": "data/narrative/chapters/chapter_16.json",
+          "sha256": "dda8452b6cbad54a53f101b3f6b3dfe47b0e8f38e869ac9c6722308a04fce4a4"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "text_equivalence": "line endings only",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    },
+    {
+      "source": "data/narrative/chapters/chapter_17.json",
+      "source_sha256": "d468f23d4ab185c872532802c0e8f2065a1e881e7b27f8ada1e2707a5aeb4f1b",
+      "packed": [
+        {
+          "path": "data/narrative/chapters/chapter_17.json",
+          "sha256": "d468f23d4ab185c872532802c0e8f2065a1e881e7b27f8ada1e2707a5aeb4f1b"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    },
+    {
+      "source": "data/narrative/chapters/chapter_18.json",
+      "source_sha256": "d3024a81fa64134e33af7e440b9944d82fd22a1654134885e51628fc0fc5490a",
+      "packed": [
+        {
+          "path": "data/narrative/chapters/chapter_18.json",
+          "sha256": "d3024a81fa64134e33af7e440b9944d82fd22a1654134885e51628fc0fc5490a"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    },
+    {
+      "source": "data/narrative/codex.json",
+      "source_sha256": "4dd45d1e89f31ad48883ee771a0df0e7d0d2549b78e384d407e6f26f98d8b6f3",
+      "packed": [
+        {
+          "path": "data/narrative/codex.json",
+          "sha256": "4dd45d1e89f31ad48883ee771a0df0e7d0d2549b78e384d407e6f26f98d8b6f3"
+        }
+      ],
+      "method": "fixed narrative text, development-time AI assistance disclosed",
+      "evidence": [
+        "docs/narrative/writing-bible.md",
+        "docs/narrative/writing-plan.json"
+      ]
+    }
+  ]
+}
