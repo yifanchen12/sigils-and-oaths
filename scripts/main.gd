@@ -1319,7 +1319,7 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 			if action.type == "unit_skill":
 				visual_action["effect_kind"] = {"mage": "damage", "healer": "heal", "sword": "shield"}.get(caster.kind, "")
 				visual_action["cast_title"] = battle.unit_skill(caster).name
-				visual_action["cast_art"] = caster.get("card",{}).get("card_id", caster.kind)
+				visual_action["cast_art"] = battle.unit_art_id(caster)
 			if action.type == "attack" or caster.kind == "archer":
 				var target: Dictionary = battle.unit_at(action.target)
 				if not target.is_empty(): visual_action["combat"] = battle.attack_forecast(caster, target, 1 if action.type == "unit_skill" else 0)
@@ -1672,8 +1672,7 @@ func _show_reach_detail(cell: Vector2i) -> void:
 	battle_brief.present(Art.get_texture(portrait), "敌军射程", tag, "\n\n".join(rows), RED)
 
 func _portrait_for(unit: Dictionary) -> String:
-	if unit.kind == "commander": return battle.hero(unit.side).portrait
-	return str(unit.get("card", {}).get("card_id", unit.kind))
+	return battle.unit_art_id(unit)
 
 func _escort_profile(unit: Dictionary) -> String:
 	var defense: int = int(unit.defense) + battle.terrain_defense(unit) + battle.aura_defense(unit)

@@ -5,15 +5,17 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.61.0-dev" src="https://img.shields.io/badge/version-0.61.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.62.0-dev" src="https://img.shields.io/badge/version-0.62.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 248 collectible cards, twenty-three preset decks and six Blender-rendered skirmish boards. **0.61.0-dev** Press V to see which enemies can strike from where they stand and which need to move. In the sixth drill, deploy your medic on the bank at C4 or the bridge at D5 and see who takes the arrow. [Download for Windows](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.61.0-dev) · [27 seconds of gameplay with sound](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.61.0-dev/SigilsAndOaths-0.61.0-dev-Bridgewatch.mp4)
+The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 248 collectible cards, twenty-three preset decks and six Blender-rendered skirmish boards. **0.62.0-dev** All 81 troop cards now have distinct battlefield figures. The Ferryman Pikeman keeps the grey beard, headband, copper armor and curved boat hook shown on his card, from deployment through cover and attack. [Download for Windows](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.62.0-dev) · [Deployment, movement and attack](docs/release/v062.md)
 
 ## In-game screenshots
+
+![The Ferryman Pikeman covering G1, with his original card on the left](docs/release/steam/gameplay/24-ferry-pikeman.png)
 
 ![On turn nine the archer on H3 is within the enemy rider's move-and-attack range](docs/release/steam/gameplay/23-rivergate-threat.png)
 
@@ -603,7 +605,7 @@ UI, forecast, map-art and skill-window checks require a graphical window. Earlie
 
 ## Current limits and artwork
 
-- Single-player development build for Windows x64. Open the MSI to install or extract the portable ZIP and keep its EXE and PCK together. [Download the development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.61.0-dev)
+- Single-player development build for Windows x64. Open the MSI to install or extract the portable ZIP and keep its EXE and PCK together. [Download the development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.62.0-dev)
 - Ranged attacks and spells currently do not check line of sight. AI diagnostics are not a substitute for competitive human playtesting.
 - One custom deck is saved locally at Godot's `user://custom_deck.json`; player data is not included in this repository.
 - One campaign autosave and a last-good backup use `user://campaign_autosave.json`. Starting over asks for in-game confirmation before replacing progress; these files are not published.

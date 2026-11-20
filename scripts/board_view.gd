@@ -794,7 +794,10 @@ func _draw_unit(unit: Dictionary, at: Vector2, tile: float, opacity: float = 1.0
 		var corner: Vector2 = at + Vector2(side * tile * 0.39, tile * 0.36)
 		draw_line(corner, corner + Vector2(-side * 9, 0), color, 2, true)
 		draw_line(corner, corner - Vector2(0, 8), color, 2, true)
-	var sprite_id: String = battle.hero(unit.side).portrait if unit.kind == "commander" else str(unit.kind)
+	var sprite_id: String = battle.unit_art_id(unit)
+	var direction: float = -1.0 if unit.side == 1 else 1.0
+	if pose >= 0 and absf(facing) > 0.05: direction = signf(facing)
+	if pose < 0 and sprite_id == "ferry_pikeman" and unit.get("guarding", false): pose = 0
 	var sprite: Texture2D = Art.get_texture("sprite_" + sprite_id)
 	var action_sprite: Texture2D = Art.get_action_texture(sprite_id, pose)
 	if action_sprite != null: sprite = action_sprite
@@ -808,14 +811,31 @@ func _draw_unit(unit: Dictionary, at: Vector2, tile: float, opacity: float = 1.0
 		draw_set_transform(Vector2.ZERO)
 		var extent: Vector2 = Vector2.ONE * tile * 0.97
 		var origin: Vector2 = -Vector2(extent.x / 2, extent.y * 0.60)
+		var anchor := at + height_offset
+		var angle := 0.0
+		var mirror := 1.0
 		if action_sprite != null:
 			# Measured source regions preserve long weapons; a shared scale and foot pivots avoid stretching or sliding.
 			var pixels_to_world: float = tile * Art.action_scale(sprite_id) / sprite.get_height()
 			extent = sprite.get_size() * pixels_to_world
 			# Match the standing artwork's existing foot baseline, avoiding a jump at pose transitions.
 			origin = Vector2(0, tile * 0.37) - Art.action_feet(sprite_id, pose) * pixels_to_world
-		# Mirror only the action artwork; faction, health and status labels stay readable.
-		draw_set_transform(at + height_offset, 0, Vector2(-1 if action_sprite != null and facing < -0.05 else 1, 1))
+			mirror = direction
+		elif sprite_id not in Art.UNIT_ORDER and sprite_id not in Art.HERO_ORDER:
+			# The illustrated piece keeps its costume through anticipation, contact and recovery.
+			# All card-specific standing cels share the same ankle pivot in a 256 px square.
+			anchor.y += tile * 0.37
+			origin = -Vector2(128, 246) * extent.y / 256.0
+			if pose < 0 and unit.id == motion_unit and motion_progress < 1.0 and motion_path.size() >= 2:
+				var travel: float = motion_progress * (motion_path.size() - 1)
+				var step: int = mini(int(travel), motion_path.size() - 2)
+				var stride: Vector2i = motion_path[step + 1] - motion_path[step]
+				if stride.x != 0: direction = signf(stride.x)
+				anchor.y -= tile * 0.035 * absf(sin(travel * TAU))
+			mirror = direction
+			if pose >= 0:
+				angle = [-0.11, 0.19, 0.045][pose] * direction
+		draw_set_transform(anchor, angle, Vector2(mirror, 1))
 		draw_texture_rect(sprite, Rect2(origin, extent), false, Color(0.72, 0.76, 0.78, opacity) if exhausted and action_sprite == null else Color(1, 1, 1, opacity))
 		draw_set_transform(Vector2.ZERO)
 		draw_circle(center + Vector2(-radius + 2, -radius + 2), 7.5, Color("0b1720"))
@@ -826,8 +846,7 @@ func _draw_unit(unit: Dictionary, at: Vector2, tile: float, opacity: float = 1.0
 		draw_circle(center, radius + 2, Color("0b1c25"))
 		draw_circle(center, radius - 1, Color("173b40") if unit.side == 0 else Color("482b2c"))
 		draw_arc(center, radius + 1, 0, TAU, 48, GOLD if unit.kind == "commander" else Color(color, 0.9), 2.3 if selected else 1.4, true)
-		var asset_id: String = battle.hero(unit.side).portrait if unit.kind == "commander" else str(unit.kind)
-		var portrait: Texture2D = Art.get_texture(asset_id)
+		var portrait: Texture2D = Art.get_texture(sprite_id)
 		if portrait != null:
 			Art.draw_round_portrait(self, portrait, center, radius - 2, Color(0.66, 0.69, 0.7, 1) if exhausted else Color.WHITE)
 			draw_circle(center + Vector2(-radius + 2, -radius + 2), 7.5, Color("0b1720"))

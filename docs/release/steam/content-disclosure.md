@@ -1,8 +1,10 @@
 # 内容披露与来源清单
 
-面向 Windows 0.61.0-dev。此表用于核对送审版本实际文件和商店页面。提交内容调查和确定地区评级需要发行方查看最终构建与 Steamworks 表单。Steamworks 把开发期间生成并交付给玩家的内容与运行中生成的内容分别调查。 [Steamworks 内容调查](https://partner.steamgames.com/doc/gettingstarted/contentsurvey)
+面向 Windows 0.62.0-dev。此表用于核对送审版本实际文件和商店页面。提交内容调查和确定地区评级需要发行方查看最终构建与 Steamworks 表单。Steamworks 把开发期间生成并交付给玩家的内容与运行中生成的内容分别调查。 [Steamworks 内容调查](https://partner.steamgames.com/doc/gettingstarted/contentsurvey)
 
-第六课使用游戏已有的河谷、人物肖像、音效和两首署名录音。射程边界和标记由运行时根据棋局绘制。 [本版随包资源与声明](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.61.0-dev/packed-sources-v061.json) · [本版实机](gameplay/22-bridge-reinforcement.png)
+75 张扩展部队棋子按本项目的原卡绘制。撑渡枪夫另有三张动作原画，站立、架枪、出枪和收势共四种姿态。美术在开发阶段生成并打包，游戏从本地数据包读取。 [原图编号、原卡列表和提示词](../../../assets/art/pieces/production.json) · [本版实机](gameplay/24-ferry-pikeman.png) · [随包来源清单](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.62.0-dev/packed-sources-v062.json)
+
+第六课使用游戏已有的河谷、人物肖像、音效和两首署名录音。射程边界和标记由运行时根据棋局绘制。 [0.61 随包资源与声明](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.61.0-dev/packed-sources-v061.json) · [0.61 实机](gameplay/22-bridge-reinforcement.png)
 
 0.60 的 Windows 数据包中实读出 177 项内容，共 178 份底层资源。两首授权录音、25 个事件音效、吊锤原画及游戏内音乐署名均已对应到构建提交。包外另附四份许可或版权声明。12 张地形绘制参考、1 张人物草稿和 23 份美术制作记录已从游戏数据包移出，源仓库保留制作材料。 [0.60 逐项清单](packed-sources-v060.json) · [音乐来源与许可](../../../assets/audio/MUSIC-CREDITS.txt) · [美术提示词](../../../assets/art/actions/hollow-hammer.md)
 

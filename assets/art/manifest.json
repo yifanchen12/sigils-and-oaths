@@ -2531,6 +2531,126 @@
       "sha256": "fdc0bfe07654f51d9a7b5d4bd1d9fdf96ea1bd27e39b0b8615672688fc87eef5",
       "source_bytes_preserved": true,
       "role": "Rivergate bronze drop hammer for the delayed Hollow Hammer field order."
+    },
+    {
+      "id": "pieces-afterglow-units-v1",
+      "path": "assets/art/pieces/afterglow-units-v1.png",
+      "prompt_file": "assets/art/pieces/production.json",
+      "size": [
+        1024,
+        768
+      ],
+      "mode": "RGBA",
+      "sha256": "dbcc3c1c9199f9a152bed3527f406902948b8977462bb3a7432ac7512f7a383f",
+      "role": "Card-specific battlefield figures in the same slots as the source portrait atlas."
+    },
+    {
+      "id": "pieces-ferry-pikeman-actions",
+      "path": "assets/art/pieces/ferry-pikeman-actions.png",
+      "prompt_file": "assets/art/pieces/production.json",
+      "size": [
+        1344,
+        256
+      ],
+      "mode": "RGBA",
+      "sha256": "279d7515ba141d0bf37a312cafd8d6d95a418b12811fa2eb43f20e2ccebcb45f",
+      "role": "Three combat cels for the Ferryman Pikeman."
+    },
+    {
+      "id": "pieces-glassroad-company-v1",
+      "path": "assets/art/pieces/glassroad-company-v1.png",
+      "prompt_file": "assets/art/pieces/production.json",
+      "size": [
+        1024,
+        768
+      ],
+      "mode": "RGBA",
+      "sha256": "16dfad944cbd7a12c883e46d3b22737f264252e4071d012b2054d5113d440696",
+      "role": "Card-specific battlefield figures in the same slots as the source portrait atlas."
+    },
+    {
+      "id": "pieces-levee-watch-v1",
+      "path": "assets/art/pieces/levee-watch-v1.png",
+      "prompt_file": "assets/art/pieces/production.json",
+      "size": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "sha256": "d89f235608b2fad640e19abb6b10b2790400c16a9917cce19ed61420f02f13e0",
+      "role": "Card-specific battlefield figures in the same slots as the source portrait atlas."
+    },
+    {
+      "id": "pieces-moorings-scouts-v1",
+      "path": "assets/art/pieces/moorings-scouts-v1.png",
+      "prompt_file": "assets/art/pieces/production.json",
+      "size": [
+        768,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "e3d30ad14471f322e00553a48b4c14c96de7bc5f6115563763f2b29462c5712e",
+      "role": "Card-specific battlefield figures in the same slots as the source portrait atlas."
+    },
+    {
+      "id": "pieces-moorings-veterans-v1",
+      "path": "assets/art/pieces/moorings-veterans-v1.png",
+      "prompt_file": "assets/art/pieces/production.json",
+      "size": [
+        768,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "4b3f185094af8c708f391e971cd3031edc688b49bf48c36f461ee614a097c45f",
+      "role": "Card-specific battlefield figures in the same slots as the source portrait atlas."
+    },
+    {
+      "id": "pieces-pilgrim-marches-v1",
+      "path": "assets/art/pieces/pilgrim-marches-v1.png",
+      "prompt_file": "assets/art/pieces/production.json",
+      "size": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "sha256": "51826b579a93ccc79fe46f2ec0143387864cbc0b0ff7b0003d3be4e2b236ed7d",
+      "role": "Card-specific battlefield figures in the same slots as the source portrait atlas."
+    },
+    {
+      "id": "pieces-pilgrim-watch-v1",
+      "path": "assets/art/pieces/pilgrim-watch-v1.png",
+      "prompt_file": "assets/art/pieces/production.json",
+      "size": [
+        768,
+        768
+      ],
+      "mode": "RGBA",
+      "sha256": "8e017f525e26dc4e08189279a3b9b98a67751f720e368be04f9a0370f8db8b6b",
+      "role": "Card-specific battlefield figures in the same slots as the source portrait atlas."
+    },
+    {
+      "id": "pieces-tidegate-units-v1",
+      "path": "assets/art/pieces/tidegate-units-v1.png",
+      "prompt_file": "assets/art/pieces/production.json",
+      "size": [
+        1024,
+        768
+      ],
+      "mode": "RGBA",
+      "sha256": "3dbf91e23446e967e054e0006e9982e30328b85b9e4820f5541fe14aa79da7b1",
+      "role": "Card-specific battlefield figures in the same slots as the source portrait atlas."
+    },
+    {
+      "id": "pieces-warfront-units-v1",
+      "path": "assets/art/pieces/warfront-units-v1.png",
+      "prompt_file": "assets/art/pieces/production.json",
+      "size": [
+        1024,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "4db05bd870953868b088a8b10f8622d1d84e616aa32fb4b641863efeddf53af9",
+      "role": "Card-specific battlefield figures in the same slots as the source portrait atlas."
     }
   ]
 }

@@ -1,6 +1,7 @@
 extends "res://tests/test_unit_skills_ui.gd"
 
 const Art = preload("res://scripts/art_library.gd")
+const CardFixture = preload("res://tests/fixtures/saved_battle.gd")
 
 func inspect_atlas() -> void:
 	for kind: String in Art.ACTION_SHEETS:
@@ -74,7 +75,7 @@ func run() -> void:
 	await show_strike("sword", "spear", true)
 	await stage()
 	var actor: Dictionary = troop("sword", Vector2i(4, 5))
-	var guard: Dictionary = troop("spear", Vector2i(5, 5), 1)
+	var guard: Dictionary = CardFixture.troop(game.battle, "ferry_pikeman", Vector2i(5, 5), 1)
 	var ally: Dictionary = troop("mage", Vector2i(4, 4), 1)
 	guard.pos = Vector2i(5, 4)
 	actor.hp = 30; actor.max_hp = 30; guard.hp = 30; guard.max_hp = 30
@@ -85,6 +86,9 @@ func run() -> void:
 	await select(actor)
 	await click(game.board.global_position + game.board.cell_center(ally.pos))
 	check(not game.board.combat.is_empty() and game.board.combat.forecast.intercepted, "guard uses interception timeline")
+	check(game.battle.unit_art_id(game.board.combat.defender) == "ferry_pikeman"
+		and game.board.combat.defender.id == guard.id and game.board.combat.protected.id == ally.id,
+		"the other side's ferryman keeps his own artwork when he steps in front of an ally")
 	inspect_timing(actor.id, guard.id, true)
 	await create_timer(0.19).timeout; await capture("action-pose-guard")
 	game.board.reset_effects()

@@ -582,6 +582,64 @@ func capture_chronicle(source: String, output: String) -> void:
 	if not require(reopened.load_campaign().ok and reopened.current().node == earned.node and FileAccess.get_sha256(TEST_SAVE) == original,"reopen the separate ending with the primary file intact"): return
 	print("CHRONICLE ", last.node, " -> ", earned.node, " | read ", read," | native route reloaded")
 
+func capture_ferryman(directory: String) -> void:
+	if not require(DirAccess.dir_exists_absolute(directory), "supply an existing capture directory"): return
+	var battle := Model.new(6205, "rivergate", "warden", "warden", "relay_watch", "relay_watch")
+	var board: Control = game.board
+	var followed := -1
+	var events := 0
+	for step: int in range(42):
+		var act := AI.choose(battle)
+		var moving: bool = act.type == "move" and act.get("unit_id", -1) == followed
+		var striking: bool = events == 2 and act.type == "attack" and act.get("unit_id", -1) == followed and act.target.x != battle.get_unit(followed).pos.x
+		var arriving: bool = followed == -1 and battle.active_side == 0 and act.type == "play" and battle.hand_card(0, act.card_uid).card_id == "ferry_pikeman"
+		if not (arriving or (moving and events == 1) or striking):
+			if not require(battle.apply_action(act).ok, "legal skirmish prefix"): return
+			continue
+		mount_battle(battle)
+		board.set_process(false)
+		await process_frame
+		var site: Vector2i = act.target if arriving else battle.get_unit(followed).pos
+		board.fit_map()
+		if arriving:
+			var room: float = (board.size.x - 570.0) / board.grid_rect().size.x
+			board.zoom_at(board.size * 0.5, clampf(room, 1.0, 1.65))
+			board.pan_by(Vector2(0, board.size.y * 0.55 - board.cell_center(site).y))
+		else:
+			board.zoom_at(board.cell_center(site), 2.5)
+			board.pan_by(board.size * Vector2(0.53, 0.51) - board.cell_center(site))
+		if not require(game._apply_with_feedback(act).ok, "ferryman action passes normal game rules"): return
+		var actor: Dictionary = battle.unit_at(site) if arriving else battle.get_unit(followed)
+		if arriving: followed = actor.id
+		if not require(actor.id == followed and battle.unit_art_id(actor) == "ferry_pikeman", "same deployed card and unit"): return
+		game.selected_unit = followed
+		game.board.hover_cell = actor.pos
+		game._on_cell_hovered(actor.pos)
+		game._refresh()
+		game._update_battle_peek()
+		var stage := "24-ferry-pikeman" if arriving else ("26-ferryman-moving" if moving else "25-ferryman-strike")
+		if moving:
+			if not require(board.motion_unit == followed and board.motion_tween != null, "actual movement tween"): return
+			board.motion_tween.pause()
+			board.motion_tween.custom_step(0.11)
+			if not require(board.motion_progress > 0 and board.motion_progress < 1, "sample mid-step"): return
+		elif striking:
+			board._process(0.23)
+			if not require(board.combat_pose(followed) == 1, "draw the contact cel of the actual attacker"): return
+		else:
+			board._process(1.10)
+			if not require(actor.guarding, "the new deployment is covering adjacent allies"): return
+			var resumed: Dictionary = Snapshot.restore(JSON.parse_string(JSON.stringify(Snapshot.capture(battle), "", true, true)))
+			if not require(resumed.ok and resumed.battle.unit_art_id(resumed.battle.get_unit(followed)) == "ferry_pikeman", "save restores this specific piece"): return
+		board.queue_redraw()
+		await capture(stage, directory.path_join(stage + ".png"))
+		if arriving and not require(game.battle_peek.is_visible_in_tree() and game.battle_peek.heading.text == actor.name
+				and game.battle_peek.portrait.texture == CastArt.Art.get_texture("ferry_pikeman"), "card portrait and deployed figure visible together"): return
+		if not require(Rect2(Vector2.ZERO, board.size).grow(-20).has_point(board.cell_center(site)), "the piece is inside the visible battlefield"): return
+		print("FERRYMAN | ", stage, " | legal prefix ", step, " | instance ", followed, " | ", battle.cell_name(site), " -> ", battle.cell_name(act.target))
+		events += 1
+	require(events == 3, "captured deployment, actual movement and contact for the same ferryman")
+
 func run() -> void:
 	if DisplayServer.get_name() == "headless":
 		push_error("A native renderer is required for gameplay screenshots")
@@ -589,7 +647,7 @@ func run() -> void:
 		return
 	cleanup()
 	var args := OS.get_cmdline_user_args()
-	if args.is_empty() or args[0] not in ["--frost-front","--signature-frames","--field-frames","--sky-frames","--campaign-field","--chronicle","--order-drill","--bridge-watch"]:
+	if args.is_empty() or args[0] not in ["--frost-front","--signature-frames","--field-frames","--sky-frames","--campaign-field","--chronicle","--order-drill","--bridge-watch","--ferryman"]:
 		DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(DIRECTORY))
 	target_view = SubViewport.new()
 	target_view.size = SIZE
@@ -605,7 +663,9 @@ func run() -> void:
 	game.audio.stop_playback()
 	AudioServer.set_bus_mute(0, true)
 	await process_frame
-	if args.size() == 2 and args[0] == "--bridge-watch":
+	if args.size() == 2 and args[0] == "--ferryman":
+		await capture_ferryman(args[1])
+	elif args.size() == 2 and args[0] == "--bridge-watch":
 		await capture_bridge_watch(args[1])
 	elif args.size() == 2 and args[0] == "--order-drill":
 		await capture_order_drill(args[1])

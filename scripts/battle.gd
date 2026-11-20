@@ -210,6 +210,10 @@ func hero(side: int) -> Dictionary:
 	if players[side].has("hero_display"): return players[side].hero_display
 	return HEROES.find(players[side].hero_id)
 
+func unit_art_id(unit: Dictionary) -> String:
+	if unit.kind == "commander": return str(hero(unit.side).portrait)
+	return str(unit.get("card", {}).get("card_id", unit.kind))
+
 func set_commander_identity(side: int, display_name: String, portrait_id: String) -> void:
 	# Campaign NPCs share a rules class, never the companion's personal identity.
 	var display: Dictionary = HEROES.find(players[side].hero_id).duplicate(true)

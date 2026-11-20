@@ -1,5 +1,5 @@
 {
-  "version": "0.61.0-dev",
+  "version": "0.62.0-dev",
   "images": [
     {
       "path": "key-art-v1.png",
@@ -397,8 +397,44 @@
       "bytes": 1407428,
       "sha256": "a19372870963194c836e3a2c5e0782a82472ebca436d2be7a0748a419dd6bd70",
       "capture": "Standard first-chapter bridge encounter, seed 1319. On side turn nine, the archer on H3 is in the red cavalry's move-and-attack range. On the next turn that rider moves from I6 to G3 and attacks H3."
+    },
+    {
+      "path": "gameplay/24-ferry-pikeman.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1736854,
+      "sha256": "d7fccfe6ec66dbce5d704d1eebf030a4b1bed00780bb8975181a571559ea49d2",
+      "capture": "Rivergate skirmish, seed 6205. After nine legal actions, the Relay Watch deploys its Ferryman Pikeman to G1. His illustrated card, bearded figure and cover status appear together."
+    },
+    {
+      "path": "gameplay/25-ferryman-strike.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1894928,
+      "sha256": "09bfc606dc348afb818286a4fc5b12c3421707a7d413265a2d8514520ac1ef3a",
+      "capture": "The same deployed ferryman attacks from H2 to I2 after 41 legal actions. Native frame at 0.23 seconds, with his copper armor, grey beard and curved boat hook."
+    },
+    {
+      "path": "gameplay/26-ferryman-moving.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1790719,
+      "sha256": "2f00273269662ed432ff126434858225aa732102be4291785165e86c9d0ce893",
+      "capture": "The same ferryman moves from G1 to H1 after 16 legal actions in the Rivergate match. The native movement tween is captured before reaching the destination."
     }
   ],
-  "viewport_screenshots": 23,
+  "viewport_screenshots": 26,
   "store_and_library_graphics_including_icons": 10
 }

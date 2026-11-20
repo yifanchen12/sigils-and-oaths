@@ -1,0 +1,171 @@
+{
+  "tool": "Built-in image_gen, reference-guided transparent sprite atlases",
+  "model": "The runtime does not expose a model version.",
+  "reference": "Each named unit uses its original card portrait in scripts/art_library.gd CARD_ATLASES. Row-major input contact sheets contain only the listed cards. The ferryman uses the fourth portrait on the first row of afterglow-units-v1.png.",
+  "processing": "tools/prepare_unit_pieces.py preserves native alpha, separates cells at clear gutters, anchors boots in 256 px standing cells and packs named pieces in the same slots as their cards. The ferryman poses share one fixed scale and use wider contact cells.",
+  "standing": [
+    {
+      "source": "exec-8856b373-8574-42c7-a6d8-780bf6acb3e4.png",
+      "cards": [
+        "reed_scout",
+        "gate_veteran",
+        "ridge_courier",
+        "ridge_archer",
+        "shore_medic",
+        "scribe_warden"
+      ],
+      "prompt": "Identity-preserve. Create ONE production sprite atlas for an original 2D tactical RPG. The reference is an ordered contact sheet of original portrait paintings. Translate each cell's specific subject into the exact corresponding full-body battlefield miniature in the SAME cell. 3/4 view facing right, relaxed alert stance with natural adult proportions, boots and entire weapon or whole horse visible. Clean hard-edged anime cel shading, strong dark navy outlines, broad light shapes, sparse interior details readable at 65px. Keep every individual face, age, skin tone, hairstyle, gender presentation, attire colors, weapons, horse and signature props faithful to its own portrait. Equal cell sizes on an invisible grid, all isolated, ample transparent gutters, centered on each individual cell and feet aligned near its bottom. A mounted rider and entire horse belong together. No written words or labels, card frames, borders, floor, bases, scenery, backdrop, cast shadows or common uniform. True alpha transparency. Sheet 3 columns x 2 rows, SIX cells. Row-major subject locks, separated by bars: young black-haired man, teal cloak, travel roll, map and knife | brown-haired braided woman, dark blue scale armor, spear | white-haired man in red mantle mounted on his dark bay horse | black-haired woman in lilac cape carrying crossbow | auburn-haired woman medic with pale leafy cloak and medical chest | dark-haired man, short beard, blue star robe and orb staff."
+    },
+    {
+      "source": "exec-0ddeff5d-f0ca-48b8-90f8-072b910e8283.png",
+      "cards": [
+        "breakwater_guard",
+        "bronze_watch",
+        "quay_lantern",
+        "lantern_bearer",
+        "mink_watcher",
+        "willow_outlook"
+      ],
+      "prompt": "Identity-preserve. Create ONE production sprite atlas for an original 2D tactical RPG. The reference is an ordered contact sheet of original portrait paintings. Translate each cell's specific subject into the exact corresponding full-body battlefield miniature in the SAME cell. 3/4 view facing right, relaxed alert stance with natural adult proportions, boots and entire weapon or whole horse visible. Clean hard-edged anime cel shading, strong dark navy outlines, broad light shapes, sparse interior details readable at 65px. Keep every individual face, age, skin tone, hairstyle, gender presentation, attire colors, weapons, horse and signature props faithful to its own portrait. Equal cell sizes on an invisible grid, all isolated, ample transparent gutters, centered on each individual cell and feet aligned near its bottom. A mounted rider and entire horse belong together. No written words or labels, card frames, borders, floor, bases, scenery, backdrop, cast shadows or common uniform. True alpha transparency. Sheet 3 columns x 2 rows, SIX cells. Row-major subject locks, separated by bars: black ponytail woman in white/gold armor with large white shield | dark goateed man in bronze helmet with blue plume and spear | black-haired woman in blue/cream robe holding a glowing lantern | rugged stubbled man with purple headband, patched red scarf and hand lantern | brunette woman, green cloak and recurved bow | short black-haired archer with gold hoop earring, teal cloak, quiver and bow."
+    },
+    {
+      "source": "exec-67670e55-c0bc-4d66-b0d0-d1c277f375fb.png",
+      "cards": [
+        "quartermaster",
+        "moth_cavalry",
+        "ash_notary",
+        "kiln_wardens",
+        "carriage_cloak",
+        "last_bridge_clinic"
+      ],
+      "prompt": "Identity-preserve. Create ONE production sprite atlas for an original 2D tactical RPG. The reference is an ordered contact sheet of original portrait paintings. Translate each cell's specific subject into the exact corresponding full-body battlefield miniature in the SAME cell. 3/4 view facing right, relaxed alert stance with natural adult proportions, boots and entire weapon or whole horse visible. Clean hard-edged anime cel shading, strong dark navy outlines, broad light shapes, sparse interior details readable at 65px. Keep every individual face, age, skin tone, hairstyle, gender presentation, attire colors, weapons, horse and signature props faithful to its own portrait. Equal cell sizes on an invisible grid, all isolated, ample transparent gutters, centered on each individual cell and feet aligned near its bottom. A mounted rider and entire horse belong together. No written words or labels, card frames, borders, floor, bases, scenery, backdrop, cast shadows or common uniform. True alpha transparency. Sheet 3 columns x 2 rows, SIX cells. Row-major subject locks, separated by bars: dark-haired man in blue and gold robe holding rolled ledgers | brown-haired woman with moth-embroidered white mantle riding bay horse | white-haired woman diviner with bun, blue/teal robes and ember brazier | black-haired woman with red ribbons, copper plates and spear | rugged dark-haired stubbled man in blue wave mantle and lamellar armor mounted on a horse | silver-streaked older woman, white flowered robe and copper medicine flask."
+    },
+    {
+      "source": "exec-3e7c265b-882a-404d-818a-f78e275ce910.png",
+      "cards": [
+        "copper_gate_requiem",
+        "cinder_runner",
+        "ridge_pioneer",
+        "quay_salver",
+        "reed_harrier",
+        "byway_guard"
+      ],
+      "prompt": "Identity-preserve. Create ONE production sprite atlas for an original 2D tactical RPG. The reference is an ordered contact sheet of original portrait paintings. Translate each cell's specific subject into the exact corresponding full-body battlefield miniature in the SAME cell. 3/4 view facing right, relaxed alert stance with natural adult proportions, boots and entire weapon or whole horse visible. Clean hard-edged anime cel shading, strong dark navy outlines, broad light shapes, sparse interior details readable at 65px. Keep every individual face, age, skin tone, hairstyle, gender presentation, attire colors, weapons, horse and signature props faithful to its own portrait. Equal cell sizes on an invisible grid, all isolated, ample transparent gutters, centered on each individual cell and feet aligned near its bottom. A mounted rider and entire horse belong together. No written words or labels, card frames, borders, floor, bases, scenery, backdrop, cast shadows or common uniform. True alpha transparency. Sheet 3 columns x 2 rows, SIX cells. Row-major subject locks, separated by bars: dark-haired man with short grey beard, gold eye mask and cracked white seal | brown-haired rider on a tan horse in red coat, navy pennant | short blue-black-haired male cliff scout in navy scarf with pack | dark-haired woman in tan apron carrying two blue medicine jugs | brown-haired archer, olive scarf and longbow | older bearded man, sand mantle, forked broad pike."
+    },
+    {
+      "source": "exec-fcfd0575-68e8-4611-a67e-2b501486d788.png",
+      "cards": [
+        "kiln_outrider",
+        "sandbar_physician",
+        "night_surveyor",
+        "levee_marshal",
+        "storm_saddle",
+        "indigo_gate_mage"
+      ],
+      "prompt": "Identity-preserve. Create ONE production sprite atlas for an original 2D tactical RPG. The reference is an ordered contact sheet of original portrait paintings. Translate each cell's specific subject into the exact corresponding full-body battlefield miniature in the SAME cell. 3/4 view facing right, relaxed alert stance with natural adult proportions, boots and entire weapon or whole horse visible. Clean hard-edged anime cel shading, strong dark navy outlines, broad light shapes, sparse interior details readable at 65px. Keep every individual face, age, skin tone, hairstyle, gender presentation, attire colors, weapons, horse and signature props faithful to its own portrait. Equal cell sizes on an invisible grid, all isolated, ample transparent gutters, centered on each individual cell and feet aligned near its bottom. A mounted rider and entire horse belong together. No written words or labels, card frames, borders, floor, bases, scenery, backdrop, cast shadows or common uniform. True alpha transparency. Sheet 3 columns x 2 rows, SIX cells. Row-major subject locks, separated by bars: dark-skinned woman in red scarf riding her brown horse holding ember lantern | silver-haired woman surgeon with sage robes and white dressings | older grey-haired stubbled man, brass eyeglass and compass, navy cape | older dark and silver-haired woman in navy coat, gold hoop and long pike | long brown-haired rider in silver armor and teal mantle mounted on black horse holding teal banner | short black-haired man in blue coat with small blue spell at hand."
+    },
+    {
+      "source": "exec-2d78722f-a1e1-42de-ada7-a7f02774e7ee.png",
+      "cards": [
+        "sunbreak_column",
+        "lamp_patrol",
+        "reed_watch",
+        "slate_quartermaster",
+        "bell_winch",
+        "rain_saddle"
+      ],
+      "prompt": "Identity-preserve. Create ONE production sprite atlas for an original 2D tactical RPG. The reference is an ordered contact sheet of original portrait paintings. Translate each cell's specific subject into the exact corresponding full-body battlefield miniature in the SAME cell. 3/4 view facing right, relaxed alert stance with natural adult proportions, boots and entire weapon or whole horse visible. Clean hard-edged anime cel shading, strong dark navy outlines, broad light shapes, sparse interior details readable at 65px. Keep every individual face, age, skin tone, hairstyle, gender presentation, attire colors, weapons, horse and signature props faithful to its own portrait. Equal cell sizes on an invisible grid, all isolated, ample transparent gutters, centered on each individual cell and feet aligned near its bottom. A mounted rider and entire horse belong together. No written words or labels, card frames, borders, floor, bases, scenery, backdrop, cast shadows or common uniform. True alpha transparency. Sheet 3 columns x 2 rows, SIX cells. Row-major subject locks, separated by bars: elderly white-bearded man in copper armor, red cloak and red standard | short brown-haired patrol in grey cap and teal rain cape with torch | black-haired man in deep green hood and stringed longbow | stocky curly dark-haired woman, indigo hood, cream sleeves and tally stick | bearded dark-haired man, teal coat and russet cape with spear and bell rope | black-haired standard bearer mounted on brown horse in green coat with red/white pennant."
+    },
+    {
+      "source": "exec-7e8db914-c5da-4f17-a7aa-31dab4e5c40a.png",
+      "cards": [
+        "levee_brothers",
+        "rising_oath_watch",
+        "lantern_surgeon",
+        "saltfield_runner",
+        "bank_pikeman",
+        "bastion_driller"
+      ],
+      "prompt": "Identity-preserve. Create ONE production sprite atlas for an original 2D tactical RPG. The reference is an ordered contact sheet of original portrait paintings. Translate each cell's specific subject into the exact corresponding full-body battlefield miniature in the SAME cell. 3/4 view facing right, relaxed alert stance with natural adult proportions, boots and entire weapon or whole horse visible. Clean hard-edged anime cel shading, strong dark navy outlines, broad light shapes, sparse interior details readable at 65px. Keep every individual face, age, skin tone, hairstyle, gender presentation, attire colors, weapons, horse and signature props faithful to its own portrait. Equal cell sizes on an invisible grid, all isolated, ample transparent gutters, centered on each individual cell and feet aligned near its bottom. A mounted rider and entire horse belong together. No written words or labels, card frames, borders, floor, bases, scenery, backdrop, cast shadows or common uniform. True alpha transparency. Sheet 3 columns x 2 rows, SIX cells. Row-major subject locks, separated by bars: pair TOGETHER in first cell only: dark-skinned woman with short sword and her dark-haired male companion with round shield, both in rust red | grey-haired older officer in dark green coat, red cape, yellow standard and spear | older grey-haired woman surgeon with green shirt, bone apron and scissors | dark-haired woman crouched in brick red headscarf with scroll case, teal shirt | black-haired bearded male pikeman, green cloak, cream shirt, steel spear | short auburn-haired woman in blue-gray plate vest with oversized brass engineer's square."
+    },
+    {
+      "source": "exec-fc3d48fe-661c-4447-913a-157f19c96526.png",
+      "cards": [
+        "shrike_saddler",
+        "sill_physician",
+        "shoal_arbalest",
+        "oathroad_mender",
+        "undertow_knight",
+        "claywatch_sage"
+      ],
+      "prompt": "Using this six-portrait reference, paint a single transparent spritesheet of those same six adults, each from head to foot, six even cells (3 columns × 2 rows) in exactly reference order. Keep their hairstyles, skin, clothes and equipment, strong ink line and flat anime cel shading. From left to right across rows: woman with blue flag riding golden horse, dark-haired field medic in off-white carrying bandages, ponytail teal-clad crossbowwoman, white-hooded lantern medic, blue wave-shield man, and curly-haired woman with a small brass navigation device. Game pieces in right-facing three-quarter standing poses, enough space between columns and rows and above all weapon tips. Isolated figures including entire horse on transparent background. No scenery, letters, frames or floor."
+    },
+    {
+      "source": "exec-4275026f-8fab-48f2-af17-ef0d73eb9a9d.png",
+      "cards": [
+        "crownless_vanguard",
+        "chalk_courier",
+        "ridge_listener",
+        "linen_lantern",
+        "coalroad_broker",
+        "shale_lancer"
+      ],
+      "prompt": "依据这张由六幅原卡组成的参考图制作一张透明的日式战棋棋子图集。严格按照原图的三列两行顺序，一格一个人物，保留各自的相貌、头发、衣着色块、性别、道具、马匹。请把截断的身体补画至双脚或马蹄，所有人之间留出足够透明空隙。按顺序是紫衣持金色麦旗的军官，穿黄披肩骑浅灰马的信使，穿绿色外衣的弓手，裹白色头巾提灯的医师，穿红棕甲拿两张文书的壮年男子，最后是穿绿色长甲持红缨长枪的女子。原画风格的清晰深色外轮廓和平涂阴影，全部是成年人，朝右侧四分之三角度，适合俯视平面战场。只画六枚完整的棋子，无文字、底座、场景、阴影、边框。Transparent alpha."
+    },
+    {
+      "source": "exec-284f4787-112f-408d-ac40-6fab3a355379.png",
+      "cards": [
+        "bracken_hussar",
+        "cairn_colossus",
+        "bellfoundry_oracle",
+        "whitecord_marshal",
+        "kiln_sparks",
+        "marl_shield"
+      ],
+      "prompt": "Draw a transparent atlas of six individual full-body cel-animation tactics miniatures from these six original portraits, preserving their individual identities, skin tone, costumes, hairstyles and gear. Match cells exactly in two rows of three. Top row: a ponytailed woman mounted on her black horse wearing russet armor, a broad male veteran in massive stone armor holding a sword, an elegant bell oracle wearing mauve robes with a handheld brass incense cup. Bottom row: woman spearmarshal in ivory armor bound with thick white cords, cropped red-haired apprentice in red scarf holding a handwarmer, bearded man in teal with a mustard shawl and tall wooden shield. All fully visible, separate upright right-facing three-quarter figures, deep ink contours with limited large cel shades. Real transparent background, wide empty gutters; no scenery, floor or writing."
+    },
+    {
+      "source": "exec-74aa04b3-97e6-4b4c-a57d-35b90f56ab5c.png",
+      "cards": [
+        "river_wasp",
+        "granary_warden",
+        "glassroad_runner",
+        "rook_pickets",
+        "reedglass_bow",
+        "saltband_surgeon"
+      ],
+      "prompt": "Identity-preserve. Create ONE production sprite atlas for an original 2D tactical RPG. The reference is an ordered contact sheet of original portrait paintings. Translate each cell's specific subject into the exact corresponding full-body battlefield miniature in the SAME cell. 3/4 view facing right, relaxed alert stance with natural adult proportions, boots and entire weapon or whole horse visible. Clean hard-edged anime cel shading, strong dark navy outlines, broad light shapes, sparse interior details readable at 65px. Keep every individual face, age, skin tone, hairstyle, gender presentation, attire colors, weapons, horse and signature props faithful to its own portrait. Equal cell sizes on an invisible grid, all isolated, ample transparent gutters, centered on each individual cell and feet aligned near its bottom. A mounted rider and entire horse belong together. No written words or labels, card frames, borders, floor, bases, scenery, backdrop, cast shadows or common uniform. True alpha transparency. Sheet 3 columns x 2 rows, SIX cells. Row-major subject locks, separated by bars: dark-skinned woman archer, black braids, ochre and ivory wrap, recurved bow | dark-haired bearded man with blue wave-patterned mantle and red-brown medical chest | black-haired woman with red trailing ribbons mounted on grey horse, white/blue courier coat | exactly two black-helmeted spear pickets together within this one cell, bridge standard behind them | brown-haired archer with straw reed mantle and teal-tipped arrows | woman with white headwrap, russet blouse and blue medicine bowl."
+    },
+    {
+      "source": "exec-d8a0d30c-a27b-4a44-a24b-6ea9a9952781.png",
+      "cards": [
+        "hinge_lancer",
+        "cinder_coxswain",
+        "quarry_bugler",
+        "copper_cistern"
+      ],
+      "prompt": "Identity-preserve. Create ONE production sprite atlas for an original 2D tactical RPG. The reference is an ordered contact sheet of original portrait paintings. Translate each cell's specific subject into the exact corresponding full-body battlefield miniature in the SAME cell. 3/4 view facing right, relaxed alert stance with natural adult proportions, boots and entire weapon or whole horse visible. Clean hard-edged anime cel shading, strong dark navy outlines, broad light shapes, sparse interior details readable at 65px. Keep every individual face, age, skin tone, hairstyle, gender presentation, attire colors, weapons, horse and signature props faithful to its own portrait. Equal cell sizes on an invisible grid, all isolated, ample transparent gutters, centered on each individual cell and feet aligned near its bottom. A mounted rider and entire horse belong together. No written words or labels, card frames, borders, floor, bases, scenery, backdrop, cast shadows or common uniform. True alpha transparency. Sheet 2 columns x 2 rows, FOUR cells. Row-major subject locks, separated by bars: black-haired woman officer with red ribbon and bronze lamellar wielding a long straight bridge pike | bearded muscular man in charcoal and burnt-orange cinder mantle with a boathook | copper-red-haired woman in slate-blue with long brass bugle and travel pack | black-haired woman in navy and cream apron with copper water jug."
+    },
+    {
+      "source": "exec-5955dc55-40f8-44cf-b411-950744d33291.png",
+      "cards": [
+        "breakline_sappers",
+        "skylens_sentinel",
+        "bellroad_captain",
+        "silver_bulwark"
+      ],
+      "prompt": "Identity-preserve. Create ONE production sprite atlas for an original 2D tactical RPG. The reference is an ordered contact sheet of original portrait paintings. Translate each cell's specific subject into the exact corresponding full-body battlefield miniature in the SAME cell. 3/4 view facing right, relaxed alert stance with natural adult proportions, boots and entire weapon or whole horse visible. Clean hard-edged anime cel shading, strong dark navy outlines, broad light shapes, sparse interior details readable at 65px. Keep every individual face, age, skin tone, hairstyle, gender presentation, attire colors, weapons, horse and signature props faithful to its own portrait. Equal cell sizes on an invisible grid, all isolated, ample transparent gutters, centered on each individual cell and feet aligned near its bottom. A mounted rider and entire horse belong together. No written words or labels, card frames, borders, floor, bases, scenery, backdrop, cast shadows or common uniform. True alpha transparency. Sheet 2 columns x 2 rows, FOUR cells. Row-major subject locks, separated by bars: two helmeted stocky sappers sharing one cell, red sashes, picks and padded cream coats | silver-haired woman in gold-embroidered navy cape carrying blue-glass telescope on a portable brass tripod | woman captain riding her dark bay horse, red cloak, bronze armor and red bell banner | dark-haired woman in silver plate with red head ribbons, red/white tower shield and spear."
+    }
+  ],
+  "ferryman": {
+    "source": "exec-1129d28a-4dcc-4a7d-8664-b3c61987055d.png",
+    "card": "ferry_pikeman",
+    "frames": [
+      "standing",
+      "brace",
+      "thrust",
+      "recover"
+    ],
+    "prompt": "Identity-preserve reference-to-gamesprite. Make ONE transparent four-frame 2 by 2 atlas for a Japanese cel-animated tactical RPG. All four cells depict exactly the SAME older, stocky male river ferryman from the supplied original portrait, facing right in 3/4 view. Match his swept tied salt-and-pepper hair, off-white tied headband, bushy pointed grey beard and moustache, broad jaw and arms, russet rectangular copper lamellar plates over indigo boatman's tunic, grey trousers, calf wraps, dark flat boots, rope belt and red-ribboned long crescent-bladed boat hook/polearm. Full body including feet and weapon end in every cell. Flat restrained cel shading, strong deep-navy ink contour, simple high contrast silver beard when reduced to 64px. Adult non-chibi proportions. FOUR evenly spaced separate cels in square cells, empty transparent wide gutters, all boots on same baseline within each cell, similar scale. Top left: natural standing on deck, confident with hook gripped upright. Top right: low defensive brace with both hands and weapon raised. Bottom left: short advancing thrust to the RIGHT with hook, weight on front foot. Bottom right: pull back after strike, weapon diagonal, shoulders settling. Wide enough separation; no overlapping cells, no ground or shadow, no text, numbers, frames, panel lines, glow, background or other characters. Real transparent background."
+  }
+}

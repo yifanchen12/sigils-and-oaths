@@ -45,6 +45,9 @@ SCREENSHOTS = {
     "21-hollow-hammer.png": "Second attempt in the fifth tutorial, seed 4215. The rider actually stopped at G6 after hitting the hand trap. The original bronze drop hammer descends over G5 and reaches one enemy.",
     "22-bridge-reinforcement.png": "Sixth drill on Rivergate, seed 4216. A three-mana medic is selected in hand. C4 and D5 both extend the D4 spearman's formation. The enemy archer can reach the bridge at D5 after moving.",
     "23-rivergate-threat.png": "Standard first-chapter bridge encounter, seed 1319. On side turn nine, the archer on H3 is in the red cavalry's move-and-attack range. On the next turn that rider moves from I6 to G3 and attacks H3.",
+    "24-ferry-pikeman.png": "Rivergate skirmish, seed 6205. After nine legal actions, the Relay Watch deploys its Ferryman Pikeman to G1. His illustrated card, bearded figure and cover status appear together.",
+    "25-ferryman-strike.png": "The same deployed ferryman attacks from H2 to I2 after 41 legal actions. Native frame at 0.23 seconds, with his copper armor, grey beard and curved boat hook.",
+    "26-ferryman-moving.png": "The same ferryman moves from G1 to H1 after 16 legal actions in the Rivergate match. The native movement tween is captured before reaching the destination.",
 }
 
 

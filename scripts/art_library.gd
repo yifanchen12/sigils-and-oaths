@@ -24,6 +24,9 @@ const NARRATIVE_SCENES: Dictionary = {
 	"scene_return_morning": "return-morning-v1"
 }
 const ACTION_SHEETS: Dictionary = {
+	"ferry_pikeman": {"path": "res://assets/art/pieces/ferry-pikeman-actions.png", "scale": 0.97,
+		"regions": [Rect2(0, 0, 448, 256), Rect2(448, 0, 448, 256), Rect2(896, 0, 448, 256)],
+		"feet": [Vector2(224, 246), Vector2(224, 246), Vector2(224, 246)]},
 	"sword": {"path": "res://assets/art/actions/sword-v2.png", "scale": 1.50,
 		"regions": [Rect2(0, 0, 724, 724), Rect2(724, 0, 836, 724), Rect2(1560, 0, 612, 724)],
 		"feet": [Vector2(324, 615), Vector2(352, 616), Vector2(334, 616)]},
@@ -184,6 +187,13 @@ static func get_texture(asset_id: String) -> Texture2D:
 		elif HERO_ORDER.has(kind):
 			var sprite_path: String = "res://assets/art/hero_sprites_cel.png" if ResourceLoader.exists("res://assets/art/hero_sprites_cel.png") else "res://assets/art/hero_sprites_mature.png"
 			texture = _atlas(sprite_path, HERO_ORDER.find(kind), 3, 1)
+		else:
+			for sheet: String in CARD_ATLASES:
+				var layout: Dictionary = CARD_ATLASES[sheet]
+				var slot: int = layout.ids.find(kind)
+				if slot >= 0:
+					texture = _atlas("res://assets/art/pieces/%s.png" % sheet, slot, layout.columns, layout.rows)
+					break
 	elif asset_id.begins_with("terrain_"):
 		var index: int = TERRAIN_ORDER.find(asset_id.trim_prefix("terrain_"))
 		if index >= 0: texture = _atlas("res://assets/art/terrain_%d.png" % (index / 3 + 1), index % 3, 3, 1)
