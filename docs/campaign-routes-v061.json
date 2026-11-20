@@ -1,0 +1,55 @@
+{
+  "version": "0.61.0-dev",
+  "exported_source_commit": "480060cc41003d5082e27dbb2dfa38572d8df20b",
+  "windows_pck_sha256": "e0e232873c7aea225d0ef80455d7589fbdc0d45aed00c9f669b134368bac3b79",
+  "method": "Official Godot runtime loading the released Windows pack, in two isolated processes per route. Start from New Campaign. Replay the recorded player choices and timed actions. Recompute every enemy action. Verify every final battle state, log, campaign cursor and the restored mid-battle checkpoint. Read the text field used by the story view on every reached dialogue and end page before advancing. Within each route and across routes, deduplicate the SHA-256 of the Han-only page text (U+3400–4DBF and U+4E00–9FFF). Count each distinct whole-page body once. Player reading, pacing and difficulty are pending independent assessment.",
+  "routes": [
+    {
+      "recorded_route": "standard-joint",
+      "ending_node": "joint_end",
+      "chapters": 18,
+      "dialogue_pages_advanced": 1550,
+      "distinct_displayed_bodies": 1568,
+      "distinct_displayed_han": 87276,
+      "battles": 26,
+      "wins": 16,
+      "losses": 10,
+      "legal_actions": 6256,
+      "enemy_actions_recomputed": 3051,
+      "different_final_battle_states_or_logs": 0,
+      "exact_mid_battle_resume": true
+    },
+    {
+      "recorded_route": "standard-split",
+      "ending_node": "split_end",
+      "chapters": 18,
+      "dialogue_pages_advanced": 1561,
+      "distinct_displayed_bodies": 1579,
+      "distinct_displayed_han": 87994,
+      "battles": 26,
+      "wins": 16,
+      "losses": 10,
+      "legal_actions": 6439,
+      "enemy_actions_recomputed": 3148,
+      "different_final_battle_states_or_logs": 0,
+      "exact_mid_battle_resume": true
+    },
+    {
+      "recorded_route": "hold-complete",
+      "ending_node": "hold_end",
+      "chapters": 18,
+      "dialogue_pages_advanced": 1551,
+      "distinct_displayed_bodies": 1569,
+      "distinct_displayed_han": 87481,
+      "battles": 33,
+      "wins": 16,
+      "losses": 17,
+      "legal_actions": 9044,
+      "enemy_actions_recomputed": 4434,
+      "different_final_battle_states_or_logs": 0,
+      "exact_mid_battle_resume": true
+    }
+  ],
+  "unique_displayed_bodies_across_routes": 1920,
+  "unique_displayed_han_across_routes": 107558
+}
