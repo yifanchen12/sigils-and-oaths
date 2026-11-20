@@ -7,7 +7,7 @@
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
 <p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.11.0" src="https://img.shields.io/badge/version-0.11.0-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
-**试玩 0.60.0-dev 开发预览。** 战前和剧情换上《Evening》，进入棋盘后淡入《Angevin》。在第五节「绊索与落锤」，你可以把同一名铁骑绊停在 F6 或 G6，看青铜吊锤砸空或命中。 [Windows 下载](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.60.0-dev) · [20.5 秒有声实机](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.60.0-dev/SigilsAndOaths-0.60.0-dev-Rivergate-Evening.mp4) · [完整介绍](https://github.com/yifanchen12/sigils-and-oaths/blob/v0.60.0-dev/README.md)
+**试玩 0.61.0-dev 开发预览。** 按 V 查看敌军原地和移动后的普攻射程。在新演练「桥头的医师」里，把手牌增援到南岸 C4 或桥上 D5，看北岸的游侠会射向谁。 [Windows 下载](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.61.0-dev) · [27 秒有声实机](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.61.0-dev/SigilsAndOaths-0.61.0-dev-Bridgewatch.mp4) · [完整介绍](https://github.com/yifanchen12/sigils-and-oaths/blob/v0.61.0-dev/README.md)
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
