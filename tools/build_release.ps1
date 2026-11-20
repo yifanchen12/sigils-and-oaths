@@ -67,6 +67,13 @@ $Executable = Join-Path $PackageDir 'SigilsAndOaths.exe'
 if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $Executable)) {
     throw "Godot export failed. See $ExportLog"
 }
+if ($Version -match '^([0-9]+\.[0-9]+\.[0-9]+)(?:-[0-9A-Za-z.-]+)?$') {
+    $ExpectedFileVersion = "$($Matches[1]).0"
+    $WindowsInfo = (Get-Item -LiteralPath $Executable).VersionInfo
+    if ($WindowsInfo.FileVersion -ne $ExpectedFileVersion -or $WindowsInfo.ProductVersion -ne $ExpectedFileVersion) {
+        throw "Windows file properties must match $ExpectedFileVersion. Check the Windows Desktop export preset."
+    }
+}
 $PackPath = Join-Path $PackageDir 'SigilsAndOaths.pck'
 if (-not (Test-Path -LiteralPath $PackPath)) { throw 'Export produced no PCK.' }
 

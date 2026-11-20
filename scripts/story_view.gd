@@ -372,6 +372,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		if event.keycode == KEY_ESCAPE:
 			_close_field()
 			get_viewport().set_input_as_handled()
+		elif event.keycode == KEY_V and field_view.reach_button.visible:
+			field_view.reach_button.button_pressed = not field_view.reach_button.button_pressed
+			get_viewport().set_input_as_handled()
 		return
 	if event.keycode == KEY_ESCAPE:
 		if showing_history: _toggle_history()

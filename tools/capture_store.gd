@@ -360,6 +360,7 @@ func select_drill_card(id: String) -> bool:
 
 func record_drill_frame(directory: String, screenshot: String = "") -> void:
 	var board: Control = game.board
+	game._position_battle_peek()
 	board._process(1.0/24.0)
 	if board.motion_tween != null and board.motion_tween.is_valid():
 		board.motion_tween.pause()
@@ -424,6 +425,84 @@ func capture_order_drill(directory: String) -> void:
 	manifest.store_string(JSON.stringify({"fps":24,"frames":filming_frame,"shots":[],"cues":cues,"full_board":true,"outcomes":outcomes,
 		"music":[{"file":"evening.ogg","frame":0},{"file":"angevin.ogg","frame":72}],"music_percent":55,"effects_percent":70},"\t"))
 	manifest.close()
+
+func capture_bridge_watch(directory: String) -> void:
+	if not require(DirAccess.dir_exists_absolute(directory), "supply an existing bridge film directory"): return
+	var cues: Array[Dictionary] = []
+	game.audio.stopping = false
+	game.audio.set_levels(55,70)
+	game.audio.cue_started.connect(func(cue: String) -> void:
+		cues.append({"sound":game.audio.CUES[cue].resource_path.get_file(), "frame":filming_frame}))
+	game.board.set_process(false)
+	for frame: int in range(48): await record_drill_frame(directory)
+	game.council.training_button.pressed.emit()
+	game.training_panel.lesson_choice.item_selected.emit(5)
+	var outcomes: Array[Dictionary] = []
+	for choice: int in range(2):
+		if choice == 1: game.training_panel.reset_button.pressed.emit()
+		var site: Vector2i = Course.MEDIC_SITES[choice]
+		if not require(game.training.lesson == 5 and game.reach_button.button_pressed, "the public sixth lesson opens with its range map"): return
+		for frame: int in range(188):
+			match frame:
+				4: if not select_drill_card("healer"): return
+				12:
+					game.board.hover_cell = site
+					game._on_cell_hovered(site)
+				62: game._on_cell_clicked(site,MOUSE_BUTTON_LEFT)
+				82: game._end_turn()
+			var still := "22-bridge-reinforcement" if frame == 52 and choice == 1 else ""
+			await record_drill_frame(directory,still)
+		var medic: Dictionary = game.battle.unit_at(site)
+		if not require(game.training.complete() and game.battle.turn == 3 and medic.get("hp") == [5,3][choice]
+				and game.training.bridge_target == ["铁壁枪卫","晨光医师"][choice], "record actual move, attack recipient and recovered health"): return
+		outcomes.append({"site":game.battle.cell_name(site),"defender":game.training.bridge_target,"medic_hp":medic.hp,
+			"d6_available":game.battle.deployment_cells(0).has(Vector2i(3,4))})
+	game.training_panel.exit_button.pressed.emit()
+	var campaign := Campaign.Campaign.new()
+	var b: Battle = Campaign.create_encounter(campaign.index.scenarios.c01_bridge).battle
+	var finish := await reach_action(b,func(model: Battle, action: Dictionary) -> bool: return model.turn == 9 and action.type == "end_turn")
+	if not require(not finish.is_empty() and b.active_side == 0, "reach the bridge player's actual ninth side turn"): return
+	mount_battle(b)
+	game.reach_button.button_pressed = true
+	var target := Vector2i(7,7)
+	var rider := b.unit_at(Vector2i(8,4))
+	if not require(rider.get("kind") == "cavalry" and b.unit_at(target).get("kind") == "archer" and BoardView.EnemyReach.level(game.board.enemy_reach,target,rider.id) == 1,
+			"H3 is a genuine move-only threat before the enemy turn"): return
+	game.board.zoom_at(game.board.cell_center(Vector2i(7,6)),1.35)
+	game.board.hover_cell = target
+	game._on_cell_hovered(target)
+	for frame: int in range(80):
+		b.advance_clock(1.0/24.0)
+		game._update_clock_ui(false)
+		await record_drill_frame(directory,"23-rivergate-threat" if frame == 55 else "")
+		if frame == 55 and not require(game.battle_brief.visible and not game.board.grid_rect().intersects(game.battle_brief.get_rect()),
+				"the source portrait stays in the right gutter and leaves the cavalry visible"): return
+	if not require(game._apply_with_feedback(finish).ok, "play the pending handoff"): return
+	var end_frame := filming_frame + 144
+	for frame: int in range(12): await record_drill_frame(directory)
+	var reached := false
+	var survivor_hp := -1
+	for i: int in range(28):
+		var reply := AI.choose(b)
+		var is_strike: bool = reply.type == "attack" and reply.unit_id == rider.id and reply.target == target
+		var origin: Vector2i = rider.pos
+		if not require(b.active_side == 1 and game._apply_with_feedback(reply).ok, "play the actual red turn through normal battle feedback"): return
+		var frames := maxi(18, ceili(game.board.action_duration * 24.0) + 8)
+		for frame: int in range(frames): await record_drill_frame(directory)
+		if is_strike:
+			reached = origin == Vector2i(6,7)
+			survivor_hp = b.unit_at(target).get("hp",0)
+			break
+	if not require(reached, "the same cavalry actually attacks H3 from G3 on turn ten"): return
+	if not require(filming_frame <= end_frame, "the full charge and hit fit the edit"): return
+	while filming_frame < end_frame: await record_drill_frame(directory)
+	var out := FileAccess.open(directory.path_join("shots.json"),FileAccess.WRITE)
+	if not require(out != null, "write native bridge capture metadata"): return
+	out.store_string(JSON.stringify({"fps":24,"frames":filming_frame,"shots":[],"cues":cues,"full_board":true,"outcomes":outcomes,
+		"campaign":{"id":"c01_bridge","seed":b.match_seed,"player_prefix":legal_prefix,"target":"H3","origin":"G3","rider_start":"I6","archer_hp_after":survivor_hp},
+		"music":[{"file":"evening.ogg","frame":0},{"file":"angevin.ogg","frame":48}],"music_percent":55,"effects_percent":70},"\t"))
+	out.close()
+	print("BRIDGE WATCH ",outcomes, " | campaign ",legal_prefix," actions before the view, I6 to G3 attacks H3")
 
 func capture_frost_front(output: String) -> void:
 	game._start_from_council("rivergate", "warden", "frost_engine", "glassroad_edict")
@@ -510,7 +589,7 @@ func run() -> void:
 		return
 	cleanup()
 	var args := OS.get_cmdline_user_args()
-	if args.is_empty() or args[0] not in ["--frost-front","--signature-frames","--field-frames","--sky-frames","--campaign-field","--chronicle","--order-drill"]:
+	if args.is_empty() or args[0] not in ["--frost-front","--signature-frames","--field-frames","--sky-frames","--campaign-field","--chronicle","--order-drill","--bridge-watch"]:
 		DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(DIRECTORY))
 	target_view = SubViewport.new()
 	target_view.size = SIZE
@@ -526,7 +605,9 @@ func run() -> void:
 	game.audio.stop_playback()
 	AudioServer.set_bus_mute(0, true)
 	await process_frame
-	if args.size() == 2 and args[0] == "--order-drill":
+	if args.size() == 2 and args[0] == "--bridge-watch":
+		await capture_bridge_watch(args[1])
+	elif args.size() == 2 and args[0] == "--order-drill":
 		await capture_order_drill(args[1])
 	elif args.size() == 2 and args[0] in ["--cast-frames","--signature-frames","--field-frames","--sky-frames"]:
 		await capture_cast_frames(args[1], args[0])

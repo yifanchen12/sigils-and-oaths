@@ -21,6 +21,10 @@ const ORDER_CENTER := Vector2i(6, 5)
 const RIDER_START := Vector2i(4, 4)
 const RIDER_DEST := Vector2i(7, 4)
 const SNARE_SITES := [Vector2i(5, 4), Vector2i(6, 4)]
+const BRIDGE_GUARD := Vector2i(3, 6)
+const BRIDGE_ARCHER := Vector2i(5, 3)
+const BRIDGE_POST := Vector2i(3, 3)
+const MEDIC_SITES := [Vector2i(2, 6), Vector2i(3, 5)]
 const LESSONS: Array[Dictionary] = [
 	{"name": "部署、移动与克制", "steps": [
 		{"type": "play", "card": "spear", "target": DEPLOY, "text": "选中手牌「铁壁枪卫」，部署到指挥官前方标出的空格。新部队必须贴着友军部署。"},
@@ -49,11 +53,16 @@ const LESSONS: Array[Dictionary] = [
 		{"type": "play", "card": "anchor_snare", "sites": SNARE_SITES, "text": "铁骑将沿箭头从 E6 直奔 H6。在 F6 或 G6 伏下最后两费的「锚索伏阵」。你想让它停在哪一格？"},
 		{"type": "end_turn", "text": "结束回合，让铁骑走进绊索。留意它停下的位置，以及落锤时还剩多少护盾和生命。"},
 	], "done": "可点「重练本节」，把同一根绊索往前或往后移一格。"},
+	{"name": "桥头的医师", "map": "rivergate", "archer_watch": true, "steps": [
+		{"type": "play", "card": "healer", "sites": MEDIC_SITES, "text": "枪卫守在 D4，身边有两处可增援。选中「晨光医师」，比较岸边 C4 和桥上 D5 的敌军射程，再选落点。按 V 可开关射程图。"},
+		{"type": "end_turn", "text": "结束回合。北岸游侠会从 F7 赶到 D7。他优先瞄准医师，够不到才会转向枪卫。"},
+	], "done": "两处落点都能照应枪卫。桥上的医师还能把下一次增援接到 D6。"},
 ]
 
 var lesson: int = 0
 var step_index: int = 0
 var scripted_spell_uid: int = -1
+var bridge_target: String = ""
 var resolving: bool = false
 
 func prepare(index: int) -> Battle:
@@ -61,6 +70,7 @@ func prepare(index: int) -> Battle:
 	step_index = 0
 	resolving = false
 	scripted_spell_uid = -1
+	bridge_target = ""
 	var defender: String = "warden" if lesson == 3 else "pyromancer"
 	var battle := Model.new(4211 + lesson, LESSONS[lesson].get("map", "greenwood"), "warden", defender)
 	battle.set_commander_identity(1, "演练守军", defender)
@@ -100,6 +110,11 @@ func prepare(index: int) -> Battle:
 			var rider := _place(battle, "carriage_cloak", RIDER_START, 1)
 			rider.shield = battle.definition("carriage_cloak").entry.shield
 			_set_mana(battle, 10)
+		5:
+			_supply(battle, "healer", 0)
+			_place(battle, "spear", BRIDGE_GUARD, 0)
+			_place(battle, "archer", BRIDGE_ARCHER, 1)
+			_set_mana(battle, 3)
 	return battle
 
 func current() -> Dictionary:
@@ -140,6 +155,11 @@ func announced_route(battle: Battle) -> Array[Vector2i]:
 
 func conclusion(battle: Battle) -> String:
 	var text: String = LESSONS[lesson].done
+	if LESSONS[lesson].get("archer_watch", false):
+		for site: Vector2i in MEDIC_SITES:
+			var medic := battle.unit_at(site)
+			if medic.is_empty(): continue
+			return "游侠在 D7 射中了%s。%s 的医师经过回合治疗，现有 %d/%d 生命。%s" % [bridge_target, battle.cell_name(site), medic.hp, medic.max_hp, text]
 	if not LESSONS[lesson].get("rider_route", false) or battle.last_order_event.is_empty(): return text
 	for pos: Vector2i in SNARE_SITES:
 		var rider: Dictionary = battle.unit_at(pos)
@@ -152,7 +172,15 @@ func enemy_response(battle: Battle) -> Dictionary:
 		1: return {"type": "attack", "unit_id": battle.unit_at(ENEMY_ARCHER).id, "target": PROTECTED}
 		3: return {"type": "play", "card_uid": scripted_spell_uid, "target": COUNTER_CENTER}
 		4: return {"type": "move", "unit_id": battle.unit_at(RIDER_START).id, "target": RIDER_DEST}
+		5: return {"type": "move", "unit_id": battle.unit_at(BRIDGE_ARCHER).id, "target": BRIDGE_POST}
 	return {}
+
+func bridge_shot(battle: Battle) -> Dictionary:
+	var archer := battle.unit_at(BRIDGE_POST)
+	var targets := battle.attack_targets(archer)
+	for site: Vector2i in MEDIC_SITES:
+		if targets.has(site): return {"type": "attack", "unit_id": archer.id, "target": site}
+	return {"type": "attack", "unit_id": archer.id, "target": BRIDGE_GUARD}
 
 func _set_mana(battle: Battle, amount: int) -> void:
 	battle.players[0].mana = amount

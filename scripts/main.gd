@@ -29,6 +29,8 @@ const RED := Color("f08b76")
 @onready var info_body: RichTextLabel = %InfoBody
 @onready var hint: Label = %Hint
 @onready var council: WarCouncil = %WarCouncil
+@onready var map_legend: Label = $Margin/Layout/BattleArea/Center/Legend
+@onready var default_legend: String = map_legend.text
 
 var battle: Battle
 var selected_card: int = -1
@@ -54,6 +56,7 @@ var deck_editor: DeckEditor
 var custom_deck: Dictionary = {}
 var custom_load_notice: String = ""
 var grid_button: Button
+var reach_button: Button
 var unit_skill_button: Button
 var unit_action_label: Label
 var using_unit_skill: bool = false
@@ -159,6 +162,12 @@ func _ready() -> void:
 	unit_actions.add_theme_constant_override("separation", 12)
 	board.get_parent().add_child(unit_actions)
 	board.get_parent().move_child(unit_actions, board.get_index())
+	reach_button = Button.new()
+	reach_button.text = BoardView.EnemyReach.CAPTION
+	reach_button.tooltip_text = BoardView.EnemyReach.HELP
+	reach_button.toggle_mode = true
+	reach_button.toggled.connect(_set_enemy_reach)
+	unit_actions.add_child(reach_button)
 	unit_action_label = Label.new()
 	unit_action_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	unit_action_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
@@ -199,6 +208,7 @@ func _ready() -> void:
 	story_view = StoryView.new()
 	story_view.theme = theme
 	add_child(story_view)
+	story_view.field_view.reach_button.toggled.connect(_set_enemy_reach)
 	story_view.advance_requested.connect(_advance_story)
 	story_view.choice_requested.connect(_choose_story)
 	story_view.battle_requested.connect(_begin_campaign_battle)
@@ -407,7 +417,7 @@ func _settings_visibility_changed() -> void:
 func _start_training() -> void:
 	if training != null: return
 	training_return = {"battle": battle, "started": has_started, "campaign": campaign_active,
-		"expanded": expanded_battlefield, "zoom":board.zoom, "pan":board.pan}
+		"expanded": expanded_battlefield, "zoom":board.zoom, "pan":board.pan, "enemy_reach": board.enemy_reach_visible}
 	campaign_active = false
 	has_started = true
 	training = Training.new()
@@ -422,6 +432,11 @@ func _load_training_lesson(index: int) -> void:
 	if Training.LESSONS[training.lesson].get("rider_route",false):
 		board.zoom_at(board.cell_center(Training.ORDER_CENTER),1.75)
 		board.reveal_cell(Training.ORDER_CENTER)
+	var bridge_watch: bool = Training.LESSONS[training.lesson].get("archer_watch", false)
+	_set_enemy_reach(bridge_watch or training_return.enemy_reach)
+	if bridge_watch:
+		board.zoom_at(board.cell_center(Training.BRIDGE_GUARD), 1.6)
+		board.reveal_cell(Training.BRIDGE_GUARD)
 	_update_clock_ui()
 	board.grab_focus()
 
@@ -440,6 +455,7 @@ func _leave_training() -> void:
 	var restored: Battle = previous.battle
 	council.open(current_map, current_hero, has_started and restored.winner == -1, current_deck, current_opponent)
 	_new_match(restored.match_seed, restored)
+	_set_enemy_reach(previous.enemy_reach)
 	if expanded_battlefield != previous.expanded: _toggle_battlefield()
 	board.zoom_at(board.size/2,previous.zoom)
 	board.pan_by(previous.pan-board.pan)
@@ -449,7 +465,8 @@ func _leave_training() -> void:
 
 func _finish_training_step(action: Dictionary) -> void:
 	if action.type == "end_turn":
-		training.resolving = not battle.Orders.for_side(battle, 0).is_empty()
+		var bridge_watch: bool = Training.LESSONS[training.lesson].get("archer_watch", false)
+		training.resolving = bridge_watch or not battle.Orders.for_side(battle, 0).is_empty()
 		var response: Dictionary = training.enemy_response(battle)
 		if not response.is_empty():
 			var result: Dictionary = _apply_with_feedback(response)
@@ -461,6 +478,14 @@ func _finish_training_step(action: Dictionary) -> void:
 		if training.resolving:
 			var token := generation
 			if not await _wait_training_presentation(token): return
+			if bridge_watch:
+				var shot: Dictionary = _apply_with_feedback(training.bridge_shot(battle))
+				if not shot.ok:
+					training.resolving = false
+					_show_hint(shot.message, true)
+					return
+				training.bridge_target = battle.get_unit(battle.last_combat.defender_id).name
+				if not await _wait_training_presentation(token): return
 			_apply_with_feedback({"type": "end_turn"})
 			_refresh()
 			if not await _wait_training_presentation(token): return
@@ -924,8 +949,8 @@ func _new_match(seed_value: int, prepared: Battle = null) -> void:
 	var enemy_deck: String = "balanced" if current_deck == "custom" else current_deck
 	if not current_opponent.is_empty(): enemy_deck = current_opponent
 	battle = prepared if prepared != null else BattleModel.new(seed_value, current_map, current_hero, enemy_id, current_deck, enemy_deck, 90, custom_deck)
-	battle.changed.connect(_on_battle_changed)
 	board.battle = battle
+	battle.changed.connect(_on_battle_changed)
 	board.fit_map()
 	board.reset_effects()
 	board.last_cell = Vector2i(-1, -1)
@@ -1026,6 +1051,7 @@ func _refresh() -> void:
 	_refresh_compact_hand()
 	%Cancel.disabled = selected_card == -1 and selected_unit == -1 and not using_hero
 	_update_board()
+	_update_reach_legend()
 	_update_info()
 	var context_hint: Dictionary = _attack_context()
 	var effect_hint: Dictionary = _effect_context()
@@ -1049,12 +1075,30 @@ func _mana_dots(player: Dictionary) -> String:
 	var extra: int = maxi(0, int(player.mana) - int(player.max_mana))
 	return "◆".repeat(mini(int(player.mana), int(player.max_mana))) + "◇".repeat(maxi(0, int(player.max_mana) - int(player.mana))) + ("[color=#9bc6e7]+%d临时[/color]" % extra if extra > 0 else "")
 
+func _set_enemy_reach(value: bool) -> void:
+	reach_button.set_pressed_no_signal(value)
+	board.enemy_reach_visible = value
+	story_view.field_view.set_enemy_reach(value)
+	_update_reach_legend()
+	if battle != null: _update_battle_peek()
+
+func _update_reach_legend() -> void:
+	var showing := board.enemy_reach_visible and battle != null and battle.winner == -1
+	map_legend.visible = showing or not expanded_battlefield
+	var detail := board.enemy_reach_text(hovered_cell)
+	board.tooltip_text = detail if showing else ""
+	if map_legend.get_theme_font_size("font_size") != (15 if showing else 12):
+		map_legend.add_theme_font_size_override("font_size", 15 if showing else 12)
+		map_legend.add_theme_color_override("font_color", Color("f1cc9d") if showing else Color("8ca8a1"))
+	if showing:
+		map_legend.text = BoardView.EnemyReach.legend(battle) + "　｜　" + (detail if not detail.is_empty() else "指向敌军查看单队，指向地格查看攻击来源")
+	else: map_legend.text = default_legend
+
 func _toggle_battlefield() -> void:
 	expanded_battlefield = not expanded_battlefield
 	%MapName.get_parent().hud_visible = true
 	%MapName.get_parent().custom_minimum_size.y = 72
 	$Margin/Layout/Shortcuts.visible = not expanded_battlefield
-	$Margin/Layout/BattleArea/Center/Legend.visible = not expanded_battlefield
 	%Header.hide()
 	%Status.hide()
 	%BattleSummary.hide()
@@ -1130,6 +1174,7 @@ func _update_board() -> void:
 			board.deploy = board.deploy.filter(safe)
 		if step.has("sites"):
 			board.spell_targets = board.spell_targets.filter(func(cell: Vector2i) -> bool: return step.sites.has(cell))
+			board.deploy = board.deploy.filter(func(cell: Vector2i) -> bool: return step.sites.has(cell))
 	_update_attack_overlay()
 
 func _select_card(uid: int) -> void:
@@ -1434,6 +1479,7 @@ func _attack_hint(context: Dictionary) -> String:
 func _on_cell_hovered(cell: Vector2i) -> void:
 	if is_queued_for_deletion() or not is_inside_tree(): return
 	hovered_cell = cell
+	_update_reach_legend()
 	_update_attack_overlay()
 	_update_info()
 	var unit: Dictionary = battle.get_unit(selected_unit)
@@ -1591,7 +1637,9 @@ func _update_battle_peek() -> void:
 			battle_peek.present(Art.get_texture(card.id), card.name, _orders_at(hovered_cell), card.text, TEAL if order.side == 0 else RED)
 			break
 	var enemy: Dictionary = battle.commander(1)
-	if not enemy.is_empty():
+	if board.enemy_reach_visible and battle.winner == -1 and battle.inside(hovered_cell):
+		_show_reach_detail(hovered_cell)
+	elif not enemy.is_empty():
 		var enemy_hero: Dictionary = battle.hero(1)
 		var enemy_player: Dictionary = battle.players[1]
 		var weather_text: String = battle.WEATHER[battle.weather].name + (" · 剩余%d回合" % battle.weather_remaining if battle.weather_remaining > 0 else "")
@@ -1600,6 +1648,28 @@ func _update_battle_peek() -> void:
 		var opponent_label: String = "对手预组 · " + str(battle.deck(1).name) if training == null else "演练守军"
 		battle_brief.present(Art.get_texture(enemy_hero.portrait), enemy.name, opponent_label, body, RED)
 	_position_battle_peek()
+
+func _show_reach_detail(cell: Vector2i) -> void:
+	var terrain_name: String = battle.TERRAIN[battle.ground(cell)].name
+	var tag := battle.cell_name(cell) + " · " + terrain_name
+	var occupant := battle.unit_at(cell)
+	if not occupant.is_empty() and occupant.side == 1:
+		battle_brief.present(Art.get_texture(_portrait_for(occupant)), occupant.name, tag + " · 单队射程",
+			"双齿内可原地攻击。单齿内需要先移动。\n\n指向其他地格，可查看全军有哪些部队够得到那里。", RED)
+		return
+	var entry: Dictionary = board.enemy_reach.get(cell,{})
+	if entry.is_empty():
+		var body := "按当前阵形，现有敌军的普通攻击够不到这里。" if battle.passable(cell) else "部队无法在这里驻扎。"
+		battle_brief.present(Art.get_texture("terrain_" + battle.ground(cell)), "地格侦察", tag, body, TEAL)
+		return
+	var rows := PackedStringArray()
+	var portrait := ""
+	for group: String in ["direct","advance"]:
+		for id: int in entry[group]:
+			var actor := battle.get_unit(id)
+			if portrait.is_empty(): portrait = _portrait_for(actor)
+			rows.append("%s\n%s" % [actor.name, battle.cell_name(actor.pos) + (" 原地可攻" if group == "direct" else " → " + battle.cell_name(entry[group][id]) + " 后可攻")])
+	battle_brief.present(Art.get_texture(portrait), "敌军射程", tag, "\n\n".join(rows), RED)
 
 func _portrait_for(unit: Dictionary) -> String:
 	if unit.kind == "commander": return battle.hero(unit.side).portrait
@@ -1683,6 +1753,9 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 	elif event.keycode == KEY_G:
 		grid_button.button_pressed = not grid_button.button_pressed
+		get_viewport().set_input_as_handled()
+	elif event.keycode == KEY_V:
+		reach_button.button_pressed = not reach_button.button_pressed
 		get_viewport().set_input_as_handled()
 	elif event.keycode == KEY_Q:
 		_select_unit_skill()

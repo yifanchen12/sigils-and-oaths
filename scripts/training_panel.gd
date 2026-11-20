@@ -56,7 +56,10 @@ func update_step(training: RefCounted, battle: Battle) -> void:
 	continue_button.text = "完成练习" if training.lesson == Training.LESSONS.size() - 1 else "下一课"
 	if training.resolving:
 		progress.text = "结算中"
-		instruction.text = "铁骑正沿路线移动，留意绊索收紧的位置。" if battle.active_side == 1 else "空锤正在落下，留意铁骑和金色十字的位置。"
+		if lesson.get("archer_watch", false):
+			instruction.text = "游侠正在桥北就位。留意箭矢飞向哪支部队，以及医师在回合开始时的救护。"
+		else:
+			instruction.text = "铁骑正沿路线移动，留意绊索收紧的位置。" if battle.active_side == 1 else "空锤正在落下，留意铁骑和金色十字的位置。"
 		return
 	progress.text = "本节完成" if training.complete() else "第 %d / %d 步" % [training.step_index + 1, lesson.steps.size()]
 	var step: Dictionary = training.current()

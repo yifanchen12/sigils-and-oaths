@@ -43,6 +43,8 @@ SCREENSHOTS = {
     "19-chapter-chronicle.png": "Chapter archive opened from the standard river, relief and school campaign ending. The archive displays the chosen split covenant and its reached epilogue.",
     "20-snare-training.png": "The fifth native tutorial on Citadel. Hollow Hammer marks G5 and the selected two-mana hand trap can stop the announced E6 to H6 rider at F6 or G6.",
     "21-hollow-hammer.png": "Second attempt in the fifth tutorial, seed 4215. The rider actually stopped at G6 after hitting the hand trap. The original bronze drop hammer descends over G5 and reaches one enemy.",
+    "22-bridge-reinforcement.png": "Sixth drill on Rivergate, seed 4216. A three-mana medic is selected in hand. C4 and D5 both extend the D4 spearman's formation. The enemy archer can reach the bridge at D5 after moving.",
+    "23-rivergate-threat.png": "Standard first-chapter bridge encounter, seed 1319. On side turn nine, the archer on H3 is in the red cavalry's move-and-attack range. On the next turn that rider moves from I6 to G3 and attacks H3.",
 }
 
 

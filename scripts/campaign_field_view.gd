@@ -22,6 +22,7 @@ var record_heading: Label
 var record: Label
 var opening_button: Button
 var previous_button: Button
+var reach_button: Button
 var deploy_button: Button
 var sidebar: PanelContainer
 var scroll: ScrollContainer
@@ -59,7 +60,8 @@ func _ready() -> void:
 	board.cell_clicked.connect(func(cell: Vector2i, button: int) -> void:
 		if button == MOUSE_BUTTON_LEFT: inspect(cell))
 	board.cell_hovered.connect(func(cell: Vector2i) -> void:
-		if board.keyboard_active and board.battle != null and board.battle.inside(cell): inspect(cell))
+		if (board.keyboard_active or board.enemy_reach_visible) and board.battle != null and board.battle.inside(cell):
+			inspect(cell, not board.keyboard_active))
 	sidebar = PanelContainer.new()
 	sidebar.add_theme_stylebox_override("panel", _surface(Color("1a2b35"), Color("516264"), 16))
 	body.add_child(sidebar)
@@ -85,6 +87,13 @@ func _ready() -> void:
 	column.add_child(footer)
 	opening_button = _button(footer, "本次开局", switch_requested.emit.bind(false))
 	previous_button = _button(footer, "上次终局", switch_requested.emit.bind(true))
+	reach_button = Button.new()
+	reach_button.text = Board.EnemyReach.CAPTION
+	reach_button.tooltip_text = Board.EnemyReach.HELP
+	reach_button.toggle_mode = true
+	reach_button.custom_minimum_size.y = 44
+	reach_button.toggled.connect(set_enemy_reach)
+	footer.add_child(reach_button)
 	var controls := _label(footer, 16, MUTED)
 	controls.text = "点选地格或用方向键查看 · 滚轮缩放 · 中键拖动"
 	controls.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -176,6 +185,7 @@ func open(field: Battle, setup: Dictionary, mode: String, review: bool, attempts
 	opening_button.disabled = not previous
 	previous_button.disabled = previous
 	deploy_button.visible = not previous
+	reach_button.visible = not previous
 	scroll.scroll_vertical = 0
 	show()
 	inspect(focus)
@@ -188,12 +198,18 @@ func _marker(label: String, cell: Vector2i, show_occupant: bool = false) -> void
 		caption += " · " + ("空" if unit.is_empty() else ("我方" if unit.side == 0 else "敌方"))
 	_button(points, caption, func() -> void: board.reveal_cell(cell); inspect(cell); board.grab_focus())
 
-func inspect(cell: Vector2i) -> void:
+func set_enemy_reach(value: bool) -> void:
+	reach_button.set_pressed_no_signal(value)
+	if board.enemy_reach_visible == value: return
+	board.enemy_reach_visible = value
+	if is_visible_in_tree(): inspect(selected_cell)
+
+func inspect(cell: Vector2i, from_pointer: bool = false) -> void:
 	var field: Battle = board.battle
 	if field == null or not field.inside(cell): return
 	selected_cell = cell
 	board.keyboard_cell = cell
-	board.keyboard_active = true
+	board.keyboard_active = not from_pointer
 	board.hover_cell = cell
 	var ground: Dictionary = field.TERRAIN[field.ground(cell)]
 	var unit := field.unit_at(cell)
@@ -202,4 +218,6 @@ func inspect(cell: Vector2i) -> void:
 	if not unit.is_empty():
 		detail.text += "\n%s · %s   生命 %d/%d   护盾 %d" % ["我方" if unit.side == 0 else "敌方", unit.name, unit.hp, unit.max_hp, unit.shield]
 		if unit.get("guarding", false) and int(unit.rooted_turns) == 0: detail.text += "\n正在援护相邻友军"
+	if board.enemy_reach_visible and not previous:
+		detail.text += "\n\n" + Board.EnemyReach.legend(field) + "\n" + board.enemy_reach_text(cell)
 	board.queue_redraw()

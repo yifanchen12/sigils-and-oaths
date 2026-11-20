@@ -236,27 +236,27 @@ func aura_defense(unit: Dictionary) -> int:
 	var leader: Dictionary = commander(unit.side)
 	return 1 if not leader.is_empty() and distance(unit.pos, leader.pos) == 1 else 0
 
-func movement_allowance(unit: Dictionary) -> int:
+func movement_allowance(unit: Dictionary, sky: String = weather) -> int:
 	if unit.move == 0: return 0
 	var allowance: int = int(unit.move)
 	if unit.kind == "cavalry" and ground(unit.pos) in ["road", "bridge"]: allowance += 1
-	if weather == "snow": allowance -= 1
-	if weather == "tailwind": allowance += 1
+	if sky == "snow": allowance -= 1
+	if sky == "tailwind": allowance += 1
 	return maxi(1, allowance)
 
-func movement_cost(unit: Dictionary, cell: Vector2i) -> int:
+func movement_cost(unit: Dictionary, cell: Vector2i, sky: String = weather) -> int:
 	if not passable(cell): return 999
 	var cost: int = 1
 	if ground(cell) == "hill": cost = 2
 	if ground(cell) == "forest":
 		cost = 3 if unit.get("kind", "") == "cavalry" else (1 if unit.get("kind", "") in ["sword", "spear"] else 2)
-	if weather == "rain" and unit.get("kind", "") == "cavalry" and ground(cell) not in ["road", "bridge"]: cost += 1
+	if sky == "rain" and unit.get("kind", "") == "cavalry" and ground(cell) not in ["road", "bridge"]: cost += 1
 	return cost
 
-func attack_range(unit: Dictionary) -> int:
+func attack_range(unit: Dictionary, sky: String = weather) -> int:
 	var result: int = unit.range
 	if ground(unit.pos) == "hill" and result > 1: result += 1
-	if weather == "fog": result = mini(2, result)
+	if sky == "fog": result = mini(2, result)
 	return result
 
 func get_unit(unit_id: int) -> Dictionary:
@@ -326,7 +326,7 @@ func deployment_cells(side: int) -> Array[Vector2i]:
 				result.append(cell)
 	return result
 
-func walk_distances(origin: Vector2i, unit: Dictionary = {}, occupancy_overrides: Dictionary = {}, max_cost: int = -1) -> Dictionary:
+func walk_distances(origin: Vector2i, unit: Dictionary = {}, occupancy_overrides: Dictionary = {}, max_cost: int = -1, sky: String = weather) -> Dictionary:
 	# Overrides forecast a move/deployment without editing the live board.
 	var distances: Dictionary = {origin: 0}
 	var queue: Array[Vector2i] = [origin]
@@ -339,22 +339,23 @@ func walk_distances(origin: Vector2i, unit: Dictionary = {}, occupancy_overrides
 			var cell: Vector2i = current + direction
 			if not passable(cell) or bool(occupancy_overrides.get(cell, not unit_at(cell).is_empty())):
 				continue
-			var cost: int = int(distances[current]) + movement_cost(unit, cell)
+			var cost: int = int(distances[current]) + movement_cost(unit, cell, sky)
 			if max_cost >= 0 and cost > max_cost: continue
 			if not distances.has(cell) or cost < int(distances[cell]):
 				distances[cell] = cost
 				if not queue.has(cell): queue.append(cell)
 	return distances
 
-func movement_cells(unit: Dictionary, occupancy_overrides: Dictionary = {}) -> Array[Vector2i]:
+func movement_cells(unit: Dictionary, occupancy_overrides: Dictionary = {}, sky: String = weather) -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
 	if unit.is_empty() or unit.moved or unit.attacked or unit.move == 0 or int(unit.get("rooted_turns", 0)) > 0:
 		return result
 	if unit.summoning and not can_vanguard_move(unit):
 		return result
-	var distances: Dictionary = walk_distances(unit.pos, unit, occupancy_overrides, movement_allowance(unit))
+	var allowance := movement_allowance(unit, sky)
+	var distances: Dictionary = walk_distances(unit.pos, unit, occupancy_overrides, allowance, sky)
 	for cell: Vector2i in distances:
-		if cell != unit.pos and int(distances[cell]) <= movement_allowance(unit):
+		if cell != unit.pos:
 			result.append(cell)
 	return result
 
@@ -810,6 +811,15 @@ func advance_clock(seconds: float) -> bool:
 	end_turn()
 	return true
 
+static func ready_unit_for_turn(unit: Dictionary) -> void:
+	unit.skill_used = false
+	unit.guarding = false
+	unit.moved = false
+	unit.attacked = false
+	unit.summoning = false
+	unit.last_move_distance = 0
+	unit.rooted_turns = maxi(0, int(unit.get("rooted_turns", 0)) - 1)
+
 func _start_turn() -> void:
 	time_remaining = turn_time_limit
 	hand_played_this_turn = false
@@ -829,13 +839,7 @@ func _start_turn() -> void:
 	player.mana = player.max_mana
 	for unit: Dictionary in units:
 		if unit.side == active_side:
-			unit["skill_used"] = false
-			unit["guarding"] = false
-			unit.moved = false
-			unit.attacked = false
-			unit.summoning = false
-			unit.last_move_distance = 0
-			unit.rooted_turns = maxi(0, int(unit.get("rooted_turns", 0)) - 1)
+			ready_unit_for_turn(unit)
 			if ground(unit.pos) == "ruins" or (hero(active_side).id == "grove" and ground(unit.pos) == "forest"):
 				unit.hp = mini(int(unit.max_hp), int(unit.hp) + 1)
 	for healer: Dictionary in units:

@@ -11,11 +11,24 @@ const Art = preload("res://scripts/art_library.gd")
 const Landscape = preload("res://scripts/battlefield_art.gd")
 const Painted = preload("res://scripts/map_artwork.gd")
 const CastArt = preload("res://scripts/cast_art.gd")
+const EnemyReach = preload("res://scripts/enemy_reach.gd")
 const BLUE := Color("70d3ba")
 const RED := Color("ef8c79")
 const GOLD := Color("c6ab72")
 
-var battle: Battle
+var battle: Battle:
+	set(value):
+		if battle != null and battle.changed.is_connected(_refresh_enemy_reach):
+			battle.changed.disconnect(_refresh_enemy_reach)
+		battle = value
+		if battle != null: battle.changed.connect(_refresh_enemy_reach)
+		_refresh_enemy_reach()
+var enemy_reach_visible := false:
+	set(value):
+		if enemy_reach_visible == value: return
+		enemy_reach_visible = value
+		_refresh_enemy_reach()
+var enemy_reach: Dictionary = {}
 var selected_unit: int = -1
 var predicted_losses: Dictionary = {}
 var predicted_gains: Dictionary = {}
@@ -96,6 +109,14 @@ func _process(delta: float) -> void:
 	if not reduced_motion and battle != null and (battle.weather != "clear" or battle.map_definition.theme in ["river", "harbor"]) and redraw_clock > 0.05:
 		redraw_clock = 0.0
 		queue_redraw()
+
+func _refresh_enemy_reach() -> void:
+	enemy_reach = EnemyReach.project(battle, 1) if enemy_reach_visible else {}
+	queue_redraw()
+
+func enemy_reach_text(cell: Vector2i) -> String:
+	if not enemy_reach_visible or battle == null or battle.winner != -1: return ""
+	return EnemyReach.describe(battle, enemy_reach, cell)
 
 func grid_rect() -> Rect2:
 	if battle == null: return Rect2()
@@ -435,11 +456,16 @@ func _draw() -> void:
 				Landscape.draw_ground(self, battle, ground_cell, ground_rect, visual_time)
 	else:
 		Painted.draw_water_motion(self, battle, grid, visual_time)
+	var focus_id := -1
+	if enemy_reach_visible:
+		var hovered := battle.unit_at(hover_cell)
+		if not hovered.is_empty() and hovered.side == 1: focus_id = hovered.id
 	for y: int in range(battle.height):
 		for x: int in range(battle.width):
 			var cell := Vector2i(x, y)
 			var rect := Rect2(grid.position + Vector2(x, y) * tile, Vector2.ONE * tile)
 			_draw_terrain(cell, rect, painted)
+			if enemy_reach.has(cell): _draw_enemy_reach(cell, rect, focus_id)
 			if not battle.objective.is_empty():
 				var index: int = battle.objective.cells.find([x, y])
 				if index >= 0: _draw_objective_cell(rect, cell, index)
@@ -532,6 +558,30 @@ func _draw() -> void:
 	if keyboard_active and has_focus():
 		var rect := Rect2(grid.position + Vector2(keyboard_cell) * tile, Vector2.ONE * tile)
 		draw_rect(rect.grow(-6), GOLD, false, 2)
+
+func _draw_enemy_reach(cell: Vector2i, rect: Rect2, focus_id: int) -> void:
+	var level := EnemyReach.level(enemy_reach, cell, focus_id)
+	if level == 0: return
+	var direct := level == 2
+	var ink := Color("ff978e") if direct else Color("ffc784")
+	var shadow := Color("44262a")
+	var tile := rect.size.x
+	draw_rect(rect, Color("99384e40") if direct else Color("c77b4621"))
+	var corners := PackedVector2Array([rect.position, Vector2(rect.end.x, rect.position.y), rect.end, Vector2(rect.position.x, rect.end.y)])
+	var normals: Array[Vector2i] = [Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN, Vector2i.LEFT]
+	for index: int in range(4):
+		if EnemyReach.level(enemy_reach, cell + normals[index], focus_id) >= level: continue
+		var a := corners[index]
+		var b := corners[(index + 1) % 4]
+		draw_line(a, b, shadow, 3.6, true)
+		if direct: draw_line(a, b, ink, 2.3, true)
+		else: draw_dashed_line(a, b, ink, 1.8, maxf(3.0, tile * 0.13), true)
+	var tip := rect.position + rect.size * Vector2(0.12, 0.22)
+	for tooth: int in range(level):
+		var start := tip + Vector2(tile * 0.11 * tooth, 0)
+		var mark := PackedVector2Array([start, start + Vector2(tile * 0.055, -tile * 0.085), start + Vector2(tile * 0.11, 0)])
+		draw_polyline(mark, shadow, 3.8, true)
+		draw_polyline(mark, ink, 1.8, true)
 
 func _draw_objective_cell(rect: Rect2, cell: Vector2i, index: int) -> void:
 	var label: String = "守"

@@ -104,6 +104,32 @@ func resolve_order_drill(site: Vector2i, hits: int, health: int, shield: int) ->
 	if DisplayServer.get_name() != "headless" and not game.board.reduced_motion:
 		check(cues.has("trap") and cues.has("hammer") and cues.find("trap") < cues.find("hammer"), "the snare snaps before the falling hammer lands")
 
+func resolve_bridge_drill(choice: int) -> void:
+	var site: Vector2i = Course.MEDIC_SITES[choice]
+	check(game.training.lesson == 5 and game.board.enemy_reach_visible and game.battle.ground(Course.MEDIC_SITES[1]) == "bridge", "sixth lesson opens on the two Rivergate approaches")
+	await select_hand("healer")
+	var uid: int = game.selected_card
+	check(game.board.deploy.size() == 2 and game.board.deploy.has(site), "the single medic hand card offers both legal reinforcement sites")
+	await key(KEY_V)
+	check(not game.board.enemy_reach_visible and game.board.enemy_reach.is_empty() and game.selected_card == uid, "V hides the map without dropping the hand selection")
+	await click(game.reach_button.get_global_rect().get_center())
+	hover(game.board.global_position + game.board.cell_center(site))
+	await settle()
+	check(game.reach_button.button_pressed and game.selected_card == uid and game.map_legend.text.contains("够不到" if choice == 0 else "暮林游侠"), "pointer reads the actual threat beside the pending deployment")
+	check(game.battle_brief.details.text.contains("够不到" if choice == 0 else "后可攻") and game.battle_brief.portrait.texture != null,
+		"expanded scouting card pairs the tile with its terrain or a real attacker's portrait and firing point")
+	check(not game.battle_brief.visible or not game.board.grid_rect().intersects(game.battle_brief.get_rect()),
+		"scouting details never occupy a playable tile")
+	await cell(site)
+	await click(game.get_node("%ViewEnd").get_global_rect().get_center())
+	var deadline := Time.get_ticks_msec() + 5000
+	while not game.training.complete() and Time.get_ticks_msec() < deadline: await process_frame
+	var medic: Dictionary = game.battle.unit_at(site)
+	var target := "铁壁枪卫" if choice == 0 else "晨光医师"
+	check(game.training.complete() and game.battle.turn == 3 and game.training.bridge_target == target, "the animated archer selects and actually attacks the expected defender")
+	check(medic.get("hp",-1) == [5,3][choice] and game.training_panel.instruction.text.contains(target), "the conclusion displays post-treatment health and actual shot recipient")
+	check(game.battle.deployment_cells(0).has(Vector2i(3,4)) == (choice == 1), "only the exposed forward medic extends the reinforcement line onto D6")
+
 func run() -> void:
 	clear_fixtures()
 	if DisplayServer.get_name() != "headless": AudioServer.set_bus_mute(0, true)
@@ -265,7 +291,12 @@ func run() -> void:
 	check(game.training.step_index == 0 and game.battle.turn == 1 and game.battle.last_order_event.is_empty(), "reset during movement cancels the old delayed resolution")
 	await resolve_order_drill(Course.SNARE_SITES[1], 1, 3, 0)
 	await click(game.training_panel.continue_button.get_global_rect().get_center())
+	await resolve_bridge_drill(0)
+	await click(game.training_panel.reset_button.get_global_rect().get_center())
+	await resolve_bridge_drill(1)
+	await click(game.training_panel.continue_button.get_global_rect().get_center())
 	check(game.council.visible and game.training == null and game.battle == suspended and Snapshot.capture(game.battle) == old_state, "completion resumes the identical suspended battle from its original menu")
+	check(not game.board.enemy_reach_visible, "return restores the suspended match's map layers")
 	check(is_equal_approx(game.board.zoom,former_zoom) and game.board.pan.is_equal_approx(former_pan), "leaving training restores the suspended match camera")
 	check(FileAccess.get_sha256(CAMPAIGN_PATH) == campaign_digest, "training left the campaign checkpoint bytes unchanged")
 	check(game.campaign_session.token() == course_entry_token, "training left the campaign session at its original cursor")
