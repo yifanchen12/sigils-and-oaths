@@ -8,6 +8,7 @@ const Campaign = preload("res://scripts/campaign_session.gd")
 const CastArt = preload("res://scripts/cast_art.gd")
 const Preferences = preload("res://scripts/settings_store.gd")
 const Snapshot = preload("res://scripts/battle_snapshot.gd")
+const Course = preload("res://scripts/training.gd")
 const SIZE := Vector2i(1920, 1080)
 const DIRECTORY = "res://docs/release/steam/gameplay"
 const TEST_SAVE = "user://store-capture-v042.tmp.json"
@@ -350,6 +351,80 @@ func capture_cast_frames(directory: String, series: String) -> void:
 		manifest.store_string(JSON.stringify({"fps":24,"frames":frame_index,"shots":recorded,"cues":soundtrack,"full_board":series == "--sky-frames"},"\t"))
 		manifest.close()
 
+func select_drill_card(id: String) -> bool:
+	for card: Dictionary in game.battle.players[0].hand:
+		if card.card_id == id:
+			game._select_card(card.uid)
+			return require(game.selected_card == card.uid, "selected the real hand card " + id)
+	return require(false, "missing hand card " + id)
+
+func record_drill_frame(directory: String, screenshot: String = "") -> void:
+	var board: Control = game.board
+	board._process(1.0/24.0)
+	if board.motion_tween != null and board.motion_tween.is_valid():
+		board.motion_tween.pause()
+		board.motion_tween.custom_step(1.0/24.0)
+	board.queue_redraw()
+	await process_frame
+	await RenderingServer.frame_post_draw
+	var frame: Image = target_view.get_texture().get_image()
+	require(frame.save_png(directory.path_join("cast-%04d.png" % filming_frame)) == OK, "write the drill frame")
+	if not screenshot.is_empty():
+		require(frame.save_png(directory.path_join(screenshot+".png")) == OK, "write the native drill screenshot")
+	filming_frame += 1
+
+func capture_order_drill(directory: String) -> void:
+	if not require(DirAccess.dir_exists_absolute(directory), "supply an existing output directory"): return
+	var cues: Array[Dictionary] = []
+	game.audio.stopping = false
+	game.audio.set_levels(55,70)
+	game.audio.cue_started.connect(func(cue: String) -> void:
+		cues.append({"sound":game.audio.CUES[cue].resource_path.get_file(), "frame":filming_frame}))
+	game.board.set_process(false)
+	for i: int in range(72): await record_drill_frame(directory)
+	game.council.training_button.pressed.emit()
+	game.training_panel.lesson_choice.select(4)
+	game.training_panel.lesson_choice.item_selected.emit(4)
+	var outcomes: Array[Dictionary] = []
+	for choice: int in range(Course.SNARE_SITES.size()):
+		if choice > 0: game.training_panel.reset_button.pressed.emit()
+		if not require(game.training.lesson == 4 and game.battle.turn == 1, "fifth lesson opens from the public training menu"): return
+		var site: Vector2i = Course.SNARE_SITES[choice]
+		var hammer_captured := false
+		var prefix := filming_frame
+		for f: int in range(210):
+			var still := ""
+			match f:
+				6: if not select_drill_card("hollow_hammer"): return
+				24: game._on_cell_clicked(Course.ORDER_CENTER,MOUSE_BUTTON_LEFT)
+				55: if not select_drill_card("anchor_snare"): return
+				62:
+					game.board.hover_cell = site
+					game._on_cell_hovered(site)
+				75:
+					if choice == 1: still = "20-snare-training"
+				85:
+					game._on_cell_clicked(site,MOUSE_BUTTON_LEFT)
+					game.board.hover_cell = Vector2i(-1,-1)
+				113: game._end_turn()
+			if choice == 1 and not hammer_captured:
+				for fx: Dictionary in game.board.effects:
+					if fx.get("hammer",false) and fx.age >= 0.24:
+						still = "21-hollow-hammer"
+						hammer_captured = true
+			await record_drill_frame(directory,still)
+		var rider: Dictionary = game.battle.unit_at(site)
+		var event: Dictionary = game.battle.last_order_event
+		if not require(game.training.complete() and event.get("impacts",[]).size() == choice and rider.get("hp") == [8,3][choice]
+				and rider.get("shield") == [1,0][choice] and (choice == 0 or hammer_captured), "the recorded hand actions finish with the authentic branch outcome"): return
+		outcomes.append({"trap":game.battle.cell_name(site), "hits":event.impacts.size(), "hp":rider.hp, "shield":rider.shield, "first_frame":prefix})
+		print("DRILL ", outcomes.back(), " ",game.training_panel.instruction.text)
+	var manifest := FileAccess.open(directory.path_join("shots.json"),FileAccess.WRITE)
+	if not require(manifest != null, "write drill film metadata"): return
+	manifest.store_string(JSON.stringify({"fps":24,"frames":filming_frame,"shots":[],"cues":cues,"full_board":true,"outcomes":outcomes,
+		"music":[{"file":"evening.ogg","frame":0},{"file":"angevin.ogg","frame":72}],"music_percent":55,"effects_percent":70},"\t"))
+	manifest.close()
+
 func capture_frost_front(output: String) -> void:
 	game._start_from_council("rivergate", "warden", "frost_engine", "glassroad_edict")
 	if not require(game.battle.deck(0).cards.has("gate_veteran") and game.battle.deck(0).cards.has("breakwater_guard"), "skirmish menu loads the Frost reinforcements"): return
@@ -435,7 +510,7 @@ func run() -> void:
 		return
 	cleanup()
 	var args := OS.get_cmdline_user_args()
-	if args.is_empty() or args[0] not in ["--frost-front","--signature-frames","--field-frames","--sky-frames","--campaign-field","--chronicle"]:
+	if args.is_empty() or args[0] not in ["--frost-front","--signature-frames","--field-frames","--sky-frames","--campaign-field","--chronicle","--order-drill"]:
 		DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(DIRECTORY))
 	target_view = SubViewport.new()
 	target_view.size = SIZE
@@ -451,7 +526,9 @@ func run() -> void:
 	game.audio.stop_playback()
 	AudioServer.set_bus_mute(0, true)
 	await process_frame
-	if args.size() == 2 and args[0] in ["--cast-frames","--signature-frames","--field-frames","--sky-frames"]:
+	if args.size() == 2 and args[0] == "--order-drill":
+		await capture_order_drill(args[1])
+	elif args.size() == 2 and args[0] in ["--cast-frames","--signature-frames","--field-frames","--sky-frames"]:
 		await capture_cast_frames(args[1], args[0])
 	elif args.size() == 3 and args[0] == "--campaign-field":
 		await capture_field(args[1],args[2])

@@ -112,6 +112,12 @@ def audit(build, godot):
         elif path == "assets/art/actions/river-signatures-v1.png":
             entry["method"] = "pre-generated illustration"
             refs.append("assets/art/actions/river-signatures.md")
+        elif path in ("assets/audio/evening.ogg", "assets/audio/angevin.ogg"):
+            entry["method"] = "licensed recording, Kevin MacLeod, CC BY 4.0"
+            refs.extend(["assets/audio/MUSIC-CREDITS.txt", "tools/prepare_music.py"])
+        elif path == "assets/audio/MUSIC-CREDITS.txt":
+            entry["method"] = "music attribution and recording sources"
+            refs.append(path)
         elif path.startswith("assets/audio/") and path.endswith((".wav",".ogg")):
             entry["method"] = "synthesized music" if path.endswith(".ogg") else "synthesized sound effect"
             refs.append("tools/compose_audio.py")
@@ -141,6 +147,8 @@ def audit(build, godot):
         raise ValueError("Empty resource inventory.")
     copyright_files = {"project":"LICENSE.txt", "Godot":"licenses/Godot-LICENSE.txt",
                        "Godot and bundled third parties":"licenses/Godot-COPYRIGHT.txt"}
+    if "assets/audio/MUSIC-CREDITS.txt" in sources:
+        copyright_files["music by Kevin MacLeod, CC BY 4.0"] = "licenses/MUSIC-CREDITS.txt"
     return {"version":release["version"], "commit":commit, "release_payload_sha256":packed_hashes,
             "scope":"Resources found in the Windows PCK, matched to source at the release commit. Packed hashes cover the actual imported bytes. Production records describe creation; commercial authorization and platform review remain with the publisher.",
             "counts":dict(sorted(Counter(row["method"] for row in records).items())),

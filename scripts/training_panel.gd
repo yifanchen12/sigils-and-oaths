@@ -54,8 +54,12 @@ func update_step(training: RefCounted, battle: Battle) -> void:
 	lesson_choice.select(training.lesson)
 	continue_button.visible = training.complete()
 	continue_button.text = "完成练习" if training.lesson == Training.LESSONS.size() - 1 else "下一课"
+	if training.resolving:
+		progress.text = "结算中"
+		instruction.text = "铁骑正沿路线移动，留意绊索收紧的位置。" if battle.active_side == 1 else "空锤正在落下，留意铁骑和金色十字的位置。"
+		return
 	progress.text = "本节完成" if training.complete() else "第 %d / %d 步" % [training.step_index + 1, lesson.steps.size()]
 	var step: Dictionary = training.current()
-	instruction.text = lesson.done if step.is_empty() else step.text
+	instruction.text = training.conclusion(battle) if step.is_empty() else step.text
 	var target: Variant = step.get("target_hint", step.get("target"))
 	if target is Vector2i: instruction.text += "  ·  目标 %s" % battle.cell_name(target)

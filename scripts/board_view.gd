@@ -22,6 +22,7 @@ var predicted_gains: Dictionary = {}
 var predicted_area: Array[Vector2i] = []
 var predicted_area_color: Color = GOLD
 var training_target := Vector2i(-1, -1)
+var training_route: Array[Vector2i] = []
 var reduced_motion: bool = false
 var deploy: Array[Vector2i] = []
 var moves: Array[Vector2i] = []
@@ -209,12 +210,14 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 	var previous_ids: Dictionary = {}
 	var recipients: Array[Vector2i] = []
 	var struck: Array[Vector2i] = []
+	var hammer_due: bool = battle.last_order_event.get("card_id", "") == "hollow_hammer"
 	for old: Dictionary in before:
 		var delay: float = 0.32 if casts and not reduced_motion else 0.0
 		if not reduced_motion and style == "fire_area":
 			delay = 0.82*CastArt.volley_contact(old.pos,action.target)
 		var order_hit: bool = not battle.last_order_event.is_empty() and not battle.last_order_event.support and battle.last_order_event.impacts.has(old.pos)
-		if order_hit and not reduced_motion: delay = 0.80*CastArt.volley_contact(old.pos,battle.last_order_event.pos)-0.31
+		if order_hit and not reduced_motion:
+			delay = CastArt.hammer_contact(old.pos,battle.last_order_event.pos) if hammer_due else 0.80*CastArt.volley_contact(old.pos,battle.last_order_event.pos)-0.31
 		if not combat.is_empty(): delay = 0.72 if old.id == combat.attacker.id else (0.35 if old.id == combat.defender.id else 0.0)
 		if not reduced_motion and step_trap and old.id == int(action.get("unit_id",-1)): delay = travel_time
 		previous_ids[old.id] = true
@@ -324,13 +327,14 @@ func present_action(before: Array, action: Dictionary, path: Array[Vector2i]) ->
 	if not battle.last_order_event.is_empty():
 		var order: Dictionary = battle.last_order_event
 		var order_color: Color = BLUE if order.support else Color("f9b36a")
-		_effect("burst", order.pos, str(order.name), order_color, 1.15)
+		if not hammer_due: _effect("burst", order.pos, str(order.name), order_color, 1.15)
 		var card: Dictionary = battle.definition(order.card_id)
 		effects.append({"kind": "heal_cast" if order.support else "fire_area", "cell": order.pos,
 			"from":order.pos, "cells":order.cells, "struck":order.impacts, "recipients":order.impacts,
 			"stroke":CastArt.Stroke.LEAVES if order.support else -1, "martial":not card.get("fire",false),
 			"title":order.name+" · 生效", "caption":order.result, "portrait":order.card_id, "text":"", "color":order_color,
-			"age":0.0 if reduced_motion else 0.31, "duration":0.46 if reduced_motion else 0.80})
+			"hammer":hammer_due, "age":0.0 if reduced_motion or hammer_due else 0.31,
+			"duration":0.46 if reduced_motion else (CastArt.HAMMER_DURATION if hammer_due else 0.80)})
 	for event: Dictionary in battle.last_trap_events:
 		if battle.inside(event.cell):
 			var reveal_delay := 0.0
@@ -474,6 +478,15 @@ func _draw() -> void:
 			var area := Rect2(grid.position + Vector2(covered) * tile, Vector2.ONE * tile)
 			draw_rect(area.grow(-4.0 - float(order.side) * 3.0), Color(order_color, 0.14))
 			draw_rect(area.grow(-5.0 - float(order.side) * 3.0), Color(order_color, 0.88), false, 2.0)
+	if training_route.size() > 1:
+		for index: int in range(1, training_route.size()):
+			var start: Vector2 = cell_center(training_route[index - 1])
+			var end: Vector2 = cell_center(training_route[index])
+			var direction := (end - start).normalized()
+			var point := start.lerp(end, 0.63)
+			var wing := direction.orthogonal() * tile * 0.09
+			draw_dashed_line(start, end, Color("f7c29d"), 2.0, tile * 0.13, true)
+			draw_colored_polygon(PackedVector2Array([point + direction * tile * 0.12, point + wing, point - wing]), Color("fff0c2"))
 	if selected_unit != -1 and moves.has(hover_cell):
 		var selected: Dictionary = battle.get_unit(selected_unit)
 		if not selected.is_empty():

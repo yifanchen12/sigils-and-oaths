@@ -280,7 +280,7 @@ func _ready() -> void:
 	%PlayAgain.pressed.connect(_restart)
 	%Cancel.pressed.connect(_cancel)
 	%Help.pressed.connect(func() -> void: %RulesDialog.popup_centered())
-	%RulesText.text = preload("res://scripts/rules_text.gd").CONTENT
+	%RulesText.text = preload("res://scripts/rules_text.gd").content()
 	%HeroSkill.pressed.connect(_select_hero_skill)
 	for map: Dictionary in BattleModel.MAPS.available():
 		%MapChoice.add_item(map.name)
@@ -407,7 +407,7 @@ func _settings_visibility_changed() -> void:
 func _start_training() -> void:
 	if training != null: return
 	training_return = {"battle": battle, "started": has_started, "campaign": campaign_active,
-		"expanded": expanded_battlefield}
+		"expanded": expanded_battlefield, "zoom":board.zoom, "pan":board.pan}
 	campaign_active = false
 	has_started = true
 	training = Training.new()
@@ -419,6 +419,10 @@ func _load_training_lesson(index: int) -> void:
 	var prepared: Battle = training.prepare(index)
 	_new_match(prepared.match_seed, prepared)
 	if not expanded_battlefield: _toggle_battlefield()
+	if Training.LESSONS[training.lesson].get("rider_route",false):
+		board.zoom_at(board.cell_center(Training.ORDER_CENTER),1.75)
+		board.reveal_cell(Training.ORDER_CENTER)
+	_update_clock_ui()
 	board.grab_focus()
 
 func _next_training_lesson() -> void:
@@ -437,21 +441,41 @@ func _leave_training() -> void:
 	council.open(current_map, current_hero, has_started and restored.winner == -1, current_deck, current_opponent)
 	_new_match(restored.match_seed, restored)
 	if expanded_battlefield != previous.expanded: _toggle_battlefield()
+	board.zoom_at(board.size/2,previous.zoom)
+	board.pan_by(previous.pan-board.pan)
 	if has_started and battle.winner == -1 and battle.active_side == 1:
 		ai_running = true
 		_run_ai(generation)
 
 func _finish_training_step(action: Dictionary) -> void:
 	if action.type == "end_turn":
+		training.resolving = not battle.Orders.for_side(battle, 0).is_empty()
 		var response: Dictionary = training.enemy_response(battle)
 		if not response.is_empty():
 			var result: Dictionary = _apply_with_feedback(response)
 			if not result.ok:
+				training.resolving = false
 				message = "练习局面已失效，请选择「重练本节」。"
 				error_message = true
 				return
+		if training.resolving:
+			var token := generation
+			if not await _wait_training_presentation(token): return
+			_apply_with_feedback({"type": "end_turn"})
+			_refresh()
+			if not await _wait_training_presentation(token): return
+			training.resolving = false
+			message = battle.log_lines.back()
+			training.step_index += 1
+			_refresh()
+			return
 		battle.end_turn()
 	training.step_index += 1
+
+func _wait_training_presentation(token: int) -> bool:
+	while token == generation and not exiting and (board.is_presenting() or _modal_open()):
+		await get_tree().process_frame
+	return token == generation and not exiting
 
 func _request_new_campaign() -> void:
 	var primary: RefCounted = _main_campaign_session()
@@ -1064,11 +1088,13 @@ func _refresh_compact_hand() -> void:
 		%CompactHand.add_child(button)
 
 func _player_can_act() -> bool:
-	return not exiting and battle != null and battle.active_side == 0 and battle.winner == -1 and not ai_running and not _modal_open() and (training == null or not training.complete())
+	return not exiting and battle != null and battle.active_side == 0 and battle.winner == -1 and not ai_running and not _modal_open() and (training == null or (not training.resolving and not training.complete()))
 
 func _update_board() -> void:
 	var step: Dictionary = training.current() if training != null else {}
 	board.training_target = step.get("target_hint", step.get("target", Vector2i(-1, -1)))
+	board.training_route.clear()
+	if training != null: board.training_route.append_array(training.announced_route(battle))
 	board.predicted_losses.clear()
 	board.selected_unit = selected_unit
 	board.moves.clear()
@@ -1102,6 +1128,8 @@ func _update_board() -> void:
 			var safe := func(cell: Vector2i) -> bool: return training.outside_blast(battle, cell)
 			board.moves = board.moves.filter(safe)
 			board.deploy = board.deploy.filter(safe)
+		if step.has("sites"):
+			board.spell_targets = board.spell_targets.filter(func(cell: Vector2i) -> bool: return step.sites.has(cell))
 	_update_attack_overlay()
 
 func _select_card(uid: int) -> void:

@@ -41,6 +41,8 @@ SCREENSHOTS = {
     "17-lantern-weather.png": "Night Muster played from the Lantern Convoy hand on Citadel, seed 56037, side turn 9 after 28 legal actions. Native frame 0.50 seconds after casting.",
     "18-hammer-order.png": "Hollow Hammer marked on Citadel F5 on side turn 15 and resolved at the start of turn 17, seed 56377. The cross covers nine cells and one enemy takes the hit. Native frame 5/24 seconds after resolution.",
     "19-chapter-chronicle.png": "Chapter archive opened from the standard river, relief and school campaign ending. The archive displays the chosen split covenant and its reached epilogue.",
+    "20-snare-training.png": "The fifth native tutorial on Citadel. Hollow Hammer marks G5 and the selected two-mana hand trap can stop the announced E6 to H6 rider at F6 or G6.",
+    "21-hollow-hammer.png": "Second attempt in the fifth tutorial, seed 4215. The rider actually stopped at G6 after hitting the hand trap. The original bronze drop hammer descends over G5 and reaches one enemy.",
 }
 
 

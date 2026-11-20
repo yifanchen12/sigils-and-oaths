@@ -41,14 +41,89 @@ func select_hand(card_id: String) -> void:
 func cell(at: Vector2i) -> void:
 	await click(game.board.global_position + game.board.cell_center(at))
 
+func check_music_playback(player: AudioStreamPlayer) -> void:
+	if DisplayServer.get_name() == "headless": return
+	var bus := AudioServer.get_bus_index("Music")
+	var slot := AudioServer.get_bus_effect_count(bus)
+	var recorder := AudioEffectCapture.new()
+	recorder.buffer_length = 0.8
+	AudioServer.add_bus_effect(bus, recorder)
+	var original := player.get_playback_position()
+	player.seek(36.0)
+	await create_timer(0.45).timeout
+	var peak := 0.0
+	for sample: Vector2 in recorder.get_buffer(recorder.get_frames_available()):
+		peak = maxf(peak,maxf(absf(sample.x),absf(sample.y)))
+	check(peak > 0.001 and peak < 1.0, "native Music bus produces an unclipped audible passage of " + player.stream.resource_path.get_file())
+	player.seek(player.stream.get_length()-0.25)
+	await create_timer(0.54).timeout
+	check(player.playing and player.get_playback_position() < 1.4, "the actual music stream wraps to its beginning")
+	player.seek(original)
+	AudioServer.remove_bus_effect(bus,slot)
+
+func place_order_and_snare(site: Vector2i) -> void:
+	check(game.training.lesson == 4 and game.battle.players[0].mana == 10 and game.board.training_route == [
+		Course.RIDER_START, Course.SNARE_SITES[0], Course.SNARE_SITES[1], Course.RIDER_DEST], "rider announces the actual four-cell movement path")
+	await select_hand("hollow_hammer")
+	await cell(Course.ORDER_CENTER)
+	var order: Dictionary = game.battle.Orders.for_side(game.battle, 0)
+	var area: Array = game.battle.Orders.footprint(game.battle, order)
+	check(game.training.step_index == 1 and game.battle.players[0].mana == 2 and area.size() == 9
+		and not area.has(Course.SNARE_SITES[0]) and area.has(Course.SNARE_SITES[1]), "the eight-mana order covers only the second trap site")
+	await select_hand("anchor_snare")
+	check(game.board.spell_targets.size() == 2 and game.board.spell_targets.has(site), "both trap choices appear on the tactical board")
+	await cell(Course.ORDER_CENTER)
+	check(game.training.step_index == 1 and game.battle.players[0].mana == 2 and game.battle.traps.is_empty(), "a trap placed off the rider route is rejected without payment")
+	await cell(site)
+	check(game.battle.players[0].mana == 0 and game.battle.traps.size() == 1 and game.battle.last_order_event.is_empty(), "hand placement spends two mana and the hammer has not hit")
+
+func resolve_order_drill(site: Vector2i, hits: int, health: int, shield: int) -> void:
+	await place_order_and_snare(site)
+	var cues: Array[String] = []
+	var recorder := func(cue: String) -> void: cues.append(cue)
+	game.audio.cue_started.connect(recorder)
+	await click(game.get_node("%ViewEnd").get_global_rect().get_center())
+	var deadline := Time.get_ticks_msec() + 4500
+	var saw_impact := false
+	while not game.training.complete() and Time.get_ticks_msec() < deadline:
+		if game.battle.turn == 3 and game.training.resolving:
+			saw_impact = true
+			if game._player_can_act() or game.training_panel.continue_button.visible:
+				check(false,"a second action or a completed result was exposed before impact")
+				break
+		await process_frame
+	check(saw_impact, "the tutorial leaves time for the actual impact before reporting its outcome")
+	game.audio.cue_started.disconnect(recorder)
+	var rider: Dictionary = game.battle.unit_at(site)
+	var order: Dictionary = game.battle.last_order_event
+	check(game.training.complete() and game.battle.turn == 3 and game.battle.traps.is_empty() and game.battle.pending_orders.is_empty(), "real movement and the next turn resolve both hand cards")
+	check(rider.get("hp") == health and rider.get("shield") == shield and order.get("impacts",[]).size() == hits,
+		"actual rider state for the trap on " + game.battle.cell_name(site))
+	check(game.training_panel.instruction.text.contains("命中 %d 支敌军" % hits) and game.training_panel.instruction.text.contains("%d 生命、%d 护盾" % [health, shield]),
+		"the conclusion reports actual damage, shield and target count")
+	if DisplayServer.get_name() != "headless" and not game.board.reduced_motion:
+		check(cues.has("trap") and cues.has("hammer") and cues.find("trap") < cues.find("hammer"), "the snare snaps before the falling hammer lands")
+
 func run() -> void:
 	clear_fixtures()
 	if DisplayServer.get_name() != "headless": AudioServer.set_bus_mute(0, true)
 	await open_scene()
 	check(game.council.training_button.visible and game.council.settings_button.visible, "public entry points on the first screen")
-	check(game.audio.scene_index == 0 and game.audio.music_players[0].stream.get_length() > 60.0, "music controller starts with the council composition")
+	var council_track: AudioStreamOggVorbis = game.audio.music_players[0].stream
+	check(game.audio.scene_index == 0 and council_track.resource_path.ends_with("/evening.ogg") and absf(council_track.get_length()-186.25) < 0.3 and council_track.loop, "the council plays the full licensed Evening loop")
+	await check_music_playback(game.audio.music_players[0])
 	await click(game.council.settings_button.get_global_rect().get_center())
 	check(game.options.visible and not game._player_can_act(), "settings are an exclusive window")
+	var credits_button: Button = game.options.find_children("*", "Button", true, false).filter(func(button: Button) -> bool: return button.text == "配乐署名")[0]
+	await click_window(game.options, credits_button.get_global_rect().get_center())
+	check(game.options.music_credits.visible and game.options.music_credits.dialog_text.contains("Kevin MacLeod")
+		and game.options.music_credits.dialog_text.contains("USUAN1200110") and game.options.music_credits.dialog_text.contains("creativecommons.org/licenses/by/4.0/"), "player can read the bundled credits and license from the settings")
+	if DisplayServer.get_name() == "headless":
+		game.options.music_credits.get_ok_button().pressed.emit()
+		await settle()
+	else:
+		await click_window(game.options.music_credits, game.options.music_credits.get_ok_button().get_global_rect().get_center())
+	check(not game.options.music_credits.visible and game.options.visible, "closing the credits returns to the same settings dialog")
 	game.options.reading.select(2)
 	game.options.effects.value = 0
 	await click_window(game.options, game.options.motion.get_global_rect().get_center())
@@ -77,11 +152,27 @@ func run() -> void:
 	var course_entry_token: Dictionary = game.campaign_session.token()
 	check(not campaign_digest.is_empty(), "an actual campaign checkpoint was written before training")
 	var suspended: Battle = game.battle
+	game.board.zoom_at(game.board.size/2,1.30)
+	game.board.pan_by(Vector2(0,15))
+	var former_zoom: float = game.board.zoom
+	var former_pan: Vector2 = game.board.pan
 	var old_state: Dictionary = Snapshot.capture(suspended)
 	check(game.council.resume_button.visible, "there is a live skirmish before entering the course")
 	await click(game.council.training_button.get_global_rect().get_center())
 	check(game.training_panel.visible and game.training.lesson == 0 and game.battle != suspended, "lesson opens a separate battle from the real menu")
-	check(game.audio.scene_index == 1 and game.audio.music_players[1].stream.get_length() > 55.0, "practice starts the battle composition")
+	var field_track: AudioStreamOggVorbis = game.audio.music_players[1].stream
+	check(game.audio.scene_index == 1 and field_track.resource_path.ends_with("/angevin.ogg") and absf(field_track.get_length()-280.56) < 0.3 and field_track.loop, "training switches to the licensed Angevin loop")
+	await check_music_playback(game.audio.music_players[1])
+	if DisplayServer.get_name() != "headless":
+		var field_player: AudioStreamPlayer = game.audio.music_players[1]
+		field_player.seek(42)
+		game.audio.set_battle_music(false)
+		await create_timer(1.60).timeout
+		check(field_player.stream_paused and game.audio.music_players[0].playing, "return to council parks the faded-out battle track")
+		game.audio.set_battle_music(true)
+		await create_timer(0.24).timeout
+		check(not field_player.stream_paused and field_player.get_playback_position() > 42 and field_player.get_playback_position() < 45,
+			"returning to the battle resumes the same musical phrase")
 	await create_timer(0.16).timeout
 	check(game.battle.time_remaining == 90.0 and game.get_node("%TurnClock").text.contains("不限时"), "course does not spend real turn time")
 	await key(KEY_F10)
@@ -133,7 +224,7 @@ func run() -> void:
 	await cell(Course.FIRE_CENTER)
 	check(game.training.complete() and game.battle.players[0].mana == 0 and game.battle.unit_at(Course.FIRE_EDGE).hp == 4 and game.battle.unit_at(Course.FIRE_SAFE).hp == 7, "capstone spends ten and hits only the proper footprint")
 	await click(game.training_panel.continue_button.get_global_rect().get_center())
-	check(game.training.lesson == 3 and game.training_panel.lesson_choice.item_count == 4 and game.board.predicted_area.size() == 13, "new lesson shows the public training blast")
+	check(game.training.lesson == 3 and game.training_panel.lesson_choice.item_count == Course.LESSONS.size() and game.board.predicted_area.size() == 13, "new lesson shows the public training blast")
 	await select_hand("quiet_veil")
 	await cell(Course.COUNTER_CENTER)
 	var spear_uid: int = game.battle.unit_at(Course.COUNTER_CENTER).card.uid
@@ -163,7 +254,19 @@ func run() -> void:
 	var healed: Dictionary = game.battle.unit_at(Course.DEPLOY)
 	check(game.training.complete() and healed.hp == healed.max_hp and healed.summoning and game.board.predicted_area.is_empty(), "recall and new deployment restore health and apply summoning")
 	await click(game.training_panel.continue_button.get_global_rect().get_center())
+	await resolve_order_drill(Course.SNARE_SITES[0], 0, 8, 1)
+	await click(game.training_panel.reset_button.get_global_rect().get_center())
+	game.board.set_reduced_motion(false)
+	await place_order_and_snare(Course.SNARE_SITES[1])
+	await click(game.get_node("%ViewEnd").get_global_rect().get_center())
+	check(not game.training.complete() and game.battle.active_side == 1, "the branch waits for the opposing movement to finish")
+	await click(game.training_panel.reset_button.get_global_rect().get_center())
+	await create_timer(1.25).timeout
+	check(game.training.step_index == 0 and game.battle.turn == 1 and game.battle.last_order_event.is_empty(), "reset during movement cancels the old delayed resolution")
+	await resolve_order_drill(Course.SNARE_SITES[1], 1, 3, 0)
+	await click(game.training_panel.continue_button.get_global_rect().get_center())
 	check(game.council.visible and game.training == null and game.battle == suspended and Snapshot.capture(game.battle) == old_state, "completion resumes the identical suspended battle from its original menu")
+	check(is_equal_approx(game.board.zoom,former_zoom) and game.board.pan.is_equal_approx(former_pan), "leaving training restores the suspended match camera")
 	check(FileAccess.get_sha256(CAMPAIGN_PATH) == campaign_digest, "training left the campaign checkpoint bytes unchanged")
 	check(game.campaign_session.token() == course_entry_token, "training left the campaign session at its original cursor")
 

@@ -92,6 +92,8 @@ func _initialize() -> void:
         var relative = path.trim_prefix("res://")
         if relative.begins_with("assets/art/model_sources/") or relative.ends_with(".blend"):
             problems.append("editable Blender source should not be in the Windows game pack: " + path)
+        if relative.begins_with("assets/art/map-guides/") or relative.begins_with("assets/art/unit_portraits_cel_2_draft.png") or (relative.begins_with("assets/art/") and relative.ends_with(".json")):
+            problems.append("authoring reference should not be in the Windows game pack: " + path)
         if not (relative.begins_with("assets/") or relative.begins_with("data/") or relative.begins_with("scripts/") or relative.begins_with("scenes/") or relative.begins_with(".godot/imported/") or relative.begins_with(".godot/exported/") or relative in ["project.binary", ".godot/global_script_class_cache.cfg", ".godot/uid_cache.bin"]):
             problems.append("unexpected resource: " + path)
     var campaign = JSON.parse_string(FileAccess.get_file_as_string("res://data/campaign.json"))
@@ -131,8 +133,12 @@ func _initialize() -> void:
         "res://assets/art/narrative/chapter-replay-archive-v1.png", "res://scripts/chapter_replay_view.gd",
         "res://assets/art/narrative/campaign-armory-v1.png", "res://scripts/campaign_armory.gd", "res://scripts/campaign_armory_view.gd",
         "res://scripts/campaign_difficulty.gd",
-        "res://scripts/settings_dialog.gd", "res://scripts/training.gd", "res://scripts/game_audio.gd", "res://assets/audio/council.ogg",
-        "res://assets/audio/battle.ogg", "res://assets/audio/trap.wav", "res://assets/audio/victory.wav"]
+        "res://scripts/settings_dialog.gd", "res://scripts/training.gd", "res://scripts/game_audio.gd", "res://assets/audio/evening.ogg",
+        "res://assets/audio/angevin.ogg", "res://assets/audio/trap.wav", "res://assets/audio/hammer.wav",
+        "res://assets/art/actions/hollow-hammer-v1.png", "res://assets/audio/victory.wav"]
+    var credits := FileAccess.get_file_as_string("res://assets/audio/MUSIC-CREDITS.txt")
+    if not (credits.contains("USUAN2300002") and credits.contains("USUAN1200110") and credits.contains("creativecommons.org/licenses/by/4.0/")):
+        problems.append("music attribution missing from the player settings")
     for path in required_resources:
         if not ResourceLoader.exists(path):
             problems.append("missing runtime resource: " + path)
@@ -201,6 +207,7 @@ if (Select-String -LiteralPath $SmokeLog -Pattern '^ERROR:|^SCRIPT ERROR:' -Quie
 Copy-Item -LiteralPath (Join-Path $ProjectRoot 'LICENSE') -Destination (Join-Path $PackageDir 'LICENSE.txt')
 $LicenseOutput = New-Item -ItemType Directory -Path (Join-Path $PackageDir 'licenses')
 Copy-Item -LiteralPath (Join-Path $LicenseCache 'Godot-LICENSE.txt'), (Join-Path $LicenseCache 'Godot-COPYRIGHT.txt') -Destination $LicenseOutput.FullName
+Copy-Item -LiteralPath (Join-Path $ProjectRoot 'assets/audio/MUSIC-CREDITS.txt') -Destination $LicenseOutput.FullName
 $SourceCommit = (& git -C $ProjectRoot rev-parse HEAD | Out-String).Trim()
 if ($LASTEXITCODE -ne 0) { throw 'Unable to determine source commit.' }
 $StatusLines = @(& git -C $ProjectRoot status --porcelain --untracked-files=all)

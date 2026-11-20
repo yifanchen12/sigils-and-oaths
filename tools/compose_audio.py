@@ -81,7 +81,14 @@ def texture(length: float, kind: str, seed: int) -> np.ndarray:
     rng = np.random.default_rng(seed)
     noise = rng.normal(0, 1, len(time))
     soft_noise = np.convolve(noise, np.hanning(25) / np.hanning(25).sum(), mode="same")
-    if kind == "tap":
+    if kind == "wood":
+        voice = (0.52 * sine(143, time) + 0.18 * sine(312, time)) * np.exp(-18 * time) + 0.46 * soft_noise * np.exp(-32 * time)
+    elif kind == "cord":
+        voice = (0.38 * sine(236, time) + 0.23 * sine(381, time)) * np.exp(-27 * time) + 0.59 * soft_noise * np.exp(-45 * time)
+    elif kind == "bronze":
+        voice = 0.64 * sine(93, time) * np.exp(-10 * time) + 0.35 * sine(184, time) * np.exp(-7 * time)
+        voice += 0.13 * sine(348, time) * np.exp(-8 * time) + 0.38 * soft_noise * np.exp(-24 * time)
+    elif kind == "tap":
         voice = 0.70 * sine(148, time) * np.exp(-16 * time) + 0.36 * soft_noise * np.exp(-24 * time)
     elif kind == "clash":
         voice = (0.40 * sine(178, time) + 0.26 * sine(871, time) + 0.23 * sine(1331, time)) * np.exp(-17 * time) + 0.61 * soft_noise * np.exp(-12 * time)
@@ -145,15 +152,18 @@ WEATHER_CUES = {
 }
 
 
-def render_cues(signatures_only: bool, field_only: bool = False, weather_only: bool = False) -> None:
+SOFT_CUES = {"move": 0.16, "attack": 0.26, "trap": 0.23, "guard": 0.22, "turn": 0.17, "hammer": 0.36}
+
+
+def render_cues(signatures_only: bool, field_only: bool = False, weather_only: bool = False, soft_only: bool = False) -> None:
     cues = {
-        "move": (0.36, "tap", ((0.00, 0.65, -0.20), (0.12, 0.37, 0.18)), ()),
+        "move": (0.36, "wood", ((0.00, 0.56, -0.16), (0.15, 0.32, 0.12)), ()),
         "deploy": (0.64, "tap", ((0.00, 0.21, 0.10),), ((0.08, 58), (0.18, 65))),
-        "attack": (0.50, "clash", ((0.06, 0.57, -0.16), (0.17, 0.19, 0.21)), ()),
+        "attack": (0.50, "wood", ((0.04, 0.65, -0.12), (0.12, 0.16, 0.15)), ((0.04, 46),)),
         "cast": (0.76, "wash", ((0.00, 0.36, -0.14),), ((0.19, 62), (0.24, 69), (0.31, 74))),
-        "guard": (0.62, "clash", ((0.02, 0.15, 0.06),), ((0.08, 53), (0.10, 60))),
-        "trap": (0.62, "snap", ((0.07, 0.54, -0.16), (0.19, 0.32, 0.18)), ((0.15, 45),)),
-        "turn": (0.80, "tap", (), ((0.00, 69), (0.12, 74))),
+        "guard": (0.62, "bronze", ((0.02, 0.24, 0.06),), ((0.08, 50), (0.13, 57))),
+        "trap": (0.48, "cord", ((0.01, 0.57, -0.16), (0.10, 0.20, 0.12)), ((0.05, 49),)),
+        "turn": (0.68, "wood", (), ((0.00, 62), (0.15, 67))),
         "victory": (1.86, "tap", (), ((0.02, 62), (0.25, 65), (0.44, 69), (0.68, 74), (0.70, 77))),
         "defeat": (1.78, "wash", ((0.00, 0.09, -0.10),), ((0.05, 62), (0.30, 57), (0.60, 50))),
         "bulwark": (0.79, "clash", ((0.06, 0.11, -0.20), (0.33, 0.49, 0.05)), ((0.10, 53), (0.33, 60), (0.38, 65))),
@@ -165,6 +175,7 @@ def render_cues(signatures_only: bool, field_only: bool = False, weather_only: b
         "sprout": (0.81, "wash", ((0.12, 0.09, -0.14),), ((0.04, 67), (0.23, 71), (0.34, 78))),
         "flare": (0.71, "wash", ((0.04, 0.42, -0.22), (0.31, 0.58, 0.21)), ((0.32, 46),)),
         **WEATHER_CUES,
+        "hammer": (1.08, "bronze", ((0.31, 0.95, 0), (0.43, 0.18, -0.17)), ((0.31, 37), (0.34, 49))),
     }
     for index, (name, (length, kind, hits, notes)) in enumerate(cues.items()):
         if signatures_only and name not in {"bulwark", "comet", "willow"}:
@@ -173,7 +184,11 @@ def render_cues(signatures_only: bool, field_only: bool = False, weather_only: b
             continue
         if weather_only and name not in WEATHER_CUES:
             continue
+        if soft_only and name not in SOFT_CUES:
+            continue
         mix = np.zeros((round(RATE * length), 2), dtype=np.float64)
+        if name == "hammer":
+            place(mix, texture(0.28, "wash", 93) * 0.12, 0.01, -0.08)
         for onset, gain, pan in hits:
             duration = min(0.36, length - onset - 0.02)
             place(mix, texture(duration, kind, 41 + index * 7 + int(onset * 100)) * gain, onset, pan)
@@ -183,7 +198,8 @@ def render_cues(signatures_only: bool, field_only: bool = False, weather_only: b
             time = np.arange(round(RATE * duration)) / RATE
             tone = (sine(pitch(note), time) + 0.24 * sine(pitch(note) * 2, time)) * np.exp(-4.8 * time)
             place(mix, tone * envelope(time, duration, 0.018, 0.14) * 0.24, onset, -0.20 if note % 2 else 0.14)
-        write_wav(OUTPUT / (name + ".wav"), mix, 0.39 if name in ("attack", "trap", "victory", "defeat") else 0.29)
+        peak = SOFT_CUES.get(name, 0.39 if name in ("victory", "defeat") else 0.29)
+        write_wav(OUTPUT / (name + ".wav"), mix, peak)
 
 
 if __name__ == "__main__":
@@ -192,8 +208,9 @@ if __name__ == "__main__":
     subset.add_argument("--signatures-only", action="store_true")
     subset.add_argument("--field-only", action="store_true")
     subset.add_argument("--weather-only", action="store_true")
+    subset.add_argument("--soft-only", action="store_true")
     args = parser.parse_args()
     OUTPUT.mkdir(parents=True, exist_ok=True)
-    if not (args.signatures_only or args.field_only or args.weather_only):
+    if not (args.signatures_only or args.field_only or args.weather_only or args.soft_only):
         render_music()
-    render_cues(args.signatures_only, args.field_only, args.weather_only)
+    render_cues(args.signatures_only, args.field_only, args.weather_only, args.soft_only)

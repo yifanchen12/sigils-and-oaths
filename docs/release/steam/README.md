@@ -1,6 +1,6 @@
 # 《纹章与誓约》Steam 商店素材候选包
 
-当前 Windows 预览为 0.59.0-dev。界面和剧情为简体中文，以下中英文文案供商店语言版本使用。本目录保留高分辨率游戏画面、商店及库用图片和内容披露底稿。
+当前 Windows 预览为 0.60.0-dev。界面和剧情为简体中文，以下中英文文案供商店语言版本使用。本目录保留高分辨率游戏画面、商店及库用图片和内容披露底稿。
 
 ## 中文简介
 
@@ -14,7 +14,7 @@
 - 可在战役出征前选择标准或剧情难度。剧情难度增加开局支援，在桥头、港口和部分关卡提供可争夺的驻守目标。战役可退出后继续，已通过的章节可从独立存档重走。
 - 攻下桥头、在盐布巷护送担架队，或按序接应撤离处。六种兵种各有主动技能，指挥官也有独立的主动与被动。
 - 在河门来信开始十八章单人战役。故事记录关于救济、修渠和同伴去留的选择，通向三个结局。随战役推进开放三个军备位，战前挑选哪几张牌随军。第四章起有 20 场简报可另选一张起手军需。
-- 从四节不限时教程入门。自由对战使用 90 秒行动回合。战役支持中途保存、剧情回看和可调阅读字号，并能用独立存档重走已完成章节。
+- 从五节不限时教程入门。自由对战使用 90 秒行动回合。战役支持中途保存、剧情回看和可调阅读字号，并能用独立存档重走已完成章节。
 
 ## English store copy
 
@@ -28,7 +28,7 @@ In *Sigils & Oaths*, the ground determines what your hand can do. Every ally can
 - Select Standard or Story difficulty before a campaign battle. Story difficulty offers extra opening resources and alternative objectives in several encounters. Resume saved battles or revisit a completed chapter in a separate save.
 - Fight over crossings, escort a stretcher crew across Saltcloth Lane, and reach evacuation points in order. Six unit roles have their own active abilities, and each commander has active and passive powers.
 - Begin with a letter from Rivergate and finish one of three endings in the eighteen-chapter solo campaign. Your choices affect relief, repairs, and the future of the company. Unlock three armory slots to bring chosen cards into upcoming battles. Requisition one opening-hand replacement in twenty engagements from chapter four onward.
-- Practice in four untimed drills. Skirmishes use ninety-second turns. Save campaign progress mid-battle, replay completed chapters in a separate save, and adjust story text size.
+- Practice in five untimed drills. Skirmishes use ninety-second turns. Save campaign progress mid-battle, replay completed chapters in a separate save, and adjust story text size.
 
 Game interface and story text are in Simplified Chinese.
 
@@ -40,7 +40,7 @@ Game interface and story text are in Simplified Chinese.
 | 库封面、库横幅、库英雄图 | 600×900、920×430、3840×1240 | [graphics](graphics) |
 | 透明库字标 | 1280×390 RGBA | [library-logo.png](graphics/library-logo.png) |
 | 快捷方式、应用图标 | 512×512 PNG、184×184 JPG | [shortcut-icon.png](graphics/shortcut-icon.png) · [app-icon.jpg](graphics/app-icon.jpg) |
-| 十四张游戏画面 | 全部 1920×1080，16:9 | [gameplay](gameplay) |
+| 二十一张游戏画面 | 全部 1920×1080，16:9 | [gameplay](gameplay) |
 
 商店封面只带游戏标题，库英雄图无文字，游戏截图直接取自 Godot 实际渲染。规格按核对时的 Steamworks 文档，本地已经检查尺寸和透明通道。发行方仍需核对后台预览的压缩、裁切和适龄截图。[商店图像规格](https://partner.steamgames.com/doc/store/assets/standard) · [库用图像规格](https://partner.steamgames.com/doc/store/assets/libraryassets) · [图标规格](https://partner.steamgames.com/doc/store/assets/community)
 
@@ -49,6 +49,8 @@ Game interface and story text are in Simplified Chinese.
 第九至十二张记录断脊隘口、日陨遗城、古堡棋庭和星火箭命中的瞬间。第十三张记录双桥河谷第九轮在 I6 部署守桥老枪，接应 I5 的芦汊巡弓。第十四张截自日陨遗城，维洛施放烈焰裁决后的半秒。 [桥头实机](gameplay/13-frost-front.png) · [裁决命中](gameplay/14-river-signatures.png) · [0.57 实战演示](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.57.0-dev/SigilsAndOaths-0.57.0-dev-River-Signatures.mp4)
 
 ## 玩法预告候选
+
+0.60 的 20.5 秒有声画面包含战前军议、两次伏设、铁骑受绊和落锤。曲目为 Kevin MacLeod 的《Evening》和《Angevin》，按 CC BY 4.0 署名使用。 [实机预览](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.60.0-dev/SigilsAndOaths-0.60.0-dev-Rivergate-Evening.mp4) · [布阵](gameplay/20-snare-training.png) · [落锤](gameplay/21-hollow-hammer.png) · [署名与编辑说明](../../../assets/audio/MUSIC-CREDITS.txt)
 
 0.59 的 19.5 秒有声短片从十三次真实行动中取景。古堡的纸灯升起后，卡牌下方会写明灯夜持续多久。「空锤待落」公开九格十字，敌方走完后才在命中的敌军处落锤。第十九张画面记录完成战役后可翻阅的主线抉择与结局。 [实机短片](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.59.0-dev/SigilsAndOaths-0.59.0-dev-Weather-and-Orders.mp4) · [灯夜](gameplay/17-lantern-weather.png) · [军令生效](gameplay/18-hammer-order.png) · [章节记录](gameplay/19-chapter-chronicle.png)
 

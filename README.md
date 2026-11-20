@@ -5,15 +5,17 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.59.0-dev" src="https://img.shields.io/badge/version-0.59.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.60.0-dev" src="https://img.shields.io/badge/version-0.60.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法设计参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局、248 种可构筑牌、二十三套预组和六张立体建模的平面战场。**0.59.0-dev** 中，暴雨落在双方阵地，纸灯从古堡升起。「空锤待落」先亮出九格十字，等敌军走完才砸向仍留在阵中的人。通关后可查阅自己的抉择，在独立分支重议终章誓约。 [Windows 下载](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.59.0-dev) · [19.5 秒有声实机](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.59.0-dev/SigilsAndOaths-0.59.0-dev-Weather-and-Orders.mp4)
+玩法设计参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局、248 种可构筑牌、二十三套预组和六张立体建模的平面战场。**0.60.0-dev** 战前和剧情换上《Evening》，进入棋盘后淡入《Angevin》。在第五节「绊索与落锤」，你可以把同一名铁骑绊停在 F6 或 G6，看青铜吊锤砸空或命中。 [Windows 下载](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.60.0-dev) · [20.5 秒有声实机](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.60.0-dev/SigilsAndOaths-0.60.0-dev-Rivergate-Evening.mp4)
 
 ## 实机画面
+
+![绊索将铁骑拦在 G6，河闸吊锤落下](docs/release/steam/gameplay/21-hollow-hammer.png)
 
 ![古堡棋庭打出环境牌「诸营守夜」](docs/release/steam/gameplay/17-lantern-weather.png)
 
@@ -115,7 +117,11 @@
 | 选一个指挥官带队 | 艾琳保护阵线，维洛强化火焰，赛菈治疗与林地恢复；各有主动技能和被动能力 |
 | 改变下一轮战局 | 暴雨、浓雾、烈日、寒潮、疾风和灯夜影响双方。可替换或驱散天气，也可铺路、筑垒、击退、定身与换位 |
 | 在有限时间内决策 | 每个行动回合90秒；定向法术限定在友军3格内、法师4格内，天气影响全场 |
-| 熟悉操作和调整体验 | 四节不限时实战教程。F10 调整全屏、剧情字号、战斗动效、音乐和音效 |
+| 熟悉操作和调整体验 | 五节不限时实战教程。F10 调整全屏、剧情字号、战斗动效、音乐和音效 |
+
+## 0.60 · 河门晚曲
+
+F10 可以分别调节音乐和音效，也能查看两首配乐的作者与许可。「空锤待落」标在 G5，剩下两费伏设绊索。在 F6 截住铁骑，它还剩 8 生命、1 护盾。在 G6 截住它，锤击会打掉最后的护盾，剩 3 生命。 [进入练习与本版说明](docs/release/v060.md) · [音乐署名](assets/audio/MUSIC-CREDITS.txt)
 
 ## 0.59 · 灯夜与落锤
 
@@ -596,7 +602,7 @@ python tools/audit_narrative.py
 
 ## 当前边界与美术来源
 
-- 当前是单机开发版，尚未提供联机、触屏适配或打包发行版；macOS/Linux未完成验证。
+- Windows x64 单机开发版提供 MSI 安装程序及便携 ZIP。解压 ZIP 后，从同目录双击 SigilsAndOaths.exe。 [下载当前版本](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.60.0-dev)
 - 远程攻击和法术目前不检查视线。AI对局诊断不能代替真人竞技平衡测试。
 - 自定义套牌只有一个本地槽，保存于Godot的 `user://custom_deck.json`，不随仓库上传。
 - 战役只有一个本地自动槽及上次有效备份，位于 `user://campaign_autosave.json`；新战役会先要求确认替换进度，存档不随仓库上传。
@@ -605,4 +611,4 @@ python tools/audit_narrative.py
 
 ## 许可
 
-MIT License，详见 [`LICENSE`](LICENSE)。Godot引擎遵循其[自身许可](https://godotengine.org/license/)，仓库不随附引擎二进制。
+项目代码采用 MIT 许可。Kevin MacLeod 的两首配乐采用 CC BY 4.0。Windows 下载内附引擎声明和音乐署名。 [项目许可](LICENSE) · [音乐署名](assets/audio/MUSIC-CREDITS.txt) · [Godot 许可](https://godotengine.org/license/)

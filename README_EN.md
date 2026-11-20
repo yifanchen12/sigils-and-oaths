@@ -5,15 +5,17 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.59.0-dev" src="https://img.shields.io/badge/version-0.59.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.60.0-dev" src="https://img.shields.io/badge/version-0.60.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 248 collectible cards, twenty-three preset decks and six Blender-rendered skirmish boards. In **0.59.0-dev**, rain falls over both armies, paper lanterns rise above the Citadel, and a delayed order strikes only the enemies still inside its marked cross. The chapter archive shows your decisions and lets you renegotiate the final oath in a separate save. [Download for Windows](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.59.0-dev) · [Watch 19.5 seconds of gameplay with sound](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.59.0-dev/SigilsAndOaths-0.59.0-dev-Weather-and-Orders.mp4)
+The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 248 collectible cards, twenty-three preset decks and six Blender-rendered skirmish boards. **0.60.0-dev** Listen to *Evening* in the council and *Angevin* on the battlefield. In the fifth drill, stop the same rider on F6 or G6 and see whether the bronze gate weight hits. [Download for Windows](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.60.0-dev) · [20.5 seconds of gameplay with sound](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.60.0-dev/SigilsAndOaths-0.60.0-dev-Rivergate-Evening.mp4)
 
 ## In-game screenshots
+
+![Hollow Hammer descends after the rider is snared on G6](docs/release/steam/gameplay/21-hollow-hammer.png)
 
 ![Lantern Night played from hand on Citadel](docs/release/steam/gameplay/17-lantern-weather.png)
 
@@ -114,7 +116,11 @@ The gold frame marks the stretcher crew. The teal square marks the kiln evacuati
 | Lead with a commander | Ailin protects the front, Velo strengthens fire, and Sera supports healing and woodland recovery; each has active and passive abilities |
 | Change the next exchange | Rain, fog, sun, snow, tailwind and lantern weather affect both sides. Replace or dispel weather, build roads and forts, push, root or reposition units |
 | Act under a clock | 90-second action turns; targeted spells require a friendly unit within 3 cells, or a mage within 4; weather is global |
-| Learn and adjust | Four untimed drills. F10 opens display, reading size, motion, music and effects settings |
+| Learn and adjust | Five untimed drills. F10 opens display, reading size, motion, music and effects settings |
+
+## 0.60 · Rivergate Evening
+
+Use F10 to set music and effects separately and read the two Kevin MacLeod credits. Place the eight-mana order at G5, then spend the last two mana on a hand trap. F6 leaves the rider at eight health and one shield. At G6 the hammer strips the remaining shield and leaves three health. [Try the drill](docs/release/v060.md) · [Music credits](assets/audio/MUSIC-CREDITS.txt)
 
 ## 0.59 · Weather on the board
 
@@ -591,7 +597,7 @@ UI, forecast, map-art and skill-window checks require a graphical window. Earlie
 
 ## Current limits and artwork
 
-- Single-player development build for Windows x64. Open the MSI to install or extract the portable ZIP and keep its EXE and PCK together. [Download the development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.59.0-dev)
+- Single-player development build for Windows x64. Open the MSI to install or extract the portable ZIP and keep its EXE and PCK together. [Download the development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.60.0-dev)
 - Ranged attacks and spells currently do not check line of sight. AI diagnostics are not a substitute for competitive human playtesting.
 - One custom deck is saved locally at Godot's `user://custom_deck.json`; player data is not included in this repository.
 - One campaign autosave and a last-good backup use `user://campaign_autosave.json`. Starting over asks for in-game confirmation before replacing progress; these files are not published.
@@ -600,4 +606,4 @@ UI, forecast, map-art and skill-window checks require a graphical window. Earlie
 
 ## License
 
-MIT License; see [`LICENSE`](LICENSE). Godot is covered by its [own license](https://godotengine.org/license/); engine binaries are not bundled.
+Project code is licensed under MIT. Kevin MacLeod’s two recordings use CC BY 4.0. Windows downloads include the Godot notices and music credits. [Project license](LICENSE) · [Music credits](assets/audio/MUSIC-CREDITS.txt) · [Godot license](https://godotengine.org/license/)

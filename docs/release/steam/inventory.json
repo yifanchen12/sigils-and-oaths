@@ -1,5 +1,5 @@
 {
-  "version": "0.59.0-dev",
+  "version": "0.60.0-dev",
   "images": [
     {
       "path": "key-art-v1.png",
@@ -349,8 +349,32 @@
       "bytes": 1238776,
       "sha256": "2b21e355f8046b429bdafafd8617005522095bc72b46d40465e8b3903bb04fdc",
       "capture": "Chapter archive opened from the standard river, relief and school campaign ending. The archive displays the chosen split covenant and its reached epilogue."
+    },
+    {
+      "path": "gameplay/20-snare-training.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1532748,
+      "sha256": "a1e89bb0962cef4e62f366925a6bf9983a1316ed393eba019dbcd1c17d267f54",
+      "capture": "The fifth native tutorial on Citadel. Hollow Hammer marks G5 and the selected two-mana hand trap can stop the announced E6 to H6 rider at F6 or G6."
+    },
+    {
+      "path": "gameplay/21-hollow-hammer.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1687965,
+      "sha256": "34be72e47c77d0e4223327b146ea5c77a085cdb4548fd3938a60393848c167cb",
+      "capture": "Second attempt in the fifth tutorial, seed 4215. The rider actually stopped at G6 after hitting the hand trap. The original bronze drop hammer descends over G5 and reaches one enemy."
     }
   ],
-  "viewport_screenshots": 19,
+  "viewport_screenshots": 21,
   "store_and_library_graphics_including_icons": 10
 }

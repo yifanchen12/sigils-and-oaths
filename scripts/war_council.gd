@@ -167,7 +167,7 @@ func _build() -> void:
 	left.add_child(practice_row)
 	training_button = Button.new()
 	training_button.text = "实战教程"
-	training_button.tooltip_text = "四节不限时练习，可随时退出并返回原来的进度。"
+	training_button.tooltip_text = "可自选不限时练习，随时退出并返回原来的进度。"
 	training_button.custom_minimum_size.y = 39
 	training_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	training_button.pressed.connect(training_requested.emit)

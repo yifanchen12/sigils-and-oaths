@@ -17,6 +17,10 @@ if ($Manifest.platform -ne 'windows-x64' -or $Manifest.source_dirty -ne $false -
     throw 'Supply a verified Windows build created by tools/build_release.ps1.'
 }
 $ProductVersion = [version]$Matches[1]
+$WithMusicCredits = [int]($ProductVersion -ge [version]'0.60.0')
+if ($WithMusicCredits -and -not (Test-Path -LiteralPath (Join-Path $SourceRoot 'licenses/MUSIC-CREDITS.txt'))) {
+    throw 'The packaged licensed recordings require the corresponding music credits file.'
+}
 if ($ProductVersion.Major -gt 255 -or $ProductVersion.Minor -gt 255 -or $ProductVersion.Build -gt 65535) {
     throw 'This version exceeds the Windows Installer version limits.'
 }
@@ -65,7 +69,7 @@ try {
     $TemporaryMsi = Join-Path $Scratch $FileName
     & $Compiler build -nologo -arch x64 -culture zh-CN -ext $UiExtension -pdbtype none `
         -d "ProductVersion=$ProductVersion" -d "GamePayload=$SourceRoot" -d "GameIcon=$GameIcon" `
-        -d "LicenseRtf=$LicenseRtf" -o $TemporaryMsi (Join-Path $PSScriptRoot 'windows_installer.wxs') *> $LogPath
+        -d "LicenseRtf=$LicenseRtf" -d "WithMusicCredits=$WithMusicCredits" -o $TemporaryMsi (Join-Path $PSScriptRoot 'windows_installer.wxs') *> $LogPath
     if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $TemporaryMsi)) {
         throw "Windows Installer build failed. See $LogPath"
     }

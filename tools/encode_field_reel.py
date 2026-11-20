@@ -2,6 +2,7 @@
 import argparse
 from array import array
 import json
+import math
 from pathlib import Path
 import subprocess
 import sys
@@ -15,7 +16,8 @@ def encode(directory: Path, output: Path) -> None:
     cues = Path(__file__).resolve().parents[1] / "assets" / "audio"
     rate, channels, width = 32000, 2, 2
     audio = array("h", [0]) * (round(frames / fps * rate) * channels)
-    recorded = data.get("cues", [{"sound": s["sound"], "frame": s["sound_frame"]} for s in data["shots"]])
+    recorded = data["cues"] if "cues" in data else [{"sound": s["sound"], "frame": s["sound_frame"]} for s in data["shots"]]
+    effects_gain = (data.get("effects_percent",100)/100)**1.55
     for onset in recorded:
         file = cues / Path(onset["sound"]).name
         with wave.open(str(file), "rb") as cue:
@@ -27,7 +29,25 @@ def encode(directory: Path, output: Path) -> None:
             samples.byteswap()
         start = round(onset["frame"] / fps * rate) * channels
         for i, sample in enumerate(samples[:max(0, len(audio)-start)]):
-            audio[start+i] = min(32767, max(-32768, audio[start+i]+sample))
+            audio[start+i] = min(32767, max(-32768, audio[start+i]+round(sample*effects_gain)))
+    music = data.get("music", [])
+    crossfade = 1.45
+    for index, section in enumerate(music):
+        start = round(section["frame"] / fps * rate)
+        change = round(music[index+1]["frame"] / fps * rate) if index+1 < len(music) else frames*rate/fps
+        count = min(len(audio)//channels-start, math.ceil(change+crossfade*rate-start))
+        raw = subprocess.check_output(["ffmpeg","-v","error","-i",cues / Path(section["file"]).name,"-t",str(count/rate),
+                                       "-f","s16le","-ar",str(rate),"-ac",str(channels),"-"])
+        samples = array("h")
+        samples.frombytes(raw)
+        if sys.byteorder != "little": samples.byteswap()
+        for i in range(min(count,len(samples)//channels)):
+            fade_in = min(1,i/(crossfade*rate))
+            fade_out = min(1,max(0,1-(start+i-change)/(crossfade*rate)))
+            gain = (data["music_percent"]/100)**1.55 * (1-math.cos(math.pi*fade_in))/2 * (1-math.cos(math.pi*fade_out))/2
+            for channel in range(channels):
+                at = (start+i)*channels+channel
+                audio[at] = min(32767,max(-32768,audio[at]+round(samples[i*channels+channel]*gain)))
     if sys.byteorder != "little":
         audio.byteswap()
     with tempfile.TemporaryDirectory() as scratch:
@@ -40,7 +60,8 @@ def encode(directory: Path, output: Path) -> None:
             "-i", str(soundtrack), "-frames:v", str(frames), "-vf",
             "scale=1600:900" if data.get("full_board") else "crop=1280:720:320:184",
             "-c:v", "libx264", "-crf", "17", "-preset", "medium", "-pix_fmt", "yuv420p",
-            "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart", str(output),
+            "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart",
+            *(["-metadata", "comment=Evening and Angevin by Kevin MacLeod (incompetech.com), CC BY 4.0 https://creativecommons.org/licenses/by/4.0/ - excerpts and mix for gameplay preview."] if music else []), str(output),
         ], check=True)
 
 

@@ -26,6 +26,7 @@ if ($Manifest.platform -ne 'windows-x64' -or $Manifest.source_dirty -ne $false -
 }
 $Files = @('SigilsAndOaths.exe', 'SigilsAndOaths.pck', 'LICENSE.txt', 'RELEASE_INFO.json',
     'licenses/Godot-LICENSE.txt', 'licenses/Godot-COPYRIGHT.txt')
+if ([version]($Manifest.version.Split('-')[0]) -ge [version]'0.60.0') { $Files += 'licenses/MUSIC-CREDITS.txt' }
 $Entries = foreach ($Relative in $Files) {
     $Source = Get-Item -LiteralPath (Join-Path $SourceRoot $Relative)
     $Digest = (Get-FileHash -LiteralPath $Source.FullName -Algorithm SHA256).Hash.ToLowerInvariant()

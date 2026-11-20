@@ -5,6 +5,9 @@ const ATLAS: Texture2D = preload("res://assets/art/actions/cast-seals-v1.png")
 const SIGNATURE_ATLAS: Texture2D = preload("res://assets/art/actions/river-signatures-v1.png")
 const FIELD_ATLAS: Texture2D = preload("res://assets/art/actions/field-strokes-v1.png")
 const SKY_ATLAS: Texture2D = preload("res://assets/art/actions/weather-cels-v1.png")
+const HAMMER: Texture2D = preload("res://assets/art/actions/hollow-hammer-v1.png")
+const HAMMER_CONTACT := 0.31
+const HAMMER_DURATION := 0.96
 const SKY_CELS := {"rain":0, "snow":1, "sun":2, "fog":3, "tailwind":4, "lanterns":5}
 const SKY_LIGHT := {"rain":Color("244d73"), "snow":Color("b3d5e5"), "sun":Color("efb65c"),
 	"fog":Color("b1abc7"), "tailwind":Color("71c8ad"), "lanterns":Color("283656")}
@@ -82,6 +85,9 @@ static func draw_cast(board: Control, effect: Dictionary, tile: float) -> void:
 	var signature: int = effect.get("signature", -1)
 	var stroke: int = effect.get("stroke", -1)
 	var t: float = clampf(effect.age / effect.duration,0,1)
+	if effect.get("hammer", false):
+		_draw_hammer(board, effect, tile)
+		return
 	if style == "weather_cast":
 		_draw_weather_cast(board, effect, tile, t)
 		return
@@ -367,6 +373,44 @@ static func _weather_light(board: Control, field: Rect2, sky: String, t: float, 
 				var lane := Vector2(fposmod(i*0.618+sin(t*3+i)*0.009,1),fposmod(i*0.392-t*0.23,1))
 				var spark := field.position+field.size*lane
 				star(board,spark,tile*(0.028+i%3*0.021),Color(Color("ffdfa3"),alpha*0.88))
+
+static func hammer_contact(cell: Vector2i, center: Vector2i) -> float:
+	return HAMMER_CONTACT + Vector2(cell-center).length()*0.065
+
+static func _draw_hammer(board: Control, effect: Dictionary, tile: float) -> void:
+	var age: float = effect.age
+	var center: Vector2 = board.cell_center(effect.cell)
+	var size := Vector2.ONE * tile * (0.74 if board.reduced_motion else 1.52)
+	var gold := Color("edc788")
+	var jade := Color("8be5d2")
+	for cell: Vector2i in effect.cells:
+		var ground: Vector2 = board.cell_center(cell)
+		var elapsed := age - hammer_contact(cell, effect.cell)
+		var pulse := 0.6 if board.reduced_motion else (1.0-smoothstep(0.03,0.40,elapsed) if elapsed >= 0 else 0.09)
+		var square := Rect2(ground - Vector2.ONE*tile*0.46, Vector2.ONE*tile*0.92)
+		board.draw_rect(square, Color(gold, pulse*0.16))
+		board.draw_rect(square, Color(gold, pulse*0.85),false,maxf(1.3,tile*0.035))
+		if effect.struck.has(cell) and (board.reduced_motion or elapsed >= 0.0):
+			star(board,ground-Vector2(0,tile*0.1),tile*(0.12+0.16*pulse),Color(jade,pulse))
+	if board.reduced_motion:
+		board.draw_texture_rect(HAMMER,Rect2(center+Vector2(tile*0.28,-tile*0.23)-size/2,size),false)
+		return
+	var drop := clampf(age/HAMMER_CONTACT,0.0,1.0)
+	var foot := center + Vector2(0,tile*(0.18 - 1.60*(1.0-drop*drop*drop)))
+	if drop < 1.0:
+		board.draw_set_transform(center, 0, Vector2(1,0.30))
+		board.draw_circle(Vector2.ZERO,tile*(0.14+0.18*drop),Color(Color("192f34"),0.18+0.30*drop))
+		board.draw_set_transform(Vector2.ZERO)
+		for side: int in [-1,1]:
+			var edge := foot+Vector2(side*tile*0.27,-tile*0.72)
+			board.draw_line(edge-Vector2(0,tile*(0.12+0.60*drop)),edge,Color(jade,drop*0.74),maxf(1.5,tile*0.036),true)
+	var opacity := smoothstep(0,0.09,age)*(1.0-smoothstep(0.39,0.73,age))
+	board.draw_texture_rect(HAMMER,Rect2(foot-Vector2(size.x*0.5,size.y*0.92),size),false,Color(1,1,1,opacity))
+	if age >= HAMMER_CONTACT:
+		var wave := clampf((age-HAMMER_CONTACT)/0.53,0,1)
+		board.draw_set_transform(center+Vector2(0,tile*0.15),0,Vector2(1,0.40))
+		board.draw_arc(Vector2.ZERO,tile*(0.15+0.85*sqrt(wave)),0,TAU,36,Color(jade,(1-wave)*0.84),maxf(1.2,tile*0.045),true)
+		board.draw_set_transform(Vector2.ZERO)
 
 static func volley_contact(cell: Vector2i, center: Vector2i) -> float:
 	return 0.39+0.61*(minf(0.31,Vector2(cell-center).length()*0.078)+0.23*0.68)

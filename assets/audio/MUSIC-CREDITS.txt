@@ -1,0 +1,16 @@
+《纹章与誓约》配乐 / Sigils & Oaths music credits
+
+战前部署与剧情 / War council and story
+"Evening" by Kevin MacLeod (incompetech.com), ISRC USUAN2300002.
+https://incompetech.com/music/royalty-free/index.html?isrc=USUAN2300002
+
+战斗与实战教程 / Battles and tactical training
+"Angevin" by Kevin MacLeod (incompetech.com), ISRC USUAN1200110.
+https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1200110
+
+两首录音均按知识共享署名 4.0 国际许可使用。
+Both recordings are licensed under Creative Commons Attribution 4.0 International.
+https://creativecommons.org/licenses/by/4.0/
+
+游戏版从作者提供的 MP3 转码为立体声 Ogg Vorbis，调整音量和首尾淡化，在游戏内循环并交叉淡入淡出。预告片使用配乐节选。
+Changes for this game include stereo Ogg Vorbis encoding, gain adjustment, short edge fades, looping and in-game crossfades. The gameplay preview uses excerpts.

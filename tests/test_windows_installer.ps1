@@ -112,7 +112,10 @@ function Profile-Fingerprint {
 }
 
 function Verify-Files([string]$Payload) {
-    foreach ($Name in $PayloadFiles) {
+    $Version = (Get-Content -Raw -LiteralPath (Join-Path $Payload 'RELEASE_INFO.json') | ConvertFrom-Json).version
+    $Required = @($PayloadFiles)
+    if ([version]($Version.Split('-')[0]) -ge [version]'0.60.0') { $Required += 'licenses/MUSIC-CREDITS.txt' }
+    foreach ($Name in $Required) {
         $InstalledHash = (Get-FileHash -LiteralPath (Join-Path $InstallPath $Name) -Algorithm SHA256).Hash
         $SourceHash = (Get-FileHash -LiteralPath (Join-Path $Payload $Name) -Algorithm SHA256).Hash
         Assert-Check ($InstalledHash -eq $SourceHash) "Installed data must match the portable build: $Name"
@@ -151,7 +154,7 @@ function Verify-Removed([string]$ProductCode) {
     Assert-Check ((Product-State $ProductCode) -ne 5 -and -not (Read-InstallPath) -and
         -not (Is-UserProductRegistered $ProductCode)) 'Uninstall left an installed product or registration.'
     Assert-Check (-not (Test-Path -LiteralPath $Menu)) 'Uninstall left the Start Menu shortcut.'
-    foreach ($Name in $PayloadFiles) {
+    foreach ($Name in ($PayloadFiles + 'licenses/MUSIC-CREDITS.txt')) {
         Assert-Check (-not (Test-Path -LiteralPath (Join-Path $InstallPath $Name))) "Uninstall left $Name"
     }
     Assert-Check ((Test-Path -LiteralPath $Marker) -and (Profile-Fingerprint) -eq $SavedProfile) 'Uninstall touched personal files.'
@@ -204,7 +207,7 @@ try {
 }
 [pscustomobject]@{
     previous=$OldRelease.version; current=$CurrentRelease.version; non_elevated=$true; language='zh-CN'
-    fresh_install=$true; native_starts=3; installed_files_per_check=$PayloadFiles.Count; start_menu=$true
+    fresh_install=$true; native_starts=3; current_installed_files=($PayloadFiles.Count + 1); start_menu=$true
     upgraded_in_place=$true; downgrade_blocked=$true; uninstalled=$true; reinstalled=$true
     preserved_profile_files=$DataNames; retired_product_removed=$true; unrelated_file_preserved=$true
     status='passed'

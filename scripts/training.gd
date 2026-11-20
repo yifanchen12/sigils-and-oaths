@@ -17,6 +17,10 @@ const COUNTER_CENTER := Vector2i(6, 6)
 const COUNTER_ARCHER := Vector2i(7, 5)
 const COUNTER_MAGE := Vector2i(6, 2)
 const COUNTER_SPELL: String = "last_hearth"
+const ORDER_CENTER := Vector2i(6, 5)
+const RIDER_START := Vector2i(4, 4)
+const RIDER_DEST := Vector2i(7, 4)
+const SNARE_SITES := [Vector2i(5, 4), Vector2i(6, 4)]
 const LESSONS: Array[Dictionary] = [
 	{"name": "部署、移动与克制", "steps": [
 		{"type": "play", "card": "spear", "target": DEPLOY, "text": "选中手牌「铁壁枪卫」，部署到指挥官前方标出的空格。新部队必须贴着友军部署。"},
@@ -40,18 +44,25 @@ const LESSONS: Array[Dictionary] = [
 		{"type": "play", "card": "recall_writ", "target": COUNTER_CENTER, "text": "枪卫撑过了这次攻击。用「折回哨令」把他收回手牌，给下一次部署腾出位置。"},
 		{"type": "play", "card": "spear", "outside_blast": true, "text": "用手中刚收回的铁壁枪卫，选红框外任意合法增援格重新部署。"},
 	], "done": "游侠避开了溅射，枪卫重新部署时恢复满生命，到下次己方回合才能行动。对手有重术时，可以提前分散与保护关键部队。"},
+	{"name": "绊索与落锤", "map": "citadel", "rider_route": true, "steps": [
+		{"type": "play", "card": "hollow_hammer", "target": ORDER_CENTER, "text": "把八费「空锤待落」标在 G5。看清蓝色十字，锤要到下个己方回合才落。"},
+		{"type": "play", "card": "anchor_snare", "sites": SNARE_SITES, "text": "铁骑将沿箭头从 E6 直奔 H6。在 F6 或 G6 伏下最后两费的「锚索伏阵」。你想让它停在哪一格？"},
+		{"type": "end_turn", "text": "结束回合，让铁骑走进绊索。留意它停下的位置，以及落锤时还剩多少护盾和生命。"},
+	], "done": "可点「重练本节」，把同一根绊索往前或往后移一格。"},
 ]
 
 var lesson: int = 0
 var step_index: int = 0
 var scripted_spell_uid: int = -1
+var resolving: bool = false
 
 func prepare(index: int) -> Battle:
 	lesson = clampi(index, 0, LESSONS.size() - 1)
 	step_index = 0
+	resolving = false
 	scripted_spell_uid = -1
 	var defender: String = "warden" if lesson == 3 else "pyromancer"
-	var battle := Model.new(4211 + lesson, "greenwood", "warden", defender)
+	var battle := Model.new(4211 + lesson, LESSONS[lesson].get("map", "greenwood"), "warden", defender)
 	battle.set_commander_identity(1, "演练守军", defender)
 	battle.players[0].discard.append_array(battle.players[0].hand)
 	battle.players[0].hand.clear()
@@ -82,6 +93,13 @@ func prepare(index: int) -> Battle:
 			scripted_spell_uid = _supply(battle, COUNTER_SPELL, 1).uid
 			battle.players[1].max_mana = 9
 			_set_mana(battle, 4)
+		4:
+			_supply(battle, "hollow_hammer", 0)
+			_supply(battle, "anchor_snare", 0)
+			_place(battle, "mage", Vector2i(5, 6), 0)
+			var rider := _place(battle, "carriage_cloak", RIDER_START, 1)
+			rider.shield = battle.definition("carriage_cloak").entry.shield
+			_set_mana(battle, 10)
 	return battle
 
 func current() -> Dictionary:
@@ -94,6 +112,7 @@ func allows(battle: Battle, action: Dictionary) -> bool:
 	var step: Dictionary = current()
 	if step.is_empty() or action.type != step.type: return false
 	if step.has("target") and action.get("target") != step.target: return false
+	if step.has("sites") and not step.sites.has(action.get("target")): return false
 	if step.get("outside_blast", false):
 		var cell: Variant = action.get("target")
 		if not cell is Vector2i or not outside_blast(battle, cell): return false
@@ -113,10 +132,26 @@ func warning_cells(battle: Battle) -> Array[Vector2i]:
 	if not (step.get("show_blast", false) or step.get("outside_blast", false)): return []
 	return battle.Formation.footprint(battle, COUNTER_CENTER, int(battle.definition(COUNTER_SPELL).radius))
 
+func announced_route(battle: Battle) -> Array[Vector2i]:
+	if not LESSONS[lesson].get("rider_route", false) or complete() or battle.active_side != 0: return []
+	var rider: Dictionary = battle.unit_at(RIDER_START)
+	if rider.is_empty(): return []
+	return battle.movement_path(rider, RIDER_DEST)
+
+func conclusion(battle: Battle) -> String:
+	var text: String = LESSONS[lesson].done
+	if not LESSONS[lesson].get("rider_route", false) or battle.last_order_event.is_empty(): return text
+	for pos: Vector2i in SNARE_SITES:
+		var rider: Dictionary = battle.unit_at(pos)
+		if not rider.is_empty() and rider.side == 1:
+			return "铁骑在 %s 被绊停。落锤%s。铁骑现有 %d 生命、%d 护盾。%s" % [battle.cell_name(pos), battle.last_order_event.result, rider.hp, rider.shield, text]
+	return text
+
 func enemy_response(battle: Battle) -> Dictionary:
 	match lesson:
 		1: return {"type": "attack", "unit_id": battle.unit_at(ENEMY_ARCHER).id, "target": PROTECTED}
 		3: return {"type": "play", "card_uid": scripted_spell_uid, "target": COUNTER_CENTER}
+		4: return {"type": "move", "unit_id": battle.unit_at(RIDER_START).id, "target": RIDER_DEST}
 	return {}
 
 func _set_mana(battle: Battle, amount: int) -> void:

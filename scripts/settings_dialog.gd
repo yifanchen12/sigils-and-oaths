@@ -11,6 +11,7 @@ var effects: HSlider
 var defaults_button: Button
 var status: Label
 var content: VBoxContainer
+var music_credits: AcceptDialog
 
 func _ready() -> void:
 	title = "游戏设置"
@@ -42,6 +43,13 @@ func _ready() -> void:
 	content.add_child(HSeparator.new())
 	music = _volume("背景音乐")
 	effects = _volume("战斗音效")
+	music_credits = AcceptDialog.new()
+	music_credits.title = "配乐署名"
+	music_credits.dialog_text = FileAccess.get_file_as_string("res://assets/audio/MUSIC-CREDITS.txt")
+	music_credits.get_label().add_theme_font_size_override("font_size", 15)
+	music_credits.get_label().autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	music_credits.exclusive = true
+	add_child(music_credits)
 	var footer := HBoxContainer.new()
 	footer.add_theme_constant_override("separation", 12)
 	content.add_child(footer)
@@ -49,6 +57,10 @@ func _ready() -> void:
 	defaults_button.text = "恢复默认"
 	defaults_button.pressed.connect(func() -> void: _set_fields(Preferences.DEFAULTS))
 	footer.add_child(defaults_button)
+	var credit_button := Button.new()
+	credit_button.text = "配乐署名"
+	credit_button.pressed.connect(func() -> void: music_credits.popup_centered_clamped(Vector2i(595, 490), 0.9))
+	footer.add_child(credit_button)
 	status = Label.new()
 	status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART

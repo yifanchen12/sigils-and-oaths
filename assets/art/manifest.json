@@ -2520,6 +2520,17 @@
       "sha256": "d2856e53f8fa32f314d45f78cb09c1ba3d75368e63fccbfa448c28c3f78d112f",
       "source_bytes_preserved": true,
       "role": "Six weather silhouettes painted for the rain, snow, sun, fog, wind and lantern card transitions."
+    },
+    {
+      "id": "hollow-hammer-v1",
+      "path": "assets/art/actions/hollow-hammer-v1.png",
+      "source_filename": "exec-2a8cefd4-fcb2-4165-b017-65d3612990c9.png",
+      "prompt_file": "assets/art/actions/hollow-hammer.md",
+      "size": [1254, 1254],
+      "mode": "RGBA",
+      "sha256": "fdc0bfe07654f51d9a7b5d4bd1d9fdf96ea1bd27e39b0b8615672688fc87eef5",
+      "source_bytes_preserved": true,
+      "role": "Rivergate bronze drop hammer for the delayed Hollow Hammer field order."
     }
   ]
 }

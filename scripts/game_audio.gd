@@ -2,8 +2,8 @@ extends Node
 
 signal cue_started(cue: String)
 
-const COUNCIL = preload("res://assets/audio/council.ogg")
-const BATTLE = preload("res://assets/audio/battle.ogg")
+const COUNCIL = preload("res://assets/audio/evening.ogg")
+const BATTLE = preload("res://assets/audio/angevin.ogg")
 const CastArt = preload("res://scripts/cast_art.gd")
 const SKY_CUES := {"rain":"rainfall","snow":"snowfall","sun":"sunbreak","fog":"mistroll",
 	"tailwind":"windrush","lanterns":"paperlights","clear":"clearair"}
@@ -13,6 +13,7 @@ const CUES: Dictionary = {
 	"move": preload("res://assets/audio/move.wav"),
 	"deploy": preload("res://assets/audio/deploy.wav"),
 	"attack": preload("res://assets/audio/attack.wav"),
+	"hammer": preload("res://assets/audio/hammer.wav"),
 	"cast": preload("res://assets/audio/cast.wav"),
 	"bulwark": preload("res://assets/audio/bulwark.wav"),
 	"comet": preload("res://assets/audio/comet.wav"),
@@ -91,11 +92,13 @@ func set_battle_music(in_battle: bool) -> void:
 	var incoming: AudioStreamPlayer = music_players[next]
 	var outgoing: AudioStreamPlayer = music_players[1 - next]
 	if DisplayServer.get_name() == "headless": return
+	incoming.stream_paused = false
 	if not incoming.playing: incoming.play()
 	fade = create_tween().set_parallel().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	fade.tween_property(incoming, "volume_linear", 1.0, 0.68)
-	fade.tween_property(outgoing, "volume_linear", 0.0, 0.68)
-	fade.finished.connect(outgoing.stop)
+	fade.tween_property(incoming, "volume_linear", 1.0, 1.45)
+	fade.tween_property(outgoing, "volume_linear", 0.0, 1.45)
+	fade.finished.connect(func() -> void:
+		if outgoing.playing: outgoing.stream_paused = true)
 
 func feedback(action: Dictionary, battle: Battle, acting_side: int) -> void:
 	var style := CastArt.style_for(action)
@@ -105,7 +108,7 @@ func feedback(action: Dictionary, battle: Battle, acting_side: int) -> void:
 	elif action.get("combat", {}).get("intercepted", false):
 		_play("guard")
 	elif not battle.last_order_event.is_empty():
-		_play("sprout" if battle.last_order_event.support else "attack")
+		_play("hammer" if battle.last_order_event.card_id == "hollow_hammer" else ("sprout" if battle.last_order_event.support else "attack"))
 	elif style == "weather_cast":
 		_play(SKY_CUES[battle.weather])
 	elif style == "fire_area":
