@@ -1,8 +1,10 @@
 # 内容披露与来源清单
 
-面向 Windows 0.62.0-dev。此表用于核对送审版本实际文件和商店页面。提交内容调查和确定地区评级需要发行方查看最终构建与 Steamworks 表单。Steamworks 把开发期间生成并交付给玩家的内容与运行中生成的内容分别调查。 [Steamworks 内容调查](https://partner.steamgames.com/doc/gettingstarted/contentsurvey)
+面向 Windows 0.63.0-dev。此表用于核对送审版本实际文件和商店页面。提交内容调查和确定地区评级需要发行方查看最终构建与 Steamworks 表单。Steamworks 把开发期间生成并交付给玩家的内容与运行中生成的内容分别调查。 [Steamworks 内容调查](https://partner.steamgames.com/doc/gettingstarted/contentsurvey)
 
-75 张扩展部队棋子按本项目的原卡绘制。撑渡枪夫另有三张动作原画，站立、架枪、出枪和收势共四种姿态。美术在开发阶段生成并打包，游戏从本地数据包读取。 [原图编号、原卡列表和提示词](../../../assets/art/pieces/production.json) · [本版实机](gameplay/24-ferry-pikeman.png) · [随包来源清单](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.62.0-dev/packed-sources-v062.json)
+0.63 以用户提供的两张游戏立绘为风格参考，在开发阶段通过内置图片生成工具重绘两位成年女性角色。新图采用羽翼、飘带、花伞、长袖和露肤较多的服装，露出肩部、腰部与大腿。两张原图分别衍生卡面和棋盘棋子，全部提示词、生成文件名及裁切区域已留存。 [制作记录](../../../assets/art/characters/v2/redraw-sources.json) · [本版实机](gameplay/28-crimson-parasol-mage.png)
+
+0.62 的 75 张扩展部队棋子按本项目的原卡绘制。撑渡枪夫另有三张动作原画，站立、架枪、出枪和收势共四种姿态。美术在开发阶段生成并打包，游戏从本地数据包读取。 [原图编号、原卡列表和提示词](../../../assets/art/pieces/production.json) · [本版实机](gameplay/24-ferry-pikeman.png) · [随包来源清单](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.62.0-dev/packed-sources-v062.json)
 
 第六课使用游戏已有的河谷、人物肖像、音效和两首署名录音。射程边界和标记由运行时根据棋局绘制。 [0.61 随包资源与声明](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.61.0-dev/packed-sources-v061.json) · [0.61 实机](gameplay/22-bridge-reinforcement.png)
 

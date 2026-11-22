@@ -22,6 +22,8 @@ GRAPHICS = {
     "shortcut-icon.png": (512, 512),
 }
 SCREENSHOTS = {
+    "27-white-feather-medic.png": "The redesigned Shore Medic deployed by a legal card action in Rivergate, fifth round, original character portrait and matching full-body piece visible.",
+    "28-crimson-parasol-mage.png": "The redesigned Ash Notary deployed by a legal card action in Rivergate, seventh round, original character portrait and matching parasol piece visible.",
     "01-local-spell.png": "Normal Frost Engine vs Balanced Host skirmish on the Blender-rendered Greenwood, seed 4107, before a legal ten-mana cast on side turn 21.",
     "02-bridge-engagement.png": "Normal Reed Legion vs Balanced Host skirmish, Rivergate seed 4186, attack preview on side turn 13.",
     "03-rivergate-story.png": "The opening chapter's actual c01.a03 dialogue page reached by reading from New Campaign.",

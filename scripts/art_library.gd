@@ -73,6 +73,7 @@ const CHANNEL_CARD_ART: Dictionary = {
 	"span_kit": "span-kit-v1", "countercurrent_ward": "countercurrent-ward-v1"
 }
 const CARD_ATLASES: Dictionary = {
+	"reference-characters-v1": {"columns": 2, "rows": 1, "ids": ["shore_medic", "ash_notary"]},
 	"warfront-units-v1": {"columns": 4, "rows": 2, "ids": ["reed_scout", "gate_veteran", "ridge_courier", "ridge_archer",
 		"shore_medic", "scribe_warden", "breakwater_guard", "bronze_watch"]},
 	"warfront-effects-v1": {"columns": 4, "rows": 4, "ids": ["field_signals", "detach_line", "dispatch_bundle", "mist_spike",

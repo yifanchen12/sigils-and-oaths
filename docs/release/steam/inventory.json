@@ -1,5 +1,5 @@
 {
-  "version": "0.62.0-dev",
+  "version": "0.63.0-dev",
   "images": [
     {
       "path": "key-art-v1.png",
@@ -121,6 +121,30 @@
       "mode": "RGBA",
       "bytes": 46114,
       "sha256": "99747e3a0247e74364813e1188e966d1b98b6b658e701d89cad115728a351c7e"
+    },
+    {
+      "path": "gameplay/27-white-feather-medic.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1576607,
+      "sha256": "a7894f210f6513e8eb2a805682bffbeccf0524657f27199d337fb3505cd65990",
+      "capture": "The redesigned Shore Medic deployed by a legal card action in Rivergate, fifth round, original character portrait and matching full-body piece visible."
+    },
+    {
+      "path": "gameplay/28-crimson-parasol-mage.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1612767,
+      "sha256": "6ce2028c01a21060f30e24642fda7677089978e86e7ba09ad09d76c66c0e5057",
+      "capture": "The redesigned Ash Notary deployed by a legal card action in Rivergate, seventh round, original character portrait and matching parasol piece visible."
     },
     {
       "path": "gameplay/01-local-spell.png",
@@ -435,6 +459,6 @@
       "capture": "The same ferryman moves from G1 to H1 after 16 legal actions in the Rivergate match. The native movement tween is captured before reaching the destination."
     }
   ],
-  "viewport_screenshots": 26,
+  "viewport_screenshots": 28,
   "store_and_library_graphics_including_icons": 10
 }

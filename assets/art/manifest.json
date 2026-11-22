@@ -2651,6 +2651,58 @@
       "mode": "RGBA",
       "sha256": "4db05bd870953868b088a8b10f8622d1d84e616aa32fb4b641863efeddf53af9",
       "role": "Card-specific battlefield figures in the same slots as the source portrait atlas."
+    },
+    {
+      "id": "white-feather-oracle",
+      "path": "assets/art/characters/v2/white-feather-oracle.png",
+      "size": [
+        1086,
+        1448
+      ],
+      "role": "Full-body adult healer illustration in the requested feather and ribbon design.",
+      "sha256": "a233f0d9ed94450f54d34e03c99ae56b14a1959c95a656bb67a6c6836d8b611a",
+      "prompt_file": "assets/art/characters/v2/redraw-sources.json",
+      "processing": "Native image generation with user-provided game-art style references. tools/prepare_reference_characters.py derives portrait crops and 256 px pieces.",
+      "status": "Used by Windows 0.63.0-dev"
+    },
+    {
+      "id": "crimson-parasol-diviner",
+      "path": "assets/art/characters/v2/crimson-parasol-diviner.png",
+      "size": [
+        1063,
+        1479
+      ],
+      "role": "Full-body adult mage illustration in the requested parasol and flowing-sleeve design.",
+      "sha256": "b90c24cb45ab620628e6f027b028a7f937e0e21db7ab30653e4deba7fef62780",
+      "prompt_file": "assets/art/characters/v2/redraw-sources.json",
+      "processing": "Native image generation with user-provided game-art style references. tools/prepare_reference_characters.py derives portrait crops and 256 px pieces.",
+      "status": "Used by Windows 0.63.0-dev"
+    },
+    {
+      "id": "reference-characters-portraits",
+      "path": "assets/art/expansion/reference-characters-v1.png",
+      "size": [
+        1024,
+        512
+      ],
+      "role": "Card regions for shore_medic and ash_notary, in that order.",
+      "sha256": "0059b27de14fecb399db831e6eaa0d60d17b3560b413047a5ddeac553abc0db2",
+      "prompt_file": "assets/art/characters/v2/redraw-sources.json",
+      "processing": "Native image generation with user-provided game-art style references. tools/prepare_reference_characters.py derives portrait crops and 256 px pieces.",
+      "status": "Used by Windows 0.63.0-dev"
+    },
+    {
+      "id": "reference-characters-pieces",
+      "path": "assets/art/pieces/reference-characters-v1.png",
+      "size": [
+        512,
+        256
+      ],
+      "role": "Matching 256 px board figures for the same two card identities.",
+      "sha256": "ab2522bf062daa9c7e6f6d9d71342bba764c42878afc47a8a564772295b5a0e2",
+      "prompt_file": "assets/art/characters/v2/redraw-sources.json",
+      "processing": "Native image generation with user-provided game-art style references. tools/prepare_reference_characters.py derives portrait crops and 256 px pieces.",
+      "status": "Used by Windows 0.63.0-dev"
     }
   ]
 }
