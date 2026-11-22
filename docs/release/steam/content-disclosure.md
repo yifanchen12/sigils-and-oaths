@@ -2,7 +2,7 @@
 
 面向 Windows 0.63.0-dev。此表用于核对送审版本实际文件和商店页面。提交内容调查和确定地区评级需要发行方查看最终构建与 Steamworks 表单。Steamworks 把开发期间生成并交付给玩家的内容与运行中生成的内容分别调查。 [Steamworks 内容调查](https://partner.steamgames.com/doc/gettingstarted/contentsurvey)
 
-0.63 以用户提供的两张游戏立绘为风格参考，在开发阶段通过内置图片生成工具重绘两位成年女性角色。新图采用羽翼、飘带、花伞、长袖和露肤较多的服装，露出肩部、腰部与大腿。两张原图分别衍生卡面和棋盘棋子，全部提示词、生成文件名及裁切区域已留存。 [制作记录](../../../assets/art/characters/v2/redraw-sources.json) · [本版实机](gameplay/28-crimson-parasol-mage.png)
+0.63 以用户提供的游戏立绘及本项目获认可的花伞角色为风格参考，通过内置图片生成工具重新绘制 81 张部队牌和 3 位指挥官，另绘 84 个对应的 Q 版棋子。全部角色设定为成年人，完整立绘采用正常成年比例，部分服装露出肩部、腰部、胸口与大腿；战场小比例人物使用简化服装。卡面、人物档案与棋盘按稳定编号对应。提示词、原生生成文件名、SHA-256、拆分及装图脚本均保留；第三方参考原图没有加入游戏资源。 [制作记录](../../../assets/art/characters/v3/production.json) · [全部角色总览](../cast-v063.webp) · [本版实机](gameplay/28-crimson-parasol-mage.png)
 
 0.62 的 75 张扩展部队棋子按本项目的原卡绘制。撑渡枪夫另有三张动作原画，站立、架枪、出枪和收势共四种姿态。美术在开发阶段生成并打包，游戏从本地数据包读取。 [原图编号、原卡列表和提示词](../../../assets/art/pieces/production.json) · [本版实机](gameplay/24-ferry-pikeman.png) · [随包来源清单](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.62.0-dev/packed-sources-v062.json)
 
@@ -25,11 +25,11 @@
 | Godot 引擎与内含依赖 | 官方 Windows x64 导出模板。游戏包附带引擎许可及第三方版权汇总 | 以保留的 `licenses/Godot-LICENSE.txt` 和 `licenses/Godot-COPYRIGHT.txt` 为准。 [Godot 项目许可证](https://github.com/godotengine/godot/blob/4.7.2-stable/LICENSE.txt) |
 | 游戏源码与构建 | 游戏仓库含项目许可证和源码 | 出版者须确认其发行授权覆盖游戏包、美术和叙事。 [项目许可证](../../../LICENSE) |
 | 角色、地图、卡面与剧情插画 | 开发期生成的插画、正交渲染的地形及项目绘制的图标随包载入 | 已核对包内资源、提交中的源文件、现有制作记录和七份立体地形渲染的模型来源。发行方仍需确认商业使用授权范围。 [工程美术清单](../../../assets/art/manifest.json) · [逐项核对结果](https://github.com/yifanchen12/sigils-and-oaths/releases/download/v0.61.0-dev/packed-sources-v061.json) |
-| 潮门后备卡面 | 36 张开发期生成插画，由三张固定 PNG 提供，战斗动作沿用原有兵种素材 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/tidegate-source.md) |
-| 堤灯军令卡面 | 18 张开发期生成插画，由两张固定 PNG 提供 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/levee-source.md) |
-| 回澜契令卡面 | 24 张开发期生成插画，由四张固定 PNG 提供 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/moorings-source.md) |
-| 石岭行军卡面 | 36 张开发期生成插画，由四张固定 PNG 提供 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/pilgrim-source.md) |
-| 镜道兵书卡面 | 48 张开发期生成插画，由四张固定 PNG 提供，棋盘部队沿用兵种战斗造型 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/glassroad-source.md) |
+| 潮门后备卡面 | 非部队卡面沿用开发期插画；本组部队已换用 0.63 成年立绘与独立 Q 版棋子 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/tidegate-source.md) |
+| 堤灯军令卡面 | 非部队卡面沿用开发期插画；部队采用 0.63 新立绘及 Q 版棋子 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/levee-source.md) |
+| 回澜契令卡面 | 非部队卡面沿用开发期插画；部队采用 0.63 新立绘及 Q 版棋子 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/moorings-source.md) |
+| 石岭行军卡面 | 非部队卡面沿用开发期插画；部队采用 0.63 新立绘及 Q 版棋子 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/pilgrim-source.md) |
+| 镜道兵书卡面 | 非部队卡面沿用开发期插画；本组部队已换用 0.63 成年立绘与独立 Q 版棋子 | 保留生成提示、来源文件名和 SHA-256。 [卡面生成记录](../../../assets/art/expansion/glassroad-source.md) |
 | 双桥河谷、暮林边境与碧潮港湾底图 | AI 辅助编写建模脚本，在 Blender 中搭建原创地形、树木、桥梁、港口建筑及船只，用正交相机将三张整图渲染到本地。港湾另有四处空泊位图 | 保留可编辑模型、建模脚本和渲染文件 SHA-256。 [美术清单](../../../assets/art/manifest.json) |
 | 章节重走背景 | 一张开发期生成的档案室场景图 | 保留生成提示、来源文件名和 SHA-256。 [档案室生成记录](../../../assets/art/narrative/chapter-replay-source.md) |
 | 战役军备背景 | 一张开发期生成的港口军备库场景图 | 保留生成提示、来源文件名和 SHA-256。 [军备库生成记录](../../../assets/art/narrative/campaign-armory-source.md) |

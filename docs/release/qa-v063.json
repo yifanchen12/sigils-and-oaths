@@ -1,0 +1,92 @@
+{
+  "version": "0.63.0-dev",
+  "scope": "source-tree regression before release export",
+  "adult_full_body_characters": 84,
+  "matching_chibi_figures": 84,
+  "renamed_cards": 249,
+  "unchanged_non_name_card_fields": true,
+  "checks": 5677,
+  "failures": 0,
+  "suites": [
+    {
+      "suite": "identity",
+      "result": "UNIT PIECE IDENTITY | 84 figures | 993 checks | 0 failures",
+      "renderer": "headless"
+    },
+    {
+      "suite": "snapshot-final",
+      "result": "BATTLE SNAPSHOT CHECKS: 838 | FAILURES: 0 | DISPLAY: headless",
+      "renderer": "headless"
+    },
+    {
+      "suite": "verification",
+      "result": "REFERENCE ART | 874 checks | 0 failures",
+      "renderer": "Windows"
+    },
+    {
+      "suite": "test_action_poses",
+      "result": "ACTION POSE CHECKS: 139 | FAILURES: 0 | DISPLAY: Windows",
+      "renderer": "Windows"
+    },
+    {
+      "suite": "test_cast_poses",
+      "result": "CAST POSE CHECKS: 221 | FAILURES: 0 | DISPLAY: Windows",
+      "renderer": "Windows"
+    },
+    {
+      "suite": "test_cast_visuals",
+      "result": "CAST ART UI: 153 CHECKS | FAILURES: 0",
+      "renderer": "Windows"
+    },
+    {
+      "suite": "test_lore_book",
+      "result": "LORE UI CHECKS: 118 | FAILURES: 0 | DISPLAY: Windows",
+      "renderer": "Windows"
+    },
+    {
+      "suite": "test_ui",
+      "result": "UI CHECKS: 497 | FAILURES: 0 | DISPLAY: Windows",
+      "renderer": "Windows"
+    },
+    {
+      "suite": "test_campaign_difficulty-final",
+      "result": "CAMPAIGN DIFFICULTY 331 CHECKS | 0 FAILURES",
+      "renderer": "headless"
+    },
+    {
+      "suite": "test_onboarding_ui-final",
+      "result": "ONBOARDING UI: 91 CHECKS | FAILURES: 0 | DISPLAY: headless",
+      "renderer": "headless"
+    },
+    {
+      "suite": "test_glassroad_cards-final",
+      "result": "GLASSROAD CARDS: 534 CHECKS | FAILURES: 0",
+      "renderer": "headless"
+    },
+    {
+      "suite": "test_tidegate_cards-final",
+      "result": "TIDEGATE CARDS CHECKS 165 | FAILURES 0",
+      "renderer": "headless"
+    },
+    {
+      "suite": "test_levee_cards-final",
+      "result": "LEVEE RULES: 124 CHECKS | FAILURES: 0",
+      "renderer": "headless"
+    },
+    {
+      "suite": "test_moorings_cards-final",
+      "result": "MOORINGS RULES: 174 CHECKS | FAILURES: 0",
+      "renderer": "headless"
+    },
+    {
+      "suite": "test_pilgrim_cards-final",
+      "result": "PILGRIM CARDS: 254 CHECKS | FAILURES: 0",
+      "renderer": "headless"
+    },
+    {
+      "suite": "test_afterglow_cards-final",
+      "result": "AFTERGLOW CARDS: 171 CHECKS | FAILURES: 0",
+      "renderer": "headless"
+    }
+  ]
+}

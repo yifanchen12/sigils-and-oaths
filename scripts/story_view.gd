@@ -323,7 +323,7 @@ func _render_page() -> void:
 		"choice":
 			speaker.text = "由你下令"
 			for option: Dictionary in page.options:
-				actions.add_child(_button(option.text, _choose.bind(str(option.id), view_token.duplicate())))
+				actions.add_child(_button(preload("res://scripts/card_names.gd").display_text(option.text), _choose.bind(str(option.id), view_token.duplicate())))
 		"battle":
 			speaker.text = setup.get("title", "战前军议")
 			var retry: String = ""

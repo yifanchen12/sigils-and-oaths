@@ -1,5 +1,5 @@
 extends SceneTree
-## Replay legal actions in the real scene and capture both redrawn cards.
+## Replay legal actions and verify all renamed cards and full-art identities.
 ## The same external script can run against an exported Windows PCK.
 
 const Scene = preload("res://scenes/main.tscn")
@@ -48,6 +48,7 @@ func run() -> void:
 	viewport.size = Vector2i(1920, 1080)
 	viewport.size_2d_override = Vector2i(1778, 1000)
 	viewport.size_2d_override_stretch = true
+	viewport.gui_embed_subwindows = true
 	viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	root.add_child(viewport)
 	game = Scene.instantiate()
@@ -107,7 +108,7 @@ func run() -> void:
 			game._refresh()
 			var standing := Art.get_texture("sprite_" + arriving) as AtlasTexture
 			var portrait := Art.get_texture(arriving) as AtlasTexture
-			check(standing.atlas.resource_path.ends_with("/pieces/reference-characters-v1.png") and portrait.atlas.resource_path.ends_with("/expansion/reference-characters-v1.png"), "new portrait and figure are both active")
+			check(standing.atlas.resource_path.ends_with("/pieces/cast-28.png") and portrait.atlas.resource_path.ends_with("/expansion/cast-28.png"), "new portrait and chibi figure are both active")
 			check(game.battle_peek.portrait.texture == portrait, "hover portrait follows the same deployed card")
 			await photograph("27-white-feather-medic" if arriving == "shore_medic" else "28-crimson-parasol-mage")
 			check(game.battle_peek.is_visible_in_tree(), "card portrait is visible beside board")
@@ -119,6 +120,34 @@ func run() -> void:
 		if step % 20 == 0: await process_frame
 	check(captured.size() == 2, "both new characters deployed and photographed")
 	check(verified_skills.size() == 2, "each new character used its normal active skill")
+	game._open_library()
+	for card: Dictionary in Model.CATALOG.cards:
+		game._library_details(card, 0)
+		check(game.get_node("%LibraryDetails").text.contains(card.name), "current name reaches the native library")
+		check(game.get_node("%LibraryArtButton").disabled == (card.type != "unit"), "full artwork is available only for unit cards")
+		if card.type == "unit":
+			game._open_character_art()
+			check(game.get_node("%CharacterArt").texture == Art.Redrawn.full_body(card.id), "full-body viewer keeps selected identity")
+			check(game.get_node("%CharacterArtTitle").text == card.name, "full artwork uses current card name")
+			game.get_node("%CharacterArtDialog").hide()
+	game._library_details(Model.CATALOG.find("ash_notary"), 0)
+	await photograph("29-renamed-card-library")
+	game.get_node("%LibraryArtButton").pressed.emit()
+	await photograph("30-parasol-full-art")
+	check(game.get_node("%CharacterArtDialog").visible, "full-body viewer opened from the visible button")
+	game.get_node("%CharacterArtDialog").hide()
+	viewport.size = Vector2i(1008, 700)
+	viewport.size_2d_override = Vector2i(1008, 700)
+	for frame in 5: await process_frame
+	game._open_character_art()
+	for frame in 5: await process_frame
+	var art_dialog: Window = game.get_node("%CharacterArtDialog")
+	check(Rect2i(Vector2i.ZERO, viewport.size).encloses(Rect2i(art_dialog.position, art_dialog.size)), "full illustration dialog fits the minimum window")
+	check(game.get_node("%CharacterArt").size.y > 350, "minimum window retains a usable full-art area")
+	await RenderingServer.frame_post_draw
+	check(viewport.get_texture().get_image().save_png(output.path_join("31-full-art-small.png")) == OK, "minimum-window illustration screenshot")
+	art_dialog.hide()
+	game.get_node("%CardsDialog").hide()
 	print("REFERENCE ART | ", checks, " checks | ", failures, " failures")
 	game.queue_free()
 	await process_frame

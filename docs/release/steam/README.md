@@ -1,6 +1,6 @@
 # 《纹章与誓约》Steam 商店素材候选包
 
-当前 Windows 预览为 0.61.0-dev。界面和剧情为简体中文，以下中英文文案供商店语言版本使用。本目录保留高分辨率游戏画面、商店及库用图片和内容披露底稿。
+当前 Windows 预览为 0.63.0-dev。界面和剧情为简体中文，以下中英文文案供商店语言版本使用。本目录保留高分辨率游戏画面、商店及库用图片和内容披露底稿。
 
 ## 中文简介
 
@@ -40,9 +40,11 @@ Game interface and story text are in Simplified Chinese.
 | 库封面、库横幅、库英雄图 | 600×900、920×430、3840×1240 | [graphics](graphics) |
 | 透明库字标 | 1280×390 RGBA | [library-logo.png](graphics/library-logo.png) |
 | 快捷方式、应用图标 | 512×512 PNG、184×184 JPG | [shortcut-icon.png](graphics/shortcut-icon.png) · [app-icon.jpg](graphics/app-icon.jpg) |
-| 二十三张游戏画面 | 全部 1920×1080，16:9 | [gameplay](gameplay) |
+| 三十张游戏画面（本版四张，其余为历史版本） | 全部 1920×1080，16:9 | [gameplay](gameplay) |
 
 商店封面只带游戏标题，库英雄图无文字，游戏截图直接取自 Godot 实际渲染。规格按核对时的 Steamworks 文档，本地已经检查尺寸和透明通道。发行方仍需核对后台预览的压缩、裁切和适龄截图。[商店图像规格](https://partner.steamgames.com/doc/store/assets/standard) · [库用图像规格](https://partner.steamgames.com/doc/store/assets/libraryassets) · [图标规格](https://partner.steamgames.com/doc/store/assets/community)
+
+第 27—30 张为 0.63 的实际渲染，展示新版立绘、Q 版棋子、新牌名和完整立绘浏览。第 1—26 张保留历史版本的玩法取景，角色与牌名可能与当前版本不同。
 
 前八张截图包括第 11 轮的十费范围法术、第 7 轮的双桥河谷遭遇、首章对白 `c01.a03`、援护教程、第十七章「先送灯手」，以及两张「镜道兵书」的牌效预览。港湾画面记录了第 7 轮南桥上的一次普通攻击预览。 [港湾南桥](gameplay/08-harbor-crossing.png) · [尺寸、种子及哈希核对](inventory.json)
 

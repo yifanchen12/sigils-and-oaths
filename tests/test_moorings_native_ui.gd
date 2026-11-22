@@ -87,7 +87,7 @@ func verify_spell() -> void:
 	var point: Vector2 = game.board.global_position + game.board.cell_center(center)
 	hover(point)
 	await settle()
-	check(game.selected_card == card.uid and game.battle_peek.heading.text == "铜梭八响", "mouse selection opens the prescribed damage forecast")
+	check(game.selected_card == card.uid and game.battle_peek.heading.text == "八响破阵弦", "mouse selection opens the prescribed damage forecast")
 	check(game.board.predicted_area.size() == 7 and game.board.predicted_area.has(commander.pos) and not game.board.predicted_area.has(diagonal), "game board highlights the horizontal strip only")
 	await capture("v049-moorings-row-preview.png")
 	await click(point)

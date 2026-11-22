@@ -115,7 +115,7 @@ func resolve_bridge_drill(choice: int) -> void:
 	await click(game.reach_button.get_global_rect().get_center())
 	hover(game.board.global_position + game.board.cell_center(site))
 	await settle()
-	check(game.reach_button.button_pressed and game.selected_card == uid and game.map_legend.text.contains("够不到" if choice == 0 else "暮林游侠"), "pointer reads the actual threat beside the pending deployment")
+	check(game.reach_button.button_pressed and game.selected_card == uid and game.map_legend.text.contains("够不到" if choice == 0 else game.battle.definition("archer").name), "pointer reads the actual threat beside the pending deployment")
 	check(game.battle_brief.details.text.contains("够不到" if choice == 0 else "后可攻") and game.battle_brief.portrait.texture != null,
 		"expanded scouting card pairs the tile with its terrain or a real attacker's portrait and firing point")
 	check(not game.battle_brief.visible or not game.board.grid_rect().intersects(game.battle_brief.get_rect()),
@@ -125,7 +125,7 @@ func resolve_bridge_drill(choice: int) -> void:
 	var deadline := Time.get_ticks_msec() + 5000
 	while not game.training.complete() and Time.get_ticks_msec() < deadline: await process_frame
 	var medic: Dictionary = game.battle.unit_at(site)
-	var target := "铁壁枪卫" if choice == 0 else "晨光医师"
+	var target: String = game.battle.definition("spear" if choice == 0 else "healer").name
 	check(game.training.complete() and game.battle.turn == 3 and game.training.bridge_target == target, "the animated archer selects and actually attacks the expected defender")
 	check(medic.get("hp",-1) == [5,3][choice] and game.training_panel.instruction.text.contains(target), "the conclusion displays post-treatment health and actual shot recipient")
 	check(game.battle.deployment_cells(0).has(Vector2i(3,4)) == (choice == 1), "only the exposed forward medic extends the reinforcement line onto D6")

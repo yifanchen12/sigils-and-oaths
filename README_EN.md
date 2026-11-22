@@ -11,15 +11,22 @@ If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follo
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 248 collectible cards, twenty-three preset decks and six Blender-rendered skirmish boards. **0.63.0-dev** redesigns the Shore Medic and Ash Notary with feather-and-ribbon and parasol-and-sleeve silhouettes. Each adult character's card portrait and battlefield piece come from the same new illustration. Their revealing fantasy costumes use exposed shoulders, midriffs and high-cut skirts. [Download for Windows](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.63.0-dev) · [Illustrations and gameplay](docs/release/v063.md)
+The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 248 collectible cards, twenty-three preset decks and six Blender-rendered skirmish boards. **0.63.0-dev** redraws all 81 troop characters and three commanders: 84 adult full-body illustrations and 84 matching chibi battlefield figures. All 249 card names have been revised, including spells, traps and weather. The library now opens complete troop illustrations; tutorials and save migration use the updated names. [Download for Windows](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.63.0-dev) · [Artwork and verification](docs/release/v063.md)
 
-![The new feathered medic and parasol mage illustrations](docs/release/characters-v063.webp)
+![Twelve adult illustrations and their matching chibi figures](docs/release/cast-selection-v063.webp)
 
 ## In-game screenshots
 
 ![White-feather medic deployed on E1](docs/release/steam/gameplay/27-white-feather-medic.png)
 
 ![Crimson-parasol mage deployed on E1](docs/release/steam/gameplay/28-crimson-parasol-mage.png)
+
+![Renamed card library](docs/release/steam/gameplay/29-renamed-card-library.png)
+
+![Full illustration viewer](docs/release/steam/gameplay/30-parasol-full-art.png)
+
+<details>
+<summary>Earlier versions — artwork and card names have since changed</summary>
 
 ![The Ferryman Pikeman covering G1, with his original card on the left](docs/release/steam/gameplay/24-ferry-pikeman.png)
 
@@ -109,6 +116,8 @@ The gold frame marks the stretcher crew. The teal square marks the kiln evacuati
 ![Desert ruins](docs/screenshots/painted-sunspire.png)
 ![Mountain pass](docs/screenshots/painted-ridgepass.png)
 ![Citadel courtyard](docs/screenshots/painted-citadel.png)
+
+</details>
 
 </details>
 

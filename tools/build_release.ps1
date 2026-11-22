@@ -99,7 +99,7 @@ func _initialize() -> void:
         var relative = path.trim_prefix("res://")
         if relative.begins_with("assets/art/model_sources/") or relative.ends_with(".blend"):
             problems.append("editable Blender source should not be in the Windows game pack: " + path)
-        if relative.begins_with("assets/art/map-guides/") or relative.begins_with("assets/art/unit_portraits_cel_2_draft.png") or (relative.begins_with("assets/art/") and relative.ends_with(".json")):
+        if relative.begins_with("assets/art/map-guides/") or relative.begins_with("assets/art/characters/v3/sources/") or relative.begins_with("assets/art/unit_portraits_cel_2_draft.png") or (relative.begins_with("assets/art/") and relative.ends_with(".json")):
             problems.append("authoring reference should not be in the Windows game pack: " + path)
         if not (relative.begins_with("assets/") or relative.begins_with("data/") or relative.begins_with("scripts/") or relative.begins_with("scenes/") or relative.begins_with(".godot/imported/") or relative.begins_with(".godot/exported/") or relative in ["project.binary", ".godot/global_script_class_cache.cfg", ".godot/uid_cache.bin"]):
             problems.append("unexpected resource: " + path)
@@ -151,6 +151,15 @@ func _initialize() -> void:
             problems.append("missing runtime resource: " + path)
     var catalog = load("res://data/cards.tres")
     var decks = load("res://data/decks.tres")
+    var characters = load("res://scripts/character_art.gd")
+    var character_count = 0
+    for sheet in characters.SHEETS:
+        for id in characters.SHEETS[sheet].ids:
+            character_count += 1
+            if characters.texture(id) == null or characters.texture(id, true) == null or characters.full_body(id) == null:
+                problems.append("incomplete character portrait/full-body/chibi set: " + id)
+    if character_count != 84:
+        problems.append("expected all 84 redesigned character identities")
     if catalog == null or catalog.cards.size() != 249 or catalog.find("thousand_steps").get("cost") != 10 or catalog.find("bridle_break").get("kill_mana") != 2 or not catalog.find("petal_signal").get("combo", {}).get("refresh_move", false):
         problems.append("expansion card data unavailable")
     if catalog != null:

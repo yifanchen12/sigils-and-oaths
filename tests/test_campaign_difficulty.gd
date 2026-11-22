@@ -100,6 +100,10 @@ func test_loading_and_retry() -> void:
 	var expected: Dictionary = old.encounter.battle.duplicate(true)
 	expected.version = float(Snapshot.VERSION)
 	expected.rules = Snapshot.rules_signature()
+	for unit: Dictionary in expected.units:
+		var card_id: String = unit.get("card", {}).get("card_id", "")
+		if preload("res://scripts/card_names.gd").PREVIOUS.get(card_id, "") == unit.name:
+			unit.name = Snapshot.Model.CATALOG.find(card_id).name
 	check(original == expected and session.encounter.hand_played_this_turn and session.campaign.difficulty == Difficulty.STANDARD, "mid-turn card flag, timer, board and legacy rule restore exactly")
 	check(Session.new(OLD_ARMORY).load_campaign().ok, "actual 0.50 armory save also opens")
 	var short_save = Session.new(save_path)

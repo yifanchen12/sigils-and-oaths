@@ -36,6 +36,7 @@ var battle: Battle
 var selected_card: int = -1
 var selected_unit: int = -1
 var inspected_card: int = -1
+var library_character_id: String = ""
 var hovered_cell := Vector2i(-1, -1)
 var ai_running: bool = false
 var generation: int = 0
@@ -312,6 +313,7 @@ func _ready() -> void:
 		_restart())
 	_sync_custom_options()
 	%CardLibrary.pressed.connect(_open_library)
+	%LibraryArtButton.pressed.connect(_open_character_art)
 	%LibrarySet.add_item("全部来源")
 	for set_id: String in BattleModel.CATALOG.SET_NAMES:
 		%LibrarySet.add_item(BattleModel.CATALOG.SET_NAMES[set_id])
@@ -833,6 +835,8 @@ func _show_library_cards() -> void:
 	if not first.is_empty(): _library_details(first, int(selected.cards.get(first.id, 0)))
 	else:
 		%LibraryPortrait.hide()
+		%LibraryArtButton.disabled = true
+		library_character_id = ""
 		%LibraryDetails.text = "当前筛选没有卡牌。"
 
 func _deck_definition(deck_id: String) -> Dictionary:
@@ -860,6 +864,8 @@ func _on_deck_saved(definition: Dictionary) -> void:
 	council.set_custom_deck(custom_deck, true)
 
 func _library_details(card: Dictionary, copies: int) -> void:
+	library_character_id = str(card.id) if card.type == "unit" else ""
+	%LibraryArtButton.disabled = library_character_id.is_empty()
 	%LibraryPortrait.texture = Art.get_texture(str(card.id))
 	%LibraryPortrait.visible = %LibraryPortrait.texture != null
 	%LibraryDetails.text = "[font_size=21][color=#d0b579]%s[/color][/font_size]  ·  %d 费  ·  %s  ·  当前 %d 张\n%s" % [card.name, card.cost, card.tag, copies, card.text]
@@ -877,6 +883,15 @@ func _library_details(card: Dictionary, copies: int) -> void:
 		%LibraryDetails.text += "\n施法范围：友军3格、法师4格。"
 		if card.effect == "exchange": %LibraryDetails.text += "换位目标另须在指挥官3格内。"
 	if card.type == "trap": %LibraryDetails.text += "\n伏设上限2张；从手牌支付费用后等待触发。部署、击退与换位不触发地格陷阱。"
+
+func _open_character_art() -> void:
+	if library_character_id.is_empty(): return
+	var artwork: Texture2D = Art.Redrawn.full_body(library_character_id)
+	if artwork == null: return
+	%CharacterArt.texture = artwork
+	%CharacterArtTitle.text = BattleModel.CATALOG.find(library_character_id).name
+	var available := get_viewport_rect().size - Vector2(72, 72)
+	%CharacterArtDialog.popup_centered(Vector2i(minf(760, available.x), minf(900, available.y)))
 
 func _make_theme() -> void:
 	var ui_theme := Theme.new()

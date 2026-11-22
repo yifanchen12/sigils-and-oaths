@@ -107,7 +107,7 @@ func verify_table() -> void:
 	hover(board_point(CENTER))
 	await settle()
 	var preview: Dictionary = game._effect_context()
-	check(preview.get("note", "").contains("裂垛破障队") and preview.get("note", "").contains("折桥枪卫")
+	check(preview.get("note", "").contains("破垛者洛珀") and preview.get("note", "").contains("桥骨·缇珞")
 		and preview.get("cells", []).size() == 3 and game.board.predicted_area.size() == 3, "board displays all three predicted landings and their names")
 	await capture("v053-glassroad-muster.png")
 	var army: int = battle.army_count(0)

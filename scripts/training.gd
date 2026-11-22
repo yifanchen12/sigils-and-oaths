@@ -27,35 +27,35 @@ const BRIDGE_POST := Vector2i(3, 3)
 const MEDIC_SITES := [Vector2i(2, 6), Vector2i(3, 5)]
 const LESSONS: Array[Dictionary] = [
 	{"name": "部署、移动与克制", "steps": [
-		{"type": "play", "card": "spear", "target": DEPLOY, "text": "选中手牌「铁壁枪卫」，部署到指挥官前方标出的空格。新部队必须贴着友军部署。"},
+		{"type": "play", "card": "spear", "target": DEPLOY, "text": "选中手牌「折锋·芙蕾」，部署到指挥官前方标出的空格。新部队必须贴着友军部署。"},
 		{"type": "end_turn", "text": "新部署的枪卫要到下次己方回合才能行动。点击「结束回合」，让守军按演练顺序交还回合。"},
 		{"type": "move", "from": DEPLOY, "target": SPEAR_PATH, "text": "先点选枪卫，再走到标出的空格。移动会消耗地形费用，攻击后就不能移动了。"},
 		{"type": "attack", "from": SPEAR_PATH, "target": CAVALRY, "text": "把鼠标移到林中的骑士上查看攻防，再点击攻击。枪兵克骑兵，加 2 伤害；敌人脚下的森林提供 1 防御。"},
 	], "done": "枪卫已攻击骑士，骑士存活且射程够近，立即反击。下一课练习如何替友军接下攻击。"},
 	{"name": "援护与手牌伏设", "steps": [
-		{"type": "play", "card": "oath_ward", "target": GUARD, "text": "选中手牌「回誓屏障」，伏设在标出的枪卫身上。陷阱随保护对象移动，等到受击才触发。"},
+		{"type": "play", "card": "oath_ward", "target": GUARD, "text": "选中手牌「替你挡下」，伏设在标出的枪卫身上。陷阱随保护对象移动，等到受击才触发。"},
 		{"type": "unit_skill", "from": GUARD, "target": GUARD, "text": "选中枪卫，点「铁壁援护」或按 Q，再点枪卫所在格。援护只替正交相邻友军承受普通攻击。"},
 		{"type": "end_turn", "target_hint": PROTECTED, "text": "结束回合。对面的弓手将瞄准标出的步兵，观察真正接下这箭的人和伏牌触发。"},
 	], "done": "枪卫替相邻步兵承伤，并在受击前获得陷阱的护盾。敌方只能看到伏设数量，无法预知具体牌。"},
 	{"name": "施法范围与溅射", "steps": [
 		{"type": "move", "from": MAGE_START, "target": MAGE_FINISH, "text": "选中己方法师，前进一步。普通友军提供 3 格施法范围，法师提供 4 格。下方手牌已为练习备好 10 点法力。"},
-		{"type": "play", "card": "last_hearth", "target": FIRE_CENTER, "text": "选中「天炉坠火」，悬停标出的中心检查扩散范围，再点击施法。超出中心两格的枪卫不会受伤。"},
+		{"type": "play", "card": "last_hearth", "target": FIRE_CENTER, "text": "选中「天穹尽燃」，悬停标出的中心检查扩散范围，再点击施法。超出中心两格的枪卫不会受伤。"},
 	], "done": "火焰同时打中中心和边缘的敌军，最外侧枪卫安全。正式对局每个己方回合增加 1 点法力上限，最多 10 点。"},
 	{"name": "散阵与术击反制", "steps": [
-		{"type": "play", "card": "quiet_veil", "target": COUNTER_CENTER, "show_blast": true, "text": "守军法师要向红框中心施放「天炉坠火」。把「湿帷潜护」从手牌伏设到中心的受伤枪卫身上。"},
-		{"type": "move", "from": COUNTER_ARCHER, "outside_blast": true, "text": "选中高地旁的暮林游侠，走到红框外任意一个青色可移动格。距离中心超过两格就能躲开这次溅射。"},
+		{"type": "play", "card": "quiet_veil", "target": COUNTER_CENTER, "show_blast": true, "text": "守军法师要向红框中心施放「天穹尽燃」。把「雨衣藏咒」从手牌伏设到中心的受伤枪卫身上。"},
+		{"type": "move", "from": COUNTER_ARCHER, "outside_blast": true, "text": "选中高地旁的月隙·希弥，走到红框外任意一个青色可移动格。距离中心超过两格就能躲开这次溅射。"},
 		{"type": "end_turn", "target_hint": COUNTER_CENTER, "show_blast": true, "text": "结束回合。观察伏设如何在术击前救护枪卫，以及游侠离开范围后的生命。"},
-		{"type": "play", "card": "recall_writ", "target": COUNTER_CENTER, "text": "枪卫撑过了这次攻击。用「折回哨令」把他收回手牌，给下一次部署腾出位置。"},
-		{"type": "play", "card": "spear", "outside_blast": true, "text": "用手中刚收回的铁壁枪卫，选红框外任意合法增援格重新部署。"},
+		{"type": "play", "card": "recall_writ", "target": COUNTER_CENTER, "text": "枪卫撑过了这次攻击。用「暂别战线」把她收回手牌，给下一次部署腾出位置。"},
+		{"type": "play", "card": "spear", "outside_blast": true, "text": "用手中刚收回的折锋·芙蕾，选红框外任意合法增援格重新部署。"},
 	], "done": "游侠避开了溅射，枪卫重新部署时恢复满生命，到下次己方回合才能行动。对手有重术时，可以提前分散与保护关键部队。"},
 	{"name": "绊索与落锤", "map": "citadel", "rider_route": true, "steps": [
-		{"type": "play", "card": "hollow_hammer", "target": ORDER_CENTER, "text": "把八费「空锤待落」标在 G5。看清蓝色十字，锤要到下个己方回合才落。"},
-		{"type": "play", "card": "anchor_snare", "sites": SNARE_SITES, "text": "铁骑将沿箭头从 E6 直奔 H6。在 F6 或 G6 伏下最后两费的「锚索伏阵」。你想让它停在哪一格？"},
+		{"type": "play", "card": "hollow_hammer", "target": ORDER_CENTER, "text": "把八费「悬锤将落」标在 G5。看清蓝色十字，锤要到下个己方回合才落。"},
+		{"type": "play", "card": "anchor_snare", "sites": SNARE_SITES, "text": "铁骑将沿箭头从 E6 直奔 H6。在 F6 或 G6 伏下最后两费的「脚下的锚」。你想让它停在哪一格？"},
 		{"type": "end_turn", "text": "结束回合，让铁骑走进绊索。留意它停下的位置，以及落锤时还剩多少护盾和生命。"},
 	], "done": "可点「重练本节」，把同一根绊索往前或往后移一格。"},
 	{"name": "桥头的医师", "map": "rivergate", "archer_watch": true, "steps": [
-		{"type": "play", "card": "healer", "sites": MEDIC_SITES, "text": "枪卫守在 D4，身边有两处可增援。选中「晨光医师」，比较岸边 C4 和桥上 D5 的敌军射程，再选落点。按 V 可开关射程图。"},
-		{"type": "end_turn", "text": "结束回合。北岸游侠会从 F7 赶到 D7。他优先瞄准医师，够不到才会转向枪卫。"},
+		{"type": "play", "card": "healer", "sites": MEDIC_SITES, "text": "枪卫守在 D4，身边有两处可增援。选中「返灯·米芮」，比较岸边 C4 和桥上 D5 的敌军射程，再选落点。按 V 可开关射程图。"},
+		{"type": "end_turn", "text": "结束回合。北岸游侠会从 F7 赶到 D7。她优先瞄准医师，够不到才会转向枪卫。"},
 	], "done": "两处落点都能照应枪卫。桥上的医师还能把下一次增援接到 D6。"},
 ]
 

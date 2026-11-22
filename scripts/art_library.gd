@@ -3,6 +3,7 @@ extends RefCounted
 ## Texture cache and native atlas/crop presentation; generated source files stay intact.
 
 static var textures: Dictionary = {}
+const Redrawn = preload("res://scripts/character_art.gd")
 const UNIT_ORDER: Array[String] = ["sword", "spear", "cavalry", "archer", "mage", "healer"]
 const HERO_ORDER: Array[String] = ["warden", "pyromancer", "grove"]
 const NARRATIVE_SCENES: Dictionary = {
@@ -115,6 +116,11 @@ const CARD_ATLASES: Dictionary = {
 
 static func get_texture(asset_id: String) -> Texture2D:
 	if textures.has(asset_id): return textures[asset_id]
+	var miniature: bool = asset_id.begins_with("sprite_")
+	var redesigned: Texture2D = Redrawn.texture(asset_id.trim_prefix("sprite_") if miniature else asset_id, miniature)
+	if redesigned != null:
+		textures[asset_id] = redesigned
+		return redesigned
 	for sheet: String in CARD_ATLASES:
 		var atlas: Dictionary = CARD_ATLASES[sheet]
 		var index: int = atlas.ids.find(asset_id)
@@ -205,6 +211,8 @@ static func get_texture(asset_id: String) -> Texture2D:
 
 static func get_narrative_portrait(kind: String) -> Texture2D:
 	if not HERO_ORDER.has(kind) and not UNIT_ORDER.has(kind): return null
+	var redesigned: Texture2D = Redrawn.full_body(kind)
+	if redesigned != null: return redesigned
 	if kind == "warden":
 		return load("res://assets/art/narrative/warden-dialogue-v1.png")
 	if kind not in ["spear", "pyromancer"]: return get_texture("sprite_" + kind)
@@ -221,6 +229,9 @@ static func get_narrative_portrait(kind: String) -> Texture2D:
 	return textures[key]
 
 static func get_action_texture(kind: String, frame: int) -> Texture2D:
+	# Miniatures use the board's anticipation/contact/recovery transforms.
+	# A former full-height action sheet must never replace the new identity.
+	if Redrawn.available(kind): return null
 	if frame < 0 or frame > 2 or not ACTION_SHEETS.has(kind): return null
 	var key: String = "action_%s_%d" % [kind, frame]
 	if textures.has(key): return textures[key]

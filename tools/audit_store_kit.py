@@ -22,8 +22,10 @@ GRAPHICS = {
     "shortcut-icon.png": (512, 512),
 }
 SCREENSHOTS = {
-    "27-white-feather-medic.png": "The redesigned Shore Medic deployed by a legal card action in Rivergate, fifth round, original character portrait and matching full-body piece visible.",
-    "28-crimson-parasol-mage.png": "The redesigned Ash Notary deployed by a legal card action in Rivergate, seventh round, original character portrait and matching parasol piece visible.",
+    "27-white-feather-medic.png": "0.63: Guiyu Xiluo (shore_medic) deployed by a legal card action in Rivergate, fifth round; the adult card illustration and separately drawn matching chibi figure are visible.",
+    "28-crimson-parasol-mage.png": "0.63: Huajin Feili (ash_notary) deployed by a legal card action in Rivergate, seventh round; the adult parasol portrait and matching chibi figure are visible.",
+    "29-renamed-card-library.png": "0.63: The native library shows renamed cards, redesigned adult portraits, current costs and rules, and the full-illustration button. All 249 card details and 81 troop illustrations were exercised in this scene.",
+    "30-parasol-full-art.png": "0.63: The complete original parasol illustration, selected through the library's full-art button, with its current card name and no portrait crop.",
     "01-local-spell.png": "Normal Frost Engine vs Balanced Host skirmish on the Blender-rendered Greenwood, seed 4107, before a legal ten-mana cast on side turn 21.",
     "02-bridge-engagement.png": "Normal Reed Legion vs Balanced Host skirmish, Rivergate seed 4186, attack preview on side turn 13.",
     "03-rivergate-story.png": "The opening chapter's actual c01.a03 dialogue page reached by reading from New Campaign.",

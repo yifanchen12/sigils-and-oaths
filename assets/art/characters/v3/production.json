@@ -1,0 +1,1292 @@
+{
+  "version": "0.63.0-dev",
+  "target_identities": 84,
+  "adult_policy": "Every character is an adult. Narrative identity and gameplay IDs are preserved; appearances are newly designed.",
+  "style_reference": "User-approved original crimson parasol diviner. Thin hand-drawn contours, matte cel colors, lavender shadows, varied poses.",
+  "pose_study": "https://wiki.biligame.com/langrisser/皮肤一览",
+  "third_party_reference_files": "Private study only; original game images are not redistributed.",
+  "groups": [
+    {
+      "sheet": "cast-00",
+      "adult_source": "assets/art/characters/v3/sources/cast-00-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-00-chibi.png",
+      "ids": [
+        "warden",
+        "pyromancer",
+        "grove"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a completely NEW ORIGINAL cast of three adult commanders for an anime fantasy tactical card game, using this parasol woman's illustration ONLY as the precise visual style reference. Match her delicate hand ink contours, flat cel shading, expressive pointed eyes, soft lavender shadows, flowing large sleeves and ribbons, matte colors, sensual but opaque elegant fantasy fashion and 7.5-head adult proportions. Invent all NEW faces, hair silhouettes, costumes, props and poses, not variants of earlier knights. Exactly THREE separate full-body cutouts in equal columns, one horizontal row. LEFT: adult woman sword commander age29, long silver-white hair tied in a high loose ponytail with a small red lacquer comb, smoky blue eyes, confident challenging smile. Midnight-navy asymmetrical shoulder cape lined crimson, ivory high-cut sculpted bodice with bold side cutouts and thin dark trim, flowing short layered white skirt with two long red ribbon tails, asymmetrical tall boots. Slender straight saber, small silver crescent shield. One knee bent, sword resting diagonally behind her, entire sword visible. CENTER: adult man fire commander age34, shoulder-length wavy dark auburn hair half-tied at nape, sharp gold eyes, knowing half-smile, handsome mature slim face. Ivory open-neck wrap shirt with black-red patterned hem, short black trousers tucked into tall boots, extravagant wide vermilion detached over-sleeves and trailing black sash. Holds an open red flame-shaped war fan in one hand and a slim black ember wand in the other. Relaxed tilted stance, dignified and theatrical. RIGHT: adult woman woodland commander age31, short dusty-rose wavy bob plus one long side braid, olive eyes, ivory antler-shaped hairpins. Deep peacock-green backless petal dress with opaque bodice, low neckline, high side slit, exposed waist, flowing pale mint detached sleeves, delicate ankle ribbons. A slim white branch staff with jade hanging bells and one small hovering green butterfly, playful serene casting pose. Entire head, hair, hands, weapons and feet visible. Each character occupies ONLY the central 70 percent of its column, clear transparent gutters, at least 8 percent margin around outer canvas, no touching or crossing columns. No environment, no ground, no halos behind figures, no labels, no text. Large landscape 3:2 sheet, true transparent background.",
+          "native_file": "exec-d0c6c9f9-3aa7-4be1-a9de-e14286798c78.png",
+          "sha256": "2d9ba6cbd3a61e2d6c20174c430629f28c8e74eb91175e16399472591e570fcd"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate characters in one horizontal row in the SAME ORDER as image 1: silver-ponytail woman with saber and crescent shield, auburn-haired adult man with flame fan and ember wand, dusty-rose-haired woman with antler pins and white branch staff. Match faces and costumes to image 1. Generous blank gutters between complete silhouettes, 6% empty exterior margins; no touching figures. Design for clear readability on a small tactical board.",
+          "native_file": "exec-89b5f31e-f84d-4447-b8b8-d5abe89a50d2.png",
+          "sha256": "45e297a84877d7310ebcce70f3232e64873d3849f3b1f85bda2dc505941e35da"
+        }
+      }
+    },
+    {
+      "sheet": "cast-01",
+      "adult_source": "assets/art/characters/v3/sources/cast-01-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-01-chibi.png",
+      "ids": [
+        "sword",
+        "spear",
+        "cavalry"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult man age28, messy wine-red hair, grey eyes, cropped navy sailor jacket over open ivory shirt, asymmetrical crimson sash, curved silver sword and small battered shield, cocky forward lean. CENTER: adult woman age30, long ice-blue hair in a single loose braid, narrow violet eyes, midnight plum high-cut battle bodice, white split skirt, sharp feather pauldrons and a crescent spear with white streamers, planted defiant stance. RIGHT: adult woman age27, honey-brown short curly hair, green eyes, crimson riding corset and ivory short cape with swallow tails, long slim lance with pink ribbons, astride a complete dapple grey horse, energetic leaning pose All figures, complete weapons, cloaks, hands, feet and any mounts must be entirely visible. Frame generously: each figure fits inside the middle 65% of its column with at least 12% empty transparent border on left and right; plenty of empty space above and below. Spears held nearly vertical; horses fully included. NO scene, no landscape, no text, no borders, no labels, no ground. True transparent alpha, large wide 3:2 canvas. A clean reusable original game character sprite atlas, not a composed poster.",
+          "native_file": "exec-fae913dc-4fbc-4158-897e-04c753fb519b.png",
+          "sha256": "9d6f17a0a316f528b5dc9dba2d42d9da33a763e43cd229c5322f97e641b700a8"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as the first image. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping or touching silhouettes.",
+          "native_file": "exec-bbc8c27e-e8d0-4a1e-9e5d-ba398d188e8f.png",
+          "sha256": "e83074fc20b56c72401ac9c579ad39e0d0a0eaff1ce5dd5f0b1e9974a2fefcd9"
+        }
+      }
+    },
+    {
+      "sheet": "cast-02",
+      "adult_source": "assets/art/characters/v3/sources/cast-02-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-02-chibi.png",
+      "ids": [
+        "archer",
+        "mage",
+        "healer"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult elven woman age27, dark green hair in a loose side ponytail, amber eyes, black and lime butterfly-shaped archery outfit with side cutouts and a gauzy long sleeve on one arm, recurved pale bone bow, drawing one arrow. CENTER: adult man age29, white hair cut asymmetrically at chin, one gold monocle, teal eyes, flowing indigo and ivory star-cut robe with open collar, floating brass astrolabe and ink-blue book, scholarly leaning stance. RIGHT: adult woman age30, long peach-pink hair in a loose low bun, sleepy hazel eyes, ivory and lilac open-shoulder healer dress with side slit, long ribbon sleeves, tiny lantern suspended from a willow branch staff, gentle kneeling hover All figures, complete weapons, cloaks, hands, feet and any mounts must be entirely visible. Frame generously: each figure fits inside the middle 65% of its column with at least 12% empty transparent border on left and right; plenty of empty space above and below. Spears held nearly vertical; horses fully included. NO scene, no landscape, no text, no borders, no labels, no ground. True transparent alpha, large wide 3:2 canvas. A clean reusable original game character sprite atlas, not a composed poster.",
+          "native_file": "exec-4d3ba55e-9998-41cf-b46b-e1b7d100a407.png",
+          "sha256": "9c23dcff5cef3706cbe7e3db131eb1130200549013410bce93bc825b646e3d95"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as the first image. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping or touching silhouettes.",
+          "native_file": "exec-ec85f08a-e2fd-4817-b1de-6dfc1dbd9e1a.png",
+          "sha256": "e16db3696fd214e1b64663ae86dfc6fc75aa5295714d2c8432d6bba7c2a51ce0"
+        }
+      }
+    },
+    {
+      "sheet": "cast-03",
+      "adult_source": "assets/art/characters/v3/sources/cast-03-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-03-chibi.png",
+      "ids": [
+        "reed_scout",
+        "gate_veteran",
+        "ridge_courier"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult man age25, silver undercut with short braid, amber eyes, moss and black scout scarf, light sleeveless traveler tunic, waist knife and rolled map, crouched listening pose. MANDATORY POSE: crouched extremely low, one knee almost at chest, looking over a map, dagger angled back. CENTER: adult woman age41, dark plum hair in a high braided crown, pale scar at eyebrow, rust-red halter armor dress, large pale greaves, hooked long spear and blue tassels, weight on back leg. MANDATORY POSE: seated sideways atop a small broken arch-stone, legs at different heights, spear resting across shoulders. RIGHT: adult man age28, pale rose swept-back hair, long white riding coat with ink-blue lining, elegant saber and turquoise mail satchel, riding a complete black horse with white forehead blaze. MANDATORY POSE: leaning backward while the complete horse rears slightly and turns, mail scroll whipping behind The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-c6a61765-25a1-4a8b-98fb-ed67af305b98.png",
+          "sha256": "5a3a14dc2b07e60e551ced50eb98daa18acf9a0f6a0fbcbbdcf435b20c1451d5"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as the first image. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping or touching silhouettes.",
+          "native_file": "exec-49f41cd5-aa52-40cb-afef-a92fc59ed0aa.png",
+          "sha256": "abe1e0009cbae3651c1422a9b6137978c66efe0bcc5783727ca3add748de2c43"
+        }
+      }
+    },
+    {
+      "sheet": "cast-04",
+      "adult_source": "assets/art/characters/v3/sources/cast-04-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-04-chibi.png",
+      "ids": [
+        "ridge_archer",
+        "scribe_warden",
+        "breakwater_guard"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult woman age28, black-blue bob with one long side lock, golden eyes, lilac sleeveless short coat and slate bodice, long pale scarf, large silver crossbow aimed down, poised turning motion. MANDATORY POSE: midair backward twist, knees bent at different heights, crossbow pointing down-left. CENTER: adult man age38, long pale jade hair half tied, small neat beard, charcoal and ivory scholarly cloak with floating square paper charms, crescent staff and dark glass orb, amused side glance. MANDATORY POSE: seated cross-legged on a floating rolled scroll, drawing a glowing circle with his staff. RIGHT: adult woman age33, bronze skin, white wavy hair braided over shoulder, sea-blue and ivory cutout armor dress, single very large round shell shield, silver saber at hip, confident hips-turned stance. MANDATORY POSE: kneeling on one knee behind the shield, face turned up, free hand reaching toward an unseen ally The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-5ad16f7d-8026-4753-a376-3c7d61199628.png",
+          "sha256": "7b10d665fb6c5fbcd737463a7317a06f21105eb536905f17cb793c8eb149d0cd"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as the first image. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping or touching silhouettes.",
+          "native_file": "exec-06e02575-f7eb-49f2-baaa-cf40782bb3da.png",
+          "sha256": "7372830363d0b1a4230a91cec8dd36cc777f202e435fbaff95c0e1ccdecc9392"
+        }
+      }
+    },
+    {
+      "sheet": "cast-05",
+      "adult_source": "assets/art/characters/v3/sources/cast-05-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-05-chibi.png",
+      "ids": [
+        "bronze_watch",
+        "quay_lantern",
+        "lantern_bearer"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult man age46, dark auburn beard, black swept hair with silver temple, deep ultramarine sleeveless coat, brass crescent breastplate, long halberd with dark blue pennant, stern planted stance. MANDATORY POSE: full lunging spear thrust, back leg extended, cloak flaring. CENTER: adult woman age26, dark lavender short waves, pale green eyes, pearly white short dress with blue corset straps, oversized sheer white detached sleeves and blue ribbons, glass fish lantern, hopeful raised hand. MANDATORY POSE: bending deeply forward holding lantern down close to her boot, hair sweeping sideways. RIGHT: adult man age35, tousled sandy hair, beard stubble, loose rust and ivory traveler coat with one bare shoulder, purple scarf, broad sword and a small hanging old lantern, tired half smile. MANDATORY POSE: sitting on a small supply chest, one knee raised and elbow resting on it, lantern hanging beside sword The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-eb2d94c0-2b19-470b-8d62-a09781acca4a.png",
+          "sha256": "f03b683e79f554c221950e553328e717dd53dd27b5cc57f2c04bc2c5eb3a0c6e"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as the first image. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping or touching silhouettes.",
+          "native_file": "exec-50711810-51e1-460a-b80e-a43b28a67735.png",
+          "sha256": "d8d453e9679311932994a6c84a3f9d6e29fbbe234e99d3dfc5d45cc2ba79d3e8"
+        }
+      }
+    },
+    {
+      "sheet": "cast-06",
+      "adult_source": "assets/art/characters/v3/sources/cast-06-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-06-chibi.png",
+      "ids": [
+        "mink_watcher",
+        "ferry_pikeman",
+        "willow_outlook"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult woman age28, long mint hair in a braided loop, violet eyes, midnight teal short hunting dress and feather hairpins, ivory bow and feather quiver, ready-to-draw stance. MANDATORY POSE: perched sideways on a tiny curved branch, bow resting over knees. CENTER: older adult man age58, thick silver moustache and tied charcoal hair, indigo and orange sleeveless ferryman haori, bare muscular arms, white waist sash, loose navy trousers, heavy silver boat-hook with red cord, broad steady stance. MANDATORY POSE: twisting at waist as if rowing hard, pole diagonal in both hands, one boot braced on small boat prow. RIGHT: adult woman age30, short coral hair swept to one side, golden hoop earring, navy leaf-edged halter archer outfit and cream ribbons, curved black bow with jade tips, looking back over shoulder. MANDATORY POSE: back three-quarter view turning her face toward viewer, bow drawn downward from shoulder The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-1226d87d-5d5a-47c4-9c78-142838ae635e.png",
+          "sha256": "a96c79122debb816de3a10ee131f4d7fa15ff8f49ed8fd61bc7c0d06f0103d5a"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as the first image. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping or touching silhouettes. The CENTRAL boat spearman is explicitly a muscular older MAN with salt-grey hair, moustache/beard and a boat hook. Keep him male and visibly adult. Remove his boat.",
+          "native_file": "exec-493d2ec1-85b0-4200-9eb4-820623d2ead8.png",
+          "sha256": "348bde6a82494b196f20973b94c4ed44240032758d0a11bed7183ae3214c783b"
+        }
+      }
+    },
+    {
+      "sheet": "cast-07",
+      "adult_source": "assets/art/characters/v3/sources/cast-07-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-07-chibi.png",
+      "ids": [
+        "quartermaster",
+        "moth_cavalry",
+        "kiln_wardens"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult man age36, glossy black long ponytail, violet eyes, elegant cream and midnight blue split military robe, brass spectacles hanging at collar, fan of sealed letters and slender sword, calculating smile. MANDATORY POSE: seated cross-legged on a low trunk, fanning sealed letters, raised eyebrow. CENTER: adult woman age29, lavender hair in long twin loops, silver moth hairpin, black and pearl riding bodice with sheer violet cape, ivory curved lance, riding a complete pale chestnut horse. MANDATORY POSE: sitting SIDE-SADDLE on a complete walking horse, one hand brushing moth ribbon. RIGHT: adult woman age34, short flame-orange hair, charcoal eyes, black and crimson short armor dress with exposed shoulders, wide ivory sleeves, long black spear topped with a ruby crescent, forceful rising pose. MANDATORY POSE: dramatic airborne spinning spear sweep, hips turned and both knees bent, wide flowing fabric The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-148dd6ca-54d2-42af-aed6-742e8fbaf4c9.png",
+          "sha256": "5e76e2860b4d608fb09ee58a2f2307fcc74055fcb0d528dc0143bcbf79147bca"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as the first image. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping or touching silhouettes.",
+          "native_file": "exec-4ae35021-f3b0-4b55-822e-fabcf223441a.png",
+          "sha256": "84098204b2937436aef45679413f985206e3d5f26343cb277707b980cbb7043c"
+        }
+      }
+    },
+    {
+      "sheet": "cast-08",
+      "adult_source": "assets/art/characters/v3/sources/cast-08-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-08-chibi.png",
+      "ids": [
+        "carriage_cloak",
+        "last_bridge_clinic",
+        "copper_gate_requiem"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult man age40, silver hair swept back, dark stubble, teal and black fitted riding coat with open chest and long cream scarf, broad silver saber, complete white horse with dark tack. MANDATORY POSE: leaning low along complete cantering horse's neck, saber drawn. CENTER: adult woman age49, long silver hair pinned with blue irises, green eyes, pale indigo healing gown with waist cutouts and long sleeve ribbons, ornate copper medicine urn, poised calm floating stance. MANDATORY POSE: seated on a floating medicine casket, ankles loosely crossed, pouring water into palm. RIGHT: adult man age47, dark wine hair with a silver streak, amber eyes, half-face porcelain ceremonial mask held in one hand, crimson and midnight funeral robes, a brass staff hung with tiny bells, regal melancholy pose. MANDATORY POSE: kneeling with head tilted, raising porcelain mask near his face, bell staff angled over shoulder The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-e3740a7f-8155-45fe-8aa0-f67c5c2a6201.png",
+          "sha256": "b45289af98f1c72f529cd91ad838fc8316087931e3ecb09f504fe95891f7939a"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Remove the ENTIRE background from this THREE-character battlefield sprite atlas. Output exactly the SAME three existing chibi characters, with identical faces, clothing, horse, colors, silhouettes and positions. Do not redesign or add anything. The white/grey backdrop and ALL cast shadows surrounding the figures must become FULLY TRANSPARENT ALPHA (alpha 0), including every gap between arms, legs, horse legs and ribbons. Only the solid illustrated characters and gear remain. No white canvas, checkerboard painting, floor shadows, glow, backdrop or gradients. This is a strict clean transparent cutout task. Preserve the full weapons, boots, horse's four legs and outer strokes.",
+          "native_file": "exec-df8e82d0-1d69-4c22-a8e2-897d8b209bdf.png",
+          "sha256": "ec8d47c1756a9c4496d69724f990805d9d17394bf8af0d33a9f7f02bf92674c8"
+        }
+      }
+    },
+    {
+      "sheet": "cast-09",
+      "adult_source": "assets/art/characters/v3/sources/cast-09-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-09-chibi.png",
+      "ids": [
+        "cinder_runner",
+        "ridge_pioneer",
+        "quay_salver"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult woman age27, short turquoise hair, red eyes, ochre and black fitted courier jacket with bare shoulders and trailing red ribbons, slim sword and white swallow pennant, riding a complete golden horse. MANDATORY POSE: complete horse in full gallop with all hooves visible, rider looking back waving small pennant. CENTER: adult man age26, black hair braided close on one side, green eyes, plum and bone scouting jacket, high boots, small triangular shield and short sword, springing off one foot. MANDATORY POSE: springing sideways off a tiny stone, knees tucked, short sword ready. RIGHT: adult woman age31, long sea-blue hair partly tucked into white scarf, tawny eyes, white and aqua side-slit healer dress, ceramic medicine gourds tied with saffron cords, reaching out with a bandage. MANDATORY POSE: kneeling with one leg folded under and pouring medicine from jug, body in profile, face glancing back The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-9532c178-88e5-41f9-8d1a-8f497c720967.png",
+          "sha256": "b923eb539041be62c4741f269a831fbeb2b67a2ecb7106c27400b08c32fd8244"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as the first image. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping or touching silhouettes.",
+          "native_file": "exec-86f1d08a-f2cc-47f9-b032-312f20f00d8e.png",
+          "sha256": "b4ef4f50b4f72bb085ab5126ce948b1b5a242bf90c5a7e7bd7b4a989a0c0d790"
+        }
+      }
+    },
+    {
+      "sheet": "cast-10",
+      "adult_source": "assets/art/characters/v3/sources/cast-10-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-10-chibi.png",
+      "ids": [
+        "reed_harrier",
+        "byway_guard",
+        "kiln_outrider"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult woman age29, russet long braid and light freckles, green eyes, charcoal and mint off-shoulder ranger outfit with asymmetrical leg armor, long horn bow and yellow fletching, tense low draw. MANDATORY POSE: one-knee archery stance, aiming sharply upward with torso turned. CENTER: adult man age51, shaved head with short dark beard, red eyes, pale grey and crimson layered guardsman's robes, broad black spear and a square shield, grounded quiet posture. MANDATORY POSE: sweeping spear low with both hands, heavy rearward lean and cape swinging. RIGHT: adult woman age30 with deep brown skin, silver short curls, amber eyes, ember-red halter riding bodice and black-orange long scarf, brass lantern-lance, on a complete dark brown horse. MANDATORY POSE: rider twisting to the side on complete rearing horse, lantern-lance held high The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-c165c9fd-4271-4199-963a-8019ec6d75ea.png",
+          "sha256": "282e4a9e22b83d51d324771d7cacc5e65f2c611dfb423e48e839197516fff6ae"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as the first image. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping or touching silhouettes. ALL background pixels must be transparent (alpha zero), no white fill and no cast shadows behind any figure. Respect the actual male/female identity and visible age in the original designs.",
+          "native_file": "exec-77ab7c26-6f9b-4732-a2ff-d184175b7675.png",
+          "sha256": "cd80742d7cafa2903adb14ed59063f3436d85032d73a8bdb727ed7421440bb71"
+        }
+      }
+    },
+    {
+      "sheet": "cast-11",
+      "adult_source": "assets/art/characters/v3/sources/cast-11-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-11-chibi.png",
+      "ids": [
+        "sandbar_physician",
+        "night_surveyor",
+        "levee_marshal"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult woman age37, dark emerald hair in loose twin braids, amber eyes, pearl and pale pink short physician dress with detached sleeve ribbons, small surgical silver scissors and a healing ring, exact focused hands. MANDATORY POSE: kneeling beside an open small medicine case, leaning down with careful hands. CENTER: adult man age48, silver messy shoulder hair and short beard, one golden eyeglass, plum and ivory long surveyor coat, black globe suspended in a brass sextant, slightly bent curious posture. MANDATORY POSE: sitting sideways on a folded camp stool, one boot extended, inspecting sextant. RIGHT: adult woman age44, long black hair with white front streak tied high, jade eyes, navy and pale lilac officer dress with cutout shoulders, long spear wrapped with silver cords, commanding raised hand. MANDATORY POSE: back view with head looking sharply over shoulder, spear diagonal behind her waist, hand signaling stop The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-baeb76df-a1f4-4065-a9e0-b7dd7f38b768.png",
+          "sha256": "50d8286c227aea29d4b57b51a82def11d71c8ad73e522c24d1dc4f3b8f5097d0"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as the first image. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping or touching silhouettes. ALL background pixels must be transparent (alpha zero), no white fill and no cast shadows behind any figure. Respect the actual male/female identity and visible age in the original designs.",
+          "native_file": "exec-bb5f7f94-ff44-4165-a984-93a9863cb063.png",
+          "sha256": "138614b51320395cc72311cf16734b68be8bb1163f82fe3cabc60ee9fbe776fc"
+        }
+      }
+    },
+    {
+      "sheet": "cast-12",
+      "adult_source": "assets/art/characters/v3/sources/cast-12-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-12-chibi.png",
+      "ids": [
+        "storm_saddle",
+        "indigo_gate_mage",
+        "sunbreak_column"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult woman age32, flowing pale blue hair, grey eyes, charcoal high-cut riding armor and rich cobalt wind cape, a large wave-shaped lance, riding a complete black horse. MANDATORY POSE: leaning into a turn on complete black horse, long cape pulled outside curve. CENTER: adult man age35, dark violet asymmetrical hair, amber eyes, ivory and indigo split robe exposing one shoulder, black floating crystal shards and a slim cane, sharp disdainful smile. MANDATORY POSE: floating cross-legged, elbows on knees, black shards orbiting close to his palms. RIGHT: older adult man age61, neatly braided white beard, warm dark skin, gold and black open ceremonial armor, long red-black sash and sunburst flag-spear, dignified resolute stance. MANDATORY POSE: one foot braced on a small stone, leaning into flagpole with both hands, looking upward The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-69e2fc85-840f-4785-b8c8-c60274427332.png",
+          "sha256": "170b12f9d4f0225374867d7002f4830378afac185eb1737040779d5f2148670d"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as the first image. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping or touching silhouettes. ALL background pixels must be transparent (alpha zero), no white fill and no cast shadows behind any figure. Respect the actual male/female identity and visible age in the original designs.",
+          "native_file": "exec-72173380-1c72-4a23-87bb-00f48f7600d5.png",
+          "sha256": "0e0b6526ce440cfbefb52225a8ba07690032d2adc8b850bfe98dbae19708b1b4"
+        }
+      }
+    },
+    {
+      "sheet": "cast-13",
+      "adult_source": "assets/art/characters/v3/sources/cast-13-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-13-chibi.png",
+      "ids": [
+        "lamp_patrol",
+        "reed_watch",
+        "slate_quartermaster"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult woman age29, cinnamon curls under small blue beret, grey eyes, midnight short guard cape and ivory fitted tunic, dagger and elongated blue-glass storm lantern, alert forward step. MANDATORY POSE: tiptoe reaching her lantern above her head, other knee raised, cloak swinging low. CENTER: adult man age30, long blue-black hair tied low, pale eyes, pale moss and ivory open shoulder hunter tunic, huge branch bow with white strings, composed bent knee stance. MANDATORY POSE: back three-quarter archery pose with bow held horizontally, looking along arrow. RIGHT: adult woman age36, deep brown skin, white curly bob, violet eyes, violet and golden-ochre off-shoulder robes, fan of brass counting slips and crescent staff, warm crooked smile. MANDATORY POSE: sitting sideways on a small stack of books, one elbow on knee and counting slips spread in other hand The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-8e12c180-3a28-4d85-b522-14c48e54032c.png",
+          "sha256": "557f82204fddfcb3dc032959f83ddaa1459ac802ac6ab3c0dac24d4930d30d35"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as the first image. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping or touching silhouettes. ALL background pixels must be transparent (alpha zero), no white fill and no cast shadows behind any figure. Respect the actual male/female identity and visible age in the original designs.",
+          "native_file": "exec-3333ba69-b65e-4021-85c2-e4af6d9a856c.png",
+          "sha256": "f928c7e40ed30608e286ce58c401377caf1da9d07a1ca69b97963a366a1af956"
+        }
+      }
+    },
+    {
+      "sheet": "cast-14",
+      "adult_source": "assets/art/characters/v3/sources/cast-14-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-14-chibi.png",
+      "ids": [
+        "bell_winch",
+        "rain_saddle",
+        "levee_brothers"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult man age42, long grey-black beard tied with red cord, short dark hair, dark green sleeveless guard coat over light trousers, huge silver hooked spear hung with one brass bell, one hand on hip. MANDATORY POSE: deep forward bent-knee lunge dragging spear low, beard and coat trailing. CENTER: adult woman age28, dark red high ponytail, pale blue eyes, ivory and bottle-green riding corset, long black ribbons, silver lance with split green flag, riding a complete brown horse. MANDATORY POSE: turned backward on complete rearing horse, pointing flag behind. RIGHT: adult woman age33, russet skin, pale lavender hair in short side braid, white and burgundy cropped armor with broad grey skirt panels, one heavy cleaver-like sword and small bronze shield, protective forward lean. MANDATORY POSE: kneeling under a lifted round shield, sword extended to protect someone beside her The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-f565d63d-1d0f-49b9-98c5-3e6e39d9c6e6.png",
+          "sha256": "bbe85e7f2c4c87c900831f7ee4abdaf3a0c7789a5e0c266909aefe7678b37e1b"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as the first image. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping or touching silhouettes. ALL background pixels must be transparent (alpha zero), no white fill and no cast shadows behind any figure. Respect the actual male/female identity and visible age in the original designs.",
+          "native_file": "exec-ce770628-e31f-4062-b346-5298ed394f9f.png",
+          "sha256": "594e1e24b0d67fa9fcca25a5dc19512095e553fa32a82bb5792bfcbc5c830174"
+        }
+      }
+    },
+    {
+      "sheet": "cast-15",
+      "adult_source": "assets/art/characters/v3/sources/cast-15-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-15-chibi.png",
+      "ids": [
+        "rising_oath_watch",
+        "lantern_surgeon",
+        "saltfield_runner"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult man age55, wavy silver hair, moustache, deep plum and ivory military robe, amber tassels, tall spear with a crescent flag, stern hand extended to stop someone. MANDATORY POSE: leaning both hands atop a planted spear, head down but eyes looking up, solemn forward silhouette. CENTER: adult woman age46, black hair in a loose bun with grey strands, amber eyes, ice-blue fitted healer dress and white long flowing sleeves, copper surgical case and a pale flower, sharp practical gaze. MANDATORY POSE: seated at an open small tool chest, legs sideways, one hand turning a copper instrument. RIGHT: adult woman age25, short rose hair, golden eyes, teal halter short tunic and dark thigh boots, crimson streaming scarf and sealed scroll tube, running leap with complete limbs. MANDATORY POSE: running mid-leap, front knee high, back leg trailing, scroll hugged to chest The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-f55e2ae6-8aa7-463f-9d8d-d058987cb056.png",
+          "sha256": "411d704b7fc6afdc6bafc074dc1864b5b221159338f6b7b35559a2ac516ecfef"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Correct this three-character CHIBI sprite atlas (image 1). Keep the LEFT grey-bearded flag/sword man and CENTER black-haired bespectacled woman healer EXACTLY the same. ONLY change the RIGHT red-haired woman courier: she is INFANTRY, not cavalry. REMOVE THE HORSE ENTIRELY. Redraw her alone STANDING ON HER OWN TWO FEET in sturdy boots, holding the sealed scroll, with a small sheathed sword at her hip. Keep her red hair bun with gold comb, long crimson scarf, green tunic and ivory coat tails, opaque trousers. Image 2 confirms her exact adult identity on the RIGHT: a running foot messenger. No animal, no mount. Same compact mature-adult chibi proportions and cel rendering as the two unchanged miniatures. Three independent complete figures at equal size and shared foot baseline, ample gutters. Fully transparent alpha background, zero opacity outside characters, no backdrop, text, ground shadows or disks.",
+          "native_file": "exec-74078059-8fc7-4a63-ae37-83fdea574226.png",
+          "sha256": "2892cf7a45f7c55d208b869c0c1a12ebaada44c529e30a4555888d827aff94b0"
+        }
+      }
+    },
+    {
+      "sheet": "cast-16",
+      "adult_source": "assets/art/characters/v3/sources/cast-16-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-16-chibi.png",
+      "ids": [
+        "bank_pikeman",
+        "bastion_driller",
+        "shrike_saddler"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult man age33, long sandy hair braided back and clipped beard, blue eyes, sleeveless pale lavender guard tunic with dark leggings, curved double-prong spear and ivory scarf, steady diagonal pose. MANDATORY POSE: low broad crouch with pike swept across the body, cloak curved overhead. CENTER: adult woman age29, long charcoal hair in high knot, red eyes, black and ochre fitted engineer jacket with exposed midriff, white short skirt, giant brass folding measuring square and short sword, proud grin. MANDATORY POSE: perched on small toolbox with one foot braced on edge, brass square balanced across knees. RIGHT: adult woman age31, white braided ponytail, violet eyes, indigo and white winged riding bodice, teal silk sleeves and slim lance, riding a complete tawny horse with a white mane. MANDATORY POSE: complete horse taking a high careful step, rider with lance extended diagonally backward The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-cd9f2770-4417-4ded-97d5-37d962e7d831.png",
+          "sha256": "4bf403305f1eb0348715478cb766edd50814cdf94f74fa14088f64b11209836d"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as the first image. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping or touching silhouettes. ALL background pixels must be transparent (alpha zero), no white fill and no cast shadows behind any figure. Respect the actual male/female identity and visible age in the original designs.",
+          "native_file": "exec-205ab650-519b-401e-a3db-43c54bce7a80.png",
+          "sha256": "5b5fb2a9f7416c1c3656243a7b69ae735a3fac270ee6f37357a4788e71347cfd"
+        }
+      }
+    },
+    {
+      "sheet": "cast-17",
+      "adult_source": "assets/art/characters/v3/sources/cast-17-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-17-chibi.png",
+      "ids": [
+        "sill_physician",
+        "shoal_arbalest",
+        "oathroad_mender"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult woman age34, dark blue blunt bob, hazel eyes, lilac and ivory off-shoulder healing dress with split hem, linen ribbon belt and transparent green vial, careful reaching pose. MANDATORY POSE: bending at waist to offer a vial, one hand supporting long sleeve, face in profile. CENTER: adult woman age32, long auburn hair in fishtail braid, light grey eyes, black and teal short archer coat with pale stockings and green detached sleeves, heavy ivory crossbow, challenging sideways smile. MANDATORY POSE: kneeling with one elbow braced on raised knee, crossbow aimed directly past the viewer. RIGHT: adult woman age39, peach hair coiled in a loose bun, blue eyes, ivory hood pushed back, navy corset and long white petal overskirt, copper caged lantern and bandage roll, calm traveling step. MANDATORY POSE: floating curled sideways with bent knees, lantern low in one hand and ribbons circling her The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-9d6253d9-77d8-42ed-8d43-73bd12e09eee.png",
+          "sha256": "232e1917c15104d29508de4ad2724e6b5ecebd4edd8b506483f6aea64bbb184d"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as the first image. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping or touching silhouettes. ALL background pixels must be transparent (alpha zero), no white fill and no cast shadows behind any figure. Respect the actual male/female identity and visible age in the original designs.",
+          "native_file": "exec-f7670b85-2d5e-4bee-badc-09ff397a4fd7.png",
+          "sha256": "16e3ab0f8b833695508873cac2b6bb120fde088db8f6e14a1f2d45106197679a"
+        }
+      }
+    },
+    {
+      "sheet": "cast-18",
+      "adult_source": "assets/art/characters/v3/sources/cast-18-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-18-chibi.png",
+      "ids": [
+        "undertow_knight",
+        "claywatch_sage",
+        "crownless_vanguard"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult man age39, short steel-blue curls, amber eyes, open dark teal tunic under silver shell shoulder armor, long pale sash, huge navy wave-edged shield and sword, braced defensive turn. MANDATORY POSE: mid-stride shield charge, shoulders rotated and sword pulled behind. CENTER: adult woman age42, rich brown skin, short mint curls, green eyes, black and apricot wide-sleeved oracle dress, white hair comb and floating brass compass rings, intelligent raised eyebrow. MANDATORY POSE: sitting sideways on a small floating brass crescent ring, feet extended diagonally and hand turning compass. RIGHT: adult woman age35, long black hair with wine-red ends, pale blue eyes, royal purple halter battle dress and white slit skirt, broken small crown at belt, long golden grain-shaped banner lance, proud upright pose. MANDATORY POSE: stepping forward with flag high above her head, long skirt and hair whipping backward The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-79478955-8a97-4428-8d9b-59b21a8bc660.png",
+          "sha256": "04cb49c7f400929cc182e7ddda48291fc86ce37e04311896bcbfb1d8a94266d4"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as the first image. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping or touching silhouettes. ALL background pixels must be transparent (alpha zero), no white fill and no cast shadows behind any figure. Respect the actual male/female identity and visible age in the original designs.",
+          "native_file": "exec-7507839b-643e-43b7-875a-bd0d4a02c07b.png",
+          "sha256": "2d57c8d72cb2ad96549c3220f4d244d57bff032b6c0b6fc6afa664d83f85b15e"
+        }
+      }
+    },
+    {
+      "sheet": "cast-19",
+      "adult_source": "assets/art/characters/v3/sources/cast-19-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-19-chibi.png",
+      "ids": [
+        "chalk_courier",
+        "ridge_listener",
+        "linen_lantern"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult woman age26, long honey-blonde braid, lilac eyes, black and cream short courier coat, trailing yellow sleeve ribbons, ivory wand-spear, on a complete small dapple grey horse. MANDATORY POSE: complete horse at full gallop, rider almost lying forward with one arm reaching out. CENTER: adult woman age30, short plum curls, amber eyes, teal feather-trimmed archery outfit with white waist ribbons, enormous asymmetrical pale bow, hand cupped beside ear listening. MANDATORY POSE: one boot on a tiny stone, elbow on knee and hand beside ear, looking sideways. RIGHT: adult woman age34, pale blue hair in soft shoulder waves, green eyes, ivory headwrap worn loose, deep rose healer bodice and violet split sleeves, long-stem lantern staff, gentle walking pose. MANDATORY POSE: seated sideways on a small medicine basket, both hands around hanging lantern, folded ankles The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-46bd247a-53bf-491d-9f79-e5d9e999d173.png",
+          "sha256": "2ee21f5cc7b25582c57896583ce9c4e476060c8d06047fb17b908ba053f2a554"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as the first image. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping or touching silhouettes. ALL background pixels must be transparent (alpha zero), no white fill and no cast shadows behind any figure. Respect the actual male/female identity and visible age in the original designs.",
+          "native_file": "exec-6de1413b-0da9-4fae-a674-d35de5a21e87.png",
+          "sha256": "b4c50e23ed5f63ddfd4ce9751b56e04ec8f5b16805315ed2647c4b8b75f2def3"
+        }
+      }
+    },
+    {
+      "sheet": "cast-20",
+      "adult_source": "assets/art/characters/v3/sources/cast-20-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-20-chibi.png",
+      "ids": [
+        "coalroad_broker",
+        "shale_lancer",
+        "bracken_hussar"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult man age45, copper hair slicked back, black short beard, grey eyes, black and orange brocade open coat, long silk sash and two heavy sealed scrolls, broad confident merchant-warrior stance. MANDATORY POSE: lounging sideways on a tiny travel trunk, one knee raised, balancing scrolls on shoulder. CENTER: adult woman age30, silver hair in a braided crown with long loose back, gold eyes, charcoal and jade high-cut lancer outfit with one shoulder cape, long silver shard spear with pink cord, crisp fencing stance. MANDATORY POSE: airborne downward spear strike with knees folded and torso twisting. RIGHT: adult woman age28, long dark teal ponytail, amber eyes, wine-red and ivory fitted riding dress, huge dark feather cape, curved lance and red pennant, complete black horse. MANDATORY POSE: leaning dramatically out of the saddle of a complete turning horse, lance sweeping downward The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-0cd058bb-55bf-4f7f-8921-3b88f56823ee.png",
+          "sha256": "6400238b13ed5f5fa1ec904b0cd7ecf79def1c401290657da9d70b71b9d95d8b"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as image 1. Only the RIGHT character is mounted on a complete black horse. All other characters are standing on their own feet; do not add horses to foot soldiers. Preserve all figures' actual male/female identities and adult age features. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping silhouettes. ALL background pixels must be transparent (alpha zero), no white canvas, painted checkerboard or cast shadows.",
+          "native_file": "exec-556e4387-d512-460a-bccc-fee6bdc18b5b.png",
+          "sha256": "d963d5d7de2383f101cddbd04e03f8b22735e8f462b2f8ec31a875b988abb230"
+        }
+      }
+    },
+    {
+      "sheet": "cast-21",
+      "adult_source": "assets/art/characters/v3/sources/cast-21-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-21-chibi.png",
+      "ids": [
+        "cairn_colossus",
+        "bellfoundry_oracle",
+        "whitecord_marshal"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult man age50, cropped white hair and heavy beard, tanned scarred face, broad muscular body, black undercoat with massive pale stone shoulder armor, silver slab sword, visible cobalt waist sash, powerful bent knee stance. MANDATORY POSE: lifting huge sword above shoulder in both hands, wide low stance and powerful twist. CENTER: adult woman age38, long pale lavender hair tied in low loose loop, red eyes, black and gold high-slit ritual dress with long ivory detached sleeves, hanging bell-staff and little incense cloud, mysterious floating pose. MANDATORY POSE: reclining sideways on a floating curved bell frame, one hand dangling a small chime, legs bent elegantly. RIGHT: adult woman age36, long midnight hair swept to one side, icy blue eyes, ivory high-cut commander bodice with crimson cord harness and navy skirt tails, long white spear and red sash, imperious spear-down stance. MANDATORY POSE: one knee resting on a small low stone, spear across back shoulders, quiet raised-chin pose The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-3e3f184c-3f5f-4da1-8e83-c976d67d5b2d.png",
+          "sha256": "1001e1b0fe085a067221c196d4b4f68c43028fbfadcd88ad28b09d4817609fdd"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as image 1. There are NO mounted characters in this sheet. All other characters are standing on their own feet; do not add horses to foot soldiers. Preserve all figures' actual male/female identities and adult age features. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping silhouettes. ALL background pixels must be transparent (alpha zero), no white canvas, painted checkerboard or cast shadows.",
+          "native_file": "exec-445e0377-c744-46e2-b320-3d8cec8624e2.png",
+          "sha256": "c79dc940a3a621073dcb9722a2e0dd1db344ae3d73d32cc7057b4dcfd9a15893"
+        }
+      }
+    },
+    {
+      "sheet": "cast-22",
+      "adult_source": "assets/art/characters/v3/sources/cast-22-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-22-chibi.png",
+      "ids": [
+        "kiln_sparks",
+        "marl_shield",
+        "river_wasp"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult woman age24, short dark copper curls, amber eyes, black fitted mage romper and wide crimson sleeves, bronze handwarmer glowing softly, playful snapping fingers, clearly grown adult. MANDATORY POSE: seated on a small copper handwarmer chest with knees together, flicking a tiny flame between fingers. CENTER: adult man age44, sandy moustache and long brown hair tied in knot, green eyes, pale jade and indigo long guard coat open at chest, enormous rough crescent wooden shield and short spear, wary steady stance. MANDATORY POSE: bracing behind large shield with one knee down, face visible over shield edge. RIGHT: adult woman age32 with dark skin, short white braids, violet eyes, golden-ochre and black sleeveless archer dress with white ribbon tails, recurved wing-shaped black bow, stretched drawing pose. MANDATORY POSE: leaping diagonally with bow drawn, one knee forward and one leg stretched back The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-bb245de0-115d-470d-9671-02620eb7aed8.png",
+          "sha256": "f199de689748689f277f068979b5dfcff6ca49c92e828acad975b3da69c128ea"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as image 1. There are NO mounted characters in this sheet. All other characters are standing on their own feet; do not add horses to foot soldiers. Preserve all figures' actual male/female identities and adult age features. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping silhouettes. ALL background pixels must be transparent (alpha zero), no white canvas, painted checkerboard or cast shadows.",
+          "native_file": "exec-245d5f10-4029-42ac-9c8b-4527229a0654.png",
+          "sha256": "a3f95470cea93200b8759392556f459f7d64807685e449bc1ac345be2cbc5543"
+        }
+      }
+    },
+    {
+      "sheet": "cast-23",
+      "adult_source": "assets/art/characters/v3/sources/cast-23-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-23-chibi.png",
+      "ids": [
+        "granary_warden",
+        "glassroad_runner",
+        "rook_pickets"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult man age43, deep auburn long braid and short beard, blue eyes, white and rose physician coat with navy lining, copper medical chest and flowering cane, serious open hand. MANDATORY POSE: sitting on an open medicine chest, elbows resting on knees, healing cane across lap. CENTER: adult woman age27, long black hair with silver ends, turquoise eyes, midnight blue short courier dress and white ribbon sleeves, red scarf, on a complete light grey horse holding slim silver saber. MANDATORY POSE: complete horse turning in a quick sideways trot, rider twisting to hand out a sealed message. RIGHT: adult man age31, dark purple hair over one eye, grey eyes, black and white feather-collared short guard coat, tall slim spear with crow-shaped point and ruby tassel, quiet crouched stance. MANDATORY POSE: deep crouch balanced on one foot and one knee, spear held across the body like a barred doorway The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-d86168c6-e627-494b-8685-3022fd6c8518.png",
+          "sha256": "534f4dc7a36c1945c41dbff78b3d58b64074d8e10d104dad47f9963d480199b5"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as image 1. Only the CENTER character is mounted on a complete pale grey horse. All other characters are standing on their own feet; do not add horses to foot soldiers. Preserve all figures' actual male/female identities and adult age features. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping silhouettes. ALL background pixels must be transparent (alpha zero), no white canvas, painted checkerboard or cast shadows.",
+          "native_file": "exec-6aac3cf8-e6ed-401b-85ff-f0ed6155d158.png",
+          "sha256": "c866a8a453794d65f944950fbf937e4741fc8d4e343575cea508746f214165f1"
+        }
+      }
+    },
+    {
+      "sheet": "cast-24",
+      "adult_source": "assets/art/characters/v3/sources/cast-24-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-24-chibi.png",
+      "ids": [
+        "reedglass_bow",
+        "saltband_surgeon",
+        "hinge_lancer"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult woman age28, sea-green hair in two long loose braids, amber eyes, pearl and teal leaf-cut ranger dress with open shoulders, large translucent pale bow with tiny blue bead charms, playful aimed arrow. MANDATORY POSE: floating in a backward arch with one knee bent, drawing arrow across her body. CENTER: adult woman age37, dark red bob under loose ivory head scarf, olive eyes, black and ivory short physician tunic with long pale lavender sleeves, blue ceramic bowl and linen ribbons, exact careful hands. MANDATORY POSE: kneeling sideways on one knee, bowl extended and face bent in concentration. RIGHT: adult woman age35, long pale gold hair in high tied bundle, green eyes, indigo halter lancer bodice and white high-slit overskirt, large bronze bridge-shaped spear point and red cord, poised commanding stance. MANDATORY POSE: turning sharply away from viewer while looking back, spear horizontal across upper back The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-2c45bbc0-b676-4b9b-a5d6-7a77a49f2b76.png",
+          "sha256": "ada9ed573b9e381afcf8c40ca64f311483be9f6ac200a7d191bfe9f8d04d3385"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as image 1. There are NO mounted characters in this sheet. All other characters are standing on their own feet; do not add horses to foot soldiers. Preserve all figures' actual male/female identities and adult age features. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping silhouettes. ALL background pixels must be transparent (alpha zero), no white canvas, painted checkerboard or cast shadows.",
+          "native_file": "exec-a75220b4-fb6d-4cbd-8f9a-0a42ec311a22.png",
+          "sha256": "eac4a49b6bdb95e46125a2379fc5c3152e9e88caaddb16b11b84762110fe68cb"
+        }
+      }
+    },
+    {
+      "sheet": "cast-25",
+      "adult_source": "assets/art/characters/v3/sources/cast-25-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-25-chibi.png",
+      "ids": [
+        "cinder_coxswain",
+        "quarry_bugler",
+        "copper_cistern"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult man age46, long silver hair and short dark beard, tan skin, charcoal and vermilion sailor coat open at chest, black trousers and jade belt, huge silver boathook and trailing red sash, determined twisted pose. MANDATORY POSE: one boot on a small mooring bollard, pulling boathook rope with both arms, coat swinging forward. CENTER: adult woman age28, wavy lilac hair to shoulders, amber eyes, ivory and navy short military dress with one bare shoulder, brass long bugle and small curved saber, joyful marching pose. MANDATORY POSE: airborne celebratory step blowing long bugle upward, one knee bent, hand on saber. RIGHT: adult woman age33, long black hair coiled with turquoise comb, golden eyes, pale aqua low-neck healer dress with lavender open sleeves, beautiful copper water ewer and little blue water ribbon, warm leaning pose. MANDATORY POSE: sitting sideways on a copper cistern rim, pouring a thin ribbon of water, ankles crossed loosely The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-1168342c-9be3-490a-8306-f19969199dcd.png",
+          "sha256": "c8e7055c87c92a54abd45dd94268734036f59723dc6cee4ba942880b4155a871"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as image 1. There are NO mounted characters in this sheet. All other characters are standing on their own feet; do not add horses to foot soldiers. Preserve all figures' actual male/female identities and adult age features. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping silhouettes. ALL background pixels must be transparent (alpha zero), no white canvas, painted checkerboard or cast shadows.",
+          "native_file": "exec-d04e1f65-b9e4-4ce1-9511-3b5ef2671205.png",
+          "sha256": "d1dbb081f9895b6922e76bfb30a0112cfc66aed6b11531c996f357eeab34d913"
+        }
+      }
+    },
+    {
+      "sheet": "cast-26",
+      "adult_source": "assets/art/characters/v3/sources/cast-26-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-26-chibi.png",
+      "ids": [
+        "breakline_sappers",
+        "skylens_sentinel",
+        "bellroad_captain"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Three independent full-body characters in ONE horizontal row, equal-width columns, absolutely no overlap. LEFT: adult man age37, tousled ash-blonde hair, amber eyes, black and ivory short engineer coat with rust-red scarf and open collar, heavy pick hammer and square shield, athletic charging stance. MANDATORY POSE: charging with a dramatic waist twist and pick hammer over shoulder. CENTER: adult woman age34, long black-purple hair in intricate loose bun, pale gold eyes, midnight blue high-slit celestial gown with exposed shoulders and sheer ivory sleeves, large floating brass lens ring and short blue staff, upward looking pose. MANDATORY POSE: floating seated inside a partial brass lens ring, torso facing left, face toward viewer. RIGHT: adult woman age35, white wavy hair in low ponytail, red eyes, black and crimson officer riding dress with long lavender cape, lance with small hanging bells, complete dark bay horse. MANDATORY POSE: complete horse rearing in profile, rider gripping reins and lifting bell lance high The explicitly assigned POSES override any earlier generic stance description. Do not give the three figures the same gesture, body angle, head height or silhouette. Each is a separate skin illustration, independently framed within its own column. Small seats/props described belong to that figure, no shared environment. Complete bodies and props entirely visible with generous transparent gutters and outer margins. Spears can be angled within the slot, wide sleeves freely flowing but never crossing columns. No words, frames, labels, backdrop or ground. Transparent alpha, wide 3:2 canvas. Reference1 dictates linework and rendering; reference2 only demonstrates varied seated composition, never copy its face or costume.",
+          "native_file": "exec-09c11d4c-65db-4f1f-b916-aad84df29175.png",
+          "sha256": "fa6b7d9aa8348dde00bc113c40ecd4db51cdfb44f1ef4b0a39c94496b01a4253"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as image 1. Only the RIGHT character is mounted on a complete brown horse. All other characters are standing on their own feet; do not add horses to foot soldiers. Preserve all figures' actual male/female identities and adult age features. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping silhouettes. ALL background pixels must be transparent (alpha zero), no white canvas, painted checkerboard or cast shadows.",
+          "native_file": "exec-eb9c2054-aea8-497d-94e7-82a1ad2caecc.png",
+          "sha256": "0ed08dd96796d4d26d8486631005528e9dde24de55c1b0614ff3bffac47d11ef"
+        }
+      }
+    },
+    {
+      "sheet": "cast-27",
+      "adult_source": "assets/art/characters/v3/sources/cast-27-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-27-chibi.png",
+      "ids": [
+        "silver_bulwark"
+      ],
+      "generation": {
+        "adult": {
+          "tool": "native image_gen",
+          "prompt": "Create a NEW original fantasy tactics RPG CHARACTER CUTOUT ATLAS. The attached parasol woman is ONLY the precise STYLE bible: delicate expressive anime ink drawing, crisp flat cel colors, lavender shadow shapes, matte skin and cloth, light sparse ornaments, large elegant sleeves, beautiful flowing silhouette. Mature 7.5-head ADULT anatomy. Female costumes can be as revealing as the reference (opaque low-cut bodice, exposed shoulders/waist, high slit) but no nudity. Invent fresh faces and silhouettes; do not copy the reference character or reuse old knight uniforms. Exactly ONE independent full-body character with ample transparent breathing room. SINGLE CHARACTER: adult woman age39, long navy hair braided around crown, silver eyes, pearl and black high-cut lancer armor with flowing white slit skirt, two long crimson ribbons, enormous silver petal shield and white spear, quiet authoritative posture. MANDATORY POSE: seated at an angle on a small fallen shield plinth, one leg extended, long spear resting across her lap and face turned over shoulderExactly ONE adult woman in the assigned seated pose. Her complete spear, shield plinth and feet must be visible. No text, backdrop, ground or extra figures. Transparent alpha.",
+          "native_file": "exec-51ef22b1-8c3f-418a-abb1-c9a901ef2b94.png",
+          "sha256": "670cf9ba8ebd997879af1b0e6575b3f88dac553a60d837fd7396c8c85e927be0"
+        },
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly ONE independent full-body miniature: the same navy-haired adult woman, white/silver spear, large petal shield and crimson ribbons as image 1, standing on her feet. No plinth or seat. Do not copy the two characters in style image 2. Preserve all figures' actual male/female identities and adult age features. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping silhouettes. ALL background pixels must be transparent (alpha zero), no white canvas, painted checkerboard or cast shadows.",
+          "native_file": "exec-9a10981f-73b6-42fd-b5d7-9d92026cfe0a.png",
+          "sha256": "49cc50a1c7a59fd73b87c7d259cddc175608aed0b9c32a4b70574ba8d45e2260"
+        }
+      }
+    },
+    {
+      "sheet": "cast-28",
+      "adult_source": "assets/art/characters/v3/sources/cast-28-full.png",
+      "chibi_source": "assets/art/characters/v3/sources/cast-28-chibi.png",
+      "ids": [
+        "shore_medic",
+        "ash_notary"
+      ],
+      "generation": {
+        "chibi": {
+          "tool": "native image_gen",
+          "prompt": "Create a production battle sprite sheet showing TWO original ADULT fantasy characters reinterpreted as cute 3.2-head-tall tactical RPG miniatures. The references are the EXACT two adult identities to preserve, left white-feather healer and right red-parasol mage. These are grown adults drawn in stylized compact proportions, not children. Keep the pale aqua long braid, white/lavender feather motifs and water orb of the healer; keep the plum bob, amber eyes, red blossom parasol, black/jade clothing and flowing lavender sleeves of the mage. Adapt both costumes into simple opaque fitted short tunics with legwear and small boots suitable for tiny battle sprites, neutral nonsexual poses and no cleavage emphasis. Clean dark fine outlines, crisp flat cel colors, one or two lavender shadow tones, clear readable faces, NO glossy 3D look. Standing action-ready three-quarter front views angled slightly to the RIGHT, compact arms, entire feet visible at the same baseline, all props entirely contained. Exactly two independent full-body sprites centered in two equal columns of one row, each has ample transparent breathing room and a wide empty gutter. No extra birds except one tiny feather motif, no terrain, no labels, no frames, no shadow discs. Genuine transparent alpha.",
+          "native_file": "exec-42dd2081-e6ea-4b74-9ec8-09435d57a0f8.png",
+          "sha256": "a4373b2e76dc93e5855b062d78bf2c2a7709bf33d67133ad3feda847dd11907e"
+        },
+        "adult": {
+          "tool": "native image_gen",
+          "record": "assets/art/characters/v2/redraw-sources.json",
+          "assembly": "Two approved full-body PNGs placed in separate atlas cells without repainting."
+        }
+      }
+    }
+  ],
+  "prepared": [
+    {
+      "id": "warden",
+      "full": "assets/art/characters/v3/full/warden.png",
+      "sheet": "cast-00",
+      "slot": 0,
+      "full_sha256": "5dda78f9d0754e0e473fb59177adb4dcc5d4c80d53941d88f916904160103411"
+    },
+    {
+      "id": "pyromancer",
+      "full": "assets/art/characters/v3/full/pyromancer.png",
+      "sheet": "cast-00",
+      "slot": 1,
+      "full_sha256": "0c2570b2f1f16edd8bc37f40e10b9fe0ea417031c44ab2bd4a221aae75106e6c"
+    },
+    {
+      "id": "grove",
+      "full": "assets/art/characters/v3/full/grove.png",
+      "sheet": "cast-00",
+      "slot": 2,
+      "full_sha256": "b348e19e6f68ddcebff858221cdc15f143e87db5432039fa60a350f7e0af2ee9"
+    },
+    {
+      "id": "sword",
+      "full": "assets/art/characters/v3/full/sword.png",
+      "sheet": "cast-01",
+      "slot": 0,
+      "full_sha256": "a02f5d413fe3e1b9198bc1247a369dc240058b477cc19b901a01ae6e8d9d9e83"
+    },
+    {
+      "id": "spear",
+      "full": "assets/art/characters/v3/full/spear.png",
+      "sheet": "cast-01",
+      "slot": 1,
+      "full_sha256": "598972161eb3e5b38cd5171c6a77f3b028b97f481add2a65ae2a43bef765f217"
+    },
+    {
+      "id": "cavalry",
+      "full": "assets/art/characters/v3/full/cavalry.png",
+      "sheet": "cast-01",
+      "slot": 2,
+      "full_sha256": "02c02387a23d3ce2348ddc332699005804353f2ca09642e74375e6fb0f2119ae"
+    },
+    {
+      "id": "archer",
+      "full": "assets/art/characters/v3/full/archer.png",
+      "sheet": "cast-02",
+      "slot": 0,
+      "full_sha256": "a0bba943b880b06f8e4c83d0da679e777e826c0f6faeabac9963a8317c25f34d"
+    },
+    {
+      "id": "mage",
+      "full": "assets/art/characters/v3/full/mage.png",
+      "sheet": "cast-02",
+      "slot": 1,
+      "full_sha256": "06c28c9494531fc071dad287154bc8843d7fe2dcd3cb47263ea471744092a95c"
+    },
+    {
+      "id": "healer",
+      "full": "assets/art/characters/v3/full/healer.png",
+      "sheet": "cast-02",
+      "slot": 2,
+      "full_sha256": "2a05a7f31c2486c5d27f1ac753fec92095ced20f2b79b2f5978e234d0f5651ec"
+    },
+    {
+      "id": "reed_scout",
+      "full": "assets/art/characters/v3/full/reed_scout.png",
+      "sheet": "cast-03",
+      "slot": 0,
+      "full_sha256": "0c2efbfabe2caf202cd252651b901268c8175bffd184ff5fccf72a118bf30986"
+    },
+    {
+      "id": "gate_veteran",
+      "full": "assets/art/characters/v3/full/gate_veteran.png",
+      "sheet": "cast-03",
+      "slot": 1,
+      "full_sha256": "99f8f9ffc79e7d661634fcdd24f19a5ebfaf42d091898ed1c0ead81367a9c337"
+    },
+    {
+      "id": "ridge_courier",
+      "full": "assets/art/characters/v3/full/ridge_courier.png",
+      "sheet": "cast-03",
+      "slot": 2,
+      "full_sha256": "5113f1f111b0b192d467942745af8eba277651105de1ef24f47390685ef01030"
+    },
+    {
+      "id": "ridge_archer",
+      "full": "assets/art/characters/v3/full/ridge_archer.png",
+      "sheet": "cast-04",
+      "slot": 0,
+      "full_sha256": "9b1fa3de24f0e637b91e9ef8ff9ba07d7c40ffd9dd2d613a9f4ce52c5201ca80"
+    },
+    {
+      "id": "scribe_warden",
+      "full": "assets/art/characters/v3/full/scribe_warden.png",
+      "sheet": "cast-04",
+      "slot": 1,
+      "full_sha256": "b9def5b39454596f92d92ef1a21df56d90b6f4ab28d421cbe052b09273feae8e"
+    },
+    {
+      "id": "breakwater_guard",
+      "full": "assets/art/characters/v3/full/breakwater_guard.png",
+      "sheet": "cast-04",
+      "slot": 2,
+      "full_sha256": "616e66ca2c262235cc49f10337aadb24b9e97d4e211828bbdad7c8e8ef5026ec"
+    },
+    {
+      "id": "bronze_watch",
+      "full": "assets/art/characters/v3/full/bronze_watch.png",
+      "sheet": "cast-05",
+      "slot": 0,
+      "full_sha256": "c6fcbe8ed55d73a8261d4cd4b59de9990dff42e12c9a404de3bc91f7b843306b"
+    },
+    {
+      "id": "quay_lantern",
+      "full": "assets/art/characters/v3/full/quay_lantern.png",
+      "sheet": "cast-05",
+      "slot": 1,
+      "full_sha256": "0915f0d41f2f1ab3246fe0c93ecd5bab877ef8d715c4e2309a87863079a75013"
+    },
+    {
+      "id": "lantern_bearer",
+      "full": "assets/art/characters/v3/full/lantern_bearer.png",
+      "sheet": "cast-05",
+      "slot": 2,
+      "full_sha256": "c829c6a44a855ff84ef82694b9c1250c6cb6a4787385b9cfe7dfb6f594fc7a6f"
+    },
+    {
+      "id": "mink_watcher",
+      "full": "assets/art/characters/v3/full/mink_watcher.png",
+      "sheet": "cast-06",
+      "slot": 0,
+      "full_sha256": "a875cdbdaf73b0979fb50277dc5e6920cf5f810fc8e8117b426c5b7e2d612009"
+    },
+    {
+      "id": "ferry_pikeman",
+      "full": "assets/art/characters/v3/full/ferry_pikeman.png",
+      "sheet": "cast-06",
+      "slot": 1,
+      "full_sha256": "6d6a8fbf5d5516f54f81e30d94201d133d1d693a930cafd5bb6981f153a095ba"
+    },
+    {
+      "id": "willow_outlook",
+      "full": "assets/art/characters/v3/full/willow_outlook.png",
+      "sheet": "cast-06",
+      "slot": 2,
+      "full_sha256": "1c84788f1edfb4c24ba0e0bfc9245e73f3f7578d03fcbf42990d82f9b2af9271"
+    },
+    {
+      "id": "quartermaster",
+      "full": "assets/art/characters/v3/full/quartermaster.png",
+      "sheet": "cast-07",
+      "slot": 0,
+      "full_sha256": "3114567985bdaeb537d41b2207f1b00073d9d65aee2a4e90efab9b3928b6da40"
+    },
+    {
+      "id": "moth_cavalry",
+      "full": "assets/art/characters/v3/full/moth_cavalry.png",
+      "sheet": "cast-07",
+      "slot": 1,
+      "full_sha256": "c266132b849439c3b3bee1b043acee457090b27becb4c3a491dd31b2e75bc53b"
+    },
+    {
+      "id": "kiln_wardens",
+      "full": "assets/art/characters/v3/full/kiln_wardens.png",
+      "sheet": "cast-07",
+      "slot": 2,
+      "full_sha256": "719b1d665b6e71894a5277d426a19efc0a787af399fbb664805b6a072f4ddf03"
+    },
+    {
+      "id": "carriage_cloak",
+      "full": "assets/art/characters/v3/full/carriage_cloak.png",
+      "sheet": "cast-08",
+      "slot": 0,
+      "full_sha256": "407e3150a32b73872df442c4e19b498eeddca426c4dca70fa2de9c8410ca8143"
+    },
+    {
+      "id": "last_bridge_clinic",
+      "full": "assets/art/characters/v3/full/last_bridge_clinic.png",
+      "sheet": "cast-08",
+      "slot": 1,
+      "full_sha256": "62a0fee6c60fc5e018b55e0cc8218db363b3332795f0307e8c6b6e9b6b6a4daa"
+    },
+    {
+      "id": "copper_gate_requiem",
+      "full": "assets/art/characters/v3/full/copper_gate_requiem.png",
+      "sheet": "cast-08",
+      "slot": 2,
+      "full_sha256": "d63557975e4b132edd97df307b6f8034936cffbc05b96709cbdfbb9e378bb15a"
+    },
+    {
+      "id": "cinder_runner",
+      "full": "assets/art/characters/v3/full/cinder_runner.png",
+      "sheet": "cast-09",
+      "slot": 0,
+      "full_sha256": "ed87add6af00c30f1025c60d1b487ad1de8d4b3365fd4088fca738b3b0647647"
+    },
+    {
+      "id": "ridge_pioneer",
+      "full": "assets/art/characters/v3/full/ridge_pioneer.png",
+      "sheet": "cast-09",
+      "slot": 1,
+      "full_sha256": "87952eecafe4a739e1561b572922f4941b8ff20b2aa840031d63ec6b1fddb4aa"
+    },
+    {
+      "id": "quay_salver",
+      "full": "assets/art/characters/v3/full/quay_salver.png",
+      "sheet": "cast-09",
+      "slot": 2,
+      "full_sha256": "75ddd3239878c10c30313fa11f78a389820d6a8b3e49310f0e79b2f64daaf923"
+    },
+    {
+      "id": "reed_harrier",
+      "full": "assets/art/characters/v3/full/reed_harrier.png",
+      "sheet": "cast-10",
+      "slot": 0,
+      "full_sha256": "1692d025f679244f71c4112b2c37ca6b425d49770c6c14d9e603a0cce482a47e"
+    },
+    {
+      "id": "byway_guard",
+      "full": "assets/art/characters/v3/full/byway_guard.png",
+      "sheet": "cast-10",
+      "slot": 1,
+      "full_sha256": "6b4998c9ff4f0289f72bac265dce1403b1367ce82b593ddf4c1073a9d3c56064"
+    },
+    {
+      "id": "kiln_outrider",
+      "full": "assets/art/characters/v3/full/kiln_outrider.png",
+      "sheet": "cast-10",
+      "slot": 2,
+      "full_sha256": "0843dde969aff14ad10ef35c6f345f788c712994cdb486534a888bb1958183e0"
+    },
+    {
+      "id": "sandbar_physician",
+      "full": "assets/art/characters/v3/full/sandbar_physician.png",
+      "sheet": "cast-11",
+      "slot": 0,
+      "full_sha256": "f91555cf26fe725313dd48ec40773ee071e960bb37306b1469d91536bc9df0e5"
+    },
+    {
+      "id": "night_surveyor",
+      "full": "assets/art/characters/v3/full/night_surveyor.png",
+      "sheet": "cast-11",
+      "slot": 1,
+      "full_sha256": "d3b3b1ddacde57d6c283971b542373ccfe92a6040378f4b95856e8838d74622c"
+    },
+    {
+      "id": "levee_marshal",
+      "full": "assets/art/characters/v3/full/levee_marshal.png",
+      "sheet": "cast-11",
+      "slot": 2,
+      "full_sha256": "b9552fd035c376b262564c3ad8230d818c3019d8ee75156f503642eda0c5383a"
+    },
+    {
+      "id": "storm_saddle",
+      "full": "assets/art/characters/v3/full/storm_saddle.png",
+      "sheet": "cast-12",
+      "slot": 0,
+      "full_sha256": "8a246a19ecca1148b480b081a103869046f30d4e2fadfeb9dde692b2cf9a6243"
+    },
+    {
+      "id": "indigo_gate_mage",
+      "full": "assets/art/characters/v3/full/indigo_gate_mage.png",
+      "sheet": "cast-12",
+      "slot": 1,
+      "full_sha256": "c18ebd12086bbb95f87be30a87b1aecf5e875e580a5e1de639d855e87c1da7d8"
+    },
+    {
+      "id": "sunbreak_column",
+      "full": "assets/art/characters/v3/full/sunbreak_column.png",
+      "sheet": "cast-12",
+      "slot": 2,
+      "full_sha256": "971fddfd4c4622dd79b046549e4ace9d854aef6e2efe75056fa976a080f6679c"
+    },
+    {
+      "id": "lamp_patrol",
+      "full": "assets/art/characters/v3/full/lamp_patrol.png",
+      "sheet": "cast-13",
+      "slot": 0,
+      "full_sha256": "0e707e8fa1fb3859559933d2bca9021b2061423cabf279a4c6ce374c73d45af2"
+    },
+    {
+      "id": "reed_watch",
+      "full": "assets/art/characters/v3/full/reed_watch.png",
+      "sheet": "cast-13",
+      "slot": 1,
+      "full_sha256": "cb230ae7bd0728cc237da385979ecfd8a74d01295a1481476e82e2b709951845"
+    },
+    {
+      "id": "slate_quartermaster",
+      "full": "assets/art/characters/v3/full/slate_quartermaster.png",
+      "sheet": "cast-13",
+      "slot": 2,
+      "full_sha256": "622632a6ed65bc06ee4c92e7fc734ec09907453028a88ad466ad9def8a559984"
+    },
+    {
+      "id": "bell_winch",
+      "full": "assets/art/characters/v3/full/bell_winch.png",
+      "sheet": "cast-14",
+      "slot": 0,
+      "full_sha256": "5dbca396902bf40bbedf2ea5bbb7dd4d609564a883c14ae6f30cc4c8b61e71a5"
+    },
+    {
+      "id": "rain_saddle",
+      "full": "assets/art/characters/v3/full/rain_saddle.png",
+      "sheet": "cast-14",
+      "slot": 1,
+      "full_sha256": "1cc41f182299a3bbc9e32e3ce495e61ca2ce453c63d5ca50bc7efbd0d10c0170"
+    },
+    {
+      "id": "levee_brothers",
+      "full": "assets/art/characters/v3/full/levee_brothers.png",
+      "sheet": "cast-14",
+      "slot": 2,
+      "full_sha256": "76a8c1d9d144786fda5952166fc06b869d78dd526dc5b2539de8d102bef54ace"
+    },
+    {
+      "id": "rising_oath_watch",
+      "full": "assets/art/characters/v3/full/rising_oath_watch.png",
+      "sheet": "cast-15",
+      "slot": 0,
+      "full_sha256": "34cabe0cd3fc17867b4db49291f4e0afaf5898c7932ee81e60de3767a8e19995"
+    },
+    {
+      "id": "lantern_surgeon",
+      "full": "assets/art/characters/v3/full/lantern_surgeon.png",
+      "sheet": "cast-15",
+      "slot": 1,
+      "full_sha256": "44197841ba0dd2e3e5d59c21553104ba5d0f0e15980173a48a96e1eb9f64b40e"
+    },
+    {
+      "id": "saltfield_runner",
+      "full": "assets/art/characters/v3/full/saltfield_runner.png",
+      "sheet": "cast-15",
+      "slot": 2,
+      "full_sha256": "b5020784504ee022defefd6cea739d4c5fdeb328f1c020e67dae0db240cfb1ca"
+    },
+    {
+      "id": "bank_pikeman",
+      "full": "assets/art/characters/v3/full/bank_pikeman.png",
+      "sheet": "cast-16",
+      "slot": 0,
+      "full_sha256": "ea9491af3344a256b40038e720b741d2cae272a88620a8324bb115f7e5fce008"
+    },
+    {
+      "id": "bastion_driller",
+      "full": "assets/art/characters/v3/full/bastion_driller.png",
+      "sheet": "cast-16",
+      "slot": 1,
+      "full_sha256": "15e7b0a7d2ce5d2cd5febfd485b4479fd50254ce9014718fa114e05dda6a17cf"
+    },
+    {
+      "id": "shrike_saddler",
+      "full": "assets/art/characters/v3/full/shrike_saddler.png",
+      "sheet": "cast-16",
+      "slot": 2,
+      "full_sha256": "2bfd5735577edb982979404365c8fb069b3891fceb97e9832c128c3f9f6f5479"
+    },
+    {
+      "id": "sill_physician",
+      "full": "assets/art/characters/v3/full/sill_physician.png",
+      "sheet": "cast-17",
+      "slot": 0,
+      "full_sha256": "211d6b5eedbff507597fd94fa1378b6c26489b105de089dadf145bac5d419c0a"
+    },
+    {
+      "id": "shoal_arbalest",
+      "full": "assets/art/characters/v3/full/shoal_arbalest.png",
+      "sheet": "cast-17",
+      "slot": 1,
+      "full_sha256": "fb23a8483eed11c383a6a9aadd61b8553ee23ee7091bbfd70b555db96ac4deee"
+    },
+    {
+      "id": "oathroad_mender",
+      "full": "assets/art/characters/v3/full/oathroad_mender.png",
+      "sheet": "cast-17",
+      "slot": 2,
+      "full_sha256": "fe01bd8e9fbddcbfce0f96c82e943033f18ce1758966325ccbebf0f73d540916"
+    },
+    {
+      "id": "undertow_knight",
+      "full": "assets/art/characters/v3/full/undertow_knight.png",
+      "sheet": "cast-18",
+      "slot": 0,
+      "full_sha256": "825427d8c4df38351bd0d804752414fa17936fbe61ac57f37448daa4ea06a934"
+    },
+    {
+      "id": "claywatch_sage",
+      "full": "assets/art/characters/v3/full/claywatch_sage.png",
+      "sheet": "cast-18",
+      "slot": 1,
+      "full_sha256": "310f85b90abf5b619e93443c761f3b5a756aec1ca076d5c5b8a4b0523c09eb71"
+    },
+    {
+      "id": "crownless_vanguard",
+      "full": "assets/art/characters/v3/full/crownless_vanguard.png",
+      "sheet": "cast-18",
+      "slot": 2,
+      "full_sha256": "4d9a55ceaba8d41f499bddf9d5d11e5687fb5a2c726aacaad6ccbb0052e5352a"
+    },
+    {
+      "id": "chalk_courier",
+      "full": "assets/art/characters/v3/full/chalk_courier.png",
+      "sheet": "cast-19",
+      "slot": 0,
+      "full_sha256": "eee5c399d7587d9ca3512267c8b76933fb2ad3f13d0af245978624d98fadd670"
+    },
+    {
+      "id": "ridge_listener",
+      "full": "assets/art/characters/v3/full/ridge_listener.png",
+      "sheet": "cast-19",
+      "slot": 1,
+      "full_sha256": "8304c79e62e3b425ade6cd05141772c183184e491a05e9479fa801cd5f21bb14"
+    },
+    {
+      "id": "linen_lantern",
+      "full": "assets/art/characters/v3/full/linen_lantern.png",
+      "sheet": "cast-19",
+      "slot": 2,
+      "full_sha256": "fe8f16def61169ed56e963f041834665063cf6ac3bbcaffae22c667d6294755a"
+    },
+    {
+      "id": "coalroad_broker",
+      "full": "assets/art/characters/v3/full/coalroad_broker.png",
+      "sheet": "cast-20",
+      "slot": 0,
+      "full_sha256": "6b5ffbbe81212959542ad9082c85b9fe6612bff5e8099bff7a6ad8c8b9ee0bcd"
+    },
+    {
+      "id": "shale_lancer",
+      "full": "assets/art/characters/v3/full/shale_lancer.png",
+      "sheet": "cast-20",
+      "slot": 1,
+      "full_sha256": "0b6478111a467609ae4af5046d409e03ade8e7de51ad586ac385dd85ed82453c"
+    },
+    {
+      "id": "bracken_hussar",
+      "full": "assets/art/characters/v3/full/bracken_hussar.png",
+      "sheet": "cast-20",
+      "slot": 2,
+      "full_sha256": "22977d637bbcca078516258b0ff16a860787c8bd09b2ff7819f962800e365907"
+    },
+    {
+      "id": "cairn_colossus",
+      "full": "assets/art/characters/v3/full/cairn_colossus.png",
+      "sheet": "cast-21",
+      "slot": 0,
+      "full_sha256": "bfaf4561806a9e5d1023ed24d0632cff6db9ea45570a377788326459a517d6bc"
+    },
+    {
+      "id": "bellfoundry_oracle",
+      "full": "assets/art/characters/v3/full/bellfoundry_oracle.png",
+      "sheet": "cast-21",
+      "slot": 1,
+      "full_sha256": "67ec07047f4110e6b739f0bf9c073d3c7ac2783f33b828d9daae74640f0bbc70"
+    },
+    {
+      "id": "whitecord_marshal",
+      "full": "assets/art/characters/v3/full/whitecord_marshal.png",
+      "sheet": "cast-21",
+      "slot": 2,
+      "full_sha256": "d9d3bf1f1f3730950a1a7c7c54efa96043190c7ccad01912d53b56814abeaefe"
+    },
+    {
+      "id": "kiln_sparks",
+      "full": "assets/art/characters/v3/full/kiln_sparks.png",
+      "sheet": "cast-22",
+      "slot": 0,
+      "full_sha256": "72aab5aa8a0afa7c44731ee538d4bd0b2ec8e69edf447e88d43fb7329298171f"
+    },
+    {
+      "id": "marl_shield",
+      "full": "assets/art/characters/v3/full/marl_shield.png",
+      "sheet": "cast-22",
+      "slot": 1,
+      "full_sha256": "9d297c6e1c48cb237cb99c37515465800edb8c945cbe393dfc91265efdd897c1"
+    },
+    {
+      "id": "river_wasp",
+      "full": "assets/art/characters/v3/full/river_wasp.png",
+      "sheet": "cast-22",
+      "slot": 2,
+      "full_sha256": "5b15ef46949e59eace82fbc0b946b3999911959adb8a016381aeb4d84696b071"
+    },
+    {
+      "id": "granary_warden",
+      "full": "assets/art/characters/v3/full/granary_warden.png",
+      "sheet": "cast-23",
+      "slot": 0,
+      "full_sha256": "b4df3fbff1d22d0ab7d6a0b40e342ca3bc81615976503414c27d3a56838ca697"
+    },
+    {
+      "id": "glassroad_runner",
+      "full": "assets/art/characters/v3/full/glassroad_runner.png",
+      "sheet": "cast-23",
+      "slot": 1,
+      "full_sha256": "8cf493b6fcbb5bbb649e03fe89d927f33f836a8ff8556660a002cf8d4b0c9bcf"
+    },
+    {
+      "id": "rook_pickets",
+      "full": "assets/art/characters/v3/full/rook_pickets.png",
+      "sheet": "cast-23",
+      "slot": 2,
+      "full_sha256": "00b451c5a09e90d3877fb542c36daad5e9cc96e17dea45a80d4e8460ef4f16e0"
+    },
+    {
+      "id": "reedglass_bow",
+      "full": "assets/art/characters/v3/full/reedglass_bow.png",
+      "sheet": "cast-24",
+      "slot": 0,
+      "full_sha256": "cb97ae9c07b108dd938cde39aafe9cb8d5a3a637b96a33424ca24189b64556c8"
+    },
+    {
+      "id": "saltband_surgeon",
+      "full": "assets/art/characters/v3/full/saltband_surgeon.png",
+      "sheet": "cast-24",
+      "slot": 1,
+      "full_sha256": "e122c0e956aae7eb66a207ce2078c7c0e595e2871e0ceaf90ac3f3323abc811f"
+    },
+    {
+      "id": "hinge_lancer",
+      "full": "assets/art/characters/v3/full/hinge_lancer.png",
+      "sheet": "cast-24",
+      "slot": 2,
+      "full_sha256": "00f9ef5b3dfddc44f3042453b30e53d5774aa95ba3b2cae8318c6849f95177be"
+    },
+    {
+      "id": "cinder_coxswain",
+      "full": "assets/art/characters/v3/full/cinder_coxswain.png",
+      "sheet": "cast-25",
+      "slot": 0,
+      "full_sha256": "1be09aa7711367de94468d8d8c889b8a8dd6b11a603fba47c3d1a7bf49753ef2"
+    },
+    {
+      "id": "quarry_bugler",
+      "full": "assets/art/characters/v3/full/quarry_bugler.png",
+      "sheet": "cast-25",
+      "slot": 1,
+      "full_sha256": "c70f026bc7f5352b6e5665a0010946c57976717ca2baa33fa3e008e92a362f6b"
+    },
+    {
+      "id": "copper_cistern",
+      "full": "assets/art/characters/v3/full/copper_cistern.png",
+      "sheet": "cast-25",
+      "slot": 2,
+      "full_sha256": "dc8c34bf271d46a9464c63e334dd9406c6a21b00c1d24ed57fdaa8ac0b784fb4"
+    },
+    {
+      "id": "breakline_sappers",
+      "full": "assets/art/characters/v3/full/breakline_sappers.png",
+      "sheet": "cast-26",
+      "slot": 0,
+      "full_sha256": "aca406c39c1caae5f99c6a0e8519a23b63836932be9a3602ce837b7c023bb57f"
+    },
+    {
+      "id": "skylens_sentinel",
+      "full": "assets/art/characters/v3/full/skylens_sentinel.png",
+      "sheet": "cast-26",
+      "slot": 1,
+      "full_sha256": "8b042c3b1559f89a5e8512bed52a7f4f6d75ef91dbe852cfbd70e0464475340d"
+    },
+    {
+      "id": "bellroad_captain",
+      "full": "assets/art/characters/v3/full/bellroad_captain.png",
+      "sheet": "cast-26",
+      "slot": 2,
+      "full_sha256": "295b390eb49c733ce6f9ed42080adf10b9ba75bd8b4494a1cc96c90d20251aba"
+    },
+    {
+      "id": "silver_bulwark",
+      "full": "assets/art/characters/v3/full/silver_bulwark.png",
+      "sheet": "cast-27",
+      "slot": 0,
+      "full_sha256": "eee750ee79e071d26f81e6619cab3c962084b0c02c03070d71d089b8c6ce7ba4"
+    },
+    {
+      "id": "shore_medic",
+      "full": "assets/art/characters/v3/full/shore_medic.png",
+      "sheet": "cast-28",
+      "slot": 0,
+      "full_sha256": "20f7ec618f30115fcf156a450e36546d9cee78bd1b8c6289767327174514815b"
+    },
+    {
+      "id": "ash_notary",
+      "full": "assets/art/characters/v3/full/ash_notary.png",
+      "sheet": "cast-28",
+      "slot": 1,
+      "full_sha256": "d3ece69248e7f6cefce16a9d4119ffdd2dcb7034126143cffc0b72448927368c"
+    }
+  ]
+}

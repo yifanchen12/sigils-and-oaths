@@ -40,7 +40,7 @@ func run() -> void:
 	if failures > 0: quit(1); return
 	var weir: CardView = grid.get_child(1)
 	await click_window(dialog, weir.get_global_rect().get_center())
-	check(game.get_node("%LibraryDetails").text.contains("破晓启洪闸") and game.get_node("%LibraryDetails").text.contains("下回合"), "card library exposes the printed timing")
+	check(game.get_node("%LibraryDetails").text.contains("天明决堤") and game.get_node("%LibraryDetails").text.contains("下回合"), "card library exposes the printed timing")
 	await capture("v047-levee-ten-mana.png", dialog)
 	dialog.hide()
 	await settle()
@@ -82,14 +82,14 @@ func verify_order() -> void:
 	var point: Vector2 = game.board.global_position + game.board.cell_center(center)
 	hover(point)
 	await settle()
-	check(game.selected_card == order.uid and game.battle_peek.heading.text == "破晓启洪闸" and game.board.predicted_area.size() == 13, "pointer preview paints the 13-cell area and shows the card")
+	check(game.selected_card == order.uid and game.battle_peek.heading.text == "天明决堤" and game.board.predicted_area.size() == 13, "pointer preview paints the 13-cell area and shows the card")
 	check(game.board.predicted_losses.is_empty(), "preview shows no immediate damage bars")
 	await click(point)
 	check(game.battle.pending_orders.size() == 1 and game.battle.players[0].mana == 0 and red.hp == 20 and forward.hp == 7, "real click pays 10 and leaves current health intact")
 	await create_timer(0.45).timeout
 	hover(point)
 	await settle()
-	check(game._orders_at(center).contains("第3回合结算") and game.battle_peek.heading.text == "破晓启洪闸", "published alert names the order and due turn")
+	check(game._orders_at(center).contains("第3回合结算") and game.battle_peek.heading.text == "天明决堤", "published alert names the order and due turn")
 	await capture("v047-levee-marked-order.png")
 	await click(game.get_node("%ViewEnd").get_global_rect().get_center())
 	var until: int = Time.get_ticks_msec() + 12000

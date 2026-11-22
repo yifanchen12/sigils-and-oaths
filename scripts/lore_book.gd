@@ -159,7 +159,7 @@ func select_entry(entry_id: String) -> void:
 		summary.text = entry.summary
 		portrait.is_person = entry.category == "人物"
 		portrait.face = Art.get_texture(str(entry.portrait)) if portrait.is_person else null
-		portrait.texture = Art.get_texture(("sprite_" if portrait.is_person else "") + str(entry.portrait))
+		portrait.texture = Art.get_narrative_portrait(str(entry.portrait)) if portrait.is_person else Art.get_texture(str(entry.portrait))
 		portrait.queue_redraw()
 		for child: Node in paragraphs.get_children():
 			paragraphs.remove_child(child)

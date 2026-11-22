@@ -199,7 +199,7 @@ func _scenario_at(cursor: RefCounted) -> Dictionary:
 		match String(cursor.state.flags.get("saltlane_result", "none")):
 			"school":
 				setup["bonus_card"] = "lantern_stretcher"
-				aid_text = "\n\n学堂援助 · 初始手牌加入「红灯担架」。"
+				aid_text = "\n\n学堂援助 · 初始手牌加入「抬过最后一道火」。"
 			"kiln":
 				setup["commander_shield"] = 3
 				aid_text = "\n\n窑场援助 · 己方指挥官开场获得 3 护盾。"

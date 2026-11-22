@@ -234,7 +234,7 @@ func exercise_contact() -> void:
 	check(play("bolt",foe.pos).ok,"low-cost bolt defeats its target")
 	var bolts := effect_of("fire_cast")
 	var ghost := effect_of("departing")
-	check(bolts.stroke == CastArt.Stroke.FIRE and bolts.cost == 2 and bolts.title == "星火箭", "the actual two-mana card is shown")
+	check(bolts.stroke == CastArt.Stroke.FIRE and bolts.cost == 2 and bolts.title == game.battle.definition("bolt").name, "the actual two-mana card is shown")
 	check(not ghost.is_empty() and ghost.actor.id == foe.id and ghost.cell == foe.pos and game.battle.get_unit(foe.id).is_empty(), "the defeated piece stays visible until the incoming spell arrives")
 	var state := immutable_state()
 	game.board._process(0.33)

@@ -200,4 +200,4 @@ func verify_old_campaign() -> void:
 	var expected: Dictionary = original.encounter.battle.duplicate(true)
 	expected.version = float(Snapshot.VERSION)
 	expected.rules = Snapshot.rules_signature()
-	check(restored == expected and session.campaign.armory.vanguard == "quiet_net", "legacy board, hidden trap, card zones, clock and loadout are exact")
+	check(preload("res://tests/fixtures/saved_battle.gd").legacy_labels(restored) == expected and session.campaign.armory.vanguard == "quiet_net", "legacy board, hidden trap, card zones, clock and loadout are exact")

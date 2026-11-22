@@ -92,7 +92,7 @@ func verify_combo_hand() -> void:
 	hover(point)
 	await settle()
 	var forecast: Dictionary = game._effect_context()
-	check(game.battle_peek.heading.text == "落花信号" and game.board.predicted_area.size() == 3 and forecast.note.contains("连携已就绪"),
+	check(game.battle_peek.heading.text == "花落便启程" and game.board.predicted_area.size() == 3 and forecast.note.contains("连携已就绪"),
 		"hover shows the three-cell column and the live combo")
 	await capture("v051-pilgrim-combo.png")
 	await click(point)

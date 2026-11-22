@@ -31,8 +31,8 @@ static func support_text() -> String:
 	return "剧情难度 · 开局法力和法力上限各多 %d，指挥官多 %d 护盾（上限 5）。限时关卡多 %d 轮。" % [STARTING_MANA, COMMANDER_SHIELD, EXTRA_ROUNDS]
 
 static func brief_for(setup: Dictionary, difficulty: String) -> String:
-	if difficulty == STORY and setup.has("story_brief"): return setup.story_brief
-	return setup.get("brief", "")
+	var text: String = setup.story_brief if difficulty == STORY and setup.has("story_brief") else setup.get("brief", "")
+	return preload("res://scripts/card_names.gd").display_text(text)
 
 static func objective_for(setup: Dictionary, difficulty: String) -> String:
 	var goal: Dictionary = control_for(setup, difficulty)

@@ -1,6 +1,14 @@
 extends RefCounted
 const Model = preload("res://scripts/battle.gd")
 
+static func legacy_labels(data: Dictionary) -> Dictionary:
+	# Compare historical saves including every gameplay field; only display names
+	# in units and log lines are expressed with their pre-0.63 spelling.
+	var text := JSON.stringify(data, "", true, true)
+	for card: Dictionary in Model.CATALOG.cards:
+		text = text.replace(card.name, preload("res://scripts/card_names.gd").PREVIOUS.get(card.id, card.name))
+	return JSON.parse_string(text)
+
 static func give(battle: RefCounted, kind: String, side: int = 0) -> Dictionary:
 	for card: Dictionary in battle.players[side].hand:
 		if card.card_id == kind: return card

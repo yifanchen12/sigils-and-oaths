@@ -174,6 +174,7 @@ func test_legacy_escort() -> void:
 	var updated: Dictionary = Snapshot.capture(old.battle)
 	check(updated.version == Snapshot.VERSION and updated.pending_orders.is_empty(), "legacy backfill starts without any pending order")
 	updated = JSON.parse_string(JSON.stringify(updated, "", true, true))
+	updated = preload("res://tests/fixtures/saved_battle.gd").legacy_labels(updated)
 	for key: String in ["players", "units", "objective", "terrain", "rng_seed", "rng_state", "active_side", "time_remaining"]:
 		check(updated[key] == stored[key], "restoration preserves " + key)
 

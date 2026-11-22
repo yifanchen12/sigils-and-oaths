@@ -13,7 +13,8 @@ func test_catalog() -> void:
 		curve[int(card.cost) - 1] += 1
 		types[card.type] = int(types.get(card.type, 0)) + 1
 		var texture: AtlasTexture = Art.get_texture(card.id) as AtlasTexture
-		check(texture != null and texture.region.size == Vector2(358, 358), "illustration for " + card.id)
+		var expected_size := Vector2(508, 508) if card.type == "unit" else Vector2(358, 358)
+		check(texture != null and texture.region.size == expected_size, "illustration for " + card.id)
 		check(first.has(card.id) or second.has(card.id), "discoverable in a preset: " + card.id)
 	check(curve == [3, 4, 4, 4, 4, 4, 3, 3, 3, 4], "new cards cover all mana costs")
 	check(types == {"unit": 12, "spell": 12, "trap": 8, "environment": 4}, "new cards span all roles")
@@ -45,7 +46,7 @@ func test_vanguard_and_recovery() -> void:
 	check(not battle.apply_action(bad).ok and Snapshot.capture(battle) == before, "out-of-formation redeploy pays nothing")
 	var action: Dictionary = {"type": "play", "card_uid": muster.uid, "target": Vector2i(3, 3)}
 	var forecast: Dictionary = Effects.predict(battle, action)
-	check(not forecast.is_empty() and forecast.note.contains("灰岸传旗骑"), "forecast names the eligible casualty and ignores burned unit")
+	check(not forecast.is_empty() and forecast.note.contains("飞旗·朵蓝"), "forecast names the eligible casualty and ignores burned unit")
 	check(battle.apply_action(action).ok, "recent casualty redeploys into a legal empty tile")
 	var revived: Dictionary = battle.unit_at(Vector2i(3, 3))
 	if revived.is_empty(): return

@@ -172,7 +172,7 @@ func test_preset_revision() -> bool:
 	raw.version = normalized.version
 	check(normalized.pending_orders.is_empty(), "no pending order is introduced in a real old battle")
 	raw["pending_orders"] = []
-	check(raw == normalized, "legacy migration copies all existing state")
+	check(raw == legacy_display(normalized), "legacy migration copies all gameplay state while refreshing card names")
 	check(battle.deck(0).cards.sword == 3 and battle.deck(1).cards.shore_medic == 3, "old public preset compositions survive migration")
 	var new_battle := Model.new(43161, "rivergate", "warden", "warden", "frost_engine", "lantern_convoy")
 	check(new_battle.deck(0).cards.sword == 1 and new_battle.deck(1).cards.shore_medic == 2, "new battles use revised presets")
@@ -246,14 +246,57 @@ func check_archived_decisions(battle: Battle, proof: Dictionary) -> bool:
 			check(resumed.ok and Snapshot.capture(battle) == Snapshot.capture(resumed.battle), "upgraded in-progress game can be saved and reopened")
 			if not resumed.ok: return false
 			battle = resumed.battle
-	var after: Dictionary = JSON.parse_string(JSON.stringify(Snapshot.capture(battle), "", true, true))
+	var after: Dictionary = JSON.parse_string(JSON.stringify(legacy_display(Snapshot.capture(battle)), "", true, true))
 	after.erase("version")
 	after.erase("rules")
 	check(JSON.stringify(after, "", true, true).sha256_text() == proof.after_sha256, "continued state including RNG and every card matches " + str(proof.release))
 	return true
 
+func legacy_display(data: Dictionary) -> Dictionary:
+	# Archived release hashes include old display names in units and combat logs.
+	# Translate only those strings; IDs, RNG, stats and every action stay in the hash.
+	var text: String = JSON.stringify(data)
+	for card: Dictionary in Model.CATALOG.cards:
+		var previous: String = preload("res://scripts/card_names.gd").PREVIOUS.get(card.id, card.name)
+		text = text.replace(card.name, previous)
+	return JSON.parse_string(text)
+
+func test_cosmetic_names() -> bool:
+	var names = preload("res://scripts/card_names.gd")
+	for card: Dictionary in Model.CATALOG.cards:
+		if card.type != "unit": continue
+		var battle := Model.new(63063)
+		var actor := Fixture.troop(battle, card.id, Vector2i(5, 5))
+		actor.name = names.PREVIOUS[card.id]
+		var restored := roundtrip(battle)
+		check(restored.ok, "previous card label can be restored: " + card.id)
+		if not restored.ok: return false
+		check(restored.battle.get_unit(actor.id).name == card.name, "old unit label updates to the current card name")
+		actor.name = "剧情专名·" + card.id
+		restored = roundtrip(battle)
+		check(restored.ok and restored.battle.get_unit(actor.id).name == actor.name, "custom story identities are preserved")
+	var changed: Array[Dictionary] = Model.CATALOG.cards.duplicate(true)
+	changed[0].cost += 1
+	check(Snapshot._relay_signature(changed, Model.DECKS.decks, Model.MAPS.maps, "glassroad_v1") != Snapshot.rules_signature(), "cosmetic compatibility cannot hide a changed gameplay cost")
+	var seen: Dictionary = {}
+	for card: Dictionary in Model.CATALOG.cards:
+		check(card.name != names.PREVIOUS.get(card.id, card.name) and not seen.has(card.name), "each card has a distinct new display name")
+		seen[card.name] = true
+	for deck: Dictionary in Model.DECKS.decks:
+		var before: String = deck.description
+		var rendered: String = names.display_text(before)
+		for card: Dictionary in Model.CATALOG.cards:
+			if before.contains(names.PREVIOUS[card.id]):
+				check(rendered.contains(card.name) and not rendered.contains(names.PREVIOUS[card.id]), "preset advice names the card that is actually in the library")
+		check(deck.description == before, "display conversion preserves saved preset metadata")
+	for lesson: Dictionary in preload("res://scripts/training.gd").LESSONS:
+		for step: Dictionary in lesson.steps:
+			if step.has("card"):
+				check(step.text.contains(Model.CATALOG.find(step.card).name), "training instructions identify the renamed hand card")
+	return true
+
 func run() -> void:
-	for method: String in ["test_roundtrip", "test_skills_and_special_states", "test_invalid", "test_spells_and_heroes", "test_preset_revision", "test_edict_revision", "test_frost_revision"]:
+	for method: String in ["test_roundtrip", "test_skills_and_special_states", "test_invalid", "test_spells_and_heroes", "test_preset_revision", "test_edict_revision", "test_frost_revision", "test_cosmetic_names"]:
 		check(call(method) == true, method + " completed without runtime interruption")
 	print("BATTLE SNAPSHOT CHECKS: %d | FAILURES: %d | DISPLAY: %s" % [checks, failures, DisplayServer.get_name()])
 	quit(0 if failures == 0 else 1)

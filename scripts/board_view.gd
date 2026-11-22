@@ -821,7 +821,7 @@ func _draw_unit(unit: Dictionary, at: Vector2, tile: float, opacity: float = 1.0
 			# Match the standing artwork's existing foot baseline, avoiding a jump at pose transitions.
 			origin = Vector2(0, tile * 0.37) - Art.action_feet(sprite_id, pose) * pixels_to_world
 			mirror = direction
-		elif sprite_id not in Art.UNIT_ORDER and sprite_id not in Art.HERO_ORDER:
+		elif Art.Redrawn.available(sprite_id) or (sprite_id not in Art.UNIT_ORDER and sprite_id not in Art.HERO_ORDER):
 			# The illustrated piece keeps its costume through anticipation, contact and recovery.
 			# All card-specific standing cels share the same ankle pivot in a 256 px square.
 			anchor.y += tile * 0.37

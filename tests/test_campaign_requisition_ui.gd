@@ -54,7 +54,7 @@ func run() -> void:
 func choose_at_briefing() -> void:
 	var view: Control = game.story_view
 	check(view.visible and view.requisition_panel.visible and view.requisition_choice.item_count == 4, "actual court briefing shows three offers and default option")
-	check(view.requisition_art.texture != null and view.requisition_text.text.contains("移形军令"), "default shows new illustration and the actual outgoing card")
+	check(view.requisition_art.texture != null and view.requisition_text.text.contains("与我换位"), "default shows new illustration and the actual outgoing card")
 	if failures > 0: return
 	await capture("v048-requisition-default.png")
 	await click(view.requisition_choice.get_global_rect().get_center())

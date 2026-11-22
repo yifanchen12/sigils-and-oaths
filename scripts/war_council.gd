@@ -316,10 +316,11 @@ func open(map_id: String, hero_id: String, can_resume: bool, deck_id: String = "
 	start_button.grab_focus()
 
 func _deck_description() -> String:
-	return custom_definition.description if selected_deck == "custom" and not custom_definition.is_empty() else BattleModel.DECKS.find(selected_deck).description
+	var description: String = custom_definition.description if selected_deck == "custom" and not custom_definition.is_empty() else BattleModel.DECKS.find(selected_deck).description
+	return preload("res://scripts/card_names.gd").display_text(description)
 
 func _update_opponent_description() -> void:
-	opponent_choice.tooltip_text = "使用与玩家相同的预组。玩家使用自定义军势时，对手使用均衡军势。" if selected_opponent.is_empty() else BattleModel.DECKS.find(selected_opponent).description
+	opponent_choice.tooltip_text = "使用与玩家相同的预组。玩家使用自定义军势时，对手使用均衡军势。" if selected_opponent.is_empty() else preload("res://scripts/card_names.gd").display_text(BattleModel.DECKS.find(selected_opponent).description)
 
 func set_custom_deck(definition: Dictionary, choose: bool = false) -> void:
 	custom_definition = definition.duplicate(true)

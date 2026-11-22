@@ -5,6 +5,12 @@ const CardFixture = preload("res://tests/fixtures/saved_battle.gd")
 
 func inspect_atlas() -> void:
 	for kind: String in Art.ACTION_SHEETS:
+		if Art.Redrawn.available(kind):
+			var standing := Art.get_texture("sprite_" + kind)
+			check(standing != null and standing.get_size() == Vector2(256, 256), "redesigned battle figure has a normalized foot pivot")
+			for frame: int in range(3):
+				check(Art.get_action_texture(kind, frame) == null, "new figure retains its identity throughout the transform animation")
+			continue
 		var fingerprints: Array[int] = []
 		for frame: int in range(3):
 			var texture: Texture2D = Art.get_action_texture(kind, frame)
@@ -103,13 +109,18 @@ func run() -> void:
 	check(game.board.combat.is_empty() and game.board.combat_pose(actor.id) == -1, "restart cannot retain an earlier character pose")
 	await stage()
 	actor = troop("sword", Vector2i(4, 5)); target = troop("spear", Vector2i(5, 5), 1); target.hp = 1
-	await select(actor); await click(game.board.global_position + game.board.cell_center(target.pos))
+	await select(actor)
+	# Sample the lethal fade from its actual start, independently of the five
+	# input-settling frames or a slow native frame on the test machine.
+	game.board.set_process(false)
+	await click(game.board.global_position + game.board.cell_center(target.pos))
 	check(game.battle.get_unit(target.id).is_empty() and game.board.combat.forecast.counter_damage == 0, "lethal action removes defender once and has no counter")
 	var final_state: String = immutable_state()
-	await create_timer(0.38).timeout
+	game.board._process(0.38)
 	check(not game.board.combat.is_empty(), "defeated actor keeps its finite impact presentation")
-	await create_timer(1.0).timeout
+	game.board._process(1.0)
 	check(game.board.combat.is_empty() and final_state == immutable_state(), "death fade finishes without reviving or damaging another unit")
+	game.board.set_process(true)
 	print("ACTION POSE CHECKS: %d | FAILURES: %d | DISPLAY: %s" % [checks, failures, DisplayServer.get_name()])
 	game.queue_free(); await process_frame
 	quit(0 if failures == 0 else 1)

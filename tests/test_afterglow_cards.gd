@@ -176,7 +176,7 @@ func test_actions_weather_and_legacy() -> bool:
 		raw.rules = normalized.rules
 		raw.version = normalized.version
 		raw.pending_orders = []
-		check(raw == normalized and Snapshot.validate(upgraded).ok, "the older save gains an empty order queue and retains every battle field")
+		check(raw == preload("res://tests/fixtures/saved_battle.gd").legacy_labels(normalized) and Snapshot.validate(upgraded).ok, "the older save gains an empty order queue and retains every battle field")
 	return true
 
 func test_formation_risk() -> bool:

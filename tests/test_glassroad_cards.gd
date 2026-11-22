@@ -141,7 +141,7 @@ func verify_muster() -> void:
 	var action: Dictionary = play(battle, "all_banner_call", CENTER)
 	var prediction: Dictionary = Forecast.predict(battle, action)
 	if not check(not prediction.is_empty() and prediction.cells == [CENTER, CENTER + Vector2i.UP], "foe and cap limit reinforcement from three to two"): return
-	check(prediction.note.contains("裂垛破障队") and prediction.note.contains("星火术士") and not prediction.note.contains("余炭舵手"), "preview lists only the actual two deck units")
+	check(prediction.note.contains("破垛者洛珀") and prediction.note.contains("星算·伊瑟") and not prediction.note.contains("余炭领航·索穆"), "preview lists only the actual two deck units")
 	var deck_size: int = battle.players[0].deck.size()
 	var instance_total: int = battle.players[0].card_total
 	check(battle.apply_action(action).ok and battle.players[0].mana == 0 and battle.army_count(0) == 6, "normal play fills remaining slots at the cost of ten mana")
@@ -199,7 +199,7 @@ func verify_legacy() -> void:
 	adapted.version = float(Snapshot.VERSION)
 	adapted.rules = Snapshot.rules_signature()
 	var battle: Battle = result.battle
-	check(JSON.parse_string(JSON.stringify(Snapshot.capture(battle))) == adapted and battle.hand_played_this_turn and battle.time_remaining == 81.75,
+	check(Fixture.legacy_labels(Snapshot.capture(battle)) == adapted and battle.hand_played_this_turn and battle.time_remaining == 81.75,
 		"old snapshot keeps the complete board, decks, mana, timer, turn and combo")
 	for step: int in range(12):
 		if battle.winner != -1: break

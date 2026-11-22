@@ -206,6 +206,7 @@ func test_v048_compatibility() -> void:
 	check(raw.version == 9 and raw.rules == Snapshot.v048_rules_signature() and restored.ok, "original v9 save migrates with exact old catalog signature")
 	if not restored.ok: return
 	var updated: Dictionary = JSON.parse_string(JSON.stringify(Snapshot.capture(restored.battle), "", true, true))
+	updated = preload("res://tests/fixtures/saved_battle.gd").legacy_labels(updated)
 	for key: String in ["units", "players", "turn", "pending_orders", "time_remaining", "objective", "rng_state"]:
 		check(raw[key] == updated[key], "old active battle preserves " + key)
 

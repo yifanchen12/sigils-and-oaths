@@ -2,6 +2,7 @@ extends RefCounted
 ## Plain-data snapshots. No object deserialization, rendering or turn-start effects.
 
 const Model = preload("res://scripts/battle.gd")
+const CosmeticNames = preload("res://scripts/card_names.gd")
 const VERSION: int = 14
 const PILGRIM_SET: String = "pilgrim"
 const NEW_SET: String = "glassroad"
@@ -60,7 +61,7 @@ static func v055_rules_signature() -> String:
 	return _relay_signature(Model.CATALOG.cards, prior, Model.MAPS.maps, "glassroad_v1")
 
 static func _relay_signature(cards: Array[Dictionary], decks: Array[Dictionary], maps: Array[Dictionary], revision: String = "relay_v1") -> String:
-	return JSON.stringify([cards, Model.HEROES.heroes, decks, maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE, revision]).sha256_text()
+	return JSON.stringify([CosmeticNames.for_rules(cards), Model.HEROES.heroes, decks, maps, Model.TERRAIN, Model.WEATHER, Model.ADVANTAGE, revision]).sha256_text()
 
 static func v052_rules_signature() -> String:
 	var cards: Array[Dictionary] = Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") != NEW_SET)
@@ -133,7 +134,7 @@ static func maps_without(excluded: Array) -> Array[Dictionary]:
 	return maps
 
 static func pre_v038_signature() -> String:
-	return JSON.stringify([cards_before_channel(), Model.HEROES.heroes, decks_before_channel(), maps_without(["spillway", "eastbridge", "lamplanding"]), Model.TERRAIN, weather_before_warfront(), Model.ADVANTAGE]).sha256_text()
+	return JSON.stringify([CosmeticNames.for_rules(cards_before_channel()), Model.HEROES.heroes, decks_before_channel(), maps_without(["spillway", "eastbridge", "lamplanding"]), Model.TERRAIN, weather_before_warfront(), Model.ADVANTAGE]).sha256_text()
 
 static func pre_eastbridge_signature() -> String:
 	return _signature_before_warfront(["eastbridge", "lamplanding"])
@@ -144,7 +145,7 @@ static func pre_relay_signature() -> String:
 static func _signature_before_warfront(excluded_maps: Array) -> String:
 	var cards: Array[Dictionary] = Model.CATALOG.cards.filter(func(card: Dictionary) -> bool: return card.get("set_id", "") not in LATER_SETS)
 	var decks: Array[Dictionary] = Model.DECKS.decks.filter(func(deck: Dictionary) -> bool: return deck.get("set_id", "") not in LATER_SETS)
-	return JSON.stringify([cards, Model.HEROES.heroes, decks, maps_without(excluded_maps), Model.TERRAIN, weather_before_warfront(), Model.ADVANTAGE]).sha256_text()
+	return JSON.stringify([CosmeticNames.for_rules(cards), Model.HEROES.heroes, decks, maps_without(excluded_maps), Model.TERRAIN, weather_before_warfront(), Model.ADVANTAGE]).sha256_text()
 
 static func weather_before_warfront() -> Dictionary:
 	var conditions: Dictionary = Model.WEATHER.duplicate()
@@ -160,12 +161,12 @@ static func maps_before_towergate() -> Array[Dictionary]:
 
 static func pre_northbank_signature() -> String:
 	# A new chapter-only map leaves already-started 0.35 battles intact.
-	return JSON.stringify([cards_before_channel(), Model.HEROES.heroes, decks_before_channel(), maps_without(["northbank", "spillway", "eastbridge", "lamplanding"]), Model.TERRAIN, weather_before_warfront(), Model.ADVANTAGE]).sha256_text()
+	return JSON.stringify([CosmeticNames.for_rules(cards_before_channel()), Model.HEROES.heroes, decks_before_channel(), maps_without(["northbank", "spillway", "eastbridge", "lamplanding"]), Model.TERRAIN, weather_before_warfront(), Model.ADVANTAGE]).sha256_text()
 
 static func pre_towergate_signature() -> String:
 	# A chapter-only map must not invalidate a running battle on an unchanged
 	# original map. This is the exact 0.33 catalog, not a wildcard signature.
-	return JSON.stringify([cards_before_channel(), Model.HEROES.heroes, decks_before_channel(), maps_before_towergate(), Model.TERRAIN, weather_before_warfront(), Model.ADVANTAGE]).sha256_text()
+	return JSON.stringify([CosmeticNames.for_rules(cards_before_channel()), Model.HEROES.heroes, decks_before_channel(), maps_before_towergate(), Model.TERRAIN, weather_before_warfront(), Model.ADVANTAGE]).sha256_text()
 
 static func pre_expansion_signature() -> String:
 	# Additive card pool only: retain exact old cards/decks/maps in the hash.
@@ -176,7 +177,7 @@ static func pre_expansion_signature() -> String:
 		if card.id not in EXPANSION_CARDS: cards.append(card)
 	for deck: Dictionary in decks_before_channel():
 		if deck.id != "ambush": decks.append(deck)
-	return JSON.stringify([cards, Model.HEROES.heroes, decks, maps_before_towergate(), Model.TERRAIN, weather_before_warfront(), Model.ADVANTAGE]).sha256_text()
+	return JSON.stringify([CosmeticNames.for_rules(cards), Model.HEROES.heroes, decks, maps_before_towergate(), Model.TERRAIN, weather_before_warfront(), Model.ADVANTAGE]).sha256_text()
 
 static func normalize_legacy(data: Dictionary) -> Dictionary:
 	var result: Dictionary = data.duplicate(true)
@@ -496,6 +497,9 @@ static func restore(data: Variant) -> Dictionary:
 	# Identity reconstruction must not overwrite serialized survivor names/short labels.
 	for index: int in range(data.units.size()):
 		battle.units[index].name = data.units[index].name
+		var card_id: String = data.units[index].get("card", {}).get("card_id", "")
+		if CosmeticNames.PREVIOUS.has(card_id) and data.units[index].name == CosmeticNames.PREVIOUS[card_id]:
+			battle.units[index].name = Model.CATALOG.find(card_id).name
 		battle.units[index].short = data.units[index].short
 	for y: int in range(battle.height):
 		for x: int in range(battle.width): battle.terrain[Vector2i(x, y)] = data.terrain[y * battle.width + x]
