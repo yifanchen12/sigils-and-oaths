@@ -7,7 +7,7 @@
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
 <p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.11.0" src="https://img.shields.io/badge/version-0.11.0-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
-**试玩 0.63.0-dev 开发预览。** 全部 81 张部队牌和 3 位指挥官已重绘为 84 张成年角色立绘及 84 个对应的 Q 版棋子，249 张牌全部改名。牌库新增「查看完整立绘」，旧战斗存档继续按原编号恢复。 [Windows 下载](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.63.0-dev) · [实机画面与版本说明](https://github.com/yifanchen12/sigils-and-oaths/blob/v0.63.0-dev/docs/release/v063.md) · [完整介绍](https://github.com/yifanchen12/sigils-and-oaths/blob/v0.63.0-dev/README.md) · [全部 84 组角色对照](https://github.com/yifanchen12/sigils-and-oaths/blob/v0.63.0-dev/docs/release/cast-v063.webp)
+**试玩 0.64.0-dev 开发预览。** 逐张复查 84 张成年立绘和 84 个 Q 版人物，修正两张完整立绘与一个 Q 版人物的多余手臂。起手与对局抽牌加入飞出、翻面和落牌演出；战场、牌库与卡面统一深蓝、纸白和金色界面，81 张部队牌分别调整人物取景，八张手牌在缩窗后重新排布。 [Windows 下载](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.64.0-dev) · [实机画面与版本说明](https://github.com/yifanchen12/sigils-and-oaths/blob/v0.64.0-dev/docs/release/v064.md) · [完整介绍](https://github.com/yifanchen12/sigils-and-oaths/blob/v0.64.0-dev/README.md) · [抽牌实录](https://github.com/yifanchen12/sigils-and-oaths/blob/v0.64.0-dev/docs/release/draw-v064.gif)
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
