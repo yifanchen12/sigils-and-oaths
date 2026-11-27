@@ -5,17 +5,38 @@
 
 <p align="center"><strong>把卡牌打进战场，让每一次部署都改变阵线。</strong></p>
 <p align="center">用 Godot 制作的原创单机卡牌战棋：在友军身旁召唤部队，以站位、兵种克制、地形与天气争夺优势。</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.63.0-dev" src="https://img.shields.io/badge/version-0.63.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.64.0-dev" src="https://img.shields.io/badge/version-0.64.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 如果你也喜欢卡牌构筑与棋盘上的阵线博弈，欢迎点亮 ⭐ Star，也欢迎 Follow 关注后续更新。仓库暂不展示星数。
 
 卡牌决定你手里有什么，棋盘决定它们能做什么。新部队可以部署在任意友军的上下左右相邻格，包括刚召唤的部队。你可以沿着阵线连续增援，抢桥、占领高地，也要防止突进过深，让对手找到反击的空隙。
 
-玩法设计参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局、248 种可构筑牌、二十三套预组和六张立体建模的平面战场。**0.63.0-dev** 完成 81 张部队牌和 3 位指挥官的整套重绘：84 张成年角色立绘、84 个对应的 Q 版战场人物，并为全部 249 张牌重新命名，覆盖法术、陷阱和环境牌。牌库新增完整立绘浏览，教程与旧存档名称同步适配。 [Windows 下载](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.63.0-dev) · [立绘与验收](docs/release/v063.md)
+玩法设计参考《炉石传说》的费用曲线与卡牌节奏、《决斗链接》的伏设与反制思路，以及《梦幻模拟战》的地形、兵种和指挥官博弈。角色、卡牌效果、图片和地图均为本项目制作。Windows 版提供十八章单人战役、三个结局、248 种可构筑牌、二十三套预组和六张立体建模的平面战场。牌库保留 249 张已命名卡牌及部队完整立绘浏览。
 
-![十二组成年立绘与对应的 Q 版棋子](docs/release/cast-selection-v063.webp)
+**0.64.0-dev** 修正两张完整立绘与一个 Q 版人物的多余手臂，加入起手与对局抽牌的飞出、翻面和落牌演出，并统一战场、牌库与卡面的深蓝、纸白和金色界面。81 张部队牌逐张调整人物取景，让紧凑手牌也能看见脸；八张手牌和已打开的牌库窗口在缩小窗口时会重新排布。 [本版改动与源码验收](docs/release/v064.md) · [Windows 下载与发行附件](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.64.0-dev)
+
+![正常战前菜单开局后的起手抽牌演出，42 帧实际渲染画面](docs/release/draw-v064.gif)
+
+己方卡牌从牌库飞出，翻面展示后落入对应手牌位置；满手牌时飞向弃牌堆，敌方抽牌始终只显示卡背。演出期间可以直接选牌或出牌，设置中的减弱动态会改为短暂静态提示。
+
+![0.64 肢体修正前后：两张成年立绘与一个 Q 版棋子](docs/release/anatomy-v064.webp)
+
+本版逐张目视检查 84 张成年立绘和 84 个对应的 Q 版人物。其余 82 张完整立绘的可见画面保持一致，仅清理完全透明区域的残留颜色。 [全部 84 组角色](docs/release/cast-v064.webp) · [81 张紧凑卡面取景](docs/release/card-framing-v064.webp) · [源码检查记录](docs/release/qa-v064.json)
+
+源工程检查与发行包检查分别记录。Windows 发行包的原生复验和实际资源来源见 Release 附件 `release-verification-v064.json` 与 `packed-sources-v064.json`；下载文件可用 `SHA256SUMS.txt` 核对。
 
 ## 实机画面
+
+以下是 0.64 的实际渲染画面。战场图来自按规则推进 65 次合法行动的对局，牌库图展示新版卡面与筛选界面。
+
+![0.64 战场界面：65 次合法行动后的阵线与手牌](docs/release/steam/gameplay/32-battle-ui.png)
+
+![0.64 牌库界面：人物取景、费用与来源筛选](docs/release/steam/gameplay/33-card-library-ui.png)
+
+![0.64 起手卡牌翻面展示与真实手牌位置](docs/release/steam/gameplay/34-opening-draw.png)
+
+<details>
+<summary>0.63 实机：完整立绘浏览与角色对应</summary>
 
 ![White-feather medic deployed on E1](docs/release/steam/gameplay/27-white-feather-medic.png)
 
@@ -24,6 +45,8 @@
 ![新牌名与新版部队肖像](docs/release/steam/gameplay/29-renamed-card-library.png)
 
 ![完整立绘浏览](docs/release/steam/gameplay/30-parasol-full-art.png)
+
+</details>
 
 <details>
 <summary>历史版本画面：角色与卡名已在本版更新</summary>
@@ -514,7 +537,7 @@ git clone https://github.com/yifanchen12/sigils-and-oaths.git
 cd sigils-and-oaths
 ```
 
-Windows x64 预览版提供 MSI 安装包和 ZIP 便携包。下载 MSI 可双击安装。下载 ZIP 则先解压，把 EXE 和 PCK 留在同一目录，再双击 `SigilsAndOaths.exe`。 [下载 0.58 开发预览版](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.58.0-dev)
+Windows x64 发布附件包含 MSI 安装包和 ZIP 便携包。下载 MSI 可双击安装。下载 ZIP 则先解压，把 EXE 和 PCK 留在同一目录，再双击 `SigilsAndOaths.exe`。 [Windows 下载与发行附件](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.64.0-dev)
 
 从源码运行的步骤如下。
 
@@ -625,7 +648,7 @@ python tools/audit_narrative.py
 
 ## 当前边界与美术来源
 
-- Windows x64 单机开发版提供 MSI 安装程序及便携 ZIP。解压 ZIP 后，从同目录双击 SigilsAndOaths.exe。 [下载当前版本](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.63.0-dev)
+- Windows x64 单机开发版使用 MSI 安装程序及便携 ZIP。解压 ZIP 后，从同目录双击 SigilsAndOaths.exe。 [Windows 下载与发行附件](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.64.0-dev)
 - 远程攻击和法术目前不检查视线。AI对局诊断不能代替真人竞技平衡测试。
 - 自定义套牌只有一个本地槽，保存于Godot的 `user://custom_deck.json`，不随仓库上传。
 - 战役只有一个本地自动槽及上次有效备份，位于 `user://campaign_autosave.json`；新战役会先要求确认替换进度，存档不随仓库上传。

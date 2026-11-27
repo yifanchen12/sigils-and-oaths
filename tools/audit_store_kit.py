@@ -22,6 +22,9 @@ GRAPHICS = {
     "shortcut-icon.png": (512, 512),
 }
 SCREENSHOTS = {
+    "32-battle-ui.png": "0.64: Rivergate skirmish after 65 legal actions, with the updated card frames, real deck/discard piles, HUD and highlighted end-turn control. The original illustrated card identities and matching chibi figures remain in the production scene.",
+    "33-card-library-ui.png": "0.64: The native library with full-width card portraits, role and cost hierarchy, themed window border and full-illustration action. Captured after verifying all 249 card details and 81 troop full illustrations.",
+    "34-opening-draw.png": "0.64: The actual opening deal of a normal Rivergate Balanced vs Balanced skirmish entered through the council, seed 1. The native animation is captured at 0.50 seconds; its visual clock is paused for reproducibility, without altering the dealt cards or RNG.",
     "27-white-feather-medic.png": "0.63: Guiyu Xiluo (shore_medic) deployed by a legal card action in Rivergate, fifth round; the adult card illustration and separately drawn matching chibi figure are visible.",
     "28-crimson-parasol-mage.png": "0.63: Huajin Feili (ash_notary) deployed by a legal card action in Rivergate, seventh round; the adult parasol portrait and matching chibi figure are visible.",
     "29-renamed-card-library.png": "0.63: The native library shows renamed cards, redesigned adult portraits, current costs and rules, and the full-illustration button. All 249 card details and 81 troop illustrations were exercised in this scene.",

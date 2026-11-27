@@ -51,6 +51,11 @@ def separate(path, count):
         cut = image.copy()
         cut.putalpha(Image.fromarray(own_alpha))
         cut = cut.crop(bounds)
+        # PNG RGB under zero alpha can contain neighboring atlas figures. Clear
+        # it so image editors and straight-alpha resampling cannot expose ghosts.
+        pixels = np.asarray(cut).copy()
+        pixels[pixels[:, :, 3] == 0, :3] = 0
+        cut = Image.fromarray(pixels, 'RGBA')
         if (np.asarray(cut.getchannel('A')) == 0).mean() < .15:
             raise ValueError(f'{path.name}: unusable transparency in slot {n}')
         results.append(cut)
@@ -72,6 +77,11 @@ def prepare(allow_partial=False):
         portraits = Image.new('RGBA', (512*len(ids), 512))
         pieces = Image.new('RGBA', (256*len(ids), 256))
         for index,(key,adult,mini) in enumerate(zip(ids, adults, minis)):
+            # A reviewed single-character correction overrides only its own slot.
+            if key in group.get('adult_overrides', {}):
+                adult = separate(ROOT/group['adult_overrides'][key], 1)[0]
+            if key in group.get('chibi_overrides', {}):
+                mini = separate(ROOT/group['chibi_overrides'][key], 1)[0]
             all_ids.append(key)
             destination = full_dir/(key+'.png')
             adult.save(destination)
@@ -105,7 +115,7 @@ def prepare(allow_partial=False):
             mini=mini.resize((76,76),Image.Resampling.LANCZOS)
             contact.paste(mini,(x+119,y+163),mini)
             draw.text((x+3,y+247),key,fill='#20303b')
-        contact.save(ROOT/'docs/release/cast-v063.webp',quality=88)
+        contact.save(ROOT/record.get('preview', 'docs/release/cast-v063.webp'),quality=88)
     print(f'{len(all_ids)} adult portraits and matching chibi figures prepared')
 
 

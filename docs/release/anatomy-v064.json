@@ -1,0 +1,539 @@
+{
+  "version": "0.64.0-dev",
+  "scope": {
+    "full_body": 84,
+    "chibi": 84
+  },
+  "method": "Manual visual screening at native/expanded size, using alpha-correct composites to inspect visible limbs. The two full-body corrections and one chibi correction were independently re-inspected after native image generation and atlas preparation. This is not a guarantee of perfect anatomy or every finger.",
+  "corrections": [
+    {
+      "id": "quay_lantern",
+      "variant": "full_body",
+      "reason": "Removed duplicated lowered forearm and lantern hand; separated the two legs for clear silhouette.",
+      "result": "corrected and independently re-inspected",
+      "source_sha256": "295314c9c68330f684a66b7f1fa02138128817526fafaf777e11a9f0918b3fd6"
+    },
+    {
+      "id": "indigo_gate_mage",
+      "variant": "full_body",
+      "reason": "Removed extra central forearm and hand; retained two casting arms and an independently levitating staff.",
+      "result": "corrected and independently re-inspected",
+      "source_sha256": "2be3b42a78694e9e9da232c3f88a90f125269dd8eb5f2c7aec9a307eb1199166"
+    },
+    {
+      "id": "lantern_surgeon",
+      "variant": "chibi",
+      "reason": "Removed the third waist hand; one hand now holds the wand, the other carries the medical case.",
+      "result": "corrected and independently re-inspected",
+      "source_sha256": "74d6e9e52fdc4d20330dab5ac8e0525c538aab59e34e3bf4e15dc4858a73ee38"
+    }
+  ],
+  "visible_full_bodies_unchanged": 82,
+  "zero_alpha_rgb_cleanup": "RGB below exactly zero alpha cleared; the other 82 full-body visible pixels were verified unchanged against the previous Git commit.",
+  "characters": [
+    {
+      "id": "warden",
+      "full_body_observation": "Two arms (shield-side hand partly obscured) and two legs: one lifted and one extended. No visible extra limb. Background is transparent when alpha is respected.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "pyromancer",
+      "full_body_observation": "Two arms/hands holding fan and wand; two crossed legs and two feet. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "grove",
+      "full_body_observation": "Two arms/hands (open hand and staff) and two crossing legs/feet. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "sword",
+      "full_body_observation": "Two sword/shield arms and two boots/feet. Additional enlarged leg inspection confirms the apparent third shape is a boot cuff, not another leg.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "spear",
+      "full_body_observation": "Two arms (spear grip and hand on hip) and two legs/feet. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "cavalry",
+      "full_body_observation": "Two rider arms; far rider leg partly occluded. Horse has four legs. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "archer",
+      "full_body_observation": "Two arms drawing bow and two crossing legs/feet. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "mage",
+      "full_body_observation": "Two arms (book and raised orb hand), two feet beneath robes. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "healer",
+      "full_body_observation": "Two hands (staff and open hand), two bent legs/feet. Overlap is readable; no third limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "reed_scout",
+      "full_body_observation": "Map hand and dagger hand; two bent legs and two boots. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "gate_veteran",
+      "full_body_observation": "Two arms holding the polearm and two armored legs. Apparent neighboring detached arm in raw RGB is fully transparent and absent from the alpha-correct render.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "ridge_courier",
+      "full_body_observation": "Sword hand and reins hand; rider far leg partially occluded. Rearing horse has four legs. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "ridge_archer",
+      "full_body_observation": "Two arms/hands overlap crossbow; two legs and feet. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "scribe_warden",
+      "full_body_observation": "Chin hand and staff hand; two crossed legs/feet. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "breakwater_guard",
+      "full_body_observation": "Shield arm and raised arm; two bent legs. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "bronze_watch",
+      "full_body_observation": "Two arms holding spear and two legs. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "quay_lantern",
+      "full_body_observation": "Correction accepted: exactly one raised arm and one lowered arm/hand holding fish-lantern ring; two legs/feet. Redundant second hanging forearm/hand removed. No visible new gross anatomy defect.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "initial_defect_corrected_and_rechecked"
+    },
+    {
+      "id": "lantern_bearer",
+      "full_body_observation": "Chin hand and lantern hand; two seated legs/boots. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "mink_watcher",
+      "full_body_observation": "Two arms/hands around bow; two crossing legs/feet. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "ferry_pikeman",
+      "full_body_observation": "Two hands on pole and two legs, one propped on boat. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "willow_outlook",
+      "full_body_observation": "Bow arm visible; far arm occluded by back/torso. Two legs. No high-confidence extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "quartermaster",
+      "full_body_observation": "Envelope hand and sword hand; two crossed legs/feet. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "moth_cavalry",
+      "full_body_observation": "Rider has two arms and two boots; horse has four legs (two pale near legs and two darker far legs). No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "kiln_wardens",
+      "full_body_observation": "Two hands on polearm, two bent legs/boots. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "carriage_cloak",
+      "full_body_observation": "Sword hand and reins hand; near rider leg visible, far leg occluded. White horse has four legs/hooves. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "last_bridge_clinic",
+      "full_body_observation": "Pouring hand and receiving hand; two crossed legs/feet. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "copper_gate_requiem",
+      "full_body_observation": "Mask hand and staff hand; kneeling legs partly obscured by robes. No high-confidence extra limb or detached joint.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "cinder_runner",
+      "full_body_observation": "Raised banner hand and reins hand; near rider leg visible and far leg occluded. Horse has four legs/hooves. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "ridge_pioneer",
+      "full_body_observation": "Sword arm and shield arm, two bent legs/boots in jumping pose. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "quay_salver",
+      "full_body_observation": "Jug hand and bowl hand. Two kneeling legs, far leg/foot partially obscured by pose and skirt. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "reed_harrier",
+      "full_body_observation": "Two arms drawing bow, one raised knee/boot and one kneeling leg/boot. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "byway_guard",
+      "full_body_observation": "Two hands on polearm and two legs/boots beneath robe. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "kiln_outrider",
+      "full_body_observation": "Raised polearm hand; far rider arm and leg are partially obscured by horse. Rearing horse has four legs/hooves. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "sandbar_physician",
+      "full_body_observation": "Scissors hand and reaching hand; two kneeling knees/legs with far foot obscured. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "night_surveyor",
+      "full_body_observation": "Two hands operating instrument, two crossed legs/boots. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "levee_marshal",
+      "full_body_observation": "Raised hand and spear hand, two legs/feet. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "storm_saddle",
+      "full_body_observation": "Polearm hand and reins hand; one near rider leg with far leg obscured. Three horse hooves visible, fourth leg occluded. No high-confidence extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "indigo_gate_mage",
+      "full_body_observation": "Correction accepted: exactly two outstretched arms/hands levitating crystals. Third central forearm/hand removed; cane floats independently. Two crossed legs/feet retained. No visible new gross anatomy defect.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "initial_defect_corrected_and_rechecked"
+    },
+    {
+      "id": "sunbreak_column",
+      "full_body_observation": "Two hands holding banner staff and two legs/feet, one propped on rock. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "lamp_patrol",
+      "full_body_observation": "Raised lantern hand and lowered dagger hand; one raised knee and one straight leg. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "reed_watch",
+      "full_body_observation": "Two arms drawing bow and two legs/boots. No visible extra limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "slate_quartermaster",
+      "full_body_observation": "Card hand and chin hand, two crossed legs/feet. Arm connection partly concealed by loose sleeves; no definite third limb.",
+      "chibi_observation": "Inspected in the 768x256 runtime atlas at 2x display after respecting alpha. No obvious extra arm, leg or detached joint. Mounted figures retain four horse legs where applicable.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "bell_winch",
+      "full_body_observation": "Two hands hold the hooked staff; two bent legs and boots are traceable.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "rain_saddle",
+      "full_body_observation": "Two rider arms; far rider leg naturally occluded by horse. Horse has four legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "levee_brothers",
+      "full_body_observation": "Two arms (shield overhead and sword forward); two bent legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "rising_oath_watch",
+      "full_body_observation": "Two overlapping hands on the sword; two feet.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "lantern_surgeon",
+      "full_body_observation": "Full artwork has two tool-holding hands and two crossed legs. Chibi has a third hand.",
+      "chibi_observation": "Three visible hands: waist-resting hand, raised tool-holding hand, and separate medical-bag hand. Tool and bag hands emerge from same side. Actual visible alpha-composited defect.",
+      "status": "initial_defect_corrected_and_rechecked"
+    },
+    {
+      "id": "saltfield_runner",
+      "full_body_observation": "Two hands hold scroll at chest; two bent legs and boots.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "bank_pikeman",
+      "full_body_observation": "Two hands on spear; two legs and feet.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "bastion_driller",
+      "full_body_observation": "Two arms hold carpenter square; one bent leg and one extended leg.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "shrike_saddler",
+      "full_body_observation": "Two hands (spear and reins); far rider leg hidden behind horse.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "sill_physician",
+      "full_body_observation": "Two arms despite large flowing sleeves; one leg naturally covered by robe.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "shoal_arbalest",
+      "full_body_observation": "Two hands on crossbow; two kneeling legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "oathroad_mender",
+      "full_body_observation": "One hand holds lantern, one holds bandage; two crossed legs and heels.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "undertow_knight",
+      "full_body_observation": "Sword arm visible, other arm behind shield; two armored legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "claywatch_sage",
+      "full_body_observation": "Two hands around astrolabe; two crossed legs and feet.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "crownless_vanguard",
+      "full_body_observation": "One raised flag hand, other hand low; two crossed legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "chalk_courier",
+      "full_body_observation": "Pointing arm and lance arm; far rider leg occluded. Horse has four legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "ridge_listener",
+      "full_body_observation": "One hand at face, one at waist; one foot on rock and one on ground.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "linen_lantern",
+      "full_body_observation": "Two hands hold lantern ring; two crossed legs and feet.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "coalroad_broker",
+      "full_body_observation": "One elbow on knee and one hand on seat; two legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "shale_lancer",
+      "full_body_observation": "Two hands on spear; two tightly folded legs. Individually checked with alpha compositing; apparent hand at left edge belongs only to RGB under alpha 0 and is not visible in game.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "bracken_hussar",
+      "full_body_observation": "Banner arm and low lance arm; far rider leg hidden; horse has four legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "cairn_colossus",
+      "full_body_observation": "Two hands hold raised sword, far elbow partly behind head; two legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "bellfoundry_oracle",
+      "full_body_observation": "One hand by waist and one near bell; two crossed legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "whitecord_marshal",
+      "full_body_observation": "One hand on spear, one at waist; two legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "kiln_sparks",
+      "full_body_observation": "One casting arm, one bowl-holding arm partly hidden by sleeve; two seated legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "marl_shield",
+      "full_body_observation": "Lance hand visible, other arm behind shield; one kneeling and one raised leg.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "river_wasp",
+      "full_body_observation": "Two archery arms; one bent raised leg and one extended leg.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "granary_warden",
+      "full_body_observation": "Two arms, two seated legs and boots.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "glassroad_runner",
+      "full_body_observation": "Envelope arm and sword arm; far rider leg occluded; horse has four legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "rook_pickets",
+      "full_body_observation": "One hand on polearm, one on ground; two crouched legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "reedglass_bow",
+      "full_body_observation": "Two archery arms; one raised leg and one extended leg.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "saltband_surgeon",
+      "full_body_observation": "Two arms (bowl and pinching herbs); two kneeling feet, far leg naturally occluded.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "hinge_lancer",
+      "full_body_observation": "One spear arm, other down behind torso; two legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "cinder_coxswain",
+      "full_body_observation": "Hook arm and rope arm; two legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "quarry_bugler",
+      "full_body_observation": "Horn hand and waist sword hand; one bent leg and one extended leg.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "copper_cistern",
+      "full_body_observation": "Jug hand and catching hand; two crossed legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "breakline_sappers",
+      "full_body_observation": "Axe arm visible, second behind shield; two running legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "skylens_sentinel",
+      "full_body_observation": "Two arms (chin and staff); two crossed legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "bellroad_captain",
+      "full_body_observation": "Raised lance arm and reins arm; far rider leg occluded; horse has four legs.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "silver_bulwark",
+      "full_body_observation": "Two hands on spear; two seated crossed legs with two separate heels.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "shore_medic",
+      "full_body_observation": "Two arms (casting and near collar); two legs and sandals.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    },
+    {
+      "id": "ash_notary",
+      "full_body_observation": "Two arms (casting and parasol); two overlapping legs. Individual full image checked; no third limb.",
+      "chibi_observation": "No obvious extra arm, hand or leg observed in the alpha-composited miniature.",
+      "status": "visually_reviewed"
+    }
+  ]
+}

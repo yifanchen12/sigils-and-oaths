@@ -30,6 +30,9 @@ func check(condition: bool, label: String) -> bool:
 	return condition
 
 func photograph(name: String) -> void:
+	# This capture verifies settled artwork; draw travel has its own native proof.
+	game.draw_presentation.reset()
+	game._sync_draw_anchors()
 	for frame in 6:
 		await process_frame
 		game._position_battle_peek()

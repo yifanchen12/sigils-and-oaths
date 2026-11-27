@@ -5,17 +5,38 @@
 
 <p align="center"><strong>Play your cards onto the battlefield. Make every deployment reshape the front line.</strong></p>
 <p align="center">An original single-player card tactics game built with Godot. Summon beside friendly units and fight for position with unit counters, terrain, commanders and weather.</p>
-<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.63.0-dev" src="https://img.shields.io/badge/version-0.63.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
+<p align="center"><img alt="Godot 4.7.2" src="https://img.shields.io/badge/Godot-4.7.2-478CBF"> <img alt="Version 0.64.0-dev" src="https://img.shields.io/badge/version-0.64.0--dev-blue"> <img alt="Tested on Windows" src="https://img.shields.io/badge/tested-Windows-0078D4"> <img alt="License MIT" src="https://img.shields.io/badge/License-MIT-yellow"></p>
 
 If you enjoy deckbuilding and tactical positioning, a ⭐ Star is welcome. Follow for future updates. This README does not display a star count.
 
 Your hand determines what you can field; the board determines what those cards can achieve. Deploy a new unit in an empty, passable cell orthogonally adjacent to any friendly unit, including one you just summoned. Chain reinforcements, contest bridges and claim high ground while keeping your advancing force covered.
 
-The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 248 collectible cards, twenty-three preset decks and six Blender-rendered skirmish boards. **0.63.0-dev** redraws all 81 troop characters and three commanders: 84 adult full-body illustrations and 84 matching chibi battlefield figures. All 249 card names have been revised, including spells, traps and weather. The library now opens complete troop illustrations; tutorials and save migration use the updated names. [Download for Windows](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.63.0-dev) · [Artwork and verification](docs/release/v063.md)
+The design studies Hearthstone's mana curve and card pacing, Duel Links' concealed card play, and Langrisser's terrain, unit counters and commanders. Characters, card effects, illustrations and maps are original. This Chinese-language Windows game has an eighteen-chapter solo campaign, three endings, 248 collectible cards, twenty-three preset decks and six Blender-rendered skirmish boards. The library retains all 249 named cards and complete troop-art browsing.
 
-![Twelve adult illustrations and their matching chibi figures](docs/release/cast-selection-v063.webp)
+**0.64.0-dev** corrects extra arms in two full illustrations and one chibi figure, adds opening-hand and in-battle draw animations, and gives the battlefield, library and cards a shared navy, paper and gold interface. All 81 troop cards receive individual portrait framing so faces remain visible in compact hands. Eight-card hands and an already-open library window now reflow when the window shrinks. [Changes and source verification](docs/release/v064.md) · [Windows downloads and release files](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.64.0-dev)
+
+![Opening-hand animation after starting through the normal battle menu, captured in 42 rendered frames](docs/release/draw-v064.gif)
+
+Friendly cards leave the deck, turn face up and settle into their actual hand slots. Overflow cards travel to the discard pile; enemy draws show only card backs. Cards remain available for immediate selection or play during the animation. Reduced motion replaces travel with a brief stationary cue.
+
+![0.64 before and after: two adult illustrations and one chibi figure corrected](docs/release/anatomy-v064.webp)
+
+All 84 adult illustrations and 84 matching chibi figures were reviewed individually. The visible appearance of the other 82 full illustrations is unchanged; cleanup removes residual colors only from fully transparent pixels. [All 84 character pairs](docs/release/cast-v064.webp) · [All 81 compact card portraits](docs/release/card-framing-v064.webp) · [Source verification record](docs/release/qa-v064.json)
+
+Source checks and release-package checks are recorded separately. See the Release attachments `release-verification-v064.json` and `packed-sources-v064.json` for native Windows package verification and the sources of the resources actually shipped. Check downloaded files against `SHA256SUMS.txt`.
 
 ## In-game screenshots
+
+These captures show the actual 0.64 rendering. The battle was advanced through 65 legal actions; the library shows the updated card framing and filters.
+
+![0.64 battlefield and hand after 65 legal actions](docs/release/steam/gameplay/32-battle-ui.png)
+
+![0.64 card library with revised portraits, mana and source filters](docs/release/steam/gameplay/33-card-library-ui.png)
+
+![0.64 opening cards turn face up before settling into their hand slots](docs/release/steam/gameplay/34-opening-draw.png)
+
+<details>
+<summary>0.63 captures — full illustration viewer and character identities</summary>
 
 ![White-feather medic deployed on E1](docs/release/steam/gameplay/27-white-feather-medic.png)
 
@@ -24,6 +45,8 @@ The design studies Hearthstone's mana curve and card pacing, Duel Links' conceal
 ![Renamed card library](docs/release/steam/gameplay/29-renamed-card-library.png)
 
 ![Full illustration viewer](docs/release/steam/gameplay/30-parasol-full-art.png)
+
+</details>
 
 <details>
 <summary>Earlier versions — artwork and card names have since changed</summary>
@@ -620,7 +643,7 @@ UI, forecast, map-art and skill-window checks require a graphical window. Earlie
 
 ## Current limits and artwork
 
-- Single-player development build for Windows x64. Open the MSI to install or extract the portable ZIP and keep its EXE and PCK together. [Download the development preview](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.63.0-dev)
+- Single-player development build for Windows x64. Open the MSI to install or extract the portable ZIP and keep its EXE and PCK together. [Windows downloads and release files](https://github.com/yifanchen12/sigils-and-oaths/releases/tag/v0.64.0-dev)
 - Ranged attacks and spells currently do not check line of sight. AI diagnostics are not a substitute for competitive human playtesting.
 - One custom deck is saved locally at Godot's `user://custom_deck.json`; player data is not included in this repository.
 - One campaign autosave and a last-good backup use `user://campaign_autosave.json`. Starting over asks for in-game confirmation before replacing progress; these files are not published.

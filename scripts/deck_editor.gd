@@ -153,13 +153,21 @@ func _build() -> void:
 		rows[card.id] = {"cell": cell, "card": card, "minus": minus, "plus": plus, "count": count, "view": view}
 	var sidebar := PanelContainer.new()
 	sidebar.custom_minimum_size.x = 280
+	sidebar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var skin := StyleBoxFlat.new()
 	skin.bg_color = Color("102136")
 	skin.border_color = Color("b5a176")
 	skin.set_border_width_all(1)
 	for edge: String in ["left", "right", "top", "bottom"]: skin.set("content_margin_" + edge, 12)
 	sidebar.add_theme_stylebox_override("panel", skin)
-	columns.add_child(sidebar)
+	# The readable curve, rules and selected list may exceed a small window's
+	# height; scroll this column instead of forcing the entire dialog off screen.
+	var sidebar_scroll := ScrollContainer.new()
+	sidebar_scroll.custom_minimum_size.x = 296
+	sidebar_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	sidebar_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	columns.add_child(sidebar_scroll)
+	sidebar_scroll.add_child(sidebar)
 	var side := VBoxContainer.new()
 	sidebar.add_child(side)
 	side.custom_minimum_size.x = 250

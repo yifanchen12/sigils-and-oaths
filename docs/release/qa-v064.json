@@ -1,0 +1,113 @@
+{
+  "version": "0.64.0-dev",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "date": "2026-11-27",
+  "source_check_executions": 3875,
+  "source_failures": 0,
+  "checks": [
+    {
+      "scope": "Battle rules and twelve completed AI matches",
+      "script": "tests/test_battle.gd",
+      "renderer": "headless",
+      "checks": 76,
+      "failures": 0,
+      "log_sha256": "790f7384f083a727eb10d6d389412e571ae5cae3042ddf1e7fcc4f03ff9a8bee"
+    },
+    {
+      "scope": "Battle snapshots and legacy saves",
+      "script": "tests/test_battle_snapshot.gd",
+      "renderer": "headless",
+      "checks": 838,
+      "failures": 0,
+      "log_sha256": "83c51ccffd639308733dc2aba223ef0802cfbc62072694121dbb69856518936a"
+    },
+    {
+      "scope": "84 full body, portrait and battlefield identities",
+      "script": "tests/test_unit_piece_identity.gd",
+      "renderer": "headless",
+      "checks": 993,
+      "failures": 0,
+      "log_sha256": "4bebe7ed99cf81c7e7b4c1b1f3112684da8c47f6a264e26d9b1afafd46f8bcde"
+    },
+    {
+      "scope": "Main interface and deck editor",
+      "script": "tests/test_ui.gd",
+      "renderer": "Windows OpenGL",
+      "checks": 495,
+      "failures": 0,
+      "log_sha256": "3e7ca81879c4d694f316942525e30dbe15c4c0386ec691cdf2d38dd26d5ebb38"
+    },
+    {
+      "scope": "Draw events, privacy, state invariants and real window resizing",
+      "script": "tests/test_card_draw_ui.gd",
+      "renderer": "Windows OpenGL",
+      "checks": 166,
+      "failures": 0,
+      "log_sha256": "42f0ebd4aa08e96eff33757f36f2f48a98a0856c02df082876cb34f020e87152"
+    },
+    {
+      "scope": "All card details and full illustrations in the native scene",
+      "script": "tools/verify_reference_art.gd",
+      "renderer": "Windows OpenGL SubViewport",
+      "checks": 874,
+      "failures": 0,
+      "log_sha256": "4451f257ddb040ee28f4499dc70f7b7b7dbe3c7b5ae6866efce122c77cffe769"
+    },
+    {
+      "scope": "Normal opening, legal turn draws, native frames and six layouts",
+      "script": "tools/verify_draw_presentation.gd",
+      "renderer": "Windows OpenGL SubViewport",
+      "checks": 300,
+      "failures": 0,
+      "log_sha256": "ca63f6bb234fa73f3ace198cd8abea55d4558a9c6ac2e4f799ab85300937b624"
+    },
+    {
+      "scope": "Existing cast presentation regression",
+      "script": "tests/test_cast_visuals.gd",
+      "renderer": "headless",
+      "checks": 133,
+      "failures": 0,
+      "log_sha256": "e01cc89c47fa79233af576385085ca2d0df9045ef6970545749b01b457e28208"
+    }
+  ],
+  "art_review": {
+    "full_body": 84,
+    "chibi": 84,
+    "full_body_corrections": 2,
+    "chibi_corrections": 1,
+    "compact_card_framings_reviewed": 81,
+    "record": "anatomy-v064.json",
+    "note": "Manual visual screening and independent correction recheck; not an automated guarantee of perfect anatomy."
+  },
+  "rules_byte_unchanged_from": "261c9818d9202b7e96c1b43eebc266d3d77c3dc4",
+  "unchanged_rules_files": [
+    "data/cards.tres",
+    "scripts/battle.gd",
+    "scripts/opponent.gd",
+    "scripts/battle_snapshot.gd"
+  ],
+  "native_draw_frames": 42,
+  "window_evidence": {
+    "actual_windows_pixels": [
+      [
+        1008,
+        700
+      ],
+      [
+        1440,
+        1000
+      ],
+      [
+        1920,
+        1080
+      ]
+    ],
+    "native_window_test": "tests/test_card_draw_ui.gd",
+    "subviewport_proof": "tools/verify_draw_presentation.gd",
+    "note": "SubViewport captures model the project canvas_items/expand stretch. Native Window tests separately exercise resize, eight-card hands and open card dialogs. Headless-only Window geometry is not used as visual evidence."
+  },
+  "scope_limits": [
+    "No new balance claim or full campaign replay claim is made from this UI update.",
+    "Final exported pack provenance and native verification are separate release attachments."
+  ]
+}

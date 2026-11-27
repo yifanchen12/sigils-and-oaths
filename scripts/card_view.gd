@@ -10,6 +10,93 @@ const CORAL := Color("f08b76")
 const Art = preload("res://scripts/art_library.gd")
 const Catalog = preload("res://data/cards.tres")
 
+# Face positions in the upper-body portrait atlases, reviewed across all 81 troops.
+# Card controls and draw previews share these crops; the full artwork is untouched.
+const FACE_HEIGHTS: Dictionary = {
+	"sword": 0.2,
+	"spear": 0.42,
+	"cavalry": 0.48,
+	"archer": 0.42,
+	"mage": 0.23,
+	"healer": 0.33,
+	"reed_scout": 0.23,
+	"gate_veteran": 0.18,
+	"ridge_courier": 0.17,
+	"ridge_archer": 0.23,
+	"shore_medic": 0.29,
+	"scribe_warden": 0.25,
+	"breakwater_guard": 0.25,
+	"bronze_watch": 0.34,
+	"quay_lantern": 0.38,
+	"lantern_bearer": 0.18,
+	"mink_watcher": 0.32,
+	"ferry_pikeman": 0.31,
+	"willow_outlook": 0.17,
+	"quartermaster": 0.22,
+	"moth_cavalry": 0.37,
+	"ash_notary": 0.35,
+	"kiln_wardens": 0.39,
+	"carriage_cloak": 0.33,
+	"last_bridge_clinic": 0.24,
+	"copper_gate_requiem": 0.41,
+	"cinder_runner": 0.33,
+	"ridge_pioneer": 0.31,
+	"quay_salver": 0.2,
+	"reed_harrier": 0.61,
+	"byway_guard": 0.19,
+	"kiln_outrider": 0.55,
+	"sandbar_physician": 0.28,
+	"night_surveyor": 0.23,
+	"levee_marshal": 0.23,
+	"storm_saddle": 0.58,
+	"indigo_gate_mage": 0.16,
+	"sunbreak_column": 0.61,
+	"lamp_patrol": 0.38,
+	"reed_watch": 0.4,
+	"slate_quartermaster": 0.41,
+	"bell_winch": 0.34,
+	"rain_saddle": 0.42,
+	"levee_brothers": 0.39,
+	"rising_oath_watch": 0.47,
+	"lantern_surgeon": 0.25,
+	"saltfield_runner": 0.25,
+	"bank_pikeman": 0.47,
+	"bastion_driller": 0.22,
+	"shrike_saddler": 0.26,
+	"sill_physician": 0.2,
+	"shoal_arbalest": 0.4,
+	"oathroad_mender": 0.21,
+	"undertow_knight": 0.22,
+	"claywatch_sage": 0.34,
+	"crownless_vanguard": 0.47,
+	"chalk_courier": 0.48,
+	"ridge_listener": 0.61,
+	"linen_lantern": 0.24,
+	"coalroad_broker": 0.16,
+	"shale_lancer": 0.55,
+	"bracken_hussar": 0.6,
+	"cairn_colossus": 0.4,
+	"bellfoundry_oracle": 0.54,
+	"whitecord_marshal": 0.21,
+	"kiln_sparks": 0.27,
+	"marl_shield": 0.44,
+	"river_wasp": 0.46,
+	"granary_warden": 0.21,
+	"glassroad_runner": 0.2,
+	"rook_pickets": 0.28,
+	"reedglass_bow": 0.41,
+	"saltband_surgeon": 0.25,
+	"hinge_lancer": 0.15,
+	"cinder_coxswain": 0.41,
+	"quarry_bugler": 0.39,
+	"copper_cistern": 0.26,
+	"breakline_sappers": 0.46,
+	"skylens_sentinel": 0.38,
+	"bellroad_captain": 0.51,
+	"silver_bulwark": 0.14
+}
+
+
 var card: Dictionary = {}
 var card_uid: int = -1
 var affordable: bool = true
@@ -19,6 +106,7 @@ var font: Font
 var illustration: Texture2D
 var deck_copies: int = -1
 var compact: bool = false
+var in_hand: bool = false
 var hotkey_number: int = 0
 var combo_lit: bool = false
 var escalation_lit: bool = false
@@ -26,7 +114,7 @@ var hover_blend: float = 0.0
 var hover_tween: Tween
 
 func _ready() -> void:
-	custom_minimum_size = Vector2(158, 104) if compact else Vector2(158, 168)
+	custom_minimum_size = Vector2(108 if in_hand else 158, 104) if compact else Vector2(118 if in_hand else 158, 168)
 	size_flags_horizontal = Control.SIZE_SHRINK_CENTER if compact else Control.SIZE_EXPAND_FILL
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	font = get_theme_default_font()
@@ -74,54 +162,85 @@ func configure(definition: Dictionary, uid: int, mana: int, selected: bool, lock
 
 func _draw() -> void:
 	if card.is_empty() or font == null or size.x < 32 or size.y < 32: return
-	var accent: Color = Color("63c5ca") if card.type == "unit" else (Color("b5a0ed") if card.type == "trap" else (Color("a6b9ee") if card.type == "environment" else GOLD))
+	var accent: Color = Color("8fc8cf") if card.type == "unit" else (Color("baa6e1") if card.type == "trap" else (Color("a8bce9") if card.type == "environment" else Color("dfbf80")))
 	var lit: bool = chosen or hovered or has_focus()
-	var top: float = 0 if chosen else lerpf(4, 0, hover_blend)
-	var frame := Rect2(Vector2(0, top), size - Vector2(0, top + 2))
+	var top: float = 0 if chosen else lerpf(3, 0, hover_blend)
+	var frame := Rect2(Vector2(1, top + 1), size - Vector2(2, top + 3))
 	var panel := StyleBoxFlat.new()
-	panel.bg_color = Color("eee8d8")
-	panel.border_color = accent if lit else Color("ad9566")
-	panel.set_border_width_all(2)
-	panel.set_corner_radius_all(4)
-	panel.shadow_color = Color(0.01, 0.02, 0.04, 0.6)
+	panel.bg_color = Color("14243a")
+	panel.border_color = accent if lit else Color("8a795b")
+	panel.set_border_width_all(2 if lit else 1)
+	panel.set_corner_radius_all(5)
+	panel.shadow_color = Color(0.01, 0.02, 0.04, 0.65)
 	panel.shadow_size = 5 if lit else 3
 	panel.draw(get_canvas_item(), frame)
-	var art_height: float = frame.size.y - (33 if compact else 57)
-	var art_rect := Rect2(Vector2(4, top + 4), Vector2(size.x - 8, art_height))
+	var name_height: float = 29 if compact else 34
+	var footer_height: float = 0 if compact else 26
+	var art_rect := Rect2(Vector2(5, top + 5), Vector2(size.x - 10, frame.size.y - name_height - footer_height - 8))
 	if illustration != null:
-		Art.draw_cover(self, illustration, art_rect, Vector2(0.5, 0.24) if compact and card.type == "unit" else Art.card_focus(card))
+		Art.draw_cover(self, illustration, art_rect, art_focus(card))
 	else:
 		draw_rect(art_rect, Color("233b54"))
-	draw_rect(art_rect, Color("806f50"), false, 1)
-	# A native engraved nameplate stays legible over every illustration.
-	var title_y: float = art_rect.end.y + 22
-	draw_line(Vector2(7, art_rect.end.y + 2), Vector2(size.x - 7, art_rect.end.y + 2), Color("b89b61"), 1)
-	_center(str(card.name), Vector2(size.x / 2, title_y), 14 if compact else 17, Color("20374a"))
-	if not compact:
-		var value: String = "%d 攻    %d 血    %d 移" % [card.atk, card.hp, card.move] if card.type == "unit" else str(card.tag)
-		_center(value, Vector2(size.x / 2, title_y + 23), 12, Color("626c6a"))
-	var gem := Vector2(20, top + 22)
-	draw_colored_polygon(PackedVector2Array([gem + Vector2(0, -18), gem + Vector2(16, 0), gem + Vector2(0, 19), gem + Vector2(-16, 0)]), Color("142d4a"))
-	draw_polyline(PackedVector2Array([gem + Vector2(0, -18), gem + Vector2(16, 0), gem + Vector2(0, 19), gem + Vector2(-16, 0), gem + Vector2(0, -18)]), GOLD, 1.4, true)
-	_center(str(card.cost), gem + Vector2(0, 7), 21, Color("fff3cc") if affordable else CORAL)
-	var badge := Vector2(size.x - 19, top + 20)
-	draw_circle(badge, 12, Color("172c40"))
-	draw_arc(badge, 12, 0, TAU, 32, GOLD, 1, true)
-	draw_symbol(self, str(card.get("kind", card.get("weather", card.get("terrain", card.get("effect", "draw"))))), badge, 8, accent)
-	if combo_lit or escalation_lit:
-		var ribbon := Rect2(art_rect.position.x + 4, art_rect.end.y - 21, 43, 17)
-		draw_rect(ribbon, Color("172c40"))
-		_center("连携" if combo_lit else "强化", ribbon.get_center() + Vector2(0, 4), 12, TEAL)
-	if hotkey_number > 0:
-		draw_rect(Rect2(Vector2(size.x - 23, art_rect.end.y - 21), Vector2(19, 20)), Color("172c40"))
-		_center(str(hotkey_number), Vector2(size.x - 14, art_rect.end.y - 5), 12, INK)
 	if not affordable or disabled:
-		draw_rect(frame, Color(0.025, 0.04, 0.05, 0.30))
+		draw_rect(art_rect, Color(0.025, 0.04, 0.07, 0.32 if disabled else 0.20))
+	# Keep names on an opaque plate; rarity/type never carries meaning by color alone.
+	var plate := Rect2(Vector2(5, art_rect.end.y), Vector2(size.x - 10, name_height))
+	draw_rect(plate, Color("eee7d4"))
+	draw_line(plate.position, plate.position + Vector2(plate.size.x, 0), Color("c1a66d"), 1)
+	var title_font: int = 14 if compact else 16
+	_center(_fit(str(card.name), size.x - 18, title_font), Vector2(size.x / 2, plate.position.y + (20 if compact else 23)), title_font, Color("203249"))
+	if not compact:
+		var value: String = "%d 攻   %d 血   %d 移" % [card.atk, card.hp, card.move] if card.type == "unit" else str(card.tag)
+		_center(_fit(value, size.x - 20, 12), Vector2(size.x / 2, frame.end.y - 8), 12, Color("d5dfeb"))
+	var gem := Vector2(21, top + 23)
+	draw_circle(gem + Vector2(0, 1), 18, Color(0.02, 0.04, 0.07, 0.5))
+	draw_colored_polygon(PackedVector2Array([gem + Vector2(0, -19), gem + Vector2(17, 0), gem + Vector2(0, 19), gem + Vector2(-17, 0)]), Color("16364f") if affordable else Color("3f2e3b"))
+	draw_polyline(PackedVector2Array([gem + Vector2(0, -19), gem + Vector2(17, 0), gem + Vector2(0, 19), gem + Vector2(-17, 0), gem + Vector2(0, -19)]), Color("dfc18b"), 1.5, true)
+	_center(str(card.cost), gem + Vector2(0, 8), 23, Color("fff3d1") if affordable else Color("ffbbab"))
+	var badge := Vector2(size.x - 18, top + 19)
+	draw_circle(badge, 11, Color("172c40"))
+	draw_arc(badge, 11, 0, TAU, 28, Color("b7a076"), 1, true)
+	draw_symbol(self, str(card.get("kind", card.get("weather", card.get("terrain", card.get("effect", "draw"))))), badge, 7, accent)
+	var type_name: String = {"unit":"部队", "spell":"法术", "trap":"陷阱", "environment":"环境"}.get(str(card.type), "战术")
+	if card.type == "unit": type_name = {"sword":"步兵", "spear":"枪兵", "cavalry":"骑兵", "archer":"弓手", "mage":"法师", "healer":"医师"}.get(str(card.get("kind", "")), "部队")
+	var strip_height: float = 15 if compact else 20
+	var strip := Rect2(Vector2(art_rect.position.x, art_rect.end.y - strip_height), Vector2(art_rect.size.x, strip_height))
+	draw_rect(strip, Color(0.05, 0.10, 0.17, 0.86))
+	draw_string(font, strip.position + Vector2(6, 11 if compact else 14), type_name, HORIZONTAL_ALIGNMENT_LEFT, -1, 11, accent)
+	var detail: String = ""
+	if combo_lit or escalation_lit: detail = "连携" if combo_lit else "强化"
+	elif compact and card.type == "unit": detail = "%d/%d" % [card.atk, card.hp]
+	elif not affordable: detail = "费不足"
+	var right_padding: float = 24 if hotkey_number > 0 or deck_copies >= 0 else 6
+	if not detail.is_empty():
+		draw_string(font, strip.position + Vector2(35, 11 if compact else 14), detail, HORIZONTAL_ALIGNMENT_RIGHT, maxf(0, strip.size.x - 35 - right_padding), 11, TEAL if combo_lit or escalation_lit else Color("e0e6e9"))
+	if hotkey_number > 0:
+		var key_rect := Rect2(Vector2(size.x - 22, art_rect.end.y - 15), Vector2(16, 14))
+		draw_rect(key_rect, Color("32475c"))
+		_center(str(hotkey_number), key_rect.get_center() + Vector2(0, 4), 11, INK)
 	if chosen:
-		draw_line(Vector2(16, frame.end.y - 2), Vector2(size.x - 16, frame.end.y - 2), accent, 4)
+		draw_line(Vector2(12, frame.end.y - 1), Vector2(size.x - 12, frame.end.y - 1), accent, 3)
+	if has_focus():
+		var focus := StyleBoxFlat.new()
+		focus.bg_color = Color(0, 0, 0, 0)
+		focus.border_color = Color("f5d899")
+		focus.set_border_width_all(2)
+		focus.set_corner_radius_all(6)
+		focus.draw(get_canvas_item(), frame.grow(1))
 	if deck_copies >= 0:
-		draw_circle(Vector2(size.x - 19, art_rect.end.y - 15), 12, Color("172c40"))
-		_center("×%d" % deck_copies, Vector2(size.x - 19, art_rect.end.y - 10), 11, GOLD if deck_copies > 0 else MUTED)
+		_center("×%d" % deck_copies, Vector2(size.x - 17, art_rect.end.y - 5), 11, GOLD if deck_copies > 0 else MUTED)
+
+static func art_focus(definition: Dictionary) -> Vector2:
+	if definition.get("type", "") == "unit":
+		return Vector2(0.5, float(FACE_HEIGHTS.get(str(definition.id), 0.35)))
+	return Art.card_focus(definition)
+
+func _fit(value: String, available: float, font_size: int) -> String:
+	if font.get_string_size(value, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x <= available: return value
+	var shortened: String = value
+	while shortened.length() > 1 and font.get_string_size(shortened + "…", HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x > available:
+		shortened = shortened.left(shortened.length() - 1)
+	return shortened + "…"
 
 func _center(value: String, at: Vector2, font_size: int, color: Color) -> void:
 	var width: float = font.get_string_size(value, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x

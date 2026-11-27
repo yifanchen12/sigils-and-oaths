@@ -1,5 +1,5 @@
 {
-  "version": "0.63.0-dev",
+  "version": "0.64.0-dev",
   "images": [
     {
       "path": "key-art-v1.png",
@@ -121,6 +121,42 @@
       "mode": "RGBA",
       "bytes": 46114,
       "sha256": "99747e3a0247e74364813e1188e966d1b98b6b658e701d89cad115728a351c7e"
+    },
+    {
+      "path": "gameplay/32-battle-ui.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1647336,
+      "sha256": "d22d8802c8cabd25e27cd0d1d5856a1d7ca1beefb23c2130b7b03acf378b9c28",
+      "capture": "0.64: Rivergate skirmish after 65 legal actions, with the updated card frames, real deck/discard piles, HUD and highlighted end-turn control. The original illustrated card identities and matching chibi figures remain in the production scene."
+    },
+    {
+      "path": "gameplay/33-card-library-ui.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1111501,
+      "sha256": "51a9238823161957893578d950b22602048e1bf634e83faff4028139103841ff",
+      "capture": "0.64: The native library with full-width card portraits, role and cost hierarchy, themed window border and full-illustration action. Captured after verifying all 249 card details and 81 troop full illustrations."
+    },
+    {
+      "path": "gameplay/34-opening-draw.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "bytes": 1341047,
+      "sha256": "c5393112e69dc78b89c53ab3c83a4d1382473fcabe5472841982de5b60f1c969",
+      "capture": "0.64: The actual opening deal of a normal Rivergate Balanced vs Balanced skirmish entered through the council, seed 1. The native animation is captured at 0.50 seconds; its visual clock is paused for reproducibility, without altering the dealt cards or RNG."
     },
     {
       "path": "gameplay/27-white-feather-medic.png",
@@ -483,6 +519,6 @@
       "capture": "The same ferryman moves from G1 to H1 after 16 legal actions in the Rivergate match. The native movement tween is captured before reaching the destination."
     }
   ],
-  "viewport_screenshots": 30,
+  "viewport_screenshots": 33,
   "store_and_library_graphics_including_icons": 10
 }

@@ -3,6 +3,8 @@ extends Control
 const BattleModel = preload("res://scripts/battle.gd")
 const EnemyAI = preload("res://scripts/opponent.gd")
 const CardControl = preload("res://scripts/card_view.gd")
+const DrawPresentation = preload("res://scripts/card_draw_presentation.gd")
+const GameTheme = preload("res://scripts/game_theme.gd")
 const Art = preload("res://scripts/art_library.gd")
 const PeekControl = preload("res://scripts/battle_peek.gd")
 const Store = preload("res://scripts/deck_store.gd")
@@ -82,10 +84,14 @@ var audio: Node
 var training: RefCounted
 var training_panel: PanelContainer
 var training_return: Dictionary = {}
+var draw_presentation: Control
+var fitting_card_windows: bool = false
 
 func _process(delta: float) -> void:
 	if battle == null: return
 	_position_battle_peek()
+	if _draw_presentation_blocked() and draw_presentation.is_presenting(): draw_presentation.reset()
+	_sync_draw_anchors()
 	var paused: bool = not has_started or _modal_open()
 	if paused or battle.winner != -1 or training != null:
 		if paused and board.is_presenting(): board.reset_effects()
@@ -93,9 +99,11 @@ func _process(delta: float) -> void:
 		_update_clock_ui(paused)
 		return
 	var before: Array = []
+	var cards_before: Array[Dictionary] = []
 	var old_side: int = battle.active_side
 	if battle.time_remaining <= delta:
 		before = battle.units.duplicate(true)
+		cards_before = DrawPresentation.capture(battle.players)
 		generation += 1
 		ai_running = false
 		selected_card = -1
@@ -103,6 +111,7 @@ func _process(delta: float) -> void:
 		using_hero = false
 		using_unit_skill = false
 	if battle.advance_clock(delta):
+		_present_draws(cards_before)
 		board.present_action(before, {"type": "end_turn"}, [])
 		audio.feedback({"type": "end_turn"}, battle, old_side)
 		ai_running = battle.active_side == 1 and battle.winner == -1
@@ -136,6 +145,7 @@ func _draw() -> void:
 
 func _ready() -> void:
 	resized.connect(queue_redraw)
+	resized.connect(_queue_fit_card_windows)
 	get_tree().auto_accept_quit = false
 	get_window().close_requested.connect(_request_exit)
 	DisplayServer.window_set_title("纹章与誓约 · v%s" % ProjectSettings.get_setting("application/config/version", "dev"))
@@ -189,7 +199,6 @@ func _ready() -> void:
 	training_panel.next_requested.connect(_next_training_lesson)
 	training_panel.exit_requested.connect(_leave_training)
 	%CompactHandPanel.add_theme_stylebox_override("panel", _box(Color("182a40"), Color("a28a5a"), 3, 8))
-	%ViewEnd.add_theme_stylebox_override("normal", _box(Color("446377"), GOLD, 3, 12))
 	%Header.hide()
 	%Status.hide()
 	%MapName.get_parent().hud_visible = true
@@ -237,6 +246,9 @@ func _ready() -> void:
 	armory_view.cancelled.connect(_close_armory)
 	audio = AudioDirector.new()
 	add_child(audio)
+	draw_presentation = DrawPresentation.new()
+	draw_presentation.name = "CardDrawPresentation"
+	add_child(draw_presentation)
 	options = SettingsDialog.new()
 	options.theme = theme
 	add_child(options)
@@ -377,7 +389,7 @@ func _start_from_council(map_id: String, hero_id: String, deck_id: String, oppon
 	for index: int in range(%DeckChoice.item_count):
 		if %DeckChoice.get_item_metadata(index) == deck_id: %DeckChoice.select(index)
 	council.hide()
-	_new_match(1 if not has_started else session_rng.randi_range(1, 999999))
+	_new_match(1 if not has_started else session_rng.randi_range(1, 999999), null, true)
 	has_started = true
 	if not expanded_battlefield: _toggle_battlefield()
 	else: _refresh()
@@ -408,6 +420,7 @@ func _apply_settings() -> void:
 	story_view.set_reading_size(values.reading_size)
 	replay_view.set_reading_size(values.reading_size)
 	board.set_reduced_motion(values.reduce_motion)
+	if draw_presentation != null: draw_presentation.set_reduced_motion(values.reduce_motion)
 	audio.set_levels(values.music, values.effects)
 
 func _settings_visibility_changed() -> void:
@@ -656,6 +669,7 @@ func _show_story(focus_requisition: bool = false) -> void:
 	ai_running = false
 	has_started = false
 	board.reset_effects()
+	draw_presentation.reset()
 	%ResultOverlay.hide()
 	council.hide()
 	var setup: Dictionary = campaign_session.campaign.scenario()
@@ -756,6 +770,7 @@ func _request_exit() -> void:
 func _quit_game() -> void:
 	if exiting: return
 	exiting = true
+	draw_presentation.reset()
 	generation += 1
 	set_process(false)
 	audio.stop_playback()
@@ -768,16 +783,16 @@ func _begin_campaign_battle(expected: Dictionary) -> void:
 	if not result.ok:
 		story_view.set_status(result.message, true)
 		return
-	_mount_campaign_encounter(result)
+	_mount_campaign_encounter(result, true)
 
-func _mount_campaign_encounter(result: Dictionary) -> void:
+func _mount_campaign_encounter(result: Dictionary, opening_deal: bool = false) -> void:
 	current_map = result.scenario.map
 	current_hero = result.scenario.hero
 	current_deck = result.scenario.deck
 	story_view.hide()
 	council.hide()
 	has_started = true
-	_new_match(int(result.scenario.seed), result.battle)
+	_new_match(int(result.scenario.seed), result.battle, opening_deal)
 	message = result.scenario.title + " · " + CampaignSession.Difficulty.objective_for(result.scenario, campaign_session.campaign.difficulty)
 	var equipped_count: int = campaign_session.campaign.armory.size()
 	if equipped_count > 0: message = "携带军备 %d 张 · %s" % [equipped_count, message]
@@ -798,10 +813,36 @@ func _open_library() -> void:
 	var available: Vector2 = get_viewport_rect().size - Vector2(40, 40)
 	%CardsDialog.popup_centered(Vector2i(minf(1100, available.x), minf(820, available.y)))
 	_size_library_grid()
+	_queue_fit_card_windows()
 
 func _size_library_grid() -> void:
 	# 158 px cards, a 10 px gap and space for the vertical scrollbar.
-	%CardGrid.columns = clampi(int((%CardsDialog.size.x - 46) / 168.0), 1, 6)
+	var available_width: float = minf(%CardsDialog.size.x, get_viewport_rect().size.x - 40)
+	%CardGrid.columns = clampi(int((available_width - 46) / 168.0), 1, 6)
+
+func _queue_fit_card_windows() -> void:
+	if fitting_card_windows: return
+	fitting_card_windows = true
+	_fit_card_windows.call_deferred()
+
+func _fit_card_windows() -> void:
+	# Grid minima and wrapped labels need a layout pass before a Window may shrink.
+	# Assign size/position directly so an open child's focus is never stolen by popup().
+	for pass_index: int in range(2):
+		var available := Vector2i(get_viewport_rect().size) - Vector2i(40, 80)
+		var requested := Vector2i(mini(1100, available.x), mini(820, available.y))
+		if %CardsDialog.visible:
+			%CardGrid.columns = clampi(int((requested.x - 46) / 168.0), 1, 6)
+		if deck_editor != null and deck_editor.visible: deck_editor.grid.columns = 4 if requested.x >= 1060 else 3
+		await get_tree().process_frame
+		if exiting: break
+		for dialog: Window in [%CardsDialog, %CharacterArtDialog, deck_editor]:
+			if dialog == null or not dialog.visible: continue
+			var target: Vector2i = requested
+			if dialog == %CharacterArtDialog: target = Vector2i(mini(760, available.x - 32), mini(900, available.y))
+			dialog.size = target
+			dialog.position = Vector2i((get_viewport_rect().size - Vector2(dialog.size)) * 0.5)
+	fitting_card_windows = false
 
 func _show_library_cards() -> void:
 	var deck_id: String = council.selected_deck if council.visible else current_deck
@@ -845,6 +886,7 @@ func _deck_definition(deck_id: String) -> Dictionary:
 func _open_deck_editor() -> void:
 	var starting: Dictionary = custom_deck if not custom_deck.is_empty() else _deck_definition(council.selected_deck)
 	deck_editor.open_deck(starting, custom_load_notice)
+	_queue_fit_card_windows()
 	_refresh()
 
 func _sync_custom_options() -> void:
@@ -892,6 +934,7 @@ func _open_character_art() -> void:
 	%CharacterArtTitle.text = BattleModel.CATALOG.find(library_character_id).name
 	var available := get_viewport_rect().size - Vector2(72, 72)
 	%CharacterArtDialog.popup_centered(Vector2i(minf(760, available.x), minf(900, available.y)))
+	_queue_fit_card_windows()
 
 func _make_theme() -> void:
 	var ui_theme := Theme.new()
@@ -918,11 +961,10 @@ func _make_theme() -> void:
 	ui_theme.set_stylebox("panel", "TooltipPanel", _box(Color("142832"), GOLD, 6, 14))
 	ui_theme.set_color("font_color", "TooltipLabel", Color("e6e8dd"))
 	ui_theme.set_font_size("font_size", "TooltipLabel", 16)
+	GameTheme.apply(ui_theme)
 	theme = ui_theme
 	%CardsDialog.theme = ui_theme
 	%RulesDialog.theme = ui_theme
-	end_button.add_theme_stylebox_override("normal", _box(Color("31544a"), Color("74977b"), 7, 12))
-	end_button.add_theme_color_override("font_color", Color("f1e9cb"))
 
 func _box(fill: Color, border: Color, radius: int, padding: int) -> StyleBoxFlat:
 	var box := StyleBoxFlat.new()
@@ -944,10 +986,11 @@ func _restart() -> void:
 		if battle.winner != -1: _show_story()
 		else: _open_council()
 		return
-	_new_match(session_rng.randi_range(1, 999999))
+	_new_match(session_rng.randi_range(1, 999999), null, true)
 	board.grab_focus()
 
-func _new_match(seed_value: int, prepared: Battle = null) -> void:
+func _new_match(seed_value: int, prepared: Battle = null, opening_deal: bool = false) -> void:
+	draw_presentation.reset()
 	using_unit_skill = false
 	generation += 1
 	ai_running = false
@@ -974,6 +1017,55 @@ func _new_match(seed_value: int, prepared: Battle = null) -> void:
 	message = "选择部队牌，再点击己方部队身旁的青色格部署。"
 	error_message = false
 	_refresh()
+	if opening_deal: _present_opening_hand.call_deferred(generation)
+
+func _present_opening_hand(token: int) -> void:
+	if token != generation or _draw_presentation_blocked(): return
+	draw_presentation.enqueue(DrawPresentation.opening_hand(battle.players))
+	_sync_draw_anchors()
+
+func _present_draws(before: Array[Dictionary]) -> void:
+	if draw_presentation == null or _draw_presentation_blocked(): return
+	draw_presentation.enqueue(DrawPresentation.transitions(before, battle.players))
+	_sync_draw_anchors()
+
+func _draw_presentation_blocked() -> bool:
+	if exiting or battle == null or not has_started or battle.winner != -1 or _modal_open() or %ResultOverlay.visible: return true
+	for dialog: Window in [campaign_confirmation, quit_confirmation, replay_confirmation]:
+		if dialog != null and dialog.visible: return true
+	return false
+
+func _draw_anchor(node_name: String, fallback: Rect2) -> Rect2:
+	var control: Control = get_node_or_null("%" + node_name) as Control
+	return control.get_global_rect() if control != null and control.is_visible_in_tree() and control.size.x >= 8 and control.size.y >= 8 else fallback
+
+func _sync_draw_anchors() -> void:
+	if draw_presentation == null or battle == null: return
+	var container: Control = %CompactHand if expanded_battlefield else hand
+	var panel: Control = %CompactHandPanel if expanded_battlefield else %HandPanel
+	var panel_rect: Rect2 = panel.get_global_rect()
+	var ribbon: Rect2 = %MapName.get_parent().get_global_rect()
+	var slots: Dictionary = {}
+	for child: Control in container.get_children():
+		if not child is CardView: continue
+		slots[child.card_uid] = child.get_global_rect()
+		child.self_modulate.a = 0.18 if draw_presentation.pending(child.card_uid) and not draw_presentation.reduced_motion else 1.0
+	# Early play remains responsive and consumes only the pending visual.
+	for event: Dictionary in draw_presentation.events.duplicate():
+		if int(event.side) == 0 and not event.burned and battle.hand_card(0, int(event.uid)).is_empty(): draw_presentation.dismiss_uid(int(event.uid))
+	var own_deck := Rect2(Vector2(panel_rect.end.x - 74, panel_rect.get_center().y - 38), Vector2(52, 76))
+	var own_discard := Rect2(Vector2(panel_rect.position.x + 22, panel_rect.get_center().y - 38), Vector2(52, 76))
+	var enemy_deck := Rect2(Vector2(ribbon.end.x - 72, ribbon.position.y + 10), Vector2(40, 56))
+	var enemy_hand := Rect2(Vector2(ribbon.end.x - 182, ribbon.position.y + 10), Vector2(40, 56))
+	var enemy_discard := Rect2(Vector2(ribbon.end.x - 126, ribbon.position.y + 10), Vector2(40, 56))
+	draw_presentation.set_anchors({
+		"own_deck": _draw_anchor("PlayerDeckAnchor", own_deck),
+		"own_discard": _draw_anchor("PlayerDiscardAnchor", own_discard),
+		"enemy_deck": _draw_anchor("EnemyDeckAnchor", enemy_deck),
+		"enemy_hand": _draw_anchor("EnemyHandAnchor", enemy_hand),
+		"enemy_discard": _draw_anchor("EnemyDiscardAnchor", enemy_discard),
+		"own_hand": panel_rect,
+	}, slots, get_global_rect())
 
 func _on_battle_changed() -> void:
 	_refresh()
@@ -983,6 +1075,7 @@ func _on_battle_changed() -> void:
 
 func _refresh() -> void:
 	if battle == null: return
+	if draw_presentation != null and _draw_presentation_blocked(): draw_presentation.reset()
 	training_panel.update_step(training, battle)
 	audio.set_battle_music(has_started and not council.visible and not story_view.visible)
 	if campaign_active and battle.winner != -1 and campaign_session.encounter == battle:
@@ -1051,6 +1144,7 @@ func _refresh() -> void:
 		child.queue_free()
 	for instance: Dictionary in player.hand:
 		var view: CardView = CardControl.new()
+		view.in_hand = true
 		var card: Dictionary = battle.definition(instance.card_id)
 		view.combo_lit = battle.combo_ready(card, 0)
 		view.escalation_lit = battle.escalation_ready(card, 0)
@@ -1064,6 +1158,7 @@ func _refresh() -> void:
 	%ViewEnd.disabled = end_button.disabled
 	%ViewEnd.text = end_button.text
 	_refresh_compact_hand()
+	_sync_draw_anchors()
 	%Cancel.disabled = selected_card == -1 and selected_unit == -1 and not using_hero
 	_update_board()
 	_update_reach_legend()
@@ -1136,6 +1231,7 @@ func _refresh_compact_hand() -> void:
 		index += 1
 		var card: Dictionary = battle.definition(instance.card_id)
 		var button: CardView = CardControl.new()
+		button.in_hand = true
 		button.compact = true
 		button.hotkey_number = index
 		button.combo_lit = battle.combo_ready(card, 0)
@@ -1194,6 +1290,7 @@ func _update_board() -> void:
 
 func _select_card(uid: int) -> void:
 	if not _player_can_act(): return
+	draw_presentation.dismiss_uid(uid)
 	using_unit_skill = false
 	var instance: Dictionary = battle.hand_card(0, uid)
 	if instance.is_empty(): return
@@ -1317,6 +1414,7 @@ func _commit(action: Dictionary) -> void:
 
 func _apply_with_feedback(action: Dictionary) -> Dictionary:
 	var before: Array = battle.units.duplicate(true)
+	var cards_before: Array[Dictionary] = DrawPresentation.capture(battle.players)
 	var visual_action: Dictionary = action.duplicate()
 	var side: int = battle.active_side
 	if action.type == "hero":
@@ -1396,6 +1494,7 @@ func _apply_with_feedback(action: Dictionary) -> Dictionary:
 		if not unit.is_empty(): path = battle.movement_path(unit, action.target)
 	var result: Dictionary = battle.apply_action(action)
 	if result.ok:
+		_present_draws(cards_before)
 		if not battle.last_combat.is_empty(): visual_action["combat"] = battle.last_combat.duplicate(true)
 		if not battle.last_movement_path.is_empty(): path = battle.last_movement_path.duplicate()
 		if visual_action.get("card_type", "") == "trap" and side == 1:

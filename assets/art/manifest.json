@@ -1809,7 +1809,10 @@
       "source_filename": "exec-53cd5fc2-973c-48e0-b660-2469cc12ec8d.png",
       "reference_path": "assets/art/battlefields/sunspire-v2.png",
       "prompt_file": "assets/art/battlefields/towergate-source.md",
-      "size": [1354, 1161],
+      "size": [
+        1354,
+        1161
+      ],
       "mode": "RGB",
       "sha256": "e11e19b927847342199c165613ba39243643ce01a91f22aa3898532139936dd4",
       "source_bytes_preserved": true,
@@ -1825,7 +1828,10 @@
       "reference_path": "assets/art/narrative/school-day-v1.png",
       "prompt_key": "redroof",
       "prompt_file": "assets/art/narrative/chapter11-prompts.json",
-      "size": [1672, 941],
+      "size": [
+        1672,
+        941
+      ],
       "mode": "RGB",
       "sha256": "d9ba5ce281670bd58097f9854648f3c09f607a0f4ba0bd89363c2f34f8c06370",
       "source_bytes_preserved": true,
@@ -1841,7 +1847,10 @@
       "reference_path": "assets/art/narrative/redroof-day-v1.png",
       "prompt_key": "memorial",
       "prompt_file": "assets/art/narrative/chapter11-prompts.json",
-      "size": [1672, 941],
+      "size": [
+        1672,
+        941
+      ],
       "mode": "RGB",
       "sha256": "f812ba56636daa6470ac4afc998a6b6a80c08ba9dc9dd311fe9c19b13f8dee0e",
       "source_bytes_preserved": true,
@@ -1857,7 +1866,10 @@
       "reference_path": "assets/art/battlefields/towergate-v2.png",
       "rule_reference": "data/maps.tres / northbank.rows",
       "prompt_file": "assets/art/battlefields/northbank-source.md",
-      "size": [1448, 1086],
+      "size": [
+        1448,
+        1086
+      ],
       "mode": "RGB",
       "sha256": "d2fa663ef5cef0ffd1622e8532bf83b5c3b4cee36c08eecff2f558d7133fa58a",
       "source_bytes_preserved": true,
@@ -1871,7 +1883,10 @@
       "path": "assets/art/narrative/northbank-mill-v1.png",
       "source_filename": "exec-5de056c9-cbfe-4ce6-b320-99683e3e3602.png",
       "prompt_file": "assets/art/narrative/chapter13-source.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGB",
       "sha256": "c1b58ac847322690894d3929bff972c76d56f705eba9fbdc391d1b618aa17be8",
       "source_bytes_preserved": true,
@@ -1887,7 +1902,10 @@
       "reference_path": "assets/art/battlefields/northbank-v2.png",
       "rule_reference": "data/maps.tres / spillway.rows",
       "prompt_file": "assets/art/battlefields/spillway-source.md",
-      "size": [1448, 1086],
+      "size": [
+        1448,
+        1086
+      ],
       "mode": "RGB",
       "sha256": "cf5818b693c4f26a6e6a0daf6db5def8adbbc5a30a6ccaba9b64c82d4517fc94",
       "source_bytes_preserved": true,
@@ -1903,7 +1921,10 @@
       "reference_path": "assets/art/battlefields/spillway-v2.png",
       "rule_reference": "data/maps.tres / eastbridge.rows",
       "prompt_file": "assets/art/battlefields/eastbridge-source.md",
-      "size": [1456, 1092],
+      "size": [
+        1456,
+        1092
+      ],
       "mode": "RGB",
       "sha256": "2b635bbaf263d981fc15187b39450d0652a009e785549d300820a8db9abb7402",
       "source_bytes_preserved": true,
@@ -1917,7 +1938,10 @@
       "path": "assets/art/expansion/span-kit-v1.png",
       "source_filename": "exec-ee9c4092-be46-4992-b24a-f0e15df15481.png",
       "prompt_file": "assets/art/expansion/channel-card-source.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGB",
       "sha256": "6b9d29fa4f729dab16ec6552d4f697a4c0a4e4324a8e26910a22290e0daaa0b5",
       "source_bytes_preserved": true,
@@ -1931,7 +1955,10 @@
       "path": "assets/art/expansion/countercurrent-ward-v1.png",
       "source_filename": "exec-17cf4aa1-9b0d-40b4-971d-36846988f7b0.png",
       "prompt_file": "assets/art/expansion/channel-card-source.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGB",
       "sha256": "2d49983190106407fe49a7f321d3a3d081636df668138f6317172e718da5222d",
       "source_bytes_preserved": true,
@@ -1945,7 +1972,10 @@
       "path": "assets/art/narrative/northbank-mill-morning-v1.png",
       "source_filename": "exec-d6748205-1286-48e4-8dc0-4015b15810f9.png",
       "prompt_file": "assets/art/narrative/chapter15-source.md",
-      "size": [1672, 941],
+      "size": [
+        1672,
+        941
+      ],
       "mode": "RGB",
       "sha256": "813f8c3b94a1b01283b6b00891e284f3043601098eda76bf1bee64c0ce115379",
       "source_bytes_preserved": true,
@@ -1961,7 +1991,10 @@
       "reference_path": "assets/art/battlefields/eastbridge-v2.png",
       "rule_reference": "data/maps.tres / lamplanding.rows",
       "prompt_file": "assets/art/chapter17-18-source.md",
-      "size": [1448, 1086],
+      "size": [
+        1448,
+        1086
+      ],
       "mode": "RGB",
       "sha256": "ff8234abd5de47c525527bff1ed7c4d2bc49b6cee7a7f6931949c017fdf8f317",
       "source_bytes_preserved": true,
@@ -1976,7 +2009,10 @@
       "source_filename": "exec-2ab1175c-5abc-4733-a14c-19a3dff3cb95.png",
       "reference_path": "assets/art/narrative/northbank-memorial-v1.png",
       "prompt_file": "assets/art/chapter17-18-source.md",
-      "size": [1672, 941],
+      "size": [
+        1672,
+        941
+      ],
       "mode": "RGB",
       "sha256": "5650b295d68c25709657decafa389ca0b913f11af555ad9a886885aa783e0f6c",
       "source_bytes_preserved": true,
@@ -1990,7 +2026,10 @@
       "path": "assets/art/expansion/warfront-units-v1.png",
       "source_filename": "exec-5a1283da-bf65-4142-a7cc-b2c21b61df4c.png",
       "prompt_file": "assets/art/expansion/warfront-source.md",
-      "size": [1774, 887],
+      "size": [
+        1774,
+        887
+      ],
       "mode": "RGB",
       "sha256": "879c4b17fef17f53976a460e569de58329ba3c6770a846c53e8e53fadf2eb06e",
       "source_bytes_preserved": true,
@@ -2003,7 +2042,10 @@
       "path": "assets/art/expansion/warfront-effects-v1.png",
       "source_filename": "exec-aff67290-dd35-4c25-b5ce-2b484760445a.png",
       "prompt_file": "assets/art/expansion/warfront-source.md",
-      "size": [1254, 1254],
+      "size": [
+        1254,
+        1254
+      ],
       "mode": "RGB",
       "sha256": "bfe6d20f638d421d4555c9dd1912e8541f6b4b2eccbaf1f02c11f0043eac14c1",
       "source_bytes_preserved": true,
@@ -2016,7 +2058,10 @@
       "path": "assets/art/expansion/afterglow-units-v1.png",
       "source_filename": "exec-a0329ad2-41e0-49a3-96fd-0d2a001f58cb.png",
       "prompt_file": "assets/art/expansion/afterglow-source.md",
-      "size": [1448, 1086],
+      "size": [
+        1448,
+        1086
+      ],
       "mode": "RGB",
       "sha256": "86a115838ce1a29273649c8ef57bc04a033766850ee45389cecfdd7a6e106067",
       "source_bytes_preserved": true,
@@ -2029,7 +2074,10 @@
       "path": "assets/art/expansion/afterglow-spells-v1.png",
       "source_filename": "exec-7d514343-f07f-4ac6-a3d3-462b73765d8f.png",
       "prompt_file": "assets/art/expansion/afterglow-source.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGB",
       "sha256": "2fd5ef5e7e5bc3d5adf41b4d2b37c49813c48b6d2c15785873b12f42be97136d",
       "source_bytes_preserved": true,
@@ -2042,7 +2090,10 @@
       "path": "assets/art/expansion/afterglow-traps-weather-v1.png",
       "source_filename": "exec-a27d1a1a-7810-4eef-8e37-c473fa9e55b5.png",
       "prompt_file": "assets/art/expansion/afterglow-source.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGB",
       "sha256": "59ea0103638cc4da99065dce2ccd7c700ab654689c84e4aa87926b6626cf6723",
       "source_bytes_preserved": true,
@@ -2055,7 +2106,10 @@
       "path": "assets/art/narrative/tower-valve-v1.png",
       "source_filename": "exec-ef99cd26-da2f-404e-8606-66692d18a6c9.png",
       "prompt_file": "assets/art/narrative/chapter15-source.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGB",
       "sha256": "f8e78b1971900085dc1cfbe6336d52c26168c712381066bbe3adab7ff0f2f159",
       "source_bytes_preserved": true,
@@ -2069,7 +2123,10 @@
       "path": "assets/art/expansion/tidegate-units-v1.png",
       "source_filename": "exec-32fa52be-5af5-4fdf-b8aa-395908818ac5.png",
       "prompt_file": "assets/art/expansion/tidegate-source.md",
-      "size": [1448, 1086],
+      "size": [
+        1448,
+        1086
+      ],
       "mode": "RGB",
       "sha256": "d9e2ac931698b887ab2e6ed273f6219dec71f402265e815de4024f0097db9b1a",
       "source_bytes_preserved": true,
@@ -2082,7 +2139,10 @@
       "path": "assets/art/expansion/tidegate-spells-v1.png",
       "source_filename": "exec-4a3a443e-37a8-412a-ac48-1571f968168c.png",
       "prompt_file": "assets/art/expansion/tidegate-source.md",
-      "size": [1448, 1086],
+      "size": [
+        1448,
+        1086
+      ],
       "mode": "RGB",
       "sha256": "4862a744bef9cf724bcb75d42f5a176aea4b0bd365f8de513a209582291ea995",
       "source_bytes_preserved": true,
@@ -2095,7 +2155,10 @@
       "path": "assets/art/expansion/tidegate-traps-weather-v1.png",
       "source_filename": "exec-8b2ae878-7712-4a45-ac54-6603a59e37ff.png",
       "prompt_file": "assets/art/expansion/tidegate-source.md",
-      "size": [1448, 1086],
+      "size": [
+        1448,
+        1086
+      ],
       "mode": "RGB",
       "sha256": "2b29bdc1b7830301204189664e530a351b62e45ad7d240c0d411205469ab9529",
       "source_bytes_preserved": true,
@@ -2108,7 +2171,10 @@
       "path": "assets/art/battlefields/saltlane-v2.png",
       "source_filename": "exec-6ee67477-2305-4c63-b68a-4b3f38c935be.png",
       "prompt_file": "assets/art/narrative/saltlane-source.md",
-      "size": [1448, 1086],
+      "size": [
+        1448,
+        1086
+      ],
       "mode": "RGB",
       "sha256": "3c5427e25d148420445bd483b98ee2ae674e80358b02c6cf4e559dec94066abb",
       "source_bytes_preserved": true,
@@ -2121,7 +2187,10 @@
       "path": "assets/art/narrative/saltlane-yard-v1.png",
       "source_filename": "exec-75778ff4-8169-449b-a916-c66802971b13.png",
       "prompt_file": "assets/art/narrative/saltlane-source.md",
-      "size": [1672, 941],
+      "size": [
+        1672,
+        941
+      ],
       "mode": "RGB",
       "sha256": "ca125c5dd5b182deacd8ec60bb7a927f04e69e7cd0e3825aace81251741dabe9",
       "source_bytes_preserved": true,
@@ -2134,7 +2203,10 @@
       "path": "assets/art/expansion/levee-watch-v1.png",
       "source_filename": "exec-2833ae89-0d93-40a7-8c35-59a89e4402dc.png",
       "prompt_file": "assets/art/expansion/levee-source.md",
-      "size": [1254, 1254],
+      "size": [
+        1254,
+        1254
+      ],
       "mode": "RGB",
       "sha256": "a85c3f7856e33cae60d2215914993722cfe0cf97c4308bb85aa69389910d72f6",
       "source_bytes_preserved": true,
@@ -2147,7 +2219,10 @@
       "path": "assets/art/expansion/levee-orders-v1.png",
       "source_filename": "exec-6eff480f-581c-46ea-9a57-81ef26fa57db.png",
       "prompt_file": "assets/art/expansion/levee-source.md",
-      "size": [1254, 1254],
+      "size": [
+        1254,
+        1254
+      ],
       "mode": "RGB",
       "sha256": "31ef22dd11cdc330c2219c06b13fe8ccd3bdde56cdd516953eb912537151ff7f",
       "source_bytes_preserved": true,
@@ -2160,7 +2235,10 @@
       "path": "assets/art/narrative/quartermaster-desk-v1.png",
       "source_filename": "exec-a1520860-aee8-4096-8a00-67775c55f4f5.png",
       "prompt_file": "assets/art/narrative/quartermaster-desk-source.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGB",
       "sha256": "98447efe3629323d62fa2872728276c9dab3dc20025bc9c7d4a45c907d18ff82",
       "source_bytes_preserved": true,
@@ -2173,7 +2251,10 @@
       "path": "assets/art/expansion/moorings-scouts-v1.png",
       "source_filename": "exec-d5e74500-438c-4b38-bf73-697806cd9aa0.png",
       "prompt_file": "assets/art/expansion/moorings-source.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGB",
       "sha256": "c512bc37de07f2aa348b177e96c78eb8fd466f3473b590ef330663e5a632a5e5",
       "source_bytes_preserved": true,
@@ -2186,7 +2267,10 @@
       "path": "assets/art/expansion/moorings-veterans-v1.png",
       "source_filename": "exec-21bbb7ee-2890-489e-9c46-a91d476562f1.png",
       "prompt_file": "assets/art/expansion/moorings-source.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGB",
       "sha256": "83d5399f5669d81ab51dbc7f9fd28922f4339613fab1b272c138155978a7d5c3",
       "source_bytes_preserved": true,
@@ -2199,7 +2283,10 @@
       "path": "assets/art/expansion/moorings-works-v1.png",
       "source_filename": "exec-2dc13e94-a972-43e9-95b4-5e2b14f5c2e0.png",
       "prompt_file": "assets/art/expansion/moorings-source.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGB",
       "sha256": "2acb7d54fefbc493d14de4357f6c8a4f220b9335a5d2bbfccb12636c17af8577",
       "source_bytes_preserved": true,
@@ -2212,7 +2299,10 @@
       "path": "assets/art/expansion/moorings-tides-v1.png",
       "source_filename": "exec-b492494e-b8ca-458e-82ca-7062d5f8e214.png",
       "prompt_file": "assets/art/expansion/moorings-source.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGB",
       "sha256": "7432214cc4086db6b96e14282f970032a07e2d3c7875db60bea0ca4a830b19a6",
       "source_bytes_preserved": true,
@@ -2225,7 +2315,10 @@
       "path": "assets/art/narrative/chapter-replay-archive-v1.png",
       "source_filename": "exec-de41fd2d-2534-41d2-ba79-dde67b4ee108.png",
       "prompt_file": "assets/art/narrative/chapter-replay-source.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGB",
       "sha256": "ee7abc085c3f6ca7ed9f992b7802f8d179814b709b24530fc1a7ec7506ada721",
       "source_bytes_preserved": true,
@@ -2238,7 +2331,10 @@
       "path": "assets/art/narrative/campaign-armory-v1.png",
       "source_filename": "exec-82cde9f6-6b6d-480a-bbe2-61ea408134d8.png",
       "prompt_file": "assets/art/narrative/campaign-armory-source.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGB",
       "sha256": "5d293f80e066cf363b0d52ccacd2c9822aa8657acbfb46e10df490cd8234b723",
       "source_bytes_preserved": true,
@@ -2251,7 +2347,10 @@
       "path": "assets/art/expansion/pilgrim-marches-v1.png",
       "source_filename": "exec-c0db64ef-40f0-4b1d-b716-5aa02634f3db.png",
       "prompt_file": "assets/art/expansion/pilgrim-source.md",
-      "size": [1254, 1254],
+      "size": [
+        1254,
+        1254
+      ],
       "mode": "RGB",
       "sha256": "ddb6614c71dd73a0d528f1b8d6ff1249a39563d3c6628dc77eb22d41974d3a51",
       "source_bytes_preserved": true,
@@ -2264,7 +2363,10 @@
       "path": "assets/art/expansion/pilgrim-watch-v1.png",
       "source_filename": "exec-26e0630e-3548-43ec-aff1-b7f7bbe55c96.png",
       "prompt_file": "assets/art/expansion/pilgrim-source.md",
-      "size": [1254, 1254],
+      "size": [
+        1254,
+        1254
+      ],
       "mode": "RGB",
       "sha256": "12be714149745490eeaa4fb181c943689794c8f4b383022d6a6c9332416027b9",
       "source_bytes_preserved": true,
@@ -2277,7 +2379,10 @@
       "path": "assets/art/expansion/pilgrim-wards-v1.png",
       "source_filename": "exec-309a1523-cb46-47fe-b432-aade8544382d.png",
       "prompt_file": "assets/art/expansion/pilgrim-source.md",
-      "size": [1254, 1254],
+      "size": [
+        1254,
+        1254
+      ],
       "mode": "RGB",
       "sha256": "417280242c965759b72ccd60ea05b8103cc3c10605d1ef645c8b726b64ecaadc",
       "source_bytes_preserved": true,
@@ -2290,7 +2395,10 @@
       "path": "assets/art/expansion/pilgrim-salvos-v1.png",
       "source_filename": "exec-84bd7594-6d37-45d9-92b1-723e53c2ad98.png",
       "prompt_file": "assets/art/expansion/pilgrim-source.md",
-      "size": [1254, 1254],
+      "size": [
+        1254,
+        1254
+      ],
       "mode": "RGB",
       "sha256": "5e2b709d9170a9f1d13b0188ecebddf7cb352fb92d402ea635a9e16f0d6fe2d7",
       "source_bytes_preserved": true,
@@ -2303,7 +2411,10 @@
       "path": "assets/art/expansion/glassroad-company-v1.png",
       "source_filename": "exec-e1dcc79c-8bbf-43e5-838c-0e8153492d8d.png",
       "prompt_file": "assets/art/expansion/glassroad-source.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGB",
       "sha256": "78dfa8b0656061da568ca4b8f79cd8a79bfeea8bb585b4749546ae62cd8fd1be",
       "source_bytes_preserved": true,
@@ -2316,7 +2427,10 @@
       "path": "assets/art/expansion/glassroad-edicts-v1.png",
       "source_filename": "exec-ffa55213-48c9-4ad2-b6a6-609bde8c0e0c.png",
       "prompt_file": "assets/art/expansion/glassroad-source.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGB",
       "sha256": "3ba80ddd06b4cd92ea799eacc0f54f1ddf9dfb095004c1bb48d325ba8c57cbbb",
       "source_bytes_preserved": true,
@@ -2329,7 +2443,10 @@
       "path": "assets/art/expansion/glassroad-reserves-v1.png",
       "source_filename": "exec-ed1660cb-3865-44b2-b162-0ae2b0dcf442.png",
       "prompt_file": "assets/art/expansion/glassroad-source.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGB",
       "sha256": "b9d8b2b72e6f60a2fd05a7bb9b22b1044c7a40e1330fcee967333d2d58daf020",
       "source_bytes_preserved": true,
@@ -2342,7 +2459,10 @@
       "path": "assets/art/expansion/glassroad-ambush-v1.png",
       "source_filename": "exec-077ff993-13fa-43ff-af71-f5fa8ec59513.png",
       "prompt_file": "assets/art/expansion/glassroad-source.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGB",
       "sha256": "40c7c06df5aa4a5d6bd4436bca96850fb8b0670ff84c1981d98dd84cf8d9897d",
       "source_bytes_preserved": true,
@@ -2356,7 +2476,10 @@
       "source_path": "assets/art/model_sources/rivergate-relief-v1.blend",
       "build_script": "tools/render_rivergate.py",
       "tool": "Blender 4.5.16 LTS, Cycles CPU",
-      "size": [2160, 1800],
+      "size": [
+        2160,
+        1800
+      ],
       "mode": "RGB",
       "sha256": "00f9133320fee970d589b4c9945a0d8f0e2fd1031e7ba5f2c98bf9fc94f9b6fa",
       "source_sha256": "7452a147e1ee85b501ed10d4fb87229843b90e60cac9cee576b579252909e268",
@@ -2370,7 +2493,10 @@
       "source_path": "assets/art/model_sources/greenwood-relief-v1.blend",
       "build_script": "tools/render_frontier.py",
       "tool": "Blender 4.5.16 LTS, Cycles CPU",
-      "size": [2160, 1800],
+      "size": [
+        2160,
+        1800
+      ],
       "mode": "RGB",
       "sha256": "41620f17f13842b2bc6ec9f8603c3afd3f9dd942b79b32bbbe215bd1f07e5bdf",
       "source_sha256": "8e37e60f4d697bc6bad2b5e4fac158979318be47650d164a0c738de99be1fabe",
@@ -2384,7 +2510,10 @@
       "source_path": "assets/art/model_sources/harbor-relief-v1.blend",
       "build_script": "tools/render_frontier.py",
       "tool": "Blender 4.5.16 LTS, Cycles CPU",
-      "size": [2160, 1800],
+      "size": [
+        2160,
+        1800
+      ],
       "mode": "RGB",
       "sha256": "9f5f3e8265f43cbf89752df243b0394f13dcd5df8e2b782d65cef1ff8eab7fff",
       "source_sha256": "3c2f061185260e821fac4fa63131066f5c943f1687cccc6e6d79948a0514b558",
@@ -2398,7 +2527,10 @@
       "source_path": "assets/art/model_sources/harbor-relief-v1.blend",
       "build_script": "tools/crop_harbor_moorings.py",
       "tool": "Blender 4.5.16 LTS and Pillow",
-      "size": [360, 360],
+      "size": [
+        360,
+        360
+      ],
       "mode": "RGB",
       "sha256": "47a0aab959945b2eae93427092a6d5b664c9ce8409298ef4531b284630ae3115",
       "source_sha256": "3c2f061185260e821fac4fa63131066f5c943f1687cccc6e6d79948a0514b558",
@@ -2504,7 +2636,10 @@
       "path": "assets/art/actions/field-strokes-v1.png",
       "source_filename": "exec-00110b6d-90de-4cbb-96e8-e62b6f0e351d.png",
       "prompt_file": "assets/art/actions/field-strokes.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGBA",
       "sha256": "6a0942efe9f674d3211d4b660c4045eb96e14babbcc9ff573ef48af672663c94",
       "source_bytes_preserved": true,
@@ -2515,7 +2650,10 @@
       "path": "assets/art/actions/weather-cels-v1.png",
       "source_filename": "exec-a7f43a72-ddd4-4485-9a7d-3b878d109de7.png",
       "prompt_file": "assets/art/actions/weather-cels.md",
-      "size": [1536, 1024],
+      "size": [
+        1536,
+        1024
+      ],
       "mode": "RGBA",
       "sha256": "d2856e53f8fa32f314d45f78cb09c1ba3d75368e63fccbfa448c28c3f78d112f",
       "source_bytes_preserved": true,
@@ -2526,7 +2664,10 @@
       "path": "assets/art/actions/hollow-hammer-v1.png",
       "source_filename": "exec-2a8cefd4-fcb2-4165-b017-65d3612990c9.png",
       "prompt_file": "assets/art/actions/hollow-hammer.md",
-      "size": [1254, 1254],
+      "size": [
+        1254,
+        1254
+      ],
       "mode": "RGBA",
       "sha256": "fdc0bfe07654f51d9a7b5d4bd1d9fdf96ea1bd27e39b0b8615672688fc87eef5",
       "source_bytes_preserved": true,
@@ -2712,11 +2853,11 @@
         964
       ],
       "mode": "RGBA",
-      "sha256": "a0bba943b880b06f8e4c83d0da679e777e826c0f6faeabac9963a8317c25f34d",
+      "sha256": "8f19508757488bf8cf37debdb3f3e9b6ec4b72a57e870fd72c26f0f0ea8922e4",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-ash_notary",
@@ -2726,11 +2867,11 @@
         891
       ],
       "mode": "RGBA",
-      "sha256": "d3ece69248e7f6cefce16a9d4119ffdd2dcb7034126143cffc0b72448927368c",
+      "sha256": "1e44fbb5e4ad4d1317a8f2bc7550b265044abd7f2d3f0f45a7e02cb33ab1afa3",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-bank_pikeman",
@@ -2740,11 +2881,11 @@
         840
       ],
       "mode": "RGBA",
-      "sha256": "ea9491af3344a256b40038e720b741d2cae272a88620a8324bb115f7e5fce008",
+      "sha256": "2285ac0d99f65fbff91a8afe254b9445c0e4fb6d5aa31bc9d032554871837271",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-bastion_driller",
@@ -2754,11 +2895,11 @@
         767
       ],
       "mode": "RGBA",
-      "sha256": "15e7b0a7d2ce5d2cd5febfd485b4479fd50254ce9014718fa114e05dda6a17cf",
+      "sha256": "f35ca08a35c29a4bf54aebc2178401e3765a458b2de9bc2e3dd7ef06c32e5301",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-bell_winch",
@@ -2768,11 +2909,11 @@
         719
       ],
       "mode": "RGBA",
-      "sha256": "5dbca396902bf40bbedf2ea5bbb7dd4d609564a883c14ae6f30cc4c8b61e71a5",
+      "sha256": "99f1f69d65cdb560d7ba4334359bbd88e580d76b3157781ab040ecd8a3aca62f",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-bellfoundry_oracle",
@@ -2782,11 +2923,11 @@
         909
       ],
       "mode": "RGBA",
-      "sha256": "67ec07047f4110e6b739f0bf9c073d3c7ac2783f33b828d9daae74640f0bbc70",
+      "sha256": "fa9c9c9c4eaec73533d3ee1d0fab764218f80c3a519b5c957089336808fc480c",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-bellroad_captain",
@@ -2796,11 +2937,11 @@
         1000
       ],
       "mode": "RGBA",
-      "sha256": "295b390eb49c733ce6f9ed42080adf10b9ba75bd8b4494a1cc96c90d20251aba",
+      "sha256": "beccf95d5103fc1c3ce9422278f75e064956e7906f0bf3fde76d9c83de7b285b",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-bracken_hussar",
@@ -2810,11 +2951,11 @@
         1007
       ],
       "mode": "RGBA",
-      "sha256": "22977d637bbcca078516258b0ff16a860787c8bd09b2ff7819f962800e365907",
+      "sha256": "61966cd8e8f15c1f264ccb6cefaf9c82d6b506d0a764555f249f80b761373c26",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-breakline_sappers",
@@ -2824,11 +2965,11 @@
         933
       ],
       "mode": "RGBA",
-      "sha256": "aca406c39c1caae5f99c6a0e8519a23b63836932be9a3602ce837b7c023bb57f",
+      "sha256": "853df7479fedaa96fc4736f2e94e963f24ebe0c187f9ee25113024b6e6bc8512",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-breakwater_guard",
@@ -2838,11 +2979,11 @@
         743
       ],
       "mode": "RGBA",
-      "sha256": "616e66ca2c262235cc49f10337aadb24b9e97d4e211828bbdad7c8e8ef5026ec",
+      "sha256": "4f7023507168aa1ad29f6683e3fcdd145a122711345f9d08572c3eb17ac7b11a",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-bronze_watch",
@@ -2852,11 +2993,11 @@
         832
       ],
       "mode": "RGBA",
-      "sha256": "c6fcbe8ed55d73a8261d4cd4b59de9990dff42e12c9a404de3bc91f7b843306b",
+      "sha256": "e61fc65bf117c1532cfcfedb7a163e7b216902853390000e872a9f746e6cb2b6",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-byway_guard",
@@ -2866,11 +3007,11 @@
         684
       ],
       "mode": "RGBA",
-      "sha256": "6b4998c9ff4f0289f72bac265dce1403b1367ce82b593ddf4c1073a9d3c56064",
+      "sha256": "f4d6dafbcdd07f1be0e1a63dce539f5164f50bc19b22ec48c620badeaee16d0f",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-cairn_colossus",
@@ -2880,11 +3021,11 @@
         880
       ],
       "mode": "RGBA",
-      "sha256": "bfaf4561806a9e5d1023ed24d0632cff6db9ea45570a377788326459a517d6bc",
+      "sha256": "7405ac73c2db3f2a35840ff93fd3dc1d9eeea3f70b3a5c415e5c6c9e589930a4",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-carriage_cloak",
@@ -2894,11 +3035,11 @@
         879
       ],
       "mode": "RGBA",
-      "sha256": "407e3150a32b73872df442c4e19b498eeddca426c4dca70fa2de9c8410ca8143",
+      "sha256": "bea7071a9117913b33f5e5c86dbea7f01ea54244a8b984e0bd158c5062eb68fd",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-cavalry",
@@ -2908,11 +3049,11 @@
         982
       ],
       "mode": "RGBA",
-      "sha256": "02c02387a23d3ce2348ddc332699005804353f2ca09642e74375e6fb0f2119ae",
+      "sha256": "4388b9090680981d3123bd6aed988e88da0b537cd740111ece27d385c158b6b2",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-chalk_courier",
@@ -2922,11 +3063,11 @@
         943
       ],
       "mode": "RGBA",
-      "sha256": "eee5c399d7587d9ca3512267c8b76933fb2ad3f13d0af245978624d98fadd670",
+      "sha256": "90c9eee8548744d57c8ade015dd438b12d6ce6abca36784ddb028beef043f0ac",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-cinder_coxswain",
@@ -2936,11 +3077,11 @@
         982
       ],
       "mode": "RGBA",
-      "sha256": "1be09aa7711367de94468d8d8c889b8a8dd6b11a603fba47c3d1a7bf49753ef2",
+      "sha256": "77665838a8868031e6d8a32eabba42edefa43cdbf6a181e2ee1d0e5cb5962607",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-cinder_runner",
@@ -2950,11 +3091,11 @@
         944
       ],
       "mode": "RGBA",
-      "sha256": "ed87add6af00c30f1025c60d1b487ad1de8d4b3365fd4088fca738b3b0647647",
+      "sha256": "673c7f922296e7d015d4a716c3db57d02a6228e04775a397988ea710e524e79d",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-claywatch_sage",
@@ -2964,11 +3105,11 @@
         888
       ],
       "mode": "RGBA",
-      "sha256": "310f85b90abf5b619e93443c761f3b5a756aec1ca076d5c5b8a4b0523c09eb71",
+      "sha256": "2664e8f84aec591a9d0dd3371bdfe6bced1358763008793552a6d92d9b28af1f",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-coalroad_broker",
@@ -2978,11 +3119,11 @@
         845
       ],
       "mode": "RGBA",
-      "sha256": "6b5ffbbe81212959542ad9082c85b9fe6612bff5e8099bff7a6ad8c8b9ee0bcd",
+      "sha256": "47d7b989cc9fbee8b05307cfd0cdf77bfdb5c3234750d09fcb285e981a6c56d2",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-copper_cistern",
@@ -2992,11 +3133,11 @@
         879
       ],
       "mode": "RGBA",
-      "sha256": "dc8c34bf271d46a9464c63e334dd9406c6a21b00c1d24ed57fdaa8ac0b784fb4",
+      "sha256": "26d87b6e6c3e162903b20742e768b2f0e59ef0298b97b7ace9d523568281fb04",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-copper_gate_requiem",
@@ -3006,11 +3147,11 @@
         814
       ],
       "mode": "RGBA",
-      "sha256": "d63557975e4b132edd97df307b6f8034936cffbc05b96709cbdfbb9e378bb15a",
+      "sha256": "b50c3ff18298ec55a6ecb46f9c9e5ba4cef117cfb550df338bbed316f5fae4b8",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-crownless_vanguard",
@@ -3020,11 +3161,11 @@
         1018
       ],
       "mode": "RGBA",
-      "sha256": "4d9a55ceaba8d41f499bddf9d5d11e5687fb5a2c726aacaad6ccbb0052e5352a",
+      "sha256": "06209e63c6b1fa74d00d5649490aa3ae31cb788ae531621a97ee5f8a23256870",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-ferry_pikeman",
@@ -3034,11 +3175,11 @@
         981
       ],
       "mode": "RGBA",
-      "sha256": "6d6a8fbf5d5516f54f81e30d94201d133d1d693a930cafd5bb6981f153a095ba",
+      "sha256": "ccc475d8cd0454167e83af5e5708b272ab663cbbb5a3b6cb1888ad75f8a3a44d",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-gate_veteran",
@@ -3048,11 +3189,11 @@
         808
       ],
       "mode": "RGBA",
-      "sha256": "99f8f9ffc79e7d661634fcdd24f19a5ebfaf42d091898ed1c0ead81367a9c337",
+      "sha256": "20e1f984cb45b04e29a052b33974410b66fdc66eb051f208ed7ea009ecc89879",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-glassroad_runner",
@@ -3062,11 +3203,11 @@
         839
       ],
       "mode": "RGBA",
-      "sha256": "8cf493b6fcbb5bbb649e03fe89d927f33f836a8ff8556660a002cf8d4b0c9bcf",
+      "sha256": "d8092968e8f87f4f40cdc7e4ddc753720448544502572f6c5f51c27c6531ce95",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-granary_warden",
@@ -3076,11 +3217,11 @@
         721
       ],
       "mode": "RGBA",
-      "sha256": "b4df3fbff1d22d0ab7d6a0b40e342ca3bc81615976503414c27d3a56838ca697",
+      "sha256": "1406ff454007e5efa2e04f595f0619633a81e9965020424b1eb6d9e29d9b1b49",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-grove",
@@ -3090,11 +3231,11 @@
         940
       ],
       "mode": "RGBA",
-      "sha256": "b348e19e6f68ddcebff858221cdc15f143e87db5432039fa60a350f7e0af2ee9",
+      "sha256": "4b9e6de945cec1a1dcb76ed2eb280d81cefaf441771201c0625b650abaa922e1",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-healer",
@@ -3104,11 +3245,11 @@
         893
       ],
       "mode": "RGBA",
-      "sha256": "2a05a7f31c2486c5d27f1ac753fec92095ced20f2b79b2f5978e234d0f5651ec",
+      "sha256": "9a02c453d0ec0c46be147a606e41b56b0df1f9078a8b7fb6d8fb5a896992d86a",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-hinge_lancer",
@@ -3118,25 +3259,25 @@
         943
       ],
       "mode": "RGBA",
-      "sha256": "00f9ef5b3dfddc44f3042453b30e53d5774aa95ba3b2cae8318c6849f95177be",
+      "sha256": "3dee79ce03f6f669f36bd8ff9d6f4fdc1e7cc952385d5157ee8ff1fbe628df77",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-indigo_gate_mage",
       "path": "assets/art/characters/v3/full/indigo_gate_mage.png",
       "size": [
-        482,
-        848
+        917,
+        1646
       ],
       "mode": "RGBA",
-      "sha256": "c18ebd12086bbb95f87be30a87b1aecf5e875e580a5e1de639d855e87c1da7d8",
+      "sha256": "971eaf60bba6f0069f5b8b0591f61b32d19ce7e11924469eb3b6f40aed1dcc38",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-kiln_outrider",
@@ -3146,11 +3287,11 @@
         966
       ],
       "mode": "RGBA",
-      "sha256": "0843dde969aff14ad10ef35c6f345f788c712994cdb486534a888bb1958183e0",
+      "sha256": "7524044cdc3e5424f71fe8daf0ddc156bed91a4bc416f0880f9acd9f0fbb35bb",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-kiln_sparks",
@@ -3160,11 +3301,11 @@
         814
       ],
       "mode": "RGBA",
-      "sha256": "72aab5aa8a0afa7c44731ee538d4bd0b2ec8e69edf447e88d43fb7329298171f",
+      "sha256": "38c0fcc42b21e3e846165dad229e9eed3bb1130a7ce65bd17aa8839291bed347",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-kiln_wardens",
@@ -3174,11 +3315,11 @@
         926
       ],
       "mode": "RGBA",
-      "sha256": "719b1d665b6e71894a5277d426a19efc0a787af399fbb664805b6a072f4ddf03",
+      "sha256": "e1b224216be9dbd396e74d6196506181f0e7879eb749a80ae4a744006cf46cbc",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-lamp_patrol",
@@ -3188,11 +3329,11 @@
         986
       ],
       "mode": "RGBA",
-      "sha256": "0e707e8fa1fb3859559933d2bca9021b2061423cabf279a4c6ce374c73d45af2",
+      "sha256": "4081c77e967f29acd95a360783663b89aa43cd2bd439f07e17e9281f35d4d5dd",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-lantern_bearer",
@@ -3202,11 +3343,11 @@
         746
       ],
       "mode": "RGBA",
-      "sha256": "c829c6a44a855ff84ef82694b9c1250c6cb6a4787385b9cfe7dfb6f594fc7a6f",
+      "sha256": "be6d7b081dd107ee73f1765b47e93a2b7b938a9d8a6d747bb5ace04f8b747384",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-lantern_surgeon",
@@ -3216,11 +3357,11 @@
         808
       ],
       "mode": "RGBA",
-      "sha256": "44197841ba0dd2e3e5d59c21553104ba5d0f0e15980173a48a96e1eb9f64b40e",
+      "sha256": "95ce84574e5acf5be41167f4e039ce603c09cdd8f9d4358f79e210db17d27dea",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-last_bridge_clinic",
@@ -3230,11 +3371,11 @@
         873
       ],
       "mode": "RGBA",
-      "sha256": "62a0fee6c60fc5e018b55e0cc8218db363b3332795f0307e8c6b6e9b6b6a4daa",
+      "sha256": "2bfbdbc9ecccc61bee8183a052a51ff8fcff32acb82f5cfa79ba9f6d661b7b35",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-levee_brothers",
@@ -3244,11 +3385,11 @@
         693
       ],
       "mode": "RGBA",
-      "sha256": "76a8c1d9d144786fda5952166fc06b869d78dd526dc5b2539de8d102bef54ace",
+      "sha256": "f2227435aa934f19008c7eb2a3589f912e4848844516dff99abf3abb3531b813",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-levee_marshal",
@@ -3258,11 +3399,11 @@
         969
       ],
       "mode": "RGBA",
-      "sha256": "b9552fd035c376b262564c3ad8230d818c3019d8ee75156f503642eda0c5383a",
+      "sha256": "7d609634af5f73c67bae0075da72b0246fba74ea9faf241eee69865de931ac91",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-linen_lantern",
@@ -3272,11 +3413,11 @@
         746
       ],
       "mode": "RGBA",
-      "sha256": "fe8f16def61169ed56e963f041834665063cf6ac3bbcaffae22c667d6294755a",
+      "sha256": "5f9b294eaccf727de42fd5037e296b598bd03d7fbf4e6ad556dfe361c7f82c65",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-mage",
@@ -3286,11 +3427,11 @@
         941
       ],
       "mode": "RGBA",
-      "sha256": "06c28c9494531fc071dad287154bc8843d7fe2dcd3cb47263ea471744092a95c",
+      "sha256": "9914beccf48cff81e79ad7ecfa342d74bb13015f481bd6bc2c5a4e139b799f7c",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-marl_shield",
@@ -3300,11 +3441,11 @@
         800
       ],
       "mode": "RGBA",
-      "sha256": "9d297c6e1c48cb237cb99c37515465800edb8c945cbe393dfc91265efdd897c1",
+      "sha256": "a6e73b2680ad1beacfa883f16aa847c4713ff9934a86fe2053e67a341d62955a",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-mink_watcher",
@@ -3314,11 +3455,11 @@
         918
       ],
       "mode": "RGBA",
-      "sha256": "a875cdbdaf73b0979fb50277dc5e6920cf5f810fc8e8117b426c5b7e2d612009",
+      "sha256": "2b83ed9ba0edb1fdb8857667139833e107c6f91e5594abce35a1a739ee76dba1",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-moth_cavalry",
@@ -3328,11 +3469,11 @@
         960
       ],
       "mode": "RGBA",
-      "sha256": "c266132b849439c3b3bee1b043acee457090b27becb4c3a491dd31b2e75bc53b",
+      "sha256": "3f43b3922cac743287deeec417a1770f036715037de174138b7010737a9bc2c4",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-night_surveyor",
@@ -3342,11 +3483,11 @@
         835
       ],
       "mode": "RGBA",
-      "sha256": "d3b3b1ddacde57d6c283971b542373ccfe92a6040378f4b95856e8838d74622c",
+      "sha256": "fe53d436d204d4e8d1dfb1ea6300c2d5f38e89656b9797098df521fb5607cd2a",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-oathroad_mender",
@@ -3356,11 +3497,11 @@
         937
       ],
       "mode": "RGBA",
-      "sha256": "fe01bd8e9fbddcbfce0f96c82e943033f18ce1758966325ccbebf0f73d540916",
+      "sha256": "6f2f5d86d0a69399403356256debb5d78b5653f1dab71ab9534e0ad2504c9974",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-pyromancer",
@@ -3370,11 +3511,11 @@
         925
       ],
       "mode": "RGBA",
-      "sha256": "0c2570b2f1f16edd8bc37f40e10b9fe0ea417031c44ab2bd4a221aae75106e6c",
+      "sha256": "540e024966b1fa2d3201264d2d7a50337aeaeb5a74cf208ce254ac22319cee42",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-quarry_bugler",
@@ -3384,11 +3525,11 @@
         972
       ],
       "mode": "RGBA",
-      "sha256": "c70f026bc7f5352b6e5665a0010946c57976717ca2baa33fa3e008e92a362f6b",
+      "sha256": "566a8b3b13afa00670e8bd9080f67f833d76c8920a0158cc391d740c0296254b",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-quartermaster",
@@ -3398,25 +3539,25 @@
         770
       ],
       "mode": "RGBA",
-      "sha256": "3114567985bdaeb537d41b2207f1b00073d9d65aee2a4e90efab9b3928b6da40",
+      "sha256": "2aff030ed1f663396ab432f59528e64bd93741f55766b091d554b5dfc8e7bb1d",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-quay_lantern",
       "path": "assets/art/characters/v3/full/quay_lantern.png",
       "size": [
-        465,
-        833
+        774,
+        1406
       ],
       "mode": "RGBA",
-      "sha256": "0915f0d41f2f1ab3246fe0c93ecd5bab877ef8d715c4e2309a87863079a75013",
+      "sha256": "d54d51209b13f80077a28edf1a4b76be61dee39f586b6ce72049bb6874c8d764",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-quay_salver",
@@ -3426,11 +3567,11 @@
         769
       ],
       "mode": "RGBA",
-      "sha256": "75ddd3239878c10c30313fa11f78a389820d6a8b3e49310f0e79b2f64daaf923",
+      "sha256": "fa8b95634f3a8f61b47e7269063b6ffefeb42b15a91158917594c72278e67bbe",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-rain_saddle",
@@ -3440,11 +3581,11 @@
         975
       ],
       "mode": "RGBA",
-      "sha256": "1cc41f182299a3bbc9e32e3ce495e61ca2ce453c63d5ca50bc7efbd0d10c0170",
+      "sha256": "1629d7fd7f94a344eeef9e4dee8a8317de633cf5e391467c2077608cb803b25e",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-reed_harrier",
@@ -3454,11 +3595,11 @@
         850
       ],
       "mode": "RGBA",
-      "sha256": "1692d025f679244f71c4112b2c37ca6b425d49770c6c14d9e603a0cce482a47e",
+      "sha256": "01dc20be5cc622dce0896a33a9cc2f52a60950a5daa3df8858488bc290dcfcbd",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-reed_scout",
@@ -3468,11 +3609,11 @@
         602
       ],
       "mode": "RGBA",
-      "sha256": "0c2efbfabe2caf202cd252651b901268c8175bffd184ff5fccf72a118bf30986",
+      "sha256": "c6793702dc21f04b2f949f820708b1d7d3ab52dd4180c37e304f1fcc473547dd",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-reed_watch",
@@ -3482,11 +3623,11 @@
         1015
       ],
       "mode": "RGBA",
-      "sha256": "cb230ae7bd0728cc237da385979ecfd8a74d01295a1481476e82e2b709951845",
+      "sha256": "aeeaf818b12e75065f8ca96e48570acc80e34c83e461418f99ca7cd672a04307",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-reedglass_bow",
@@ -3496,11 +3637,11 @@
         980
       ],
       "mode": "RGBA",
-      "sha256": "cb97ae9c07b108dd938cde39aafe9cb8d5a3a637b96a33424ca24189b64556c8",
+      "sha256": "5834dfd35a250d19ff0bdf5cfd2546ecc51a871a8b9279b663743aade1a9050d",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-ridge_archer",
@@ -3510,11 +3651,11 @@
         860
       ],
       "mode": "RGBA",
-      "sha256": "9b1fa3de24f0e637b91e9ef8ff9ba07d7c40ffd9dd2d613a9f4ce52c5201ca80",
+      "sha256": "dd1c84ebb3c4e65fc81911de6cd497758a8dbbeddb211437523ea3d798466d63",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-ridge_courier",
@@ -3524,11 +3665,11 @@
         848
       ],
       "mode": "RGBA",
-      "sha256": "5113f1f111b0b192d467942745af8eba277651105de1ef24f47390685ef01030",
+      "sha256": "86275208da0f201afccfecd2f9d8428d4fc68dfde3136feb261def0310d45fc2",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-ridge_listener",
@@ -3538,11 +3679,11 @@
         993
       ],
       "mode": "RGBA",
-      "sha256": "8304c79e62e3b425ade6cd05141772c183184e491a05e9479fa801cd5f21bb14",
+      "sha256": "5db0d85a59f249b2e1a9a75165893c86b3e683ddc981be168e59ea3c3c473d64",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-ridge_pioneer",
@@ -3552,11 +3693,11 @@
         870
       ],
       "mode": "RGBA",
-      "sha256": "87952eecafe4a739e1561b572922f4941b8ff20b2aa840031d63ec6b1fddb4aa",
+      "sha256": "91aa247db5cd115173c4a24a687bdfa5f3aa8b8a35307cf9abfbbb8816821a1d",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-rising_oath_watch",
@@ -3566,11 +3707,11 @@
         1013
       ],
       "mode": "RGBA",
-      "sha256": "34cabe0cd3fc17867b4db49291f4e0afaf5898c7932ee81e60de3767a8e19995",
+      "sha256": "ca644993517273e5e5787fa26239aaffc49c0a27721a403d99cc3b10c1dc10cf",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-river_wasp",
@@ -3580,11 +3721,11 @@
         1003
       ],
       "mode": "RGBA",
-      "sha256": "5b15ef46949e59eace82fbc0b946b3999911959adb8a016381aeb4d84696b071",
+      "sha256": "e6ea077fb1f3a2d0806f029d326e7e1e16595492a6233e93e8d301cb9012bca2",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-rook_pickets",
@@ -3594,11 +3735,11 @@
         587
       ],
       "mode": "RGBA",
-      "sha256": "00b451c5a09e90d3877fb542c36daad5e9cc96e17dea45a80d4e8460ef4f16e0",
+      "sha256": "eb5bfb19badcbe802cb3674709338d1ecc56fe1c53cb7cad87c96207cab9a048",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-saltband_surgeon",
@@ -3608,11 +3749,11 @@
         662
       ],
       "mode": "RGBA",
-      "sha256": "e122c0e956aae7eb66a207ce2078c7c0e595e2871e0ceaf90ac3f3323abc811f",
+      "sha256": "e2640b50ba57e536e0e3eb348c4f44cd0f450232104355e43f419c29980c01e9",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-saltfield_runner",
@@ -3622,11 +3763,11 @@
         894
       ],
       "mode": "RGBA",
-      "sha256": "b5020784504ee022defefd6cea739d4c5fdeb328f1c020e67dae0db240cfb1ca",
+      "sha256": "794f10221ea1af75e716c19cd3bf18306af9cd7127a45548a8748e57c2db024e",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-sandbar_physician",
@@ -3636,11 +3777,11 @@
         683
       ],
       "mode": "RGBA",
-      "sha256": "f91555cf26fe725313dd48ec40773ee071e960bb37306b1469d91536bc9df0e5",
+      "sha256": "1eb7900aee718b298d8f3c23f963af8271908891e431beb6ae6c68366756fd87",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-scribe_warden",
@@ -3650,11 +3791,11 @@
         879
       ],
       "mode": "RGBA",
-      "sha256": "b9def5b39454596f92d92ef1a21df56d90b6f4ab28d421cbe052b09273feae8e",
+      "sha256": "eab30a935c027fc13aa898138f1abc24fba86c1ac030fef9903377cc5feded30",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-shale_lancer",
@@ -3664,11 +3805,11 @@
         965
       ],
       "mode": "RGBA",
-      "sha256": "0b6478111a467609ae4af5046d409e03ade8e7de51ad586ac385dd85ed82453c",
+      "sha256": "cfa9bd9d389e2176670fb8c98a16b6ac686a25e0fea7c760472bebe0519635b4",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-shoal_arbalest",
@@ -3678,11 +3819,11 @@
         874
       ],
       "mode": "RGBA",
-      "sha256": "fb23a8483eed11c383a6a9aadd61b8553ee23ee7091bbfd70b555db96ac4deee",
+      "sha256": "690a3b2b92eb7630c7688fed5029181d55e172c2790116a8d1bfc7f89fc78e68",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-shore_medic",
@@ -3692,11 +3833,11 @@
         872
       ],
       "mode": "RGBA",
-      "sha256": "20f7ec618f30115fcf156a450e36546d9cee78bd1b8c6289767327174514815b",
+      "sha256": "fa44cde6f3336b8704741d70cd4375b15d20803ae8c2dff222e2455df36c48aa",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-shrike_saddler",
@@ -3706,11 +3847,11 @@
         915
       ],
       "mode": "RGBA",
-      "sha256": "2bfd5735577edb982979404365c8fb069b3891fceb97e9832c128c3f9f6f5479",
+      "sha256": "ad96b714e073dceb8cb87e4589e1cb5c46b18f7d61c8abfa95052f1bca05149a",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-sill_physician",
@@ -3720,11 +3861,11 @@
         908
       ],
       "mode": "RGBA",
-      "sha256": "211d6b5eedbff507597fd94fa1378b6c26489b105de089dadf145bac5d419c0a",
+      "sha256": "757a742b7251e62d8b8dfea67a532fa86ce57cf263c75bd4be53e5bd1cd003f0",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-silver_bulwark",
@@ -3734,11 +3875,11 @@
         1299
       ],
       "mode": "RGBA",
-      "sha256": "eee750ee79e071d26f81e6619cab3c962084b0c02c03070d71d089b8c6ce7ba4",
+      "sha256": "5c0c11d2d40b018d4feee3c9a55eab2c326ddb949bd336cb97f19e84e7309b2b",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-skylens_sentinel",
@@ -3748,11 +3889,11 @@
         924
       ],
       "mode": "RGBA",
-      "sha256": "8b042c3b1559f89a5e8512bed52a7f4f6d75ef91dbe852cfbd70e0464475340d",
+      "sha256": "78340236e42b1b0572cec30b975e62ba8270a00700900006cf64ddd1b1e6daad",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-slate_quartermaster",
@@ -3762,11 +3903,11 @@
         887
       ],
       "mode": "RGBA",
-      "sha256": "622632a6ed65bc06ee4c92e7fc734ec09907453028a88ad466ad9def8a559984",
+      "sha256": "b4c57fc8532f468049337bca1a358657b88b4e8fee3e9c806a02ae22e1b4320f",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-spear",
@@ -3776,11 +3917,11 @@
         979
       ],
       "mode": "RGBA",
-      "sha256": "598972161eb3e5b38cd5171c6a77f3b028b97f481add2a65ae2a43bef765f217",
+      "sha256": "39a06dd75f7ad3eb4807be36b80b579736cb9e49c01053e6c52203fe906d1d2b",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-storm_saddle",
@@ -3790,11 +3931,11 @@
         998
       ],
       "mode": "RGBA",
-      "sha256": "8a246a19ecca1148b480b081a103869046f30d4e2fadfeb9dde692b2cf9a6243",
+      "sha256": "99656cfaba80b2020ae9bce24d0a2f1c0bf0e48a9b425423df47dc251777a010",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-sunbreak_column",
@@ -3804,11 +3945,11 @@
         995
       ],
       "mode": "RGBA",
-      "sha256": "971fddfd4c4622dd79b046549e4ace9d854aef6e2efe75056fa976a080f6679c",
+      "sha256": "e623d269ccef53115fddcc0bbe6452b31b9f97f6f6652bdba71edb7e5244889b",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-sword",
@@ -3818,11 +3959,11 @@
         875
       ],
       "mode": "RGBA",
-      "sha256": "a02f5d413fe3e1b9198bc1247a369dc240058b477cc19b901a01ae6e8d9d9e83",
+      "sha256": "95f7ecbe0855792db5af74a08f07580b4a99e6e20f28d1e350ab9540dc930e44",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-undertow_knight",
@@ -3832,11 +3973,11 @@
         816
       ],
       "mode": "RGBA",
-      "sha256": "825427d8c4df38351bd0d804752414fa17936fbe61ac57f37448daa4ea06a934",
+      "sha256": "d7477ddafaef23256d7052a38c3ead5bf5199959cf31e43973a5b038ec6d36c2",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-warden",
@@ -3846,11 +3987,11 @@
         905
       ],
       "mode": "RGBA",
-      "sha256": "5dda78f9d0754e0e473fb59177adb4dcc5d4c80d53941d88f916904160103411",
+      "sha256": "67c4f3ade903753b5ccbdee496c77b9e0398ac6795b3c01d387c98cc27f949ed",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-whitecord_marshal",
@@ -3860,11 +4001,11 @@
         830
       ],
       "mode": "RGBA",
-      "sha256": "d9d3bf1f1f3730950a1a7c7c54efa96043190c7ccad01912d53b56814abeaefe",
+      "sha256": "7d96abff7820dae59dc75fd884eee390b300540b28d79a6851245bd2d7f22e8c",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-full-willow_outlook",
@@ -3874,11 +4015,11 @@
         938
       ],
       "mode": "RGBA",
-      "sha256": "1c84788f1edfb4c24ba0e0bfc9245e73f3f7578d03fcbf42990d82f9b2af9271",
+      "sha256": "9341287bfe4a07bf2ae784b2e61c2092b6ff8b73d2ebef15f8e0ddc606654aef",
       "role": "Original adult full-body character illustration for card viewer and narrative profiles.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-00",
@@ -3892,7 +4033,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-01",
@@ -3906,7 +4047,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-02",
@@ -3920,7 +4061,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-03",
@@ -3934,7 +4075,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-04",
@@ -3948,7 +4089,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-05",
@@ -3958,11 +4099,11 @@
         512
       ],
       "mode": "RGBA",
-      "sha256": "ab1aa30dab87a52e3b53edb85e85818a74bf694ac66a4964bcd43611cae10974",
+      "sha256": "44609eebf6adcf192c76ceda4b77d0363e274c5efdd85481c5231521524e6150",
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-06",
@@ -3976,7 +4117,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-07",
@@ -3990,7 +4131,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-08",
@@ -4004,7 +4145,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-09",
@@ -4018,7 +4159,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-10",
@@ -4032,7 +4173,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-11",
@@ -4046,7 +4187,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-12",
@@ -4056,11 +4197,11 @@
         512
       ],
       "mode": "RGBA",
-      "sha256": "d5388b1c7da6cec00a6bf32a47028f46b19893af9bce017a14cf0ee05b2a7084",
+      "sha256": "cccd44eb61ab6ed12ea5b2d368edd46c02e6e1048733a713fbd39f52b34ca94a",
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-13",
@@ -4074,7 +4215,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-14",
@@ -4088,7 +4229,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-15",
@@ -4102,7 +4243,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-16",
@@ -4116,7 +4257,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-17",
@@ -4130,7 +4271,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-18",
@@ -4144,7 +4285,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-19",
@@ -4158,7 +4299,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-20",
@@ -4172,7 +4313,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-21",
@@ -4186,7 +4327,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-22",
@@ -4200,7 +4341,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-23",
@@ -4214,7 +4355,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-24",
@@ -4228,7 +4369,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-25",
@@ -4242,7 +4383,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-26",
@@ -4256,7 +4397,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-27",
@@ -4270,7 +4411,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-expansion-cast-28",
@@ -4284,7 +4425,7 @@
       "role": "Adult character portrait atlas, in the production record slot order.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-00",
@@ -4298,7 +4439,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-01",
@@ -4312,7 +4453,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-02",
@@ -4326,7 +4467,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-03",
@@ -4340,7 +4481,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-04",
@@ -4354,7 +4495,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-05",
@@ -4368,7 +4509,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-06",
@@ -4382,7 +4523,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-07",
@@ -4396,7 +4537,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-08",
@@ -4410,7 +4551,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-09",
@@ -4424,7 +4565,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-10",
@@ -4438,7 +4579,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-11",
@@ -4452,7 +4593,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-12",
@@ -4466,7 +4607,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-13",
@@ -4480,7 +4621,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-14",
@@ -4494,7 +4635,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-15",
@@ -4504,11 +4645,11 @@
         256
       ],
       "mode": "RGBA",
-      "sha256": "2fc677888d6926c92a57ef8c5bd4a205c8216e5d37cf737f10485118534b6fae",
+      "sha256": "48f7713973554958849fe3576327ed8704220b67b28291623715732d5d849e3f",
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-16",
@@ -4522,7 +4663,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-17",
@@ -4536,7 +4677,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-18",
@@ -4550,7 +4691,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-19",
@@ -4564,7 +4705,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-20",
@@ -4578,7 +4719,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-21",
@@ -4592,7 +4733,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-22",
@@ -4606,7 +4747,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-23",
@@ -4620,7 +4761,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-24",
@@ -4634,7 +4775,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-25",
@@ -4648,7 +4789,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-26",
@@ -4662,7 +4803,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-27",
@@ -4676,7 +4817,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     },
     {
       "id": "v063-pieces-cast-28",
@@ -4690,7 +4831,7 @@
       "role": "Matching individually designed chibi battlefield figures, in the same identity order as card portraits.",
       "prompt_file": "assets/art/characters/v3/production.json",
       "processing": "Native image generation; deterministic alpha cleanup, component separation and atlas packing with tools/prepare_character_redraw.py. Full-body and chibi designs generated separately.",
-      "status": "Active in Windows 0.63.0-dev"
+      "status": "Active in Windows 0.64.0-dev"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "version": "0.63.0-dev",
+  "version": "0.64.0-dev",
   "target_identities": 84,
   "adult_policy": "Every character is an adult. Narrative identity and gameplay IDs are preserved; appearances are newly designed.",
   "style_reference": "User-approved original crimson parasol diviner. Thin hand-drawn contours, matte cel colors, lavender shadows, varied poses.",
@@ -147,6 +147,19 @@
           "prompt": "Create a game-ready CHIBI battlefield sprite atlas, redrawing the adult fantasy characters from IMAGE 1 in compact 3.2-head-tall proportions. IMAGE 1 is the EXACT identity guide: keep the left-to-right characters' genders, adult ages, hairstyles, hair colors, main costume colors, distinctive weapons and ornaments. IMAGE 2 is ONLY the target miniature proportions and clean cel rendering guide, not the identities. These are stylized representations of ADULT warriors, not children. Simplify their costumes into fully opaque practical battle tunics, trousers/tights and boots, with covered torsos; no sexy pose or exposed cleavage on the miniatures. Each figure in a readable neutral action-ready three-quarter front pose angled slightly right, both feet on a shared baseline. Remove chairs, stools, scroll seats, plinths, crates, branches and purely presentation props. Retain character weapons, staffs, shields, medical lanterns and signature gear. Horse riders MUST remain mounted on a complete little horse with all four legs. Crisp confident fine dark contours, two-tone matte cel shading, no gradients or 3D plastic shine. Clean solid local colors, large clear faces, lavender shadow shapes. True transparent alpha; no text, no labels, no ground, no backdrop, no circular bases. Exactly THREE separate independent full-body miniatures in one horizontal row in the SAME LEFT-TO-RIGHT ORDER as the first image. Keep each complete weapon and horse inside its own column. At least 6% blank exterior margins and generous blank gutters; no overlapping or touching silhouettes.",
           "native_file": "exec-50711810-51e1-460a-b80e-a43b28a67735.png",
           "sha256": "d8d453e9679311932994a6c84a3f9d6e29fbbe234e99d3dfc5d45cc2ba79d3e8"
+        }
+      },
+      "adult_overrides": {
+        "quay_lantern": "assets/art/characters/v3/sources/fixes/quay_lantern-full.png"
+      },
+      "corrections": {
+        "quay_lantern": {
+          "tool": "native image_gen",
+          "native_file": "exec-d7643534-8d8a-46fa-b09e-b98bda3ed673.png",
+          "sha256": "295314c9c68330f684a66b7f1fa02138128817526fafaf777e11a9f0918b3fd6",
+          "prompt": "Finish this original adult anime character production artwork. Keep the current face, purple hair, green eyes, dress, fish lantern, slim cel ink drawing and colors. Her TWO arms are now correct: preserve one raised arm and one lowered hand holding the lantern. Fix the lower body for clearly readable anatomy: TWO separate complete legs with TWO visible matching white/navy heeled ankle boots, a graceful slightly staggered standing stance with a small clear gap between calves. Both thighs connect naturally to pelvis; do not merge calves. Keep the raised hand fully inside canvas with at least 8% empty margin above fingers; at least 8% margin below BOTH feet and around ribbons. Full body on transparent background, single adult woman age25+. No extra limbs or hands, no duplicate fingers, no text. Zoom OUT to include the entire silhouette, do not crop raised fingertips. Match reference crisp thin anime contours and flat cel shadow shapes. True transparent background.",
+          "reason": "Removed duplicated lowered forearm and lantern hand; separated the two legs for clear silhouette.",
+          "date": "2026-11-27"
         }
       }
     },
@@ -316,6 +329,19 @@
           "native_file": "exec-72173380-1c72-4a23-87bb-00f48f7600d5.png",
           "sha256": "0e0b6526ce440cfbefb52225a8ba07690032d2adc8b850bfe98dbae19708b1b4"
         }
+      },
+      "adult_overrides": {
+        "indigo_gate_mage": "assets/art/characters/v3/sources/fixes/indigo_gate_mage-full.png"
+      },
+      "corrections": {
+        "indigo_gate_mage": {
+          "tool": "native image_gen",
+          "native_file": "exec-341ed291-e575-4e83-8392-aa731a74b2e3.png",
+          "sha256": "2be3b42a78694e9e9da232c3f88a90f125269dd8eb5f2c7aec9a307eb1199166",
+          "prompt": "Correct the anatomical error in this original game character illustration, do not redesign his identity or costume. Adult handsome male fantasy mage age32, purple long asymmetric hair, sharp eyes, violet and ivory draped robes, gold fittings, crossed legs levitating, floating dark crystals. He currently has THREE hands: left casting hand, right casting hand, plus an extra central hand resting on a cane. REMOVE the extra central forearm and hand above the lap entirely. Restore natural robe folds in that area. Keep EXACTLY TWO ARMS and TWO HANDS: one extends to each side casting the crystals. Cane is a separate floating ornate vertical magic staff in front of him, with NO hand touching it. Exactly TWO human legs, two feet with gold-trimmed shoes, naturally crossed, no duplicate limbs. Preserve face, adult body, costume, pose, thin ink lines and two-tone matte cel shading. Full body with all fingers, feet, staff, ribbons visible, at least 6% blank margins. Single character, true transparent alpha background, no text, no background, no extra people.",
+          "reason": "Removed extra central forearm and hand; retained two casting arms and an independently levitating staff.",
+          "date": "2026-11-27"
+        }
       }
     },
     {
@@ -387,6 +413,19 @@
           "prompt": "Correct this three-character CHIBI sprite atlas (image 1). Keep the LEFT grey-bearded flag/sword man and CENTER black-haired bespectacled woman healer EXACTLY the same. ONLY change the RIGHT red-haired woman courier: she is INFANTRY, not cavalry. REMOVE THE HORSE ENTIRELY. Redraw her alone STANDING ON HER OWN TWO FEET in sturdy boots, holding the sealed scroll, with a small sheathed sword at her hip. Keep her red hair bun with gold comb, long crimson scarf, green tunic and ivory coat tails, opaque trousers. Image 2 confirms her exact adult identity on the RIGHT: a running foot messenger. No animal, no mount. Same compact mature-adult chibi proportions and cel rendering as the two unchanged miniatures. Three independent complete figures at equal size and shared foot baseline, ample gutters. Fully transparent alpha background, zero opacity outside characters, no backdrop, text, ground shadows or disks.",
           "native_file": "exec-74078059-8fc7-4a63-ae37-83fdea574226.png",
           "sha256": "2892cf7a45f7c55d208b869c0c1a12ebaada44c529e30a4555888d827aff94b0"
+        }
+      },
+      "chibi_overrides": {
+        "lantern_surgeon": "assets/art/characters/v3/sources/fixes/lantern_surgeon-chibi.png"
+      },
+      "corrections": {
+        "lantern_surgeon": {
+          "tool": "native image_gen",
+          "native_file": "exec-9e388883-7e3f-4ca0-b654-101b81b7a7b0.png",
+          "sha256": "74d6e9e52fdc4d20330dab5ac8e0525c538aab59e34e3bf4e15dc4858a73ee38",
+          "prompt": "Targeted anatomy repair of this original game chibi battlefield miniature depicting an ADULT female physician. Keep exactly the same adult identity: dark pinned hair with white flower and gold hairpins, gold spectacles, blue and ivory practical covered robe, dark trousers, gold-trim boots, medical satchel and suitcase. The existing image has THREE HANDS. Rebuild as EXACTLY TWO arms and TWO hands: the arm on the VIEWER LEFT bends across her torso and its single hand holds the slender gold ring-topped medical wand pointing up diagonally; the arm on the VIEWER RIGHT hangs down and its single hand holds the brown medical suitcase handle. REMOVE the spare hand resting at the waist and its duplicate forearm completely. Each arm connects naturally to the correct shoulder through one sleeve. Exactly two legs and two booted feet. Retain 3-head miniature proportions, battle-ready 3/4 view facing right, thick crisp dark outlines, matte local colors, simple two-tone cel shading; no realistic body, no extra arms/props, no skin exposure, no text. Whole single character and suitcase fully visible, 8% blank margins all sides. True transparent alpha background. Fix anatomy only, do not change costume, face or color design.",
+          "reason": "Removed the third waist hand; one hand now holds the wand, the other carries the medical case.",
+          "date": "2026-11-27"
         }
       }
     },
@@ -705,588 +744,590 @@
       "full": "assets/art/characters/v3/full/warden.png",
       "sheet": "cast-00",
       "slot": 0,
-      "full_sha256": "5dda78f9d0754e0e473fb59177adb4dcc5d4c80d53941d88f916904160103411"
+      "full_sha256": "67c4f3ade903753b5ccbdee496c77b9e0398ac6795b3c01d387c98cc27f949ed"
     },
     {
       "id": "pyromancer",
       "full": "assets/art/characters/v3/full/pyromancer.png",
       "sheet": "cast-00",
       "slot": 1,
-      "full_sha256": "0c2570b2f1f16edd8bc37f40e10b9fe0ea417031c44ab2bd4a221aae75106e6c"
+      "full_sha256": "540e024966b1fa2d3201264d2d7a50337aeaeb5a74cf208ce254ac22319cee42"
     },
     {
       "id": "grove",
       "full": "assets/art/characters/v3/full/grove.png",
       "sheet": "cast-00",
       "slot": 2,
-      "full_sha256": "b348e19e6f68ddcebff858221cdc15f143e87db5432039fa60a350f7e0af2ee9"
+      "full_sha256": "4b9e6de945cec1a1dcb76ed2eb280d81cefaf441771201c0625b650abaa922e1"
     },
     {
       "id": "sword",
       "full": "assets/art/characters/v3/full/sword.png",
       "sheet": "cast-01",
       "slot": 0,
-      "full_sha256": "a02f5d413fe3e1b9198bc1247a369dc240058b477cc19b901a01ae6e8d9d9e83"
+      "full_sha256": "95f7ecbe0855792db5af74a08f07580b4a99e6e20f28d1e350ab9540dc930e44"
     },
     {
       "id": "spear",
       "full": "assets/art/characters/v3/full/spear.png",
       "sheet": "cast-01",
       "slot": 1,
-      "full_sha256": "598972161eb3e5b38cd5171c6a77f3b028b97f481add2a65ae2a43bef765f217"
+      "full_sha256": "39a06dd75f7ad3eb4807be36b80b579736cb9e49c01053e6c52203fe906d1d2b"
     },
     {
       "id": "cavalry",
       "full": "assets/art/characters/v3/full/cavalry.png",
       "sheet": "cast-01",
       "slot": 2,
-      "full_sha256": "02c02387a23d3ce2348ddc332699005804353f2ca09642e74375e6fb0f2119ae"
+      "full_sha256": "4388b9090680981d3123bd6aed988e88da0b537cd740111ece27d385c158b6b2"
     },
     {
       "id": "archer",
       "full": "assets/art/characters/v3/full/archer.png",
       "sheet": "cast-02",
       "slot": 0,
-      "full_sha256": "a0bba943b880b06f8e4c83d0da679e777e826c0f6faeabac9963a8317c25f34d"
+      "full_sha256": "8f19508757488bf8cf37debdb3f3e9b6ec4b72a57e870fd72c26f0f0ea8922e4"
     },
     {
       "id": "mage",
       "full": "assets/art/characters/v3/full/mage.png",
       "sheet": "cast-02",
       "slot": 1,
-      "full_sha256": "06c28c9494531fc071dad287154bc8843d7fe2dcd3cb47263ea471744092a95c"
+      "full_sha256": "9914beccf48cff81e79ad7ecfa342d74bb13015f481bd6bc2c5a4e139b799f7c"
     },
     {
       "id": "healer",
       "full": "assets/art/characters/v3/full/healer.png",
       "sheet": "cast-02",
       "slot": 2,
-      "full_sha256": "2a05a7f31c2486c5d27f1ac753fec92095ced20f2b79b2f5978e234d0f5651ec"
+      "full_sha256": "9a02c453d0ec0c46be147a606e41b56b0df1f9078a8b7fb6d8fb5a896992d86a"
     },
     {
       "id": "reed_scout",
       "full": "assets/art/characters/v3/full/reed_scout.png",
       "sheet": "cast-03",
       "slot": 0,
-      "full_sha256": "0c2efbfabe2caf202cd252651b901268c8175bffd184ff5fccf72a118bf30986"
+      "full_sha256": "c6793702dc21f04b2f949f820708b1d7d3ab52dd4180c37e304f1fcc473547dd"
     },
     {
       "id": "gate_veteran",
       "full": "assets/art/characters/v3/full/gate_veteran.png",
       "sheet": "cast-03",
       "slot": 1,
-      "full_sha256": "99f8f9ffc79e7d661634fcdd24f19a5ebfaf42d091898ed1c0ead81367a9c337"
+      "full_sha256": "20e1f984cb45b04e29a052b33974410b66fdc66eb051f208ed7ea009ecc89879"
     },
     {
       "id": "ridge_courier",
       "full": "assets/art/characters/v3/full/ridge_courier.png",
       "sheet": "cast-03",
       "slot": 2,
-      "full_sha256": "5113f1f111b0b192d467942745af8eba277651105de1ef24f47390685ef01030"
+      "full_sha256": "86275208da0f201afccfecd2f9d8428d4fc68dfde3136feb261def0310d45fc2"
     },
     {
       "id": "ridge_archer",
       "full": "assets/art/characters/v3/full/ridge_archer.png",
       "sheet": "cast-04",
       "slot": 0,
-      "full_sha256": "9b1fa3de24f0e637b91e9ef8ff9ba07d7c40ffd9dd2d613a9f4ce52c5201ca80"
+      "full_sha256": "dd1c84ebb3c4e65fc81911de6cd497758a8dbbeddb211437523ea3d798466d63"
     },
     {
       "id": "scribe_warden",
       "full": "assets/art/characters/v3/full/scribe_warden.png",
       "sheet": "cast-04",
       "slot": 1,
-      "full_sha256": "b9def5b39454596f92d92ef1a21df56d90b6f4ab28d421cbe052b09273feae8e"
+      "full_sha256": "eab30a935c027fc13aa898138f1abc24fba86c1ac030fef9903377cc5feded30"
     },
     {
       "id": "breakwater_guard",
       "full": "assets/art/characters/v3/full/breakwater_guard.png",
       "sheet": "cast-04",
       "slot": 2,
-      "full_sha256": "616e66ca2c262235cc49f10337aadb24b9e97d4e211828bbdad7c8e8ef5026ec"
+      "full_sha256": "4f7023507168aa1ad29f6683e3fcdd145a122711345f9d08572c3eb17ac7b11a"
     },
     {
       "id": "bronze_watch",
       "full": "assets/art/characters/v3/full/bronze_watch.png",
       "sheet": "cast-05",
       "slot": 0,
-      "full_sha256": "c6fcbe8ed55d73a8261d4cd4b59de9990dff42e12c9a404de3bc91f7b843306b"
+      "full_sha256": "e61fc65bf117c1532cfcfedb7a163e7b216902853390000e872a9f746e6cb2b6"
     },
     {
       "id": "quay_lantern",
       "full": "assets/art/characters/v3/full/quay_lantern.png",
       "sheet": "cast-05",
       "slot": 1,
-      "full_sha256": "0915f0d41f2f1ab3246fe0c93ecd5bab877ef8d715c4e2309a87863079a75013"
+      "full_sha256": "d54d51209b13f80077a28edf1a4b76be61dee39f586b6ce72049bb6874c8d764"
     },
     {
       "id": "lantern_bearer",
       "full": "assets/art/characters/v3/full/lantern_bearer.png",
       "sheet": "cast-05",
       "slot": 2,
-      "full_sha256": "c829c6a44a855ff84ef82694b9c1250c6cb6a4787385b9cfe7dfb6f594fc7a6f"
+      "full_sha256": "be6d7b081dd107ee73f1765b47e93a2b7b938a9d8a6d747bb5ace04f8b747384"
     },
     {
       "id": "mink_watcher",
       "full": "assets/art/characters/v3/full/mink_watcher.png",
       "sheet": "cast-06",
       "slot": 0,
-      "full_sha256": "a875cdbdaf73b0979fb50277dc5e6920cf5f810fc8e8117b426c5b7e2d612009"
+      "full_sha256": "2b83ed9ba0edb1fdb8857667139833e107c6f91e5594abce35a1a739ee76dba1"
     },
     {
       "id": "ferry_pikeman",
       "full": "assets/art/characters/v3/full/ferry_pikeman.png",
       "sheet": "cast-06",
       "slot": 1,
-      "full_sha256": "6d6a8fbf5d5516f54f81e30d94201d133d1d693a930cafd5bb6981f153a095ba"
+      "full_sha256": "ccc475d8cd0454167e83af5e5708b272ab663cbbb5a3b6cb1888ad75f8a3a44d"
     },
     {
       "id": "willow_outlook",
       "full": "assets/art/characters/v3/full/willow_outlook.png",
       "sheet": "cast-06",
       "slot": 2,
-      "full_sha256": "1c84788f1edfb4c24ba0e0bfc9245e73f3f7578d03fcbf42990d82f9b2af9271"
+      "full_sha256": "9341287bfe4a07bf2ae784b2e61c2092b6ff8b73d2ebef15f8e0ddc606654aef"
     },
     {
       "id": "quartermaster",
       "full": "assets/art/characters/v3/full/quartermaster.png",
       "sheet": "cast-07",
       "slot": 0,
-      "full_sha256": "3114567985bdaeb537d41b2207f1b00073d9d65aee2a4e90efab9b3928b6da40"
+      "full_sha256": "2aff030ed1f663396ab432f59528e64bd93741f55766b091d554b5dfc8e7bb1d"
     },
     {
       "id": "moth_cavalry",
       "full": "assets/art/characters/v3/full/moth_cavalry.png",
       "sheet": "cast-07",
       "slot": 1,
-      "full_sha256": "c266132b849439c3b3bee1b043acee457090b27becb4c3a491dd31b2e75bc53b"
+      "full_sha256": "3f43b3922cac743287deeec417a1770f036715037de174138b7010737a9bc2c4"
     },
     {
       "id": "kiln_wardens",
       "full": "assets/art/characters/v3/full/kiln_wardens.png",
       "sheet": "cast-07",
       "slot": 2,
-      "full_sha256": "719b1d665b6e71894a5277d426a19efc0a787af399fbb664805b6a072f4ddf03"
+      "full_sha256": "e1b224216be9dbd396e74d6196506181f0e7879eb749a80ae4a744006cf46cbc"
     },
     {
       "id": "carriage_cloak",
       "full": "assets/art/characters/v3/full/carriage_cloak.png",
       "sheet": "cast-08",
       "slot": 0,
-      "full_sha256": "407e3150a32b73872df442c4e19b498eeddca426c4dca70fa2de9c8410ca8143"
+      "full_sha256": "bea7071a9117913b33f5e5c86dbea7f01ea54244a8b984e0bd158c5062eb68fd"
     },
     {
       "id": "last_bridge_clinic",
       "full": "assets/art/characters/v3/full/last_bridge_clinic.png",
       "sheet": "cast-08",
       "slot": 1,
-      "full_sha256": "62a0fee6c60fc5e018b55e0cc8218db363b3332795f0307e8c6b6e9b6b6a4daa"
+      "full_sha256": "2bfbdbc9ecccc61bee8183a052a51ff8fcff32acb82f5cfa79ba9f6d661b7b35"
     },
     {
       "id": "copper_gate_requiem",
       "full": "assets/art/characters/v3/full/copper_gate_requiem.png",
       "sheet": "cast-08",
       "slot": 2,
-      "full_sha256": "d63557975e4b132edd97df307b6f8034936cffbc05b96709cbdfbb9e378bb15a"
+      "full_sha256": "b50c3ff18298ec55a6ecb46f9c9e5ba4cef117cfb550df338bbed316f5fae4b8"
     },
     {
       "id": "cinder_runner",
       "full": "assets/art/characters/v3/full/cinder_runner.png",
       "sheet": "cast-09",
       "slot": 0,
-      "full_sha256": "ed87add6af00c30f1025c60d1b487ad1de8d4b3365fd4088fca738b3b0647647"
+      "full_sha256": "673c7f922296e7d015d4a716c3db57d02a6228e04775a397988ea710e524e79d"
     },
     {
       "id": "ridge_pioneer",
       "full": "assets/art/characters/v3/full/ridge_pioneer.png",
       "sheet": "cast-09",
       "slot": 1,
-      "full_sha256": "87952eecafe4a739e1561b572922f4941b8ff20b2aa840031d63ec6b1fddb4aa"
+      "full_sha256": "91aa247db5cd115173c4a24a687bdfa5f3aa8b8a35307cf9abfbbb8816821a1d"
     },
     {
       "id": "quay_salver",
       "full": "assets/art/characters/v3/full/quay_salver.png",
       "sheet": "cast-09",
       "slot": 2,
-      "full_sha256": "75ddd3239878c10c30313fa11f78a389820d6a8b3e49310f0e79b2f64daaf923"
+      "full_sha256": "fa8b95634f3a8f61b47e7269063b6ffefeb42b15a91158917594c72278e67bbe"
     },
     {
       "id": "reed_harrier",
       "full": "assets/art/characters/v3/full/reed_harrier.png",
       "sheet": "cast-10",
       "slot": 0,
-      "full_sha256": "1692d025f679244f71c4112b2c37ca6b425d49770c6c14d9e603a0cce482a47e"
+      "full_sha256": "01dc20be5cc622dce0896a33a9cc2f52a60950a5daa3df8858488bc290dcfcbd"
     },
     {
       "id": "byway_guard",
       "full": "assets/art/characters/v3/full/byway_guard.png",
       "sheet": "cast-10",
       "slot": 1,
-      "full_sha256": "6b4998c9ff4f0289f72bac265dce1403b1367ce82b593ddf4c1073a9d3c56064"
+      "full_sha256": "f4d6dafbcdd07f1be0e1a63dce539f5164f50bc19b22ec48c620badeaee16d0f"
     },
     {
       "id": "kiln_outrider",
       "full": "assets/art/characters/v3/full/kiln_outrider.png",
       "sheet": "cast-10",
       "slot": 2,
-      "full_sha256": "0843dde969aff14ad10ef35c6f345f788c712994cdb486534a888bb1958183e0"
+      "full_sha256": "7524044cdc3e5424f71fe8daf0ddc156bed91a4bc416f0880f9acd9f0fbb35bb"
     },
     {
       "id": "sandbar_physician",
       "full": "assets/art/characters/v3/full/sandbar_physician.png",
       "sheet": "cast-11",
       "slot": 0,
-      "full_sha256": "f91555cf26fe725313dd48ec40773ee071e960bb37306b1469d91536bc9df0e5"
+      "full_sha256": "1eb7900aee718b298d8f3c23f963af8271908891e431beb6ae6c68366756fd87"
     },
     {
       "id": "night_surveyor",
       "full": "assets/art/characters/v3/full/night_surveyor.png",
       "sheet": "cast-11",
       "slot": 1,
-      "full_sha256": "d3b3b1ddacde57d6c283971b542373ccfe92a6040378f4b95856e8838d74622c"
+      "full_sha256": "fe53d436d204d4e8d1dfb1ea6300c2d5f38e89656b9797098df521fb5607cd2a"
     },
     {
       "id": "levee_marshal",
       "full": "assets/art/characters/v3/full/levee_marshal.png",
       "sheet": "cast-11",
       "slot": 2,
-      "full_sha256": "b9552fd035c376b262564c3ad8230d818c3019d8ee75156f503642eda0c5383a"
+      "full_sha256": "7d609634af5f73c67bae0075da72b0246fba74ea9faf241eee69865de931ac91"
     },
     {
       "id": "storm_saddle",
       "full": "assets/art/characters/v3/full/storm_saddle.png",
       "sheet": "cast-12",
       "slot": 0,
-      "full_sha256": "8a246a19ecca1148b480b081a103869046f30d4e2fadfeb9dde692b2cf9a6243"
+      "full_sha256": "99656cfaba80b2020ae9bce24d0a2f1c0bf0e48a9b425423df47dc251777a010"
     },
     {
       "id": "indigo_gate_mage",
       "full": "assets/art/characters/v3/full/indigo_gate_mage.png",
       "sheet": "cast-12",
       "slot": 1,
-      "full_sha256": "c18ebd12086bbb95f87be30a87b1aecf5e875e580a5e1de639d855e87c1da7d8"
+      "full_sha256": "971eaf60bba6f0069f5b8b0591f61b32d19ce7e11924469eb3b6f40aed1dcc38"
     },
     {
       "id": "sunbreak_column",
       "full": "assets/art/characters/v3/full/sunbreak_column.png",
       "sheet": "cast-12",
       "slot": 2,
-      "full_sha256": "971fddfd4c4622dd79b046549e4ace9d854aef6e2efe75056fa976a080f6679c"
+      "full_sha256": "e623d269ccef53115fddcc0bbe6452b31b9f97f6f6652bdba71edb7e5244889b"
     },
     {
       "id": "lamp_patrol",
       "full": "assets/art/characters/v3/full/lamp_patrol.png",
       "sheet": "cast-13",
       "slot": 0,
-      "full_sha256": "0e707e8fa1fb3859559933d2bca9021b2061423cabf279a4c6ce374c73d45af2"
+      "full_sha256": "4081c77e967f29acd95a360783663b89aa43cd2bd439f07e17e9281f35d4d5dd"
     },
     {
       "id": "reed_watch",
       "full": "assets/art/characters/v3/full/reed_watch.png",
       "sheet": "cast-13",
       "slot": 1,
-      "full_sha256": "cb230ae7bd0728cc237da385979ecfd8a74d01295a1481476e82e2b709951845"
+      "full_sha256": "aeeaf818b12e75065f8ca96e48570acc80e34c83e461418f99ca7cd672a04307"
     },
     {
       "id": "slate_quartermaster",
       "full": "assets/art/characters/v3/full/slate_quartermaster.png",
       "sheet": "cast-13",
       "slot": 2,
-      "full_sha256": "622632a6ed65bc06ee4c92e7fc734ec09907453028a88ad466ad9def8a559984"
+      "full_sha256": "b4c57fc8532f468049337bca1a358657b88b4e8fee3e9c806a02ae22e1b4320f"
     },
     {
       "id": "bell_winch",
       "full": "assets/art/characters/v3/full/bell_winch.png",
       "sheet": "cast-14",
       "slot": 0,
-      "full_sha256": "5dbca396902bf40bbedf2ea5bbb7dd4d609564a883c14ae6f30cc4c8b61e71a5"
+      "full_sha256": "99f1f69d65cdb560d7ba4334359bbd88e580d76b3157781ab040ecd8a3aca62f"
     },
     {
       "id": "rain_saddle",
       "full": "assets/art/characters/v3/full/rain_saddle.png",
       "sheet": "cast-14",
       "slot": 1,
-      "full_sha256": "1cc41f182299a3bbc9e32e3ce495e61ca2ce453c63d5ca50bc7efbd0d10c0170"
+      "full_sha256": "1629d7fd7f94a344eeef9e4dee8a8317de633cf5e391467c2077608cb803b25e"
     },
     {
       "id": "levee_brothers",
       "full": "assets/art/characters/v3/full/levee_brothers.png",
       "sheet": "cast-14",
       "slot": 2,
-      "full_sha256": "76a8c1d9d144786fda5952166fc06b869d78dd526dc5b2539de8d102bef54ace"
+      "full_sha256": "f2227435aa934f19008c7eb2a3589f912e4848844516dff99abf3abb3531b813"
     },
     {
       "id": "rising_oath_watch",
       "full": "assets/art/characters/v3/full/rising_oath_watch.png",
       "sheet": "cast-15",
       "slot": 0,
-      "full_sha256": "34cabe0cd3fc17867b4db49291f4e0afaf5898c7932ee81e60de3767a8e19995"
+      "full_sha256": "ca644993517273e5e5787fa26239aaffc49c0a27721a403d99cc3b10c1dc10cf"
     },
     {
       "id": "lantern_surgeon",
       "full": "assets/art/characters/v3/full/lantern_surgeon.png",
       "sheet": "cast-15",
       "slot": 1,
-      "full_sha256": "44197841ba0dd2e3e5d59c21553104ba5d0f0e15980173a48a96e1eb9f64b40e"
+      "full_sha256": "95ce84574e5acf5be41167f4e039ce603c09cdd8f9d4358f79e210db17d27dea"
     },
     {
       "id": "saltfield_runner",
       "full": "assets/art/characters/v3/full/saltfield_runner.png",
       "sheet": "cast-15",
       "slot": 2,
-      "full_sha256": "b5020784504ee022defefd6cea739d4c5fdeb328f1c020e67dae0db240cfb1ca"
+      "full_sha256": "794f10221ea1af75e716c19cd3bf18306af9cd7127a45548a8748e57c2db024e"
     },
     {
       "id": "bank_pikeman",
       "full": "assets/art/characters/v3/full/bank_pikeman.png",
       "sheet": "cast-16",
       "slot": 0,
-      "full_sha256": "ea9491af3344a256b40038e720b741d2cae272a88620a8324bb115f7e5fce008"
+      "full_sha256": "2285ac0d99f65fbff91a8afe254b9445c0e4fb6d5aa31bc9d032554871837271"
     },
     {
       "id": "bastion_driller",
       "full": "assets/art/characters/v3/full/bastion_driller.png",
       "sheet": "cast-16",
       "slot": 1,
-      "full_sha256": "15e7b0a7d2ce5d2cd5febfd485b4479fd50254ce9014718fa114e05dda6a17cf"
+      "full_sha256": "f35ca08a35c29a4bf54aebc2178401e3765a458b2de9bc2e3dd7ef06c32e5301"
     },
     {
       "id": "shrike_saddler",
       "full": "assets/art/characters/v3/full/shrike_saddler.png",
       "sheet": "cast-16",
       "slot": 2,
-      "full_sha256": "2bfd5735577edb982979404365c8fb069b3891fceb97e9832c128c3f9f6f5479"
+      "full_sha256": "ad96b714e073dceb8cb87e4589e1cb5c46b18f7d61c8abfa95052f1bca05149a"
     },
     {
       "id": "sill_physician",
       "full": "assets/art/characters/v3/full/sill_physician.png",
       "sheet": "cast-17",
       "slot": 0,
-      "full_sha256": "211d6b5eedbff507597fd94fa1378b6c26489b105de089dadf145bac5d419c0a"
+      "full_sha256": "757a742b7251e62d8b8dfea67a532fa86ce57cf263c75bd4be53e5bd1cd003f0"
     },
     {
       "id": "shoal_arbalest",
       "full": "assets/art/characters/v3/full/shoal_arbalest.png",
       "sheet": "cast-17",
       "slot": 1,
-      "full_sha256": "fb23a8483eed11c383a6a9aadd61b8553ee23ee7091bbfd70b555db96ac4deee"
+      "full_sha256": "690a3b2b92eb7630c7688fed5029181d55e172c2790116a8d1bfc7f89fc78e68"
     },
     {
       "id": "oathroad_mender",
       "full": "assets/art/characters/v3/full/oathroad_mender.png",
       "sheet": "cast-17",
       "slot": 2,
-      "full_sha256": "fe01bd8e9fbddcbfce0f96c82e943033f18ce1758966325ccbebf0f73d540916"
+      "full_sha256": "6f2f5d86d0a69399403356256debb5d78b5653f1dab71ab9534e0ad2504c9974"
     },
     {
       "id": "undertow_knight",
       "full": "assets/art/characters/v3/full/undertow_knight.png",
       "sheet": "cast-18",
       "slot": 0,
-      "full_sha256": "825427d8c4df38351bd0d804752414fa17936fbe61ac57f37448daa4ea06a934"
+      "full_sha256": "d7477ddafaef23256d7052a38c3ead5bf5199959cf31e43973a5b038ec6d36c2"
     },
     {
       "id": "claywatch_sage",
       "full": "assets/art/characters/v3/full/claywatch_sage.png",
       "sheet": "cast-18",
       "slot": 1,
-      "full_sha256": "310f85b90abf5b619e93443c761f3b5a756aec1ca076d5c5b8a4b0523c09eb71"
+      "full_sha256": "2664e8f84aec591a9d0dd3371bdfe6bced1358763008793552a6d92d9b28af1f"
     },
     {
       "id": "crownless_vanguard",
       "full": "assets/art/characters/v3/full/crownless_vanguard.png",
       "sheet": "cast-18",
       "slot": 2,
-      "full_sha256": "4d9a55ceaba8d41f499bddf9d5d11e5687fb5a2c726aacaad6ccbb0052e5352a"
+      "full_sha256": "06209e63c6b1fa74d00d5649490aa3ae31cb788ae531621a97ee5f8a23256870"
     },
     {
       "id": "chalk_courier",
       "full": "assets/art/characters/v3/full/chalk_courier.png",
       "sheet": "cast-19",
       "slot": 0,
-      "full_sha256": "eee5c399d7587d9ca3512267c8b76933fb2ad3f13d0af245978624d98fadd670"
+      "full_sha256": "90c9eee8548744d57c8ade015dd438b12d6ce6abca36784ddb028beef043f0ac"
     },
     {
       "id": "ridge_listener",
       "full": "assets/art/characters/v3/full/ridge_listener.png",
       "sheet": "cast-19",
       "slot": 1,
-      "full_sha256": "8304c79e62e3b425ade6cd05141772c183184e491a05e9479fa801cd5f21bb14"
+      "full_sha256": "5db0d85a59f249b2e1a9a75165893c86b3e683ddc981be168e59ea3c3c473d64"
     },
     {
       "id": "linen_lantern",
       "full": "assets/art/characters/v3/full/linen_lantern.png",
       "sheet": "cast-19",
       "slot": 2,
-      "full_sha256": "fe8f16def61169ed56e963f041834665063cf6ac3bbcaffae22c667d6294755a"
+      "full_sha256": "5f9b294eaccf727de42fd5037e296b598bd03d7fbf4e6ad556dfe361c7f82c65"
     },
     {
       "id": "coalroad_broker",
       "full": "assets/art/characters/v3/full/coalroad_broker.png",
       "sheet": "cast-20",
       "slot": 0,
-      "full_sha256": "6b5ffbbe81212959542ad9082c85b9fe6612bff5e8099bff7a6ad8c8b9ee0bcd"
+      "full_sha256": "47d7b989cc9fbee8b05307cfd0cdf77bfdb5c3234750d09fcb285e981a6c56d2"
     },
     {
       "id": "shale_lancer",
       "full": "assets/art/characters/v3/full/shale_lancer.png",
       "sheet": "cast-20",
       "slot": 1,
-      "full_sha256": "0b6478111a467609ae4af5046d409e03ade8e7de51ad586ac385dd85ed82453c"
+      "full_sha256": "cfa9bd9d389e2176670fb8c98a16b6ac686a25e0fea7c760472bebe0519635b4"
     },
     {
       "id": "bracken_hussar",
       "full": "assets/art/characters/v3/full/bracken_hussar.png",
       "sheet": "cast-20",
       "slot": 2,
-      "full_sha256": "22977d637bbcca078516258b0ff16a860787c8bd09b2ff7819f962800e365907"
+      "full_sha256": "61966cd8e8f15c1f264ccb6cefaf9c82d6b506d0a764555f249f80b761373c26"
     },
     {
       "id": "cairn_colossus",
       "full": "assets/art/characters/v3/full/cairn_colossus.png",
       "sheet": "cast-21",
       "slot": 0,
-      "full_sha256": "bfaf4561806a9e5d1023ed24d0632cff6db9ea45570a377788326459a517d6bc"
+      "full_sha256": "7405ac73c2db3f2a35840ff93fd3dc1d9eeea3f70b3a5c415e5c6c9e589930a4"
     },
     {
       "id": "bellfoundry_oracle",
       "full": "assets/art/characters/v3/full/bellfoundry_oracle.png",
       "sheet": "cast-21",
       "slot": 1,
-      "full_sha256": "67ec07047f4110e6b739f0bf9c073d3c7ac2783f33b828d9daae74640f0bbc70"
+      "full_sha256": "fa9c9c9c4eaec73533d3ee1d0fab764218f80c3a519b5c957089336808fc480c"
     },
     {
       "id": "whitecord_marshal",
       "full": "assets/art/characters/v3/full/whitecord_marshal.png",
       "sheet": "cast-21",
       "slot": 2,
-      "full_sha256": "d9d3bf1f1f3730950a1a7c7c54efa96043190c7ccad01912d53b56814abeaefe"
+      "full_sha256": "7d96abff7820dae59dc75fd884eee390b300540b28d79a6851245bd2d7f22e8c"
     },
     {
       "id": "kiln_sparks",
       "full": "assets/art/characters/v3/full/kiln_sparks.png",
       "sheet": "cast-22",
       "slot": 0,
-      "full_sha256": "72aab5aa8a0afa7c44731ee538d4bd0b2ec8e69edf447e88d43fb7329298171f"
+      "full_sha256": "38c0fcc42b21e3e846165dad229e9eed3bb1130a7ce65bd17aa8839291bed347"
     },
     {
       "id": "marl_shield",
       "full": "assets/art/characters/v3/full/marl_shield.png",
       "sheet": "cast-22",
       "slot": 1,
-      "full_sha256": "9d297c6e1c48cb237cb99c37515465800edb8c945cbe393dfc91265efdd897c1"
+      "full_sha256": "a6e73b2680ad1beacfa883f16aa847c4713ff9934a86fe2053e67a341d62955a"
     },
     {
       "id": "river_wasp",
       "full": "assets/art/characters/v3/full/river_wasp.png",
       "sheet": "cast-22",
       "slot": 2,
-      "full_sha256": "5b15ef46949e59eace82fbc0b946b3999911959adb8a016381aeb4d84696b071"
+      "full_sha256": "e6ea077fb1f3a2d0806f029d326e7e1e16595492a6233e93e8d301cb9012bca2"
     },
     {
       "id": "granary_warden",
       "full": "assets/art/characters/v3/full/granary_warden.png",
       "sheet": "cast-23",
       "slot": 0,
-      "full_sha256": "b4df3fbff1d22d0ab7d6a0b40e342ca3bc81615976503414c27d3a56838ca697"
+      "full_sha256": "1406ff454007e5efa2e04f595f0619633a81e9965020424b1eb6d9e29d9b1b49"
     },
     {
       "id": "glassroad_runner",
       "full": "assets/art/characters/v3/full/glassroad_runner.png",
       "sheet": "cast-23",
       "slot": 1,
-      "full_sha256": "8cf493b6fcbb5bbb649e03fe89d927f33f836a8ff8556660a002cf8d4b0c9bcf"
+      "full_sha256": "d8092968e8f87f4f40cdc7e4ddc753720448544502572f6c5f51c27c6531ce95"
     },
     {
       "id": "rook_pickets",
       "full": "assets/art/characters/v3/full/rook_pickets.png",
       "sheet": "cast-23",
       "slot": 2,
-      "full_sha256": "00b451c5a09e90d3877fb542c36daad5e9cc96e17dea45a80d4e8460ef4f16e0"
+      "full_sha256": "eb5bfb19badcbe802cb3674709338d1ecc56fe1c53cb7cad87c96207cab9a048"
     },
     {
       "id": "reedglass_bow",
       "full": "assets/art/characters/v3/full/reedglass_bow.png",
       "sheet": "cast-24",
       "slot": 0,
-      "full_sha256": "cb97ae9c07b108dd938cde39aafe9cb8d5a3a637b96a33424ca24189b64556c8"
+      "full_sha256": "5834dfd35a250d19ff0bdf5cfd2546ecc51a871a8b9279b663743aade1a9050d"
     },
     {
       "id": "saltband_surgeon",
       "full": "assets/art/characters/v3/full/saltband_surgeon.png",
       "sheet": "cast-24",
       "slot": 1,
-      "full_sha256": "e122c0e956aae7eb66a207ce2078c7c0e595e2871e0ceaf90ac3f3323abc811f"
+      "full_sha256": "e2640b50ba57e536e0e3eb348c4f44cd0f450232104355e43f419c29980c01e9"
     },
     {
       "id": "hinge_lancer",
       "full": "assets/art/characters/v3/full/hinge_lancer.png",
       "sheet": "cast-24",
       "slot": 2,
-      "full_sha256": "00f9ef5b3dfddc44f3042453b30e53d5774aa95ba3b2cae8318c6849f95177be"
+      "full_sha256": "3dee79ce03f6f669f36bd8ff9d6f4fdc1e7cc952385d5157ee8ff1fbe628df77"
     },
     {
       "id": "cinder_coxswain",
       "full": "assets/art/characters/v3/full/cinder_coxswain.png",
       "sheet": "cast-25",
       "slot": 0,
-      "full_sha256": "1be09aa7711367de94468d8d8c889b8a8dd6b11a603fba47c3d1a7bf49753ef2"
+      "full_sha256": "77665838a8868031e6d8a32eabba42edefa43cdbf6a181e2ee1d0e5cb5962607"
     },
     {
       "id": "quarry_bugler",
       "full": "assets/art/characters/v3/full/quarry_bugler.png",
       "sheet": "cast-25",
       "slot": 1,
-      "full_sha256": "c70f026bc7f5352b6e5665a0010946c57976717ca2baa33fa3e008e92a362f6b"
+      "full_sha256": "566a8b3b13afa00670e8bd9080f67f833d76c8920a0158cc391d740c0296254b"
     },
     {
       "id": "copper_cistern",
       "full": "assets/art/characters/v3/full/copper_cistern.png",
       "sheet": "cast-25",
       "slot": 2,
-      "full_sha256": "dc8c34bf271d46a9464c63e334dd9406c6a21b00c1d24ed57fdaa8ac0b784fb4"
+      "full_sha256": "26d87b6e6c3e162903b20742e768b2f0e59ef0298b97b7ace9d523568281fb04"
     },
     {
       "id": "breakline_sappers",
       "full": "assets/art/characters/v3/full/breakline_sappers.png",
       "sheet": "cast-26",
       "slot": 0,
-      "full_sha256": "aca406c39c1caae5f99c6a0e8519a23b63836932be9a3602ce837b7c023bb57f"
+      "full_sha256": "853df7479fedaa96fc4736f2e94e963f24ebe0c187f9ee25113024b6e6bc8512"
     },
     {
       "id": "skylens_sentinel",
       "full": "assets/art/characters/v3/full/skylens_sentinel.png",
       "sheet": "cast-26",
       "slot": 1,
-      "full_sha256": "8b042c3b1559f89a5e8512bed52a7f4f6d75ef91dbe852cfbd70e0464475340d"
+      "full_sha256": "78340236e42b1b0572cec30b975e62ba8270a00700900006cf64ddd1b1e6daad"
     },
     {
       "id": "bellroad_captain",
       "full": "assets/art/characters/v3/full/bellroad_captain.png",
       "sheet": "cast-26",
       "slot": 2,
-      "full_sha256": "295b390eb49c733ce6f9ed42080adf10b9ba75bd8b4494a1cc96c90d20251aba"
+      "full_sha256": "beccf95d5103fc1c3ce9422278f75e064956e7906f0bf3fde76d9c83de7b285b"
     },
     {
       "id": "silver_bulwark",
       "full": "assets/art/characters/v3/full/silver_bulwark.png",
       "sheet": "cast-27",
       "slot": 0,
-      "full_sha256": "eee750ee79e071d26f81e6619cab3c962084b0c02c03070d71d089b8c6ce7ba4"
+      "full_sha256": "5c0c11d2d40b018d4feee3c9a55eab2c326ddb949bd336cb97f19e84e7309b2b"
     },
     {
       "id": "shore_medic",
       "full": "assets/art/characters/v3/full/shore_medic.png",
       "sheet": "cast-28",
       "slot": 0,
-      "full_sha256": "20f7ec618f30115fcf156a450e36546d9cee78bd1b8c6289767327174514815b"
+      "full_sha256": "fa44cde6f3336b8704741d70cd4375b15d20803ae8c2dff222e2455df36c48aa"
     },
     {
       "id": "ash_notary",
       "full": "assets/art/characters/v3/full/ash_notary.png",
       "sheet": "cast-28",
       "slot": 1,
-      "full_sha256": "d3ece69248e7f6cefce16a9d4119ffdd2dcb7034126143cffc0b72448927368c"
+      "full_sha256": "1e44fbb5e4ad4d1317a8f2bc7550b265044abd7f2d3f0f45a7e02cb33ab1afa3"
     }
-  ]
+  ],
+  "preview": "docs/release/cast-v064.webp",
+  "alpha_processing": "Zero-alpha RGB is cleared after slicing to avoid invisible neighboring atlas pixels leaking through image tools or filtering."
 }
